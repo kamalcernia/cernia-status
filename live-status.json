@@ -1,22 +1,22 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T17:54:48.252Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 13:54 EDT",
+    "lastUpdatedIso": "2026-05-21T17:56:11.998Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 13:56 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-58 CC-56 T-LTC-B CC-60 T-Home-B CC-59 CC-57 T-Vision-B) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
   },
   "summary": {
     "currentMainCommit": "76989fc",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 64,
+    "agentsRemainingToV30": 84,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 13:55 EDT · pool 8/8)",
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 13:56 EDT · pool 8/8)",
     "totalAgentsShipped": 412,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 392,
+      "sonnet": 393,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 98,
       "opus": 6
     },
-    "v30Status": "412/476 (87%, 64 to go)",
-    "v30Target": 476
+    "v30Status": "412/496 (83%, 84 to go)",
+    "v30Target": 496
   },
   "pool": {
     "size": 8,
@@ -2325,7 +2325,7 @@
       "name": "7 Specialty Modules",
       "tag": "v1.8-specialty-modules",
       "status": "in-progress",
-      "agentsTotal": 79,
+      "agentsTotal": 80,
       "agents": [
         {
           "id": "T-HOME-B",
@@ -2678,6 +2678,13 @@
           "modelReason": "specialty-fhir-mapping"
         },
         {
+          "id": "T-PAIN-B",
+          "name": "medd fhir",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
           "id": "T-PAINMGMT-A",
           "name": "pain management fhir",
           "status": "landed",
@@ -2888,7 +2895,7 @@
           "modelReason": "specialty-fhir-mapping"
         }
       ],
-      "knownAgentCount": 79,
+      "knownAgentCount": 80,
       "pendingAgentCount": 0,
       "completionPct": 96
     },
