@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T14:08:19.521Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 10:08 EDT",
-    "modelSummary": "TIER 2 (slow ramp) · Pool 3/8 in flight (ERX-4 ERX-5 ERX-6) · last: slug normalization recovers H-EXT/H-EXT-2/E-wave b (6445c47)"
+    "lastUpdatedIso": "2026-05-21T14:09:04.095Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 10:09 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 3/8 in flight (ERX-4 ERX-5 ERX-6) · last: slug normalization recovers H-EXT/H-EXT-2/E-wave b (6445c47)"
   },
   "summary": {
     "currentMainCommit": "6445c47",
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "50 successful commits since v0.95-white-label · 6 failures tracked",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (6 historical)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 10:08 EDT · pool 3/8)",
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 10:09 EDT · pool 3/8)",
     "totalAgentsShipped": 363,
     "modelMix": {
       "haiku": 49,

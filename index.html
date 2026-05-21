@@ -381,7 +381,7 @@
       $("currentMainCommit").textContent = s.currentMainCommit || "—";
       $("currentTagOnMain").textContent = s.currentTagOnMain || "—";
       $("hardeningTrackRecord").textContent = s.hardeningTrackRecord || "—";
-      $("agentsRemainingToV30").textContent = (s.agentsRemainingToV30 ?? "—") + " remaining";
+      $("agentsRemainingToV30").textContent = s.v30Status || ((s.agentsRemainingToV30 ?? "—") + " remaining");
       $("cronStatus").textContent = s.cronStatus || "—";
       // Render model mix (active = in-flight + pending only)
       const mix = s.modelMixActive || { haiku: 0, sonnet: 0, opus: 0 };
