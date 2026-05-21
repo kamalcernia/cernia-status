@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T14:01:56.488Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 10:01 EDT",
-    "modelSummary": "TIER 2 (slow ramp) · Pool 2/8 in flight (ERX-5 ERX-6) · last: slug normalization recovers H-EXT/H-EXT-2/E-wave b (6445c47)"
+    "lastUpdatedIso": "2026-05-21T14:02:02.901Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 10:02 EDT",
+    "modelSummary": "TIER 2 (slow ramp) · Pool 1/8 in flight (ERX-6) · last: slug normalization recovers H-EXT/H-EXT-2/E-wave b (6445c47)"
   },
   "summary": {
     "currentMainCommit": "6445c47",
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "50 successful commits since v0.95-white-label · 6 failures tracked",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 2 (slow ramp) — 10 landings · 6 failures in last 10 dispatches",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 10:01 EDT · pool 2/8)",
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 10:02 EDT · pool 1/8)",
     "totalAgentsShipped": 363,
     "modelMix": {
       "haiku": 49,
@@ -27,7 +27,7 @@
   },
   "pool": {
     "size": 8,
-    "saturationPct": 25,
+    "saturationPct": 13,
     "queueDepth": 5,
     "slots": [
       {
@@ -51,13 +51,8 @@
       {
         "slot": 4,
         "worktree": "cernia-wt-r1-r",
-        "status": "running",
-        "agent": {
-          "taskId": "ERX-5",
-          "agentId": "afb3810f6f478bfb2",
-          "task": "Surescripts adapter (envelope + routing + backoff + parser) (sonnet)",
-          "writableSet": "packages/surescripts-adapter/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 5,
@@ -3591,15 +3586,6 @@
       "agentsTotal": 6,
       "agents": [
         {
-          "id": "ERX-5",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 4,
-          "worktree": "cernia-wt-r1-r",
-          "recommendedModel": "sonnet",
-          "modelReason": "default"
-        },
-        {
           "id": "ERX-6",
           "name": "(running — branch not yet pushed)",
           "status": "in-flight",
@@ -3636,10 +3622,18 @@
           "activationPosition": 148,
           "recommendedModel": "sonnet",
           "modelReason": "default"
+        },
+        {
+          "id": "ERX-?2",
+          "name": "pending agent (slot 149 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 149,
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
         }
       ],
-      "knownAgentCount": 5,
-      "pendingAgentCount": 1,
+      "knownAgentCount": 4,
+      "pendingAgentCount": 2,
       "completionPct": 50
     },
     {
