@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T14:35:03.525Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 10:35 EDT",
+    "lastUpdatedIso": "2026-05-21T14:36:39.443Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 10:36 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 6/8 in flight (T-Tox-A T-Trauma-A T-Reprod-A T-Rehab-A T-Genom-A T-Sports-A) · last: queue auto-derives from pending placeholders; fail (75884ad)"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "53 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 10:35 EDT · pool 6/8)",
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 10:36 EDT · pool 6/8)",
     "totalAgentsShipped": 371,
     "modelMix": {
       "haiku": 49,

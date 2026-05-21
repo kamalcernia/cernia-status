@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>Cernia — Wave Build Status</title>
   <style>
     :root {
@@ -407,10 +410,26 @@
 
     async function refresh() {
       try {
-        const res = await fetch("live-status.json?t=" + Date.now());
+        // Defeat browser + GitHub Pages CDN caching (which serves with
+        // Cache-Control: max-age=600 by default). Combine cache:'no-store'
+        // with a unique query param so neither layer can serve stale.
+        const buster = Date.now() + "-" + Math.random().toString(36).slice(2);
+        const res = await fetch("live-status.json?t=" + buster, {
+          cache: 'no-store',
+          headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache' }
+        });
         if (!res.ok) throw new Error("HTTP " + res.status);
         const data = await res.json();
         render(data);
+        // Surface the data's own freshness next to the title so it's obvious
+        // whether the page is updating in real time
+        const ts = data?.meta?.lastUpdatedIso;
+        if (ts) {
+          const ageSec = Math.round((Date.now() - new Date(ts).getTime()) / 1000);
+          const ageDisplay = ageSec < 60 ? ageSec + "s ago" : ageSec < 3600 ? Math.round(ageSec / 60) + "m ago" : Math.round(ageSec / 3600) + "h ago";
+          const banner = document.querySelector(".last-updated, #lastUpdatedDisplay");
+          if (banner) banner.dataset.age = ageDisplay;
+        }
       } catch (e) {
         $("errorBanner").classList.add("shown");
         if (lastGoodRender) render(lastGoodRender);
