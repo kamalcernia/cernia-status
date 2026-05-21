@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T19:44:12.716Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 15:44 EDT",
+    "lastUpdatedIso": "2026-05-21T19:48:34.261Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 15:48 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-86 CC-81 CC-84 CC-78 CC-83 CC-82 CC-85 CC-80) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 72,
+    "agentsRemainingToV30": 75,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 15:44 EDT · pool 8/8)",
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 15:48 EDT · pool 8/8)",
     "totalAgentsShipped": 438,
     "modelMix": {
       "haiku": 49,
@@ -24,8 +24,8 @@
       "sonnet": 92,
       "opus": 6
     },
-    "v30Status": "438/510 (86%, 72 to go)",
-    "v30Target": 510
+    "v30Status": "438/513 (85%, 75 to go)",
+    "v30Target": 513
   },
   "pool": {
     "size": 8,
@@ -71,8 +71,8 @@
         "status": "running",
         "agent": {
           "taskId": "CC-78",
-          "agentId": "a1ac49da06838f64a",
-          "task": "PROMs (PROMIS+KCCQ+EQ-5D) patient-reported outcomes FHIR (sonnet)",
+          "agentId": "a79f722ec5e7c8c32",
+          "task": "PROMs (PROMIS+KCCQ+EQ-5D+CAT+ACT) FHIR (RETRY w/ smaller scope) (sonnet)",
           "writableSet": "packages/catalog-proms-promis/**"
         }
       },
