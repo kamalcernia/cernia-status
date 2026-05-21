@@ -1,22 +1,22 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T22:46:53.412Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 18:46 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-113 CC-102 CC-110 CC-116 CC-115 CC-114 CC-112 CC-111) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "lastUpdatedIso": "2026-05-21T22:52:16.786Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 18:52 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-113 CC-102 CC-110 CC-116 CC-115 CC-114 CC-117 CC-111) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 74,
+    "agentsRemainingToV30": 73,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 18:46 EDT · pool 8/8)",
-    "totalAgentsShipped": 468,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 18:52 EDT · pool 8/8)",
+    "totalAgentsShipped": 470,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 443,
+      "sonnet": 444,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 92,
       "opus": 6
     },
-    "v30Status": "468/542 (86%, 74 to go)",
-    "v30Target": 542
+    "v30Status": "470/543 (87%, 73 to go)",
+    "v30Target": 543
   },
   "pool": {
     "size": 8,
@@ -103,10 +103,10 @@
         "worktree": "cernia-wt-r1-y",
         "status": "running",
         "agent": {
-          "taskId": "CC-112",
-          "agentId": "ae5f49ed82ffbb38e",
-          "task": "CMS HRRP+HACRP+HVBP+HCAHPS+Star Ratings hospital VBP FHIR (sonnet)",
-          "writableSet": "packages/catalog-cms-hrrp-hacrp-hvbp/**"
+          "taskId": "CC-117",
+          "agentId": "a711fd2757588c566",
+          "task": "Major clinical guidelines (ADA+AHA+GOLD+GINA+KDIGO 2024) FHIR (sonnet)",
+          "writableSet": "packages/catalog-major-clinical-guidelines/**"
         }
       },
       {
@@ -3772,7 +3772,7 @@
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "in-progress",
-      "agentsTotal": 118,
+      "agentsTotal": 119,
       "agents": [
         {
           "id": "CC-102",
@@ -3785,7 +3785,7 @@
         },
         {
           "id": "CC-110",
-          "name": "(running — branch not yet pushed)",
+          "name": "hipaa compliance",
           "status": "in-flight",
           "slot": 3,
           "worktree": "cernia-wt-r1-hext-c",
@@ -3798,15 +3798,6 @@
           "status": "in-flight",
           "slot": 8,
           "worktree": "cernia-wt-r1-t",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-112",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 7,
-          "worktree": "cernia-wt-r1-y",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -3843,6 +3834,15 @@
           "status": "in-flight",
           "slot": 4,
           "worktree": "cernia-wt-r1-r",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-117",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 7,
+          "worktree": "cernia-wt-r1-y",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4615,9 +4615,16 @@
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-112",
+          "name": "hrrp hacrp hvbp",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 118,
+      "knownAgentCount": 119,
       "pendingAgentCount": 0,
       "completionPct": 93
     },
