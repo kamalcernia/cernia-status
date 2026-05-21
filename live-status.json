@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T19:33:51.989Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 15:33 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-77 CC-81 CC-75 CC-78 CC-76 CC-82 CC-79 CC-80) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "lastUpdatedIso": "2026-05-21T19:36:54.923Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 15:36 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-77 CC-81 CC-75 CC-78 CC-83 CC-82 CC-79 CC-80) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
@@ -12,11 +12,11 @@
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 15:33 EDT · pool 8/8)",
-    "totalAgentsShipped": 434,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 15:36 EDT · pool 8/8)",
+    "totalAgentsShipped": 435,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 409,
+      "sonnet": 410,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 92,
       "opus": 6
     },
-    "v30Status": "434/508 (85%, 74 to go)",
-    "v30Target": 508
+    "v30Status": "435/509 (85%, 74 to go)",
+    "v30Target": 509
   },
   "pool": {
     "size": 8,
@@ -81,10 +81,10 @@
         "worktree": "cernia-wt-r1-s-hl7",
         "status": "running",
         "agent": {
-          "taskId": "CC-76",
-          "agentId": "a89b0940c6944cd03",
-          "task": "ADA CDT 2024 dental procedure codes + tooth surfaces FHIR (sonnet)",
-          "writableSet": "packages/catalog-cdt-2024/**"
+          "taskId": "CC-83",
+          "agentId": "ad0cabace17572a81",
+          "task": "NUBC UB-04 revenue/TOB/occurrence/condition catalog FHIR (institutional billing) (sonnet)",
+          "writableSet": "packages/catalog-nubc-ub04/**"
         }
       },
       {
@@ -3772,7 +3772,7 @@
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "in-progress",
-      "agentsTotal": 84,
+      "agentsTotal": 85,
       "agents": [
         {
           "id": "CC-75",
@@ -3780,15 +3780,6 @@
           "status": "in-flight",
           "slot": 3,
           "worktree": "cernia-wt-r1-hext-c",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-76",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 5,
-          "worktree": "cernia-wt-r1-s-hl7",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -3843,6 +3834,15 @@
           "status": "in-flight",
           "slot": 6,
           "worktree": "cernia-wt-r1-s-dicom",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-83",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 5,
+          "worktree": "cernia-wt-r1-s-hl7",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4377,11 +4377,18 @@
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-76",
+          "name": "cdt 2024",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 84,
+      "knownAgentCount": 85,
       "pendingAgentCount": 0,
-      "completionPct": 90
+      "completionPct": 91
     },
     {
       "id": "ERX",
