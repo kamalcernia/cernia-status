@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T16:07:30.988Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 12:07 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 6/8 in flight (T-Derm-B T-EmMed-B T-Nephro-B T-Urol-B T-GI-B T-PainMgmt-B) · last: fetch JSON from raw.githubusercontent.com to bypas (121c885)"
+    "lastUpdatedIso": "2026-05-21T16:12:50.342Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 12:12 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 7/8 in flight (T-Derm-B T-Surg-B T-EmMed-B T-Nephro-B T-Urol-B T-GI-B T-PainMgmt-B) · last: fetch JSON from raw.githubusercontent.com to bypas (121c885)"
   },
   "summary": {
     "currentMainCommit": "121c885",
@@ -12,16 +12,16 @@
     "hardeningTrackRecord": "55 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 12:07 EDT · pool 6/8)",
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 12:13 EDT · pool 7/8)",
     "totalAgentsShipped": 392,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 353,
+      "sonnet": 354,
       "opus": 33
     },
     "modelMixActive": {
       "haiku": 6,
-      "sonnet": 96,
+      "sonnet": 97,
       "opus": 6
     },
     "v30Status": "392/462 (85%, 70 to go)",
@@ -29,7 +29,7 @@
   },
   "pool": {
     "size": 8,
-    "saturationPct": 75,
+    "saturationPct": 88,
     "queueDepth": 5,
     "slots": [
       {
@@ -46,8 +46,13 @@
       {
         "slot": 2,
         "worktree": "cernia-wt-r1-hext-b",
-        "status": "idle",
-        "agent": null
+        "status": "running",
+        "agent": {
+          "taskId": "T-Surg-B",
+          "agentId": "aecbc2b60fa198814",
+          "task": "Surgery SSI+MICA+VTE FHIR (NHSN + NSQIP + Caprini) (sonnet)",
+          "writableSet": "packages/specialty-surg-ssi-nsqip/**"
+        }
       },
       {
         "slot": 3,
@@ -2316,7 +2321,7 @@
       "name": "7 Specialty Modules",
       "tag": "v1.8-specialty-modules",
       "status": "in-progress",
-      "agentsTotal": 45,
+      "agentsTotal": 46,
       "agents": [
         {
           "id": "T-DERM-B",
@@ -2360,6 +2365,15 @@
           "status": "in-flight",
           "slot": 8,
           "worktree": "cernia-wt-r1-t",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
+          "id": "T-SURG-B",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 2,
+          "worktree": "cernia-wt-r1-hext-b",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -2647,9 +2661,9 @@
           "modelReason": "specialty-fhir-mapping"
         }
       ],
-      "knownAgentCount": 45,
+      "knownAgentCount": 46,
       "pendingAgentCount": 0,
-      "completionPct": 87
+      "completionPct": 85
     },
     {
       "id": "R",
