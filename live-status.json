@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T22:15:29.773Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 18:15 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-105 CC-102 CC-103 CC-108 CC-109 CC-106 CC-104 CC-107) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "lastUpdatedIso": "2026-05-21T22:23:34.662Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 18:23 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-105 CC-102 CC-110 CC-108 CC-109 CC-106 CC-104 CC-107) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
@@ -12,11 +12,11 @@
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 18:15 EDT · pool 8/8)",
-    "totalAgentsShipped": 461,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 18:23 EDT · pool 8/8)",
+    "totalAgentsShipped": 462,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 436,
+      "sonnet": 437,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 92,
       "opus": 6
     },
-    "v30Status": "461/535 (86%, 74 to go)",
-    "v30Target": 535
+    "v30Status": "462/536 (86%, 74 to go)",
+    "v30Target": 536
   },
   "pool": {
     "size": 8,
@@ -59,10 +59,10 @@
         "worktree": "cernia-wt-r1-hext-c",
         "status": "running",
         "agent": {
-          "taskId": "CC-103",
-          "agentId": "a83cebd19e5482287",
-          "task": "CMS IQR + HOPD quality reporting measures FHIR (sonnet)",
-          "writableSet": "packages/catalog-cms-iqr-hopd/**"
+          "taskId": "CC-110",
+          "agentId": "aec49f0e46dc18b9a",
+          "task": "HIPAA Privacy+Security+Breach rules + penalty tiers FHIR (sonnet)",
+          "writableSet": "packages/catalog-hipaa-compliance/**"
         }
       },
       {
@@ -3772,7 +3772,7 @@
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "in-progress",
-      "agentsTotal": 111,
+      "agentsTotal": 112,
       "agents": [
         {
           "id": "CC-102",
@@ -3780,15 +3780,6 @@
           "status": "in-flight",
           "slot": 2,
           "worktree": "cernia-wt-r1-hext-b",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-103",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 3,
-          "worktree": "cernia-wt-r1-hext-c",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -3843,6 +3834,15 @@
           "status": "in-flight",
           "slot": 5,
           "worktree": "cernia-wt-r1-s-hl7",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-110",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 3,
+          "worktree": "cernia-wt-r1-hext-c",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4566,9 +4566,16 @@
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-103",
+          "name": "iqr hopd",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 111,
+      "knownAgentCount": 112,
       "pendingAgentCount": 0,
       "completionPct": 93
     },
