@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T19:53:42.659Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 15:53 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-86 CC-87 CC-84 CC-78 CC-83 CC-82 CC-85 CC-80) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "lastUpdatedIso": "2026-05-21T19:56:53.264Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 15:56 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-86 CC-87 CC-84 CC-78 CC-88 CC-89 CC-85 CC-80) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
@@ -12,11 +12,11 @@
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 15:53 EDT · pool 8/8)",
-    "totalAgentsShipped": 440,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 15:57 EDT · pool 8/8)",
+    "totalAgentsShipped": 441,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 414,
+      "sonnet": 416,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 92,
       "opus": 6
     },
-    "v30Status": "440/513 (86%, 73 to go)",
-    "v30Target": 513
+    "v30Status": "441/514 (86%, 73 to go)",
+    "v30Target": 514
   },
   "pool": {
     "size": 8,
@@ -81,10 +81,10 @@
         "worktree": "cernia-wt-r1-s-hl7",
         "status": "running",
         "agent": {
-          "taskId": "CC-83",
-          "agentId": "ad0cabace17572a81",
-          "task": "NUBC UB-04 revenue/TOB/occurrence/condition catalog FHIR (institutional billing) (sonnet)",
-          "writableSet": "packages/catalog-nubc-ub04/**"
+          "taskId": "CC-88",
+          "agentId": "a7e6080bbf51220d4",
+          "task": "OMB Race+Ethnicity+MENA 2024 catalog FHIR (USCDI demographics + disparity analytics) (sonnet)",
+          "writableSet": "packages/catalog-omb-race-ethnicity/**"
         }
       },
       {
@@ -92,10 +92,10 @@
         "worktree": "cernia-wt-r1-s-dicom",
         "status": "running",
         "agent": {
-          "taskId": "CC-82",
-          "agentId": "a1b52ea7d0f79fd52",
-          "task": "CMS MIPS/MACRA Quality+PI+IA+Cost catalog FHIR (QPP submission) (sonnet)",
-          "writableSet": "packages/catalog-cms-mips-quality/**"
+          "taskId": "CC-89",
+          "agentId": "ad108e8d935e21340",
+          "task": "DEA controlled substances + diversion + PMP catalog FHIR (sonnet)",
+          "writableSet": "packages/catalog-dea-controlled-substances/**"
         }
       },
       {
@@ -3772,7 +3772,7 @@
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "in-progress",
-      "agentsTotal": 89,
+      "agentsTotal": 91,
       "agents": [
         {
           "id": "CC-78",
@@ -3789,24 +3789,6 @@
           "status": "in-flight",
           "slot": 8,
           "worktree": "cernia-wt-r1-t",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-82",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 6,
-          "worktree": "cernia-wt-r1-s-dicom",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-83",
-          "name": "nubc ub04",
-          "status": "in-flight",
-          "slot": 5,
-          "worktree": "cernia-wt-r1-s-hl7",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -3843,6 +3825,24 @@
           "status": "in-flight",
           "slot": 2,
           "worktree": "cernia-wt-r1-hext-b",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-88",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 5,
+          "worktree": "cernia-wt-r1-s-hl7",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-89",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 6,
+          "worktree": "cernia-wt-r1-s-dicom",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4412,9 +4412,23 @@
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-82",
+          "name": "cms mips quality",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-83",
+          "name": "nubc ub04",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 89,
+      "knownAgentCount": 91,
       "pendingAgentCount": 0,
       "completionPct": 91
     },
