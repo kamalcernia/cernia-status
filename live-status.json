@@ -1,124 +1,84 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T14:55:59.107Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 10:55 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (T-Hem-B T-Allergy-B T-Cardio-B T-Endo-B T-Pulm-B T-Geri-B T-Peds-B T-Rheum-B) · last: defeat GitHub Pages cache for live updates (68eb0a8)"
+    "lastUpdatedIso": "2026-05-21T15:51:53.633Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 11:51 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last: defeat GitHub Pages cache for live updates (68eb0a8)"
   },
   "summary": {
     "currentMainCommit": "68eb0a8",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 54,
-    "agentsRemainingToV30": 80,
+    "agentsRemainingToV30": 70,
     "hardeningTrackRecord": "54 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 10:55 EDT · pool 8/8)",
-    "totalAgentsShipped": 380,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 11:52 EDT · pool 0/8)",
+    "totalAgentsShipped": 390,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 348,
+      "sonnet": 351,
       "opus": 33
     },
     "modelMixActive": {
       "haiku": 6,
-      "sonnet": 104,
+      "sonnet": 96,
       "opus": 6
     },
-    "v30Status": "380/460 (83%, 80 to go)",
+    "v30Status": "390/460 (85%, 70 to go)",
     "v30Target": 460
   },
   "pool": {
     "size": 8,
-    "saturationPct": 100,
+    "saturationPct": 0,
     "queueDepth": 5,
     "slots": [
       {
         "slot": 1,
         "worktree": "cernia-wt-r1-hext-a",
-        "status": "running",
-        "agent": {
-          "taskId": "T-Hem-B",
-          "agentId": "a0043f4cd46ff7427",
-          "task": "Coagulation FHIR (coag panel + anticoagulation + VTE prophylaxis) (sonnet)",
-          "writableSet": "packages/specialty-coagulation/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 2,
         "worktree": "cernia-wt-r1-hext-b",
-        "status": "running",
-        "agent": {
-          "taskId": "T-Allergy-B",
-          "agentId": "a84667dbf2e66b753",
-          "task": "Allergy testing FHIR (IgE + skin + immunotherapy) (sonnet)",
-          "writableSet": "packages/specialty-allergy-testing/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 3,
         "worktree": "cernia-wt-r1-hext-c",
-        "status": "running",
-        "agent": {
-          "taskId": "T-Cardio-B",
-          "agentId": "af20fb0e5c417dedd",
-          "task": "Electrophysiology FHIR (arrhythmias + ECG + CHA2DS2-VASc) (sonnet)",
-          "writableSet": "packages/specialty-electrophysiology/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 4,
         "worktree": "cernia-wt-r1-r",
-        "status": "running",
-        "agent": {
-          "taskId": "T-Endo-B",
-          "agentId": "a8a0b57312fe02aa4",
-          "task": "Diabetes + Thyroid FHIR (HbA1c/CGM + thyroid panel + insulin) (sonnet)",
-          "writableSet": "packages/specialty-diabetes-thyroid/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 5,
         "worktree": "cernia-wt-r1-s-hl7",
-        "status": "running",
-        "agent": {
-          "taskId": "T-Pulm-B",
-          "agentId": "a3cd1c09ed38b65e8",
-          "task": "Pulm action plans (asthma + COPD + spirometry) (sonnet)",
-          "writableSet": "packages/specialty-pulm-action-plans/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 6,
         "worktree": "cernia-wt-r1-s-dicom",
-        "status": "running",
-        "agent": {
-          "taskId": "T-Geri-B",
-          "agentId": "aac81982b66e2a87a",
-          "task": "Geriatrics frailty FHIR (Fried + CFS + Morse + CAM) (sonnet)",
-          "writableSet": "packages/specialty-geriatrics-frailty/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 7,
         "worktree": "cernia-wt-r1-y",
-        "status": "running",
-        "agent": {
-          "taskId": "T-Peds-B",
-          "agentId": "af26af039a376a0fd",
-          "task": "Pediatrics growth FHIR (charts + vaccines + milestones) (sonnet)",
-          "writableSet": "packages/specialty-pediatrics-growth/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 8,
         "worktree": "cernia-wt-r1-t",
-        "status": "running",
-        "agent": {
-          "taskId": "T-Rheum-B",
-          "agentId": "a90d45e7d45d38751",
-          "task": "Rheumatology activity FHIR (DAS28 + SLEDAI + BASDAI) (sonnet)",
-          "writableSet": "packages/specialty-rheum-activity/**"
-        }
+        "status": "idle",
+        "agent": null
       }
     ]
   },
@@ -2330,80 +2290,15 @@
       "agentsTotal": 43,
       "agents": [
         {
-          "id": "T-ALLERGY-B",
-          "name": "allergy testing fhir",
-          "status": "in-flight",
-          "slot": 2,
-          "worktree": "cernia-wt-r1-hext-b",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-CARDIO-B",
-          "name": "electrophysiology fhir",
-          "status": "in-flight",
-          "slot": 3,
-          "worktree": "cernia-wt-r1-hext-c",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-ENDO-B",
-          "name": "diabetes thyroid fhir",
-          "status": "in-flight",
-          "slot": 4,
-          "worktree": "cernia-wt-r1-r",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-GERI-B",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 6,
-          "worktree": "cernia-wt-r1-s-dicom",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-HEM-B",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 1,
-          "worktree": "cernia-wt-r1-hext-a",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-PEDS-B",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 7,
-          "worktree": "cernia-wt-r1-y",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-PULM-B",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 5,
-          "worktree": "cernia-wt-r1-s-hl7",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-RHEUM-B",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 8,
-          "worktree": "cernia-wt-r1-t",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
           "id": "T-ALLERGY-A",
           "name": "allergy immunology fhir",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
+          "id": "T-ALLERGY-B",
+          "name": "allergy testing fhir",
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2431,8 +2326,22 @@
           "modelReason": "specialty-fhir-mapping"
         },
         {
+          "id": "T-CARDIO-B",
+          "name": "electrophysiology fhir",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
           "id": "T-DENTAL",
           "name": "charting",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
+          "id": "T-DENTAL-B",
+          "name": "perio fhir",
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2459,8 +2368,22 @@
           "modelReason": "specialty-fhir-mapping"
         },
         {
+          "id": "T-ENDO-B",
+          "name": "diabetes thyroid fhir",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
           "id": "T-GERI-A",
           "name": "geriatrics fhir",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
+          "id": "T-GERI-B",
+          "name": "frailty fhir",
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2475,6 +2398,13 @@
         {
           "id": "T-HEM-A",
           "name": "hematology fhir",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
+          "id": "T-HEM-B",
+          "name": "coagulation fhir",
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2503,6 +2433,13 @@
         {
           "id": "T-NEURO-A",
           "name": "neurology fhir",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
+          "id": "T-NEURO-B",
+          "name": "extras fhir",
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2550,6 +2487,13 @@
           "modelReason": "specialty-fhir-mapping"
         },
         {
+          "id": "T-PEDS-B",
+          "name": "growth vaccines fhir",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
           "id": "T-PULM-A",
           "name": "pulmonology fhir",
           "status": "landed",
@@ -2557,8 +2501,22 @@
           "modelReason": "specialty-fhir-mapping"
         },
         {
+          "id": "T-PULM-B",
+          "name": "action plans fhir",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
           "id": "T-RHEUM-A",
           "name": "rheumatology fhir",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
+          "id": "T-RHEUM-B",
+          "name": "activity fhir",
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2580,6 +2538,13 @@
         {
           "id": "T-WHEALTH-A",
           "name": "womens health fhir",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
+          "id": "T-WHEALTH-B",
+          "name": "screening fhir",
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2626,15 +2591,15 @@
         },
         {
           "id": "T-…",
-          "name": "+ 4 more pending (later in queue)",
+          "name": "+ 1 more pending (later in queue)",
           "status": "pending",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         }
       ],
-      "knownAgentCount": 34,
-      "pendingAgentCount": 9,
-      "completionPct": 60
+      "knownAgentCount": 37,
+      "pendingAgentCount": 6,
+      "completionPct": 86
     },
     {
       "id": "R",
@@ -2694,6 +2659,30 @@
         },
         {
           "id": "R-?1",
+          "name": "pending agent (slot 92 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 92,
+          "recommendedModel": "sonnet",
+          "modelReason": "mobile-platform"
+        },
+        {
+          "id": "R-?2",
+          "name": "pending agent (slot 93 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 93,
+          "recommendedModel": "sonnet",
+          "modelReason": "mobile-platform"
+        },
+        {
+          "id": "R-?3",
+          "name": "pending agent (slot 94 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 94,
+          "recommendedModel": "sonnet",
+          "modelReason": "mobile-platform"
+        },
+        {
+          "id": "R-?4",
           "name": "pending agent (slot 95 in dispatch queue)",
           "status": "pending",
           "activationPosition": 95,
@@ -2701,34 +2690,10 @@
           "modelReason": "mobile-platform"
         },
         {
-          "id": "R-?2",
+          "id": "R-?5",
           "name": "pending agent (slot 96 in dispatch queue)",
           "status": "pending",
           "activationPosition": 96,
-          "recommendedModel": "sonnet",
-          "modelReason": "mobile-platform"
-        },
-        {
-          "id": "R-?3",
-          "name": "pending agent (slot 97 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 97,
-          "recommendedModel": "sonnet",
-          "modelReason": "mobile-platform"
-        },
-        {
-          "id": "R-?4",
-          "name": "pending agent (slot 98 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 98,
-          "recommendedModel": "sonnet",
-          "modelReason": "mobile-platform"
-        },
-        {
-          "id": "R-?5",
-          "name": "pending agent (slot 99 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 99,
           "recommendedModel": "sonnet",
           "modelReason": "mobile-platform"
         }
@@ -2774,33 +2739,33 @@
         },
         {
           "id": "S-?1",
-          "name": "pending agent (slot 100 in dispatch queue)",
+          "name": "pending agent (slot 97 in dispatch queue)",
           "status": "pending",
-          "activationPosition": 100,
+          "activationPosition": 97,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
         {
           "id": "S-?2",
-          "name": "pending agent (slot 101 in dispatch queue)",
+          "name": "pending agent (slot 98 in dispatch queue)",
           "status": "pending",
-          "activationPosition": 101,
+          "activationPosition": 98,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
         {
           "id": "S-?3",
-          "name": "pending agent (slot 102 in dispatch queue)",
+          "name": "pending agent (slot 99 in dispatch queue)",
           "status": "pending",
-          "activationPosition": 102,
+          "activationPosition": 99,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
         {
           "id": "S-?4",
-          "name": "pending agent (slot 103 in dispatch queue)",
+          "name": "pending agent (slot 100 in dispatch queue)",
           "status": "pending",
-          "activationPosition": 103,
+          "activationPosition": 100,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         }
@@ -2874,17 +2839,17 @@
         },
         {
           "id": "U-?1",
-          "name": "pending agent (slot 104 in dispatch queue)",
+          "name": "pending agent (slot 101 in dispatch queue)",
           "status": "pending",
-          "activationPosition": 104,
+          "activationPosition": 101,
           "recommendedModel": "sonnet",
           "modelReason": "revenue-cycle-workflow"
         },
         {
           "id": "U-?2",
-          "name": "pending agent (slot 105 in dispatch queue)",
+          "name": "pending agent (slot 102 in dispatch queue)",
           "status": "pending",
-          "activationPosition": 105,
+          "activationPosition": 102,
           "recommendedModel": "sonnet",
           "modelReason": "revenue-cycle-workflow"
         }
@@ -2951,25 +2916,25 @@
         },
         {
           "id": "V-?1",
-          "name": "pending agent (slot 106 in dispatch queue)",
+          "name": "pending agent (slot 103 in dispatch queue)",
           "status": "pending",
-          "activationPosition": 106,
+          "activationPosition": 103,
           "recommendedModel": "haiku",
           "modelReason": "services-catalog"
         },
         {
           "id": "V-?2",
-          "name": "pending agent (slot 107 in dispatch queue)",
+          "name": "pending agent (slot 104 in dispatch queue)",
           "status": "pending",
-          "activationPosition": 107,
+          "activationPosition": 104,
           "recommendedModel": "haiku",
           "modelReason": "services-catalog"
         },
         {
           "id": "V-?3",
-          "name": "pending agent (slot 108 in dispatch queue)",
+          "name": "pending agent (slot 105 in dispatch queue)",
           "status": "pending",
-          "activationPosition": 108,
+          "activationPosition": 105,
           "recommendedModel": "haiku",
           "modelReason": "services-catalog"
         }
@@ -3001,6 +2966,30 @@
         },
         {
           "id": "W-?1",
+          "name": "pending agent (slot 106 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 106,
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "W-?2",
+          "name": "pending agent (slot 107 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 107,
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "W-?3",
+          "name": "pending agent (slot 108 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 108,
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "W-?4",
           "name": "pending agent (slot 109 in dispatch queue)",
           "status": "pending",
           "activationPosition": 109,
@@ -3008,34 +2997,10 @@
           "modelReason": "default"
         },
         {
-          "id": "W-?2",
+          "id": "W-?5",
           "name": "pending agent (slot 110 in dispatch queue)",
           "status": "pending",
           "activationPosition": 110,
-          "recommendedModel": "sonnet",
-          "modelReason": "default"
-        },
-        {
-          "id": "W-?3",
-          "name": "pending agent (slot 111 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 111,
-          "recommendedModel": "sonnet",
-          "modelReason": "default"
-        },
-        {
-          "id": "W-?4",
-          "name": "pending agent (slot 112 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 112,
-          "recommendedModel": "sonnet",
-          "modelReason": "default"
-        },
-        {
-          "id": "W-?5",
-          "name": "pending agent (slot 113 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 113,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         }
@@ -3088,9 +3053,9 @@
         },
         {
           "id": "AA-?1",
-          "name": "pending agent (slot 114 in dispatch queue)",
+          "name": "pending agent (slot 111 in dispatch queue)",
           "status": "pending",
-          "activationPosition": 114,
+          "activationPosition": 111,
           "recommendedModel": "haiku",
           "modelReason": "legal-templates"
         }
@@ -3129,6 +3094,30 @@
         },
         {
           "id": "X-?1",
+          "name": "pending agent (slot 112 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 112,
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "X-?2",
+          "name": "pending agent (slot 113 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 113,
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "X-?3",
+          "name": "pending agent (slot 114 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 114,
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "X-?4",
           "name": "pending agent (slot 115 in dispatch queue)",
           "status": "pending",
           "activationPosition": 115,
@@ -3136,34 +3125,10 @@
           "modelReason": "default"
         },
         {
-          "id": "X-?2",
+          "id": "X-?5",
           "name": "pending agent (slot 116 in dispatch queue)",
           "status": "pending",
           "activationPosition": 116,
-          "recommendedModel": "sonnet",
-          "modelReason": "default"
-        },
-        {
-          "id": "X-?3",
-          "name": "pending agent (slot 117 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 117,
-          "recommendedModel": "sonnet",
-          "modelReason": "default"
-        },
-        {
-          "id": "X-?4",
-          "name": "pending agent (slot 118 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 118,
-          "recommendedModel": "sonnet",
-          "modelReason": "default"
-        },
-        {
-          "id": "X-?5",
-          "name": "pending agent (slot 119 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 119,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -3326,17 +3291,17 @@
         },
         {
           "id": "Z-?1",
-          "name": "pending agent (slot 122 in dispatch queue)",
+          "name": "pending agent (slot 119 in dispatch queue)",
           "status": "pending",
-          "activationPosition": 122,
+          "activationPosition": 119,
           "recommendedModel": "haiku",
           "modelReason": "instrumentation-cs"
         },
         {
           "id": "Z-?2",
-          "name": "pending agent (slot 123 in dispatch queue)",
+          "name": "pending agent (slot 120 in dispatch queue)",
           "status": "pending",
-          "activationPosition": 123,
+          "activationPosition": 120,
           "recommendedModel": "haiku",
           "modelReason": "instrumentation-cs"
         }
@@ -3918,6 +3883,30 @@
         },
         {
           "id": "CC-?1",
+          "name": "pending agent (slot 121 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 121,
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-?2",
+          "name": "pending agent (slot 122 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 122,
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-?3",
+          "name": "pending agent (slot 123 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 123,
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-?4",
           "name": "pending agent (slot 124 in dispatch queue)",
           "status": "pending",
           "activationPosition": 124,
@@ -3925,34 +3914,10 @@
           "modelReason": "regulatory-compliance"
         },
         {
-          "id": "CC-?2",
+          "id": "CC-?5",
           "name": "pending agent (slot 125 in dispatch queue)",
           "status": "pending",
           "activationPosition": 125,
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-?3",
-          "name": "pending agent (slot 126 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 126,
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-?4",
-          "name": "pending agent (slot 127 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 127,
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-?5",
-          "name": "pending agent (slot 128 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 128,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
