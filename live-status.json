@@ -1,19 +1,19 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T14:27:36.824Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 10:27 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 2/8 in flight (T-Sleep-A T-Genom-A) · last: queue auto-derives from pending placeholders; fail (75884ad)"
+    "lastUpdatedIso": "2026-05-21T14:34:45.279Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 10:34 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 2/8 in flight (T-Tox-A T-Genom-A) · last: queue auto-derives from pending placeholders; fail (75884ad)"
   },
   "summary": {
     "currentMainCommit": "75884ad",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 53,
-    "agentsRemainingToV30": 90,
+    "agentsRemainingToV30": 89,
     "hardeningTrackRecord": "53 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 10:27 EDT · pool 2/8)",
-    "totalAgentsShipped": 370,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 10:34 EDT · pool 2/8)",
+    "totalAgentsShipped": 371,
     "modelMix": {
       "haiku": 49,
       "sonnet": 341,
@@ -24,7 +24,7 @@
       "sonnet": 98,
       "opus": 6
     },
-    "v30Status": "370/460 (80%, 90 to go)",
+    "v30Status": "371/460 (81%, 89 to go)",
     "v30Target": 460
   },
   "pool": {
@@ -37,10 +37,10 @@
         "worktree": "cernia-wt-r1-hext-a",
         "status": "running",
         "agent": {
-          "taskId": "T-Sleep-A",
-          "agentId": "a06c22179610b0682",
-          "task": "Sleep medicine FHIR (OSA scoring + PSG + sleep stages) (sonnet)",
-          "writableSet": "packages/specialty-sleep-medicine/**"
+          "taskId": "T-Tox-A",
+          "agentId": "a480f57854b0e7c04",
+          "task": "Toxicology FHIR (toxidromes + antidotes + Rumack-Matthew) (sonnet)",
+          "writableSet": "packages/specialty-toxicology/**"
         }
       },
       {
@@ -2309,7 +2309,7 @@
           "modelReason": "specialty-fhir-mapping"
         },
         {
-          "id": "T-SLEEP-A",
+          "id": "T-TOX-A",
           "name": "(running — branch not yet pushed)",
           "status": "in-flight",
           "slot": 1,
