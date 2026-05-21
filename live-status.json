@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T20:04:47.713Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 16:04 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-86 CC-87 CC-91 CC-78 CC-88 CC-89 CC-85 CC-80) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "lastUpdatedIso": "2026-05-21T20:08:50.870Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 16:08 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-92 CC-87 CC-91 CC-78 CC-88 CC-89 CC-94 CC-93) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
@@ -12,11 +12,11 @@
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 16:04 EDT · pool 8/8)",
-    "totalAgentsShipped": 445,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 16:08 EDT · pool 8/8)",
+    "totalAgentsShipped": 446,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 417,
+      "sonnet": 420,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 92,
       "opus": 6
     },
-    "v30Status": "445/516 (86%, 71 to go)",
-    "v30Target": 516
+    "v30Status": "446/517 (86%, 71 to go)",
+    "v30Target": 517
   },
   "pool": {
     "size": 8,
@@ -37,10 +37,10 @@
         "worktree": "cernia-wt-r1-hext-a",
         "status": "running",
         "agent": {
-          "taskId": "CC-86",
-          "agentId": "a1cb60d5c4f1758a3",
-          "task": "HL7 Da Vinci IGs + CDS Hooks + SMART scopes catalog FHIR (sonnet)",
-          "writableSet": "packages/catalog-hl7-davinci-igs/**"
+          "taskId": "CC-92",
+          "agentId": "a07ae5d0675c18a21",
+          "task": "CMS APMs + ACO REACH + BPCI + shared savings + FHIR (sonnet)",
+          "writableSet": "packages/catalog-cms-apms/**"
         }
       },
       {
@@ -103,10 +103,10 @@
         "worktree": "cernia-wt-r1-y",
         "status": "running",
         "agent": {
-          "taskId": "CC-85",
-          "agentId": "a29523fab082b8f04",
-          "task": "CMS MA + Part D Stars + cut-points catalog FHIR (bonus payment driver) (sonnet)",
-          "writableSet": "packages/catalog-cms-stars/**"
+          "taskId": "CC-94",
+          "agentId": "ad7c981612e8fccdd",
+          "task": "ICD-10-PCS 7-axis procedure codes catalog FHIR (inpatient procedures) (sonnet)",
+          "writableSet": "packages/catalog-icd10-pcs/**"
         }
       },
       {
@@ -114,10 +114,10 @@
         "worktree": "cernia-wt-r1-t",
         "status": "running",
         "agent": {
-          "taskId": "CC-80",
-          "agentId": "ad0e4c1f1c1e780b5",
-          "task": "CDC NNDSS notifiable diseases + ELR + FHIR public-health (sonnet)",
-          "writableSet": "packages/catalog-cdc-notifiable/**"
+          "taskId": "CC-93",
+          "agentId": "a6fe015c86e5a7a2b",
+          "task": "CMS NCCI PTP + MUE edits + claim scrubber FHIR (sonnet)",
+          "writableSet": "packages/catalog-cms-ncci-mue/**"
         }
       }
     ]
@@ -3772,7 +3772,7 @@
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "in-progress",
-      "agentsTotal": 92,
+      "agentsTotal": 95,
       "agents": [
         {
           "id": "CC-78",
@@ -3780,33 +3780,6 @@
           "status": "in-flight",
           "slot": 4,
           "worktree": "cernia-wt-r1-r",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-80",
-          "name": "cdc notifiable",
-          "status": "in-flight",
-          "slot": 8,
-          "worktree": "cernia-wt-r1-t",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-85",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 7,
-          "worktree": "cernia-wt-r1-y",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-86",
-          "name": "hl7 davinci igs",
-          "status": "in-flight",
-          "slot": 1,
-          "worktree": "cernia-wt-r1-hext-a",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -3843,6 +3816,33 @@
           "status": "in-flight",
           "slot": 3,
           "worktree": "cernia-wt-r1-hext-c",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-92",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 1,
+          "worktree": "cernia-wt-r1-hext-a",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-93",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 8,
+          "worktree": "cernia-wt-r1-t",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-94",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 7,
+          "worktree": "cernia-wt-r1-y",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4407,6 +4407,13 @@
           "modelReason": "regulatory-compliance"
         },
         {
+          "id": "CC-80",
+          "name": "cdc notifiable",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
           "id": "CC-81",
           "name": "icd9 icd10 crosswalk",
           "status": "landed",
@@ -4433,11 +4440,25 @@
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-85",
+          "name": "cms stars",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-86",
+          "name": "hl7 davinci igs",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 92,
+      "knownAgentCount": 95,
       "pendingAgentCount": 0,
-      "completionPct": 91
+      "completionPct": 92
     },
     {
       "id": "ERX",
