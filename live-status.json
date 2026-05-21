@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T20:21:35.460Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 16:21 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-92 CC-87 CC-95 CC-78 CC-88 CC-89 CC-94 CC-93) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "lastUpdatedIso": "2026-05-21T20:24:56.544Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 16:24 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-92 CC-87 CC-95 CC-78 CC-88 CC-89 CC-94 CC-96) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
@@ -12,11 +12,11 @@
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 16:21 EDT · pool 8/8)",
-    "totalAgentsShipped": 447,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 16:24 EDT · pool 8/8)",
+    "totalAgentsShipped": 448,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 421,
+      "sonnet": 422,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 92,
       "opus": 6
     },
-    "v30Status": "447/520 (86%, 73 to go)",
-    "v30Target": 520
+    "v30Status": "448/521 (86%, 73 to go)",
+    "v30Target": 521
   },
   "pool": {
     "size": 8,
@@ -114,10 +114,10 @@
         "worktree": "cernia-wt-r1-t",
         "status": "running",
         "agent": {
-          "taskId": "CC-93",
-          "agentId": "a6fe015c86e5a7a2b",
-          "task": "CMS NCCI PTP + MUE edits + claim scrubber FHIR (sonnet)",
-          "writableSet": "packages/catalog-cms-ncci-mue/**"
+          "taskId": "CC-96",
+          "agentId": "a0fe339f82dc82870",
+          "task": "CMS APC v44 OPPS outpatient grouper + 2-midnight + FHIR (sonnet)",
+          "writableSet": "packages/catalog-cms-apc-opps/**"
         }
       }
     ]
@@ -3772,7 +3772,7 @@
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "in-progress",
-      "agentsTotal": 96,
+      "agentsTotal": 97,
       "agents": [
         {
           "id": "CC-78",
@@ -3820,15 +3820,6 @@
           "modelReason": "regulatory-compliance"
         },
         {
-          "id": "CC-93",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 8,
-          "worktree": "cernia-wt-r1-t",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
           "id": "CC-94",
           "name": "(running — branch not yet pushed)",
           "status": "in-flight",
@@ -3843,6 +3834,15 @@
           "status": "in-flight",
           "slot": 3,
           "worktree": "cernia-wt-r1-hext-c",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-96",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 8,
+          "worktree": "cernia-wt-r1-t",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4461,9 +4461,16 @@
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-93",
+          "name": "ncci mue",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 96,
+      "knownAgentCount": 97,
       "pendingAgentCount": 0,
       "completionPct": 92
     },
