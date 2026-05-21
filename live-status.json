@@ -1,22 +1,22 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T18:10:35.141Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 14:10 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-58 CC-56 CC-62 CC-60 CC-61 CC-59 CC-63 T-Vision-B) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
+    "lastUpdatedIso": "2026-05-21T18:15:39.363Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 14:15 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-58 CC-56 CC-62 CC-60 CC-61 CC-59 CC-63 CC-64) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
   },
   "summary": {
     "currentMainCommit": "76989fc",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 82,
+    "agentsRemainingToV30": 81,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 14:10 EDT · pool 8/8)",
-    "totalAgentsShipped": 415,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 14:15 EDT · pool 8/8)",
+    "totalAgentsShipped": 416,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 396,
+      "sonnet": 397,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,7 +24,7 @@
       "sonnet": 98,
       "opus": 6
     },
-    "v30Status": "415/497 (84%, 82 to go)",
+    "v30Status": "416/497 (84%, 81 to go)",
     "v30Target": 497
   },
   "pool": {
@@ -114,10 +114,10 @@
         "worktree": "cernia-wt-r1-t",
         "status": "running",
         "agent": {
-          "taskId": "T-Vision-B",
-          "agentId": "a6cad0ed3313d8838",
-          "task": "Vision refraction-B FHIR (refraction + low-vision + color/accommodation) (sonnet)",
-          "writableSet": "packages/specialty-vision-refraction/**"
+          "taskId": "CC-64",
+          "agentId": "a99fb85747cebd28e",
+          "task": "LOINC top-N + panels catalog FHIR (lab orders + panel decomposition) (sonnet)",
+          "writableSet": "packages/catalog-loinc-top-panels/**"
         }
       }
     ]
@@ -2324,18 +2324,9 @@
       "id": "T",
       "name": "7 Specialty Modules",
       "tag": "v1.8-specialty-modules",
-      "status": "in-progress",
+      "status": "complete",
       "agentsTotal": 80,
       "agents": [
-        {
-          "id": "T-VISION-B",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 8,
-          "worktree": "cernia-wt-r1-t",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
         {
           "id": "T-ALLERGY-A",
           "name": "allergy immunology fhir",
@@ -2877,6 +2868,13 @@
           "modelReason": "specialty-fhir-mapping"
         },
         {
+          "id": "T-VISION-B",
+          "name": "refraction fhir",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
           "id": "T-WHEALTH-A",
           "name": "womens health fhir",
           "status": "landed",
@@ -2893,7 +2891,7 @@
       ],
       "knownAgentCount": 80,
       "pendingAgentCount": 0,
-      "completionPct": 99
+      "completionPct": 100
     },
     {
       "id": "R",
@@ -3840,6 +3838,15 @@
           "modelReason": "regulatory-compliance"
         },
         {
+          "id": "CC-64",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 8,
+          "worktree": "cernia-wt-r1-t",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
           "id": "CC-1",
           "name": "hl7 v2 segment catalog",
           "status": "landed",
@@ -4287,14 +4294,14 @@
         },
         {
           "id": "CC-…",
-          "name": "+ 2 more pending (later in queue)",
+          "name": "+ 1 more pending (later in queue)",
           "status": "pending",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 65,
-      "pendingAgentCount": 7,
+      "knownAgentCount": 66,
+      "pendingAgentCount": 6,
       "completionPct": 81
     },
     {
