@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T20:24:56.544Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 16:24 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-92 CC-87 CC-95 CC-78 CC-88 CC-89 CC-94 CC-96) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "lastUpdatedIso": "2026-05-21T20:28:10.818Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 16:28 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-97 CC-87 CC-95 CC-78 CC-88 CC-89 CC-94 CC-96) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
@@ -12,11 +12,11 @@
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 16:24 EDT · pool 8/8)",
-    "totalAgentsShipped": 448,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 16:28 EDT · pool 8/8)",
+    "totalAgentsShipped": 449,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 422,
+      "sonnet": 423,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 92,
       "opus": 6
     },
-    "v30Status": "448/521 (86%, 73 to go)",
-    "v30Target": 521
+    "v30Status": "449/522 (86%, 73 to go)",
+    "v30Target": 522
   },
   "pool": {
     "size": 8,
@@ -37,10 +37,10 @@
         "worktree": "cernia-wt-r1-hext-a",
         "status": "running",
         "agent": {
-          "taskId": "CC-92",
-          "agentId": "a07ae5d0675c18a21",
-          "task": "CMS APMs + ACO REACH + BPCI + shared savings + FHIR (sonnet)",
-          "writableSet": "packages/catalog-cms-apms/**"
+          "taskId": "CC-97",
+          "agentId": "ae0a561401a515baf",
+          "task": "OIG LEIE + SAM exclusion screening + provider compliance FHIR (sonnet)",
+          "writableSet": "packages/catalog-oig-leie-sam/**"
         }
       },
       {
@@ -3772,7 +3772,7 @@
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "in-progress",
-      "agentsTotal": 97,
+      "agentsTotal": 98,
       "agents": [
         {
           "id": "CC-78",
@@ -3811,15 +3811,6 @@
           "modelReason": "regulatory-compliance"
         },
         {
-          "id": "CC-92",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 1,
-          "worktree": "cernia-wt-r1-hext-a",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
           "id": "CC-94",
           "name": "(running — branch not yet pushed)",
           "status": "in-flight",
@@ -3843,6 +3834,15 @@
           "status": "in-flight",
           "slot": 8,
           "worktree": "cernia-wt-r1-t",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-97",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 1,
+          "worktree": "cernia-wt-r1-hext-a",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4463,6 +4463,13 @@
           "modelReason": "regulatory-compliance"
         },
         {
+          "id": "CC-92",
+          "name": "cms apms",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
           "id": "CC-93",
           "name": "ncci mue",
           "status": "landed",
@@ -4470,7 +4477,7 @@
           "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 97,
+      "knownAgentCount": 98,
       "pendingAgentCount": 0,
       "completionPct": 92
     },
