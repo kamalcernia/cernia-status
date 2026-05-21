@@ -410,14 +410,28 @@
 
     async function refresh() {
       try {
-        // Defeat browser + GitHub Pages CDN caching (which serves with
-        // Cache-Control: max-age=600 by default). Combine cache:'no-store'
-        // with a unique query param so neither layer can serve stale.
+        // Fetch from raw.githubusercontent.com instead of relative
+        // ./live-status.json, because GitHub Pages CDN has a 5-10 min
+        // deployment lag while raw.githubusercontent.com is fresh within
+        // seconds. The HTML is still served by GH Pages, but the JSON
+        // it polls every 8s comes from raw — so the page is near-realtime.
+        // Falls back to relative URL if raw fails (CORS / outage).
         const buster = Date.now() + "-" + Math.random().toString(36).slice(2);
-        const res = await fetch("live-status.json?t=" + buster, {
-          cache: 'no-store',
-          headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache' }
-        });
+        const rawUrl = "https://raw.githubusercontent.com/kamalcernia/cernia-status/main/live-status.json?t=" + buster;
+        let res;
+        try {
+          res = await fetch(rawUrl, {
+            cache: 'no-store',
+            headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache' }
+          });
+          if (!res.ok) throw new Error("raw HTTP " + res.status);
+        } catch (rawErr) {
+          // Fallback to GH Pages relative URL if raw fails
+          res = await fetch("live-status.json?t=" + buster, {
+            cache: 'no-store',
+            headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache' }
+          });
+        }
         if (!res.ok) throw new Error("HTTP " + res.status);
         const data = await res.json();
         render(data);
