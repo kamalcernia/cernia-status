@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T14:13:20.581Z",
+    "lastUpdatedIso": "2026-05-21T14:13:40.972Z",
     "lastUpdatedDisplay": "May 21, 2026 — 10:13 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 1/8 in flight (ERX-6) · last: banner clarity — v3.0 REACHED + age-aware recovery (21a706c)"
+    "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last: banner clarity — v3.0 REACHED + age-aware recovery (21a706c)"
   },
   "summary": {
     "currentMainCommit": "21a706c",
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "51 successful commits since v0.95-white-label · 6 failures tracked",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (6 historical)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 10:13 EDT · pool 1/8)",
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 10:13 EDT · pool 0/8)",
     "totalAgentsShipped": 366,
     "modelMix": {
       "haiku": 49,
@@ -21,7 +21,7 @@
     },
     "modelMixActive": {
       "haiku": 6,
-      "sonnet": 97,
+      "sonnet": 96,
       "opus": 6
     },
     "v30Status": "366/460 (80%, 94 to go)",
@@ -29,7 +29,7 @@
   },
   "pool": {
     "size": 8,
-    "saturationPct": 13,
+    "saturationPct": 0,
     "queueDepth": 5,
     "slots": [
       {
@@ -59,13 +59,8 @@
       {
         "slot": 5,
         "worktree": "cernia-wt-r1-s-hl7",
-        "status": "running",
-        "agent": {
-          "taskId": "ERX-6",
-          "agentId": "a2a4d555b7f604733",
-          "task": "PDMP adapter (51 states + risk flags) (sonnet)",
-          "writableSet": "packages/pdmp-adapter/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 6,
@@ -3585,18 +3580,9 @@
     {
       "id": "ERX",
       "name": "E-Prescribing Backend (ncpdp + erx-service + pharmacy-dir + epcs + surescripts + pdmp)",
-      "status": "in-progress",
+      "status": "complete",
       "agentsTotal": 6,
       "agents": [
-        {
-          "id": "ERX-6",
-          "name": "pdmp adapter",
-          "status": "in-flight",
-          "slot": 5,
-          "worktree": "cernia-wt-r1-s-hl7",
-          "recommendedModel": "sonnet",
-          "modelReason": "default"
-        },
         {
           "id": "ERX-1",
           "name": "erx service",
@@ -3631,11 +3617,18 @@
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "default"
+        },
+        {
+          "id": "ERX-6",
+          "name": "pdmp adapter",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
         }
       ],
       "knownAgentCount": 6,
       "pendingAgentCount": 0,
-      "completionPct": 83
+      "completionPct": 100
     },
     {
       "id": "UI",
