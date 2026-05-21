@@ -1,22 +1,22 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T22:53:29.980Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 18:53 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-113 CC-102 CC-118 CC-116 CC-115 CC-114 CC-117 CC-111) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "lastUpdatedIso": "2026-05-21T22:57:09.338Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 18:57 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-113 CC-102 CC-118 CC-116 CC-115 CC-114 CC-117 CC-119) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 74,
+    "agentsRemainingToV30": 73,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 18:53 EDT · pool 8/8)",
-    "totalAgentsShipped": 470,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 18:57 EDT · pool 8/8)",
+    "totalAgentsShipped": 472,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 445,
+      "sonnet": 446,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 92,
       "opus": 6
     },
-    "v30Status": "470/544 (86%, 74 to go)",
-    "v30Target": 544
+    "v30Status": "472/545 (87%, 73 to go)",
+    "v30Target": 545
   },
   "pool": {
     "size": 8,
@@ -114,10 +114,10 @@
         "worktree": "cernia-wt-r1-t",
         "status": "running",
         "agent": {
-          "taskId": "CC-111",
-          "agentId": "a4f4d03f33e34602b",
-          "task": "NCI Drug Dictionary + Thesaurus + chemo regimens + actionable mutations FHIR (sonnet)",
-          "writableSet": "packages/catalog-nci-thesaurus-drugs/**"
+          "taskId": "CC-119",
+          "agentId": "a1a5221135f696bba",
+          "task": "OSHA+NIOSH+ADA+workers-comp occupational health FHIR (sonnet)",
+          "writableSet": "packages/catalog-osha-niosh-occupational/**"
         }
       }
     ]
@@ -3772,7 +3772,7 @@
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "in-progress",
-      "agentsTotal": 120,
+      "agentsTotal": 121,
       "agents": [
         {
           "id": "CC-102",
@@ -3784,17 +3784,8 @@
           "modelReason": "regulatory-compliance"
         },
         {
-          "id": "CC-111",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 8,
-          "worktree": "cernia-wt-r1-t",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
           "id": "CC-113",
-          "name": "(running — branch not yet pushed)",
+          "name": "openehr archetypes",
           "status": "in-flight",
           "slot": 1,
           "worktree": "cernia-wt-r1-hext-a",
@@ -3843,6 +3834,15 @@
           "status": "in-flight",
           "slot": 3,
           "worktree": "cernia-wt-r1-hext-c",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-119",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 8,
+          "worktree": "cernia-wt-r1-t",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4624,6 +4624,13 @@
           "modelReason": "regulatory-compliance"
         },
         {
+          "id": "CC-111",
+          "name": "nci thesaurus drugs",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
           "id": "CC-112",
           "name": "hrrp hacrp hvbp",
           "status": "landed",
@@ -4631,7 +4638,7 @@
           "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 120,
+      "knownAgentCount": 121,
       "pendingAgentCount": 0,
       "completionPct": 93
     },
