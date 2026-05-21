@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T22:59:32.761Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 18:59 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-120 CC-121 CC-118 CC-116 CC-115 CC-114 CC-117 CC-119) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "lastUpdatedIso": "2026-05-21T23:01:25.594Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 19:01 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-120 CC-121 CC-118 CC-116 CC-115 CC-122 CC-117 CC-119) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
@@ -12,11 +12,11 @@
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 18:59 EDT · pool 8/8)",
-    "totalAgentsShipped": 473,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 19:01 EDT · pool 8/8)",
+    "totalAgentsShipped": 474,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 448,
+      "sonnet": 449,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 92,
       "opus": 6
     },
-    "v30Status": "473/547 (86%, 74 to go)",
-    "v30Target": 547
+    "v30Status": "474/548 (86%, 74 to go)",
+    "v30Target": 548
   },
   "pool": {
     "size": 8,
@@ -92,10 +92,10 @@
         "worktree": "cernia-wt-r1-s-dicom",
         "status": "running",
         "agent": {
-          "taskId": "CC-114",
-          "agentId": "a06b311500a1f9fa8",
-          "task": "NCPDP Telecom D.0 pharmacy claim + segments + reject codes FHIR (sonnet)",
-          "writableSet": "packages/catalog-ncpdp-telecom-d0/**"
+          "taskId": "CC-122",
+          "agentId": "afef9570610dc2c4b",
+          "task": "CMS CoPs hospital+SNF+HHA+hospice+ASC+ESRD compliance FHIR (sonnet)",
+          "writableSet": "packages/catalog-cms-cop/**"
         }
       },
       {
@@ -3772,17 +3772,8 @@
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "in-progress",
-      "agentsTotal": 123,
+      "agentsTotal": 124,
       "agents": [
-        {
-          "id": "CC-114",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 6,
-          "worktree": "cernia-wt-r1-s-dicom",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
         {
           "id": "CC-115",
           "name": "(running — branch not yet pushed)",
@@ -3843,6 +3834,15 @@
           "status": "in-flight",
           "slot": 2,
           "worktree": "cernia-wt-r1-hext-b",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-122",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 6,
+          "worktree": "cernia-wt-r1-s-dicom",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4650,11 +4650,18 @@
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-114",
+          "name": "ncpdp telecom d0",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 123,
+      "knownAgentCount": 124,
       "pendingAgentCount": 0,
-      "completionPct": 93
+      "completionPct": 94
     },
     {
       "id": "ERX",
