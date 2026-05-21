@@ -1,22 +1,22 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T21:31:09.570Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 17:31 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-88 CC-95 CC-96 CC-97 CC-98 CC-99 CC-100 CC-101) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "lastUpdatedIso": "2026-05-21T21:51:18.975Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 17:51 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-88 CC-102 CC-96 CC-97 CC-98 CC-99 CC-100 CC-101) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 74,
+    "agentsRemainingToV30": 73,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 17:31 EDT · pool 8/8)",
-    "totalAgentsShipped": 453,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 17:51 EDT · pool 8/8)",
+    "totalAgentsShipped": 455,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 428,
+      "sonnet": 429,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 92,
       "opus": 6
     },
-    "v30Status": "453/527 (86%, 74 to go)",
-    "v30Target": 527
+    "v30Status": "455/528 (86%, 73 to go)",
+    "v30Target": 528
   },
   "pool": {
     "size": 8,
@@ -48,10 +48,10 @@
         "worktree": "cernia-wt-r1-hext-b",
         "status": "running",
         "agent": {
-          "taskId": "CC-95",
-          "agentId": "a97be47ee9e4a2dad",
-          "task": "MS-DRG v41 inpatient grouper FHIR (RETRY) (sonnet)",
-          "writableSet": "packages/catalog-ms-drg-v41/**"
+          "taskId": "CC-102",
+          "agentId": "a33e3939c3a81f116",
+          "task": "CMS GPCI + Wage Index + MPFS calculator FHIR (sonnet)",
+          "writableSet": "packages/catalog-cms-gpci-wage/**"
         }
       },
       {
@@ -3772,7 +3772,7 @@
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "in-progress",
-      "agentsTotal": 103,
+      "agentsTotal": 104,
       "agents": [
         {
           "id": "CC-88",
@@ -3784,17 +3784,8 @@
           "modelReason": "regulatory-compliance"
         },
         {
-          "id": "CC-95",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 2,
-          "worktree": "cernia-wt-r1-hext-b",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
           "id": "CC-96",
-          "name": "(running — branch not yet pushed)",
+          "name": "apc opps",
           "status": "in-flight",
           "slot": 3,
           "worktree": "cernia-wt-r1-hext-c",
@@ -3843,6 +3834,15 @@
           "status": "in-flight",
           "slot": 8,
           "worktree": "cernia-wt-r1-t",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-102",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 2,
+          "worktree": "cernia-wt-r1-hext-b",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4510,9 +4510,16 @@
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-95",
+          "name": "ms drg v41",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 103,
+      "knownAgentCount": 104,
       "pendingAgentCount": 0,
       "completionPct": 92
     },
