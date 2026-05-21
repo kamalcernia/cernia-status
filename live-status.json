@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T17:56:11.998Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 13:56 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-58 CC-56 T-LTC-B CC-60 T-Home-B CC-59 CC-57 T-Vision-B) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
+    "lastUpdatedIso": "2026-05-21T18:01:00.977Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 14:01 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-58 CC-56 T-LTC-B CC-60 CC-61 CC-59 CC-57 T-Vision-B) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
   },
   "summary": {
     "currentMainCommit": "76989fc",
@@ -12,11 +12,11 @@
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 13:56 EDT · pool 8/8)",
-    "totalAgentsShipped": 412,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 14:01 EDT · pool 8/8)",
+    "totalAgentsShipped": 413,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 393,
+      "sonnet": 394,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 98,
       "opus": 6
     },
-    "v30Status": "412/496 (83%, 84 to go)",
-    "v30Target": 496
+    "v30Status": "413/497 (83%, 84 to go)",
+    "v30Target": 497
   },
   "pool": {
     "size": 8,
@@ -81,10 +81,10 @@
         "worktree": "cernia-wt-r1-s-hl7",
         "status": "running",
         "agent": {
-          "taskId": "T-Home-B",
-          "agentId": "a6dbd25f6528ba6b1",
-          "task": "Home health OASIS-E FHIR (Section GG + PDGM/HHRG + QMs) (sonnet)",
-          "writableSet": "packages/specialty-home-oasis-e/**"
+          "taskId": "CC-61",
+          "agentId": "a538093db17dc6a33",
+          "task": "USCDI v3 + US Core 6.1.0 catalog FHIR (ONC certification gatekeeper) (sonnet)",
+          "writableSet": "packages/catalog-uscdi-v3-us-core/**"
         }
       },
       {
@@ -2328,15 +2328,6 @@
       "agentsTotal": 80,
       "agents": [
         {
-          "id": "T-HOME-B",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 5,
-          "worktree": "cernia-wt-r1-s-hl7",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
           "id": "T-LTC-B",
           "name": "(running — branch not yet pushed)",
           "status": "in-flight",
@@ -2533,6 +2524,13 @@
         {
           "id": "T-HOME",
           "name": "health oasis",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
+          "id": "T-HOME-B",
+          "name": "oasis fhir",
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2897,7 +2895,7 @@
       ],
       "knownAgentCount": 80,
       "pendingAgentCount": 0,
-      "completionPct": 96
+      "completionPct": 98
     },
     {
       "id": "R",
@@ -3826,6 +3824,15 @@
           "modelReason": "regulatory-compliance"
         },
         {
+          "id": "CC-61",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 5,
+          "worktree": "cernia-wt-r1-s-hl7",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
           "id": "CC-1",
           "name": "hl7 v2 segment catalog",
           "status": "landed",
@@ -4266,14 +4273,14 @@
         },
         {
           "id": "CC-…",
-          "name": "+ 5 more pending (later in queue)",
+          "name": "+ 4 more pending (later in queue)",
           "status": "pending",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 62,
-      "pendingAgentCount": 10,
+      "knownAgentCount": 63,
+      "pendingAgentCount": 9,
       "completionPct": 79
     },
     {
