@@ -1,22 +1,22 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T19:10:07.521Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 15:10 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-66 CC-69 CC-71 CC-72 CC-70 CC-74 CC-73 CC-67) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "lastUpdatedIso": "2026-05-21T19:22:28.599Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 15:22 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-77 CC-69 CC-75 CC-78 CC-76 CC-74 CC-79 CC-80) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 74,
+    "agentsRemainingToV30": 68,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 15:10 EDT · pool 8/8)",
-    "totalAgentsShipped": 426,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 15:22 EDT · pool 8/8)",
+    "totalAgentsShipped": 433,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 401,
+      "sonnet": 407,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 92,
       "opus": 6
     },
-    "v30Status": "426/500 (85%, 74 to go)",
-    "v30Target": 500
+    "v30Status": "433/501 (86%, 68 to go)",
+    "v30Target": 501
   },
   "pool": {
     "size": 8,
@@ -37,10 +37,10 @@
         "worktree": "cernia-wt-r1-hext-a",
         "status": "running",
         "agent": {
-          "taskId": "CC-66",
-          "agentId": "a98c218546e0a3b9e",
-          "task": "ISO 3166-1/2 + BCP 47 + jurisdictions catalog FHIR (multi-tenancy) (sonnet)",
-          "writableSet": "packages/catalog-iso-locale/**"
+          "taskId": "CC-77",
+          "agentId": "a6dd7f087c04e6cfd",
+          "task": "FHIR ConceptMap library + translate operation (cross-terminology) (sonnet)",
+          "writableSet": "packages/catalog-fhir-conceptmaps/**"
         }
       },
       {
@@ -59,10 +59,10 @@
         "worktree": "cernia-wt-r1-hext-c",
         "status": "running",
         "agent": {
-          "taskId": "CC-71",
-          "agentId": "aebb39aa58d1beb1b",
-          "task": "CPT modifiers + POS + NUCC taxonomy catalog FHIR (RCM bedrock) (sonnet)",
-          "writableSet": "packages/catalog-cpt-modifiers-pos/**"
+          "taskId": "CC-75",
+          "agentId": "af213e4c2890c62e2",
+          "task": "WHO ICD-11 + post-coordination + ICD-10 crosswalk FHIR (international diagnoses) (sonnet)",
+          "writableSet": "packages/catalog-icd-11-who/**"
         }
       },
       {
@@ -70,10 +70,10 @@
         "worktree": "cernia-wt-r1-r",
         "status": "running",
         "agent": {
-          "taskId": "CC-72",
-          "agentId": "adb585ea297559e7c",
-          "task": "SNOMED CT top-N clinical findings + procedures catalog FHIR (USCDI Condition preferred) (sonnet)",
-          "writableSet": "packages/catalog-snomed-clinical-findings/**"
+          "taskId": "CC-78",
+          "agentId": "a1ac49da06838f64a",
+          "task": "PROMs (PROMIS+KCCQ+EQ-5D) patient-reported outcomes FHIR (sonnet)",
+          "writableSet": "packages/catalog-proms-promis/**"
         }
       },
       {
@@ -81,10 +81,10 @@
         "worktree": "cernia-wt-r1-s-hl7",
         "status": "running",
         "agent": {
-          "taskId": "CC-70",
-          "agentId": "a2ac21e415d25f7f1",
-          "task": "HEDIS MY 2024 measures catalog FHIR (quality reporting + gap analytics) (sonnet)",
-          "writableSet": "packages/catalog-hedis-my2024/**"
+          "taskId": "CC-76",
+          "agentId": "a89b0940c6944cd03",
+          "task": "ADA CDT 2024 dental procedure codes + tooth surfaces FHIR (sonnet)",
+          "writableSet": "packages/catalog-cdt-2024/**"
         }
       },
       {
@@ -103,10 +103,10 @@
         "worktree": "cernia-wt-r1-y",
         "status": "running",
         "agent": {
-          "taskId": "CC-73",
-          "agentId": "a6304f396aac7b16a",
-          "task": "NLM RxNorm + drug interactions catalog FHIR (eRx + interaction checking) (sonnet)",
-          "writableSet": "packages/catalog-rxnorm-drugs/**"
+          "taskId": "CC-79",
+          "agentId": "a52620a4bf2540bcd",
+          "task": "CMS Medicare LCD/NCD/MAC coverage + claim validation FHIR (sonnet)",
+          "writableSet": "packages/catalog-medicare-coverage/**"
         }
       },
       {
@@ -114,10 +114,10 @@
         "worktree": "cernia-wt-r1-t",
         "status": "running",
         "agent": {
-          "taskId": "CC-67",
-          "agentId": "a752ac59551ffb8e8",
-          "task": "FDA UDI parser + GUDID catalog FHIR (Device + Implant tracking) (sonnet)",
-          "writableSet": "packages/catalog-fda-udi/**"
+          "taskId": "CC-80",
+          "agentId": "ad0e4c1f1c1e780b5",
+          "task": "CDC NNDSS notifiable diseases + ELR + FHIR public-health (sonnet)",
+          "writableSet": "packages/catalog-cdc-notifiable/**"
         }
       }
     ]
@@ -3772,68 +3772,14 @@
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "in-progress",
-      "agentsTotal": 76,
+      "agentsTotal": 82,
       "agents": [
         {
-          "id": "CC-66",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 1,
-          "worktree": "cernia-wt-r1-hext-a",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-67",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 8,
-          "worktree": "cernia-wt-r1-t",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
           "id": "CC-69",
-          "name": "(running — branch not yet pushed)",
+          "name": "hl7 v2 messages",
           "status": "in-flight",
           "slot": 2,
           "worktree": "cernia-wt-r1-hext-b",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-70",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 5,
-          "worktree": "cernia-wt-r1-s-hl7",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-71",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 3,
-          "worktree": "cernia-wt-r1-hext-c",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-72",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 4,
-          "worktree": "cernia-wt-r1-r",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-73",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 7,
-          "worktree": "cernia-wt-r1-y",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -3843,6 +3789,60 @@
           "status": "in-flight",
           "slot": 6,
           "worktree": "cernia-wt-r1-s-dicom",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-75",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 3,
+          "worktree": "cernia-wt-r1-hext-c",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-76",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 5,
+          "worktree": "cernia-wt-r1-s-hl7",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-77",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 1,
+          "worktree": "cernia-wt-r1-hext-a",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-78",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 4,
+          "worktree": "cernia-wt-r1-r",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-79",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 7,
+          "worktree": "cernia-wt-r1-y",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-80",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 8,
+          "worktree": "cernia-wt-r1-t",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4316,16 +4316,58 @@
           "modelReason": "regulatory-compliance"
         },
         {
+          "id": "CC-66",
+          "name": "iso locale",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-67",
+          "name": "fda udi",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
           "id": "CC-68",
           "name": "cms hcc raf",
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-70",
+          "name": "hedis my2024",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-71",
+          "name": "cpt modifiers pos",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-72",
+          "name": "snomed clinical findings",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-73",
+          "name": "rxnorm drugs",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 76,
+      "knownAgentCount": 82,
       "pendingAgentCount": 0,
-      "completionPct": 89
+      "completionPct": 90
     },
     {
       "id": "ERX",
