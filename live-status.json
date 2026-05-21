@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T22:36:55.255Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 18:36 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-113 CC-102 CC-110 CC-108 CC-109 CC-114 CC-112 CC-111) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "lastUpdatedIso": "2026-05-21T22:40:02.040Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 18:40 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-113 CC-102 CC-110 CC-108 CC-115 CC-114 CC-112 CC-111) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
@@ -12,11 +12,11 @@
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 18:36 EDT · pool 8/8)",
-    "totalAgentsShipped": 466,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 18:40 EDT · pool 8/8)",
+    "totalAgentsShipped": 467,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 441,
+      "sonnet": 442,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 92,
       "opus": 6
     },
-    "v30Status": "466/540 (86%, 74 to go)",
-    "v30Target": 540
+    "v30Status": "467/541 (86%, 74 to go)",
+    "v30Target": 541
   },
   "pool": {
     "size": 8,
@@ -81,10 +81,10 @@
         "worktree": "cernia-wt-r1-s-hl7",
         "status": "running",
         "agent": {
-          "taskId": "CC-109",
-          "agentId": "aaf9a68fbb8000fd4",
-          "task": "USPSTF + Choosing Wisely preventive care recommendations FHIR (sonnet)",
-          "writableSet": "packages/catalog-uspstf-choosing-wisely/**"
+          "taskId": "CC-115",
+          "agentId": "aa1d64595a80ea401",
+          "task": "ClinVar + dbSNP + ACMG-AMP classification + FHIR Genomics (sonnet)",
+          "writableSet": "packages/catalog-clinvar-dbsnp/**"
         }
       },
       {
@@ -3772,7 +3772,7 @@
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "in-progress",
-      "agentsTotal": 116,
+      "agentsTotal": 117,
       "agents": [
         {
           "id": "CC-102",
@@ -3789,15 +3789,6 @@
           "status": "in-flight",
           "slot": 4,
           "worktree": "cernia-wt-r1-r",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-109",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 5,
-          "worktree": "cernia-wt-r1-s-hl7",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -3843,6 +3834,15 @@
           "status": "in-flight",
           "slot": 6,
           "worktree": "cernia-wt-r1-s-dicom",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-115",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 5,
+          "worktree": "cernia-wt-r1-s-hl7",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4601,9 +4601,16 @@
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-109",
+          "name": "uspstf choosing wisely",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 116,
+      "knownAgentCount": 117,
       "pendingAgentCount": 0,
       "completionPct": 93
     },
