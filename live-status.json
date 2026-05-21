@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T13:48:04.620Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 09:48 EDT",
+    "lastUpdatedIso": "2026-05-21T13:50:25.010Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 09:50 EDT",
     "modelSummary": "TIER 2 (slow ramp) · Pool 3/8 in flight (ERX-4 ERX-5 ERX-6) · last: dedupe agents per wave when re-dispatch creates sa (09df938)"
   },
   "summary": {
@@ -12,16 +12,16 @@
     "hardeningTrackRecord": "48 successful commits since v0.95-white-label · 6 failures tracked",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 2 (slow ramp) — 10 landings · 6 failures in last 10 dispatches",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 09:48 EDT · pool 3/8)",
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 09:50 EDT · pool 3/8)",
     "totalAgentsShipped": 363,
     "modelMix": {
-      "haiku": 46,
-      "sonnet": 219,
+      "haiku": 47,
+      "sonnet": 231,
       "opus": 26
     },
     "modelMixActive": {
       "haiku": 6,
-      "sonnet": 85,
+      "sonnet": 88,
       "opus": 6
     }
   },
@@ -235,6 +235,78 @@
     }
   ],
   "waves": [
+    {
+      "id": "A",
+      "name": "Foundation Phase A (initial scaffold + FHIR adapters)",
+      "status": "in-progress",
+      "agentsTotal": 5,
+      "agents": [
+        {
+          "id": "A-W-A",
+          "name": "a-w-a",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "A-W-B",
+          "name": "a-w-b",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "A-W-D",
+          "name": "security hardening",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        }
+      ],
+      "knownAgentCount": 3,
+      "pendingAgentCount": 2,
+      "completionPct": 60
+    },
+    {
+      "id": "B",
+      "name": "Foundation Phase B (data layer + integration)",
+      "status": "complete",
+      "agentsTotal": 18,
+      "agents": [],
+      "knownAgentCount": 0,
+      "pendingAgentCount": 18,
+      "completionPct": 100
+    },
+    {
+      "id": "C",
+      "name": "Foundation Phase C (services + worktree pool)",
+      "status": "complete",
+      "agentsTotal": 14,
+      "agents": [],
+      "knownAgentCount": 0,
+      "pendingAgentCount": 14,
+      "completionPct": 100
+    },
+    {
+      "id": "D",
+      "name": "Foundation Phase D (provider workflows)",
+      "status": "complete",
+      "agentsTotal": 11,
+      "agents": [],
+      "knownAgentCount": 0,
+      "pendingAgentCount": 11,
+      "completionPct": 100
+    },
+    {
+      "id": "E",
+      "name": "Foundation Phase E (RAG + onboarding)",
+      "status": "complete",
+      "agentsTotal": 17,
+      "agents": [],
+      "knownAgentCount": 0,
+      "pendingAgentCount": 17,
+      "completionPct": 100
+    },
     {
       "id": "H",
       "name": "Wave H — White-Label & Multi-Tenant Branding",
@@ -2677,6 +2749,104 @@
       "knownAgentCount": 57,
       "pendingAgentCount": 15,
       "completionPct": 79
+    },
+    {
+      "id": "ERX",
+      "name": "E-Prescribing Backend (ncpdp + erx-service + pharmacy-dir + epcs + surescripts + pdmp)",
+      "status": "in-progress",
+      "agentsTotal": 6,
+      "agents": [
+        {
+          "id": "ERX-4",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 2,
+          "worktree": "cernia-wt-r1-hext-b",
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "ERX-5",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 4,
+          "worktree": "cernia-wt-r1-r",
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "ERX-6",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 5,
+          "worktree": "cernia-wt-r1-s-hl7",
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "ERX-1",
+          "name": "erx service",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "ERX-2",
+          "name": "ncpdp script builder",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "ERX-3",
+          "name": "pharmacy directory",
+          "status": "landed",
+          "recommendedModel": "haiku",
+          "modelReason": "static-data-catalog"
+        }
+      ],
+      "knownAgentCount": 6,
+      "pendingAgentCount": 0,
+      "completionPct": 50
+    },
+    {
+      "id": "UI",
+      "name": "E-Prescribing UI (composer + history + refill-queue + admin)",
+      "status": "complete",
+      "agentsTotal": 4,
+      "agents": [
+        {
+          "id": "UI-1",
+          "name": "erx composer ui",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "UI-2",
+          "name": "erx history ui",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "UI-3",
+          "name": "erx refill queue ui",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "UI-4",
+          "name": "erx admin ui",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        }
+      ],
+      "knownAgentCount": 4,
+      "pendingAgentCount": 0,
+      "completionPct": 100
     }
   ]
 }
