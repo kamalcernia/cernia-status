@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T19:24:06.910Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 15:24 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-77 CC-81 CC-75 CC-78 CC-76 CC-74 CC-79 CC-80) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "lastUpdatedIso": "2026-05-21T19:33:51.989Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 15:33 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-77 CC-81 CC-75 CC-78 CC-76 CC-82 CC-79 CC-80) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
@@ -12,11 +12,11 @@
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 15:24 EDT · pool 8/8)",
-    "totalAgentsShipped": 433,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 15:33 EDT · pool 8/8)",
+    "totalAgentsShipped": 434,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 408,
+      "sonnet": 409,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 92,
       "opus": 6
     },
-    "v30Status": "433/507 (85%, 74 to go)",
-    "v30Target": 507
+    "v30Status": "434/508 (85%, 74 to go)",
+    "v30Target": 508
   },
   "pool": {
     "size": 8,
@@ -92,10 +92,10 @@
         "worktree": "cernia-wt-r1-s-dicom",
         "status": "running",
         "agent": {
-          "taskId": "CC-74",
-          "agentId": "a67cbb56d59238678",
-          "task": "AHRQ CCSR diagnoses + procedures catalog FHIR (analytics cohort building) (sonnet)",
-          "writableSet": "packages/catalog-ahrq-ccs/**"
+          "taskId": "CC-82",
+          "agentId": "a1b52ea7d0f79fd52",
+          "task": "CMS MIPS/MACRA Quality+PI+IA+Cost catalog FHIR (QPP submission) (sonnet)",
+          "writableSet": "packages/catalog-cms-mips-quality/**"
         }
       },
       {
@@ -3772,17 +3772,8 @@
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "in-progress",
-      "agentsTotal": 83,
+      "agentsTotal": 84,
       "agents": [
-        {
-          "id": "CC-74",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 6,
-          "worktree": "cernia-wt-r1-s-dicom",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
         {
           "id": "CC-75",
           "name": "(running — branch not yet pushed)",
@@ -3843,6 +3834,15 @@
           "status": "in-flight",
           "slot": 2,
           "worktree": "cernia-wt-r1-hext-b",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-82",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 6,
+          "worktree": "cernia-wt-r1-s-dicom",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4370,9 +4370,16 @@
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-74",
+          "name": "ahrq ccs",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 83,
+      "knownAgentCount": 84,
       "pendingAgentCount": 0,
       "completionPct": 90
     },
