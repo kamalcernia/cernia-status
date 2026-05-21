@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T22:13:33.961Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 18:13 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-105 CC-102 CC-103 CC-108 CC-98 CC-106 CC-104 CC-107) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "lastUpdatedIso": "2026-05-21T22:15:29.773Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 18:15 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-105 CC-102 CC-103 CC-108 CC-109 CC-106 CC-104 CC-107) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
@@ -12,11 +12,11 @@
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 18:13 EDT · pool 8/8)",
-    "totalAgentsShipped": 460,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 18:15 EDT · pool 8/8)",
+    "totalAgentsShipped": 461,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 435,
+      "sonnet": 436,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 92,
       "opus": 6
     },
-    "v30Status": "460/534 (86%, 74 to go)",
-    "v30Target": 534
+    "v30Status": "461/535 (86%, 74 to go)",
+    "v30Target": 535
   },
   "pool": {
     "size": 8,
@@ -81,10 +81,10 @@
         "worktree": "cernia-wt-r1-s-hl7",
         "status": "running",
         "agent": {
-          "taskId": "CC-98",
-          "agentId": "a26429634b70b6e17",
-          "task": "FDA REMS programs+certification FHIR (RETRY) (sonnet)",
-          "writableSet": "packages/catalog-fda-rems/**"
+          "taskId": "CC-109",
+          "agentId": "aaf9a68fbb8000fd4",
+          "task": "USPSTF + Choosing Wisely preventive care recommendations FHIR (sonnet)",
+          "writableSet": "packages/catalog-uspstf-choosing-wisely/**"
         }
       },
       {
@@ -3772,17 +3772,8 @@
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "in-progress",
-      "agentsTotal": 110,
+      "agentsTotal": 111,
       "agents": [
-        {
-          "id": "CC-98",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 5,
-          "worktree": "cernia-wt-r1-s-hl7",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
         {
           "id": "CC-102",
           "name": "(running — branch not yet pushed)",
@@ -3843,6 +3834,15 @@
           "status": "in-flight",
           "slot": 4,
           "worktree": "cernia-wt-r1-r",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-109",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 5,
+          "worktree": "cernia-wt-r1-s-hl7",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4540,6 +4540,13 @@
           "modelReason": "regulatory-compliance"
         },
         {
+          "id": "CC-98",
+          "name": "fda rems",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
           "id": "CC-99",
           "name": "tjc accreditation",
           "status": "landed",
@@ -4561,7 +4568,7 @@
           "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 110,
+      "knownAgentCount": 111,
       "pendingAgentCount": 0,
       "completionPct": 93
     },
