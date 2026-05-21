@@ -1,22 +1,22 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T18:04:15.063Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 14:04 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-58 CC-56 CC-62 CC-60 CC-61 CC-59 CC-57 T-Vision-B) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
+    "lastUpdatedIso": "2026-05-21T18:10:35.141Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 14:10 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-58 CC-56 CC-62 CC-60 CC-61 CC-59 CC-63 T-Vision-B) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
   },
   "summary": {
     "currentMainCommit": "76989fc",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 83,
+    "agentsRemainingToV30": 82,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 14:04 EDT · pool 8/8)",
-    "totalAgentsShipped": 414,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 14:10 EDT · pool 8/8)",
+    "totalAgentsShipped": 415,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 395,
+      "sonnet": 396,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,7 +24,7 @@
       "sonnet": 98,
       "opus": 6
     },
-    "v30Status": "414/497 (83%, 83 to go)",
+    "v30Status": "415/497 (84%, 82 to go)",
     "v30Target": 497
   },
   "pool": {
@@ -103,10 +103,10 @@
         "worktree": "cernia-wt-r1-y",
         "status": "running",
         "agent": {
-          "taskId": "CC-57",
-          "agentId": "a2500a1365c0eb4e6",
-          "task": "HCPCS Level II catalog FHIR (DME + J-codes + modifiers) (sonnet)",
-          "writableSet": "packages/catalog-hcpcs-level-ii/**"
+          "taskId": "CC-63",
+          "agentId": "ad7ba056de43c93d6",
+          "task": "FDA NDC drug-code catalog FHIR (parser + 150 codes + DEA schedule) (sonnet)",
+          "writableSet": "packages/catalog-ndc-fda/**"
         }
       },
       {
@@ -3786,15 +3786,6 @@
           "modelReason": "regulatory-compliance"
         },
         {
-          "id": "CC-57",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 7,
-          "worktree": "cernia-wt-r1-y",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
           "id": "CC-58",
           "name": "(running — branch not yet pushed)",
           "status": "in-flight",
@@ -3836,6 +3827,15 @@
           "status": "in-flight",
           "slot": 3,
           "worktree": "cernia-wt-r1-hext-c",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-63",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 7,
+          "worktree": "cernia-wt-r1-y",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4239,6 +4239,13 @@
           "modelReason": "regulatory-compliance"
         },
         {
+          "id": "CC-57",
+          "name": "hcpcs level ii",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
           "id": "CC-?1",
           "name": "pending agent (slot 115 in dispatch queue)",
           "status": "pending",
@@ -4280,15 +4287,15 @@
         },
         {
           "id": "CC-…",
-          "name": "+ 3 more pending (later in queue)",
+          "name": "+ 2 more pending (later in queue)",
           "status": "pending",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 64,
-      "pendingAgentCount": 8,
-      "completionPct": 79
+      "knownAgentCount": 65,
+      "pendingAgentCount": 7,
+      "completionPct": 81
     },
     {
       "id": "ERX",
