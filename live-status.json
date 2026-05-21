@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T14:20:43.871Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 10:20 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 5/8 in flight (T-Sleep-A T-Infect-A T-Plast-A T-Pall-A T-Genom-A) · last: banner clarity — v3.0 REACHED + age-aware recovery (21a706c)"
+    "lastUpdatedIso": "2026-05-21T14:21:49.386Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 10:21 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 5/8 in flight (T-Sleep-A T-Infect-A T-Plast-A T-Pall-A T-Genom-A) · last: v3.0 target now dynamic — sum of wave agentsTotal (6ea2e71)"
   },
   "summary": {
-    "currentMainCommit": "21a706c",
+    "currentMainCommit": "6ea2e71",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
-    "agentsCompletedThisSession": 51,
+    "agentsCompletedThisSession": 52,
     "agentsRemainingToV30": 94,
-    "hardeningTrackRecord": "51 successful commits since v0.95-white-label · 6 failures tracked",
+    "hardeningTrackRecord": "52 successful commits since v0.95-white-label · 6 failures tracked",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (6 historical)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 10:20 EDT · pool 5/8)",
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 10:21 EDT · pool 5/8)",
     "totalAgentsShipped": 366,
     "modelMix": {
       "haiku": 49,
@@ -109,47 +109,312 @@
   },
   "queue": [
     {
-      "pri": 30,
-      "id": "W-1-RECOVER",
-      "task": "Recover W-1 partial work (4 modules + tests in cernia-wt-r1-hext-b/packages/email-program/; needs pnpm install + commit)",
-      "writableSet": "packages/email-program/**",
+      "pri": 1,
+      "id": "A-?1",
+      "waveId": "A",
+      "task": "pending agent (slot 1 in dispatch queue)",
+      "writableSet": "packages/a-*/**",
       "deps": [],
-      "status": "blocked-on-tier-recovery"
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 2,
+      "id": "A-?2",
+      "waveId": "A",
+      "task": "pending agent (slot 2 in dispatch queue)",
+      "writableSet": "packages/a-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 3,
+      "id": "B-?1",
+      "waveId": "B",
+      "task": "pending agent (slot 3 in dispatch queue)",
+      "writableSet": "packages/b-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 4,
+      "id": "C-?1",
+      "waveId": "C",
+      "task": "pending agent (slot 4 in dispatch queue)",
+      "writableSet": "packages/c-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 5,
+      "id": "D-?1",
+      "waveId": "D",
+      "task": "pending agent (slot 5 in dispatch queue)",
+      "writableSet": "packages/d-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 6,
+      "id": "E-?1",
+      "waveId": "E",
+      "task": "pending agent (slot 6 in dispatch queue)",
+      "writableSet": "packages/e-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 7,
+      "id": "E-?2",
+      "waveId": "E",
+      "task": "pending agent (slot 7 in dispatch queue)",
+      "writableSet": "packages/e-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 8,
+      "id": "H-EXT-?1",
+      "waveId": "H-EXT",
+      "task": "pending agent (slot 8 in dispatch queue)",
+      "writableSet": "packages/h-ext-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 9,
+      "id": "L-?1",
+      "waveId": "L",
+      "task": "pending agent (slot 9 in dispatch queue)",
+      "writableSet": "packages/l-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 10,
+      "id": "L-?2",
+      "waveId": "L",
+      "task": "pending agent (slot 10 in dispatch queue)",
+      "writableSet": "packages/l-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 11,
+      "id": "L-?3",
+      "waveId": "L",
+      "task": "pending agent (slot 11 in dispatch queue)",
+      "writableSet": "packages/l-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 12,
+      "id": "L-?4",
+      "waveId": "L",
+      "task": "pending agent (slot 12 in dispatch queue)",
+      "writableSet": "packages/l-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 13,
+      "id": "L-?5",
+      "waveId": "L",
+      "task": "pending agent (slot 13 in dispatch queue)",
+      "writableSet": "packages/l-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 15,
+      "id": "K-?1",
+      "waveId": "K",
+      "task": "pending agent (slot 15 in dispatch queue)",
+      "writableSet": "packages/k-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 16,
+      "id": "K-?2",
+      "waveId": "K",
+      "task": "pending agent (slot 16 in dispatch queue)",
+      "writableSet": "packages/k-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 17,
+      "id": "K-?3",
+      "waveId": "K",
+      "task": "pending agent (slot 17 in dispatch queue)",
+      "writableSet": "packages/k-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 18,
+      "id": "K-?4",
+      "waveId": "K",
+      "task": "pending agent (slot 18 in dispatch queue)",
+      "writableSet": "packages/k-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 19,
+      "id": "K-?5",
+      "waveId": "K",
+      "task": "pending agent (slot 19 in dispatch queue)",
+      "writableSet": "packages/k-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 22,
+      "id": "M-?1",
+      "waveId": "M",
+      "task": "pending agent (slot 22 in dispatch queue)",
+      "writableSet": "packages/m-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 23,
+      "id": "M-?2",
+      "waveId": "M",
+      "task": "pending agent (slot 23 in dispatch queue)",
+      "writableSet": "packages/m-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 24,
+      "id": "M-?3",
+      "waveId": "M",
+      "task": "pending agent (slot 24 in dispatch queue)",
+      "writableSet": "packages/m-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 25,
+      "id": "M-?4",
+      "waveId": "M",
+      "task": "pending agent (slot 25 in dispatch queue)",
+      "writableSet": "packages/m-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 26,
+      "id": "M-?5",
+      "waveId": "M",
+      "task": "pending agent (slot 26 in dispatch queue)",
+      "writableSet": "packages/m-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 28,
+      "id": "F-?1",
+      "waveId": "F",
+      "task": "pending agent (slot 28 in dispatch queue)",
+      "writableSet": "packages/f-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 29,
+      "id": "F-?2",
+      "waveId": "F",
+      "task": "pending agent (slot 29 in dispatch queue)",
+      "writableSet": "packages/f-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 30,
+      "id": "F-?3",
+      "waveId": "F",
+      "task": "pending agent (slot 30 in dispatch queue)",
+      "writableSet": "packages/f-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
     },
     {
       "pri": 31,
-      "id": "X-1-RECOVER",
-      "task": "Recover X-1 partial work (finops/secops/revops dirs in cernia-wt-r1-r/packages/business-ops/; needs commit)",
-      "writableSet": "packages/business-ops/**",
+      "id": "F-?4",
+      "waveId": "F",
+      "task": "pending agent (slot 31 in dispatch queue)",
+      "writableSet": "packages/f-*/**",
       "deps": [],
-      "status": "blocked-on-tier-recovery"
+      "status": "pending",
+      "recommendedModel": "sonnet"
     },
     {
       "pri": 32,
-      "id": "I-1-RETRY",
-      "task": "Support channel — re-dispatch with smaller scope",
-      "writableSet": "packages/support-channel/**",
+      "id": "F-?5",
+      "waveId": "F",
+      "task": "pending agent (slot 32 in dispatch queue)",
+      "writableSet": "packages/f-*/**",
       "deps": [],
-      "status": "blocked-on-tier-recovery"
+      "status": "pending",
+      "recommendedModel": "sonnet"
     },
     {
-      "pri": 33,
-      "id": "K-1",
-      "task": "Role-based UI templates (deferred until TIER 2 clears)",
-      "writableSet": "packages/role-templates/**",
+      "pri": 35,
+      "id": "G-?1",
+      "waveId": "G",
+      "task": "pending agent (slot 35 in dispatch queue)",
+      "writableSet": "packages/g-*/**",
       "deps": [],
-      "status": "deferred-tier-2"
+      "status": "pending",
+      "recommendedModel": "sonnet"
     },
     {
-      "pri": 34,
-      "id": "O-1",
-      "task": "AI Native copilot foundation (deferred until TIER 2 clears)",
-      "writableSet": "packages/ai-copilot/**",
+      "pri": 36,
+      "id": "G-?2",
+      "waveId": "G",
+      "task": "pending agent (slot 36 in dispatch queue)",
+      "writableSet": "packages/g-*/**",
       "deps": [],
-      "status": "deferred-tier-2"
+      "status": "pending",
+      "recommendedModel": "sonnet"
     }
   ],
   "recentCompletions": [
+    {
+      "agent": "v3.0 target now dynamic — sum of wave agentsTotal",
+      "commit": "6ea2e71",
+      "tag": "v3.0 🏁"
+    },
     {
       "agent": "banner clarity — v3.0 REACHED + age-aware recovery tier",
       "commit": "21a706c",
@@ -209,42 +474,44 @@
     {
       "agent": "per-wave sub-agent breakdown + estimated activation order",
       "commit": "8f714c9"
-    },
-    {
-      "agent": "auto-derive agentsRemainingToV30 + totalAgentsShipped",
-      "commit": "6acf340"
     }
   ],
   "failures": [
     {
       "agent": "M-1 pricing engine",
       "failureMode": "stream idle timeout",
-      "recovery": "re-dispatched as M-1A with tighter scope; running in slot 1"
+      "recovery": "re-dispatched as M-1A with tighter scope; running in slot 1",
+      "aged": true
     },
     {
       "agent": "W-1 email program",
       "failureMode": "stream stalled 600s during test-writing",
-      "recovery": "partial work in cernia-wt-r1-hext-b/packages/email-program/ (4 modules + tests); needs pnpm install + commit OR full re-dispatch"
+      "recovery": "partial work in cernia-wt-r1-hext-b/packages/email-program/ (4 modules + tests); needs pnpm install + commit OR full re-dispatch",
+      "aged": true
     },
     {
       "agent": "X-1 business ops",
       "failureMode": "stream stalled 600s post-lint",
-      "recovery": "partial work in cernia-wt-r1-r/packages/business-ops/ (finops/secops/revops dirs); needs commit OR full re-dispatch"
+      "recovery": "partial work in cernia-wt-r1-r/packages/business-ops/ (finops/secops/revops dirs); needs commit OR full re-dispatch",
+      "aged": true
     },
     {
       "agent": "I-1 support channel",
       "failureMode": "stream stalled 600s pre-source-code",
-      "recovery": "zero work done; needs full re-dispatch with smaller scope"
+      "recovery": "zero work done; needs full re-dispatch with smaller scope",
+      "aged": true
     },
     {
       "agent": "DD-2 renewal motion",
       "failureMode": "stream idle timeout (51 tests already complete in worktree)",
-      "recovery": "foreground-recovered + committed + pushed to origin/feat/wave-dd-2-renewal-motion"
+      "recovery": "foreground-recovered + committed + pushed to origin/feat/wave-dd-2-renewal-motion",
+      "aged": true
     },
     {
       "agent": "T-BH-A BH FHIR mappings",
       "failureMode": "stream idle timeout during verification (42 tests already complete in worktree)",
-      "recovery": "foreground-recovered: built @cernia/specialty-standards dep, re-ran 42/42 tests pass, committed + pushed origin/feat/wave-t-bh-a-fhir-mappings"
+      "recovery": "foreground-recovered: built @cernia/specialty-standards dep, re-ran 42/42 tests pass, committed + pushed origin/feat/wave-t-bh-a-fhir-mappings",
+      "aged": true
     }
   ],
   "waves": [
