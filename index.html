@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cernia — Wave Build Status</title>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-card: #14141c;
+      --bg-card-hover: #1c1c28;
+      --fg: #e5e5e5;
+      --fg-muted: #8b8b96;
+      --fg-faint: #5a5a68;
+      --accent: #4ade80;
+      --warn: #fbbf24;
+      --danger: #f87171;
+      --running: #60a5fa;
+      --purple: #c4b5fd;
+      --border: #2a2a3a;
+      --mono: ui-monospace, "JetBrains Mono", "Fira Code", Consolas, monospace;
+      --sans: -apple-system, "Segoe UI", Inter, system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); font-family: var(--sans); line-height: 1.5; font-size: 14px; }
+    .layout { max-width: 1200px; margin: 0 auto; padding: 24px; }
+    header { display: flex; align-items: center; gap: 16px; border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+    h1 { margin: 0; font-size: 22px; font-weight: 700; }
+    .live-indicator { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 11px; color: var(--accent); }
+    .live-indicator::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 1.5s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .updated { margin-left: auto; color: var(--fg-muted); font-family: var(--mono); font-size: 11px; }
+    .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-bottom: 16px; }
+    .stat-tile { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px; }
+    .stat-label { color: var(--fg-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; margin-bottom: 2px; }
+    .stat-value { color: var(--fg); font-family: var(--mono); font-size: 13px; word-break: break-word; }
+    .strategy-bar { padding: 10px 14px; background: rgba(96, 165, 250, 0.08); border: 1px solid rgba(96, 165, 250, 0.3); border-radius: 6px; margin-bottom: 16px; font-size: 13px; color: #c8d8f0; }
+    .model-bar { padding: 8px 14px; background: rgba(196, 181, 253, 0.08); border: 1px solid rgba(196, 181, 253, 0.3); border-radius: 6px; margin-bottom: 24px; font-size: 12px; color: var(--purple); font-family: var(--mono); }
+    h2 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-muted); margin: 24px 0 12px; display: flex; align-items: center; gap: 10px; }
+    h2 .count { background: var(--bg-card); color: var(--fg); padding: 1px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+    /* Pool grid */
+    .pool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 8px; margin-bottom: 16px; }
+    .slot { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; transition: border-color 0.2s; }
+    .slot.running { border-color: var(--running); background: rgba(96, 165, 250, 0.05); }
+    .slot.idle { opacity: 0.6; }
+    .slot.warming { border-color: var(--warn); background: rgba(251, 191, 36, 0.05); }
+    .slot-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+    .slot-num { font-family: var(--mono); font-size: 11px; color: var(--fg-muted); font-weight: 600; }
+    .slot-status { font-size: 10px; font-weight: 600; text-transform: uppercase; }
+    .slot-status.running { color: var(--running); }
+    .slot-status.idle { color: var(--fg-faint); }
+    .slot-status.warming { color: var(--warn); }
+    .slot-task { font-family: var(--mono); font-size: 12px; color: var(--fg); margin-bottom: 2px; }
+    .slot-worktree { font-family: var(--mono); font-size: 10px; color: var(--fg-faint); }
+    .slot-writable { font-family: var(--mono); font-size: 10px; color: var(--fg-muted); margin-top: 4px; word-break: break-all; }
+    /* Queue table */
+    .queue-table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 11px; }
+    .queue-table th, .queue-table td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+    .queue-table th { color: var(--fg-muted); font-weight: 500; font-size: 10px; text-transform: uppercase; }
+    .queue-table td.pri { color: var(--fg-faint); width: 30px; }
+    .queue-table td.id { font-weight: 600; color: var(--fg); width: 100px; }
+    .queue-table td.task { color: var(--fg); }
+    .queue-table td.writable { color: var(--fg-muted); font-size: 10px; }
+    .queue-table td.deps { color: var(--purple); font-size: 10px; }
+    .queue-table tr.deps-pending td { opacity: 0.5; }
+    /* Recent completions */
+    .completed-table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 11px; }
+    .completed-table th, .completed-table td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+    .completed-table th { color: var(--fg-muted); font-weight: 500; font-size: 10px; text-transform: uppercase; }
+    .completed-table .agent { font-weight: 600; color: var(--fg); }
+    .completed-table .commit { color: var(--running); }
+    .completed-table .tests { color: var(--accent); }
+    .completed-table .tag { color: var(--purple); font-weight: 600; }
+    /* Wave tree */
+    .tree { font-family: var(--mono); }
+    .node { border-left: 1px solid var(--border); margin-left: 12px; padding-left: 16px; position: relative; }
+    .node.depth-0 { margin-left: 0; padding-left: 0; border-left: none; }
+    .node-header { display: flex; align-items: center; gap: 8px; padding: 6px 0; cursor: pointer; user-select: none; font-size: 13px; transition: background 0.15s; border-radius: 4px; padding-left: 6px; }
+    .node-header:hover { background: var(--bg-card-hover); }
+    .chevron { display: inline-block; width: 14px; text-align: center; color: var(--fg-faint); transition: transform 0.15s; font-size: 10px; flex-shrink: 0; }
+    .chevron.expanded { transform: rotate(90deg); }
+    .chevron.leaf { color: transparent; }
+    .status-icon { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; font-size: 11px; flex-shrink: 0; font-family: var(--sans); }
+    .status-complete { background: rgba(74, 222, 128, 0.18); color: var(--accent); }
+    .status-in-flight { background: rgba(96, 165, 250, 0.18); color: var(--running); animation: blink 1.5s ease-in-out infinite; }
+    .status-pending { background: rgba(139, 139, 150, 0.15); color: var(--fg-muted); }
+    .status-failed { background: rgba(248, 113, 113, 0.18); color: var(--danger); }
+    .status-in-progress { background: rgba(251, 191, 36, 0.18); color: var(--warn); }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    .node-name { flex: 1; min-width: 0; color: var(--fg); font-weight: 500; }
+    .node-name .id-prefix { color: var(--fg-muted); font-weight: 600; }
+    .node-meta { display: flex; gap: 12px; align-items: center; flex-shrink: 0; font-size: 11px; color: var(--fg-muted); }
+    .badge { padding: 1px 8px; border-radius: 10px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+    .badge-complete { background: rgba(74, 222, 128, 0.12); color: var(--accent); border: 1px solid rgba(74, 222, 128, 0.3); }
+    .badge-in-flight { background: rgba(96, 165, 250, 0.12); color: var(--running); border: 1px solid rgba(96, 165, 250, 0.3); }
+    .badge-pending { background: rgba(139, 139, 150, 0.1); color: var(--fg-muted); border: 1px solid rgba(139, 139, 150, 0.3); }
+    .badge-in-progress { background: rgba(251, 191, 36, 0.12); color: var(--warn); border: 1px solid rgba(251, 191, 36, 0.3); }
+    .tag-pill { padding: 1px 8px; border-radius: 4px; font-size: 10px; background: rgba(0, 0, 0, 0.4); color: var(--fg-muted); border: 1px solid var(--border); }
+    .recovery-tier-0 { color: var(--accent); }
+    .recovery-tier-1 { color: var(--warn); }
+    .recovery-tier-2, .recovery-tier-3, .recovery-tier-4, .recovery-tier-5 { color: var(--danger); }
+    .error-banner { background: rgba(248, 113, 113, 0.08); border: 1px solid rgba(248, 113, 113, 0.4); padding: 10px 14px; border-radius: 6px; color: var(--danger); font-family: var(--mono); font-size: 12px; margin-bottom: 16px; display: none; }
+    .error-banner.shown { display: block; }
+    .progress-mini { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--fg-muted); }
+    .progress-mini-bar { width: 60px; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+    .progress-mini-bar-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <header>
+      <h1>Cernia — Wave Build Status</h1>
+      <span class="live-indicator">LIVE</span>
+      <span class="updated" id="updated">loading…</span>
+    </header>
+
+    <div id="errorBanner" class="error-banner">Failed to load status — last successful render shown below.</div>
+
+    <div class="summary-grid">
+      <div class="stat-tile"><div class="stat-label">Main HEAD</div><div class="stat-value" id="currentMainCommit">—</div></div>
+      <div class="stat-tile"><div class="stat-label">Tag on Main</div><div class="stat-value" id="currentTagOnMain">—</div></div>
+      <div class="stat-tile"><div class="stat-label">Hardening</div><div class="stat-value" id="hardeningTrackRecord">—</div></div>
+      <div class="stat-tile"><div class="stat-label">Agents to v3.0</div><div class="stat-value" id="agentsRemainingToV30">—</div></div>
+      <div class="stat-tile"><div class="stat-label">Cron</div><div class="stat-value" id="cronStatus">—</div></div>
+      <div class="stat-tile"><div class="stat-label">Recovery Tier</div><div class="stat-value" id="recoveryTier">—</div></div>
+      <div class="stat-tile"><div class="stat-label">Model Mix (active)</div><div class="stat-value" id="modelMix" style="font-size:12px">—</div></div>
+    </div>
+
+    <div class="strategy-bar" id="strategy">—</div>
+    <div class="model-bar" id="modelSummary">—</div>
+
+    <h2>Pool (8 slots) · Saturation <span class="count" id="saturation">0%</span></h2>
+    <div class="pool-grid" id="poolGrid"></div>
+
+    <h2>Queue <span class="count" id="queueCount">0</span></h2>
+    <table class="queue-table" id="queueTable">
+      <thead><tr><th>#</th><th>ID</th><th>Task</th><th>Writable set</th><th>Deps</th></tr></thead>
+      <tbody></tbody>
+    </table>
+
+    <h2>Recent Completions <span class="count" id="completedCount">0</span></h2>
+    <table class="completed-table" id="completedTable">
+      <thead><tr><th>Agent</th><th>Commit</th><th>Tests</th><th>Tag</th></tr></thead>
+      <tbody></tbody>
+    </table>
+
+    <h2 id="failuresHeader" style="display:none;color:var(--danger)">Failures <span class="count" id="failuresCount" style="background:rgba(248,113,113,0.18);color:var(--danger);border:1px solid var(--danger)">0</span></h2>
+    <table class="completed-table" id="failuresTable" style="display:none">
+      <thead><tr><th>Agent</th><th>Failure mode</th><th>Recovery</th></tr></thead>
+      <tbody></tbody>
+    </table>
+
+    <h2>Wave Tree</h2>
+    <div id="tree" class="tree"></div>
+  </div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    let lastGoodRender = null;
+    const expandedNodes = new Set();
+
+    const statusIconMap = {
+      "complete": { class: "status-complete", glyph: "✓" },
+      "landed": { class: "status-complete", glyph: "✓" },
+      "in-flight": { class: "status-in-flight", glyph: "●" },
+      "in-progress": { class: "status-in-progress", glyph: "↻" },
+      "pending": { class: "status-pending", glyph: "○" },
+      "deferred-tier-2": { class: "status-pending", glyph: "○" },
+      "stalled": { class: "status-failed", glyph: "⏸" },
+      "blocked-on-counsel": { class: "status-pending", glyph: "⏸" },
+      "failed": { class: "status-failed", glyph: "✗" }
+    };
+
+    function statusIcon(status) {
+      const m = statusIconMap[status] || statusIconMap.pending;
+      return `<span class="status-icon ${m.class}">${m.glyph}</span>`;
+    }
+
+    const statusBadgeMap = {
+      "complete": "complete",
+      "landed": "complete",
+      "in-flight": "in-flight",
+      "in-progress": "in-progress",
+      "pending": "pending",
+      "deferred-tier-2": "pending",
+      "stalled": "failed",
+      "blocked-on-counsel": "pending",
+      "failed": "failed",
+      "blocked-on-tier-recovery": "pending"
+    };
+    function statusBadge(status) {
+      const norm = statusBadgeMap[status] || "pending";
+      const cls = "badge-" + norm;
+      const label = (status || "pending").replace(/-/g, " ");
+      return `<span class="badge ${cls}">${label}</span>`;
+    }
+
+    function renderPoolSlot(slot) {
+      const cls = slot.status === "running" ? "running" : slot.status === "warming" ? "warming" : "idle";
+      const taskName = slot.agent ? slot.agent.taskId + " · " + slot.agent.task : "(idle)";
+      const agentMeta = slot.agent ? `<div class="slot-writable">writable: ${slot.agent.writableSet || ""}</div>` : "";
+      return `
+        <div class="slot ${cls}">
+          <div class="slot-header">
+            <span class="slot-num">SLOT ${slot.slot}</span>
+            <span class="slot-status ${cls}">${slot.status}</span>
+          </div>
+          <div class="slot-task">${taskName}</div>
+          <div class="slot-worktree">${slot.worktree}</div>
+          ${agentMeta}
+        </div>
+      `;
+    }
+
+    function renderPool(pool) {
+      const slots = pool.slots || [];
+      $("poolGrid").innerHTML = slots.map(renderPoolSlot).join("");
+      const running = slots.filter(s => s.status === "running").length;
+      const pct = slots.length ? Math.round(100 * running / slots.length) : 0;
+      $("saturation").textContent = pct + "%";
+    }
+
+    function renderQueue(queue) {
+      const rows = (queue || []).map(t => {
+        const depCls = (t.deps || []).length > 0 ? " class='deps-pending'" : "";
+        const depsDisplay = (t.deps || []).length ? "depends: " + t.deps.join(",") : "—";
+        return `<tr${depCls}><td class='pri'>${t.pri}</td><td class='id'>${t.id}</td><td class='task'>${t.task}</td><td class='writable'>${t.writableSet}</td><td class='deps'>${depsDisplay}</td></tr>`;
+      }).join("");
+      $("queueTable").querySelector("tbody").innerHTML = rows;
+      $("queueCount").textContent = (queue || []).length;
+    }
+
+    function renderCompleted(completed) {
+      const rows = (completed || []).map(c => {
+        const tagDisplay = c.tag ? `<span class='tag'>${c.tag}</span>` : "";
+        return `<tr><td class='agent'>${c.agent}</td><td class='commit'>${c.commit}</td><td class='tests'>${c.tests || "—"}</td><td>${tagDisplay}</td></tr>`;
+      }).join("");
+      $("completedTable").querySelector("tbody").innerHTML = rows;
+      $("completedCount").textContent = (completed || []).length;
+    }
+
+    function renderFailures(failures) {
+      const list = failures || [];
+      if (list.length === 0) {
+        $("failuresHeader").style.display = "none";
+        $("failuresTable").style.display = "none";
+        return;
+      }
+      $("failuresHeader").style.display = "flex";
+      $("failuresTable").style.display = "";
+      $("failuresCount").textContent = list.length;
+      const rows = list.map(f =>
+        `<tr><td style='color:var(--danger);font-weight:600'>${f.agent}</td><td style='color:var(--warn)'>${f.failureMode || f.failure || ""}</td><td>${f.recovery || ""}</td></tr>`
+      ).join("");
+      $("failuresTable").querySelector("tbody").innerHTML = rows;
+    }
+
+    function renderWave(wave, depth) {
+      const hasSubs = (wave.subWaves || []).length > 0;
+      const hasAgents = (wave.agents || []).length > 0;
+      const isExpanded = expandedNodes.has(wave.id) || wave.expanded;
+      const chevronClass = (hasSubs || hasAgents) ? (isExpanded ? "expanded" : "") : "leaf";
+      const tagPill = wave.tag ? `<span class='tag-pill'>${wave.tag}</span>` : "";
+      const subsHtml = (wave.subWaves || []).map(s => renderSubWave(s, depth + 1)).join("");
+      const agentsHtml = (wave.agents || []).map(a => renderWaveAgent(a, depth + 1)).join("");
+      // Progress mini-bar: known / total
+      const known = wave.knownAgentCount ?? (wave.agents || []).filter(a => a.status !== 'pending').length;
+      const pendingCount = wave.pendingAgentCount ?? 0;
+      const total = wave.agentsTotal || (known + pendingCount);
+      const progressPct = total > 0 ? (known / total) * 100 : 0;
+      const progressMini = total > 0
+        ? `<span class="progress-mini">${known}/${total}<span class="progress-mini-bar"><span class="progress-mini-bar-fill" style="width:${progressPct}%"></span></span></span>`
+        : '';
+      return `
+        <div class="node depth-${depth}" data-id="${wave.id}">
+          <div class="node-header" data-toggle="${wave.id}">
+            <span class="chevron ${chevronClass}">▶</span>
+            ${statusIcon(wave.status)}
+            <span class="node-name"><span class="id-prefix">${wave.id}</span> · ${wave.name}</span>
+            <span class="node-meta">${progressMini} ${tagPill} ${statusBadge(wave.status)}</span>
+          </div>
+          <div class="node-children" style="display:${isExpanded ? 'block' : 'none'}" data-children="${wave.id}">${subsHtml}${agentsHtml}</div>
+        </div>
+      `;
+    }
+
+    function renderWaveAgent(a, depth) {
+      // a.status: 'in-flight' | 'landed' | 'failed' | 'pending'
+      const slotInfo = a.slot ? `<span style="color:var(--running);font-family:var(--mono);font-size:10px">slot ${a.slot}</span>` : "";
+      const activationInfo = a.activationPosition ? `<span style="color:var(--fg-muted);font-family:var(--mono);font-size:10px">queue #${a.activationPosition}</span>` : "";
+      const failureInfo = a.failureNote ? `<span style="color:var(--danger);font-size:10px" title="${(a.failureNote || '').replace(/"/g, '&quot;')}">⚠ failure note</span>` : "";
+      const recoveredBadge = a.recovered ? `<span style="color:var(--accent);font-size:10px;font-weight:600">✓ recovered</span>` : "";
+      const modelPill = a.recommendedModel ? renderModelPill(a.recommendedModel, a.modelReason) : "";
+      const nameStyle = a.status === 'pending' ? 'color:var(--fg-muted);font-style:italic' : '';
+      return `
+        <div class="node depth-${depth}">
+          <div class="node-header">
+            <span class="chevron leaf">▶</span>
+            ${statusIcon(a.status)}
+            <span class="node-name" style="${nameStyle}"><span class="id-prefix">${a.id}</span> · ${a.name || ''}</span>
+            <span class="node-meta">${modelPill} ${slotInfo} ${recoveredBadge} ${failureInfo} ${activationInfo}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderModelPill(model, reason) {
+      // Color-code by model tier
+      const colors = {
+        haiku:  { bg: 'rgba(74, 222, 128, 0.10)',  fg: 'var(--accent)',  border: 'rgba(74, 222, 128, 0.30)' },
+        sonnet: { bg: 'rgba(96, 165, 250, 0.10)',  fg: 'var(--running)', border: 'rgba(96, 165, 250, 0.30)' },
+        opus:   { bg: 'rgba(196, 181, 253, 0.12)', fg: 'var(--purple)',  border: 'rgba(196, 181, 253, 0.35)' },
+      };
+      const c = colors[model] || colors.sonnet;
+      const tooltip = reason ? `title="${reason.replace(/"/g, '&quot;')}"` : '';
+      return `<span ${tooltip} style="padding:1px 6px;border-radius:4px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;background:${c.bg};color:${c.fg};border:1px solid ${c.border};font-family:var(--mono)">${model}</span>`;
+    }
+
+    function renderSubWave(sub, depth) {
+      const totalAgents = (sub.agents || []).length;
+      const completeAgents = (sub.agents || []).filter(a => a.status === "complete").length;
+      const isExpanded = expandedNodes.has(sub.id) || sub.status === "in-progress";
+      const chevronClass = isExpanded ? "expanded" : "";
+      const progressPct = totalAgents ? (completeAgents / totalAgents) * 100 : 0;
+      const agentsHtml = (sub.agents || []).map(a => renderAgent(a, depth + 1)).join("");
+      return `
+        <div class="node depth-${depth}">
+          <div class="node-header" data-toggle="${sub.id}">
+            <span class="chevron ${chevronClass}">▶</span>
+            ${statusIcon(sub.status)}
+            <span class="node-name"><span class="id-prefix">${sub.id}</span> · ${sub.name}</span>
+            <span class="node-meta">
+              <span class="progress-mini">${completeAgents}/${totalAgents}<span class="progress-mini-bar"><span class="progress-mini-bar-fill" style="width:${progressPct}%"></span></span></span>
+              ${statusBadge(sub.status)}
+            </span>
+          </div>
+          <div class="node-children" style="display:${isExpanded ? 'block' : 'none'}" data-children="${sub.id}">${agentsHtml}</div>
+        </div>
+      `;
+    }
+
+    function renderAgent(a, depth) {
+      const isInt = a.isInt;
+      const intBadge = isInt ? '<span class="badge badge-pending" style="background:rgba(196,181,253,0.12);color:#c4b5fd;border-color:rgba(196,181,253,0.3)">INT</span>' : "";
+      const commitDisplay = a.commit ? `<span style="color:var(--running)">${a.commit}</span>` : "";
+      const testsDisplay = a.tests ? `<span style="color:var(--accent)">${a.tests} tests</span>` : "";
+      return `
+        <div class="node depth-${depth}">
+          <div class="node-header">
+            <span class="chevron leaf">▶</span>
+            ${statusIcon(a.status)}
+            <span class="node-name"><span class="id-prefix">${a.id}</span> · ${a.name}</span>
+            <span class="node-meta">${intBadge} ${commitDisplay} ${testsDisplay}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    function bindToggles() {
+      document.querySelectorAll("[data-toggle]").forEach(el => {
+        el.addEventListener("click", () => {
+          const id = el.getAttribute("data-toggle");
+          const chevron = el.querySelector(".chevron");
+          if (!chevron || chevron.classList.contains("leaf")) return;
+          const children = document.querySelector(`[data-children="${id}"]`);
+          if (!children) return;
+          const isExpanded = children.style.display === "block";
+          children.style.display = isExpanded ? "none" : "block";
+          chevron.classList.toggle("expanded");
+          if (isExpanded) expandedNodes.delete(id);
+          else expandedNodes.add(id);
+        });
+      });
+    }
+
+    function render(data) {
+      lastGoodRender = data;
+      $("errorBanner").classList.remove("shown");
+      $("updated").textContent = "Updated " + data.meta.lastUpdatedDisplay;
+      const s = data.summary || {};
+      $("currentMainCommit").textContent = s.currentMainCommit || "—";
+      $("currentTagOnMain").textContent = s.currentTagOnMain || "—";
+      $("hardeningTrackRecord").textContent = s.hardeningTrackRecord || "—";
+      $("agentsRemainingToV30").textContent = (s.agentsRemainingToV30 ?? "—") + " remaining";
+      $("cronStatus").textContent = s.cronStatus || "—";
+      // Render model mix (active = in-flight + pending only)
+      const mix = s.modelMixActive || { haiku: 0, sonnet: 0, opus: 0 };
+      $("modelMix").innerHTML = `
+        ${renderModelPill('haiku')} <span style="color:var(--fg-muted)">${mix.haiku}</span>
+        &nbsp;${renderModelPill('sonnet')} <span style="color:var(--fg-muted)">${mix.sonnet}</span>
+        &nbsp;${renderModelPill('opus')} <span style="color:var(--fg-muted)">${mix.opus}</span>
+      `;
+      const tierEl = $("recoveryTier");
+      tierEl.textContent = s.recoveryTier || "—";
+      const tierMatch = (s.recoveryTier || "").match(/TIER\s+(\d)/i);
+      tierEl.className = "stat-value " + (tierMatch ? "recovery-tier-" + tierMatch[1] : "");
+      $("strategy").textContent = s.strategy || "—";
+      $("modelSummary").textContent = (data.meta && data.meta.modelSummary) || "";
+
+      renderPool(data.pool || { slots: [] });
+      renderQueue(data.queue || []);
+      renderCompleted(data.recentCompletions || []);
+      renderFailures(data.failures || []);
+      $("tree").innerHTML = (data.waves || []).map(w => renderWave(w, 0)).join("");
+      bindToggles();
+    }
+
+    async function refresh() {
+      try {
+        const res = await fetch("live-status.json?t=" + Date.now());
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const data = await res.json();
+        render(data);
+      } catch (e) {
+        $("errorBanner").classList.add("shown");
+        if (lastGoodRender) render(lastGoodRender);
+      }
+    }
+
+    refresh();
+    setInterval(refresh, 8000);
+  </script>
+</body>
+</html>
