@@ -1,19 +1,19 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T14:10:31.280Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 10:10 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 2/8 in flight (ERX-5 ERX-6) · last: banner clarity — v3.0 REACHED + age-aware recovery (21a706c)"
+    "lastUpdatedIso": "2026-05-21T14:13:20.581Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 10:13 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 1/8 in flight (ERX-6) · last: banner clarity — v3.0 REACHED + age-aware recovery (21a706c)"
   },
   "summary": {
     "currentMainCommit": "21a706c",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 51,
-    "agentsRemainingToV30": 0,
+    "agentsRemainingToV30": 94,
     "hardeningTrackRecord": "51 successful commits since v0.95-white-label · 6 failures tracked",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (6 historical)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 10:10 EDT · pool 2/8)",
-    "totalAgentsShipped": 364,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 10:13 EDT · pool 1/8)",
+    "totalAgentsShipped": 366,
     "modelMix": {
       "haiku": 49,
       "sonnet": 339,
@@ -21,14 +21,15 @@
     },
     "modelMixActive": {
       "haiku": 6,
-      "sonnet": 98,
+      "sonnet": 97,
       "opus": 6
     },
-    "v30Status": "v3.0 REACHED · +74 over target (364/290)"
+    "v30Status": "366/460 (80%, 94 to go)",
+    "v30Target": 460
   },
   "pool": {
     "size": 8,
-    "saturationPct": 25,
+    "saturationPct": 13,
     "queueDepth": 5,
     "slots": [
       {
@@ -52,13 +53,8 @@
       {
         "slot": 4,
         "worktree": "cernia-wt-r1-r",
-        "status": "running",
-        "agent": {
-          "taskId": "ERX-5",
-          "agentId": "a096fb5c940627557",
-          "task": "Surescripts adapter (envelope + routing + backoff + parser) (sonnet)",
-          "writableSet": "packages/surescripts-adapter/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 5,
@@ -3593,17 +3589,8 @@
       "agentsTotal": 6,
       "agents": [
         {
-          "id": "ERX-5",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 4,
-          "worktree": "cernia-wt-r1-r",
-          "recommendedModel": "sonnet",
-          "modelReason": "default"
-        },
-        {
           "id": "ERX-6",
-          "name": "(running — branch not yet pushed)",
+          "name": "pdmp adapter",
           "status": "in-flight",
           "slot": 5,
           "worktree": "cernia-wt-r1-s-hl7",
@@ -3637,11 +3624,18 @@
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "default"
+        },
+        {
+          "id": "ERX-5",
+          "name": "surescripts adapter",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
         }
       ],
       "knownAgentCount": 6,
       "pendingAgentCount": 0,
-      "completionPct": 67
+      "completionPct": 83
     },
     {
       "id": "UI",
