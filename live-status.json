@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T22:57:09.338Z",
+    "lastUpdatedIso": "2026-05-21T22:57:57.587Z",
     "lastUpdatedDisplay": "May 21, 2026 — 18:57 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-113 CC-102 CC-118 CC-116 CC-115 CC-114 CC-117 CC-119) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-120 CC-102 CC-118 CC-116 CC-115 CC-114 CC-117 CC-119) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
@@ -13,10 +13,10 @@
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
     "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 18:57 EDT · pool 8/8)",
-    "totalAgentsShipped": 472,
+    "totalAgentsShipped": 473,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 446,
+      "sonnet": 447,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 92,
       "opus": 6
     },
-    "v30Status": "472/545 (87%, 73 to go)",
-    "v30Target": 545
+    "v30Status": "473/546 (87%, 73 to go)",
+    "v30Target": 546
   },
   "pool": {
     "size": 8,
@@ -37,10 +37,10 @@
         "worktree": "cernia-wt-r1-hext-a",
         "status": "running",
         "agent": {
-          "taskId": "CC-113",
-          "agentId": "aa00a1ee52a74bd8a",
-          "task": "openEHR archetypes + RM + ADL parser + openEHR↔FHIR converter (sonnet)",
-          "writableSet": "packages/catalog-openehr-archetypes/**"
+          "taskId": "CC-120",
+          "agentId": "aefd0c9742992b13e",
+          "task": "ACOG+ASRM OB/GYN + reproductive guidelines FHIR (sonnet)",
+          "writableSet": "packages/catalog-acog-asrm-guidelines/**"
         }
       },
       {
@@ -3772,23 +3772,14 @@
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "in-progress",
-      "agentsTotal": 121,
+      "agentsTotal": 122,
       "agents": [
         {
           "id": "CC-102",
-          "name": "(running — branch not yet pushed)",
+          "name": "gpci wage",
           "status": "in-flight",
           "slot": 2,
           "worktree": "cernia-wt-r1-hext-b",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-113",
-          "name": "openehr archetypes",
-          "status": "in-flight",
-          "slot": 1,
-          "worktree": "cernia-wt-r1-hext-a",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -3843,6 +3834,15 @@
           "status": "in-flight",
           "slot": 8,
           "worktree": "cernia-wt-r1-t",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-120",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 1,
+          "worktree": "cernia-wt-r1-hext-a",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4636,9 +4636,16 @@
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-113",
+          "name": "openehr archetypes",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 121,
+      "knownAgentCount": 122,
       "pendingAgentCount": 0,
       "completionPct": 93
     },
