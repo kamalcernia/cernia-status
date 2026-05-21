@@ -1,22 +1,22 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T19:48:34.261Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 15:48 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-86 CC-81 CC-84 CC-78 CC-83 CC-82 CC-85 CC-80) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "lastUpdatedIso": "2026-05-21T19:53:42.659Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 15:53 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-86 CC-87 CC-84 CC-78 CC-83 CC-82 CC-85 CC-80) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 75,
+    "agentsRemainingToV30": 73,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 15:48 EDT · pool 8/8)",
-    "totalAgentsShipped": 438,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 15:53 EDT · pool 8/8)",
+    "totalAgentsShipped": 440,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 413,
+      "sonnet": 414,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,7 +24,7 @@
       "sonnet": 92,
       "opus": 6
     },
-    "v30Status": "438/513 (85%, 75 to go)",
+    "v30Status": "440/513 (86%, 73 to go)",
     "v30Target": 513
   },
   "pool": {
@@ -48,10 +48,10 @@
         "worktree": "cernia-wt-r1-hext-b",
         "status": "running",
         "agent": {
-          "taskId": "CC-81",
-          "agentId": "a934d871200444eed",
-          "task": "ICD-9 to ICD-10 GEMs crosswalk catalog FHIR (legacy data migration) (sonnet)",
-          "writableSet": "packages/catalog-icd9-icd10-crosswalk/**"
+          "taskId": "CC-87",
+          "agentId": "af3a3f5b52f2e80ae",
+          "task": "HL7 C-CDA 2.1 templates + CDA↔FHIR converter (TEFCA legacy interop) (sonnet)",
+          "writableSet": "packages/catalog-hl7-cda-r2/**"
         }
       },
       {
@@ -3772,7 +3772,7 @@
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "in-progress",
-      "agentsTotal": 88,
+      "agentsTotal": 89,
       "agents": [
         {
           "id": "CC-78",
@@ -3793,15 +3793,6 @@
           "modelReason": "regulatory-compliance"
         },
         {
-          "id": "CC-81",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 2,
-          "worktree": "cernia-wt-r1-hext-b",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
           "id": "CC-82",
           "name": "(running — branch not yet pushed)",
           "status": "in-flight",
@@ -3812,7 +3803,7 @@
         },
         {
           "id": "CC-83",
-          "name": "(running — branch not yet pushed)",
+          "name": "nubc ub04",
           "status": "in-flight",
           "slot": 5,
           "worktree": "cernia-wt-r1-s-hl7",
@@ -3843,6 +3834,15 @@
           "status": "in-flight",
           "slot": 1,
           "worktree": "cernia-wt-r1-hext-a",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-87",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 2,
+          "worktree": "cernia-wt-r1-hext-b",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4405,9 +4405,16 @@
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-81",
+          "name": "icd9 icd10 crosswalk",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 88,
+      "knownAgentCount": 89,
       "pendingAgentCount": 0,
       "completionPct": 91
     },
