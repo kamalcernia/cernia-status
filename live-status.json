@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T23:01:25.594Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 19:01 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-120 CC-121 CC-118 CC-116 CC-115 CC-122 CC-117 CC-119) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "lastUpdatedIso": "2026-05-21T23:12:08.578Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 19:12 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-120 CC-121 CC-118 CC-116 CC-123 CC-122 CC-117 CC-119) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
@@ -12,11 +12,11 @@
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 19:01 EDT · pool 8/8)",
-    "totalAgentsShipped": 474,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 19:12 EDT · pool 8/8)",
+    "totalAgentsShipped": 475,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 449,
+      "sonnet": 450,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 92,
       "opus": 6
     },
-    "v30Status": "474/548 (86%, 74 to go)",
-    "v30Target": 548
+    "v30Status": "475/549 (87%, 74 to go)",
+    "v30Target": 549
   },
   "pool": {
     "size": 8,
@@ -81,10 +81,10 @@
         "worktree": "cernia-wt-r1-s-hl7",
         "status": "running",
         "agent": {
-          "taskId": "CC-115",
-          "agentId": "aa1d64595a80ea401",
-          "task": "ClinVar + dbSNP + ACMG-AMP classification + FHIR Genomics (sonnet)",
-          "writableSet": "packages/catalog-clinvar-dbsnp/**"
+          "taskId": "CC-123",
+          "agentId": "a97eaecf22a99f399",
+          "task": "HPO + Disease Ontology + Orphanet + phenotype-driven DDx FHIR (sonnet)",
+          "writableSet": "packages/catalog-hpo-disease-orphanet/**"
         }
       },
       {
@@ -3772,17 +3772,8 @@
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "in-progress",
-      "agentsTotal": 124,
+      "agentsTotal": 125,
       "agents": [
-        {
-          "id": "CC-115",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 5,
-          "worktree": "cernia-wt-r1-s-hl7",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
         {
           "id": "CC-116",
           "name": "(running — branch not yet pushed)",
@@ -3843,6 +3834,15 @@
           "status": "in-flight",
           "slot": 6,
           "worktree": "cernia-wt-r1-s-dicom",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-123",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 5,
+          "worktree": "cernia-wt-r1-s-hl7",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4657,9 +4657,16 @@
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-115",
+          "name": "clinvar dbsnp",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 124,
+      "knownAgentCount": 125,
       "pendingAgentCount": 0,
       "completionPct": 94
     },
