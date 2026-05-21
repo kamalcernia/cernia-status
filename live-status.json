@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T14:47:33.930Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 10:47 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 5/8 in flight (T-Allergy-B T-Cardio-B T-Endo-B T-Pulm-B T-Genom-A) · last: defeat GitHub Pages cache for live updates (68eb0a8)"
+    "lastUpdatedIso": "2026-05-21T14:50:32.628Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 10:50 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 5/8 in flight (T-Allergy-B T-Cardio-B T-Endo-B T-Pulm-B T-Geri-B) · last: defeat GitHub Pages cache for live updates (68eb0a8)"
   },
   "summary": {
     "currentMainCommit": "68eb0a8",
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "54 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 10:47 EDT · pool 5/8)",
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 10:50 EDT · pool 5/8)",
     "totalAgentsShipped": 376,
     "modelMix": {
       "haiku": 49,
@@ -87,10 +87,10 @@
         "worktree": "cernia-wt-r1-s-dicom",
         "status": "running",
         "agent": {
-          "taskId": "T-Genom-A",
-          "agentId": "af2ecae773178c603",
-          "task": "Genomics FHIR (ACMG + CPIC pharmacogenomics) (sonnet)",
-          "writableSet": "packages/specialty-genomics/**"
+          "taskId": "T-Geri-B",
+          "agentId": "aac81982b66e2a87a",
+          "task": "Geriatrics frailty FHIR (Fried + CFS + Morse + CAM) (sonnet)",
+          "writableSet": "packages/specialty-geriatrics-frailty/**"
         }
       },
       {
@@ -2342,7 +2342,7 @@
           "modelReason": "specialty-fhir-mapping"
         },
         {
-          "id": "T-GENOM-A",
+          "id": "T-GERI-B",
           "name": "(running — branch not yet pushed)",
           "status": "in-flight",
           "slot": 6,
