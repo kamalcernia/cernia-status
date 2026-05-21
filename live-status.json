@@ -1,22 +1,22 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T16:38:35.317Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 12:38 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (T-Derm-B T-Surg-B T-Hosp-B T-Trauma-B T-Tox-B T-Urol-B T-BH-B T-PainMgmt-B) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
+    "lastUpdatedIso": "2026-05-21T16:41:49.663Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 12:41 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (T-Derm-B T-Surg-B T-Genom-B T-Trauma-B T-Tox-B T-Urol-B T-BH-B T-PainMgmt-B) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
   },
   "summary": {
     "currentMainCommit": "76989fc",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 68,
+    "agentsRemainingToV30": 69,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 12:38 EDT · pool 8/8)",
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 12:41 EDT · pool 8/8)",
     "totalAgentsShipped": 397,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 357,
+      "sonnet": 358,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 98,
       "opus": 6
     },
-    "v30Status": "397/465 (85%, 68 to go)",
-    "v30Target": 465
+    "v30Status": "397/466 (85%, 69 to go)",
+    "v30Target": 466
   },
   "pool": {
     "size": 8,
@@ -59,10 +59,10 @@
         "worktree": "cernia-wt-r1-hext-c",
         "status": "running",
         "agent": {
-          "taskId": "T-Hosp-B",
-          "agentId": "ac5308294d4580467",
-          "task": "Hospitalist discharge FHIR (LACE + NEWS2 + 6-Clicks) (sonnet)",
-          "writableSet": "packages/specialty-hosp-discharge/**"
+          "taskId": "T-Genom-B",
+          "agentId": "a5fa0add67b58083f",
+          "task": "CPIC pharmacogenomics FHIR (drug-gene + dose-adjust + variants) (sonnet)",
+          "writableSet": "packages/specialty-genom-cpic/**"
         }
       },
       {
@@ -2325,7 +2325,7 @@
       "name": "7 Specialty Modules",
       "tag": "v1.8-specialty-modules",
       "status": "in-progress",
-      "agentsTotal": 49,
+      "agentsTotal": 50,
       "agents": [
         {
           "id": "T-BH-B",
@@ -2346,8 +2346,8 @@
           "modelReason": "specialty-fhir-mapping"
         },
         {
-          "id": "T-HOSP-B",
-          "name": "discharge fhir",
+          "id": "T-GENOM-B",
+          "name": "(running — branch not yet pushed)",
           "status": "in-flight",
           "slot": 3,
           "worktree": "cernia-wt-r1-hext-c",
@@ -2541,6 +2541,13 @@
           "modelReason": "specialty-fhir-mapping"
         },
         {
+          "id": "T-HOSP-B",
+          "name": "discharge fhir",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
           "id": "T-HOSPICE",
           "name": "eligibility",
           "status": "landed",
@@ -2688,7 +2695,7 @@
           "modelReason": "specialty-fhir-mapping"
         }
       ],
-      "knownAgentCount": 49,
+      "knownAgentCount": 50,
       "pendingAgentCount": 0,
       "completionPct": 84
     },
