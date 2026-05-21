@@ -1,19 +1,19 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T14:09:04.095Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 10:09 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 3/8 in flight (ERX-4 ERX-5 ERX-6) · last: slug normalization recovers H-EXT/H-EXT-2/E-wave b (6445c47)"
+    "lastUpdatedIso": "2026-05-21T14:10:31.280Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 10:10 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 2/8 in flight (ERX-5 ERX-6) · last: banner clarity — v3.0 REACHED + age-aware recovery (21a706c)"
   },
   "summary": {
-    "currentMainCommit": "6445c47",
+    "currentMainCommit": "21a706c",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
-    "agentsCompletedThisSession": 50,
+    "agentsCompletedThisSession": 51,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "50 successful commits since v0.95-white-label · 6 failures tracked",
+    "hardeningTrackRecord": "51 successful commits since v0.95-white-label · 6 failures tracked",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (6 historical)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 10:09 EDT · pool 3/8)",
-    "totalAgentsShipped": 363,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 10:10 EDT · pool 2/8)",
+    "totalAgentsShipped": 364,
     "modelMix": {
       "haiku": 49,
       "sonnet": 339,
@@ -21,14 +21,14 @@
     },
     "modelMixActive": {
       "haiku": 6,
-      "sonnet": 99,
+      "sonnet": 98,
       "opus": 6
     },
-    "v30Status": "v3.0 REACHED · +73 over target (363/290)"
+    "v30Status": "v3.0 REACHED · +74 over target (364/290)"
   },
   "pool": {
     "size": 8,
-    "saturationPct": 38,
+    "saturationPct": 25,
     "queueDepth": 5,
     "slots": [
       {
@@ -40,13 +40,8 @@
       {
         "slot": 2,
         "worktree": "cernia-wt-r1-hext-b",
-        "status": "running",
-        "agent": {
-          "taskId": "ERX-4",
-          "agentId": "ac68acb2b02ee7364",
-          "task": "EPCS token issuer (DEA 2FA + signing for controlled substances) (opus)",
-          "writableSet": "packages/epcs-token-issuer/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 3,
@@ -140,6 +135,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "banner clarity — v3.0 REACHED + age-aware recovery tier",
+      "commit": "21a706c",
+      "tag": "v3.0 🏁"
+    },
+    {
       "agent": "slug normalization recovers H-EXT/H-EXT-2/E-wave branches",
       "commit": "6445c47"
     },
@@ -197,10 +197,6 @@
     {
       "agent": "auto-derive agentsRemainingToV30 + totalAgentsShipped",
       "commit": "6acf340"
-    },
-    {
-      "agent": "update-status.mjs preserves manual fields (rich completions, harden...",
-      "commit": "04fe537"
     }
   ],
   "failures": [
@@ -3597,15 +3593,6 @@
       "agentsTotal": 6,
       "agents": [
         {
-          "id": "ERX-4",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 2,
-          "worktree": "cernia-wt-r1-hext-b",
-          "recommendedModel": "sonnet",
-          "modelReason": "default"
-        },
-        {
           "id": "ERX-5",
           "name": "(running — branch not yet pushed)",
           "status": "in-flight",
@@ -3643,11 +3630,18 @@
           "status": "landed",
           "recommendedModel": "haiku",
           "modelReason": "static-data-catalog"
+        },
+        {
+          "id": "ERX-4",
+          "name": "epcs token issuer",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
         }
       ],
       "knownAgentCount": 6,
       "pendingAgentCount": 0,
-      "completionPct": 50
+      "completionPct": 67
     },
     {
       "id": "UI",
