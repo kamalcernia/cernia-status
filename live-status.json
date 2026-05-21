@@ -1,19 +1,19 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T14:23:05.693Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 10:23 EDT",
+    "lastUpdatedIso": "2026-05-21T14:24:17.323Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 10:24 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 5/8 in flight (T-Sleep-A T-Infect-A T-Plast-A T-Pall-A T-Genom-A) · last: v3.0 target now dynamic — sum of wave agentsTotal (6ea2e71)"
   },
   "summary": {
     "currentMainCommit": "6ea2e71",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 52,
-    "agentsRemainingToV30": 94,
-    "hardeningTrackRecord": "52 successful commits since v0.95-white-label · 6 active failures",
+    "agentsRemainingToV30": 93,
+    "hardeningTrackRecord": "52 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
-    "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (6 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 10:23 EDT · pool 5/8)",
-    "totalAgentsShipped": 366,
+    "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 10:24 EDT · pool 5/8)",
+    "totalAgentsShipped": 367,
     "modelMix": {
       "haiku": 49,
       "sonnet": 344,
@@ -24,7 +24,7 @@
       "sonnet": 101,
       "opus": 6
     },
-    "v30Status": "366/460 (80%, 94 to go)",
+    "v30Status": "367/460 (80%, 93 to go)",
     "v30Target": 460
   },
   "pool": {
