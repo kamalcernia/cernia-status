@@ -1,22 +1,22 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T20:28:10.818Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 16:28 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-97 CC-87 CC-95 CC-78 CC-88 CC-89 CC-94 CC-96) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "lastUpdatedIso": "2026-05-21T20:32:59.231Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 16:32 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-97 CC-87 CC-95 CC-78 CC-88 CC-99 CC-94 CC-96) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 73,
+    "agentsRemainingToV30": 72,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 16:28 EDT · pool 8/8)",
-    "totalAgentsShipped": 449,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 16:33 EDT · pool 8/8)",
+    "totalAgentsShipped": 451,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 423,
+      "sonnet": 424,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 92,
       "opus": 6
     },
-    "v30Status": "449/522 (86%, 73 to go)",
-    "v30Target": 522
+    "v30Status": "451/523 (86%, 72 to go)",
+    "v30Target": 523
   },
   "pool": {
     "size": 8,
@@ -92,10 +92,10 @@
         "worktree": "cernia-wt-r1-s-dicom",
         "status": "running",
         "agent": {
-          "taskId": "CC-89",
-          "agentId": "ad108e8d935e21340",
-          "task": "DEA controlled substances + diversion + PMP catalog FHIR (sonnet)",
-          "writableSet": "packages/catalog-dea-controlled-substances/**"
+          "taskId": "CC-99",
+          "agentId": "ad4ad11ab7222a641",
+          "task": "TJC accreditation standards + NPSGs + Sentinel Events FHIR (sonnet)",
+          "writableSet": "packages/catalog-tjc-accreditation/**"
         }
       },
       {
@@ -3772,7 +3772,7 @@
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "in-progress",
-      "agentsTotal": 98,
+      "agentsTotal": 99,
       "agents": [
         {
           "id": "CC-78",
@@ -3802,17 +3802,8 @@
           "modelReason": "regulatory-compliance"
         },
         {
-          "id": "CC-89",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 6,
-          "worktree": "cernia-wt-r1-s-dicom",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
           "id": "CC-94",
-          "name": "(running — branch not yet pushed)",
+          "name": "icd10 pcs",
           "status": "in-flight",
           "slot": 7,
           "worktree": "cernia-wt-r1-y",
@@ -3843,6 +3834,15 @@
           "status": "in-flight",
           "slot": 1,
           "worktree": "cernia-wt-r1-hext-a",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-99",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 6,
+          "worktree": "cernia-wt-r1-s-dicom",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4456,6 +4456,13 @@
           "modelReason": "regulatory-compliance"
         },
         {
+          "id": "CC-89",
+          "name": "dea controlled",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
           "id": "CC-91",
           "name": "hrsa uds",
           "status": "landed",
@@ -4477,7 +4484,7 @@
           "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 98,
+      "knownAgentCount": 99,
       "pendingAgentCount": 0,
       "completionPct": 92
     },
