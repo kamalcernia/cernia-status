@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T21:27:39.019Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 17:27 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "lastUpdatedIso": "2026-05-21T21:31:09.570Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 17:31 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-88 CC-95 CC-96 CC-97 CC-98 CC-99 CC-100 CC-101) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
@@ -12,16 +12,16 @@
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 17:27 EDT · pool 0/8)",
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 17:31 EDT · pool 8/8)",
     "totalAgentsShipped": 453,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 426,
+      "sonnet": 428,
       "opus": 33
     },
     "modelMixActive": {
       "haiku": 6,
-      "sonnet": 90,
+      "sonnet": 92,
       "opus": 6
     },
     "v30Status": "453/527 (86%, 74 to go)",
@@ -29,56 +29,96 @@
   },
   "pool": {
     "size": 8,
-    "saturationPct": 0,
+    "saturationPct": 100,
     "queueDepth": 5,
     "slots": [
       {
         "slot": 1,
         "worktree": "cernia-wt-r1-hext-a",
-        "status": "idle",
-        "agent": null
+        "status": "running",
+        "agent": {
+          "taskId": "CC-88",
+          "agentId": "ae5ec2db2d9a0238b",
+          "task": "OMB race/ethnicity+MENA 2024 FHIR (RETRY) (sonnet)",
+          "writableSet": "packages/catalog-omb-race-ethnicity/**"
+        }
       },
       {
         "slot": 2,
         "worktree": "cernia-wt-r1-hext-b",
-        "status": "idle",
-        "agent": null
+        "status": "running",
+        "agent": {
+          "taskId": "CC-95",
+          "agentId": "a97be47ee9e4a2dad",
+          "task": "MS-DRG v41 inpatient grouper FHIR (RETRY) (sonnet)",
+          "writableSet": "packages/catalog-ms-drg-v41/**"
+        }
       },
       {
         "slot": 3,
         "worktree": "cernia-wt-r1-hext-c",
-        "status": "idle",
-        "agent": null
+        "status": "running",
+        "agent": {
+          "taskId": "CC-96",
+          "agentId": "a54083a717cbe8594",
+          "task": "APC v44 OPPS outpatient grouper FHIR (RETRY) (sonnet)",
+          "writableSet": "packages/catalog-cms-apc-opps/**"
+        }
       },
       {
         "slot": 4,
         "worktree": "cernia-wt-r1-r",
-        "status": "idle",
-        "agent": null
+        "status": "running",
+        "agent": {
+          "taskId": "CC-97",
+          "agentId": "a9daf2ef8cb49bab6",
+          "task": "OIG LEIE+SAM exclusion screening FHIR (RETRY) (sonnet)",
+          "writableSet": "packages/catalog-oig-leie-sam/**"
+        }
       },
       {
         "slot": 5,
         "worktree": "cernia-wt-r1-s-hl7",
-        "status": "idle",
-        "agent": null
+        "status": "running",
+        "agent": {
+          "taskId": "CC-98",
+          "agentId": "a26429634b70b6e17",
+          "task": "FDA REMS programs+certification FHIR (RETRY) (sonnet)",
+          "writableSet": "packages/catalog-fda-rems/**"
+        }
       },
       {
         "slot": 6,
         "worktree": "cernia-wt-r1-s-dicom",
-        "status": "idle",
-        "agent": null
+        "status": "running",
+        "agent": {
+          "taskId": "CC-99",
+          "agentId": "aea676f712d5cf199",
+          "task": "TJC accreditation+NPSGs+Sentinel Events FHIR (RETRY) (sonnet)",
+          "writableSet": "packages/catalog-tjc-accreditation/**"
+        }
       },
       {
         "slot": 7,
         "worktree": "cernia-wt-r1-y",
-        "status": "idle",
-        "agent": null
+        "status": "running",
+        "agent": {
+          "taskId": "CC-100",
+          "agentId": "a3e145feeb7977370",
+          "task": "openFDA API client+18 endpoints FHIR (RETRY) (sonnet)",
+          "writableSet": "packages/catalog-openfda-api/**"
+        }
       },
       {
         "slot": 8,
         "worktree": "cernia-wt-r1-t",
-        "status": "idle",
-        "agent": null
+        "status": "running",
+        "agent": {
+          "taskId": "CC-101",
+          "agentId": "ab3aadffc3a8b03e6",
+          "task": "TEFCA QHIN+Carequality+Direct interop networks FHIR (RETRY) (sonnet)",
+          "writableSet": "packages/catalog-interop-networks/**"
+        }
       }
     ]
   },
@@ -3732,8 +3772,80 @@
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "in-progress",
-      "agentsTotal": 102,
+      "agentsTotal": 103,
       "agents": [
+        {
+          "id": "CC-88",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 1,
+          "worktree": "cernia-wt-r1-hext-a",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-95",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 2,
+          "worktree": "cernia-wt-r1-hext-b",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-96",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 3,
+          "worktree": "cernia-wt-r1-hext-c",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-97",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 4,
+          "worktree": "cernia-wt-r1-r",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-98",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 5,
+          "worktree": "cernia-wt-r1-s-hl7",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-99",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 6,
+          "worktree": "cernia-wt-r1-s-dicom",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-100",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 7,
+          "worktree": "cernia-wt-r1-y",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-101",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 8,
+          "worktree": "cernia-wt-r1-t",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
         {
           "id": "CC-1",
           "name": "hl7 v2 segment catalog",
@@ -4398,58 +4510,11 @@
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-?1",
-          "name": "pending agent (slot 115 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 115,
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-?2",
-          "name": "pending agent (slot 116 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 116,
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-?3",
-          "name": "pending agent (slot 117 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 117,
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-?4",
-          "name": "pending agent (slot 118 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 118,
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-?5",
-          "name": "pending agent (slot 119 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 119,
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-…",
-          "name": "+ 2 more pending (later in queue)",
-          "status": "pending",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 95,
-      "pendingAgentCount": 7,
-      "completionPct": 93
+      "knownAgentCount": 103,
+      "pendingAgentCount": 0,
+      "completionPct": 92
     },
     {
       "id": "ERX",
