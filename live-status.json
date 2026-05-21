@@ -1,22 +1,22 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T17:08:43.545Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 13:08 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (T-Hospice-B T-Pall-B T-Sports-B T-Trauma-B T-Tox-B T-Sleep-B T-BH-B T-Infect-B) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
+    "lastUpdatedIso": "2026-05-21T17:11:11.688Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 13:11 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (T-Hospice-B T-Pall-B T-Sports-B T-Trauma-B T-Tox-B T-Sleep-B T-Plast-B T-Infect-B) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
   },
   "summary": {
     "currentMainCommit": "76989fc",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 69,
+    "agentsRemainingToV30": 68,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 13:08 EDT · pool 8/8)",
-    "totalAgentsShipped": 401,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 13:11 EDT · pool 8/8)",
+    "totalAgentsShipped": 402,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 361,
+      "sonnet": 362,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,7 +24,7 @@
       "sonnet": 98,
       "opus": 6
     },
-    "v30Status": "401/470 (85%, 69 to go)",
+    "v30Status": "402/470 (86%, 68 to go)",
     "v30Target": 470
   },
   "pool": {
@@ -103,10 +103,10 @@
         "worktree": "cernia-wt-r1-y",
         "status": "running",
         "agent": {
-          "taskId": "T-BH-B",
-          "agentId": "a5ef4b04c3f0e245d",
-          "task": "Behavioral health screening FHIR (PHQ-9 + AUDIT + C-SSRS) (sonnet)",
-          "writableSet": "packages/specialty-bh-screening/**"
+          "taskId": "T-Plast-B",
+          "agentId": "a7d770adfb54c56e0",
+          "task": "Plastic surgery burn/flap FHIR (TBSA + Parkland + free-flap monitoring) (sonnet)",
+          "writableSet": "packages/specialty-plast-burn-flap/**"
         }
       },
       {
@@ -2325,17 +2325,8 @@
       "name": "7 Specialty Modules",
       "tag": "v1.8-specialty-modules",
       "status": "in-progress",
-      "agentsTotal": 53,
+      "agentsTotal": 54,
       "agents": [
-        {
-          "id": "T-BH-B",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 7,
-          "worktree": "cernia-wt-r1-y",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
         {
           "id": "T-HOSPICE-B",
           "name": "(running — branch not yet pushed)",
@@ -2360,6 +2351,15 @@
           "status": "in-flight",
           "slot": 2,
           "worktree": "cernia-wt-r1-hext-b",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
+          "id": "T-PLAST-B",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 7,
+          "worktree": "cernia-wt-r1-y",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -2425,6 +2425,13 @@
           "name": "fhir mappings",
           "status": "landed",
           "recovered": true,
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
+          "id": "T-BH-B",
+          "name": "screening fhir",
+          "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -2716,7 +2723,7 @@
           "modelReason": "specialty-fhir-mapping"
         }
       ],
-      "knownAgentCount": 53,
+      "knownAgentCount": 54,
       "pendingAgentCount": 0,
       "completionPct": 85
     },
