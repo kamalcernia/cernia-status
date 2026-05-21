@@ -1,22 +1,22 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T18:54:08.285Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 14:54 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-66 CC-69 CC-71 CC-72 CC-70 CC-68 CC-73 CC-67) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "lastUpdatedIso": "2026-05-21T19:10:07.521Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 15:10 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-66 CC-69 CC-71 CC-72 CC-70 CC-74 CC-73 CC-67) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 72,
+    "agentsRemainingToV30": 74,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 14:54 EDT · pool 8/8)",
-    "totalAgentsShipped": 425,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 15:10 EDT · pool 8/8)",
+    "totalAgentsShipped": 426,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 400,
+      "sonnet": 401,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 92,
       "opus": 6
     },
-    "v30Status": "425/497 (86%, 72 to go)",
-    "v30Target": 497
+    "v30Status": "426/500 (85%, 74 to go)",
+    "v30Target": 500
   },
   "pool": {
     "size": 8,
@@ -92,10 +92,10 @@
         "worktree": "cernia-wt-r1-s-dicom",
         "status": "running",
         "agent": {
-          "taskId": "CC-68",
-          "agentId": "ab3b4b33f1221782e",
-          "task": "CMS HCC v28 + ICD-10 mapping + RAF computation FHIR (MA risk adjustment) (sonnet)",
-          "writableSet": "packages/catalog-cms-hcc-risk-adjustment/**"
+          "taskId": "CC-74",
+          "agentId": "a67cbb56d59238678",
+          "task": "AHRQ CCSR diagnoses + procedures catalog FHIR (analytics cohort building) (sonnet)",
+          "writableSet": "packages/catalog-ahrq-ccs/**"
         }
       },
       {
@@ -3772,7 +3772,7 @@
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "in-progress",
-      "agentsTotal": 75,
+      "agentsTotal": 76,
       "agents": [
         {
           "id": "CC-66",
@@ -3789,15 +3789,6 @@
           "status": "in-flight",
           "slot": 8,
           "worktree": "cernia-wt-r1-t",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-68",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 6,
-          "worktree": "cernia-wt-r1-s-dicom",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -3843,6 +3834,15 @@
           "status": "in-flight",
           "slot": 7,
           "worktree": "cernia-wt-r1-y",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-74",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 6,
+          "worktree": "cernia-wt-r1-s-dicom",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4314,9 +4314,16 @@
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-68",
+          "name": "cms hcc raf",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 75,
+      "knownAgentCount": 76,
       "pendingAgentCount": 0,
       "completionPct": 89
     },
