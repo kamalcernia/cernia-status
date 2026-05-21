@@ -1,19 +1,19 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T18:41:45.286Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 14:41 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-66 CC-65 CC-62 CC-60 CC-61 CC-59 CC-63 CC-67) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
+    "lastUpdatedIso": "2026-05-21T18:45:15.716Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 14:45 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-66 CC-69 CC-62 CC-60 CC-61 CC-68 CC-63 CC-67) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
   },
   "summary": {
     "currentMainCommit": "76989fc",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 77,
+    "agentsRemainingToV30": 76,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 14:41 EDT · pool 8/8)",
-    "totalAgentsShipped": 420,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 14:45 EDT · pool 8/8)",
+    "totalAgentsShipped": 421,
     "modelMix": {
       "haiku": 49,
       "sonnet": 397,
@@ -21,10 +21,10 @@
     },
     "modelMixActive": {
       "haiku": 6,
-      "sonnet": 95,
+      "sonnet": 93,
       "opus": 6
     },
-    "v30Status": "420/497 (85%, 77 to go)",
+    "v30Status": "421/497 (85%, 76 to go)",
     "v30Target": 497
   },
   "pool": {
@@ -48,10 +48,10 @@
         "worktree": "cernia-wt-r1-hext-b",
         "status": "running",
         "agent": {
-          "taskId": "CC-65",
-          "agentId": "aa5069ad13870fc6c",
-          "task": "CDC CVX + MVX + VIS vaccine catalog FHIR (IIS reporting) (sonnet)",
-          "writableSet": "packages/catalog-cvx-vaccines/**"
+          "taskId": "CC-69",
+          "agentId": "a5fa88dd9e63ce34e",
+          "task": "HL7 v2 messages/segments catalog + parser + v2→FHIR (sonnet)",
+          "writableSet": "packages/catalog-hl7-v2-messages/**"
         }
       },
       {
@@ -92,10 +92,10 @@
         "worktree": "cernia-wt-r1-s-dicom",
         "status": "running",
         "agent": {
-          "taskId": "CC-59",
-          "agentId": "a19414db705fb9dfe",
-          "task": "ICD-O-3 oncology topography+morphology catalog FHIR (WHO standard) (sonnet)",
-          "writableSet": "packages/catalog-icd-o-3/**"
+          "taskId": "CC-68",
+          "agentId": "ab3b4b33f1221782e",
+          "task": "CMS HCC v28 + ICD-10 mapping + RAF computation FHIR (MA risk adjustment) (sonnet)",
+          "writableSet": "packages/catalog-cms-hcc-risk-adjustment/**"
         }
       },
       {
@@ -3775,15 +3775,6 @@
       "agentsTotal": 72,
       "agents": [
         {
-          "id": "CC-59",
-          "name": "icd o 3",
-          "status": "in-flight",
-          "slot": 6,
-          "worktree": "cernia-wt-r1-s-dicom",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
           "id": "CC-60",
           "name": "(running — branch not yet pushed)",
           "status": "in-flight",
@@ -3820,15 +3811,6 @@
           "modelReason": "regulatory-compliance"
         },
         {
-          "id": "CC-65",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 2,
-          "worktree": "cernia-wt-r1-hext-b",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
           "id": "CC-66",
           "name": "(running — branch not yet pushed)",
           "status": "in-flight",
@@ -3843,6 +3825,24 @@
           "status": "in-flight",
           "slot": 8,
           "worktree": "cernia-wt-r1-t",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-68",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 6,
+          "worktree": "cernia-wt-r1-s-dicom",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-69",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 2,
+          "worktree": "cernia-wt-r1-hext-b",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4267,8 +4267,22 @@
           "modelReason": "regulatory-compliance"
         },
         {
+          "id": "CC-59",
+          "name": "icd o 3",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
           "id": "CC-64",
           "name": "loinc top panels",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-65",
+          "name": "cvx vaccines",
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4280,27 +4294,11 @@
           "activationPosition": 115,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-?2",
-          "name": "pending agent (slot 116 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 116,
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-?3",
-          "name": "pending agent (slot 117 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 117,
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 69,
-      "pendingAgentCount": 3,
-      "completionPct": 85
+      "knownAgentCount": 71,
+      "pendingAgentCount": 1,
+      "completionPct": 88
     },
     {
       "id": "ERX",
