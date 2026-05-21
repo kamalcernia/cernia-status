@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T22:40:02.040Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 18:40 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-113 CC-102 CC-110 CC-108 CC-115 CC-114 CC-112 CC-111) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "lastUpdatedIso": "2026-05-21T22:46:53.412Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 18:46 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-113 CC-102 CC-110 CC-116 CC-115 CC-114 CC-112 CC-111) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
@@ -12,11 +12,11 @@
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 18:40 EDT · pool 8/8)",
-    "totalAgentsShipped": 467,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 18:46 EDT · pool 8/8)",
+    "totalAgentsShipped": 468,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 442,
+      "sonnet": 443,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 92,
       "opus": 6
     },
-    "v30Status": "467/541 (86%, 74 to go)",
-    "v30Target": 541
+    "v30Status": "468/542 (86%, 74 to go)",
+    "v30Target": 542
   },
   "pool": {
     "size": 8,
@@ -70,10 +70,10 @@
         "worktree": "cernia-wt-r1-r",
         "status": "running",
         "agent": {
-          "taskId": "CC-108",
-          "agentId": "a31800626e6a3214d",
-          "task": "X12 5010 EDI 270/271/276/277/278/834/835/837 + FHIR converters (sonnet)",
-          "writableSet": "packages/catalog-x12-edi-transactions/**"
+          "taskId": "CC-116",
+          "agentId": "aa1f152bf02dfb3d0",
+          "task": "NCCN top-10 cancer guidelines + biomarker pathways + PA packet FHIR (sonnet)",
+          "writableSet": "packages/catalog-nccn-guidelines/**"
         }
       },
       {
@@ -3772,7 +3772,7 @@
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "in-progress",
-      "agentsTotal": 117,
+      "agentsTotal": 118,
       "agents": [
         {
           "id": "CC-102",
@@ -3780,15 +3780,6 @@
           "status": "in-flight",
           "slot": 2,
           "worktree": "cernia-wt-r1-hext-b",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-108",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 4,
-          "worktree": "cernia-wt-r1-r",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -3843,6 +3834,15 @@
           "status": "in-flight",
           "slot": 5,
           "worktree": "cernia-wt-r1-s-hl7",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-116",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 4,
+          "worktree": "cernia-wt-r1-r",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4603,6 +4603,13 @@
           "modelReason": "regulatory-compliance"
         },
         {
+          "id": "CC-108-X12",
+          "name": "edi transactions",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
           "id": "CC-109",
           "name": "uspstf choosing wisely",
           "status": "landed",
@@ -4610,7 +4617,7 @@
           "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 117,
+      "knownAgentCount": 118,
       "pendingAgentCount": 0,
       "completionPct": 93
     },
