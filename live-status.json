@@ -1,22 +1,22 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T16:35:03.601Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 12:35 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (T-Derm-B T-Surg-B T-Hosp-B T-EmMed-B T-Tox-B T-Urol-B T-BH-B T-PainMgmt-B) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
+    "lastUpdatedIso": "2026-05-21T16:38:35.317Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 12:38 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (T-Derm-B T-Surg-B T-Hosp-B T-Trauma-B T-Tox-B T-Urol-B T-BH-B T-PainMgmt-B) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
   },
   "summary": {
     "currentMainCommit": "76989fc",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 69,
+    "agentsRemainingToV30": 68,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 12:35 EDT · pool 8/8)",
-    "totalAgentsShipped": 396,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 12:38 EDT · pool 8/8)",
+    "totalAgentsShipped": 397,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 356,
+      "sonnet": 357,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,7 +24,7 @@
       "sonnet": 98,
       "opus": 6
     },
-    "v30Status": "396/465 (85%, 69 to go)",
+    "v30Status": "397/465 (85%, 68 to go)",
     "v30Target": 465
   },
   "pool": {
@@ -70,10 +70,10 @@
         "worktree": "cernia-wt-r1-r",
         "status": "running",
         "agent": {
-          "taskId": "T-EmMed-B",
-          "agentId": "a8414dd16fa3f7aa6",
-          "task": "Emergency-med triage FHIR (sepsis + HEART + ESI) (sonnet)",
-          "writableSet": "packages/specialty-emmed-triage/**"
+          "taskId": "T-Trauma-B",
+          "agentId": "a382bfb9c1f98e1b3",
+          "task": "Trauma ATLS FHIR (primary survey + FAST + MTP/REBOA) (sonnet)",
+          "writableSet": "packages/specialty-trauma-atls/**"
         }
       },
       {
@@ -2325,7 +2325,7 @@
       "name": "7 Specialty Modules",
       "tag": "v1.8-specialty-modules",
       "status": "in-progress",
-      "agentsTotal": 48,
+      "agentsTotal": 49,
       "agents": [
         {
           "id": "T-BH-B",
@@ -2346,17 +2346,8 @@
           "modelReason": "specialty-fhir-mapping"
         },
         {
-          "id": "T-EMMED-B",
-          "name": "triage fhir",
-          "status": "in-flight",
-          "slot": 4,
-          "worktree": "cernia-wt-r1-r",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
           "id": "T-HOSP-B",
-          "name": "(running — branch not yet pushed)",
+          "name": "discharge fhir",
           "status": "in-flight",
           "slot": 3,
           "worktree": "cernia-wt-r1-hext-c",
@@ -2387,6 +2378,15 @@
           "status": "in-flight",
           "slot": 5,
           "worktree": "cernia-wt-r1-s-hl7",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
+          "id": "T-TRAUMA-B",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 4,
+          "worktree": "cernia-wt-r1-r",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -2466,6 +2466,13 @@
         {
           "id": "T-EMMED-A",
           "name": "emergency medicine fhir",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
+          "id": "T-EMMED-B",
+          "name": "triage fhir",
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2681,9 +2688,9 @@
           "modelReason": "specialty-fhir-mapping"
         }
       ],
-      "knownAgentCount": 48,
+      "knownAgentCount": 49,
       "pendingAgentCount": 0,
-      "completionPct": 83
+      "completionPct": 84
     },
     {
       "id": "R",
