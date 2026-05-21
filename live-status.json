@@ -1,22 +1,22 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T18:01:00.977Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 14:01 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-58 CC-56 T-LTC-B CC-60 CC-61 CC-59 CC-57 T-Vision-B) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
+    "lastUpdatedIso": "2026-05-21T18:04:15.063Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 14:04 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-58 CC-56 CC-62 CC-60 CC-61 CC-59 CC-57 T-Vision-B) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
   },
   "summary": {
     "currentMainCommit": "76989fc",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 84,
+    "agentsRemainingToV30": 83,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 14:01 EDT · pool 8/8)",
-    "totalAgentsShipped": 413,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 14:04 EDT · pool 8/8)",
+    "totalAgentsShipped": 414,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 394,
+      "sonnet": 395,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,7 +24,7 @@
       "sonnet": 98,
       "opus": 6
     },
-    "v30Status": "413/497 (83%, 84 to go)",
+    "v30Status": "414/497 (83%, 83 to go)",
     "v30Target": 497
   },
   "pool": {
@@ -59,10 +59,10 @@
         "worktree": "cernia-wt-r1-hext-c",
         "status": "running",
         "agent": {
-          "taskId": "T-LTC-B",
-          "agentId": "a7dd1f4d779f413e1",
-          "task": "LTC MDS quality FHIR (ADL composite + PDPM + QMs) (sonnet)",
-          "writableSet": "packages/specialty-ltc-mds-quality/**"
+          "taskId": "CC-62",
+          "agentId": "a42b0c34185e72cd5",
+          "task": "X12 CARC + RARC claim adjustment codes FHIR (denial workflow) (sonnet)",
+          "writableSet": "packages/catalog-x12-carc-rarc/**"
         }
       },
       {
@@ -2328,15 +2328,6 @@
       "agentsTotal": 80,
       "agents": [
         {
-          "id": "T-LTC-B",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 3,
-          "worktree": "cernia-wt-r1-hext-c",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
           "id": "T-VISION-B",
           "name": "(running — branch not yet pushed)",
           "status": "in-flight",
@@ -2580,6 +2571,13 @@
         {
           "id": "T-LTC",
           "name": "mds",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
+          "id": "T-LTC-B",
+          "name": "quality fhir",
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2895,7 +2893,7 @@
       ],
       "knownAgentCount": 80,
       "pendingAgentCount": 0,
-      "completionPct": 98
+      "completionPct": 99
     },
     {
       "id": "R",
@@ -3833,6 +3831,15 @@
           "modelReason": "regulatory-compliance"
         },
         {
+          "id": "CC-62",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 3,
+          "worktree": "cernia-wt-r1-hext-c",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
           "id": "CC-1",
           "name": "hl7 v2 segment catalog",
           "status": "landed",
@@ -4273,14 +4280,14 @@
         },
         {
           "id": "CC-…",
-          "name": "+ 4 more pending (later in queue)",
+          "name": "+ 3 more pending (later in queue)",
           "status": "pending",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 63,
-      "pendingAgentCount": 9,
+      "knownAgentCount": 64,
+      "pendingAgentCount": 8,
       "completionPct": 79
     },
     {
