@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T17:30:19.675Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 13:30 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (T-Rehab-B T-Pall-B T-LTC-B T-Reprod-B T-Tox-B T-Sleep-B T-Plast-B T-Infect-B) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
+    "lastUpdatedIso": "2026-05-21T17:32:17.338Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 13:32 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (T-Rehab-B T-Pall-B T-LTC-B T-Reprod-B T-Home-B T-Sleep-B T-Plast-B T-Infect-B) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
   },
   "summary": {
     "currentMainCommit": "76989fc",
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 13:30 EDT · pool 8/8)",
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 13:32 EDT · pool 8/8)",
     "totalAgentsShipped": 406,
     "modelMix": {
       "haiku": 49,
@@ -81,10 +81,10 @@
         "worktree": "cernia-wt-r1-s-hl7",
         "status": "running",
         "agent": {
-          "taskId": "T-Tox-B",
-          "agentId": "a7817aca0d6d475bc",
-          "task": "Toxicology FHIR (toxidromes + antidotes + Rumack-Matthew) (sonnet)",
-          "writableSet": "packages/specialty-tox-antidote/**"
+          "taskId": "T-Home-B",
+          "agentId": "a6dbd25f6528ba6b1",
+          "task": "Home health OASIS-E FHIR (Section GG + PDGM/HHRG + QMs) (sonnet)",
+          "writableSet": "packages/specialty-home-oasis-e/**"
         }
       },
       {
@@ -2328,6 +2328,15 @@
       "agentsTotal": 59,
       "agents": [
         {
+          "id": "T-HOME-B",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 5,
+          "worktree": "cernia-wt-r1-s-hl7",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
           "id": "T-INFECT-B",
           "name": "(running — branch not yet pushed)",
           "status": "in-flight",
@@ -2387,15 +2396,6 @@
           "status": "in-flight",
           "slot": 6,
           "worktree": "cernia-wt-r1-s-dicom",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-TOX-B",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 5,
-          "worktree": "cernia-wt-r1-s-hl7",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
