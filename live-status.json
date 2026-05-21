@@ -1,19 +1,19 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T17:16:31.493Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 13:16 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (T-Rehab-B T-Pall-B T-Sports-B T-Trauma-B T-Tox-B T-Sleep-B T-Plast-B T-Infect-B) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
+    "lastUpdatedIso": "2026-05-21T17:23:12.588Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 13:23 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (T-Rehab-B T-Pall-B T-Sports-B T-Reprod-B T-Tox-B T-Sleep-B T-Plast-B T-Infect-B) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
   },
   "summary": {
     "currentMainCommit": "76989fc",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 73,
+    "agentsRemainingToV30": 72,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 13:16 EDT · pool 8/8)",
-    "totalAgentsShipped": 403,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 13:23 EDT · pool 8/8)",
+    "totalAgentsShipped": 404,
     "modelMix": {
       "haiku": 49,
       "sonnet": 367,
@@ -24,7 +24,7 @@
       "sonnet": 102,
       "opus": 6
     },
-    "v30Status": "403/476 (85%, 73 to go)",
+    "v30Status": "404/476 (85%, 72 to go)",
     "v30Target": 476
   },
   "pool": {
@@ -70,10 +70,10 @@
         "worktree": "cernia-wt-r1-r",
         "status": "running",
         "agent": {
-          "taskId": "T-Trauma-B",
-          "agentId": "a382bfb9c1f98e1b3",
-          "task": "Trauma ATLS FHIR (primary survey + FAST + MTP/REBOA) (sonnet)",
-          "writableSet": "packages/specialty-trauma-atls/**"
+          "taskId": "T-Reprod-B",
+          "agentId": "a92d98833a151f282",
+          "task": "Reproductive medicine IVF FHIR (AMH + IVF protocols + endometriosis) (sonnet)",
+          "writableSet": "packages/specialty-reprod-ivf/**"
         }
       },
       {
@@ -2364,6 +2364,15 @@
           "modelReason": "specialty-fhir-mapping"
         },
         {
+          "id": "T-REPROD-B",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 4,
+          "worktree": "cernia-wt-r1-r",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
           "id": "T-SLEEP-B",
           "name": "(running — branch not yet pushed)",
           "status": "in-flight",
@@ -2387,15 +2396,6 @@
           "status": "in-flight",
           "slot": 5,
           "worktree": "cernia-wt-r1-s-hl7",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-TRAUMA-B",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 4,
-          "worktree": "cernia-wt-r1-r",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
