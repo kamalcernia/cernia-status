@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T15:59:03.098Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 11:59 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (T-Derm-B T-OBGYN-B T-Ortho-B T-EmMed-B T-Nephro-B T-Urol-B T-GI-B T-PainMgmt-B) · last: defeat GitHub Pages cache for live updates (68eb0a8)"
+    "lastUpdatedIso": "2026-05-21T16:05:57.823Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 12:05 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 6/8 in flight (T-Derm-B T-EmMed-B T-Nephro-B T-Urol-B T-GI-B T-PainMgmt-B) · last: defeat GitHub Pages cache for live updates (68eb0a8)"
   },
   "summary": {
     "currentMainCommit": "68eb0a8",
@@ -12,8 +12,8 @@
     "hardeningTrackRecord": "54 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 11:59 EDT · pool 8/8)",
-    "totalAgentsShipped": 390,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 12:05 EDT · pool 6/8)",
+    "totalAgentsShipped": 392,
     "modelMix": {
       "haiku": 49,
       "sonnet": 353,
@@ -21,15 +21,15 @@
     },
     "modelMixActive": {
       "haiku": 6,
-      "sonnet": 98,
+      "sonnet": 96,
       "opus": 6
     },
-    "v30Status": "390/460 (85%, 70 to go)",
-    "v30Target": 460
+    "v30Status": "392/462 (85%, 70 to go)",
+    "v30Target": 462
   },
   "pool": {
     "size": 8,
-    "saturationPct": 100,
+    "saturationPct": 75,
     "queueDepth": 5,
     "slots": [
       {
@@ -46,24 +46,14 @@
       {
         "slot": 2,
         "worktree": "cernia-wt-r1-hext-b",
-        "status": "running",
-        "agent": {
-          "taskId": "T-OBGYN-B",
-          "agentId": "a6e48d7271b5c3d5d",
-          "task": "OB/GYN prenatal FHIR (panels + Bishop + delivery) (sonnet)",
-          "writableSet": "packages/specialty-obgyn-prenatal/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 3,
         "worktree": "cernia-wt-r1-hext-c",
-        "status": "running",
-        "agent": {
-          "taskId": "T-Ortho-B",
-          "agentId": "aca55c958dc7d621b",
-          "task": "Orthopedics fracture FHIR (AO/OTA + DEXA + ROM) (sonnet)",
-          "writableSet": "packages/specialty-ortho-fracture/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 4,
@@ -2366,24 +2356,6 @@
           "modelReason": "specialty-fhir-mapping"
         },
         {
-          "id": "T-OBGYN-B",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 2,
-          "worktree": "cernia-wt-r1-hext-b",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-ORTHO-B",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 3,
-          "worktree": "cernia-wt-r1-hext-c",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
           "id": "T-PAINMGMT-B",
           "name": "(running — branch not yet pushed)",
           "status": "in-flight",
@@ -2564,6 +2536,13 @@
           "modelReason": "specialty-fhir-mapping"
         },
         {
+          "id": "T-OBGYN-B",
+          "name": "prenatal fhir",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
           "id": "T-ONC-A",
           "name": "oncology fhir",
           "status": "landed",
@@ -2587,6 +2566,13 @@
         {
           "id": "T-ORTHO-A",
           "name": "orthopedics fhir",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
+          "id": "T-ORTHO-B",
+          "name": "fracture fhir",
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2664,7 +2650,7 @@
       ],
       "knownAgentCount": 45,
       "pendingAgentCount": 0,
-      "completionPct": 82
+      "completionPct": 87
     },
     {
       "id": "R",
