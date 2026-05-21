@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T13:04:05.603Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 09:04 EDT",
-    "modelSummary": "TIER 2 (slow ramp) · Pool 3/8 in flight (ERX-4 ERX-5 ERX-6) · last: v3.0 reached — 359 ships landed (290 target exceed (dc2bb04)"
+    "lastUpdatedIso": "2026-05-21T13:38:58.860Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 09:38 EDT",
+    "modelSummary": "TIER 2 (slow ramp) · Pool 3/8 in flight (ERX-4 ERX-5 ERX-6) · last: auto-mirror to public kamalcernia/cernia-status on (9ab9b09)"
   },
   "summary": {
-    "currentMainCommit": "dc2bb04",
+    "currentMainCommit": "9ab9b09",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
-    "agentsCompletedThisSession": 45,
+    "agentsCompletedThisSession": 46,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "45 successful commits since v0.95-white-label · 6 failures tracked",
+    "hardeningTrackRecord": "46 successful commits since v0.95-white-label · 6 failures tracked",
     "cronStatus": "3f32aba4 alive - recreated after MCP disconnect, fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 2 (slow ramp) — 10 landings · 6 failures in last 10 dispatches",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 09:04 EDT · pool 3/8)",
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 09:38 EDT · pool 3/8)",
     "totalAgentsShipped": 363,
     "modelMix": {
       "haiku": 47,
@@ -139,6 +139,10 @@
   ],
   "recentCompletions": [
     {
+      "agent": "auto-mirror to public kamalcernia/cernia-status on every refresh",
+      "commit": "9ab9b09"
+    },
+    {
       "agent": "v3.0 reached — 359 ships landed (290 target exceeded)",
       "commit": "dc2bb04",
       "tag": "v3.0 🏁"
@@ -197,10 +201,6 @@
     {
       "agent": "4 — sub-subdomain delegation (ADR 0138)",
       "commit": "fe395bf"
-    },
-    {
-      "agent": "3 — tenant-branded short URL service (ADR 0137)",
-      "commit": "07ab145"
     }
   ],
   "failures": [
@@ -271,7 +271,7 @@
     },
     {
       "id": "L",
-      "name": "Multi-Organization Hierarchy — L-1 landed",
+      "name": "Multi-Organization Hierarchy",
       "tag": "v0.93-multi-org",
       "status": "in-progress",
       "agentsTotal": 11,
@@ -365,7 +365,7 @@
     },
     {
       "id": "K",
-      "name": "Role-Based UI — deferred (TIER 2)",
+      "name": "Role-Based UI",
       "tag": "v0.97-role-based-ui",
       "status": "in-progress",
       "agentsTotal": 11,
@@ -459,7 +459,7 @@
     },
     {
       "id": "M",
-      "name": "Pricing + Licensing — M-1A retry in flight",
+      "name": "Pricing + Licensing",
       "tag": "v0.98-pricing-engine",
       "status": "in-progress",
       "agentsTotal": 12,
@@ -561,7 +561,7 @@
     },
     {
       "id": "N",
-      "name": "EHR Per-Tenant — N-1 landed",
+      "name": "EHR Per-Tenant",
       "tag": "v0.99-ehr-per-tenant",
       "status": "complete",
       "agentsTotal": 8,
@@ -629,7 +629,7 @@
     },
     {
       "id": "F",
-      "name": "Customer Billing Alerts — F-1 in flight",
+      "name": "Customer Billing Alerts",
       "tag": "v1.0-billing-alerts",
       "status": "in-progress",
       "agentsTotal": 14,
@@ -744,7 +744,7 @@
     },
     {
       "id": "G",
-      "name": "Delegation Surface — G-1 in flight",
+      "name": "Delegation Surface",
       "tag": "v1.1-delegation-surface",
       "status": "in-progress",
       "agentsTotal": 16,
@@ -845,7 +845,7 @@
     },
     {
       "id": "I",
-      "name": "B2B Support Channel — I-1 stalled, retry pending",
+      "name": "B2B Support Channel",
       "tag": "v1.2-support-channel",
       "status": "in-progress",
       "agentsTotal": 10,
@@ -932,7 +932,7 @@
     },
     {
       "id": "J",
-      "name": "Workflow Marketplace — J-1 designer foundation landed",
+      "name": "Workflow Marketplace",
       "tag": "v1.3-workflow-marketplace",
       "status": "in-progress",
       "agentsTotal": 17,
@@ -1040,7 +1040,7 @@
     },
     {
       "id": "O",
-      "name": "AI-Native Platform — deferred (TIER 2)",
+      "name": "AI-Native Platform",
       "tag": "v1.5-ai-native",
       "status": "in-progress",
       "agentsTotal": 16,
@@ -1148,7 +1148,7 @@
     },
     {
       "id": "P",
-      "name": "No-Code ML Studio — P-1 landed",
+      "name": "No-Code ML Studio",
       "tag": "v1.6-ml-studio",
       "status": "in-progress",
       "agentsTotal": 13,
@@ -1256,7 +1256,7 @@
     },
     {
       "id": "Q",
-      "name": "Telehealth + RPM — Q-1 landed",
+      "name": "Telehealth + RPM",
       "tag": "v1.7-telehealth-rpm",
       "status": "in-progress",
       "agentsTotal": 11,
@@ -1350,7 +1350,7 @@
     },
     {
       "id": "T",
-      "name": "7 Specialty Modules — foundation + 7 features (8/43)",
+      "name": "7 Specialty Modules",
       "tag": "v1.8-specialty-modules",
       "status": "in-progress",
       "agentsTotal": 43,
@@ -1487,7 +1487,7 @@
     },
     {
       "id": "R",
-      "name": "Native Mobile Apps — R-1/2A/2B landed (3/12)",
+      "name": "Native Mobile Apps",
       "tag": "v1.9-mobile-apps",
       "status": "in-progress",
       "agentsTotal": 12,
@@ -1578,7 +1578,7 @@
     },
     {
       "id": "U",
-      "name": "Revenue Cycle — U-1 landed",
+      "name": "Revenue Cycle",
       "tag": "v2.1-revenue-cycle",
       "status": "in-progress",
       "agentsTotal": 10,
@@ -1662,7 +1662,7 @@
     },
     {
       "id": "V",
-      "name": "Services + Partners — V-1 landed",
+      "name": "Services + Partners",
       "tag": "v2.2-services-and-partners",
       "status": "in-progress",
       "agentsTotal": 10,
@@ -1747,7 +1747,7 @@
     },
     {
       "id": "W",
-      "name": "Email Program — W-1 stalled (partial work salvageable)",
+      "name": "Email Program",
       "tag": "v2.3-email-program",
       "status": "in-progress",
       "agentsTotal": 7,
@@ -1812,7 +1812,7 @@
     },
     {
       "id": "AA",
-      "name": "Legal + Compliance — AA-1 landed; rest blocked on counsel",
+      "name": "Legal + Compliance",
       "tag": "v2.4-legal-compliance",
       "status": "blocked-on-counsel",
       "agentsTotal": 6,
@@ -1865,7 +1865,7 @@
     },
     {
       "id": "X",
-      "name": "Business Ops — X-1 stalled (partial work salvageable)",
+      "name": "Business Ops",
       "tag": "v2.5-business-ops",
       "status": "in-progress",
       "agentsTotal": 10,
@@ -1952,7 +1952,7 @@
     },
     {
       "id": "BB",
-      "name": "DevOps + Security Ops — BB-1A landed",
+      "name": "DevOps + Security Ops",
       "tag": "v2.6-devops-security",
       "status": "complete",
       "agentsTotal": 10,
@@ -2034,7 +2034,7 @@
     },
     {
       "id": "Z",
-      "name": "Product Instrumentation + CS — Z-1A + Z-1B landed",
+      "name": "Product Instrumentation + CS",
       "tag": "v2.7-product-instrumentation",
       "status": "in-progress",
       "agentsTotal": 10,
@@ -2118,7 +2118,7 @@
     },
     {
       "id": "Y",
-      "name": "Marketing + Growth — Y-1A + Y-1B landed",
+      "name": "Marketing + Growth",
       "tag": "v2.8-marketing-growth",
       "status": "complete",
       "agentsTotal": 8,
@@ -2186,7 +2186,7 @@
     },
     {
       "id": "DD",
-      "name": "Customer Lifecycle — DD-1 landed",
+      "name": "Customer Lifecycle",
       "tag": "v2.9-customer-lifecycle",
       "status": "complete",
       "agentsTotal": 10,
@@ -2269,7 +2269,7 @@
     },
     {
       "id": "CC",
-      "name": "International — CC-1 multi-currency landed",
+      "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "complete",
       "agentsTotal": 72,
