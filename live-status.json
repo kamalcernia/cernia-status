@@ -1,22 +1,22 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T22:06:28.346Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 18:06 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-105 CC-102 CC-103 CC-97 CC-98 CC-106 CC-104 CC-101) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "lastUpdatedIso": "2026-05-21T22:10:42.254Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 18:10 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-105 CC-102 CC-103 CC-97 CC-98 CC-106 CC-104 CC-107) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 72,
+    "agentsRemainingToV30": 74,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 18:06 EDT · pool 8/8)",
-    "totalAgentsShipped": 458,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 18:10 EDT · pool 8/8)",
+    "totalAgentsShipped": 459,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 433,
+      "sonnet": 434,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 92,
       "opus": 6
     },
-    "v30Status": "458/530 (86%, 72 to go)",
-    "v30Target": 530
+    "v30Status": "459/533 (86%, 74 to go)",
+    "v30Target": 533
   },
   "pool": {
     "size": 8,
@@ -114,10 +114,10 @@
         "worktree": "cernia-wt-r1-t",
         "status": "running",
         "agent": {
-          "taskId": "CC-101",
-          "agentId": "ab3aadffc3a8b03e6",
-          "task": "TEFCA QHIN+Carequality+Direct interop networks FHIR (RETRY) (sonnet)",
-          "writableSet": "packages/catalog-interop-networks/**"
+          "taskId": "CC-107",
+          "agentId": "ad61a612a98a969ec",
+          "task": "DICOM modality + body region + ACR appropriateness + FHIR ImagingStudy (sonnet)",
+          "writableSet": "packages/catalog-dicom-modality/**"
         }
       }
     ]
@@ -3772,7 +3772,7 @@
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "in-progress",
-      "agentsTotal": 108,
+      "agentsTotal": 109,
       "agents": [
         {
           "id": "CC-97",
@@ -3789,15 +3789,6 @@
           "status": "in-flight",
           "slot": 5,
           "worktree": "cernia-wt-r1-s-hl7",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-101",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 8,
-          "worktree": "cernia-wt-r1-t",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -3843,6 +3834,15 @@
           "status": "in-flight",
           "slot": 6,
           "worktree": "cernia-wt-r1-s-dicom",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-107",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 8,
+          "worktree": "cernia-wt-r1-t",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4545,9 +4545,16 @@
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-101",
+          "name": "interop networks",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 108,
+      "knownAgentCount": 109,
       "pendingAgentCount": 0,
       "completionPct": 93
     },
