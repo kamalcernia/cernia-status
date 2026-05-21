@@ -1,35 +1,35 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T16:12:50.342Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 12:12 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 7/8 in flight (T-Derm-B T-Surg-B T-EmMed-B T-Nephro-B T-Urol-B T-GI-B T-PainMgmt-B) · last: fetch JSON from raw.githubusercontent.com to bypas (121c885)"
+    "lastUpdatedIso": "2026-05-21T16:15:39.198Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 12:15 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (T-Derm-B T-Surg-B T-Hosp-B T-EmMed-B T-Nephro-B T-Urol-B T-GI-B T-PainMgmt-B) · last: fetch JSON from raw.githubusercontent.com to bypas (121c885)"
   },
   "summary": {
     "currentMainCommit": "121c885",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 55,
-    "agentsRemainingToV30": 70,
+    "agentsRemainingToV30": 71,
     "hardeningTrackRecord": "55 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 12:13 EDT · pool 7/8)",
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 12:16 EDT · pool 8/8)",
     "totalAgentsShipped": 392,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 354,
+      "sonnet": 355,
       "opus": 33
     },
     "modelMixActive": {
       "haiku": 6,
-      "sonnet": 97,
+      "sonnet": 98,
       "opus": 6
     },
-    "v30Status": "392/462 (85%, 70 to go)",
-    "v30Target": 462
+    "v30Status": "392/463 (85%, 71 to go)",
+    "v30Target": 463
   },
   "pool": {
     "size": 8,
-    "saturationPct": 88,
+    "saturationPct": 100,
     "queueDepth": 5,
     "slots": [
       {
@@ -57,8 +57,13 @@
       {
         "slot": 3,
         "worktree": "cernia-wt-r1-hext-c",
-        "status": "idle",
-        "agent": null
+        "status": "running",
+        "agent": {
+          "taskId": "T-Hosp-B",
+          "agentId": "ac5308294d4580467",
+          "task": "Hospitalist discharge FHIR (LACE + NEWS2 + 6-Clicks) (sonnet)",
+          "writableSet": "packages/specialty-hosp-discharge/**"
+        }
       },
       {
         "slot": 4,
@@ -2321,7 +2326,7 @@
       "name": "7 Specialty Modules",
       "tag": "v1.8-specialty-modules",
       "status": "in-progress",
-      "agentsTotal": 46,
+      "agentsTotal": 47,
       "agents": [
         {
           "id": "T-DERM-B",
@@ -2347,6 +2352,15 @@
           "status": "in-flight",
           "slot": 7,
           "worktree": "cernia-wt-r1-y",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
+          "id": "T-HOSP-B",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 3,
+          "worktree": "cernia-wt-r1-hext-c",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -2661,9 +2675,9 @@
           "modelReason": "specialty-fhir-mapping"
         }
       ],
-      "knownAgentCount": 46,
+      "knownAgentCount": 47,
       "pendingAgentCount": 0,
-      "completionPct": 85
+      "completionPct": 83
     },
     {
       "id": "R",
