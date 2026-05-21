@@ -1,19 +1,19 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T16:25:39.413Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 12:25 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (T-Derm-B T-Surg-B T-Hosp-B T-EmMed-B T-Nephro-B T-Urol-B T-BH-B T-PainMgmt-B) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
+    "lastUpdatedIso": "2026-05-21T16:35:03.601Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 12:35 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (T-Derm-B T-Surg-B T-Hosp-B T-EmMed-B T-Tox-B T-Urol-B T-BH-B T-PainMgmt-B) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
   },
   "summary": {
     "currentMainCommit": "76989fc",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 71,
+    "agentsRemainingToV30": 69,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 12:25 EDT · pool 8/8)",
-    "totalAgentsShipped": 393,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 12:35 EDT · pool 8/8)",
+    "totalAgentsShipped": 396,
     "modelMix": {
       "haiku": 49,
       "sonnet": 356,
@@ -24,8 +24,8 @@
       "sonnet": 98,
       "opus": 6
     },
-    "v30Status": "393/464 (85%, 71 to go)",
-    "v30Target": 464
+    "v30Status": "396/465 (85%, 69 to go)",
+    "v30Target": 465
   },
   "pool": {
     "size": 8,
@@ -81,10 +81,10 @@
         "worktree": "cernia-wt-r1-s-hl7",
         "status": "running",
         "agent": {
-          "taskId": "T-Nephro-B",
-          "agentId": "aad613a46bcef68c6",
-          "task": "Nephrology CKD FHIR (eGFR + AKI + dialysis) (sonnet)",
-          "writableSet": "packages/specialty-nephro-ckd/**"
+          "taskId": "T-Tox-B",
+          "agentId": "a7817aca0d6d475bc",
+          "task": "Toxicology FHIR (toxidromes + antidotes + Rumack-Matthew) (sonnet)",
+          "writableSet": "packages/specialty-tox-antidote/**"
         }
       },
       {
@@ -2347,7 +2347,7 @@
         },
         {
           "id": "T-EMMED-B",
-          "name": "(running — branch not yet pushed)",
+          "name": "triage fhir",
           "status": "in-flight",
           "slot": 4,
           "worktree": "cernia-wt-r1-r",
@@ -2360,15 +2360,6 @@
           "status": "in-flight",
           "slot": 3,
           "worktree": "cernia-wt-r1-hext-c",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-NEPHRO-B",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 5,
-          "worktree": "cernia-wt-r1-s-hl7",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -2387,6 +2378,15 @@
           "status": "in-flight",
           "slot": 2,
           "worktree": "cernia-wt-r1-hext-b",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
+          "id": "T-TOX-B",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 5,
+          "worktree": "cernia-wt-r1-s-hl7",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
