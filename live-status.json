@@ -1,31 +1,31 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T23:26:35.770Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 19:26 EDT",
+    "lastUpdatedIso": "2026-05-21T23:33:59.037Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 19:33 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-120 CC-121 CC-125 CC-124 CC-123 CC-122 CC-117 CC-119) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 0,
+    "agentsRemainingToV30": 37,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 19:26 EDT · pool 8/8)",
-    "totalAgentsShipped": 479,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 19:34 EDT · pool 8/8)",
+    "totalAgentsShipped": 481,
     "modelMix": {
       "haiku": 43,
-      "sonnet": 368,
+      "sonnet": 374,
       "opus": 27
     },
     "modelMixActive": {
       "haiku": 0,
-      "sonnet": 8,
+      "sonnet": 14,
       "opus": 0
     },
-    "v30Status": "v3.0 REACHED · +42 over target (479/437)",
-    "v30Target": 437
+    "v30Status": "481/518 (93%, 37 to go)",
+    "v30Target": 518
   },
   "pool": {
     "size": 8,
@@ -122,7 +122,68 @@
       }
     ]
   },
-  "queue": [],
+  "queue": [
+    {
+      "pri": 1,
+      "id": "M-?1",
+      "waveId": "M",
+      "task": "Pricing + Licensing — next agent in this wave",
+      "writableSet": "packages/m-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 2,
+      "id": "M-?2",
+      "waveId": "M",
+      "task": "Pricing + Licensing — next agent in this wave",
+      "writableSet": "packages/m-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 3,
+      "id": "M-?3",
+      "waveId": "M",
+      "task": "Pricing + Licensing — next agent in this wave",
+      "writableSet": "packages/m-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 4,
+      "id": "M-?4",
+      "waveId": "M",
+      "task": "Pricing + Licensing — next agent in this wave",
+      "writableSet": "packages/m-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 5,
+      "id": "M-?5",
+      "waveId": "M",
+      "task": "Pricing + Licensing — next agent in this wave",
+      "writableSet": "packages/m-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 999,
+      "id": "M-…",
+      "waveId": "M",
+      "task": "Pricing + Licensing — + 1 more pending (later in queue)",
+      "writableSet": "packages/m-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    }
+  ],
   "recentCompletions": [
     {
       "agent": "switch to jsDelivr CDN — raw.githubusercontent.com /main/ has a 4-m...",
@@ -922,8 +983,8 @@
       "id": "L",
       "name": "Multi-Organization Hierarchy",
       "tag": "v0.93-multi-org",
-      "status": "complete",
-      "agentsTotal": 5,
+      "status": "in-progress",
+      "agentsTotal": 11,
       "agents": [
         {
           "id": "L-1",
@@ -962,15 +1023,15 @@
         }
       ],
       "knownAgentCount": 5,
-      "pendingAgentCount": 0,
-      "completionPct": 100
+      "pendingAgentCount": 6,
+      "completionPct": 45
     },
     {
       "id": "K",
       "name": "Role-Based UI",
       "tag": "v0.97-role-based-ui",
-      "status": "complete",
-      "agentsTotal": 4,
+      "status": "in-progress",
+      "agentsTotal": 10,
       "agents": [
         {
           "id": "K-1",
@@ -1002,15 +1063,15 @@
         }
       ],
       "knownAgentCount": 4,
-      "pendingAgentCount": 0,
-      "completionPct": 100
+      "pendingAgentCount": 6,
+      "completionPct": 40
     },
     {
       "id": "M",
       "name": "Pricing + Licensing",
       "tag": "v0.98-pricing-engine",
-      "status": "partial",
-      "agentsTotal": 6,
+      "status": "in-progress",
+      "agentsTotal": 12,
       "agents": [
         {
           "id": "M-1A",
@@ -1054,11 +1115,58 @@
           "failureNote": "re-dispatched as M-1A with tighter scope; running in slot 1",
           "recommendedModel": "sonnet",
           "modelReason": "state-machine-or-engine"
+        },
+        {
+          "id": "M-?1",
+          "name": "pending agent (slot 1 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 1,
+          "recommendedModel": "sonnet",
+          "modelReason": "pricing-billing-logic"
+        },
+        {
+          "id": "M-?2",
+          "name": "pending agent (slot 2 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 2,
+          "recommendedModel": "sonnet",
+          "modelReason": "pricing-billing-logic"
+        },
+        {
+          "id": "M-?3",
+          "name": "pending agent (slot 3 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 3,
+          "recommendedModel": "sonnet",
+          "modelReason": "pricing-billing-logic"
+        },
+        {
+          "id": "M-?4",
+          "name": "pending agent (slot 4 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 4,
+          "recommendedModel": "sonnet",
+          "modelReason": "pricing-billing-logic"
+        },
+        {
+          "id": "M-?5",
+          "name": "pending agent (slot 5 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 5,
+          "recommendedModel": "sonnet",
+          "modelReason": "pricing-billing-logic"
+        },
+        {
+          "id": "M-…",
+          "name": "+ 1 more pending (later in queue)",
+          "status": "pending",
+          "recommendedModel": "sonnet",
+          "modelReason": "pricing-billing-logic"
         }
       ],
       "knownAgentCount": 6,
-      "pendingAgentCount": 0,
-      "completionPct": 83
+      "pendingAgentCount": 6,
+      "completionPct": 42
     },
     {
       "id": "N",
@@ -1132,8 +1240,8 @@
       "id": "F",
       "name": "Customer Billing Alerts",
       "tag": "v1.0-billing-alerts",
-      "status": "complete",
-      "agentsTotal": 7,
+      "status": "in-progress",
+      "agentsTotal": 13,
       "agents": [
         {
           "id": "F-1",
@@ -1186,15 +1294,15 @@
         }
       ],
       "knownAgentCount": 7,
-      "pendingAgentCount": 0,
-      "completionPct": 100
+      "pendingAgentCount": 6,
+      "completionPct": 54
     },
     {
       "id": "G",
       "name": "Delegation Surface",
       "tag": "v1.1-delegation-surface",
-      "status": "complete",
-      "agentsTotal": 5,
+      "status": "in-progress",
+      "agentsTotal": 11,
       "agents": [
         {
           "id": "G-1",
@@ -1233,15 +1341,15 @@
         }
       ],
       "knownAgentCount": 5,
-      "pendingAgentCount": 0,
-      "completionPct": 100
+      "pendingAgentCount": 6,
+      "completionPct": 45
     },
     {
       "id": "I",
       "name": "B2B Support Channel",
       "tag": "v1.2-support-channel",
-      "status": "complete",
-      "agentsTotal": 3,
+      "status": "in-progress",
+      "agentsTotal": 9,
       "agents": [
         {
           "id": "I-1",
@@ -1266,15 +1374,15 @@
         }
       ],
       "knownAgentCount": 3,
-      "pendingAgentCount": 0,
-      "completionPct": 100
+      "pendingAgentCount": 6,
+      "completionPct": 33
     },
     {
       "id": "J",
       "name": "Workflow Marketplace",
       "tag": "v1.3-workflow-marketplace",
-      "status": "complete",
-      "agentsTotal": 6,
+      "status": "in-progress",
+      "agentsTotal": 12,
       "agents": [
         {
           "id": "J-1",
@@ -1320,15 +1428,15 @@
         }
       ],
       "knownAgentCount": 6,
-      "pendingAgentCount": 0,
-      "completionPct": 100
+      "pendingAgentCount": 6,
+      "completionPct": 50
     },
     {
       "id": "O",
       "name": "AI-Native Platform",
       "tag": "v1.5-ai-native",
-      "status": "complete",
-      "agentsTotal": 7,
+      "status": "in-progress",
+      "agentsTotal": 13,
       "agents": [
         {
           "id": "O-1",
@@ -1381,15 +1489,15 @@
         }
       ],
       "knownAgentCount": 7,
-      "pendingAgentCount": 0,
-      "completionPct": 100
+      "pendingAgentCount": 6,
+      "completionPct": 54
     },
     {
       "id": "P",
       "name": "No-Code ML Studio",
       "tag": "v1.6-ml-studio",
-      "status": "complete",
-      "agentsTotal": 7,
+      "status": "in-progress",
+      "agentsTotal": 13,
       "agents": [
         {
           "id": "P-1",
@@ -1442,15 +1550,15 @@
         }
       ],
       "knownAgentCount": 7,
-      "pendingAgentCount": 0,
-      "completionPct": 100
+      "pendingAgentCount": 6,
+      "completionPct": 54
     },
     {
       "id": "Q",
       "name": "Telehealth + RPM",
       "tag": "v1.7-telehealth-rpm",
-      "status": "complete",
-      "agentsTotal": 4,
+      "status": "in-progress",
+      "agentsTotal": 10,
       "agents": [
         {
           "id": "Q-1",
@@ -1482,8 +1590,8 @@
         }
       ],
       "knownAgentCount": 4,
-      "pendingAgentCount": 0,
-      "completionPct": 100
+      "pendingAgentCount": 6,
+      "completionPct": 40
     },
     {
       "id": "T",
@@ -2062,8 +2170,8 @@
       "id": "R",
       "name": "Native Mobile Apps",
       "tag": "v1.9-mobile-apps",
-      "status": "complete",
-      "agentsTotal": 7,
+      "status": "in-progress",
+      "agentsTotal": 12,
       "agents": [
         {
           "id": "R-3",
@@ -2116,15 +2224,15 @@
         }
       ],
       "knownAgentCount": 7,
-      "pendingAgentCount": 0,
-      "completionPct": 100
+      "pendingAgentCount": 5,
+      "completionPct": 58
     },
     {
       "id": "S",
       "name": "Lab + Imaging + Pharmacy + DDI",
       "tag": "v2.0-clinical-interop 🏁",
-      "status": "complete",
-      "agentsTotal": 4,
+      "status": "in-progress",
+      "agentsTotal": 8,
       "agents": [
         {
           "id": "S-S1",
@@ -2156,8 +2264,8 @@
         }
       ],
       "knownAgentCount": 4,
-      "pendingAgentCount": 0,
-      "completionPct": 100
+      "pendingAgentCount": 4,
+      "completionPct": 50
     },
     {
       "id": "U",
@@ -2292,8 +2400,8 @@
       "id": "W",
       "name": "Email Program",
       "tag": "v2.3-email-program",
-      "status": "complete",
-      "agentsTotal": 2,
+      "status": "in-progress",
+      "agentsTotal": 7,
       "agents": [
         {
           "id": "W-1",
@@ -2311,8 +2419,8 @@
         }
       ],
       "knownAgentCount": 2,
-      "pendingAgentCount": 0,
-      "completionPct": 100
+      "pendingAgentCount": 5,
+      "completionPct": 29
     },
     {
       "id": "AA",
@@ -2365,8 +2473,8 @@
       "id": "X",
       "name": "Business Ops",
       "tag": "v2.5-business-ops",
-      "status": "complete",
-      "agentsTotal": 3,
+      "status": "in-progress",
+      "agentsTotal": 9,
       "agents": [
         {
           "id": "X-1",
@@ -2391,8 +2499,8 @@
         }
       ],
       "knownAgentCount": 3,
-      "pendingAgentCount": 0,
-      "completionPct": 100
+      "pendingAgentCount": 6,
+      "completionPct": 33
     },
     {
       "id": "BB",
@@ -2718,7 +2826,7 @@
       "agents": [
         {
           "id": "CC-117",
-          "name": "(running — branch not yet pushed)",
+          "name": "major clinical guidelines",
           "status": "in-flight",
           "slot": 7,
           "worktree": "cernia-wt-r1-y",
@@ -2736,7 +2844,7 @@
         },
         {
           "id": "CC-120",
-          "name": "(running — branch not yet pushed)",
+          "name": "acog asrm",
           "status": "in-flight",
           "slot": 1,
           "worktree": "cernia-wt-r1-hext-a",
