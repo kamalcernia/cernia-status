@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T16:19:02.036Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 12:19 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (T-Derm-B T-Surg-B T-Hosp-B T-EmMed-B T-Nephro-B T-Urol-B T-GI-B T-PainMgmt-B) · last: fetch JSON from raw.githubusercontent.com to bypas (121c885)"
+    "lastUpdatedIso": "2026-05-21T16:21:49.537Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 12:21 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (T-Derm-B T-Surg-B T-Hosp-B T-EmMed-B T-Nephro-B T-Urol-B T-GI-B T-PainMgmt-B) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
   },
   "summary": {
-    "currentMainCommit": "121c885",
+    "currentMainCommit": "76989fc",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
-    "agentsCompletedThisSession": 55,
+    "agentsCompletedThisSession": 56,
     "agentsRemainingToV30": 72,
-    "hardeningTrackRecord": "55 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
+    "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 12:19 EDT · pool 8/8)",
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 12:21 EDT · pool 8/8)",
     "totalAgentsShipped": 392,
     "modelMix": {
       "haiku": 49,
@@ -426,6 +426,10 @@
   ],
   "recentCompletions": [
     {
+      "agent": "switch to jsDelivr CDN — raw.githubusercontent.com /main/ has a 4-m...",
+      "commit": "76989fc"
+    },
+    {
       "agent": "fetch JSON from raw.githubusercontent.com to bypass GH Pages 5-10mi...",
       "commit": "121c885"
     },
@@ -483,11 +487,6 @@
     {
       "agent": "auto-refresh ALL portal fields on every cron tick",
       "commit": "90c0155"
-    },
-    {
-      "agent": "refresh — 213 ships, 77 to v3.0; haiku-catalog canary spree healed ...",
-      "commit": "2d38aa2",
-      "tag": "v3.0 🏁"
     }
   ],
   "failures": [
