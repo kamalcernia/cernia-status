@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T16:57:09.969Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 12:57 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (T-Hospice-B T-Pall-B T-Genom-B T-Trauma-B T-Tox-B T-Sleep-B T-BH-B T-Infect-B) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
+    "lastUpdatedIso": "2026-05-21T17:08:43.545Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 13:08 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (T-Hospice-B T-Pall-B T-Sports-B T-Trauma-B T-Tox-B T-Sleep-B T-BH-B T-Infect-B) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fc)"
   },
   "summary": {
     "currentMainCommit": "76989fc",
@@ -12,8 +12,8 @@
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 12:57 EDT · pool 8/8)",
-    "totalAgentsShipped": 400,
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 13:08 EDT · pool 8/8)",
+    "totalAgentsShipped": 401,
     "modelMix": {
       "haiku": 49,
       "sonnet": 361,
@@ -24,8 +24,8 @@
       "sonnet": 98,
       "opus": 6
     },
-    "v30Status": "400/469 (85%, 69 to go)",
-    "v30Target": 469
+    "v30Status": "401/470 (85%, 69 to go)",
+    "v30Target": 470
   },
   "pool": {
     "size": 8,
@@ -59,10 +59,10 @@
         "worktree": "cernia-wt-r1-hext-c",
         "status": "running",
         "agent": {
-          "taskId": "T-Genom-B",
-          "agentId": "a5fa0add67b58083f",
-          "task": "CPIC pharmacogenomics FHIR (drug-gene + dose-adjust + variants) (sonnet)",
-          "writableSet": "packages/specialty-genom-cpic/**"
+          "taskId": "T-Sports-B",
+          "agentId": "afe249eb0be802daf",
+          "task": "Sports concussion FHIR (SCAT5 + PCSS + RTP protocol) (sonnet)",
+          "writableSet": "packages/specialty-sports-concussion/**"
         }
       },
       {
@@ -2337,15 +2337,6 @@
           "modelReason": "specialty-fhir-mapping"
         },
         {
-          "id": "T-GENOM-B",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 3,
-          "worktree": "cernia-wt-r1-hext-c",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
           "id": "T-HOSPICE-B",
           "name": "(running — branch not yet pushed)",
           "status": "in-flight",
@@ -2378,6 +2369,15 @@
           "status": "in-flight",
           "slot": 6,
           "worktree": "cernia-wt-r1-s-dicom",
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
+          "id": "T-SPORTS-B",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 3,
+          "worktree": "cernia-wt-r1-hext-c",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
