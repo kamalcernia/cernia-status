@@ -1,22 +1,22 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T21:51:18.975Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 17:51 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-88 CC-102 CC-96 CC-97 CC-98 CC-99 CC-100 CC-101) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "lastUpdatedIso": "2026-05-21T21:52:47.309Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 17:52 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (CC-88 CC-102 CC-103 CC-97 CC-98 CC-99 CC-100 CC-101) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 73,
+    "agentsRemainingToV30": 74,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 17:51 EDT · pool 8/8)",
+    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 17:52 EDT · pool 8/8)",
     "totalAgentsShipped": 455,
     "modelMix": {
       "haiku": 49,
-      "sonnet": 429,
+      "sonnet": 430,
       "opus": 33
     },
     "modelMixActive": {
@@ -24,8 +24,8 @@
       "sonnet": 92,
       "opus": 6
     },
-    "v30Status": "455/528 (86%, 73 to go)",
-    "v30Target": 528
+    "v30Status": "455/529 (86%, 74 to go)",
+    "v30Target": 529
   },
   "pool": {
     "size": 8,
@@ -59,10 +59,10 @@
         "worktree": "cernia-wt-r1-hext-c",
         "status": "running",
         "agent": {
-          "taskId": "CC-96",
-          "agentId": "a54083a717cbe8594",
-          "task": "APC v44 OPPS outpatient grouper FHIR (RETRY) (sonnet)",
-          "writableSet": "packages/catalog-cms-apc-opps/**"
+          "taskId": "CC-103",
+          "agentId": "a83cebd19e5482287",
+          "task": "CMS IQR + HOPD quality reporting measures FHIR (sonnet)",
+          "writableSet": "packages/catalog-cms-iqr-hopd/**"
         }
       },
       {
@@ -3772,7 +3772,7 @@
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
       "status": "in-progress",
-      "agentsTotal": 104,
+      "agentsTotal": 105,
       "agents": [
         {
           "id": "CC-88",
@@ -3780,15 +3780,6 @@
           "status": "in-flight",
           "slot": 1,
           "worktree": "cernia-wt-r1-hext-a",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-96",
-          "name": "apc opps",
-          "status": "in-flight",
-          "slot": 3,
-          "worktree": "cernia-wt-r1-hext-c",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -3843,6 +3834,15 @@
           "status": "in-flight",
           "slot": 2,
           "worktree": "cernia-wt-r1-hext-b",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-103",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 3,
+          "worktree": "cernia-wt-r1-hext-c",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4517,9 +4517,16 @@
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-96",
+          "name": "apc opps",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
         }
       ],
-      "knownAgentCount": 104,
+      "knownAgentCount": 105,
       "pendingAgentCount": 0,
       "completionPct": 92
     },
