@@ -1,19 +1,19 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T00:24:26.304Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 20:24 EDT",
+    "lastUpdatedIso": "2026-05-22T00:27:27.058Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 20:27 EDT",
     "modelSummary": "TIER 0 · Pool 7/8 · 443/518 pushed (86%) · 75 to go · 0 PRs merged · 78 PRs open · K-R1 #76, L-M1 #75 just landed"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 75,
+    "agentsRemainingToV30": 74,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
     "strategy": "TIER 0 · Honest accounting restored — 80 specced product features in pipeline. 8 in-flight (M-P1 W-E1 K-R1 O-AI1 L-M1 I-S1 R-M1 F-B1) · 72 product-feature placeholders renamed from generic ?N to concrete specs (K-R1 admin matrix, J-W1 marketplace API, etc.). W-E1 PR #71 open. (refreshed May 21, 2026, 20:06 EDT)",
-    "totalAgentsShipped": 443,
+    "totalAgentsShipped": 444,
     "modelMix": {
       "haiku": 43,
       "sonnet": 447,
@@ -24,7 +24,7 @@
       "sonnet": 76,
       "opus": 1
     },
-    "v30Status": "443/518 (86%, 75 to go)",
+    "v30Status": "444/518 (86%, 74 to go)",
     "v30Target": 518
   },
   "pool": {
@@ -70,10 +70,10 @@
         "worktree": "cernia-wt-r1-r",
         "status": "running",
         "agent": {
-          "taskId": "O-AI1",
-          "agentId": "a00b391d10521b135",
-          "task": "LLM gateway provider abstraction + PHI redaction + cost tracking (O wave) (sonnet)",
-          "writableSet": "packages/o1-llm-gateway/**"
+          "taskId": "O-AI2",
+          "agentId": "a1e925b3890677e64",
+          "task": "prompt template registry + versioning + experiments + eval harness + 12 clinical seeds",
+          "writableSet": "packages/o2-prompt-registry/**"
         }
       },
       {
@@ -1972,8 +1972,8 @@
       "agents": [
         {
           "id": "O-AI1",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
+          "name": "LLM gateway w/ 5 providers + PHI redaction + cost routing (PR #77)",
+          "status": "landed",
           "slot": 4,
           "worktree": "cernia-wt-r1-r",
           "recommendedModel": "opus",
