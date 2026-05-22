@@ -82,7 +82,7 @@
         "status": "running",
         "agent": {
           "taskId": "L-M4",
-          "agentId": "PENDING_L_M4",
+          "agentId": "ac047fb15b88ac2cd",
           "task": "user cross-org assignments + context switch + locum + shift handoff + SSO mapping",
           "writableSet": "packages/l4-user-cross-org-assignment/**"
         }
