@@ -1,19 +1,19 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T01:26:25.948Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 21:26 EDT",
-    "modelSummary": "TIER 0 · Pool 8/8 (M-P5 W-E4 K-R4 O-AI3 L-M4 I-S5 R-M2 F-B3) · 459/518 pushed (89%) · 59 to go · 22 PRs #71-92 · 3,390 tests"
+    "lastUpdatedIso": "2026-05-22T01:27:58.723Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 21:27 EDT",
+    "modelSummary": "TIER 0 · Pool 8/8 · 460/518 pushed (89%) · 58 to go · 23 PRs #71-93 · 3,586 cumulative tests"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 59,
+    "agentsRemainingToV30": 58,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
     "strategy": "TIER 0 · 11 product features landed this session (PRs #71-81). Honest count: 448/518 pushed (86%) · 0 PRs merged to main · 81 PRs open. Pool 8/8.",
-    "totalAgentsShipped": 459,
+    "totalAgentsShipped": 460,
     "modelMix": {
       "haiku": 43,
       "sonnet": 447,
@@ -24,7 +24,7 @@
       "sonnet": 76,
       "opus": 1
     },
-    "v30Status": "459/518 (89%, 59 to go)",
+    "v30Status": "460/518 (89%, 58 to go)",
     "v30Target": 518
   },
   "pool": {
@@ -70,10 +70,10 @@
         "worktree": "cernia-wt-r1-r",
         "status": "running",
         "agent": {
-          "taskId": "O-AI3",
-          "agentId": "a04dcb17069b6ab83",
-          "task": "smart model routing + adaptive selection + health monitor + fallback chain",
-          "writableSet": "packages/o3-model-routing/**"
+          "taskId": "O-AI4",
+          "agentId": "PENDING_O_AI4",
+          "task": "AI FinOps cost tracking + budgets + anomalies + showback + forecast + recommendations",
+          "writableSet": "packages/o4-cost-tracking/**"
         }
       },
       {
@@ -93,7 +93,7 @@
         "status": "running",
         "agent": {
           "taskId": "I-S5",
-          "agentId": "PENDING_I_S5",
+          "agentId": "aa1caa7323fc1c4d4",
           "task": "CSM workspace + agent queue + smart-assign + macros + escalations + QBR",
           "writableSet": "packages/i5-csm-workspace/**"
         }
@@ -2038,8 +2038,8 @@
         },
         {
           "id": "O-AI3",
-          "name": "model routing + fallback",
-          "status": "pending",
+          "name": "smart model routing + adaptive + health monitor + fallback + A/B (PR #93, 196 tests)",
+          "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 3
