@@ -141,9 +141,15 @@
       <tbody></tbody>
     </table>
 
-    <h2>Recent Completions <span class="count" id="completedCount">0</span></h2>
+    <h2>Recent PR Activity <span class="count" id="prActivityCount">0</span></h2>
+    <table class="completed-table" id="prActivityTable">
+      <thead><tr><th>PR</th><th>Title</th><th>State</th><th>Opened</th></tr></thead>
+      <tbody></tbody>
+    </table>
+
+    <h2>Recent main-branch commits <span class="count" id="completedCount">0</span></h2>
     <table class="completed-table" id="completedTable">
-      <thead><tr><th>Agent</th><th>Commit</th><th>Tests</th><th>Tag</th></tr></thead>
+      <thead><tr><th>Subject</th><th>Commit</th><th>Tests</th><th>Tag</th></tr></thead>
       <tbody></tbody>
     </table>
 
@@ -236,10 +242,30 @@
     function renderCompleted(completed) {
       const rows = (completed || []).map(c => {
         const tagDisplay = c.tag ? `<span class='tag'>${c.tag}</span>` : "";
-        return `<tr><td class='agent'>${c.agent}</td><td class='commit'>${c.commit}</td><td class='tests'>${c.tests || "—"}</td><td>${tagDisplay}</td></tr>`;
+        // Dim docs/chore commits so the user can tell real feature landings apart
+        const isFeat = c.kind === 'feat' || c.kind === 'merge';
+        const rowStyle = isFeat ? "" : "style='opacity:0.55'";
+        return `<tr ${rowStyle}><td class='agent'>${c.agent}</td><td class='commit'>${c.commit}</td><td class='tests'>${c.tests || "—"}</td><td>${tagDisplay}</td></tr>`;
       }).join("");
       $("completedTable").querySelector("tbody").innerHTML = rows;
       $("completedCount").textContent = (completed || []).length;
+    }
+
+    function renderPrActivity(prs) {
+      const list = prs || [];
+      const rows = list.map(p => {
+        const stateColor = p.mergedAt
+          ? "color:var(--accent)"
+          : p.state === "OPEN"
+          ? "color:var(--running)"
+          : "color:var(--fg-faint)";
+        const stateLabel = p.mergedAt ? "MERGED" : p.state;
+        const opened = p.createdAt ? new Date(p.createdAt).toISOString().slice(0, 10) : "";
+        const url = `https://github.com/kamalcernia/cernia/pull/${p.number}`;
+        return `<tr><td class='agent'><a href='${url}' target='_blank' rel='noopener' style='color:var(--running);text-decoration:none'>#${p.number}</a></td><td>${p.title}</td><td style='${stateColor};font-weight:600'>${stateLabel}</td><td style='color:var(--fg-muted)'>${opened}</td></tr>`;
+      }).join("");
+      $("prActivityTable").querySelector("tbody").innerHTML = rows;
+      $("prActivityCount").textContent = list.length;
     }
 
     function renderFailures(failures) {
@@ -402,6 +428,7 @@
 
       renderPool(data.pool || { slots: [] });
       renderQueue(data.queue || []);
+      renderPrActivity(data.recentPrActivity || []);
       renderCompleted(data.recentCompletions || []);
       renderFailures(data.failures || []);
       $("tree").innerHTML = (data.waves || []).map(w => renderWave(w, 0)).join("");
