@@ -1,30 +1,30 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T15:21:01.682Z",
-    "lastUpdatedDisplay": "May 22, 2026 — 11:21 EDT",
-    "modelSummary": "HALT · Pool 0/8 idle — Anthropic monthly limit · resumes 10:20pm ET · 460/518 pushed (89%) · 23 PRs #71-93"
+    "lastUpdatedIso": "2026-05-22T18:11:37.722Z",
+    "lastUpdatedDisplay": "May 22, 2026 — 14:11 EDT",
+    "modelSummary": "TIER 1 · Pool 0/8 in flight · last: HALT — Anthropic monthly limit hit; 8 in-flight fa (854eb166)"
   },
   "summary": {
-    "currentMainCommit": "76989fcb",
+    "currentMainCommit": "854eb166",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
-    "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 58,
-    "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
+    "agentsCompletedThisSession": 74,
+    "agentsRemainingToV30": 8,
+    "hardeningTrackRecord": "74 successful commits since v0.95-white-label · 2 active failures · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
-    "recoveryTier": "TIER 1 — Anthropic monthly limit reached; resumes 10:20pm ET",
-    "strategy": "HALT · 8 in-flight agents failed simultaneously when Anthropic monthly usage limit hit. 23 features successfully landed before halt (PRs #71-93). Resumes when limit resets at 10:20pm ET tonight.",
-    "totalAgentsShipped": 460,
+    "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (2 historical unrecovered)",
+    "strategy": "HALT · 8 in-flight agents failed simultaneously when Anthropic monthly usage limit hit. 23 features successfully landed before halt (PRs #71-93). Resumes when limit resets at 10:20pm ET tonight. (refreshed May 22, 2026 — 14:11 EDT · pool 0/8)",
+    "totalAgentsShipped": 510,
     "modelMix": {
       "haiku": 43,
-      "sonnet": 447,
-      "opus": 28
+      "sonnet": 409,
+      "opus": 34
     },
     "modelMixActive": {
       "haiku": 0,
-      "sonnet": 76,
-      "opus": 1
+      "sonnet": 55,
+      "opus": 6
     },
-    "v30Status": "460/518 (89%, 58 to go)",
+    "v30Status": "510/518 (98%, 8 to go)",
     "v30Target": 518
   },
   "pool": {
@@ -105,36 +105,6 @@
     },
     {
       "pri": 3,
-      "id": "L-?3",
-      "waveId": "L",
-      "task": "Multi-Organization Hierarchy — next agent in this wave",
-      "writableSet": "packages/l-*/**",
-      "deps": [],
-      "status": "pending",
-      "recommendedModel": "sonnet"
-    },
-    {
-      "pri": 4,
-      "id": "L-?4",
-      "waveId": "L",
-      "task": "Multi-Organization Hierarchy — next agent in this wave",
-      "writableSet": "packages/l-*/**",
-      "deps": [],
-      "status": "pending",
-      "recommendedModel": "sonnet"
-    },
-    {
-      "pri": 5,
-      "id": "L-?5",
-      "waveId": "L",
-      "task": "Multi-Organization Hierarchy — next agent in this wave",
-      "writableSet": "packages/l-*/**",
-      "deps": [],
-      "status": "pending",
-      "recommendedModel": "sonnet"
-    },
-    {
-      "pri": 6,
       "id": "K-?1",
       "waveId": "K",
       "task": "Role-Based UI — next agent in this wave",
@@ -144,7 +114,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 7,
+      "pri": 4,
       "id": "K-?2",
       "waveId": "K",
       "task": "Role-Based UI — next agent in this wave",
@@ -154,7 +124,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 8,
+      "pri": 5,
       "id": "K-?3",
       "waveId": "K",
       "task": "Role-Based UI — next agent in this wave",
@@ -164,7 +134,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 9,
+      "pri": 6,
       "id": "K-?4",
       "waveId": "K",
       "task": "Role-Based UI — next agent in this wave",
@@ -174,7 +144,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 10,
+      "pri": 7,
       "id": "K-?5",
       "waveId": "K",
       "task": "Role-Based UI — next agent in this wave",
@@ -184,7 +154,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 12,
+      "pri": 9,
       "id": "M-?1",
       "waveId": "M",
       "task": "Pricing + Licensing — next agent in this wave",
@@ -194,7 +164,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 13,
+      "pri": 10,
       "id": "M-?2",
       "waveId": "M",
       "task": "Pricing + Licensing — next agent in this wave",
@@ -204,37 +174,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 14,
-      "id": "M-?3",
-      "waveId": "M",
-      "task": "Pricing + Licensing — next agent in this wave",
-      "writableSet": "packages/m-*/**",
-      "deps": [],
-      "status": "pending",
-      "recommendedModel": "sonnet"
-    },
-    {
-      "pri": 15,
-      "id": "M-?4",
-      "waveId": "M",
-      "task": "Pricing + Licensing — next agent in this wave",
-      "writableSet": "packages/m-*/**",
-      "deps": [],
-      "status": "pending",
-      "recommendedModel": "sonnet"
-    },
-    {
-      "pri": 16,
-      "id": "M-?5",
-      "waveId": "M",
-      "task": "Pricing + Licensing — next agent in this wave",
-      "writableSet": "packages/m-*/**",
-      "deps": [],
-      "status": "pending",
-      "recommendedModel": "sonnet"
-    },
-    {
-      "pri": 17,
+      "pri": 11,
       "id": "F-?1",
       "waveId": "F",
       "task": "Customer Billing Alerts — next agent in this wave",
@@ -244,7 +184,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 18,
+      "pri": 12,
       "id": "F-?2",
       "waveId": "F",
       "task": "Customer Billing Alerts — next agent in this wave",
@@ -254,7 +194,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 19,
+      "pri": 13,
       "id": "F-?3",
       "waveId": "F",
       "task": "Customer Billing Alerts — next agent in this wave",
@@ -264,7 +204,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 20,
+      "pri": 14,
       "id": "F-?4",
       "waveId": "F",
       "task": "Customer Billing Alerts — next agent in this wave",
@@ -274,17 +214,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 21,
-      "id": "F-?5",
-      "waveId": "F",
-      "task": "Customer Billing Alerts — next agent in this wave",
-      "writableSet": "packages/f-*/**",
-      "deps": [],
-      "status": "pending",
-      "recommendedModel": "sonnet"
-    },
-    {
-      "pri": 22,
+      "pri": 15,
       "id": "G-?1",
       "waveId": "G",
       "task": "Delegation Surface — next agent in this wave",
@@ -294,7 +224,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 23,
+      "pri": 16,
       "id": "G-?2",
       "waveId": "G",
       "task": "Delegation Surface — next agent in this wave",
@@ -304,7 +234,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 24,
+      "pri": 17,
       "id": "G-?3",
       "waveId": "G",
       "task": "Delegation Surface — next agent in this wave",
@@ -314,7 +244,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 25,
+      "pri": 18,
       "id": "G-?4",
       "waveId": "G",
       "task": "Delegation Surface — next agent in this wave",
@@ -324,7 +254,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 26,
+      "pri": 19,
       "id": "G-?5",
       "waveId": "G",
       "task": "Delegation Surface — next agent in this wave",
@@ -334,7 +264,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 28,
+      "pri": 21,
       "id": "I-?1",
       "waveId": "I",
       "task": "B2B Support Channel — next agent in this wave",
@@ -344,7 +274,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 29,
+      "pri": 22,
       "id": "I-?2",
       "waveId": "I",
       "task": "B2B Support Channel — next agent in this wave",
@@ -354,99 +284,166 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 30,
-      "id": "I-?3",
-      "waveId": "I",
-      "task": "B2B Support Channel — next agent in this wave",
-      "writableSet": "packages/i-*/**",
+      "pri": 23,
+      "id": "J-?1",
+      "waveId": "J",
+      "task": "Workflow Marketplace — next agent in this wave",
+      "writableSet": "packages/j-*/**",
       "deps": [],
       "status": "pending",
       "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 24,
+      "id": "J-?2",
+      "waveId": "J",
+      "task": "Workflow Marketplace — next agent in this wave",
+      "writableSet": "packages/j-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 25,
+      "id": "J-?3",
+      "waveId": "J",
+      "task": "Workflow Marketplace — next agent in this wave",
+      "writableSet": "packages/j-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 26,
+      "id": "J-?4",
+      "waveId": "J",
+      "task": "Workflow Marketplace — next agent in this wave",
+      "writableSet": "packages/j-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 27,
+      "id": "J-?5",
+      "waveId": "J",
+      "task": "Workflow Marketplace — next agent in this wave",
+      "writableSet": "packages/j-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 29,
+      "id": "O-?1",
+      "waveId": "O",
+      "task": "AI-Native Platform — next agent in this wave",
+      "writableSet": "packages/o-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "opus"
+    },
+    {
+      "pri": 30,
+      "id": "O-?2",
+      "waveId": "O",
+      "task": "AI-Native Platform — next agent in this wave",
+      "writableSet": "packages/o-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "opus"
     },
     {
       "pri": 31,
-      "id": "I-?4",
-      "waveId": "I",
-      "task": "B2B Support Channel — next agent in this wave",
-      "writableSet": "packages/i-*/**",
+      "id": "O-?3",
+      "waveId": "O",
+      "task": "AI-Native Platform — next agent in this wave",
+      "writableSet": "packages/o-*/**",
       "deps": [],
       "status": "pending",
-      "recommendedModel": "sonnet"
+      "recommendedModel": "opus"
     },
     {
       "pri": 32,
-      "id": "I-?5",
-      "waveId": "I",
-      "task": "B2B Support Channel — next agent in this wave",
-      "writableSet": "packages/i-*/**",
+      "id": "O-?4",
+      "waveId": "O",
+      "task": "AI-Native Platform — next agent in this wave",
+      "writableSet": "packages/o-*/**",
       "deps": [],
       "status": "pending",
-      "recommendedModel": "sonnet"
+      "recommendedModel": "opus"
+    },
+    {
+      "pri": 33,
+      "id": "O-?5",
+      "waveId": "O",
+      "task": "AI-Native Platform — next agent in this wave",
+      "writableSet": "packages/o-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "opus"
     }
   ],
   "recentCompletions": [
     {
-      "agent": "switch to jsDelivr CDN — raw.githubusercontent.com /main/ has a 4-m...",
-      "commit": "76989fcb"
+      "agent": "HALT — Anthropic monthly limit hit; 8 in-flight failed; resumes 10:...",
+      "commit": "854eb166"
     },
     {
-      "agent": "fetch JSON from raw.githubusercontent.com to bypass GH Pages 5-10mi...",
-      "commit": "121c8853"
+      "agent": "O-AI3 #93 landed (196 tests, 11-model seed); O-AI4 dispatched; 460/...",
+      "commit": "4ae3034a"
     },
     {
-      "agent": "defeat GitHub Pages cache for live updates",
-      "commit": "68eb0a80"
+      "agent": "M-P4 #91 + I-S4 #92 landed; M-P5 + I-S5 dispatched; 459/518 (89%, 5...",
+      "commit": "4451f1ee"
     },
     {
-      "agent": "queue auto-derives from pending placeholders; failures auto-recover",
-      "commit": "75884ada"
+      "agent": "M-P4 #91 landed (182 tests); M-P5 dispatched; 458/518 (88%, 60 to go)",
+      "commit": "1b98b3d0"
     },
     {
-      "agent": "v3.0 target now dynamic — sum of wave agentsTotal",
-      "commit": "6ea2e716",
-      "tag": "v3.0 🏁"
+      "agent": "K-R3 #90 landed (210 tests, 33-node nav); K-R4 dispatched; 457/518 ...",
+      "commit": "1301f217"
     },
     {
-      "agent": "banner clarity — v3.0 REACHED + age-aware recovery tier",
-      "commit": "21a706ca",
-      "tag": "v3.0 🏁"
+      "agent": "W-E3 #89 landed (255 tests); W-E4 dispatched; 456/518 (88%, 62 to go)",
+      "commit": "84d2434c"
     },
     {
-      "agent": "slug normalization recovers H-EXT/H-EXT-2/E-wave branches",
-      "commit": "6445c470"
+      "agent": "L-M3 #88 landed (173 tests); L-M4 dispatched; 455/518 (88%, 63 to go)",
+      "commit": "a08c160c"
     },
     {
-      "agent": "add A-E + ERX + UI waves; extend parser to match letter+digit agent...",
-      "commit": "281ddc4c"
+      "agent": "I-S3 #87 landed (211 tests, hybrid BM25+cosine search); I-S4 dispat...",
+      "commit": "7cf3e7a2"
     },
     {
-      "agent": "dedupe agents per wave when re-dispatch creates same agent id",
-      "commit": "09df9382"
+      "agent": "R-M1 #86 landed (iOS foundation, 119 tests); R-M2 Android dispatche...",
+      "commit": "08583263"
     },
     {
-      "agent": "strip stale narrative suffixes from wave names + fix completionPct ...",
-      "commit": "cfbb0d39"
+      "agent": "M-P3 #85 + O-AI2 #84 landed; M-P4 + O-AI3 dispatched; 452/518 (87%,...",
+      "commit": "9a9d99e1"
     },
     {
-      "agent": "auto-mirror to public kamalcernia/cernia-status on every refresh",
-      "commit": "9ab9b099"
+      "agent": "reconcile slot panel — show current refilled agents (M-P3 W-E3 K-R3...",
+      "commit": "101a9e17"
     },
     {
-      "agent": "v3.0 reached — 359 ships landed (290 target exceeded)",
-      "commit": "dc2bb04b",
-      "tag": "v3.0 🏁"
+      "agent": "L-M2 #83 landed (198 tests); L-M3 dispatched; 450/518 (87%, 68 to go)",
+      "commit": "a53c7c27"
     },
     {
-      "agent": "auto-derive waves[].status + completionPct + correct stale agentsTotal",
-      "commit": "0b9b7854"
+      "agent": "K-R2 #82 landed (125 tests); K-R3 dispatched; 449/518 (87%, 69 to go)",
+      "commit": "f7af415b"
     },
     {
-      "agent": "set-slot.mjs auto-fires update-status on every change",
-      "commit": "27778264"
+      "agent": "authoritative re-mark of all 11 landings (PRs #71-81); 446/518 (86%...",
+      "commit": "9a6e096c"
     },
     {
-      "agent": "auto-refresh ALL portal fields on every cron tick",
-      "commit": "90c01553"
+      "agent": "F-B2 #80 + W-E2 #81 landed; F-B3 + W-E3 dispatched; 448/518 (87%, 7...",
+      "commit": "5a952d59"
     }
   ],
   "failures": [
@@ -506,7 +503,8 @@
       ],
       "reason": "You are out of extra usage · resets 10:20pm (America/New_York)",
       "recoveryTier": "TIER 1 — automatic recovery after usage reset",
-      "resumeAt": "22:20 ET (today)"
+      "resumeAt": "22:20 ET (today)",
+      "aged": true
     }
   ],
   "waves": [
@@ -1204,15 +1202,6 @@
       "agentsTotal": 11,
       "agents": [
         {
-          "id": "L-M1",
-          "name": "parent/child org hierarchy + inheritance + isolation (PR #75, 75 tests)",
-          "status": "landed",
-          "slot": 5,
-          "worktree": "cernia-wt-r1-s-hl7",
-          "recommendedModel": "sonnet",
-          "modelReason": "multi-org-hierarchy"
-        },
-        {
           "id": "L-1",
           "name": "multi org foundation",
           "status": "landed",
@@ -1248,49 +1237,53 @@
           "modelReason": "multi-org-hierarchy"
         },
         {
-          "id": "L-M2",
-          "name": "IDN hierarchy + facility rollup + HIPAA cell suppression + FHIR (PR #83, 198 tests)",
+          "id": "L-M1",
+          "name": "multi org hierarchy",
           "status": "landed",
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 2
+          "modelReason": "multi-org-hierarchy"
+        },
+        {
+          "id": "L-M2",
+          "name": "idn facility rollup",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "multi-org-hierarchy"
         },
         {
           "id": "L-M3",
-          "name": "cross-org reporting + isolation + chargeback + de-id export (PR #88, 173 tests)",
+          "name": "cross org reporting",
           "status": "landed",
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 3
+          "modelReason": "multi-org-hierarchy"
         },
         {
           "id": "L-M4",
-          "name": "user cross-org assignments + scoping — BLOCKED: Anthropic monthly limit, retry after 10:20pm ET reset",
-          "status": "pending",
+          "name": "user cross org assignment",
+          "status": "landed",
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 4
+          "modelReason": "multi-org-hierarchy"
         },
         {
-          "id": "L-M5",
-          "name": "financial roll-up + chargeback",
+          "id": "L-?1",
+          "name": "pending agent (slot 1 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 1,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 5
+          "modelReason": "multi-org-hierarchy"
         },
         {
-          "id": "L-M6",
-          "name": "access control inheritance + override",
+          "id": "L-?2",
+          "name": "pending agent (slot 2 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 2,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 6
+          "modelReason": "multi-org-hierarchy"
         }
       ],
-      "knownAgentCount": 6,
-      "pendingAgentCount": 5,
-      "completionPct": 45
+      "knownAgentCount": 9,
+      "pendingAgentCount": 2,
+      "completionPct": 82
     },
     {
       "id": "K",
@@ -1301,14 +1294,14 @@
       "agents": [
         {
           "id": "K-1",
-          "name": "role templates",
+          "name": "admin role matrix",
           "status": "landed",
-          "recommendedModel": "haiku",
-          "modelReason": "static-data-catalog"
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
         },
         {
           "id": "K-2",
-          "name": "role ui tabs",
+          "name": "role assignment bulk",
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1322,58 +1315,57 @@
         },
         {
           "id": "K-4",
-          "name": "scim provisioner",
+          "name": "rbac audit log",
           "status": "landed",
+          "recommendedModel": "opus",
+          "modelReason": "safety-critical-content"
+        },
+        {
+          "id": "K-?1",
+          "name": "pending agent (slot 3 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 3,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
         {
-          "id": "K-R1",
-          "name": "admin role matrix UI + RBAC resolver + audit + FHIR (PR #76, 95 tests)",
-          "status": "landed",
+          "id": "K-?2",
+          "name": "pending agent (slot 4 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 4,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 1
+          "modelReason": "default"
         },
         {
-          "id": "K-R2",
-          "name": "bulk role assignment + CSV intake + preview + rollback (PR #82, 125 tests)",
-          "status": "landed",
+          "id": "K-?3",
+          "name": "pending agent (slot 5 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 5,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 2
+          "modelReason": "default"
         },
         {
-          "id": "K-R3",
-          "name": "role-aware nav + page/field/action guards + impersonation + 33-node seed (PR #90, 210 tests)",
-          "status": "landed",
+          "id": "K-?4",
+          "name": "pending agent (slot 6 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 6,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 3
+          "modelReason": "default"
         },
         {
-          "id": "K-R4",
-          "name": "audit log for role changes — BLOCKED: Anthropic monthly limit, retry after 10:20pm ET reset",
+          "id": "K-?5",
+          "name": "pending agent (slot 7 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 7,
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "K-…",
+          "name": "+ 1 more pending (later in queue)",
           "status": "pending",
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 4
-        },
-        {
-          "id": "K-R5",
-          "name": "specialty role templates",
-          "status": "pending",
-          "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 5
-        },
-        {
-          "id": "K-R6",
-          "name": "break-glass emergency access w/ audit",
-          "status": "pending",
-          "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 6
+          "modelReason": "default"
         }
       ],
       "knownAgentCount": 4,
@@ -1387,15 +1379,6 @@
       "status": "in-progress",
       "agentsTotal": 12,
       "agents": [
-        {
-          "id": "M-P1",
-          "name": "Stripe license server + RS256 JWTs + tier entitlements (PR #73, 90 tests)",
-          "status": "landed",
-          "slot": 1,
-          "worktree": "cernia-wt-r1-hext-a",
-          "recommendedModel": "sonnet",
-          "modelReason": "pricing-billing-logic"
-        },
         {
           "id": "M-1A",
           "name": "pricing tiers",
@@ -1432,6 +1415,34 @@
           "modelReason": "pricing-billing-logic"
         },
         {
+          "id": "M-P1",
+          "name": "license server",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "pricing-billing-logic"
+        },
+        {
+          "id": "M-P2",
+          "name": "metered usage",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "pricing-billing-logic"
+        },
+        {
+          "id": "M-P3",
+          "name": "stripe invoice",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "pricing-billing-logic"
+        },
+        {
+          "id": "M-P4",
+          "name": "contract seat limits",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "pricing-billing-logic"
+        },
+        {
           "id": "M-1",
           "name": "pricing engine",
           "status": "failed",
@@ -1440,49 +1451,25 @@
           "modelReason": "state-machine-or-engine"
         },
         {
-          "id": "M-P2",
-          "name": "metered usage tracker + Stripe Meter Events + quota (PR #79, 109 tests)",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 2
-        },
-        {
-          "id": "M-P3",
-          "name": "Stripe invoice composer + proration + tax + dunning hand-off (PR #85, 154 tests)",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 3
-        },
-        {
-          "id": "M-P4",
-          "name": "contract enforcement + seats + features + BAA + geo + amendments (PR #91, 182 tests)",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 4
-        },
-        {
-          "id": "M-P5",
-          "name": "trial to paid conversion flow — BLOCKED: Anthropic monthly limit, retry after 10:20pm ET reset",
+          "id": "M-?1",
+          "name": "pending agent (slot 9 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 9,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 5
+          "modelReason": "pricing-billing-logic"
         },
         {
-          "id": "M-P6",
-          "name": "enterprise SSO + billing tie-in",
+          "id": "M-?2",
+          "name": "pending agent (slot 10 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 10,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 6
+          "modelReason": "pricing-billing-logic"
         }
       ],
-      "knownAgentCount": 7,
-      "pendingAgentCount": 5,
-      "completionPct": 42
+      "knownAgentCount": 10,
+      "pendingAgentCount": 2,
+      "completionPct": 75
     },
     {
       "id": "N",
@@ -1560,15 +1547,6 @@
       "agentsTotal": 13,
       "agents": [
         {
-          "id": "F-B1",
-          "name": "usage threshold detector + anomaly (PR #72, 52 tests)",
-          "status": "landed",
-          "slot": 8,
-          "worktree": "cernia-wt-r1-t",
-          "recommendedModel": "sonnet",
-          "modelReason": "customer-billing"
-        },
-        {
           "id": "F-1",
           "name": "billing alerts foundation",
           "status": "landed",
@@ -1618,49 +1596,55 @@
           "modelReason": "customer-billing"
         },
         {
-          "id": "F-B2",
-          "name": "alert queue + 6 channel dispatchers + retry + suppression (PR #80, 232 tests)",
+          "id": "F-B1",
+          "name": "usage threshold",
           "status": "landed",
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 2
+          "modelReason": "customer-billing"
         },
         {
-          "id": "F-B3",
-          "name": "dunning workflow w/ stripe — BLOCKED: Anthropic monthly limit, retry after 10:20pm ET reset",
-          "status": "pending",
+          "id": "F-B2",
+          "name": "alert queue",
+          "status": "landed",
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 3
+          "modelReason": "customer-billing"
         },
         {
-          "id": "F-B4",
-          "name": "payment retry + smart recovery",
+          "id": "F-?1",
+          "name": "pending agent (slot 11 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 11,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 4
+          "modelReason": "customer-billing"
         },
         {
-          "id": "F-B5",
-          "name": "grace period + auto-suspend mgmt",
+          "id": "F-?2",
+          "name": "pending agent (slot 12 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 12,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 5
+          "modelReason": "customer-billing"
         },
         {
-          "id": "F-B6",
-          "name": "churn-risk scoring + CSM alerts",
+          "id": "F-?3",
+          "name": "pending agent (slot 13 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 13,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 6
+          "modelReason": "customer-billing"
+        },
+        {
+          "id": "F-?4",
+          "name": "pending agent (slot 14 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 14,
+          "recommendedModel": "sonnet",
+          "modelReason": "customer-billing"
         }
       ],
-      "knownAgentCount": 8,
-      "pendingAgentCount": 5,
-      "completionPct": 54
+      "knownAgentCount": 9,
+      "pendingAgentCount": 4,
+      "completionPct": 69
     },
     {
       "id": "G",
@@ -1705,52 +1689,51 @@
           "modelReason": "delegation-access"
         },
         {
-          "id": "G-D1",
-          "name": "permission delegation engine + audit",
+          "id": "G-?1",
+          "name": "pending agent (slot 15 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 15,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 1
+          "modelReason": "delegation-access"
         },
         {
-          "id": "G-D2",
-          "name": "account ownership transfer workflow",
+          "id": "G-?2",
+          "name": "pending agent (slot 16 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 16,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 2
+          "modelReason": "delegation-access"
         },
         {
-          "id": "G-D3",
-          "name": "sub-account creation + nesting",
+          "id": "G-?3",
+          "name": "pending agent (slot 17 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 17,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 3
+          "modelReason": "delegation-access"
         },
         {
-          "id": "G-D4",
-          "name": "time-bounded delegation + auto-expiry",
+          "id": "G-?4",
+          "name": "pending agent (slot 18 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 18,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 4
+          "modelReason": "delegation-access"
         },
         {
-          "id": "G-D5",
-          "name": "delegation revocation + cascade",
+          "id": "G-?5",
+          "name": "pending agent (slot 19 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 19,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 5
+          "modelReason": "delegation-access"
         },
         {
-          "id": "G-D6",
-          "name": "cross-org delegation w/ HIPAA BAA",
+          "id": "G-…",
+          "name": "+ 1 more pending (later in queue)",
           "status": "pending",
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 6
+          "modelReason": "delegation-access"
         }
       ],
       "knownAgentCount": 5,
@@ -1787,56 +1770,52 @@
         },
         {
           "id": "I-S1",
-          "name": "B2B support ticket model + 6 intake channels + SLA model (PR #74, 102 tests)",
+          "name": "support ticket system",
           "status": "landed",
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 1
+          "modelReason": "default"
         },
         {
           "id": "I-S2",
-          "name": "SLA escalation engine + business-hour clock + breach report (PR #78, 122 tests)",
+          "name": "sla escalation",
           "status": "landed",
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 2
+          "modelReason": "default"
         },
         {
           "id": "I-S3",
-          "name": "KB + hybrid search + AI replies + classifier (PR #87, 211 tests)",
+          "name": "knowledge base ai",
           "status": "landed",
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 3
+          "modelReason": "default"
         },
         {
           "id": "I-S4",
-          "name": "9-widget customer dashboard + self-serve + CSAT + SSR (PR #92, 191 tests)",
+          "name": "customer support dashboard",
           "status": "landed",
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 4
+          "modelReason": "default"
         },
         {
-          "id": "I-S5",
-          "name": "internal CSM workspace + queue — BLOCKED: Anthropic monthly limit, retry after 10:20pm ET reset",
+          "id": "I-?1",
+          "name": "pending agent (slot 21 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 21,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 5
+          "modelReason": "default"
         },
         {
-          "id": "I-S6",
-          "name": "enterprise account mgmt + health scores",
+          "id": "I-?2",
+          "name": "pending agent (slot 22 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 22,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 6
+          "modelReason": "default"
         }
       ],
-      "knownAgentCount": 3,
-      "pendingAgentCount": 6,
-      "completionPct": 33
+      "knownAgentCount": 7,
+      "pendingAgentCount": 2,
+      "completionPct": 78
     },
     {
       "id": "J",
@@ -1888,52 +1867,51 @@
           "modelReason": "state-machine-or-engine"
         },
         {
-          "id": "J-W1",
-          "name": "marketplace catalog API + search",
+          "id": "J-?1",
+          "name": "pending agent (slot 23 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 23,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 1
+          "modelReason": "workflow-platform"
         },
         {
-          "id": "J-W2",
-          "name": "workflow publishing + sandbox preview",
+          "id": "J-?2",
+          "name": "pending agent (slot 24 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 24,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 2
+          "modelReason": "workflow-platform"
         },
         {
-          "id": "J-W3",
-          "name": "workflow versioning + semver",
+          "id": "J-?3",
+          "name": "pending agent (slot 25 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 25,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 3
+          "modelReason": "workflow-platform"
         },
         {
-          "id": "J-W4",
-          "name": "install/uninstall + dependency check",
+          "id": "J-?4",
+          "name": "pending agent (slot 26 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 26,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 4
+          "modelReason": "workflow-platform"
         },
         {
-          "id": "J-W5",
-          "name": "ratings + reviews + curation",
+          "id": "J-?5",
+          "name": "pending agent (slot 27 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 27,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 5
+          "modelReason": "workflow-platform"
         },
         {
-          "id": "J-W6",
-          "name": "revenue share + creator payout",
+          "id": "J-…",
+          "name": "+ 1 more pending (later in queue)",
           "status": "pending",
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 6
+          "modelReason": "workflow-platform"
         }
       ],
       "knownAgentCount": 6,
@@ -1947,15 +1925,6 @@
       "status": "in-progress",
       "agentsTotal": 13,
       "agents": [
-        {
-          "id": "O-AI1",
-          "name": "LLM gateway w/ 5 providers + PHI redaction + cost routing (PR #77, 109 tests)",
-          "status": "landed",
-          "slot": 4,
-          "worktree": "cernia-wt-r1-r",
-          "recommendedModel": "opus",
-          "modelReason": "ai-safety-critical"
-        },
         {
           "id": "O-1",
           "name": "ai copilot foundation",
@@ -2006,48 +1975,55 @@
           "modelReason": "ai-safety-critical"
         },
         {
-          "id": "O-AI2",
-          "name": "prompt registry + experiments + eval + 12 clinical seeds (PR #84, 257 tests)",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 2
-        },
-        {
-          "id": "O-AI3",
-          "name": "smart model routing + adaptive + health monitor + fallback + A/B (PR #93, 196 tests)",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 3
-        },
-        {
-          "id": "O-AI4",
-          "name": "cost tracking + budget alerts — BLOCKED: Anthropic monthly limit, retry after 10:20pm ET reset",
+          "id": "O-?1",
+          "name": "pending agent (slot 29 in dispatch queue)",
           "status": "pending",
-          "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 4
+          "activationPosition": 29,
+          "recommendedModel": "opus",
+          "modelReason": "ai-safety-critical"
         },
         {
-          "id": "O-AI5",
-          "name": "PII/PHI redaction pre-prompt",
+          "id": "O-?2",
+          "name": "pending agent (slot 30 in dispatch queue)",
           "status": "pending",
-          "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 5
+          "activationPosition": 30,
+          "recommendedModel": "opus",
+          "modelReason": "ai-safety-critical"
         },
         {
-          "id": "O-AI6",
-          "name": "safety filter + audit trail",
+          "id": "O-?3",
+          "name": "pending agent (slot 31 in dispatch queue)",
           "status": "pending",
-          "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 6
+          "activationPosition": 31,
+          "recommendedModel": "opus",
+          "modelReason": "ai-safety-critical"
+        },
+        {
+          "id": "O-?4",
+          "name": "pending agent (slot 32 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 32,
+          "recommendedModel": "opus",
+          "modelReason": "ai-safety-critical"
+        },
+        {
+          "id": "O-?5",
+          "name": "pending agent (slot 33 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 33,
+          "recommendedModel": "opus",
+          "modelReason": "ai-safety-critical"
+        },
+        {
+          "id": "O-…",
+          "name": "+ 1 more pending (later in queue)",
+          "status": "pending",
+          "recommendedModel": "opus",
+          "modelReason": "ai-safety-critical"
         }
       ],
-      "knownAgentCount": 8,
-      "pendingAgentCount": 5,
+      "knownAgentCount": 7,
+      "pendingAgentCount": 6,
       "completionPct": 54
     },
     {
@@ -2107,52 +2083,51 @@
           "modelReason": "ml-platform"
         },
         {
-          "id": "P-M1",
-          "name": "model registry + version pinning",
+          "id": "P-?1",
+          "name": "pending agent (slot 35 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 35,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 1
+          "modelReason": "ml-platform"
         },
         {
-          "id": "P-M2",
-          "name": "drag-drop pipeline builder UI",
+          "id": "P-?2",
+          "name": "pending agent (slot 36 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 36,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 2
+          "modelReason": "ml-platform"
         },
         {
-          "id": "P-M3",
-          "name": "dataset versioning + lineage",
+          "id": "P-?3",
+          "name": "pending agent (slot 37 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 37,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 3
+          "modelReason": "ml-platform"
         },
         {
-          "id": "P-M4",
-          "name": "training job orchestration",
+          "id": "P-?4",
+          "name": "pending agent (slot 38 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 38,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 4
+          "modelReason": "ml-platform"
         },
         {
-          "id": "P-M5",
-          "name": "model eval + A/B comparison",
+          "id": "P-?5",
+          "name": "pending agent (slot 39 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 39,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 5
+          "modelReason": "ml-platform"
         },
         {
-          "id": "P-M6",
-          "name": "one-click deployment + rollback",
+          "id": "P-…",
+          "name": "+ 1 more pending (later in queue)",
           "status": "pending",
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 6
+          "modelReason": "ml-platform"
         }
       ],
       "knownAgentCount": 7,
@@ -2195,52 +2170,51 @@
           "modelReason": "telehealth-clinical"
         },
         {
-          "id": "Q-T1",
-          "name": "video session orchestration (Twilio/Daily)",
+          "id": "Q-?1",
+          "name": "pending agent (slot 41 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 41,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 1
+          "modelReason": "telehealth-clinical"
         },
         {
-          "id": "Q-T2",
-          "name": "BYOD device pairing + Bluetooth",
+          "id": "Q-?2",
+          "name": "pending agent (slot 42 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 42,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 2
+          "modelReason": "telehealth-clinical"
         },
         {
-          "id": "Q-T3",
-          "name": "RPM data ingestion (BP, glucose, SpO2)",
+          "id": "Q-?3",
+          "name": "pending agent (slot 43 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 43,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 3
+          "modelReason": "telehealth-clinical"
         },
         {
-          "id": "Q-T4",
-          "name": "RPM alert + escalation rules",
+          "id": "Q-?4",
+          "name": "pending agent (slot 44 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 44,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 4
+          "modelReason": "telehealth-clinical"
         },
         {
-          "id": "Q-T5",
-          "name": "CPT 99453/99454/99457 RPM billing",
+          "id": "Q-?5",
+          "name": "pending agent (slot 45 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 45,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 5
+          "modelReason": "telehealth-clinical"
         },
         {
-          "id": "Q-T6",
-          "name": "patient-facing RPM app screens",
+          "id": "Q-…",
+          "name": "+ 1 more pending (later in queue)",
           "status": "pending",
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 6
+          "modelReason": "telehealth-clinical"
         }
       ],
       "knownAgentCount": 4,
@@ -2251,7 +2225,7 @@
       "id": "T",
       "name": "7 Specialty Modules",
       "tag": "v1.8-specialty-modules",
-      "status": "complete",
+      "status": "in-progress",
       "agentsTotal": 80,
       "agents": [
         {
@@ -2264,20 +2238,6 @@
         {
           "id": "T-ALLERGY-B",
           "name": "allergy testing fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-ANESTH-A",
-          "name": "anesthesiology fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-ANESTH-B",
-          "name": "preop fhir",
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2375,20 +2335,6 @@
           "modelReason": "specialty-fhir-mapping"
         },
         {
-          "id": "T-GENOM-A",
-          "name": "genomics fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-GENOM-B",
-          "name": "cpic fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
           "id": "T-GERI-A",
           "name": "geriatrics fhir",
           "status": "landed",
@@ -2431,20 +2377,6 @@
           "modelReason": "specialty-fhir-mapping"
         },
         {
-          "id": "T-HOME",
-          "name": "health oasis",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-HOME-B",
-          "name": "oasis fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
           "id": "T-HOSP-A",
           "name": "hospitalist fhir",
           "status": "landed",
@@ -2473,20 +2405,6 @@
           "modelReason": "specialty-fhir-mapping"
         },
         {
-          "id": "T-INFECT-A",
-          "name": "infectious disease fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-INFECT-B",
-          "name": "stewardship fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
           "id": "T-LTC",
           "name": "mds",
           "status": "landed",
@@ -2496,20 +2414,6 @@
         {
           "id": "T-LTC-B",
           "name": "quality fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-NEPHRO-A",
-          "name": "nephrology fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-NEPHRO-B",
-          "name": "ckd fhir",
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2564,20 +2468,6 @@
           "modelReason": "specialty-fhir-mapping"
         },
         {
-          "id": "T-OPHTHAL-A",
-          "name": "ophthalmology fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-OPHTHAL-B",
-          "name": "glaucoma fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
           "id": "T-ORTHO-A",
           "name": "orthopedics fhir",
           "status": "landed",
@@ -2587,34 +2477,6 @@
         {
           "id": "T-ORTHO-B",
           "name": "fracture fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-PAIN-B",
-          "name": "medd fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-PAINMGMT-A",
-          "name": "pain management fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-PALL-A",
-          "name": "palliative care fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-PALL-B",
-          "name": "advance care fhir",
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2634,20 +2496,6 @@
           "modelReason": "specialty-fhir-mapping"
         },
         {
-          "id": "T-PLAST-A",
-          "name": "plastic surgery fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-PLAST-B",
-          "name": "burn flap fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
           "id": "T-PULM-A",
           "name": "pulmonology fhir",
           "status": "landed",
@@ -2657,34 +2505,6 @@
         {
           "id": "T-PULM-B",
           "name": "action plans fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-REHAB-A",
-          "name": "physical rehab fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-REHAB-B",
-          "name": "functional fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-REPROD-A",
-          "name": "reproductive medicine fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-REPROD-B",
-          "name": "ivf fhir",
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2704,34 +2524,6 @@
           "modelReason": "specialty-fhir-mapping"
         },
         {
-          "id": "T-SLEEP-A",
-          "name": "sleep medicine fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-SLEEP-B",
-          "name": "psg fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-SPORTS-A",
-          "name": "sports medicine fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-SPORTS-B",
-          "name": "concussion fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
           "id": "T-SURG-A",
           "name": "surgery fhir",
           "status": "landed",
@@ -2741,34 +2533,6 @@
         {
           "id": "T-SURG-B",
           "name": "ssi nsqip fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-TOX-A",
-          "name": "toxicology fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-TOX-B",
-          "name": "antidote fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-TRAUMA-A",
-          "name": "trauma surgery fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-TRAUMA-B",
-          "name": "atls fhir",
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2788,20 +2552,6 @@
           "modelReason": "specialty-fhir-mapping"
         },
         {
-          "id": "T-VISION",
-          "name": "refraction",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-VISION-B",
-          "name": "refraction fhir",
-          "status": "landed",
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
-        },
-        {
           "id": "T-WHEALTH-A",
           "name": "womens health fhir",
           "status": "landed",
@@ -2816,9 +2566,9 @@
           "modelReason": "specialty-fhir-mapping"
         }
       ],
-      "knownAgentCount": 80,
-      "pendingAgentCount": 0,
-      "completionPct": 100
+      "knownAgentCount": 48,
+      "pendingAgentCount": 32,
+      "completionPct": 60
     },
     {
       "id": "R",
@@ -2827,15 +2577,6 @@
       "status": "in-progress",
       "agentsTotal": 12,
       "agents": [
-        {
-          "id": "R-M1",
-          "name": "iOS patient app foundation Expo+RN+auth+FHIR (PR #86, 119 tests)",
-          "status": "landed",
-          "slot": 7,
-          "worktree": "cernia-wt-r1-y",
-          "recommendedModel": "sonnet",
-          "modelReason": "mobile-platform"
-        },
         {
           "id": "R-3",
           "name": "mobile push notifications",
@@ -2853,6 +2594,13 @@
         {
           "id": "R-5",
           "name": "mobile conflict resolver",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "mobile-platform"
+        },
+        {
+          "id": "R-M1",
+          "name": "mobile ios foundation",
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "mobile-platform"
@@ -2886,41 +2634,41 @@
           "modelReason": "mobile-platform"
         },
         {
-          "id": "R-M2",
-          "name": "Android patient app foundation — BLOCKED: Anthropic monthly limit, retry after 10:20pm ET reset",
+          "id": "R-?1",
+          "name": "pending agent (slot 47 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 47,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 2
+          "modelReason": "mobile-platform"
         },
         {
-          "id": "R-M3",
-          "name": "push notifications (APNs + FCM)",
+          "id": "R-?2",
+          "name": "pending agent (slot 48 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 48,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 3
+          "modelReason": "mobile-platform"
         },
         {
-          "id": "R-M4",
-          "name": "biometric auth (Face/Touch)",
+          "id": "R-?3",
+          "name": "pending agent (slot 49 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 49,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 4
+          "modelReason": "mobile-platform"
         },
         {
-          "id": "R-M5",
-          "name": "offline mode + sync",
+          "id": "R-?4",
+          "name": "pending agent (slot 50 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 50,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 5
+          "modelReason": "mobile-platform"
         }
       ],
       "knownAgentCount": 8,
       "pendingAgentCount": 4,
-      "completionPct": 58
+      "completionPct": 67
     },
     {
       "id": "S",
@@ -2958,36 +2706,36 @@
           "modelReason": "default"
         },
         {
-          "id": "S-L1",
-          "name": "Quest/LabCorp HL7 adapter",
+          "id": "S-?1",
+          "name": "pending agent (slot 51 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 51,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 1
+          "modelReason": "default"
         },
         {
-          "id": "S-L2",
-          "name": "imaging center HL7/DICOM ingest",
+          "id": "S-?2",
+          "name": "pending agent (slot 52 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 52,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 2
+          "modelReason": "default"
         },
         {
-          "id": "S-L3",
-          "name": "DICOM forwarding + thumbnail gen",
+          "id": "S-?3",
+          "name": "pending agent (slot 53 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 53,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 3
+          "modelReason": "default"
         },
         {
-          "id": "S-L4",
-          "name": "lab result auto-import + flagging",
+          "id": "S-?4",
+          "name": "pending agent (slot 54 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 54,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 4
+          "modelReason": "default"
         }
       ],
       "knownAgentCount": 4,
@@ -3131,15 +2879,6 @@
       "agentsTotal": 7,
       "agents": [
         {
-          "id": "W-E1",
-          "name": "transactional email SES/SendGrid/Postmark/Mailgun (PR #71, 112 tests)",
-          "status": "landed",
-          "slot": 2,
-          "worktree": "cernia-wt-r1-hext-b",
-          "recommendedModel": "sonnet",
-          "modelReason": "default"
-        },
-        {
           "id": "W-1",
           "name": "email program",
           "status": "landed",
@@ -3154,41 +2893,45 @@
           "modelReason": "default"
         },
         {
-          "id": "W-E2",
-          "name": "MJML engine + i18n + 10 seeded templates × en/es (PR #81, 217 tests)",
+          "id": "W-E1",
+          "name": "transactional email",
           "status": "landed",
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 2
+          "modelReason": "default"
+        },
+        {
+          "id": "W-E2",
+          "name": "email templates",
+          "status": "landed",
+          "recommendedModel": "haiku",
+          "modelReason": "static-data-catalog"
         },
         {
           "id": "W-E3",
-          "name": "DKIM/SPF/DMARC + reputation + bounce/complaint + warmup (PR #89, 255 tests)",
+          "name": "deliverability monitoring",
           "status": "landed",
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 3
+          "modelReason": "default"
         },
         {
           "id": "W-E4",
-          "name": "unsubscribe + preferences + GDPR — BLOCKED: Anthropic monthly limit, retry after 10:20pm ET reset",
-          "status": "pending",
+          "name": "unsubscribe gdpr",
+          "status": "landed",
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 4
+          "modelReason": "default"
         },
         {
-          "id": "W-E5",
-          "name": "marketing pipeline + segmentation",
+          "id": "W-?1",
+          "name": "pending agent (slot 55 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 55,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 5
+          "modelReason": "default"
         }
       ],
-      "knownAgentCount": 3,
-      "pendingAgentCount": 4,
-      "completionPct": 29
+      "knownAgentCount": 6,
+      "pendingAgentCount": 1,
+      "completionPct": 86
     },
     {
       "id": "AA",
@@ -3266,52 +3009,51 @@
           "modelReason": "default"
         },
         {
-          "id": "X-B1",
-          "name": "finance + AR aging dashboard",
+          "id": "X-?1",
+          "name": "pending agent (slot 56 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 56,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 1
+          "modelReason": "default"
         },
         {
-          "id": "X-B2",
-          "name": "contract management DB + e-sign",
+          "id": "X-?2",
+          "name": "pending agent (slot 57 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 57,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 2
+          "modelReason": "default"
         },
         {
-          "id": "X-B3",
-          "name": "employee directory + HR basics",
+          "id": "X-?3",
+          "name": "pending agent (slot 58 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 58,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 3
+          "modelReason": "default"
         },
         {
-          "id": "X-B4",
-          "name": "employee onboarding workflow",
+          "id": "X-?4",
+          "name": "pending agent (slot 59 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 59,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 4
+          "modelReason": "default"
         },
         {
-          "id": "X-B5",
-          "name": "internal BI reporting + KPI dash",
+          "id": "X-?5",
+          "name": "pending agent (slot 60 in dispatch queue)",
           "status": "pending",
+          "activationPosition": 60,
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 5
+          "modelReason": "default"
         },
         {
-          "id": "X-B6",
-          "name": "compliance calendar + audit prep",
+          "id": "X-…",
+          "name": "+ 1 more pending (later in queue)",
           "status": "pending",
           "recommendedModel": "sonnet",
-          "modelReason": "feature-default",
-          "activationPosition": 6
+          "modelReason": "default"
         }
       ],
       "knownAgentCount": 3,
@@ -3637,27 +3379,9 @@
       "id": "CC",
       "name": "International + Compliance Catalogs (multi-jurisdiction + healthcare codes)",
       "tag": "v3.0-saas-complete",
-      "status": "in-progress",
+      "status": "complete",
       "agentsTotal": 127,
       "agents": [
-        {
-          "id": "CC-122",
-          "name": "CMS CoPs hospital+SNF+HHA+hospice+ASC+ESRD compliance FHIR (CC-122)",
-          "status": "landed",
-          "slot": 6,
-          "worktree": "cernia-wt-r1-s-dicom",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
-        {
-          "id": "CC-125",
-          "name": "ONC Cures Act + (g)(10) + Info Blocking + EHI export FHIR (CC-125)",
-          "status": "landed",
-          "slot": 3,
-          "worktree": "cernia-wt-r1-hext-c",
-          "recommendedModel": "sonnet",
-          "modelReason": "regulatory-compliance"
-        },
         {
           "id": "CC-1",
           "name": "hl7 v2 segment catalog",
@@ -4520,6 +4244,13 @@
           "modelReason": "regulatory-compliance"
         },
         {
+          "id": "CC-122",
+          "name": "cms cop",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
+        },
+        {
           "id": "CC-123",
           "name": "hpo disease orphanet",
           "status": "landed",
@@ -4532,11 +4263,18 @@
           "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
+        },
+        {
+          "id": "CC-125",
+          "name": "onc 170 315",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "regulatory-compliance"
         }
       ],
       "knownAgentCount": 127,
       "pendingAgentCount": 0,
-      "completionPct": 98
+      "completionPct": 100
     },
     {
       "id": "ERX",

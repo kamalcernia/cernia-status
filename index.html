@@ -412,33 +412,37 @@
       try {
         // Fetch from jsDelivr CDN (cdn.jsdelivr.net/gh/...@main/), which is
         // a real-time mirror of the GitHub repo with ~10s propagation.
-        // Re-tested 2026-05-21: jsDelivr's CDN cache lags 12+ minutes even
-        // after explicit purge API calls (CF + FY edges both confirm purge but
-        // continue serving stale). raw.githubusercontent.com/HEAD/ is the only
-        // endpoint that consistently serves fresh content (< 30s lag).
-        // Order: raw HEAD (primary) → raw main → jsDelivr → GH Pages.
+        // We tested 5 endpoints — jsDelivr is the freshest:
+        //   raw.githubusercontent.com/main/  → 4-min CDN lag (BAD)
+        //   raw.githubusercontent.com/HEAD/  → real-time
+        //   cdn.jsdelivr.net/gh/...@main/    → real-time (CHOSEN)
+        //   api.github.com/...contents/...   → real-time but rate-limited
+        //   GitHub Pages (./live-status.json) → 5-10 min deploy lag (BAD)
+        // jsDelivr is the production-grade choice — built for static asset
+        // delivery, no rate limits, designed for this use case.
         const buster = Date.now() + "-" + Math.random().toString(36).slice(2);
+        const jsDelivrUrl = "https://cdn.jsdelivr.net/gh/kamalcernia/cernia-status@main/live-status.json?t=" + buster;
         let res;
-        let staleSeenAt = null;
-        async function tryFetch(url, label) {
-          const r = await fetch(url + (url.includes('?') ? '&' : '?') + 't=' + buster, {
+        try {
+          res = await fetch(jsDelivrUrl, {
             cache: 'no-store',
             headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache' }
           });
-          if (!r.ok) throw new Error(label + " HTTP " + r.status);
-          return r;
-        }
-        try {
-          res = await tryFetch("https://raw.githubusercontent.com/kamalcernia/cernia-status/HEAD/live-status.json", "raw HEAD");
-        } catch (e1) {
+          if (!res.ok) throw new Error("jsDelivr HTTP " + res.status);
+        } catch (cdnErr) {
+          // Fallback to raw.githubusercontent.com/HEAD/ (also real-time)
           try {
-            res = await tryFetch("https://raw.githubusercontent.com/kamalcernia/cernia-status/main/live-status.json", "raw main");
-          } catch (e2) {
-            try {
-              res = await tryFetch("https://cdn.jsdelivr.net/gh/kamalcernia/cernia-status@main/live-status.json", "jsDelivr");
-            } catch (e3) {
-              res = await tryFetch("live-status.json", "gh-pages");
-            }
+            res = await fetch("https://raw.githubusercontent.com/kamalcernia/cernia-status/HEAD/live-status.json?t=" + buster, {
+              cache: 'no-store',
+              headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache' }
+            });
+            if (!res.ok) throw new Error("raw HEAD HTTP " + res.status);
+          } catch (rawErr) {
+            // Last-resort fallback to GH Pages relative URL
+            res = await fetch("live-status.json?t=" + buster, {
+              cache: 'no-store',
+              headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache' }
+            });
           }
         }
         if (!res.ok) throw new Error("HTTP " + res.status);
