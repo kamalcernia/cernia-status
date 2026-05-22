@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T00:48:25.282Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 20:48 EDT",
-    "modelSummary": "TIER 0 · Pool 8/8 · 450/518 pushed (87%) · 68 to go · 13 landings PRs #71-83 · L-M2 just landed"
+    "lastUpdatedIso": "2026-05-22T00:56:47.934Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 20:56 EDT",
+    "modelSummary": "TIER 0 · Pool 8/8 (M-P3 W-E3 K-R3 O-AI2 L-M3 I-S3 R-M1 F-B3) · 450/518 pushed (87%) · 68 to go · 13 PRs #71-83"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
@@ -37,10 +37,10 @@
         "worktree": "cernia-wt-r1-hext-a",
         "status": "running",
         "agent": {
-          "taskId": "M-P2",
-          "agentId": "a0926b57d837a0c63",
-          "task": "metered usage tracker (events + tokens) + Stripe Meter Events",
-          "writableSet": "packages/m2-metered-usage/**"
+          "taskId": "M-P3",
+          "agentId": "aa967eec89beab3a6",
+          "task": "Stripe invoice composer + proration + Stripe Tax + dunning hand-off",
+          "writableSet": "packages/m3-stripe-invoice/**"
         }
       },
       {
@@ -50,7 +50,7 @@
         "agent": {
           "taskId": "W-E3",
           "agentId": "a0994939121150b52",
-          "task": "deliverability + DKIM/SPF/DMARC + reputation + bounce/complaint + warmup",
+          "task": "DKIM/SPF/DMARC + reputation + bounce/complaint + warmup",
           "writableSet": "packages/w3-deliverability/**"
         }
       },
@@ -61,7 +61,7 @@
         "agent": {
           "taskId": "K-R3",
           "agentId": "ae2e9c19b92849d8c",
-          "task": "role-aware nav + page/field/action guards + impersonation + 30-node seed tree",
+          "task": "role-aware nav + page/field/action guards + impersonation",
           "writableSet": "packages/k3-role-aware-nav/**"
         }
       },
@@ -70,10 +70,10 @@
         "worktree": "cernia-wt-r1-r",
         "status": "running",
         "agent": {
-          "taskId": "O-AI1",
-          "agentId": "a00b391d10521b135",
-          "task": "LLM gateway provider abstraction + PHI redaction + cost tracking (O wave) (sonnet)",
-          "writableSet": "packages/o1-llm-gateway/**"
+          "taskId": "O-AI2",
+          "agentId": "a1e925b3890677e64",
+          "task": "prompt registry + experiments + eval harness + 12 clinical seeds",
+          "writableSet": "packages/o2-prompt-registry/**"
         }
       },
       {
@@ -92,10 +92,10 @@
         "worktree": "cernia-wt-r1-s-dicom",
         "status": "running",
         "agent": {
-          "taskId": "I-S1",
-          "agentId": "ae2bef6b74888e288",
-          "task": "B2B support ticket model + intake + SLA + dashboards (I wave)",
-          "writableSet": "packages/support-tickets/**"
+          "taskId": "I-S3",
+          "agentId": "a6a3963d6f0f109d2",
+          "task": "KB + AI replies + auto-classifier + feedback loop",
+          "writableSet": "packages/i3-kb-ai-replies/**"
         }
       },
       {
@@ -105,8 +105,8 @@
         "agent": {
           "taskId": "R-M1",
           "agentId": "a9868a1bfbda02866",
-          "task": "iOS patient app foundation Expo+RN+auth+FHIR (sonnet)",
-          "writableSet": "packages/r-mobile-ios-foundation/**"
+          "task": "iOS patient app foundation Expo+RN+auth+FHIR",
+          "writableSet": "apps/patient-ios/**"
         }
       },
       {
@@ -116,7 +116,7 @@
         "agent": {
           "taskId": "F-B3",
           "agentId": "aeae61b09689b0ad7",
-          "task": "dunning workflow w/ smart retry + risk scoring + suspension",
+          "task": "dunning workflow + smart retry + risk scoring + suspension",
           "writableSet": "packages/f3-dunning-workflow/**"
         }
       }
