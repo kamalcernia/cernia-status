@@ -1,19 +1,19 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T00:43:34.545Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 20:43 EDT",
-    "modelSummary": "TIER 0 · Pool 8/8 · 442/518 pushed (85%) · 76 to go · 0 PRs merged · 81 PRs open · 11 features landed this session"
+    "lastUpdatedIso": "2026-05-22T00:44:38.816Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 20:44 EDT",
+    "modelSummary": "TIER 0 · Pool 8/8 (M-P3 W-E3 K-R2 L-M2 O-AI2 R-M1 F-B3 I-S3) · 448/518 pushed (86%) · 70 to go · 11 landings PRs #71-81"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 76,
+    "agentsRemainingToV30": 70,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 · Honest accounting restored — 80 specced product features in pipeline. 8 in-flight (M-P1 W-E1 K-R1 O-AI1 L-M1 I-S1 R-M1 F-B1) · 72 product-feature placeholders renamed from generic ?N to concrete specs (K-R1 admin matrix, J-W1 marketplace API, etc.). W-E1 PR #71 open. (refreshed May 21, 2026, 20:06 EDT)",
-    "totalAgentsShipped": 442,
+    "strategy": "TIER 0 · 11 product features landed this session (PRs #71-81). Honest count: 448/518 pushed (86%) · 0 PRs merged to main · 81 PRs open. Pool 8/8.",
+    "totalAgentsShipped": 448,
     "modelMix": {
       "haiku": 43,
       "sonnet": 447,
@@ -24,7 +24,7 @@
       "sonnet": 76,
       "opus": 1
     },
-    "v30Status": "442/518 (85%, 76 to go)",
+    "v30Status": "448/518 (86%, 70 to go)",
     "v30Target": 518
   },
   "pool": {
@@ -1228,8 +1228,8 @@
       "agents": [
         {
           "id": "L-M1",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
+          "name": "parent/child org hierarchy + inheritance + isolation (PR #75, 75 tests)",
+          "status": "landed",
           "slot": 5,
           "worktree": "cernia-wt-r1-s-hl7",
           "recommendedModel": "sonnet",
@@ -1273,7 +1273,7 @@
         {
           "id": "L-M2",
           "name": "IDN hierarchy + facility roll-up",
-          "status": "pending",
+          "status": "in-flight",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 2
@@ -1352,8 +1352,8 @@
         },
         {
           "id": "K-R1",
-          "name": "admin role matrix UI",
-          "status": "in-flight",
+          "name": "admin role matrix UI + RBAC resolver + audit + FHIR (PR #76, 95 tests)",
+          "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 1
@@ -1361,7 +1361,7 @@
         {
           "id": "K-R2",
           "name": "role assignment + bulk workflow",
-          "status": "pending",
+          "status": "in-flight",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 2
@@ -1412,7 +1412,7 @@
       "agents": [
         {
           "id": "M-P1",
-          "name": "license server + key issuance (PR #73)",
+          "name": "Stripe license server + RS256 JWTs + tier entitlements (PR #73, 90 tests)",
           "status": "landed",
           "slot": 1,
           "worktree": "cernia-wt-r1-hext-a",
@@ -1464,8 +1464,8 @@
         },
         {
           "id": "M-P2",
-          "name": "metered usage tracker (events + tokens)",
-          "status": "pending",
+          "name": "metered usage tracker + Stripe Meter Events + quota (PR #79, 109 tests)",
+          "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 2
@@ -1473,7 +1473,7 @@
         {
           "id": "M-P3",
           "name": "Stripe invoice generator + tax",
-          "status": "pending",
+          "status": "in-flight",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 3
@@ -1584,7 +1584,7 @@
       "agents": [
         {
           "id": "F-B1",
-          "name": "usage threshold detector + anomaly (PR #72)",
+          "name": "usage threshold detector + anomaly (PR #72, 52 tests)",
           "status": "landed",
           "slot": 8,
           "worktree": "cernia-wt-r1-t",
@@ -1651,7 +1651,7 @@
         {
           "id": "F-B3",
           "name": "dunning workflow w/ stripe",
-          "status": "pending",
+          "status": "in-flight",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 3
@@ -1810,16 +1810,16 @@
         },
         {
           "id": "I-S1",
-          "name": "ticket model + intake from email/portal",
-          "status": "in-flight",
+          "name": "B2B support ticket model + 6 intake channels + SLA model (PR #74, 102 tests)",
+          "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 1
         },
         {
           "id": "I-S2",
-          "name": "SLA tracking + escalation policy",
-          "status": "pending",
+          "name": "SLA escalation engine + business-hour clock + breach report (PR #78, 122 tests)",
+          "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 2
@@ -1827,7 +1827,7 @@
         {
           "id": "I-S3",
           "name": "knowledge base + AI-suggested replies",
-          "status": "pending",
+          "status": "in-flight",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 3
@@ -1972,8 +1972,8 @@
       "agents": [
         {
           "id": "O-AI1",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
+          "name": "LLM gateway w/ 5 providers + PHI redaction + cost routing (PR #77, 109 tests)",
+          "status": "landed",
           "slot": 4,
           "worktree": "cernia-wt-r1-r",
           "recommendedModel": "opus",
@@ -2031,7 +2031,7 @@
         {
           "id": "O-AI2",
           "name": "prompt template registry + versioning",
-          "status": "pending",
+          "status": "in-flight",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 2
@@ -3155,7 +3155,7 @@
       "agents": [
         {
           "id": "W-E1",
-          "name": "transactional email SES/SendGrid/Postmark/Mailgun (PR #71)",
+          "name": "transactional email SES/SendGrid/Postmark/Mailgun (PR #71, 112 tests)",
           "status": "landed",
           "slot": 2,
           "worktree": "cernia-wt-r1-hext-b",
@@ -3187,7 +3187,7 @@
         {
           "id": "W-E3",
           "name": "deliverability + reputation monitoring",
-          "status": "pending",
+          "status": "in-flight",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 3
