@@ -1,19 +1,19 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T19:30:48.402Z",
-    "lastUpdatedDisplay": "May 22, 2026 — 15:30 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 3/8 in flight (M-P5 O-AI4 I-S5) · last PR: #98 feat(patient-android): Expo SDK 52 Android scaffol"
+    "lastUpdatedIso": "2026-05-22T19:33:14.654Z",
+    "lastUpdatedDisplay": "May 22, 2026 — 15:33 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 2/8 in flight (O-AI4 I-S5) · last PR: #99 feat(m5-trial-conversion): trial lifecycle + activ"
   },
   "summary": {
     "currentMainCommit": "1cd7dccf",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 75,
-    "agentsRemainingToV30": 16,
+    "agentsRemainingToV30": 15,
     "hardeningTrackRecord": "75 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "Pool 3/8 in flight (M-P5 O-AI4 I-S5) — 16 agents remaining to v3.0. Last PR: #98 feat(patient-android): Expo SDK 52 Android scaffold + auth +. (refreshed May 22, 2026 — 15:30 EDT)",
-    "totalAgentsShipped": 512,
+    "strategy": "Pool 2/8 in flight (O-AI4 I-S5) — 15 agents remaining to v3.0. Last PR: #99 feat(m5-trial-conversion): trial lifecycle + activation + sc. (refreshed May 22, 2026 — 15:33 EDT)",
+    "totalAgentsShipped": 513,
     "modelMix": {
       "haiku": 43,
       "sonnet": 451,
@@ -21,27 +21,22 @@
     },
     "modelMixActive": {
       "haiku": 0,
-      "sonnet": 54,
+      "sonnet": 53,
       "opus": 3
     },
-    "v30Status": "512/528 (97%, 16 to go)",
+    "v30Status": "513/528 (97%, 15 to go)",
     "v30Target": 528
   },
   "pool": {
     "size": 8,
-    "saturationPct": 38,
+    "saturationPct": 25,
     "queueDepth": 5,
     "slots": [
       {
         "slot": 1,
         "worktree": "cernia-wt-r1-hext-a",
-        "status": "running",
-        "agent": {
-          "taskId": "M-P5",
-          "agentId": "redispatch-m-p5",
-          "task": "Trial-to-paid conversion flow (re-dispatch of halted agent)",
-          "writableSet": "packages/m5-trial-conversion/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 2,
@@ -483,7 +478,7 @@
       "recovery": "re-dispatched as M-1A with tighter scope; running in slot 1",
       "aged": true,
       "recovered": true,
-      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
+      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
     },
     {
       "agent": "W-1 email program",
@@ -538,7 +533,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
@@ -1463,15 +1458,6 @@
       "agentsTotal": 12,
       "agents": [
         {
-          "id": "M-P5",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 1,
-          "worktree": "cernia-wt-r1-hext-a",
-          "recommendedModel": "sonnet",
-          "modelReason": "pricing-billing-logic"
-        },
-        {
           "id": "M-1A",
           "name": "pricing tiers",
           "status": "landed",
@@ -1535,6 +1521,13 @@
           "modelReason": "pricing-billing-logic"
         },
         {
+          "id": "M-P5",
+          "name": "trial to paid",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "pricing-billing-logic"
+        },
+        {
           "id": "M-1",
           "name": "pricing engine",
           "status": "failed",
@@ -1553,7 +1546,7 @@
       ],
       "knownAgentCount": 11,
       "pendingAgentCount": 1,
-      "completionPct": 75
+      "completionPct": 83
     },
     {
       "id": "N",
@@ -4699,6 +4692,13 @@
   ],
   "recentPrActivity": [
     {
+      "number": 99,
+      "title": "feat(m5-trial-conversion): trial lifecycle + activation + scoring + paywall + handoff (M-P5)",
+      "state": "OPEN",
+      "createdAt": "2026-05-22T19:32:08Z",
+      "mergedAt": null
+    },
+    {
       "number": 98,
       "title": "feat(patient-android): Expo SDK 52 Android scaffold + auth + FHIR + tabs + deep links + FCM (R-M2)",
       "state": "OPEN",
@@ -4794,13 +4794,6 @@
       "title": "feat(m3-stripe-invoice): invoice + tax + dunning (M-P3)",
       "state": "OPEN",
       "createdAt": "2026-05-22T00:57:20Z",
-      "mergedAt": null
-    },
-    {
-      "number": 84,
-      "title": "feat(o2-prompt-registry): managed clinical prompts (O-AI2)",
-      "state": "OPEN",
-      "createdAt": "2026-05-22T00:57:17Z",
       "mergedAt": null
     }
   ]
