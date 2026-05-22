@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T19:57:13.511Z",
-    "lastUpdatedDisplay": "May 22, 2026 — 15:57 EDT",
+    "lastUpdatedIso": "2026-05-22T19:50:04.083Z",
+    "lastUpdatedDisplay": "May 22, 2026 — 15:50 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 4/8 in flight (M-P6 I-S6 L-M5 W-E5) · last PR: #101 feat(o4-cost-tracking-budgets): per-tenant LLM cos"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "75 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "Pool 4/8 in flight (M-P6 I-S6 L-M5 W-E5) — 13 agents remaining to v3.0. Last PR: #101 feat(o4-cost-tracking-budgets): per-tenant LLM cost ledger +. (refreshed May 22, 2026 — 16:02 EDT)",
+    "strategy": "Pool 4/8 in flight (M-P6 I-S6 L-M5 W-E5) — 13 agents remaining to v3.0. Last PR: #101 feat(o4-cost-tracking-budgets): per-tenant LLM cost ledger +. (refreshed May 22, 2026 — 16:05 EDT)",
     "totalAgentsShipped": 515,
     "modelMix": {
       "haiku": 43,
@@ -35,12 +35,12 @@
       "label": "18/34 waves complete (53%)"
     },
     "packagesDelivered": {
-      "count": 372,
-      "emptyBranches": 101,
+      "count": 167,
+      "emptyBranches": 306,
       "target": 528,
-      "percent": 70,
+      "percent": 32,
       "filterThreshold": 5,
-      "label": "372/528 packages (70%), 101 empty scaffolds excluded"
+      "label": "167/528 packages (32%), 306 empty scaffolds excluded"
     },
     "pipeline": {
       "inflight": 4,
@@ -57,9 +57,9 @@
       "label": "765 test files landed · 0 active failures"
     },
     "velocity": {
-      "landedLastHour": 4,
+      "landedLastHour": 3,
       "landedLast24h": 15,
-      "label": "4 PRs opened in last hour · 15 in last 24h"
+      "label": "3 PRs opened in last hour · 15 in last 24h"
     },
     "integration": {
       "lastMergeIso": "2026-05-17T17:53:46-04:00",
@@ -530,7 +530,7 @@
       "recovery": "re-dispatched as M-1A with tighter scope; running in slot 1",
       "aged": true,
       "recovered": true,
-      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
+      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
     },
     {
       "agent": "W-1 email program",
@@ -585,7 +585,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
@@ -600,7 +600,7 @@
           "name": "a-w-a",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -609,7 +609,7 @@
           "name": "a-w-b",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -618,7 +618,7 @@
           "name": "security hardening",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         }
@@ -638,7 +638,7 @@
           "name": "testcontainers",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -647,7 +647,7 @@
           "name": "tenant invite",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -656,7 +656,7 @@
           "name": "connection ingestion",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -665,7 +665,7 @@
           "name": "eob export",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -674,7 +674,7 @@
           "name": "prov audit registry",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "opus",
           "modelReason": "safety-critical-content"
         },
@@ -683,7 +683,7 @@
           "name": "billing wiring",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -692,7 +692,7 @@
           "name": "patient swap",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -701,7 +701,7 @@
           "name": "store wiring",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -710,7 +710,7 @@
           "name": "admin top5 swap",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -719,7 +719,7 @@
           "name": "patient session",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -728,7 +728,7 @@
           "name": "missing fetchers",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -737,7 +737,7 @@
           "name": "pgmem testcontainers",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -746,7 +746,7 @@
           "name": "swr adoption",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -755,7 +755,7 @@
           "name": "saml redis hardening",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -764,7 +764,7 @@
           "name": "provenance hardfail",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -773,7 +773,7 @@
           "name": "issue sweep",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -782,7 +782,7 @@
           "name": "critical followups",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         }
@@ -802,7 +802,7 @@
           "name": "boot wiring",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -811,7 +811,7 @@
           "name": "portal link storage",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -820,7 +820,7 @@
           "name": "cluster",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -829,7 +829,7 @@
           "name": "redos vread",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -838,7 +838,7 @@
           "name": "notification adapter",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -847,7 +847,7 @@
           "name": "bulk export",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -856,7 +856,7 @@
           "name": "everything",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -865,7 +865,7 @@
           "name": "validation",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -874,7 +874,7 @@
           "name": "websocket subs",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -883,7 +883,7 @@
           "name": "epic adapter",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -892,7 +892,7 @@
           "name": "cerner adapter",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -901,7 +901,7 @@
           "name": "athena adapter",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -910,7 +910,7 @@
           "name": "portal link storage",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         }
@@ -930,7 +930,7 @@
           "name": "notify wiring",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -939,7 +939,7 @@
           "name": "provider availability",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -948,7 +948,7 @@
           "name": "admin scheduling ui",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -957,7 +957,7 @@
           "name": "patient slot picker",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -966,7 +966,7 @@
           "name": "appointment ops",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -975,7 +975,7 @@
           "name": "telephony",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -984,7 +984,7 @@
           "name": "speech",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -993,7 +993,7 @@
           "name": "voice dialog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1002,7 +1002,7 @@
           "name": "inbound call wiring",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1011,7 +1011,7 @@
           "name": "admin call logs",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         }
@@ -1031,7 +1031,7 @@
           "name": "integration",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "opus",
           "modelReason": "integration-or-recovery"
         },
@@ -1040,7 +1040,7 @@
           "name": "integration",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "opus",
           "modelReason": "integration-or-recovery"
         },
@@ -1049,7 +1049,7 @@
           "name": "integration",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "opus",
           "modelReason": "integration-or-recovery"
         },
@@ -1058,7 +1058,7 @@
           "name": "onboarding",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1067,7 +1067,7 @@
           "name": "cernia ops",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1076,7 +1076,7 @@
           "name": "provider lookups",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1085,7 +1085,7 @@
           "name": "office admin",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1094,7 +1094,7 @@
           "name": "voice metering",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1112,7 +1112,7 @@
           "name": "rag reviewer",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1121,7 +1121,7 @@
           "name": "voice appt mgmt",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1130,7 +1130,7 @@
           "name": "multi doctor",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1139,7 +1139,7 @@
           "name": "schedule import",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1148,7 +1148,7 @@
           "name": "voice payments",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1157,7 +1157,7 @@
           "name": "portal payments",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1166,7 +1166,7 @@
           "name": "spanish",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1175,7 +1175,7 @@
           "name": "voice persona",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1193,7 +1193,7 @@
           "name": "waitlist",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1202,7 +1202,7 @@
           "name": "triage",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1211,7 +1211,7 @@
           "name": "reminder cadence",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1220,7 +1220,7 @@
           "name": "post visit survey",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         }
@@ -1240,7 +1240,7 @@
           "name": "tenant brand",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1249,7 +1249,7 @@
           "name": "brand provider",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1258,7 +1258,7 @@
           "name": "brand assets",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1267,7 +1267,7 @@
           "name": "brand admin ui",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1276,7 +1276,7 @@
           "name": "integration",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "opus",
           "modelReason": "integration-or-recovery"
         },
@@ -1285,7 +1285,7 @@
           "name": "patient rebrand",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1294,7 +1294,7 @@
           "name": "admin rebrand",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1303,7 +1303,7 @@
           "name": "trust rebrand",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1312,7 +1312,7 @@
           "name": "login facility aware",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1321,7 +1321,7 @@
           "name": "email brand aware",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1330,7 +1330,7 @@
           "name": "sms brand aware",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1339,7 +1339,7 @@
           "name": "pdf brand aware",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1348,7 +1348,7 @@
           "name": "integration",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "opus",
           "modelReason": "integration-or-recovery"
         },
@@ -1357,7 +1357,7 @@
           "name": "voice persona",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1366,7 +1366,7 @@
           "name": "custom domain",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1375,7 +1375,7 @@
           "name": "smtp from address",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1384,7 +1384,7 @@
           "name": "integration",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "opus",
           "modelReason": "integration-or-recovery"
         }
@@ -1406,7 +1406,7 @@
           "name": "dnssec",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1415,7 +1415,7 @@
           "name": "caa",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1424,7 +1424,7 @@
           "name": "dmarc",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1433,7 +1433,7 @@
           "name": "bimi",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1442,7 +1442,7 @@
           "name": "mta sts",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1451,7 +1451,7 @@
           "name": "ct",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         }
@@ -1472,7 +1472,7 @@
           "name": "subdomain reservation",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1481,7 +1481,7 @@
           "name": "vanity hostnames",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1490,7 +1490,7 @@
           "name": "short url",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1499,7 +1499,7 @@
           "name": "subsub delegation",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         }
@@ -1844,7 +1844,7 @@
           "name": "ehr per tenant",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "ehr-interop"
         },
@@ -1853,7 +1853,7 @@
           "name": "ehr tenant router",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "ehr-interop"
         },
@@ -1862,7 +1862,7 @@
           "name": "ehr connector dispatcher",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "ehr-interop"
         },
@@ -1871,7 +1871,7 @@
           "name": "ehr field mapping",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "ehr-interop"
         },
@@ -1880,7 +1880,7 @@
           "name": "ehr connection health",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "ehr-interop"
         },
@@ -1889,7 +1889,7 @@
           "name": "ehr sync state machine",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "ehr-interop"
         },
@@ -1898,7 +1898,7 @@
           "name": "ehr webhook receiver",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "ehr-interop"
         },
@@ -1907,7 +1907,7 @@
           "name": "ehr rate limiter",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "ehr-interop"
         }
@@ -3637,7 +3637,7 @@
           "name": "revenue cycle foundation",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "revenue-cycle-workflow"
         },
@@ -3646,7 +3646,7 @@
           "name": "eob reconciler",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "revenue-cycle-workflow"
         },
@@ -3655,7 +3655,7 @@
           "name": "claims denial workflow",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "revenue-cycle-workflow"
         },
@@ -3664,7 +3664,7 @@
           "name": "prior auth workflow",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "revenue-cycle-workflow"
         },
@@ -3673,7 +3673,7 @@
           "name": "charge capture",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "revenue-cycle-workflow"
         },
@@ -3682,7 +3682,7 @@
           "name": "contractual rate adjudicator",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "revenue-cycle-workflow"
         },
@@ -3691,7 +3691,7 @@
           "name": "revenue cycle kpis",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "revenue-cycle-workflow"
         },
@@ -3700,7 +3700,7 @@
           "name": "underpayment recovery",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "opus",
           "modelReason": "integration-or-recovery"
         }
@@ -3721,7 +3721,7 @@
           "name": "services partners foundation",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "services-catalog"
         },
@@ -3730,7 +3730,7 @@
           "name": "services catalog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "static-data-catalog"
         },
@@ -3739,7 +3739,7 @@
           "name": "services extension",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "services-catalog"
         },
@@ -3748,7 +3748,7 @@
           "name": "partner certification",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "services-catalog"
         },
@@ -3757,7 +3757,7 @@
           "name": "partner deal reg",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "services-catalog"
         },
@@ -3766,7 +3766,7 @@
           "name": "partner feature gates",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "services-catalog"
         },
@@ -3775,7 +3775,7 @@
           "name": "partner enablement library",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "services-catalog"
         }
@@ -4014,7 +4014,7 @@
           "name": "security scanning",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "opus",
           "modelReason": "security-critical"
         },
@@ -4023,7 +4023,7 @@
           "name": "incident response",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "opus",
           "modelReason": "security-critical"
         },
@@ -4032,7 +4032,7 @@
           "name": "security policy bundles",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "opus",
           "modelReason": "security-critical"
         },
@@ -4041,7 +4041,7 @@
           "name": "secrets scanner",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "opus",
           "modelReason": "security-critical"
         },
@@ -4050,7 +4050,7 @@
           "name": "vuln scan ingester",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "opus",
           "modelReason": "security-critical"
         },
@@ -4059,7 +4059,7 @@
           "name": "audit tamper detector",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "opus",
           "modelReason": "security-critical"
         },
@@ -4068,7 +4068,7 @@
           "name": "pii detector",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "opus",
           "modelReason": "security-critical"
         },
@@ -4077,7 +4077,7 @@
           "name": "secret rotation tracker",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "opus",
           "modelReason": "security-critical"
         },
@@ -4086,7 +4086,7 @@
           "name": "cis benchmark profiler",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "opus",
           "modelReason": "security-critical"
         },
@@ -4095,7 +4095,7 @@
           "name": "sbom generator",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "opus",
           "modelReason": "security-critical"
         }
@@ -4116,7 +4116,7 @@
           "name": "product analytics",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "instrumentation-cs"
         },
@@ -4125,7 +4125,7 @@
           "name": "feature flags",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "instrumentation-cs"
         },
@@ -4134,7 +4134,7 @@
           "name": "nps csat",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "instrumentation-cs"
         },
@@ -4143,7 +4143,7 @@
           "name": "customer health score",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "instrumentation-cs"
         },
@@ -4152,7 +4152,7 @@
           "name": "onboarding milestones",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "instrumentation-cs"
         },
@@ -4161,7 +4161,7 @@
           "name": "cs task scheduler",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "instrumentation-cs"
         },
@@ -4170,7 +4170,7 @@
           "name": "in app nps widget state",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "instrumentation-cs"
         },
@@ -4179,7 +4179,7 @@
           "name": "churn analytics service",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "instrumentation-cs"
         }
@@ -4200,7 +4200,7 @@
           "name": "marketing campaign templates",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "static-data-catalog"
         },
@@ -4209,7 +4209,7 @@
           "name": "seo landing generator",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "marketing-content"
         },
@@ -4218,7 +4218,7 @@
           "name": "marketing attribution",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "marketing-content"
         },
@@ -4227,7 +4227,7 @@
           "name": "conversion funnel",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "marketing-content"
         },
@@ -4236,7 +4236,7 @@
           "name": "lead scoring",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "marketing-content"
         },
@@ -4245,7 +4245,7 @@
           "name": "churn signal aggregator",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "marketing-content"
         },
@@ -4254,7 +4254,7 @@
           "name": "product analytics events",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "marketing-content"
         },
@@ -4263,7 +4263,7 @@
           "name": "seo keyword tracker",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "marketing-content"
         },
@@ -4272,7 +4272,7 @@
           "name": "marketing scaffold",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "marketing-content"
         },
@@ -4281,7 +4281,7 @@
           "name": "cms adapter",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "marketing-content"
         }
@@ -4302,7 +4302,7 @@
           "name": "customer lifecycle",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "lifecycle-analytics"
         },
@@ -4311,7 +4311,7 @@
           "name": "renewal motion",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recovered": true,
           "recommendedModel": "haiku",
           "modelReason": "lifecycle-analytics"
@@ -4321,7 +4321,7 @@
           "name": "win back motion",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "lifecycle-analytics"
         },
@@ -4330,7 +4330,7 @@
           "name": "expansion playbook",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "lifecycle-analytics"
         },
@@ -4339,7 +4339,7 @@
           "name": "win loss analyzer",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "lifecycle-analytics"
         },
@@ -4348,7 +4348,7 @@
           "name": "nps retention plays",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "lifecycle-analytics"
         },
@@ -4357,7 +4357,7 @@
           "name": "qbr builder",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "lifecycle-analytics"
         },
@@ -4366,7 +4366,7 @@
           "name": "cs scorecard builder",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "lifecycle-analytics"
         },
@@ -4375,7 +4375,7 @@
           "name": "retention forecaster",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "lifecycle-analytics"
         },
@@ -4384,7 +4384,7 @@
           "name": "retention cohorts",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "haiku",
           "modelReason": "lifecycle-analytics"
         }
@@ -4405,7 +4405,7 @@
           "name": "multi currency foundation",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4414,7 +4414,7 @@
           "name": "v2 segment catalog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4423,7 +4423,7 @@
           "name": "loinc vital signs catalog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4432,7 +4432,7 @@
           "name": "eu mdr",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4441,7 +4441,7 @@
           "name": "uk nhs foundation",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4450,7 +4450,7 @@
           "name": "gdpr dsar engine",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4459,7 +4459,7 @@
           "name": "ccpa opt out engine",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4468,7 +4468,7 @@
           "name": "chapter index",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4477,7 +4477,7 @@
           "name": "au privacy act",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4486,7 +4486,7 @@
           "name": "br lgpd engine",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4495,7 +4495,7 @@
           "name": "sg pdpa engine",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4504,7 +4504,7 @@
           "name": "v2 message types",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4513,7 +4513,7 @@
           "name": "ca pipeda phipa",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4522,7 +4522,7 @@
           "name": "fhir r4 resource catalog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4531,7 +4531,7 @@
           "name": "jp appi engine",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4540,7 +4540,7 @@
           "name": "nucc taxonomy catalog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4549,7 +4549,7 @@
           "name": "cds hooks catalog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4558,7 +4558,7 @@
           "name": "export control screener",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4567,7 +4567,7 @@
           "name": "loinc top categories",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4576,7 +4576,7 @@
           "name": "coppa engine",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4585,7 +4585,7 @@
           "name": "eu ai act classifier",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4594,7 +4594,7 @@
           "name": "claim form catalog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4603,7 +4603,7 @@
           "name": "npi validator",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4612,7 +4612,7 @@
           "name": "control catalog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4621,7 +4621,7 @@
           "name": "hedis measure catalog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4630,7 +4630,7 @@
           "name": "fhir operation catalog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4639,7 +4639,7 @@
           "name": "us geo catalog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4648,7 +4648,7 @@
           "name": "fhir valueset bindings",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4657,7 +4657,7 @@
           "name": "medication dosing calc",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4666,7 +4666,7 @@
           "name": "webhook signature catalog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4675,7 +4675,7 @@
           "name": "rxnorm dose forms",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4684,7 +4684,7 @@
           "name": "ihe profiles catalog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4693,7 +4693,7 @@
           "name": "scope catalog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4702,7 +4702,7 @@
           "name": "saml attribute mapping",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4711,7 +4711,7 @@
           "name": "pci dss control catalog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4720,7 +4720,7 @@
           "name": "owasp top10 catalog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4729,7 +4729,7 @@
           "name": "nist csf catalog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4738,7 +4738,7 @@
           "name": "gdpr ropa catalog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4747,7 +4747,7 @@
           "name": "openapi patterns",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4756,7 +4756,7 @@
           "name": "wcag catalog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4765,7 +4765,7 @@
           "name": "healthcare event catalog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4783,7 +4783,7 @@
           "name": "healthcare data formats",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4792,7 +4792,7 @@
           "name": "smart app launch",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4801,7 +4801,7 @@
           "name": "compliance crosswalk",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4810,7 +4810,7 @@
           "name": "api versioning patterns",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4828,7 +4828,7 @@
           "name": "patient consent catalog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4837,7 +4837,7 @@
           "name": "audit log schema",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "opus",
           "modelReason": "safety-critical-content"
         },
@@ -4846,7 +4846,7 @@
           "name": "claim adjustment codes",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4855,7 +4855,7 @@
           "name": "healthcare workflow triggers",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4873,7 +4873,7 @@
           "name": "quality measure types",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4882,7 +4882,7 @@
           "name": "patient identifier types",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4891,7 +4891,7 @@
           "name": "telehealth modality catalog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4900,7 +4900,7 @@
           "name": "v2 ack codes",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
@@ -4909,7 +4909,7 @@
           "name": "healthcare risk scores",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": true,
+          "isRealPackage": false,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
         },
