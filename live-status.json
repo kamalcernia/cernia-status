@@ -1,19 +1,19 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T01:15:43.304Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 21:15 EDT",
-    "modelSummary": "TIER 0 · Pool 8/8 · 457/518 pushed (88%) · 61 to go · 20 PRs #71-90 · K-R3 just landed"
+    "lastUpdatedIso": "2026-05-22T01:24:28.647Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 21:24 EDT",
+    "modelSummary": "TIER 0 · Pool 8/8 · 458/518 pushed (88%) · 60 to go · 21 PRs #71-91 · 3,199 cumulative tests"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 61,
+    "agentsRemainingToV30": 60,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
     "strategy": "TIER 0 · 11 product features landed this session (PRs #71-81). Honest count: 448/518 pushed (86%) · 0 PRs merged to main · 81 PRs open. Pool 8/8.",
-    "totalAgentsShipped": 457,
+    "totalAgentsShipped": 458,
     "modelMix": {
       "haiku": 43,
       "sonnet": 447,
@@ -24,7 +24,7 @@
       "sonnet": 76,
       "opus": 1
     },
-    "v30Status": "457/518 (88%, 61 to go)",
+    "v30Status": "458/518 (88%, 60 to go)",
     "v30Target": 518
   },
   "pool": {
@@ -37,10 +37,10 @@
         "worktree": "cernia-wt-r1-hext-a",
         "status": "running",
         "agent": {
-          "taskId": "M-P4",
-          "agentId": "a7c03afaf92bd2c99",
-          "task": "contract enforcement + seats + features + ceilings + BAA + geo + amendments",
-          "writableSet": "packages/m4-contract-enforcement/**"
+          "taskId": "M-P5",
+          "agentId": "PENDING_M_P5",
+          "task": "trial to paid funnel + activation tracking + paywalls + sales plays + upgrade flow",
+          "writableSet": "packages/m5-trial-conversion/**"
         }
       },
       {
@@ -1480,8 +1480,8 @@
         },
         {
           "id": "M-P4",
-          "name": "contract enforcement + seat limits",
-          "status": "pending",
+          "name": "contract enforcement + seats + features + BAA + geo + amendments (PR #91, 182 tests)",
+          "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 4
