@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T00:37:21.290Z",
+    "lastUpdatedIso": "2026-05-22T00:37:35.629Z",
     "lastUpdatedDisplay": "May 21, 2026 — 20:37 EDT",
     "modelSummary": "TIER 0 · Pool 7/8 · 443/518 pushed (86%) · 75 to go · 0 PRs merged · 78 PRs open · K-R1 #76, L-M1 #75 just landed"
   },
@@ -38,7 +38,7 @@
         "status": "running",
         "agent": {
           "taskId": "M-P3",
-          "agentId": "PLACEHOLDER_M_P3",
+          "agentId": "aa967eec89beab3a6",
           "task": "Stripe invoice composer + proration + Stripe Tax + dunning hand-off",
           "writableSet": "packages/m3-stripe-invoice/**"
         }
@@ -93,7 +93,7 @@
         "status": "running",
         "agent": {
           "taskId": "I-S3",
-          "agentId": "PLACEHOLDER_I_S3",
+          "agentId": "a6a3963d6f0f109d2",
           "task": "knowledge base + AI-suggested replies + auto-classifier + feedback loop",
           "writableSet": "packages/i3-kb-ai-replies/**"
         }
