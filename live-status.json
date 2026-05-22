@@ -1,30 +1,30 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-21T23:46:28.235Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 19:46 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 8/8 in flight (M-P1 W-E1 CC-125 O-AI1 L-M1 CC-122 R-M1 F-B1) · last: switch to jsDelivr CDN — raw.githubusercontent.com (76989fcb)"
+    "lastUpdatedIso": "2026-05-22T00:06:37.629Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 20:06 EDT",
+    "modelSummary": "TIER 0 · Pool 8/8 (M-P1 W-E1 K-R1 O-AI1 L-M1 I-S1 R-M1 F-B1) · 437/518 landed (84%) · 81 to go"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 35,
+    "agentsRemainingToV30": 81,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 restored. Smaller-brief discipline maintained. 4 milestone tags + 42 commits landed. W/X/I/M waves all recovered. (refreshed May 21, 2026 — 19:46 EDT · pool 8/8)",
-    "totalAgentsShipped": 483,
+    "strategy": "TIER 0 · Honest accounting restored — 80 specced product features in pipeline. 8 in-flight (M-P1 W-E1 K-R1 O-AI1 L-M1 I-S1 R-M1 F-B1) · 72 product-feature placeholders renamed from generic ?N to concrete specs (K-R1 admin matrix, J-W1 marketplace API, etc.). W-E1 PR #71 open. (refreshed May 21, 2026, 20:06 EDT)",
+    "totalAgentsShipped": 437,
     "modelMix": {
       "haiku": 43,
-      "sonnet": 442,
-      "opus": 33
+      "sonnet": 447,
+      "opus": 28
     },
     "modelMixActive": {
       "haiku": 0,
-      "sonnet": 76,
-      "opus": 6
+      "sonnet": 79,
+      "opus": 1
     },
-    "v30Status": "483/518 (93%, 35 to go)",
+    "v30Status": "437/518 (84%, 81 to go)",
     "v30Target": 518
   },
   "pool": {
@@ -92,10 +92,10 @@
         "worktree": "cernia-wt-r1-s-dicom",
         "status": "running",
         "agent": {
-          "taskId": "CC-122",
-          "agentId": "afef9570610dc2c4b",
-          "task": "CMS CoPs hospital+SNF+HHA+hospice+ASC+ESRD compliance FHIR (sonnet)",
-          "writableSet": "packages/catalog-cms-cop/**"
+          "taskId": "I-S1",
+          "agentId": "ae2bef6b74888e288",
+          "task": "B2B support ticket model + intake + SLA + dashboards (I wave)",
+          "writableSet": "packages/support-tickets/**"
         }
       },
       {
@@ -1271,44 +1271,44 @@
           "modelReason": "multi-org-hierarchy"
         },
         {
-          "id": "L-?1",
-          "name": "pending agent (slot 1 in dispatch queue)",
+          "id": "L-M2",
+          "name": "IDN hierarchy + facility roll-up",
           "status": "pending",
-          "activationPosition": 1,
           "recommendedModel": "sonnet",
-          "modelReason": "multi-org-hierarchy"
+          "modelReason": "feature-default",
+          "activationPosition": 2
         },
         {
-          "id": "L-?2",
-          "name": "pending agent (slot 2 in dispatch queue)",
+          "id": "L-M3",
+          "name": "cross-org reporting + isolation",
           "status": "pending",
-          "activationPosition": 2,
           "recommendedModel": "sonnet",
-          "modelReason": "multi-org-hierarchy"
+          "modelReason": "feature-default",
+          "activationPosition": 3
         },
         {
-          "id": "L-?3",
-          "name": "pending agent (slot 3 in dispatch queue)",
+          "id": "L-M4",
+          "name": "user cross-org assignments + scoping",
           "status": "pending",
-          "activationPosition": 3,
           "recommendedModel": "sonnet",
-          "modelReason": "multi-org-hierarchy"
+          "modelReason": "feature-default",
+          "activationPosition": 4
         },
         {
-          "id": "L-?4",
-          "name": "pending agent (slot 4 in dispatch queue)",
+          "id": "L-M5",
+          "name": "financial roll-up + chargeback",
           "status": "pending",
-          "activationPosition": 4,
           "recommendedModel": "sonnet",
-          "modelReason": "multi-org-hierarchy"
+          "modelReason": "feature-default",
+          "activationPosition": 5
         },
         {
-          "id": "L-?5",
-          "name": "pending agent (slot 5 in dispatch queue)",
+          "id": "L-M6",
+          "name": "access control inheritance + override",
           "status": "pending",
-          "activationPosition": 5,
           "recommendedModel": "sonnet",
-          "modelReason": "multi-org-hierarchy"
+          "modelReason": "feature-default",
+          "activationPosition": 6
         }
       ],
       "knownAgentCount": 6,
@@ -1351,51 +1351,52 @@
           "modelReason": "default"
         },
         {
-          "id": "K-?1",
-          "name": "pending agent (slot 6 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 6,
+          "id": "K-R1",
+          "name": "admin role matrix UI",
+          "status": "in-flight",
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 1
         },
         {
-          "id": "K-?2",
-          "name": "pending agent (slot 7 in dispatch queue)",
+          "id": "K-R2",
+          "name": "role assignment + bulk workflow",
           "status": "pending",
-          "activationPosition": 7,
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 2
         },
         {
-          "id": "K-?3",
-          "name": "pending agent (slot 8 in dispatch queue)",
+          "id": "K-R3",
+          "name": "role-aware navigation + page-level RBAC",
           "status": "pending",
-          "activationPosition": 8,
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 3
         },
         {
-          "id": "K-?4",
-          "name": "pending agent (slot 9 in dispatch queue)",
+          "id": "K-R4",
+          "name": "audit log for role changes",
           "status": "pending",
-          "activationPosition": 9,
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 4
         },
         {
-          "id": "K-?5",
-          "name": "pending agent (slot 10 in dispatch queue)",
+          "id": "K-R5",
+          "name": "specialty role templates",
           "status": "pending",
-          "activationPosition": 10,
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 5
         },
         {
-          "id": "K-…",
-          "name": "+ 1 more pending (later in queue)",
+          "id": "K-R6",
+          "name": "break-glass emergency access w/ audit",
           "status": "pending",
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 6
         }
       ],
       "knownAgentCount": 4,
@@ -1462,44 +1463,44 @@
           "modelReason": "state-machine-or-engine"
         },
         {
-          "id": "M-?1",
-          "name": "pending agent (slot 12 in dispatch queue)",
+          "id": "M-P2",
+          "name": "metered usage tracker (events + tokens)",
           "status": "pending",
-          "activationPosition": 12,
           "recommendedModel": "sonnet",
-          "modelReason": "pricing-billing-logic"
+          "modelReason": "feature-default",
+          "activationPosition": 2
         },
         {
-          "id": "M-?2",
-          "name": "pending agent (slot 13 in dispatch queue)",
+          "id": "M-P3",
+          "name": "Stripe invoice generator + tax",
           "status": "pending",
-          "activationPosition": 13,
           "recommendedModel": "sonnet",
-          "modelReason": "pricing-billing-logic"
+          "modelReason": "feature-default",
+          "activationPosition": 3
         },
         {
-          "id": "M-?3",
-          "name": "pending agent (slot 14 in dispatch queue)",
+          "id": "M-P4",
+          "name": "contract enforcement + seat limits",
           "status": "pending",
-          "activationPosition": 14,
           "recommendedModel": "sonnet",
-          "modelReason": "pricing-billing-logic"
+          "modelReason": "feature-default",
+          "activationPosition": 4
         },
         {
-          "id": "M-?4",
-          "name": "pending agent (slot 15 in dispatch queue)",
+          "id": "M-P5",
+          "name": "trial to paid conversion flow",
           "status": "pending",
-          "activationPosition": 15,
           "recommendedModel": "sonnet",
-          "modelReason": "pricing-billing-logic"
+          "modelReason": "feature-default",
+          "activationPosition": 5
         },
         {
-          "id": "M-?5",
-          "name": "pending agent (slot 16 in dispatch queue)",
+          "id": "M-P6",
+          "name": "enterprise SSO + billing tie-in",
           "status": "pending",
-          "activationPosition": 16,
           "recommendedModel": "sonnet",
-          "modelReason": "pricing-billing-logic"
+          "modelReason": "feature-default",
+          "activationPosition": 6
         }
       ],
       "knownAgentCount": 7,
@@ -1640,44 +1641,44 @@
           "modelReason": "customer-billing"
         },
         {
-          "id": "F-?1",
-          "name": "pending agent (slot 17 in dispatch queue)",
+          "id": "F-B2",
+          "name": "alert notification queue + delivery",
           "status": "pending",
-          "activationPosition": 17,
           "recommendedModel": "sonnet",
-          "modelReason": "customer-billing"
+          "modelReason": "feature-default",
+          "activationPosition": 2
         },
         {
-          "id": "F-?2",
-          "name": "pending agent (slot 18 in dispatch queue)",
+          "id": "F-B3",
+          "name": "dunning workflow w/ stripe",
           "status": "pending",
-          "activationPosition": 18,
           "recommendedModel": "sonnet",
-          "modelReason": "customer-billing"
+          "modelReason": "feature-default",
+          "activationPosition": 3
         },
         {
-          "id": "F-?3",
-          "name": "pending agent (slot 19 in dispatch queue)",
+          "id": "F-B4",
+          "name": "payment retry + smart recovery",
           "status": "pending",
-          "activationPosition": 19,
           "recommendedModel": "sonnet",
-          "modelReason": "customer-billing"
+          "modelReason": "feature-default",
+          "activationPosition": 4
         },
         {
-          "id": "F-?4",
-          "name": "pending agent (slot 20 in dispatch queue)",
+          "id": "F-B5",
+          "name": "grace period + auto-suspend mgmt",
           "status": "pending",
-          "activationPosition": 20,
           "recommendedModel": "sonnet",
-          "modelReason": "customer-billing"
+          "modelReason": "feature-default",
+          "activationPosition": 5
         },
         {
-          "id": "F-?5",
-          "name": "pending agent (slot 21 in dispatch queue)",
+          "id": "F-B6",
+          "name": "churn-risk scoring + CSM alerts",
           "status": "pending",
-          "activationPosition": 21,
           "recommendedModel": "sonnet",
-          "modelReason": "customer-billing"
+          "modelReason": "feature-default",
+          "activationPosition": 6
         }
       ],
       "knownAgentCount": 8,
@@ -1727,51 +1728,52 @@
           "modelReason": "delegation-access"
         },
         {
-          "id": "G-?1",
-          "name": "pending agent (slot 22 in dispatch queue)",
+          "id": "G-D1",
+          "name": "permission delegation engine + audit",
           "status": "pending",
-          "activationPosition": 22,
           "recommendedModel": "sonnet",
-          "modelReason": "delegation-access"
+          "modelReason": "feature-default",
+          "activationPosition": 1
         },
         {
-          "id": "G-?2",
-          "name": "pending agent (slot 23 in dispatch queue)",
+          "id": "G-D2",
+          "name": "account ownership transfer workflow",
           "status": "pending",
-          "activationPosition": 23,
           "recommendedModel": "sonnet",
-          "modelReason": "delegation-access"
+          "modelReason": "feature-default",
+          "activationPosition": 2
         },
         {
-          "id": "G-?3",
-          "name": "pending agent (slot 24 in dispatch queue)",
+          "id": "G-D3",
+          "name": "sub-account creation + nesting",
           "status": "pending",
-          "activationPosition": 24,
           "recommendedModel": "sonnet",
-          "modelReason": "delegation-access"
+          "modelReason": "feature-default",
+          "activationPosition": 3
         },
         {
-          "id": "G-?4",
-          "name": "pending agent (slot 25 in dispatch queue)",
+          "id": "G-D4",
+          "name": "time-bounded delegation + auto-expiry",
           "status": "pending",
-          "activationPosition": 25,
           "recommendedModel": "sonnet",
-          "modelReason": "delegation-access"
+          "modelReason": "feature-default",
+          "activationPosition": 4
         },
         {
-          "id": "G-?5",
-          "name": "pending agent (slot 26 in dispatch queue)",
+          "id": "G-D5",
+          "name": "delegation revocation + cascade",
           "status": "pending",
-          "activationPosition": 26,
           "recommendedModel": "sonnet",
-          "modelReason": "delegation-access"
+          "modelReason": "feature-default",
+          "activationPosition": 5
         },
         {
-          "id": "G-…",
-          "name": "+ 1 more pending (later in queue)",
+          "id": "G-D6",
+          "name": "cross-org delegation w/ HIPAA BAA",
           "status": "pending",
           "recommendedModel": "sonnet",
-          "modelReason": "delegation-access"
+          "modelReason": "feature-default",
+          "activationPosition": 6
         }
       ],
       "knownAgentCount": 5,
@@ -1807,51 +1809,52 @@
           "modelReason": "default"
         },
         {
-          "id": "I-?1",
-          "name": "pending agent (slot 28 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 28,
+          "id": "I-S1",
+          "name": "ticket model + intake from email/portal",
+          "status": "in-flight",
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 1
         },
         {
-          "id": "I-?2",
-          "name": "pending agent (slot 29 in dispatch queue)",
+          "id": "I-S2",
+          "name": "SLA tracking + escalation policy",
           "status": "pending",
-          "activationPosition": 29,
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 2
         },
         {
-          "id": "I-?3",
-          "name": "pending agent (slot 30 in dispatch queue)",
+          "id": "I-S3",
+          "name": "knowledge base + AI-suggested replies",
           "status": "pending",
-          "activationPosition": 30,
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 3
         },
         {
-          "id": "I-?4",
-          "name": "pending agent (slot 31 in dispatch queue)",
+          "id": "I-S4",
+          "name": "customer-facing support dashboard",
           "status": "pending",
-          "activationPosition": 31,
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 4
         },
         {
-          "id": "I-?5",
-          "name": "pending agent (slot 32 in dispatch queue)",
+          "id": "I-S5",
+          "name": "internal CSM workspace + queue",
           "status": "pending",
-          "activationPosition": 32,
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 5
         },
         {
-          "id": "I-…",
-          "name": "+ 1 more pending (later in queue)",
+          "id": "I-S6",
+          "name": "enterprise account mgmt + health scores",
           "status": "pending",
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 6
         }
       ],
       "knownAgentCount": 3,
@@ -1908,51 +1911,52 @@
           "modelReason": "state-machine-or-engine"
         },
         {
-          "id": "J-?1",
-          "name": "pending agent (slot 34 in dispatch queue)",
+          "id": "J-W1",
+          "name": "marketplace catalog API + search",
           "status": "pending",
-          "activationPosition": 34,
           "recommendedModel": "sonnet",
-          "modelReason": "workflow-platform"
+          "modelReason": "feature-default",
+          "activationPosition": 1
         },
         {
-          "id": "J-?2",
-          "name": "pending agent (slot 35 in dispatch queue)",
+          "id": "J-W2",
+          "name": "workflow publishing + sandbox preview",
           "status": "pending",
-          "activationPosition": 35,
           "recommendedModel": "sonnet",
-          "modelReason": "workflow-platform"
+          "modelReason": "feature-default",
+          "activationPosition": 2
         },
         {
-          "id": "J-?3",
-          "name": "pending agent (slot 36 in dispatch queue)",
+          "id": "J-W3",
+          "name": "workflow versioning + semver",
           "status": "pending",
-          "activationPosition": 36,
           "recommendedModel": "sonnet",
-          "modelReason": "workflow-platform"
+          "modelReason": "feature-default",
+          "activationPosition": 3
         },
         {
-          "id": "J-?4",
-          "name": "pending agent (slot 37 in dispatch queue)",
+          "id": "J-W4",
+          "name": "install/uninstall + dependency check",
           "status": "pending",
-          "activationPosition": 37,
           "recommendedModel": "sonnet",
-          "modelReason": "workflow-platform"
+          "modelReason": "feature-default",
+          "activationPosition": 4
         },
         {
-          "id": "J-?5",
-          "name": "pending agent (slot 38 in dispatch queue)",
+          "id": "J-W5",
+          "name": "ratings + reviews + curation",
           "status": "pending",
-          "activationPosition": 38,
           "recommendedModel": "sonnet",
-          "modelReason": "workflow-platform"
+          "modelReason": "feature-default",
+          "activationPosition": 5
         },
         {
-          "id": "J-…",
-          "name": "+ 1 more pending (later in queue)",
+          "id": "J-W6",
+          "name": "revenue share + creator payout",
           "status": "pending",
           "recommendedModel": "sonnet",
-          "modelReason": "workflow-platform"
+          "modelReason": "feature-default",
+          "activationPosition": 6
         }
       ],
       "knownAgentCount": 6,
@@ -2025,44 +2029,44 @@
           "modelReason": "ai-safety-critical"
         },
         {
-          "id": "O-?1",
-          "name": "pending agent (slot 40 in dispatch queue)",
+          "id": "O-AI2",
+          "name": "prompt template registry + versioning",
           "status": "pending",
-          "activationPosition": 40,
-          "recommendedModel": "opus",
-          "modelReason": "ai-safety-critical"
+          "recommendedModel": "sonnet",
+          "modelReason": "feature-default",
+          "activationPosition": 2
         },
         {
-          "id": "O-?2",
-          "name": "pending agent (slot 41 in dispatch queue)",
+          "id": "O-AI3",
+          "name": "model routing + fallback",
           "status": "pending",
-          "activationPosition": 41,
-          "recommendedModel": "opus",
-          "modelReason": "ai-safety-critical"
+          "recommendedModel": "sonnet",
+          "modelReason": "feature-default",
+          "activationPosition": 3
         },
         {
-          "id": "O-?3",
-          "name": "pending agent (slot 42 in dispatch queue)",
+          "id": "O-AI4",
+          "name": "cost tracking + budget alerts",
           "status": "pending",
-          "activationPosition": 42,
-          "recommendedModel": "opus",
-          "modelReason": "ai-safety-critical"
+          "recommendedModel": "sonnet",
+          "modelReason": "feature-default",
+          "activationPosition": 4
         },
         {
-          "id": "O-?4",
-          "name": "pending agent (slot 43 in dispatch queue)",
+          "id": "O-AI5",
+          "name": "PII/PHI redaction pre-prompt",
           "status": "pending",
-          "activationPosition": 43,
-          "recommendedModel": "opus",
-          "modelReason": "ai-safety-critical"
+          "recommendedModel": "sonnet",
+          "modelReason": "feature-default",
+          "activationPosition": 5
         },
         {
-          "id": "O-?5",
-          "name": "pending agent (slot 44 in dispatch queue)",
+          "id": "O-AI6",
+          "name": "safety filter + audit trail",
           "status": "pending",
-          "activationPosition": 44,
-          "recommendedModel": "opus",
-          "modelReason": "ai-safety-critical"
+          "recommendedModel": "sonnet",
+          "modelReason": "feature-default",
+          "activationPosition": 6
         }
       ],
       "knownAgentCount": 8,
@@ -2126,51 +2130,52 @@
           "modelReason": "ml-platform"
         },
         {
-          "id": "P-?1",
-          "name": "pending agent (slot 45 in dispatch queue)",
+          "id": "P-M1",
+          "name": "model registry + version pinning",
           "status": "pending",
-          "activationPosition": 45,
           "recommendedModel": "sonnet",
-          "modelReason": "ml-platform"
+          "modelReason": "feature-default",
+          "activationPosition": 1
         },
         {
-          "id": "P-?2",
-          "name": "pending agent (slot 46 in dispatch queue)",
+          "id": "P-M2",
+          "name": "drag-drop pipeline builder UI",
           "status": "pending",
-          "activationPosition": 46,
           "recommendedModel": "sonnet",
-          "modelReason": "ml-platform"
+          "modelReason": "feature-default",
+          "activationPosition": 2
         },
         {
-          "id": "P-?3",
-          "name": "pending agent (slot 47 in dispatch queue)",
+          "id": "P-M3",
+          "name": "dataset versioning + lineage",
           "status": "pending",
-          "activationPosition": 47,
           "recommendedModel": "sonnet",
-          "modelReason": "ml-platform"
+          "modelReason": "feature-default",
+          "activationPosition": 3
         },
         {
-          "id": "P-?4",
-          "name": "pending agent (slot 48 in dispatch queue)",
+          "id": "P-M4",
+          "name": "training job orchestration",
           "status": "pending",
-          "activationPosition": 48,
           "recommendedModel": "sonnet",
-          "modelReason": "ml-platform"
+          "modelReason": "feature-default",
+          "activationPosition": 4
         },
         {
-          "id": "P-?5",
-          "name": "pending agent (slot 49 in dispatch queue)",
+          "id": "P-M5",
+          "name": "model eval + A/B comparison",
           "status": "pending",
-          "activationPosition": 49,
           "recommendedModel": "sonnet",
-          "modelReason": "ml-platform"
+          "modelReason": "feature-default",
+          "activationPosition": 5
         },
         {
-          "id": "P-…",
-          "name": "+ 1 more pending (later in queue)",
+          "id": "P-M6",
+          "name": "one-click deployment + rollback",
           "status": "pending",
           "recommendedModel": "sonnet",
-          "modelReason": "ml-platform"
+          "modelReason": "feature-default",
+          "activationPosition": 6
         }
       ],
       "knownAgentCount": 7,
@@ -2213,51 +2218,52 @@
           "modelReason": "telehealth-clinical"
         },
         {
-          "id": "Q-?1",
-          "name": "pending agent (slot 51 in dispatch queue)",
+          "id": "Q-T1",
+          "name": "video session orchestration (Twilio/Daily)",
           "status": "pending",
-          "activationPosition": 51,
           "recommendedModel": "sonnet",
-          "modelReason": "telehealth-clinical"
+          "modelReason": "feature-default",
+          "activationPosition": 1
         },
         {
-          "id": "Q-?2",
-          "name": "pending agent (slot 52 in dispatch queue)",
+          "id": "Q-T2",
+          "name": "BYOD device pairing + Bluetooth",
           "status": "pending",
-          "activationPosition": 52,
           "recommendedModel": "sonnet",
-          "modelReason": "telehealth-clinical"
+          "modelReason": "feature-default",
+          "activationPosition": 2
         },
         {
-          "id": "Q-?3",
-          "name": "pending agent (slot 53 in dispatch queue)",
+          "id": "Q-T3",
+          "name": "RPM data ingestion (BP, glucose, SpO2)",
           "status": "pending",
-          "activationPosition": 53,
           "recommendedModel": "sonnet",
-          "modelReason": "telehealth-clinical"
+          "modelReason": "feature-default",
+          "activationPosition": 3
         },
         {
-          "id": "Q-?4",
-          "name": "pending agent (slot 54 in dispatch queue)",
+          "id": "Q-T4",
+          "name": "RPM alert + escalation rules",
           "status": "pending",
-          "activationPosition": 54,
           "recommendedModel": "sonnet",
-          "modelReason": "telehealth-clinical"
+          "modelReason": "feature-default",
+          "activationPosition": 4
         },
         {
-          "id": "Q-?5",
-          "name": "pending agent (slot 55 in dispatch queue)",
+          "id": "Q-T5",
+          "name": "CPT 99453/99454/99457 RPM billing",
           "status": "pending",
-          "activationPosition": 55,
           "recommendedModel": "sonnet",
-          "modelReason": "telehealth-clinical"
+          "modelReason": "feature-default",
+          "activationPosition": 5
         },
         {
-          "id": "Q-…",
-          "name": "+ 1 more pending (later in queue)",
+          "id": "Q-T6",
+          "name": "patient-facing RPM app screens",
           "status": "pending",
           "recommendedModel": "sonnet",
-          "modelReason": "telehealth-clinical"
+          "modelReason": "feature-default",
+          "activationPosition": 6
         }
       ],
       "knownAgentCount": 4,
@@ -2903,36 +2909,36 @@
           "modelReason": "mobile-platform"
         },
         {
-          "id": "R-?1",
-          "name": "pending agent (slot 57 in dispatch queue)",
+          "id": "R-M2",
+          "name": "Android patient app foundation",
           "status": "pending",
-          "activationPosition": 57,
           "recommendedModel": "sonnet",
-          "modelReason": "mobile-platform"
+          "modelReason": "feature-default",
+          "activationPosition": 2
         },
         {
-          "id": "R-?2",
-          "name": "pending agent (slot 58 in dispatch queue)",
+          "id": "R-M3",
+          "name": "push notifications (APNs + FCM)",
           "status": "pending",
-          "activationPosition": 58,
           "recommendedModel": "sonnet",
-          "modelReason": "mobile-platform"
+          "modelReason": "feature-default",
+          "activationPosition": 3
         },
         {
-          "id": "R-?3",
-          "name": "pending agent (slot 59 in dispatch queue)",
+          "id": "R-M4",
+          "name": "biometric auth (Face/Touch)",
           "status": "pending",
-          "activationPosition": 59,
           "recommendedModel": "sonnet",
-          "modelReason": "mobile-platform"
+          "modelReason": "feature-default",
+          "activationPosition": 4
         },
         {
-          "id": "R-?4",
-          "name": "pending agent (slot 60 in dispatch queue)",
+          "id": "R-M5",
+          "name": "offline mode + sync",
           "status": "pending",
-          "activationPosition": 60,
           "recommendedModel": "sonnet",
-          "modelReason": "mobile-platform"
+          "modelReason": "feature-default",
+          "activationPosition": 5
         }
       ],
       "knownAgentCount": 8,
@@ -2975,36 +2981,36 @@
           "modelReason": "default"
         },
         {
-          "id": "S-?1",
-          "name": "pending agent (slot 61 in dispatch queue)",
+          "id": "S-L1",
+          "name": "Quest/LabCorp HL7 adapter",
           "status": "pending",
-          "activationPosition": 61,
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 1
         },
         {
-          "id": "S-?2",
-          "name": "pending agent (slot 62 in dispatch queue)",
+          "id": "S-L2",
+          "name": "imaging center HL7/DICOM ingest",
           "status": "pending",
-          "activationPosition": 62,
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 2
         },
         {
-          "id": "S-?3",
-          "name": "pending agent (slot 63 in dispatch queue)",
+          "id": "S-L3",
+          "name": "DICOM forwarding + thumbnail gen",
           "status": "pending",
-          "activationPosition": 63,
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 3
         },
         {
-          "id": "S-?4",
-          "name": "pending agent (slot 64 in dispatch queue)",
+          "id": "S-L4",
+          "name": "lab result auto-import + flagging",
           "status": "pending",
-          "activationPosition": 64,
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 4
         }
       ],
       "knownAgentCount": 4,
@@ -3149,7 +3155,7 @@
       "agents": [
         {
           "id": "W-E1",
-          "name": "(running — branch not yet pushed)",
+          "name": "transactional email service (SES/SendGrid/Postmark/Mailgun)",
           "status": "in-flight",
           "slot": 2,
           "worktree": "cernia-wt-r1-hext-b",
@@ -3171,36 +3177,36 @@
           "modelReason": "default"
         },
         {
-          "id": "W-?1",
-          "name": "pending agent (slot 65 in dispatch queue)",
+          "id": "W-E2",
+          "name": "email template engine + i18n",
           "status": "pending",
-          "activationPosition": 65,
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 2
         },
         {
-          "id": "W-?2",
-          "name": "pending agent (slot 66 in dispatch queue)",
+          "id": "W-E3",
+          "name": "deliverability + reputation monitoring",
           "status": "pending",
-          "activationPosition": 66,
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 3
         },
         {
-          "id": "W-?3",
-          "name": "pending agent (slot 67 in dispatch queue)",
+          "id": "W-E4",
+          "name": "unsubscribe + preferences + GDPR",
           "status": "pending",
-          "activationPosition": 67,
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 4
         },
         {
-          "id": "W-?4",
-          "name": "pending agent (slot 68 in dispatch queue)",
+          "id": "W-E5",
+          "name": "marketing pipeline + segmentation",
           "status": "pending",
-          "activationPosition": 68,
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 5
         }
       ],
       "knownAgentCount": 3,
@@ -3283,51 +3289,52 @@
           "modelReason": "default"
         },
         {
-          "id": "X-?1",
-          "name": "pending agent (slot 69 in dispatch queue)",
+          "id": "X-B1",
+          "name": "finance + AR aging dashboard",
           "status": "pending",
-          "activationPosition": 69,
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 1
         },
         {
-          "id": "X-?2",
-          "name": "pending agent (slot 70 in dispatch queue)",
+          "id": "X-B2",
+          "name": "contract management DB + e-sign",
           "status": "pending",
-          "activationPosition": 70,
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 2
         },
         {
-          "id": "X-?3",
-          "name": "pending agent (slot 71 in dispatch queue)",
+          "id": "X-B3",
+          "name": "employee directory + HR basics",
           "status": "pending",
-          "activationPosition": 71,
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 3
         },
         {
-          "id": "X-?4",
-          "name": "pending agent (slot 72 in dispatch queue)",
+          "id": "X-B4",
+          "name": "employee onboarding workflow",
           "status": "pending",
-          "activationPosition": 72,
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 4
         },
         {
-          "id": "X-?5",
-          "name": "pending agent (slot 73 in dispatch queue)",
+          "id": "X-B5",
+          "name": "internal BI reporting + KPI dash",
           "status": "pending",
-          "activationPosition": 73,
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 5
         },
         {
-          "id": "X-…",
-          "name": "+ 1 more pending (later in queue)",
+          "id": "X-B6",
+          "name": "compliance calendar + audit prep",
           "status": "pending",
           "recommendedModel": "sonnet",
-          "modelReason": "default"
+          "modelReason": "feature-default",
+          "activationPosition": 6
         }
       ],
       "knownAgentCount": 3,
@@ -3658,8 +3665,8 @@
       "agents": [
         {
           "id": "CC-122",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
+          "name": "CMS CoPs hospital+SNF+HHA+hospice+ASC+ESRD compliance FHIR (CC-122)",
+          "status": "landed",
           "slot": 6,
           "worktree": "cernia-wt-r1-s-dicom",
           "recommendedModel": "sonnet",
@@ -3667,8 +3674,8 @@
         },
         {
           "id": "CC-125",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
+          "name": "ONC Cures Act + (g)(10) + Info Blocking + EHI export FHIR (CC-125)",
+          "status": "landed",
           "slot": 3,
           "worktree": "cernia-wt-r1-hext-c",
           "recommendedModel": "sonnet",
