@@ -60,7 +60,7 @@
         "status": "running",
         "agent": {
           "taskId": "K-R3",
-          "agentId": "PENDING_K_R3",
+          "agentId": "ae2e9c19b92849d8c",
           "task": "role-aware nav + page/field/action guards + impersonation + 30-node seed tree",
           "writableSet": "packages/k3-role-aware-nav/**"
         }
