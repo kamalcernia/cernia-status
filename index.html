@@ -107,6 +107,25 @@
     .progress-mini { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--fg-muted); }
     .progress-mini-bar { width: 60px; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
     .progress-mini-bar-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
+    /* 4-tile primary dashboard */
+    .primary-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .big-tile { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; position: relative; }
+    .big-tile.plan { border-top: 3px solid var(--accent); }
+    .big-tile.packages { border-top: 3px solid var(--running); }
+    .big-tile.pipeline { border-top: 3px solid var(--warn); }
+    .big-tile.quality { border-top: 3px solid var(--purple); }
+    .big-tile-label { color: var(--fg-muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; margin-bottom: 6px; }
+    .big-tile-value { color: var(--fg); font-family: var(--mono); font-size: 22px; font-weight: 700; line-height: 1.1; }
+    .big-tile-subtitle { color: var(--fg-muted); font-size: 11px; margin-top: 2px; }
+    .big-tile-progress { width: 100%; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; margin: 8px 0 4px; }
+    .big-tile-progress-fill { height: 100%; background: var(--accent); transition: width 0.3s ease; }
+    .big-tile.packages .big-tile-progress-fill { background: var(--running); }
+    .big-tile.pipeline .big-tile-progress-fill { background: var(--warn); }
+    .big-tile.quality .big-tile-progress-fill { background: var(--purple); }
+    .big-tile-detail { color: var(--fg-faint); font-size: 11px; font-family: var(--mono); margin-top: 4px; }
+    /* File-count chip on wave-tree agents */
+    .file-count-chip { font-size: 10px; color: var(--fg-faint); margin-left: 6px; font-family: var(--mono); }
+    .file-count-chip.empty { color: var(--danger); }
   </style>
 </head>
 <body>
@@ -119,14 +138,50 @@
 
     <div id="errorBanner" class="error-banner">Failed to load status — last successful render shown below.</div>
 
+    <!-- 4-tile primary dashboard — replaces the misleading "Agents to v3.0" headline.
+         Each tile measures one orthogonal dimension of progress, stable across
+         sub-agent dynamism, re-dispatches, and empty scaffold branches. -->
+    <div class="primary-tiles">
+      <div class="big-tile plan">
+        <div class="big-tile-label">Plan Progress</div>
+        <div class="big-tile-value" id="planValue">—</div>
+        <div class="big-tile-subtitle" id="planSubtitle">waves complete</div>
+        <div class="big-tile-progress"><div class="big-tile-progress-fill" id="planProgressBar" style="width:0%"></div></div>
+        <div class="big-tile-detail" id="planDetail">—</div>
+      </div>
+      <div class="big-tile packages">
+        <div class="big-tile-label">Packages Delivered</div>
+        <div class="big-tile-value" id="packagesValue">—</div>
+        <div class="big-tile-subtitle" id="packagesSubtitle">with real code (≥5 files)</div>
+        <div class="big-tile-progress"><div class="big-tile-progress-fill" id="packagesProgressBar" style="width:0%"></div></div>
+        <div class="big-tile-detail" id="packagesDetail">—</div>
+      </div>
+      <div class="big-tile pipeline">
+        <div class="big-tile-label">Pipeline</div>
+        <div class="big-tile-value" id="pipelineValue">—</div>
+        <div class="big-tile-subtitle" id="pipelineSubtitle">in flight · open · pending</div>
+        <div class="big-tile-progress"><div class="big-tile-progress-fill" id="pipelineProgressBar" style="width:0%"></div></div>
+        <div class="big-tile-detail" id="pipelineDetail">—</div>
+      </div>
+      <div class="big-tile quality">
+        <div class="big-tile-label">Quality</div>
+        <div class="big-tile-value" id="qualityValue">—</div>
+        <div class="big-tile-subtitle" id="qualitySubtitle">test files landed</div>
+        <div class="big-tile-progress"><div class="big-tile-progress-fill" id="qualityProgressBar" style="width:0%"></div></div>
+        <div class="big-tile-detail" id="qualityDetail">—</div>
+      </div>
+    </div>
+
+    <!-- Secondary metrics — operational context, not progress -->
     <div class="summary-grid">
       <div class="stat-tile"><div class="stat-label">Main HEAD</div><div class="stat-value" id="currentMainCommit">—</div></div>
       <div class="stat-tile"><div class="stat-label">Tag on Main</div><div class="stat-value" id="currentTagOnMain">—</div></div>
-      <div class="stat-tile"><div class="stat-label">Hardening</div><div class="stat-value" id="hardeningTrackRecord">—</div></div>
-      <div class="stat-tile"><div class="stat-label">Agents to v3.0</div><div class="stat-value" id="agentsRemainingToV30">—</div></div>
-      <div class="stat-tile"><div class="stat-label">Cron</div><div class="stat-value" id="cronStatus">—</div></div>
+      <div class="stat-tile"><div class="stat-label">Velocity</div><div class="stat-value" id="velocityValue" style="font-size:12px">—</div></div>
+      <div class="stat-tile"><div class="stat-label">Integration</div><div class="stat-value" id="integrationValue" style="font-size:12px">—</div></div>
       <div class="stat-tile"><div class="stat-label">Recovery Tier</div><div class="stat-value" id="recoveryTier">—</div></div>
+      <div class="stat-tile"><div class="stat-label">Cron</div><div class="stat-value" id="cronStatus" style="font-size:11px">—</div></div>
       <div class="stat-tile"><div class="stat-label">Model Mix (active)</div><div class="stat-value" id="modelMix" style="font-size:12px">—</div></div>
+      <div class="stat-tile"><div class="stat-label">Hardening</div><div class="stat-value" id="hardeningTrackRecord" style="font-size:11px">—</div></div>
     </div>
 
     <div class="strategy-bar" id="strategy">—</div>
@@ -321,12 +376,20 @@
       const recoveredBadge = a.recovered ? `<span style="color:var(--accent);font-size:10px;font-weight:600">✓ recovered</span>` : "";
       const modelPill = a.recommendedModel ? renderModelPill(a.recommendedModel, a.modelReason) : "";
       const nameStyle = a.status === 'pending' ? 'color:var(--fg-muted);font-style:italic' : '';
+      // File-count chip — shows on landed agents. Surfaces empty branches at a glance
+      // (the prior session had 9 Wave T branches with 0 feature files counted as
+      // "shipped"; this chip makes that visible).
+      let fileChip = "";
+      if (a.status === 'landed' && typeof a.fileCount === 'number') {
+        const isEmpty = !a.isRealPackage;
+        fileChip = `<span class="file-count-chip${isEmpty ? ' empty' : ''}" title="${isEmpty ? 'Empty scaffold — excluded from \"packages delivered\" count' : 'Files changed vs origin/main (excluding docs/status)'}">+${a.fileCount}f${isEmpty ? ' ⚠' : ''}</span>`;
+      }
       return `
         <div class="node depth-${depth}">
           <div class="node-header">
             <span class="chevron leaf">▶</span>
             ${statusIcon(a.status)}
-            <span class="node-name" style="${nameStyle}"><span class="id-prefix">${a.id}</span> · ${a.name || ''}</span>
+            <span class="node-name" style="${nameStyle}"><span class="id-prefix">${a.id}</span> · ${a.name || ''}${fileChip}</span>
             <span class="node-meta">${modelPill} ${slotInfo} ${recoveredBadge} ${failureInfo} ${activationInfo}</span>
           </div>
         </div>
@@ -410,8 +473,46 @@
       $("currentMainCommit").textContent = s.currentMainCommit || "—";
       $("currentTagOnMain").textContent = s.currentTagOnMain || "—";
       $("hardeningTrackRecord").textContent = s.hardeningTrackRecord || "—";
-      $("agentsRemainingToV30").textContent = s.v30Status || ((s.agentsRemainingToV30 ?? "—") + " remaining");
       $("cronStatus").textContent = s.cronStatus || "—";
+
+      // 4-tile primary dashboard
+      const pp = s.planProgress || { wavesComplete: 0, wavesTotal: 0, percent: 0, wavesInProgress: 0, wavesBlocked: 0 };
+      $("planValue").textContent = `${pp.wavesComplete}/${pp.wavesTotal}`;
+      $("planSubtitle").textContent = `waves complete (${pp.percent}%)`;
+      $("planProgressBar").style.width = pp.percent + "%";
+      $("planDetail").textContent = `${pp.wavesInProgress} in-progress${pp.wavesBlocked > 0 ? ` · ${pp.wavesBlocked} blocked` : ""}`;
+
+      const pd = s.packagesDelivered || { count: 0, target: 0, percent: 0, emptyBranches: 0, filterThreshold: 5 };
+      $("packagesValue").textContent = `${pd.count}/${pd.target}`;
+      $("packagesSubtitle").textContent = `with real code (≥${pd.filterThreshold} files)`;
+      $("packagesProgressBar").style.width = pd.percent + "%";
+      $("packagesDetail").textContent = pd.emptyBranches > 0
+        ? `${pd.percent}% · ${pd.emptyBranches} empty scaffold${pd.emptyBranches === 1 ? "" : "s"} excluded`
+        : `${pd.percent}% (no empty scaffolds)`;
+
+      const pl = s.pipeline || { inflight: 0, poolSize: 8, openPrs: 0, pendingDispatch: 0 };
+      $("pipelineValue").textContent = `${pl.inflight}/${pl.poolSize}`;
+      $("pipelineSubtitle").textContent = `in flight (${pl.openPrs} PRs open)`;
+      $("pipelineProgressBar").style.width = Math.round(100 * pl.inflight / Math.max(1, pl.poolSize)) + "%";
+      $("pipelineDetail").textContent = `${pl.pendingDispatch} pending dispatch · ${pl.openPrs} awaiting batch-merge`;
+
+      const q = s.quality || { testFilesLanded: 0, activeFailures: 0, recoveredFailures: 0, testsLandedEstimate: 0 };
+      $("qualityValue").textContent = `${q.testFilesLanded}`;
+      $("qualitySubtitle").textContent = `test files landed (~${q.testsLandedEstimate} tests)`;
+      const qualityHealthPct = q.activeFailures === 0 ? 100 : Math.max(0, 100 - q.activeFailures * 25);
+      $("qualityProgressBar").style.width = qualityHealthPct + "%";
+      $("qualityDetail").textContent = q.activeFailures === 0
+        ? `0 active failures · ${q.recoveredFailures} recovered`
+        : `${q.activeFailures} active failure${q.activeFailures === 1 ? "" : "s"} · ${q.recoveredFailures} recovered`;
+
+      // Secondary tiles
+      const vel = s.velocity || { landedLastHour: 0, landedLast24h: 0 };
+      $("velocityValue").textContent = `${vel.landedLastHour}/hr · ${vel.landedLast24h}/24h`;
+
+      const integ = s.integration || { daysSinceLastMerge: null, openPrs: 0 };
+      $("integrationValue").textContent = integ.daysSinceLastMerge !== null
+        ? `${integ.daysSinceLastMerge}d since merge · ${integ.openPrs} PRs queued`
+        : `no merges yet · ${integ.openPrs} PRs queued`;
       // Render model mix (active = in-flight + pending only)
       const mix = s.modelMixActive || { haiku: 0, sonnet: 0, opus: 0 };
       $("modelMix").innerHTML = `
