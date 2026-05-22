@@ -71,7 +71,7 @@
         "status": "running",
         "agent": {
           "taskId": "O-AI4",
-          "agentId": "PENDING_O_AI4",
+          "agentId": "a76f7e89a10966a07",
           "task": "AI FinOps cost tracking + budgets + anomalies + showback + forecast + recommendations",
           "writableSet": "packages/o4-cost-tracking/**"
         }
