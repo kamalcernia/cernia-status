@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T19:29:26.831Z",
-    "lastUpdatedDisplay": "May 22, 2026 — 15:29 EDT",
+    "lastUpdatedIso": "2026-05-22T19:30:48.402Z",
+    "lastUpdatedDisplay": "May 22, 2026 — 15:30 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 3/8 in flight (M-P5 O-AI4 I-S5) · last PR: #98 feat(patient-android): Expo SDK 52 Android scaffol"
   },
   "summary": {
-    "currentMainCommit": "854eb166",
+    "currentMainCommit": "1cd7dccf",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
-    "agentsCompletedThisSession": 74,
+    "agentsCompletedThisSession": 75,
     "agentsRemainingToV30": 16,
-    "hardeningTrackRecord": "74 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "75 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "Pool 3/8 in flight (M-P5 O-AI4 I-S5) — 16 agents remaining to v3.0. Last PR: #98 feat(patient-android): Expo SDK 52 Android scaffold + auth +. (refreshed May 22, 2026 — 15:29 EDT)",
+    "strategy": "Pool 3/8 in flight (M-P5 O-AI4 I-S5) — 16 agents remaining to v3.0. Last PR: #98 feat(patient-android): Expo SDK 52 Android scaffold + auth +. (refreshed May 22, 2026 — 15:30 EDT)",
     "totalAgentsShipped": 512,
     "modelMix": {
       "haiku": 43,
@@ -401,6 +401,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "status-page sweep — purge stale text, all fields now auto-derive",
+      "commit": "1cd7dccf",
+      "kind": "docs"
+    },
+    {
       "agent": "HALT — Anthropic monthly limit hit; 8 in-flight failed; resumes 10:...",
       "commit": "854eb166",
       "kind": "docs"
@@ -469,11 +474,6 @@
       "agent": "authoritative re-mark of all 11 landings (PRs #71-81); 446/518 (86%...",
       "commit": "9a6e096c",
       "kind": "docs"
-    },
-    {
-      "agent": "F-B2 #80 + W-E2 #81 landed; F-B3 + W-E3 dispatched; 448/518 (87%, 7...",
-      "commit": "5a952d59",
-      "kind": "docs"
     }
   ],
   "failures": [
@@ -483,7 +483,7 @@
       "recovery": "re-dispatched as M-1A with tighter scope; running in slot 1",
       "aged": true,
       "recovered": true,
-      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
+      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
     },
     {
       "agent": "W-1 email program",
@@ -538,7 +538,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
