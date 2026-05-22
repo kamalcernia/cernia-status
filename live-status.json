@@ -49,7 +49,7 @@
         "status": "running",
         "agent": {
           "taskId": "W-E4",
-          "agentId": "PENDING_W_E4",
+          "agentId": "aa49e0a8dc7c54a5f",
           "task": "preference center + RFC 8058 unsubscribe + GDPR/CAN-SPAM/CASL + global suppression",
           "writableSet": "packages/w4-unsubscribe-gdpr/**"
         }
