@@ -1,19 +1,19 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T00:27:27.058Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 20:27 EDT",
+    "lastUpdatedIso": "2026-05-22T00:37:21.290Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 20:37 EDT",
     "modelSummary": "TIER 0 · Pool 7/8 · 443/518 pushed (86%) · 75 to go · 0 PRs merged · 78 PRs open · K-R1 #76, L-M1 #75 just landed"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 74,
+    "agentsRemainingToV30": 72,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
     "strategy": "TIER 0 · Honest accounting restored — 80 specced product features in pipeline. 8 in-flight (M-P1 W-E1 K-R1 O-AI1 L-M1 I-S1 R-M1 F-B1) · 72 product-feature placeholders renamed from generic ?N to concrete specs (K-R1 admin matrix, J-W1 marketplace API, etc.). W-E1 PR #71 open. (refreshed May 21, 2026, 20:06 EDT)",
-    "totalAgentsShipped": 444,
+    "totalAgentsShipped": 446,
     "modelMix": {
       "haiku": 43,
       "sonnet": 447,
@@ -24,7 +24,7 @@
       "sonnet": 76,
       "opus": 1
     },
-    "v30Status": "444/518 (86%, 74 to go)",
+    "v30Status": "446/518 (86%, 72 to go)",
     "v30Target": 518
   },
   "pool": {
@@ -37,10 +37,10 @@
         "worktree": "cernia-wt-r1-hext-a",
         "status": "running",
         "agent": {
-          "taskId": "M-P2",
-          "agentId": "a0926b57d837a0c63",
-          "task": "metered usage tracker (events + tokens) + Stripe Meter Events",
-          "writableSet": "packages/m2-metered-usage/**"
+          "taskId": "M-P3",
+          "agentId": "PLACEHOLDER_M_P3",
+          "task": "Stripe invoice composer + proration + Stripe Tax + dunning hand-off",
+          "writableSet": "packages/m3-stripe-invoice/**"
         }
       },
       {
@@ -92,10 +92,10 @@
         "worktree": "cernia-wt-r1-s-dicom",
         "status": "running",
         "agent": {
-          "taskId": "I-S2",
-          "agentId": "a2038b3608758d14f",
-          "task": "SLA escalation engine + business-hour clock + breach reporter",
-          "writableSet": "packages/i2-sla-escalation/**"
+          "taskId": "I-S3",
+          "agentId": "PLACEHOLDER_I_S3",
+          "task": "knowledge base + AI-suggested replies + auto-classifier + feedback loop",
+          "writableSet": "packages/i3-kb-ai-replies/**"
         }
       },
       {
@@ -1464,8 +1464,8 @@
         },
         {
           "id": "M-P2",
-          "name": "metered usage tracker (events + tokens)",
-          "status": "pending",
+          "name": "metered usage tracker + Stripe Meter Events + quota enforcer (PR #79)",
+          "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 2
@@ -1818,8 +1818,8 @@
         },
         {
           "id": "I-S2",
-          "name": "SLA tracking + escalation policy",
-          "status": "pending",
+          "name": "SLA escalation engine + business-hour clock + breach report (PR #78)",
+          "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 2
