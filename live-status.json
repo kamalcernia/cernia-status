@@ -1,19 +1,19 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T00:37:35.629Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 20:37 EDT",
-    "modelSummary": "TIER 0 · Pool 7/8 · 443/518 pushed (86%) · 75 to go · 0 PRs merged · 78 PRs open · K-R1 #76, L-M1 #75 just landed"
+    "lastUpdatedIso": "2026-05-22T00:43:34.545Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 20:43 EDT",
+    "modelSummary": "TIER 0 · Pool 8/8 · 442/518 pushed (85%) · 76 to go · 0 PRs merged · 81 PRs open · 11 features landed this session"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 70,
+    "agentsRemainingToV30": 76,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
     "strategy": "TIER 0 · Honest accounting restored — 80 specced product features in pipeline. 8 in-flight (M-P1 W-E1 K-R1 O-AI1 L-M1 I-S1 R-M1 F-B1) · 72 product-feature placeholders renamed from generic ?N to concrete specs (K-R1 admin matrix, J-W1 marketplace API, etc.). W-E1 PR #71 open. (refreshed May 21, 2026, 20:06 EDT)",
-    "totalAgentsShipped": 448,
+    "totalAgentsShipped": 442,
     "modelMix": {
       "haiku": 43,
       "sonnet": 447,
@@ -24,7 +24,7 @@
       "sonnet": 76,
       "opus": 1
     },
-    "v30Status": "448/518 (86%, 70 to go)",
+    "v30Status": "442/518 (85%, 76 to go)",
     "v30Target": 518
   },
   "pool": {
@@ -37,10 +37,10 @@
         "worktree": "cernia-wt-r1-hext-a",
         "status": "running",
         "agent": {
-          "taskId": "M-P3",
-          "agentId": "aa967eec89beab3a6",
-          "task": "Stripe invoice composer + proration + Stripe Tax + dunning hand-off",
-          "writableSet": "packages/m3-stripe-invoice/**"
+          "taskId": "M-P2",
+          "agentId": "a0926b57d837a0c63",
+          "task": "metered usage tracker (events + tokens) + Stripe Meter Events",
+          "writableSet": "packages/m2-metered-usage/**"
         }
       },
       {
@@ -48,10 +48,10 @@
         "worktree": "cernia-wt-r1-hext-b",
         "status": "running",
         "agent": {
-          "taskId": "W-E2",
-          "agentId": "aea774bff7ac38380",
-          "task": "email template engine + MJML + i18n + 10 seeded templates",
-          "writableSet": "packages/w2-email-templates/**"
+          "taskId": "W-E3",
+          "agentId": "a0994939121150b52",
+          "task": "deliverability + DKIM/SPF/DMARC + reputation + bounce/complaint + warmup",
+          "writableSet": "packages/w3-deliverability/**"
         }
       },
       {
@@ -59,10 +59,10 @@
         "worktree": "cernia-wt-r1-hext-c",
         "status": "running",
         "agent": {
-          "taskId": "K-R2",
-          "agentId": "a68dd953fdbb41615",
-          "task": "role assignment + bulk workflow + CSV intake + preview + rollback",
-          "writableSet": "packages/k2-role-assignment-bulk/**"
+          "taskId": "CC-125",
+          "agentId": "a159db28fbfac91b6",
+          "task": "ONC Cures Act + (g)(10) + Info Blocking + EHI export FHIR (sonnet)",
+          "writableSet": "packages/catalog-onc-170-315/**"
         }
       },
       {
@@ -70,10 +70,10 @@
         "worktree": "cernia-wt-r1-r",
         "status": "running",
         "agent": {
-          "taskId": "O-AI2",
-          "agentId": "a1e925b3890677e64",
-          "task": "prompt template registry + versioning + experiments + eval harness + 12 clinical seeds",
-          "writableSet": "packages/o2-prompt-registry/**"
+          "taskId": "O-AI1",
+          "agentId": "a00b391d10521b135",
+          "task": "LLM gateway provider abstraction + PHI redaction + cost tracking (O wave) (sonnet)",
+          "writableSet": "packages/o1-llm-gateway/**"
         }
       },
       {
@@ -81,10 +81,10 @@
         "worktree": "cernia-wt-r1-s-hl7",
         "status": "running",
         "agent": {
-          "taskId": "L-M2",
-          "agentId": "aa073adc76c849a27",
-          "task": "IDN hierarchy + facility rollup + clinical measures + HIPAA cell suppression",
-          "writableSet": "packages/l2-idn-facility-rollup/**"
+          "taskId": "L-M1",
+          "agentId": "ae50748b3d1d2d623",
+          "task": "Multi-org hierarchy tree + inheritance + rollup + isolation (L wave) (sonnet)",
+          "writableSet": "packages/l1-multi-org-hierarchy/**"
         }
       },
       {
@@ -92,10 +92,10 @@
         "worktree": "cernia-wt-r1-s-dicom",
         "status": "running",
         "agent": {
-          "taskId": "I-S3",
-          "agentId": "a6a3963d6f0f109d2",
-          "task": "knowledge base + AI-suggested replies + auto-classifier + feedback loop",
-          "writableSet": "packages/i3-kb-ai-replies/**"
+          "taskId": "I-S1",
+          "agentId": "ae2bef6b74888e288",
+          "task": "B2B support ticket model + intake + SLA + dashboards (I wave)",
+          "writableSet": "packages/support-tickets/**"
         }
       },
       {
@@ -114,10 +114,10 @@
         "worktree": "cernia-wt-r1-t",
         "status": "running",
         "agent": {
-          "taskId": "F-B2",
-          "agentId": "ae04984c5f5f21ad1",
-          "task": "alert notification queue + 6 channel dispatchers + retry + suppression",
-          "writableSet": "packages/f2-alert-queue/**"
+          "taskId": "F-B3",
+          "agentId": "aeae61b09689b0ad7",
+          "task": "dunning workflow w/ smart retry + risk scoring + suspension",
+          "writableSet": "packages/f3-dunning-workflow/**"
         }
       }
     ]
@@ -1228,8 +1228,8 @@
       "agents": [
         {
           "id": "L-M1",
-          "name": "parent/child org hierarchy + inheritance + isolation (PR #75)",
-          "status": "landed",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
           "slot": 5,
           "worktree": "cernia-wt-r1-s-hl7",
           "recommendedModel": "sonnet",
@@ -1352,8 +1352,8 @@
         },
         {
           "id": "K-R1",
-          "name": "admin role matrix UI + RBAC permission resolver + audit + FHIR (PR #76)",
-          "status": "landed",
+          "name": "admin role matrix UI",
+          "status": "in-flight",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 1
@@ -1464,8 +1464,8 @@
         },
         {
           "id": "M-P2",
-          "name": "metered usage tracker + Stripe Meter Events + quota enforcer (PR #79)",
-          "status": "landed",
+          "name": "metered usage tracker (events + tokens)",
+          "status": "pending",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 2
@@ -1810,16 +1810,16 @@
         },
         {
           "id": "I-S1",
-          "name": "B2B support ticket model + intake + SLA + dashboards (PR #74)",
-          "status": "landed",
+          "name": "ticket model + intake from email/portal",
+          "status": "in-flight",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 1
         },
         {
           "id": "I-S2",
-          "name": "SLA escalation engine + business-hour clock + breach report (PR #78)",
-          "status": "landed",
+          "name": "SLA tracking + escalation policy",
+          "status": "pending",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 2
@@ -1972,8 +1972,8 @@
       "agents": [
         {
           "id": "O-AI1",
-          "name": "LLM gateway w/ 5 providers + PHI redaction + cost routing (PR #77)",
-          "status": "landed",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
           "slot": 4,
           "worktree": "cernia-wt-r1-r",
           "recommendedModel": "opus",
