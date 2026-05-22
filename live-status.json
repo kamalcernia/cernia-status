@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T21:53:10.650Z",
-    "lastUpdatedDisplay": "May 22, 2026 — 17:53 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #105 feat(w5-sms-push-delivery): SMS + push delivery (W"
+    "lastUpdatedIso": "2026-05-22T21:54:19.089Z",
+    "lastUpdatedDisplay": "May 22, 2026 — 17:54 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 1/8 in flight (L-M6) · last PR: #105 feat(w5-sms-push-delivery): SMS + push delivery (W"
   },
   "summary": {
     "currentMainCommit": "a499e250",
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "76 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "Idle pool 0/8 — 9 agents remaining to v3.0. Last PR: #105 feat(w5-sms-push-delivery): SMS + push delivery (W-E5) — clo. (refreshed May 22, 2026 — 17:53 EDT)",
+    "strategy": "Pool 1/8 in flight (L-M6) — 9 agents remaining to v3.0. Last PR: #105 feat(w5-sms-push-delivery): SMS + push delivery (W-E5) — clo. (refreshed May 22, 2026 — 17:54 EDT)",
     "totalAgentsShipped": 519,
     "modelMix": {
       "haiku": 43,
@@ -43,11 +43,11 @@
       "label": "381/528 packages (72%), 96 empty scaffolds excluded"
     },
     "pipeline": {
-      "inflight": 0,
+      "inflight": 1,
       "poolSize": 8,
       "openPrs": 15,
-      "pendingDispatch": 50,
-      "label": "0/8 in flight · 15 PRs open · 50 pending dispatch"
+      "pendingDispatch": 49,
+      "label": "1/8 in flight · 15 PRs open · 49 pending dispatch"
     },
     "quality": {
       "activeFailures": 0,
@@ -63,22 +63,27 @@
     },
     "integration": {
       "lastMergeIso": "2026-05-17T17:53:46-04:00",
-      "daysSinceLastMerge": 4,
+      "daysSinceLastMerge": 5,
       "mergedPrs": 0,
       "openPrs": 15,
-      "label": "Last main merge: 4d ago · 15 PRs awaiting batch-merge"
+      "label": "Last main merge: 5d ago · 15 PRs awaiting batch-merge"
     }
   },
   "pool": {
     "size": 8,
-    "saturationPct": 0,
+    "saturationPct": 13,
     "queueDepth": 5,
     "slots": [
       {
         "slot": 1,
         "worktree": "cernia-wt-r1-hext-a",
-        "status": "idle",
-        "agent": null
+        "status": "running",
+        "agent": {
+          "taskId": "L-M6",
+          "agentId": "dispatch-l-m6",
+          "task": "Access control inheritance + override (closes Wave L)",
+          "writableSet": "packages/l6-access-control-inheritance/**"
+        }
       },
       {
         "slot": 2,
@@ -127,16 +132,6 @@
   "queue": [
     {
       "pri": 1,
-      "id": "L-?1",
-      "waveId": "L",
-      "task": "Multi-Organization Hierarchy — next agent in this wave",
-      "writableSet": "packages/l-*/**",
-      "deps": [],
-      "status": "pending",
-      "recommendedModel": "sonnet"
-    },
-    {
-      "pri": 2,
       "id": "K-?1",
       "waveId": "K",
       "task": "Role-Based UI — next agent in this wave",
@@ -146,7 +141,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 3,
+      "pri": 2,
       "id": "K-?2",
       "waveId": "K",
       "task": "Role-Based UI — next agent in this wave",
@@ -156,7 +151,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 4,
+      "pri": 3,
       "id": "K-?3",
       "waveId": "K",
       "task": "Role-Based UI — next agent in this wave",
@@ -166,7 +161,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 5,
+      "pri": 4,
       "id": "K-?4",
       "waveId": "K",
       "task": "Role-Based UI — next agent in this wave",
@@ -176,7 +171,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 6,
+      "pri": 5,
       "id": "K-?5",
       "waveId": "K",
       "task": "Role-Based UI — next agent in this wave",
@@ -186,7 +181,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 8,
+      "pri": 7,
       "id": "F-?1",
       "waveId": "F",
       "task": "Customer Billing Alerts — next agent in this wave",
@@ -196,7 +191,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 9,
+      "pri": 8,
       "id": "F-?2",
       "waveId": "F",
       "task": "Customer Billing Alerts — next agent in this wave",
@@ -206,7 +201,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 10,
+      "pri": 9,
       "id": "F-?3",
       "waveId": "F",
       "task": "Customer Billing Alerts — next agent in this wave",
@@ -216,7 +211,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 11,
+      "pri": 10,
       "id": "G-?1",
       "waveId": "G",
       "task": "Delegation Surface — next agent in this wave",
@@ -226,7 +221,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 12,
+      "pri": 11,
       "id": "G-?2",
       "waveId": "G",
       "task": "Delegation Surface — next agent in this wave",
@@ -236,7 +231,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 13,
+      "pri": 12,
       "id": "G-?3",
       "waveId": "G",
       "task": "Delegation Surface — next agent in this wave",
@@ -246,7 +241,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 14,
+      "pri": 13,
       "id": "G-?4",
       "waveId": "G",
       "task": "Delegation Surface — next agent in this wave",
@@ -256,7 +251,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 15,
+      "pri": 14,
       "id": "G-?5",
       "waveId": "G",
       "task": "Delegation Surface — next agent in this wave",
@@ -266,7 +261,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 17,
+      "pri": 16,
       "id": "J-?1",
       "waveId": "J",
       "task": "Workflow Marketplace — next agent in this wave",
@@ -276,7 +271,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 18,
+      "pri": 17,
       "id": "J-?2",
       "waveId": "J",
       "task": "Workflow Marketplace — next agent in this wave",
@@ -286,7 +281,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 19,
+      "pri": 18,
       "id": "J-?3",
       "waveId": "J",
       "task": "Workflow Marketplace — next agent in this wave",
@@ -296,7 +291,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 20,
+      "pri": 19,
       "id": "J-?4",
       "waveId": "J",
       "task": "Workflow Marketplace — next agent in this wave",
@@ -306,7 +301,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 21,
+      "pri": 20,
       "id": "J-?5",
       "waveId": "J",
       "task": "Workflow Marketplace — next agent in this wave",
@@ -316,7 +311,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 23,
+      "pri": 22,
       "id": "O-?1",
       "waveId": "O",
       "task": "AI-Native Platform — next agent in this wave",
@@ -326,7 +321,7 @@
       "recommendedModel": "opus"
     },
     {
-      "pri": 24,
+      "pri": 23,
       "id": "O-?2",
       "waveId": "O",
       "task": "AI-Native Platform — next agent in this wave",
@@ -336,7 +331,7 @@
       "recommendedModel": "opus"
     },
     {
-      "pri": 25,
+      "pri": 24,
       "id": "P-?1",
       "waveId": "P",
       "task": "No-Code ML Studio — next agent in this wave",
@@ -346,7 +341,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 26,
+      "pri": 25,
       "id": "P-?2",
       "waveId": "P",
       "task": "No-Code ML Studio — next agent in this wave",
@@ -356,7 +351,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 27,
+      "pri": 26,
       "id": "P-?3",
       "waveId": "P",
       "task": "No-Code ML Studio — next agent in this wave",
@@ -366,7 +361,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 28,
+      "pri": 27,
       "id": "P-?4",
       "waveId": "P",
       "task": "No-Code ML Studio — next agent in this wave",
@@ -376,7 +371,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 29,
+      "pri": 28,
       "id": "P-?5",
       "waveId": "P",
       "task": "No-Code ML Studio — next agent in this wave",
@@ -386,7 +381,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 31,
+      "pri": 30,
       "id": "Q-?1",
       "waveId": "Q",
       "task": "Telehealth + RPM — next agent in this wave",
@@ -396,7 +391,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 32,
+      "pri": 31,
       "id": "Q-?2",
       "waveId": "Q",
       "task": "Telehealth + RPM — next agent in this wave",
@@ -406,7 +401,7 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 33,
+      "pri": 32,
       "id": "Q-?3",
       "waveId": "Q",
       "task": "Telehealth + RPM — next agent in this wave",
@@ -416,8 +411,18 @@
       "recommendedModel": "sonnet"
     },
     {
-      "pri": 34,
+      "pri": 33,
       "id": "Q-?4",
+      "waveId": "Q",
+      "task": "Telehealth + RPM — next agent in this wave",
+      "writableSet": "packages/q-*/**",
+      "deps": [],
+      "status": "pending",
+      "recommendedModel": "sonnet"
+    },
+    {
+      "pri": 34,
+      "id": "Q-?5",
       "waveId": "Q",
       "task": "Telehealth + RPM — next agent in this wave",
       "writableSet": "packages/q-*/**",
@@ -511,7 +516,7 @@
       "recovery": "re-dispatched as M-1A with tighter scope; running in slot 1",
       "aged": true,
       "recovered": true,
-      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
+      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
     },
     {
       "agent": "W-1 email program",
@@ -566,7 +571,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
@@ -1497,6 +1502,15 @@
       "agentsTotal": 11,
       "agents": [
         {
+          "id": "L-M6",
+          "name": "(running — branch not yet pushed)",
+          "status": "in-flight",
+          "slot": 1,
+          "worktree": "cernia-wt-r1-hext-a",
+          "recommendedModel": "sonnet",
+          "modelReason": "multi-org-hierarchy"
+        },
+        {
           "id": "L-1",
           "name": "multi org foundation",
           "status": "landed",
@@ -1585,18 +1599,10 @@
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "multi-org-hierarchy"
-        },
-        {
-          "id": "L-?1",
-          "name": "pending agent (slot 1 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 1,
-          "recommendedModel": "sonnet",
-          "modelReason": "multi-org-hierarchy"
         }
       ],
-      "knownAgentCount": 10,
-      "pendingAgentCount": 1,
+      "knownAgentCount": 11,
+      "pendingAgentCount": 0,
       "completionPct": 91
     },
     {
@@ -1644,6 +1650,14 @@
         },
         {
           "id": "K-?1",
+          "name": "pending agent (slot 1 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 1,
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "K-?2",
           "name": "pending agent (slot 2 in dispatch queue)",
           "status": "pending",
           "activationPosition": 2,
@@ -1651,7 +1665,7 @@
           "modelReason": "default"
         },
         {
-          "id": "K-?2",
+          "id": "K-?3",
           "name": "pending agent (slot 3 in dispatch queue)",
           "status": "pending",
           "activationPosition": 3,
@@ -1659,7 +1673,7 @@
           "modelReason": "default"
         },
         {
-          "id": "K-?3",
+          "id": "K-?4",
           "name": "pending agent (slot 4 in dispatch queue)",
           "status": "pending",
           "activationPosition": 4,
@@ -1667,18 +1681,10 @@
           "modelReason": "default"
         },
         {
-          "id": "K-?4",
+          "id": "K-?5",
           "name": "pending agent (slot 5 in dispatch queue)",
           "status": "pending",
           "activationPosition": 5,
-          "recommendedModel": "sonnet",
-          "modelReason": "default"
-        },
-        {
-          "id": "K-?5",
-          "name": "pending agent (slot 6 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 6,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -1996,6 +2002,14 @@
         },
         {
           "id": "F-?1",
+          "name": "pending agent (slot 7 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 7,
+          "recommendedModel": "sonnet",
+          "modelReason": "customer-billing"
+        },
+        {
+          "id": "F-?2",
           "name": "pending agent (slot 8 in dispatch queue)",
           "status": "pending",
           "activationPosition": 8,
@@ -2003,18 +2017,10 @@
           "modelReason": "customer-billing"
         },
         {
-          "id": "F-?2",
+          "id": "F-?3",
           "name": "pending agent (slot 9 in dispatch queue)",
           "status": "pending",
           "activationPosition": 9,
-          "recommendedModel": "sonnet",
-          "modelReason": "customer-billing"
-        },
-        {
-          "id": "F-?3",
-          "name": "pending agent (slot 10 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 10,
           "recommendedModel": "sonnet",
           "modelReason": "customer-billing"
         }
@@ -2077,6 +2083,14 @@
         },
         {
           "id": "G-?1",
+          "name": "pending agent (slot 10 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 10,
+          "recommendedModel": "sonnet",
+          "modelReason": "delegation-access"
+        },
+        {
+          "id": "G-?2",
           "name": "pending agent (slot 11 in dispatch queue)",
           "status": "pending",
           "activationPosition": 11,
@@ -2084,7 +2098,7 @@
           "modelReason": "delegation-access"
         },
         {
-          "id": "G-?2",
+          "id": "G-?3",
           "name": "pending agent (slot 12 in dispatch queue)",
           "status": "pending",
           "activationPosition": 12,
@@ -2092,7 +2106,7 @@
           "modelReason": "delegation-access"
         },
         {
-          "id": "G-?3",
+          "id": "G-?4",
           "name": "pending agent (slot 13 in dispatch queue)",
           "status": "pending",
           "activationPosition": 13,
@@ -2100,18 +2114,10 @@
           "modelReason": "delegation-access"
         },
         {
-          "id": "G-?4",
+          "id": "G-?5",
           "name": "pending agent (slot 14 in dispatch queue)",
           "status": "pending",
           "activationPosition": 14,
-          "recommendedModel": "sonnet",
-          "modelReason": "delegation-access"
-        },
-        {
-          "id": "G-?5",
-          "name": "pending agent (slot 15 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 15,
           "recommendedModel": "sonnet",
           "modelReason": "delegation-access"
         },
@@ -2283,6 +2289,14 @@
         },
         {
           "id": "J-?1",
+          "name": "pending agent (slot 16 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 16,
+          "recommendedModel": "sonnet",
+          "modelReason": "workflow-platform"
+        },
+        {
+          "id": "J-?2",
           "name": "pending agent (slot 17 in dispatch queue)",
           "status": "pending",
           "activationPosition": 17,
@@ -2290,7 +2304,7 @@
           "modelReason": "workflow-platform"
         },
         {
-          "id": "J-?2",
+          "id": "J-?3",
           "name": "pending agent (slot 18 in dispatch queue)",
           "status": "pending",
           "activationPosition": 18,
@@ -2298,7 +2312,7 @@
           "modelReason": "workflow-platform"
         },
         {
-          "id": "J-?3",
+          "id": "J-?4",
           "name": "pending agent (slot 19 in dispatch queue)",
           "status": "pending",
           "activationPosition": 19,
@@ -2306,18 +2320,10 @@
           "modelReason": "workflow-platform"
         },
         {
-          "id": "J-?4",
+          "id": "J-?5",
           "name": "pending agent (slot 20 in dispatch queue)",
           "status": "pending",
           "activationPosition": 20,
-          "recommendedModel": "sonnet",
-          "modelReason": "workflow-platform"
-        },
-        {
-          "id": "J-?5",
-          "name": "pending agent (slot 21 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 21,
           "recommendedModel": "sonnet",
           "modelReason": "workflow-platform"
         },
@@ -2441,17 +2447,17 @@
         },
         {
           "id": "O-?1",
-          "name": "pending agent (slot 23 in dispatch queue)",
+          "name": "pending agent (slot 22 in dispatch queue)",
           "status": "pending",
-          "activationPosition": 23,
+          "activationPosition": 22,
           "recommendedModel": "opus",
           "modelReason": "ai-safety-critical"
         },
         {
           "id": "O-?2",
-          "name": "pending agent (slot 24 in dispatch queue)",
+          "name": "pending agent (slot 23 in dispatch queue)",
           "status": "pending",
-          "activationPosition": 24,
+          "activationPosition": 23,
           "recommendedModel": "opus",
           "modelReason": "ai-safety-critical"
         }
@@ -2532,6 +2538,14 @@
         },
         {
           "id": "P-?1",
+          "name": "pending agent (slot 24 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 24,
+          "recommendedModel": "sonnet",
+          "modelReason": "ml-platform"
+        },
+        {
+          "id": "P-?2",
           "name": "pending agent (slot 25 in dispatch queue)",
           "status": "pending",
           "activationPosition": 25,
@@ -2539,7 +2553,7 @@
           "modelReason": "ml-platform"
         },
         {
-          "id": "P-?2",
+          "id": "P-?3",
           "name": "pending agent (slot 26 in dispatch queue)",
           "status": "pending",
           "activationPosition": 26,
@@ -2547,7 +2561,7 @@
           "modelReason": "ml-platform"
         },
         {
-          "id": "P-?3",
+          "id": "P-?4",
           "name": "pending agent (slot 27 in dispatch queue)",
           "status": "pending",
           "activationPosition": 27,
@@ -2555,18 +2569,10 @@
           "modelReason": "ml-platform"
         },
         {
-          "id": "P-?4",
+          "id": "P-?5",
           "name": "pending agent (slot 28 in dispatch queue)",
           "status": "pending",
           "activationPosition": 28,
-          "recommendedModel": "sonnet",
-          "modelReason": "ml-platform"
-        },
-        {
-          "id": "P-?5",
-          "name": "pending agent (slot 29 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 29,
           "recommendedModel": "sonnet",
           "modelReason": "ml-platform"
         },
@@ -2627,6 +2633,14 @@
         },
         {
           "id": "Q-?1",
+          "name": "pending agent (slot 30 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 30,
+          "recommendedModel": "sonnet",
+          "modelReason": "telehealth-clinical"
+        },
+        {
+          "id": "Q-?2",
           "name": "pending agent (slot 31 in dispatch queue)",
           "status": "pending",
           "activationPosition": 31,
@@ -2634,7 +2648,7 @@
           "modelReason": "telehealth-clinical"
         },
         {
-          "id": "Q-?2",
+          "id": "Q-?3",
           "name": "pending agent (slot 32 in dispatch queue)",
           "status": "pending",
           "activationPosition": 32,
@@ -2642,7 +2656,7 @@
           "modelReason": "telehealth-clinical"
         },
         {
-          "id": "Q-?3",
+          "id": "Q-?4",
           "name": "pending agent (slot 33 in dispatch queue)",
           "status": "pending",
           "activationPosition": 33,
@@ -2650,18 +2664,10 @@
           "modelReason": "telehealth-clinical"
         },
         {
-          "id": "Q-?4",
+          "id": "Q-?5",
           "name": "pending agent (slot 34 in dispatch queue)",
           "status": "pending",
           "activationPosition": 34,
-          "recommendedModel": "sonnet",
-          "modelReason": "telehealth-clinical"
-        },
-        {
-          "id": "Q-?5",
-          "name": "pending agent (slot 35 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 35,
           "recommendedModel": "sonnet",
           "modelReason": "telehealth-clinical"
         },
@@ -3398,9 +3404,9 @@
         },
         {
           "id": "T-?1",
-          "name": "pending agent (slot 37 in dispatch queue)",
+          "name": "pending agent (slot 36 in dispatch queue)",
           "status": "pending",
-          "activationPosition": 37,
+          "activationPosition": 36,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         }
@@ -3499,6 +3505,14 @@
         },
         {
           "id": "R-?1",
+          "name": "pending agent (slot 37 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 37,
+          "recommendedModel": "sonnet",
+          "modelReason": "mobile-platform"
+        },
+        {
+          "id": "R-?2",
           "name": "pending agent (slot 38 in dispatch queue)",
           "status": "pending",
           "activationPosition": 38,
@@ -3506,18 +3520,10 @@
           "modelReason": "mobile-platform"
         },
         {
-          "id": "R-?2",
+          "id": "R-?3",
           "name": "pending agent (slot 39 in dispatch queue)",
           "status": "pending",
           "activationPosition": 39,
-          "recommendedModel": "sonnet",
-          "modelReason": "mobile-platform"
-        },
-        {
-          "id": "R-?3",
-          "name": "pending agent (slot 40 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 40,
           "recommendedModel": "sonnet",
           "modelReason": "mobile-platform"
         }
@@ -3571,6 +3577,14 @@
         },
         {
           "id": "S-?1",
+          "name": "pending agent (slot 40 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 40,
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "S-?2",
           "name": "pending agent (slot 41 in dispatch queue)",
           "status": "pending",
           "activationPosition": 41,
@@ -3578,7 +3592,7 @@
           "modelReason": "default"
         },
         {
-          "id": "S-?2",
+          "id": "S-?3",
           "name": "pending agent (slot 42 in dispatch queue)",
           "status": "pending",
           "activationPosition": 42,
@@ -3586,18 +3600,10 @@
           "modelReason": "default"
         },
         {
-          "id": "S-?3",
+          "id": "S-?4",
           "name": "pending agent (slot 43 in dispatch queue)",
           "status": "pending",
           "activationPosition": 43,
-          "recommendedModel": "sonnet",
-          "modelReason": "default"
-        },
-        {
-          "id": "S-?4",
-          "name": "pending agent (slot 44 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 44,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         }
@@ -3933,6 +3939,14 @@
         },
         {
           "id": "X-?1",
+          "name": "pending agent (slot 44 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 44,
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "X-?2",
           "name": "pending agent (slot 45 in dispatch queue)",
           "status": "pending",
           "activationPosition": 45,
@@ -3940,7 +3954,7 @@
           "modelReason": "default"
         },
         {
-          "id": "X-?2",
+          "id": "X-?3",
           "name": "pending agent (slot 46 in dispatch queue)",
           "status": "pending",
           "activationPosition": 46,
@@ -3948,7 +3962,7 @@
           "modelReason": "default"
         },
         {
-          "id": "X-?3",
+          "id": "X-?4",
           "name": "pending agent (slot 47 in dispatch queue)",
           "status": "pending",
           "activationPosition": 47,
@@ -3956,18 +3970,10 @@
           "modelReason": "default"
         },
         {
-          "id": "X-?4",
+          "id": "X-?5",
           "name": "pending agent (slot 48 in dispatch queue)",
           "status": "pending",
           "activationPosition": 48,
-          "recommendedModel": "sonnet",
-          "modelReason": "default"
-        },
-        {
-          "id": "X-?5",
-          "name": "pending agent (slot 49 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 49,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
