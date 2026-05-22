@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T21:21:16.110Z",
+    "lastUpdatedIso": "2026-05-22T21:21:31.533Z",
     "lastUpdatedDisplay": "May 22, 2026 — 17:21 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 1/8 in flight (W-E5) · last PR: #101 feat(o4-cost-tracking-budgets): per-tenant LLM cos"
+    "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #101 feat(o4-cost-tracking-budgets): per-tenant LLM cos"
   },
   "summary": {
     "currentMainCommit": "1cd7dccf",
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "75 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "Pool 1/8 in flight (W-E5) — 13 agents remaining to v3.0. Last PR: #101 feat(o4-cost-tracking-budgets): per-tenant LLM cost ledger +. (refreshed May 22, 2026 — 17:21 EDT)",
+    "strategy": "Idle pool 0/8 — 13 agents remaining to v3.0. Last PR: #101 feat(o4-cost-tracking-budgets): per-tenant LLM cost ledger +. (refreshed May 22, 2026 — 17:21 EDT)",
     "totalAgentsShipped": 515,
     "modelMix": {
       "haiku": 43,
@@ -43,11 +43,11 @@
       "label": "372/528 packages (70%), 101 empty scaffolds excluded"
     },
     "pipeline": {
-      "inflight": 1,
+      "inflight": 0,
       "poolSize": 8,
       "openPrs": 15,
-      "pendingDispatch": 53,
-      "label": "1/8 in flight · 15 PRs open · 53 pending dispatch"
+      "pendingDispatch": 54,
+      "label": "0/8 in flight · 15 PRs open · 54 pending dispatch"
     },
     "quality": {
       "activeFailures": 0,
@@ -71,7 +71,7 @@
   },
   "pool": {
     "size": 8,
-    "saturationPct": 13,
+    "saturationPct": 0,
     "queueDepth": 5,
     "slots": [
       {
@@ -107,13 +107,8 @@
       {
         "slot": 6,
         "worktree": "cernia-wt-r1-s-dicom",
-        "status": "running",
-        "agent": {
-          "taskId": "W-E5",
-          "agentId": "dispatch-w-e5",
-          "task": "SMS + push delivery channel (closes Wave W)",
-          "writableSet": "packages/w5-sms-push-delivery/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 7,
@@ -515,7 +510,7 @@
       "recovery": "re-dispatched as M-1A with tighter scope; running in slot 1",
       "aged": true,
       "recovered": true,
-      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
+      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
     },
     {
       "agent": "W-1 email program",
@@ -570,7 +565,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
@@ -3774,15 +3769,6 @@
       "agentsTotal": 7,
       "agents": [
         {
-          "id": "W-E5",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 6,
-          "worktree": "cernia-wt-r1-s-dicom",
-          "recommendedModel": "sonnet",
-          "modelReason": "default"
-        },
-        {
           "id": "W-1",
           "name": "email program",
           "status": "landed",
@@ -3835,10 +3821,18 @@
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
+        },
+        {
+          "id": "W-?1",
+          "name": "pending agent (slot 48 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 48,
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
         }
       ],
-      "knownAgentCount": 7,
-      "pendingAgentCount": 0,
+      "knownAgentCount": 6,
+      "pendingAgentCount": 1,
       "completionPct": 86
     },
     {
@@ -3934,14 +3928,6 @@
         },
         {
           "id": "X-?1",
-          "name": "pending agent (slot 48 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 48,
-          "recommendedModel": "sonnet",
-          "modelReason": "default"
-        },
-        {
-          "id": "X-?2",
           "name": "pending agent (slot 49 in dispatch queue)",
           "status": "pending",
           "activationPosition": 49,
@@ -3949,7 +3935,7 @@
           "modelReason": "default"
         },
         {
-          "id": "X-?3",
+          "id": "X-?2",
           "name": "pending agent (slot 50 in dispatch queue)",
           "status": "pending",
           "activationPosition": 50,
@@ -3957,7 +3943,7 @@
           "modelReason": "default"
         },
         {
-          "id": "X-?4",
+          "id": "X-?3",
           "name": "pending agent (slot 51 in dispatch queue)",
           "status": "pending",
           "activationPosition": 51,
@@ -3965,10 +3951,18 @@
           "modelReason": "default"
         },
         {
-          "id": "X-?5",
+          "id": "X-?4",
           "name": "pending agent (slot 52 in dispatch queue)",
           "status": "pending",
           "activationPosition": 52,
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "X-?5",
+          "name": "pending agent (slot 53 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 53,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
