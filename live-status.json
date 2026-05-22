@@ -1,19 +1,19 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T22:37:36.300Z",
-    "lastUpdatedDisplay": "May 22, 2026 — 18:37 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 2/8 in flight (F-B5 F-B6) · last PR: #111 feat(f4-payment-retry-recovery): smart recovery —"
+    "lastUpdatedIso": "2026-05-22T22:39:21.852Z",
+    "lastUpdatedDisplay": "May 22, 2026 — 18:39 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 1/8 in flight (F-B5) · last PR: #112 feat(f6-churn-risk-scoring): platform-wide churn-r"
   },
   "summary": {
-    "currentMainCommit": "a499e250",
+    "currentMainCommit": "81b73203",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
-    "agentsCompletedThisSession": 76,
-    "agentsRemainingToV30": 3,
-    "hardeningTrackRecord": "76 successful commits since v0.95-white-label · 7 recovered",
+    "agentsCompletedThisSession": 77,
+    "agentsRemainingToV30": 2,
+    "hardeningTrackRecord": "77 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "Pool 2/8 in flight (F-B5 F-B6) — 3 agents remaining to v3.0. Last PR: #111 feat(f4-payment-retry-recovery): smart recovery — predictive. (refreshed May 22, 2026 — 18:37 EDT)",
-    "totalAgentsShipped": 525,
+    "strategy": "Pool 1/8 in flight (F-B5) — 2 agents remaining to v3.0. Last PR: #112 feat(f6-churn-risk-scoring): platform-wide churn-risk + CSM . (refreshed May 22, 2026 — 18:39 EDT)",
+    "totalAgentsShipped": 526,
     "modelMix": {
       "haiku": 44,
       "sonnet": 449,
@@ -21,10 +21,10 @@
     },
     "modelMixActive": {
       "haiku": 0,
-      "sonnet": 45,
+      "sonnet": 44,
       "opus": 0
     },
-    "v30Status": "525/528 (99%, 3 to go)",
+    "v30Status": "526/528 (100%, 2 to go)",
     "v30Target": 528,
     "planProgress": {
       "wavesComplete": 22,
@@ -35,31 +35,31 @@
       "label": "22/34 waves complete (65%)"
     },
     "packagesDelivered": {
-      "count": 482,
+      "count": 483,
       "emptyBranches": 0,
       "target": 528,
       "percent": 91,
       "filterThreshold": 5,
-      "label": "482/528 packages (91%)"
+      "label": "483/528 packages (91%)"
     },
     "pipeline": {
-      "inflight": 2,
+      "inflight": 1,
       "poolSize": 8,
       "openPrs": 15,
       "pendingDispatch": 43,
-      "label": "2/8 in flight · 15 PRs open · 43 pending dispatch"
+      "label": "1/8 in flight · 15 PRs open · 43 pending dispatch"
     },
     "quality": {
       "activeFailures": 0,
       "recoveredFailures": 7,
-      "testFilesLanded": 845,
-      "testsLandedEstimate": 21125,
-      "label": "845 test files landed · 0 active failures"
+      "testFilesLanded": 855,
+      "testsLandedEstimate": 21375,
+      "label": "855 test files landed · 0 active failures"
     },
     "velocity": {
-      "landedLastHour": 10,
+      "landedLastHour": 11,
       "landedLast24h": 15,
-      "label": "10 PRs opened in last hour · 15 in last 24h"
+      "label": "11 PRs opened in last hour · 15 in last 24h"
     },
     "integration": {
       "lastMergeIso": "2026-05-17T17:53:46-04:00",
@@ -71,7 +71,7 @@
   },
   "pool": {
     "size": 8,
-    "saturationPct": 25,
+    "saturationPct": 13,
     "queueDepth": 5,
     "slots": [
       {
@@ -112,13 +112,8 @@
       {
         "slot": 6,
         "worktree": "cernia-wt-r1-s-dicom",
-        "status": "running",
-        "agent": {
-          "taskId": "F-B6",
-          "agentId": "dispatch-f-b6",
-          "task": "Churn-risk scoring + CSM alerts (closes Wave F)",
-          "writableSet": "packages/f6-churn-risk-scoring/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 7,
@@ -438,6 +433,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "\"empty scaffold\" false-positive — count FF-merged branches as deliv...",
+      "commit": "81b73203",
+      "kind": "docs"
+    },
+    {
       "agent": "4-tile dashboard replaces \"Agents to v3.0\" — track delivered work, ...",
       "commit": "a499e250",
       "kind": "docs",
@@ -507,11 +507,6 @@
       "agent": "L-M2 #83 landed (198 tests); L-M3 dispatched; 450/518 (87%, 68 to go)",
       "commit": "a53c7c27",
       "kind": "docs"
-    },
-    {
-      "agent": "K-R2 #82 landed (125 tests); K-R3 dispatched; 449/518 (87%, 69 to go)",
-      "commit": "f7af415b",
-      "kind": "docs"
     }
   ],
   "failures": [
@@ -521,7 +516,7 @@
       "recovery": "re-dispatched as M-1A with tighter scope; running in slot 1",
       "aged": true,
       "recovered": true,
-      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
+      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
     },
     {
       "agent": "W-1 email program",
@@ -576,7 +571,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
@@ -2054,15 +2049,6 @@
           "modelReason": "customer-billing"
         },
         {
-          "id": "F-B6",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 6,
-          "worktree": "cernia-wt-r1-s-dicom",
-          "recommendedModel": "sonnet",
-          "modelReason": "customer-billing"
-        },
-        {
           "id": "F-1",
           "name": "billing alerts foundation",
           "status": "landed",
@@ -2171,11 +2157,21 @@
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "integration-or-recovery"
+        },
+        {
+          "id": "F-B6",
+          "name": "churn risk scoring",
+          "status": "landed",
+          "fileCount": 24,
+          "mergedIntoMain": false,
+          "isRealPackage": true,
+          "recommendedModel": "sonnet",
+          "modelReason": "customer-billing"
         }
       ],
       "knownAgentCount": 13,
       "pendingAgentCount": 0,
-      "completionPct": 85
+      "completionPct": 92
     },
     {
       "id": "G",
@@ -6171,6 +6167,13 @@
   ],
   "recentPrActivity": [
     {
+      "number": 112,
+      "title": "feat(f6-churn-risk-scoring): platform-wide churn-risk + CSM alerts + interventions (F-B6) — closes Wave F",
+      "state": "OPEN",
+      "createdAt": "2026-05-22T22:38:57Z",
+      "mergedAt": null
+    },
+    {
       "number": 111,
       "title": "feat(f4-payment-retry-recovery): smart recovery — predictive scheduler + account-updater bridge + dynamic backoff + campaign (F-B4)",
       "state": "OPEN",
@@ -6266,13 +6269,6 @@
       "title": "feat(patient-android): Expo SDK 52 Android scaffold + auth + FHIR + tabs + deep links + FCM (R-M2)",
       "state": "OPEN",
       "createdAt": "2026-05-22T19:07:23Z",
-      "mergedAt": null
-    },
-    {
-      "number": 97,
-      "title": "feat(f3-dunning-workflow): smart payment retry + collections + suspension + risk scoring (F-B3)",
-      "state": "OPEN",
-      "createdAt": "2026-05-22T18:52:29Z",
       "mergedAt": null
     }
   ],
@@ -6542,6 +6538,7 @@
     "origin/feat/wave-f-b2-alert-queue@c637f4fc5b99": 30,
     "origin/feat/wave-f-b3-dunning-workflow@627a31e5b006": 27,
     "origin/feat/wave-f-b4-payment-retry-smart-recovery@c5497f6914a9": 22,
+    "origin/feat/wave-f-b6-churn-risk-scoring@d74e2b54772f": 24,
     "origin/feat/wave-g-1-delegation-foundation@04fe537ac21f": 0,
     "origin/feat/wave-g-2-access-delegation@0b9b7854fde0": 0,
     "origin/feat/wave-g-2-delegation-audit@6acf340689f0": 0,
@@ -7078,6 +7075,7 @@
     "origin/feat/wave-f-b2-alert-queue@c637f4fc5b99": 11,
     "origin/feat/wave-f-b3-dunning-workflow@627a31e5b006": 10,
     "origin/feat/wave-f-b4-payment-retry-smart-recovery@c5497f6914a9": 8,
+    "origin/feat/wave-f-b6-churn-risk-scoring@d74e2b54772f": 10,
     "origin/feat/wave-g-1-delegation-foundation@04fe537ac21f": 0,
     "origin/feat/wave-g-2-access-delegation@0b9b7854fde0": 0,
     "origin/feat/wave-g-2-delegation-audit@6acf340689f0": 0,
@@ -7614,6 +7612,7 @@
     "origin/feat/wave-f-b2-alert-queue@c637f4fc5b99": false,
     "origin/feat/wave-f-b3-dunning-workflow@627a31e5b006": false,
     "origin/feat/wave-f-b4-payment-retry-smart-recovery@c5497f6914a9": false,
+    "origin/feat/wave-f-b6-churn-risk-scoring@d74e2b54772f": false,
     "origin/feat/wave-g-1-delegation-foundation@04fe537ac21f": true,
     "origin/feat/wave-g-2-access-delegation@0b9b7854fde0": true,
     "origin/feat/wave-g-2-delegation-audit@6acf340689f0": true,
