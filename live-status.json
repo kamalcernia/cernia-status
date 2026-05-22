@@ -8,12 +8,12 @@
     "currentMainCommit": "76989fcb",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 72,
+    "agentsRemainingToV30": 70,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
     "strategy": "TIER 0 · Honest accounting restored — 80 specced product features in pipeline. 8 in-flight (M-P1 W-E1 K-R1 O-AI1 L-M1 I-S1 R-M1 F-B1) · 72 product-feature placeholders renamed from generic ?N to concrete specs (K-R1 admin matrix, J-W1 marketplace API, etc.). W-E1 PR #71 open. (refreshed May 21, 2026, 20:06 EDT)",
-    "totalAgentsShipped": 446,
+    "totalAgentsShipped": 448,
     "modelMix": {
       "haiku": 43,
       "sonnet": 447,
@@ -24,7 +24,7 @@
       "sonnet": 76,
       "opus": 1
     },
-    "v30Status": "446/518 (86%, 72 to go)",
+    "v30Status": "448/518 (86%, 70 to go)",
     "v30Target": 518
   },
   "pool": {
@@ -1642,8 +1642,8 @@
         },
         {
           "id": "F-B2",
-          "name": "alert notification queue + delivery",
-          "status": "pending",
+          "name": "alert queue + 6 channel dispatchers + retry + suppression (PR #80, 232 tests)",
+          "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 2
@@ -3178,8 +3178,8 @@
         },
         {
           "id": "W-E2",
-          "name": "email template engine + i18n",
-          "status": "pending",
+          "name": "MJML engine + i18n + 10 seeded templates × en/es (PR #81, 217 tests)",
+          "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 2
