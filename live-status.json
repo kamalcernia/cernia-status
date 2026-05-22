@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T19:24:24.372Z",
-    "lastUpdatedDisplay": "May 22, 2026 — 15:24 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 3/8 in flight (M-P5 O-AI4 I-S5) · last: HALT — Anthropic monthly limit hit; 8 in-flight fa (854eb166)"
+    "lastUpdatedIso": "2026-05-22T19:25:34.159Z",
+    "lastUpdatedDisplay": "May 22, 2026 — 15:25 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 3/8 in flight (M-P5 O-AI4 I-S5) ·"
   },
   "summary": {
     "currentMainCommit": "854eb166",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 74,
     "agentsRemainingToV30": 16,
-    "hardeningTrackRecord": "74 successful commits since v0.95-white-label · 1 active failure · 6 recovered",
+    "hardeningTrackRecord": "74 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
-    "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "Pool 3/8 in flight (M-P5 O-AI4 I-S5) — 16 agents remaining to v3.0. Last: HALT — Anthropic monthly limit hit; 8 in-flight failed; resu (854eb166). (refreshed May 22, 2026 — 15:24 EDT)",
+    "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
+    "strategy": "Pool 3/8 in flight (M-P5 O-AI4 I-S5) — 16 agents remaining to v3.0. (refreshed May 22, 2026 — 15:25 EDT)",
     "totalAgentsShipped": 512,
     "modelMix": {
       "haiku": 43,
@@ -402,63 +402,78 @@
   "recentCompletions": [
     {
       "agent": "HALT — Anthropic monthly limit hit; 8 in-flight failed; resumes 10:...",
-      "commit": "854eb166"
+      "commit": "854eb166",
+      "kind": "docs"
     },
     {
       "agent": "O-AI3 #93 landed (196 tests, 11-model seed); O-AI4 dispatched; 460/...",
-      "commit": "4ae3034a"
+      "commit": "4ae3034a",
+      "kind": "docs"
     },
     {
       "agent": "M-P4 #91 + I-S4 #92 landed; M-P5 + I-S5 dispatched; 459/518 (89%, 5...",
-      "commit": "4451f1ee"
+      "commit": "4451f1ee",
+      "kind": "docs"
     },
     {
       "agent": "M-P4 #91 landed (182 tests); M-P5 dispatched; 458/518 (88%, 60 to go)",
-      "commit": "1b98b3d0"
+      "commit": "1b98b3d0",
+      "kind": "docs"
     },
     {
       "agent": "K-R3 #90 landed (210 tests, 33-node nav); K-R4 dispatched; 457/518 ...",
-      "commit": "1301f217"
+      "commit": "1301f217",
+      "kind": "docs"
     },
     {
       "agent": "W-E3 #89 landed (255 tests); W-E4 dispatched; 456/518 (88%, 62 to go)",
-      "commit": "84d2434c"
+      "commit": "84d2434c",
+      "kind": "docs"
     },
     {
       "agent": "L-M3 #88 landed (173 tests); L-M4 dispatched; 455/518 (88%, 63 to go)",
-      "commit": "a08c160c"
+      "commit": "a08c160c",
+      "kind": "docs"
     },
     {
       "agent": "I-S3 #87 landed (211 tests, hybrid BM25+cosine search); I-S4 dispat...",
-      "commit": "7cf3e7a2"
+      "commit": "7cf3e7a2",
+      "kind": "docs"
     },
     {
       "agent": "R-M1 #86 landed (iOS foundation, 119 tests); R-M2 Android dispatche...",
-      "commit": "08583263"
+      "commit": "08583263",
+      "kind": "docs"
     },
     {
       "agent": "M-P3 #85 + O-AI2 #84 landed; M-P4 + O-AI3 dispatched; 452/518 (87%,...",
-      "commit": "9a9d99e1"
+      "commit": "9a9d99e1",
+      "kind": "docs"
     },
     {
       "agent": "reconcile slot panel — show current refilled agents (M-P3 W-E3 K-R3...",
-      "commit": "101a9e17"
+      "commit": "101a9e17",
+      "kind": "docs"
     },
     {
       "agent": "L-M2 #83 landed (198 tests); L-M3 dispatched; 450/518 (87%, 68 to go)",
-      "commit": "a53c7c27"
+      "commit": "a53c7c27",
+      "kind": "docs"
     },
     {
       "agent": "K-R2 #82 landed (125 tests); K-R3 dispatched; 449/518 (87%, 69 to go)",
-      "commit": "f7af415b"
+      "commit": "f7af415b",
+      "kind": "docs"
     },
     {
       "agent": "authoritative re-mark of all 11 landings (PRs #71-81); 446/518 (86%...",
-      "commit": "9a6e096c"
+      "commit": "9a6e096c",
+      "kind": "docs"
     },
     {
       "agent": "F-B2 #80 + W-E2 #81 landed; F-B3 + W-E3 dispatched; 448/518 (87%, 7...",
-      "commit": "5a952d59"
+      "commit": "5a952d59",
+      "kind": "docs"
     }
   ],
   "failures": [
@@ -466,7 +481,9 @@
       "agent": "M-1 pricing engine",
       "failureMode": "stream idle timeout",
       "recovery": "re-dispatched as M-1A with tighter scope; running in slot 1",
-      "aged": true
+      "aged": true,
+      "recovered": true,
+      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed)"
     },
     {
       "agent": "W-1 email program",
@@ -521,7 +538,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
