@@ -60,7 +60,7 @@
         "status": "running",
         "agent": {
           "taskId": "K-R4",
-          "agentId": "PENDING_K_R4",
+          "agentId": "abb29d5aafa1e95f9",
           "task": "tamper-evident RBAC audit chain + HIPAA disclosure accounting + legal hold + retention",
           "writableSet": "packages/k4-rbac-audit-log/**"
         }
