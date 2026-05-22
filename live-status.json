@@ -1,19 +1,19 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T19:33:14.654Z",
-    "lastUpdatedDisplay": "May 22, 2026 — 15:33 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 2/8 in flight (O-AI4 I-S5) · last PR: #99 feat(m5-trial-conversion): trial lifecycle + activ"
+    "lastUpdatedIso": "2026-05-22T19:35:31.883Z",
+    "lastUpdatedDisplay": "May 22, 2026 — 15:35 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 1/8 in flight (I-S5) · last PR: #101 feat(o4-cost-tracking-budgets): per-tenant LLM cos"
   },
   "summary": {
     "currentMainCommit": "1cd7dccf",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 75,
-    "agentsRemainingToV30": 15,
+    "agentsRemainingToV30": 13,
     "hardeningTrackRecord": "75 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "Pool 2/8 in flight (O-AI4 I-S5) — 15 agents remaining to v3.0. Last PR: #99 feat(m5-trial-conversion): trial lifecycle + activation + sc. (refreshed May 22, 2026 — 15:33 EDT)",
-    "totalAgentsShipped": 513,
+    "strategy": "Pool 1/8 in flight (I-S5) — 13 agents remaining to v3.0. Last PR: #101 feat(o4-cost-tracking-budgets): per-tenant LLM cost ledger +. (refreshed May 22, 2026 — 15:35 EDT)",
+    "totalAgentsShipped": 515,
     "modelMix": {
       "haiku": 43,
       "sonnet": 451,
@@ -22,14 +22,14 @@
     "modelMixActive": {
       "haiku": 0,
       "sonnet": 53,
-      "opus": 3
+      "opus": 2
     },
-    "v30Status": "513/528 (97%, 15 to go)",
+    "v30Status": "515/528 (98%, 13 to go)",
     "v30Target": 528
   },
   "pool": {
     "size": 8,
-    "saturationPct": 25,
+    "saturationPct": 13,
     "queueDepth": 5,
     "slots": [
       {
@@ -53,13 +53,8 @@
       {
         "slot": 4,
         "worktree": "cernia-wt-r1-r",
-        "status": "running",
-        "agent": {
-          "taskId": "O-AI4",
-          "agentId": "redispatch-o-ai4",
-          "task": "Cost-tracking budgets + alerts + reconciliation (re-dispatch)",
-          "writableSet": "packages/o4-cost-tracking-budgets/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 5,
@@ -478,7 +473,7 @@
       "recovery": "re-dispatched as M-1A with tighter scope; running in slot 1",
       "aged": true,
       "recovered": true,
-      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
+      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
     },
     {
       "agent": "W-1 email program",
@@ -533,7 +528,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
@@ -1825,7 +1820,7 @@
       "agents": [
         {
           "id": "I-S5",
-          "name": "(running — branch not yet pushed)",
+          "name": "csm workspace",
           "status": "in-flight",
           "slot": 6,
           "worktree": "cernia-wt-r1-s-dicom",
@@ -2003,15 +1998,6 @@
       "agentsTotal": 13,
       "agents": [
         {
-          "id": "O-AI4",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 4,
-          "worktree": "cernia-wt-r1-r",
-          "recommendedModel": "opus",
-          "modelReason": "ai-safety-critical"
-        },
-        {
           "id": "O-1",
           "name": "ai copilot foundation",
           "status": "landed",
@@ -2082,6 +2068,13 @@
           "modelReason": "ai-safety-critical"
         },
         {
+          "id": "O-AI4",
+          "name": "cost tracking budgets",
+          "status": "landed",
+          "recommendedModel": "opus",
+          "modelReason": "ai-safety-critical"
+        },
+        {
           "id": "O-?1",
           "name": "pending agent (slot 26 in dispatch queue)",
           "status": "pending",
@@ -2100,7 +2093,7 @@
       ],
       "knownAgentCount": 11,
       "pendingAgentCount": 2,
-      "completionPct": 77
+      "completionPct": 85
     },
     {
       "id": "P",
@@ -4692,6 +4685,20 @@
   ],
   "recentPrActivity": [
     {
+      "number": 101,
+      "title": "feat(o4-cost-tracking-budgets): per-tenant LLM cost ledger + budget caps + alert engine + reconciliation (O-AI4)",
+      "state": "OPEN",
+      "createdAt": "2026-05-22T19:34:05Z",
+      "mergedAt": null
+    },
+    {
+      "number": 100,
+      "title": "feat(i5-csm-workspace): account portfolio + health score + priority queue + activity feed + notes + assignment engine (I-S5)",
+      "state": "OPEN",
+      "createdAt": "2026-05-22T19:33:59Z",
+      "mergedAt": null
+    },
+    {
       "number": 99,
       "title": "feat(m5-trial-conversion): trial lifecycle + activation + scoring + paywall + handoff (M-P5)",
       "state": "OPEN",
@@ -4780,20 +4787,6 @@
       "title": "feat(i3-kb-ai-replies): KB + AI replies (I-S3)",
       "state": "OPEN",
       "createdAt": "2026-05-22T01:01:35Z",
-      "mergedAt": null
-    },
-    {
-      "number": 86,
-      "title": "feat(r-mobile-ios-foundation): Expo iOS app + auth + FHIR + dashboard (R-M1)",
-      "state": "OPEN",
-      "createdAt": "2026-05-22T00:58:04Z",
-      "mergedAt": null
-    },
-    {
-      "number": 85,
-      "title": "feat(m3-stripe-invoice): invoice + tax + dunning (M-P3)",
-      "state": "OPEN",
-      "createdAt": "2026-05-22T00:57:20Z",
       "mergedAt": null
     }
   ]
