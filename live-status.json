@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T01:27:58.723Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 21:27 EDT",
-    "modelSummary": "TIER 0 · Pool 8/8 · 460/518 pushed (89%) · 58 to go · 23 PRs #71-93 · 3,586 cumulative tests"
+    "lastUpdatedIso": "2026-05-22T15:21:01.682Z",
+    "lastUpdatedDisplay": "May 22, 2026 — 11:21 EDT",
+    "modelSummary": "HALT · Pool 0/8 idle — Anthropic monthly limit · resumes 10:20pm ET · 460/518 pushed (89%) · 23 PRs #71-93"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
@@ -11,8 +11,8 @@
     "agentsRemainingToV30": 58,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
-    "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
-    "strategy": "TIER 0 · 11 product features landed this session (PRs #71-81). Honest count: 448/518 pushed (86%) · 0 PRs merged to main · 81 PRs open. Pool 8/8.",
+    "recoveryTier": "TIER 1 — Anthropic monthly limit reached; resumes 10:20pm ET",
+    "strategy": "HALT · 8 in-flight agents failed simultaneously when Anthropic monthly usage limit hit. 23 features successfully landed before halt (PRs #71-93). Resumes when limit resets at 10:20pm ET tonight.",
     "totalAgentsShipped": 460,
     "modelMix": {
       "haiku": 43,
@@ -29,96 +29,56 @@
   },
   "pool": {
     "size": 8,
-    "saturationPct": 100,
+    "saturationPct": 0,
     "queueDepth": 5,
     "slots": [
       {
         "slot": 1,
         "worktree": "cernia-wt-r1-hext-a",
-        "status": "running",
-        "agent": {
-          "taskId": "M-P5",
-          "agentId": "a9f4f82fce1440573",
-          "task": "trial to paid funnel + activation tracking + paywalls + sales plays + upgrade flow",
-          "writableSet": "packages/m5-trial-conversion/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 2,
         "worktree": "cernia-wt-r1-hext-b",
-        "status": "running",
-        "agent": {
-          "taskId": "W-E4",
-          "agentId": "aa49e0a8dc7c54a5f",
-          "task": "preference center + RFC 8058 unsubscribe + GDPR/CAN-SPAM/CASL + global suppression",
-          "writableSet": "packages/w4-unsubscribe-gdpr/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 3,
         "worktree": "cernia-wt-r1-hext-c",
-        "status": "running",
-        "agent": {
-          "taskId": "K-R4",
-          "agentId": "abb29d5aafa1e95f9",
-          "task": "tamper-evident RBAC audit chain + HIPAA disclosure accounting + legal hold + retention",
-          "writableSet": "packages/k4-rbac-audit-log/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 4,
         "worktree": "cernia-wt-r1-r",
-        "status": "running",
-        "agent": {
-          "taskId": "O-AI4",
-          "agentId": "a76f7e89a10966a07",
-          "task": "AI FinOps cost tracking + budgets + anomalies + showback + forecast + recommendations",
-          "writableSet": "packages/o4-cost-tracking/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 5,
         "worktree": "cernia-wt-r1-s-hl7",
-        "status": "running",
-        "agent": {
-          "taskId": "L-M4",
-          "agentId": "ac047fb15b88ac2cd",
-          "task": "user cross-org assignments + context switch + locum + shift handoff + SSO mapping",
-          "writableSet": "packages/l4-user-cross-org-assignment/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 6,
         "worktree": "cernia-wt-r1-s-dicom",
-        "status": "running",
-        "agent": {
-          "taskId": "I-S5",
-          "agentId": "aa1caa7323fc1c4d4",
-          "task": "CSM workspace + agent queue + smart-assign + macros + escalations + QBR",
-          "writableSet": "packages/i5-csm-workspace/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 7,
         "worktree": "cernia-wt-r1-y",
-        "status": "running",
-        "agent": {
-          "taskId": "R-M2",
-          "agentId": "a5b57c79c48592145",
-          "task": "Android patient app foundation FCM+MD3+biometric+deep-links",
-          "writableSet": "apps/patient-android/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 8,
         "worktree": "cernia-wt-r1-t",
-        "status": "running",
-        "agent": {
-          "taskId": "F-B3",
-          "agentId": "aeae61b09689b0ad7",
-          "task": "dunning workflow + smart retry + risk scoring + suspension",
-          "writableSet": "packages/f3-dunning-workflow/**"
-        }
+        "status": "idle",
+        "agent": null
       }
     ]
   },
@@ -530,6 +490,23 @@
       "recovery": "foreground-recovered: built @cernia/specialty-standards dep, re-ran 42/42 tests pass, committed + pushed origin/feat/wave-t-bh-a-fhir-mappings",
       "aged": true,
       "recovered": true
+    },
+    {
+      "occurredAt": "2026-05-22T15:21:01.680Z",
+      "type": "anthropic-usage-limit",
+      "affectedAgents": [
+        "M-P5",
+        "W-E4",
+        "K-R4",
+        "O-AI4",
+        "L-M4",
+        "I-S5",
+        "R-M2",
+        "F-B3"
+      ],
+      "reason": "You are out of extra usage · resets 10:20pm (America/New_York)",
+      "recoveryTier": "TIER 1 — automatic recovery after usage reset",
+      "resumeAt": "22:20 ET (today)"
     }
   ],
   "waves": [
@@ -1288,7 +1265,7 @@
         },
         {
           "id": "L-M4",
-          "name": "user cross-org assignments + scoping",
+          "name": "user cross-org assignments + scoping — BLOCKED: Anthropic monthly limit, retry after 10:20pm ET reset",
           "status": "pending",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
@@ -1376,7 +1353,7 @@
         },
         {
           "id": "K-R4",
-          "name": "audit log for role changes",
+          "name": "audit log for role changes — BLOCKED: Anthropic monthly limit, retry after 10:20pm ET reset",
           "status": "pending",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
@@ -1488,7 +1465,7 @@
         },
         {
           "id": "M-P5",
-          "name": "trial to paid conversion flow",
+          "name": "trial to paid conversion flow — BLOCKED: Anthropic monthly limit, retry after 10:20pm ET reset",
           "status": "pending",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
@@ -1650,8 +1627,8 @@
         },
         {
           "id": "F-B3",
-          "name": "dunning workflow w/ stripe",
-          "status": "in-flight",
+          "name": "dunning workflow w/ stripe — BLOCKED: Anthropic monthly limit, retry after 10:20pm ET reset",
+          "status": "pending",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 3
@@ -1842,7 +1819,7 @@
         },
         {
           "id": "I-S5",
-          "name": "internal CSM workspace + queue",
+          "name": "internal CSM workspace + queue — BLOCKED: Anthropic monthly limit, retry after 10:20pm ET reset",
           "status": "pending",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
@@ -2046,7 +2023,7 @@
         },
         {
           "id": "O-AI4",
-          "name": "cost tracking + budget alerts",
+          "name": "cost tracking + budget alerts — BLOCKED: Anthropic monthly limit, retry after 10:20pm ET reset",
           "status": "pending",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
@@ -2910,7 +2887,7 @@
         },
         {
           "id": "R-M2",
-          "name": "Android patient app foundation",
+          "name": "Android patient app foundation — BLOCKED: Anthropic monthly limit, retry after 10:20pm ET reset",
           "status": "pending",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
@@ -3194,7 +3171,7 @@
         },
         {
           "id": "W-E4",
-          "name": "unsubscribe + preferences + GDPR",
+          "name": "unsubscribe + preferences + GDPR — BLOCKED: Anthropic monthly limit, retry after 10:20pm ET reset",
           "status": "pending",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
