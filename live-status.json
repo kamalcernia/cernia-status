@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T19:35:31.883Z",
+    "lastUpdatedIso": "2026-05-22T19:35:40.928Z",
     "lastUpdatedDisplay": "May 22, 2026 — 15:35 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 1/8 in flight (I-S5) · last PR: #101 feat(o4-cost-tracking-budgets): per-tenant LLM cos"
+    "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #101 feat(o4-cost-tracking-budgets): per-tenant LLM cos"
   },
   "summary": {
     "currentMainCommit": "1cd7dccf",
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "75 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "Pool 1/8 in flight (I-S5) — 13 agents remaining to v3.0. Last PR: #101 feat(o4-cost-tracking-budgets): per-tenant LLM cost ledger +. (refreshed May 22, 2026 — 15:35 EDT)",
+    "strategy": "Idle pool 0/8 — 13 agents remaining to v3.0. Last PR: #101 feat(o4-cost-tracking-budgets): per-tenant LLM cost ledger +. (refreshed May 22, 2026 — 15:35 EDT)",
     "totalAgentsShipped": 515,
     "modelMix": {
       "haiku": 43,
@@ -21,7 +21,7 @@
     },
     "modelMixActive": {
       "haiku": 0,
-      "sonnet": 53,
+      "sonnet": 52,
       "opus": 2
     },
     "v30Status": "515/528 (98%, 13 to go)",
@@ -29,7 +29,7 @@
   },
   "pool": {
     "size": 8,
-    "saturationPct": 13,
+    "saturationPct": 0,
     "queueDepth": 5,
     "slots": [
       {
@@ -65,13 +65,8 @@
       {
         "slot": 6,
         "worktree": "cernia-wt-r1-s-dicom",
-        "status": "running",
-        "agent": {
-          "taskId": "I-S5",
-          "agentId": "redispatch-i-s5",
-          "task": "Internal CSM workspace (re-dispatch)",
-          "writableSet": "packages/i5-csm-workspace/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 7,
@@ -473,7 +468,7 @@
       "recovery": "re-dispatched as M-1A with tighter scope; running in slot 1",
       "aged": true,
       "recovered": true,
-      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
+      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
     },
     {
       "agent": "W-1 email program",
@@ -528,7 +523,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
@@ -1819,15 +1814,6 @@
       "agentsTotal": 9,
       "agents": [
         {
-          "id": "I-S5",
-          "name": "csm workspace",
-          "status": "in-flight",
-          "slot": 6,
-          "worktree": "cernia-wt-r1-s-dicom",
-          "recommendedModel": "sonnet",
-          "modelReason": "default"
-        },
-        {
           "id": "I-1",
           "name": "support channel",
           "status": "landed",
@@ -1877,6 +1863,13 @@
           "modelReason": "default"
         },
         {
+          "id": "I-S5",
+          "name": "csm workspace",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
           "id": "I-?1",
           "name": "pending agent (slot 19 in dispatch queue)",
           "status": "pending",
@@ -1887,7 +1880,7 @@
       ],
       "knownAgentCount": 8,
       "pendingAgentCount": 1,
-      "completionPct": 78
+      "completionPct": 89
     },
     {
       "id": "J",
