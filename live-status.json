@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T19:07:48.885Z",
-    "lastUpdatedDisplay": "May 22, 2026 — 15:07 EDT",
+    "lastUpdatedIso": "2026-05-22T19:09:23.781Z",
+    "lastUpdatedDisplay": "May 22, 2026 — 15:09 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last: HALT — Anthropic monthly limit hit; 8 in-flight fa (854eb166)"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "74 successful commits since v0.95-white-label · 2 active failures · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (2 historical unrecovered)",
-    "strategy": "HALT · 8 in-flight agents failed simultaneously when Anthropic monthly usage limit hit. 23 features successfully landed before halt (PRs #71-93). Resumes when limit resets at 10:20pm ET tonight. (refreshed May 22, 2026 — 15:07 EDT · pool 0/8)",
+    "strategy": "HALT · 8 in-flight agents failed simultaneously when Anthropic monthly usage limit hit. 23 features successfully landed before halt (PRs #71-93). Resumes when limit resets at 10:20pm ET tonight. (refreshed May 22, 2026 — 15:09 EDT · pool 0/8)",
     "totalAgentsShipped": 512,
     "modelMix": {
       "haiku": 43,
