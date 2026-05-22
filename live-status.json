@@ -1,19 +1,19 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T01:08:14.185Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 21:08 EDT",
-    "modelSummary": "TIER 0 · Pool 8/8 · 455/518 pushed (88%) · 63 to go · 18 PRs #71-88"
+    "lastUpdatedIso": "2026-05-22T01:10:21.381Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 21:10 EDT",
+    "modelSummary": "TIER 0 · Pool 8/8 · 456/518 pushed (88%) · 62 to go · 19 PRs #71-89 · 2,807 cumulative tests"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 63,
+    "agentsRemainingToV30": 62,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
     "strategy": "TIER 0 · 11 product features landed this session (PRs #71-81). Honest count: 448/518 pushed (86%) · 0 PRs merged to main · 81 PRs open. Pool 8/8.",
-    "totalAgentsShipped": 455,
+    "totalAgentsShipped": 456,
     "modelMix": {
       "haiku": 43,
       "sonnet": 447,
@@ -24,7 +24,7 @@
       "sonnet": 76,
       "opus": 1
     },
-    "v30Status": "455/518 (88%, 63 to go)",
+    "v30Status": "456/518 (88%, 62 to go)",
     "v30Target": 518
   },
   "pool": {
@@ -48,10 +48,10 @@
         "worktree": "cernia-wt-r1-hext-b",
         "status": "running",
         "agent": {
-          "taskId": "W-E3",
-          "agentId": "a0994939121150b52",
-          "task": "DKIM/SPF/DMARC + reputation + bounce/complaint + warmup",
-          "writableSet": "packages/w3-deliverability/**"
+          "taskId": "W-E4",
+          "agentId": "PENDING_W_E4",
+          "task": "preference center + RFC 8058 unsubscribe + GDPR/CAN-SPAM/CASL + global suppression",
+          "writableSet": "packages/w4-unsubscribe-gdpr/**"
         }
       },
       {
@@ -3186,8 +3186,8 @@
         },
         {
           "id": "W-E3",
-          "name": "deliverability + reputation monitoring",
-          "status": "in-flight",
+          "name": "DKIM/SPF/DMARC + reputation + bounce/complaint + warmup (PR #89, 255 tests)",
+          "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 3
