@@ -1,19 +1,19 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T00:06:37.629Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 20:06 EDT",
-    "modelSummary": "TIER 0 · Pool 8/8 (M-P1 W-E1 K-R1 O-AI1 L-M1 I-S1 R-M1 F-B1) · 437/518 landed (84%) · 81 to go"
+    "lastUpdatedIso": "2026-05-22T00:18:09.030Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 20:18 EDT",
+    "modelSummary": "TIER 0 · Pool 7/8 · 441/518 pushed (85%) · 77 to go · 0 PRs merged · 76 PRs open · I-S1 just landed PR #74"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 81,
+    "agentsRemainingToV30": 77,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
     "strategy": "TIER 0 · Honest accounting restored — 80 specced product features in pipeline. 8 in-flight (M-P1 W-E1 K-R1 O-AI1 L-M1 I-S1 R-M1 F-B1) · 72 product-feature placeholders renamed from generic ?N to concrete specs (K-R1 admin matrix, J-W1 marketplace API, etc.). W-E1 PR #71 open. (refreshed May 21, 2026, 20:06 EDT)",
-    "totalAgentsShipped": 437,
+    "totalAgentsShipped": 441,
     "modelMix": {
       "haiku": 43,
       "sonnet": 447,
@@ -21,15 +21,15 @@
     },
     "modelMixActive": {
       "haiku": 0,
-      "sonnet": 79,
+      "sonnet": 76,
       "opus": 1
     },
-    "v30Status": "437/518 (84%, 81 to go)",
+    "v30Status": "441/518 (85%, 77 to go)",
     "v30Target": 518
   },
   "pool": {
     "size": 8,
-    "saturationPct": 100,
+    "saturationPct": 88,
     "queueDepth": 5,
     "slots": [
       {
@@ -37,10 +37,10 @@
         "worktree": "cernia-wt-r1-hext-a",
         "status": "running",
         "agent": {
-          "taskId": "M-P1",
-          "agentId": "ab7c60e2d96754265",
-          "task": "License server + Stripe + entitlements (sonnet)",
-          "writableSet": "packages/m1-license-server/**"
+          "taskId": "M-P2",
+          "agentId": "a0926b57d837a0c63",
+          "task": "metered usage tracker (events + tokens) + Stripe Meter Events",
+          "writableSet": "packages/m2-metered-usage/**"
         }
       },
       {
@@ -48,10 +48,10 @@
         "worktree": "cernia-wt-r1-hext-b",
         "status": "running",
         "agent": {
-          "taskId": "W-E1",
-          "agentId": "a54533135f816682e",
-          "task": "Transactional email SES+SendGrid+Postmark+Mailgun (sonnet)",
-          "writableSet": "packages/w1-transactional-email/**"
+          "taskId": "W-E2",
+          "agentId": "aea774bff7ac38380",
+          "task": "email template engine + MJML + i18n + 10 seeded templates",
+          "writableSet": "packages/w2-email-templates/**"
         }
       },
       {
@@ -90,13 +90,8 @@
       {
         "slot": 6,
         "worktree": "cernia-wt-r1-s-dicom",
-        "status": "running",
-        "agent": {
-          "taskId": "I-S1",
-          "agentId": "ae2bef6b74888e288",
-          "task": "B2B support ticket model + intake + SLA + dashboards (I wave)",
-          "writableSet": "packages/support-tickets/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 7,
@@ -114,10 +109,10 @@
         "worktree": "cernia-wt-r1-t",
         "status": "running",
         "agent": {
-          "taskId": "F-B1",
-          "agentId": "aa211d74d5f669b2c",
-          "task": "Usage threshold detector + anomaly + alerts (sonnet)",
-          "writableSet": "packages/f1-usage-threshold-detector/**"
+          "taskId": "F-B2",
+          "agentId": "ae04984c5f5f21ad1",
+          "task": "alert notification queue + 6 channel dispatchers + retry + suppression",
+          "writableSet": "packages/f2-alert-queue/**"
         }
       }
     ]
@@ -1412,8 +1407,8 @@
       "agents": [
         {
           "id": "M-P1",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
+          "name": "license server + key issuance (PR #73)",
+          "status": "landed",
           "slot": 1,
           "worktree": "cernia-wt-r1-hext-a",
           "recommendedModel": "sonnet",
@@ -1584,8 +1579,8 @@
       "agents": [
         {
           "id": "F-B1",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
+          "name": "usage threshold detector + anomaly (PR #72)",
+          "status": "landed",
           "slot": 8,
           "worktree": "cernia-wt-r1-t",
           "recommendedModel": "sonnet",
@@ -1810,8 +1805,8 @@
         },
         {
           "id": "I-S1",
-          "name": "ticket model + intake from email/portal",
-          "status": "in-flight",
+          "name": "B2B support ticket model + intake + SLA + dashboards (PR #74)",
+          "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 1
@@ -3155,8 +3150,8 @@
       "agents": [
         {
           "id": "W-E1",
-          "name": "transactional email service (SES/SendGrid/Postmark/Mailgun)",
-          "status": "in-flight",
+          "name": "transactional email SES/SendGrid/Postmark/Mailgun (PR #71)",
+          "status": "landed",
           "slot": 2,
           "worktree": "cernia-wt-r1-hext-b",
           "recommendedModel": "sonnet",
