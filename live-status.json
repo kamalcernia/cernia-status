@@ -1,19 +1,19 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T18:59:20.972Z",
-    "lastUpdatedDisplay": "May 22, 2026 — 14:59 EDT",
+    "lastUpdatedIso": "2026-05-22T19:07:48.885Z",
+    "lastUpdatedDisplay": "May 22, 2026 — 15:07 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last: HALT — Anthropic monthly limit hit; 8 in-flight fa (854eb166)"
   },
   "summary": {
     "currentMainCommit": "854eb166",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 74,
-    "agentsRemainingToV30": 17,
+    "agentsRemainingToV30": 16,
     "hardeningTrackRecord": "74 successful commits since v0.95-white-label · 2 active failures · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (2 historical unrecovered)",
-    "strategy": "HALT · 8 in-flight agents failed simultaneously when Anthropic monthly usage limit hit. 23 features successfully landed before halt (PRs #71-93). Resumes when limit resets at 10:20pm ET tonight. (refreshed May 22, 2026 — 14:59 EDT · pool 0/8)",
-    "totalAgentsShipped": 511,
+    "strategy": "HALT · 8 in-flight agents failed simultaneously when Anthropic monthly usage limit hit. 23 features successfully landed before halt (PRs #71-93). Resumes when limit resets at 10:20pm ET tonight. (refreshed May 22, 2026 — 15:07 EDT · pool 0/8)",
+    "totalAgentsShipped": 512,
     "modelMix": {
       "haiku": 43,
       "sonnet": 451,
@@ -21,10 +21,10 @@
     },
     "modelMixActive": {
       "haiku": 0,
-      "sonnet": 55,
+      "sonnet": 54,
       "opus": 3
     },
-    "v30Status": "511/528 (97%, 17 to go)",
+    "v30Status": "512/528 (97%, 16 to go)",
     "v30Target": 528
   },
   "pool": {
@@ -2877,6 +2877,13 @@
           "modelReason": "mobile-platform"
         },
         {
+          "id": "R-M2",
+          "name": "android foundation",
+          "status": "landed",
+          "recommendedModel": "sonnet",
+          "modelReason": "mobile-platform"
+        },
+        {
           "id": "R-R1",
           "name": "mobile foundation",
           "status": "landed",
@@ -2927,19 +2934,11 @@
           "activationPosition": 46,
           "recommendedModel": "sonnet",
           "modelReason": "mobile-platform"
-        },
-        {
-          "id": "R-?4",
-          "name": "pending agent (slot 47 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 47,
-          "recommendedModel": "sonnet",
-          "modelReason": "mobile-platform"
         }
       ],
-      "knownAgentCount": 8,
-      "pendingAgentCount": 4,
-      "completionPct": 67
+      "knownAgentCount": 9,
+      "pendingAgentCount": 3,
+      "completionPct": 75
     },
     {
       "id": "S",
@@ -2978,6 +2977,14 @@
         },
         {
           "id": "S-?1",
+          "name": "pending agent (slot 47 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 47,
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "S-?2",
           "name": "pending agent (slot 48 in dispatch queue)",
           "status": "pending",
           "activationPosition": 48,
@@ -2985,7 +2992,7 @@
           "modelReason": "default"
         },
         {
-          "id": "S-?2",
+          "id": "S-?3",
           "name": "pending agent (slot 49 in dispatch queue)",
           "status": "pending",
           "activationPosition": 49,
@@ -2993,18 +3000,10 @@
           "modelReason": "default"
         },
         {
-          "id": "S-?3",
+          "id": "S-?4",
           "name": "pending agent (slot 50 in dispatch queue)",
           "status": "pending",
           "activationPosition": 50,
-          "recommendedModel": "sonnet",
-          "modelReason": "default"
-        },
-        {
-          "id": "S-?4",
-          "name": "pending agent (slot 51 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 51,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         }
@@ -3193,9 +3192,9 @@
         },
         {
           "id": "W-?1",
-          "name": "pending agent (slot 52 in dispatch queue)",
+          "name": "pending agent (slot 51 in dispatch queue)",
           "status": "pending",
-          "activationPosition": 52,
+          "activationPosition": 51,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         }
@@ -3281,6 +3280,14 @@
         },
         {
           "id": "X-?1",
+          "name": "pending agent (slot 52 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 52,
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "X-?2",
           "name": "pending agent (slot 53 in dispatch queue)",
           "status": "pending",
           "activationPosition": 53,
@@ -3288,7 +3295,7 @@
           "modelReason": "default"
         },
         {
-          "id": "X-?2",
+          "id": "X-?3",
           "name": "pending agent (slot 54 in dispatch queue)",
           "status": "pending",
           "activationPosition": 54,
@@ -3296,7 +3303,7 @@
           "modelReason": "default"
         },
         {
-          "id": "X-?3",
+          "id": "X-?4",
           "name": "pending agent (slot 55 in dispatch queue)",
           "status": "pending",
           "activationPosition": 55,
@@ -3304,18 +3311,10 @@
           "modelReason": "default"
         },
         {
-          "id": "X-?4",
+          "id": "X-?5",
           "name": "pending agent (slot 56 in dispatch queue)",
           "status": "pending",
           "activationPosition": 56,
-          "recommendedModel": "sonnet",
-          "modelReason": "default"
-        },
-        {
-          "id": "X-?5",
-          "name": "pending agent (slot 57 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 57,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
