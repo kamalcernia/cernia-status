@@ -104,7 +104,7 @@
         "status": "running",
         "agent": {
           "taskId": "R-M2",
-          "agentId": "PENDING_R_M2",
+          "agentId": "a5b57c79c48592145",
           "task": "Android patient app foundation FCM+MD3+biometric+deep-links",
           "writableSet": "apps/patient-android/**"
         }
