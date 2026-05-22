@@ -1,19 +1,19 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T00:46:31.954Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 20:46 EDT",
-    "modelSummary": "TIER 0 · Pool 8/8 · 449/518 pushed (87%) · 69 to go · 12 landings PRs #71-82 · K-R2 just landed"
+    "lastUpdatedIso": "2026-05-22T00:48:25.282Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 20:48 EDT",
+    "modelSummary": "TIER 0 · Pool 8/8 · 450/518 pushed (87%) · 68 to go · 13 landings PRs #71-83 · L-M2 just landed"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 69,
+    "agentsRemainingToV30": 68,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
     "strategy": "TIER 0 · 11 product features landed this session (PRs #71-81). Honest count: 448/518 pushed (86%) · 0 PRs merged to main · 81 PRs open. Pool 8/8.",
-    "totalAgentsShipped": 449,
+    "totalAgentsShipped": 450,
     "modelMix": {
       "haiku": 43,
       "sonnet": 447,
@@ -24,7 +24,7 @@
       "sonnet": 76,
       "opus": 1
     },
-    "v30Status": "449/518 (87%, 69 to go)",
+    "v30Status": "450/518 (87%, 68 to go)",
     "v30Target": 518
   },
   "pool": {
@@ -81,10 +81,10 @@
         "worktree": "cernia-wt-r1-s-hl7",
         "status": "running",
         "agent": {
-          "taskId": "L-M1",
-          "agentId": "ae50748b3d1d2d623",
-          "task": "Multi-org hierarchy tree + inheritance + rollup + isolation (L wave) (sonnet)",
-          "writableSet": "packages/l1-multi-org-hierarchy/**"
+          "taskId": "L-M3",
+          "agentId": "PENDING",
+          "task": "cross-org reporting + isolation + chargeback + de-id export",
+          "writableSet": "packages/l3-cross-org-reporting/**"
         }
       },
       {
@@ -1272,8 +1272,8 @@
         },
         {
           "id": "L-M2",
-          "name": "IDN hierarchy + facility roll-up",
-          "status": "in-flight",
+          "name": "IDN hierarchy + facility rollup + HIPAA cell suppression + FHIR (PR #83, 198 tests)",
+          "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 2
