@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T19:26:52.229Z",
-    "lastUpdatedDisplay": "May 22, 2026 — 15:26 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 3/8 in flight (M-P5 O-AI4 I-S5) ·"
+    "lastUpdatedIso": "2026-05-22T19:27:59.402Z",
+    "lastUpdatedDisplay": "May 22, 2026 — 15:27 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 3/8 in flight (M-P5 O-AI4 I-S5) · last PR: #98 feat(patient-android): Expo SDK 52 Android scaffol"
   },
   "summary": {
     "currentMainCommit": "854eb166",
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "74 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "Pool 3/8 in flight (M-P5 O-AI4 I-S5) — 16 agents remaining to v3.0. (refreshed May 22, 2026 — 15:26 EDT)",
+    "strategy": "Pool 3/8 in flight (M-P5 O-AI4 I-S5) — 16 agents remaining to v3.0. Last PR: #98 feat(patient-android): Expo SDK 52 Android scaffold + auth +. (refreshed May 22, 2026 — 15:28 EDT)",
     "totalAgentsShipped": 512,
     "modelMix": {
       "haiku": 43,
@@ -483,7 +483,7 @@
       "recovery": "re-dispatched as M-1A with tighter scope; running in slot 1",
       "aged": true,
       "recovered": true,
-      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
+      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
     },
     {
       "agent": "W-1 email program",
@@ -538,7 +538,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
@@ -4695,6 +4695,113 @@
       "knownAgentCount": 4,
       "pendingAgentCount": 0,
       "completionPct": 100
+    }
+  ],
+  "recentPrActivity": [
+    {
+      "number": 98,
+      "title": "feat(patient-android): Expo SDK 52 Android scaffold + auth + FHIR + tabs + deep links + FCM (R-M2)",
+      "state": "OPEN",
+      "createdAt": "2026-05-22T19:07:23Z",
+      "mergedAt": null
+    },
+    {
+      "number": 97,
+      "title": "feat(f3-dunning-workflow): smart payment retry + collections + suspension + risk scoring (F-B3)",
+      "state": "OPEN",
+      "createdAt": "2026-05-22T18:52:29Z",
+      "mergedAt": null
+    },
+    {
+      "number": 96,
+      "title": "feat(l4-user-cross-org-assignment): multi-org user scoping + locum + handoff + SSO mapping (L-M4)",
+      "state": "OPEN",
+      "createdAt": "2026-05-22T17:55:23Z",
+      "mergedAt": null
+    },
+    {
+      "number": 95,
+      "title": "feat(w4-unsubscribe-gdpr): RFC 8058 + CAN-SPAM + CASL + GDPR + double-opt-in (W-E4)",
+      "state": "OPEN",
+      "createdAt": "2026-05-22T17:50:40Z",
+      "mergedAt": null
+    },
+    {
+      "number": 94,
+      "title": "feat(k4-rbac-audit-log): tamper-evident audit chain + HIPAA disclosure + legal hold + retention (K-R4)",
+      "state": "OPEN",
+      "createdAt": "2026-05-22T17:45:07Z",
+      "mergedAt": null
+    },
+    {
+      "number": 93,
+      "title": "feat(o3-model-routing): smart model routing (O-AI3)",
+      "state": "OPEN",
+      "createdAt": "2026-05-22T01:24:22Z",
+      "mergedAt": null
+    },
+    {
+      "number": 92,
+      "title": "feat(i4-customer-support-dashboard): customer support dashboard (I-S4)",
+      "state": "OPEN",
+      "createdAt": "2026-05-22T01:23:47Z",
+      "mergedAt": null
+    },
+    {
+      "number": 91,
+      "title": "feat(m4-contract-enforcement): contract enforcement runtime (M-P4)",
+      "state": "OPEN",
+      "createdAt": "2026-05-22T01:22:12Z",
+      "mergedAt": null
+    },
+    {
+      "number": 90,
+      "title": "feat(k3-role-aware-nav): runtime UI gating (K-R3)",
+      "state": "OPEN",
+      "createdAt": "2026-05-22T01:13:53Z",
+      "mergedAt": null
+    },
+    {
+      "number": 89,
+      "title": "feat(w3-deliverability): email deliverability + reputation (W-E3)",
+      "state": "OPEN",
+      "createdAt": "2026-05-22T01:08:16Z",
+      "mergedAt": null
+    },
+    {
+      "number": 88,
+      "title": "feat(l3-cross-org-reporting): cross-org reporting + isolation (L-M3)",
+      "state": "OPEN",
+      "createdAt": "2026-05-22T01:06:50Z",
+      "mergedAt": null
+    },
+    {
+      "number": 87,
+      "title": "feat(i3-kb-ai-replies): KB + AI replies (I-S3)",
+      "state": "OPEN",
+      "createdAt": "2026-05-22T01:01:35Z",
+      "mergedAt": null
+    },
+    {
+      "number": 86,
+      "title": "feat(r-mobile-ios-foundation): Expo iOS app + auth + FHIR + dashboard (R-M1)",
+      "state": "OPEN",
+      "createdAt": "2026-05-22T00:58:04Z",
+      "mergedAt": null
+    },
+    {
+      "number": 85,
+      "title": "feat(m3-stripe-invoice): invoice + tax + dunning (M-P3)",
+      "state": "OPEN",
+      "createdAt": "2026-05-22T00:57:20Z",
+      "mergedAt": null
+    },
+    {
+      "number": 84,
+      "title": "feat(o2-prompt-registry): managed clinical prompts (O-AI2)",
+      "state": "OPEN",
+      "createdAt": "2026-05-22T00:57:17Z",
+      "mergedAt": null
     }
   ]
 }
