@@ -1,19 +1,19 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T22:15:58.752Z",
-    "lastUpdatedDisplay": "May 22, 2026 — 18:15 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 1/8 in flight (L-M6) · last PR: #108 feat(o6-ai-observability-trace): trace recorder +"
+    "lastUpdatedIso": "2026-05-22T22:17:50.292Z",
+    "lastUpdatedDisplay": "May 22, 2026 — 18:17 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #109 feat(l6-access-control-inheritance): policy store"
   },
   "summary": {
     "currentMainCommit": "a499e250",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 76,
-    "agentsRemainingToV30": 6,
+    "agentsRemainingToV30": 5,
     "hardeningTrackRecord": "76 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "Pool 1/8 in flight (L-M6) — 6 agents remaining to v3.0. Last PR: #108 feat(o6-ai-observability-trace): trace recorder + span build. (refreshed May 22, 2026 — 18:16 EDT)",
-    "totalAgentsShipped": 522,
+    "strategy": "Idle pool 0/8 — 5 agents remaining to v3.0. Last PR: #109 feat(l6-access-control-inheritance): policy store + inherita. (refreshed May 22, 2026 — 18:17 EDT)",
+    "totalAgentsShipped": 523,
     "modelMix": {
       "haiku": 44,
       "sonnet": 450,
@@ -21,45 +21,45 @@
     },
     "modelMixActive": {
       "haiku": 0,
-      "sonnet": 47,
+      "sonnet": 46,
       "opus": 0
     },
-    "v30Status": "522/528 (99%, 6 to go)",
+    "v30Status": "523/528 (99%, 5 to go)",
     "v30Target": 528,
     "planProgress": {
-      "wavesComplete": 21,
-      "wavesInProgress": 11,
+      "wavesComplete": 22,
+      "wavesInProgress": 10,
       "wavesBlocked": 1,
       "wavesTotal": 34,
-      "percent": 62,
-      "label": "21/34 waves complete (62%)"
+      "percent": 65,
+      "label": "22/34 waves complete (65%)"
     },
     "packagesDelivered": {
-      "count": 391,
-      "emptyBranches": 89,
+      "count": 397,
+      "emptyBranches": 84,
       "target": 528,
-      "percent": 74,
+      "percent": 75,
       "filterThreshold": 5,
-      "label": "391/528 packages (74%), 89 empty scaffolds excluded"
+      "label": "397/528 packages (75%), 84 empty scaffolds excluded"
     },
     "pipeline": {
-      "inflight": 1,
+      "inflight": 0,
       "poolSize": 8,
       "openPrs": 15,
       "pendingDispatch": 46,
-      "label": "1/8 in flight · 15 PRs open · 46 pending dispatch"
+      "label": "0/8 in flight · 15 PRs open · 46 pending dispatch"
     },
     "quality": {
       "activeFailures": 0,
       "recoveredFailures": 7,
-      "testFilesLanded": 822,
-      "testsLandedEstimate": 20550,
-      "label": "822 test files landed · 0 active failures"
+      "testFilesLanded": 830,
+      "testsLandedEstimate": 20750,
+      "label": "830 test files landed · 0 active failures"
     },
     "velocity": {
-      "landedLastHour": 7,
+      "landedLastHour": 8,
       "landedLast24h": 15,
-      "label": "7 PRs opened in last hour · 15 in last 24h"
+      "label": "8 PRs opened in last hour · 15 in last 24h"
     },
     "integration": {
       "lastMergeIso": "2026-05-17T17:53:46-04:00",
@@ -71,19 +71,14 @@
   },
   "pool": {
     "size": 8,
-    "saturationPct": 13,
+    "saturationPct": 0,
     "queueDepth": 5,
     "slots": [
       {
         "slot": 1,
         "worktree": "cernia-wt-r1-hext-a",
-        "status": "running",
-        "agent": {
-          "taskId": "L-M6",
-          "agentId": "dispatch-l-m6",
-          "task": "Access control inheritance + override (closes Wave L)",
-          "writableSet": "packages/l6-access-control-inheritance/**"
-        }
+        "status": "idle",
+        "agent": null
       },
       {
         "slot": 2,
@@ -516,7 +511,7 @@
       "recovery": "re-dispatched as M-1A with tighter scope; running in slot 1",
       "aged": true,
       "recovered": true,
-      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
+      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
     },
     {
       "agent": "W-1 email program",
@@ -571,7 +566,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
@@ -1498,24 +1493,15 @@
       "id": "L",
       "name": "Multi-Organization Hierarchy",
       "tag": "v0.93-multi-org",
-      "status": "in-progress",
+      "status": "complete",
       "agentsTotal": 11,
       "agents": [
-        {
-          "id": "L-M6",
-          "name": "(running — branch not yet pushed)",
-          "status": "in-flight",
-          "slot": 1,
-          "worktree": "cernia-wt-r1-hext-a",
-          "recommendedModel": "sonnet",
-          "modelReason": "multi-org-hierarchy"
-        },
         {
           "id": "L-1",
           "name": "multi org foundation",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "multi-org-hierarchy"
         },
@@ -1524,7 +1510,7 @@
           "name": "multi org tenancy",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "multi-org-hierarchy"
         },
@@ -1533,7 +1519,7 @@
           "name": "multi org billing",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "multi-org-hierarchy"
         },
@@ -1542,7 +1528,7 @@
           "name": "org rbac inheritance",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "multi-org-hierarchy"
         },
@@ -1551,7 +1537,7 @@
           "name": "tenant config inheritance",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "multi-org-hierarchy"
         },
@@ -1599,11 +1585,20 @@
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "multi-org-hierarchy"
+        },
+        {
+          "id": "L-M6",
+          "name": "access control inheritance",
+          "status": "landed",
+          "fileCount": 24,
+          "isRealPackage": true,
+          "recommendedModel": "sonnet",
+          "modelReason": "multi-org-hierarchy"
         }
       ],
       "knownAgentCount": 11,
       "pendingAgentCount": 0,
-      "completionPct": 91
+      "completionPct": 100
     },
     {
       "id": "K",
@@ -5681,6 +5676,13 @@
   ],
   "recentPrActivity": [
     {
+      "number": 109,
+      "title": "feat(l6-access-control-inheritance): policy store + inheritance + overrides + effective-policy engine (L-M6) — closes Wave L",
+      "state": "OPEN",
+      "createdAt": "2026-05-22T22:16:31Z",
+      "mergedAt": null
+    },
+    {
       "number": 108,
       "title": "feat(o6-ai-observability-trace): trace recorder + span builder + aggregator + replay + correlation + cost attribution (O-AI6) — closes Wave O",
       "state": "OPEN",
@@ -5776,13 +5778,6 @@
       "title": "feat(w4-unsubscribe-gdpr): RFC 8058 + CAN-SPAM + CASL + GDPR + double-opt-in (W-E4)",
       "state": "OPEN",
       "createdAt": "2026-05-22T17:50:40Z",
-      "mergedAt": null
-    },
-    {
-      "number": 94,
-      "title": "feat(k4-rbac-audit-log): tamper-evident audit chain + HIPAA disclosure + legal hold + retention (K-R4)",
-      "state": "OPEN",
-      "createdAt": "2026-05-22T17:45:07Z",
       "mergedAt": null
     }
   ],
@@ -6125,6 +6120,7 @@
     "origin/feat/wave-l-m3-cross-org-reporting@f38970cb2ea2": 21,
     "origin/feat/wave-l-m4-user-cross-org-assignment@6fc261dcc6ed": 23,
     "origin/feat/wave-l-m5-financial-rollup-chargeback@11ba57f1ec55": 25,
+    "origin/feat/wave-l-m6-access-control-inheritance@39c1e333350b": 24,
     "origin/feat/wave-m-1a-pricing-tiers@04fe537ac21f": 0,
     "origin/feat/wave-m-1b-meters-usage-license@04fe537ac21f": 0,
     "origin/feat/wave-m-2-entitlement-engine@6acf340689f0": 0,
@@ -6658,6 +6654,7 @@
     "origin/feat/wave-l-m3-cross-org-reporting@f38970cb2ea2": 6,
     "origin/feat/wave-l-m4-user-cross-org-assignment@6fc261dcc6ed": 6,
     "origin/feat/wave-l-m5-financial-rollup-chargeback@11ba57f1ec55": 8,
+    "origin/feat/wave-l-m6-access-control-inheritance@39c1e333350b": 8,
     "origin/feat/wave-m-1a-pricing-tiers@04fe537ac21f": 0,
     "origin/feat/wave-m-1b-meters-usage-license@04fe537ac21f": 0,
     "origin/feat/wave-m-2-entitlement-engine@6acf340689f0": 0,
