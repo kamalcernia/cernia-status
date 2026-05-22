@@ -1,19 +1,19 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T01:24:28.647Z",
-    "lastUpdatedDisplay": "May 21, 2026 — 21:24 EDT",
-    "modelSummary": "TIER 0 · Pool 8/8 · 458/518 pushed (88%) · 60 to go · 21 PRs #71-91 · 3,199 cumulative tests"
+    "lastUpdatedIso": "2026-05-22T01:26:25.948Z",
+    "lastUpdatedDisplay": "May 21, 2026 — 21:26 EDT",
+    "modelSummary": "TIER 0 · Pool 8/8 (M-P5 W-E4 K-R4 O-AI3 L-M4 I-S5 R-M2 F-B3) · 459/518 pushed (89%) · 59 to go · 22 PRs #71-92 · 3,390 tests"
   },
   "summary": {
     "currentMainCommit": "76989fcb",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 56,
-    "agentsRemainingToV30": 60,
+    "agentsRemainingToV30": 59,
     "hardeningTrackRecord": "56 successful commits since v0.95-white-label · 1 active failure · 5 recovered",
     "cronStatus": "79e76380 alive - recreated; fires :07/:17/:27/:37/:47/:57",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (1 historical unrecovered)",
     "strategy": "TIER 0 · 11 product features landed this session (PRs #71-81). Honest count: 448/518 pushed (86%) · 0 PRs merged to main · 81 PRs open. Pool 8/8.",
-    "totalAgentsShipped": 458,
+    "totalAgentsShipped": 459,
     "modelMix": {
       "haiku": 43,
       "sonnet": 447,
@@ -24,7 +24,7 @@
       "sonnet": 76,
       "opus": 1
     },
-    "v30Status": "458/518 (88%, 60 to go)",
+    "v30Status": "459/518 (89%, 59 to go)",
     "v30Target": 518
   },
   "pool": {
@@ -38,7 +38,7 @@
         "status": "running",
         "agent": {
           "taskId": "M-P5",
-          "agentId": "PENDING_M_P5",
+          "agentId": "a9f4f82fce1440573",
           "task": "trial to paid funnel + activation tracking + paywalls + sales plays + upgrade flow",
           "writableSet": "packages/m5-trial-conversion/**"
         }
@@ -92,10 +92,10 @@
         "worktree": "cernia-wt-r1-s-dicom",
         "status": "running",
         "agent": {
-          "taskId": "I-S4",
-          "agentId": "ad6a4dee616ca83c0",
-          "task": "customer support dashboard + 9 widgets + self-serve tickets + CSAT + status page",
-          "writableSet": "packages/i4-customer-support-dashboard/**"
+          "taskId": "I-S5",
+          "agentId": "PENDING_I_S5",
+          "task": "CSM workspace + agent queue + smart-assign + macros + escalations + QBR",
+          "writableSet": "packages/i5-csm-workspace/**"
         }
       },
       {
@@ -1834,8 +1834,8 @@
         },
         {
           "id": "I-S4",
-          "name": "customer-facing support dashboard",
-          "status": "pending",
+          "name": "9-widget customer dashboard + self-serve + CSAT + SSR (PR #92, 191 tests)",
+          "status": "landed",
           "recommendedModel": "sonnet",
           "modelReason": "feature-default",
           "activationPosition": 4
