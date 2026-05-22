@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T00:24:08.033Z",
+    "lastUpdatedIso": "2026-05-22T00:24:26.304Z",
     "lastUpdatedDisplay": "May 21, 2026 — 20:24 EDT",
     "modelSummary": "TIER 0 · Pool 7/8 · 443/518 pushed (86%) · 75 to go · 0 PRs merged · 78 PRs open · K-R1 #76, L-M1 #75 just landed"
   },
@@ -29,7 +29,7 @@
   },
   "pool": {
     "size": 8,
-    "saturationPct": 88,
+    "saturationPct": 100,
     "queueDepth": 5,
     "slots": [
       {
@@ -90,8 +90,13 @@
       {
         "slot": 6,
         "worktree": "cernia-wt-r1-s-dicom",
-        "status": "idle",
-        "agent": null
+        "status": "running",
+        "agent": {
+          "taskId": "I-S2",
+          "agentId": "a2038b3608758d14f",
+          "task": "SLA escalation engine + business-hour clock + breach reporter",
+          "writableSet": "packages/i2-sla-escalation/**"
+        }
       },
       {
         "slot": 7,
