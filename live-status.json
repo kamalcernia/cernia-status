@@ -1,30 +1,30 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T22:29:34.268Z",
-    "lastUpdatedDisplay": "May 22, 2026 — 18:29 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 4/8 in flight (T-CARDIO F-B4 F-B5 F-B6) · last PR: #109 feat(l6-access-control-inheritance): policy store"
+    "lastUpdatedIso": "2026-05-22T22:34:57.389Z",
+    "lastUpdatedDisplay": "May 22, 2026 — 18:34 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 4/8 in flight (T-CARDIO F-B4 F-B5 F-B6) · last PR: #111 feat(f4-payment-retry-recovery): smart recovery —"
   },
   "summary": {
     "currentMainCommit": "a499e250",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 76,
-    "agentsRemainingToV30": 5,
+    "agentsRemainingToV30": 3,
     "hardeningTrackRecord": "76 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "Pool 4/8 in flight (T-CARDIO F-B4 F-B5 F-B6) — 5 agents remaining to v3.0. Last PR: #109 feat(l6-access-control-inheritance): policy store + inherita. (refreshed May 22, 2026 — 18:29 EDT)",
-    "totalAgentsShipped": 523,
+    "strategy": "Pool 4/8 in flight (T-CARDIO F-B4 F-B5 F-B6) — 3 agents remaining to v3.0. Last PR: #111 feat(f4-payment-retry-recovery): smart recovery — predictive. (refreshed May 22, 2026 — 18:36 EDT)",
+    "totalAgentsShipped": 525,
     "modelMix": {
       "haiku": 44,
-      "sonnet": 450,
-      "opus": 34
+      "sonnet": 449,
+      "opus": 35
     },
     "modelMixActive": {
       "haiku": 0,
-      "sonnet": 46,
-      "opus": 0
+      "sonnet": 45,
+      "opus": 1
     },
-    "v30Status": "523/528 (99%, 5 to go)",
+    "v30Status": "525/528 (99%, 3 to go)",
     "v30Target": 528,
     "planProgress": {
       "wavesComplete": 22,
@@ -35,12 +35,12 @@
       "label": "22/34 waves complete (65%)"
     },
     "packagesDelivered": {
-      "count": 397,
-      "emptyBranches": 84,
+      "count": 481,
+      "emptyBranches": 0,
       "target": 528,
-      "percent": 75,
+      "percent": 91,
       "filterThreshold": 5,
-      "label": "397/528 packages (75%), 84 empty scaffolds excluded"
+      "label": "481/528 packages (91%)"
     },
     "pipeline": {
       "inflight": 4,
@@ -52,14 +52,14 @@
     "quality": {
       "activeFailures": 0,
       "recoveredFailures": 7,
-      "testFilesLanded": 830,
-      "testsLandedEstimate": 20750,
-      "label": "830 test files landed · 0 active failures"
+      "testFilesLanded": 845,
+      "testsLandedEstimate": 21125,
+      "label": "845 test files landed · 0 active failures"
     },
     "velocity": {
-      "landedLastHour": 8,
+      "landedLastHour": 10,
       "landedLast24h": 15,
-      "label": "8 PRs opened in last hour · 15 in last 24h"
+      "label": "10 PRs opened in last hour · 15 in last 24h"
     },
     "integration": {
       "lastMergeIso": "2026-05-17T17:53:46-04:00",
@@ -531,7 +531,7 @@
       "recovery": "re-dispatched as M-1A with tighter scope; running in slot 1",
       "aged": true,
       "recovered": true,
-      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
+      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
     },
     {
       "agent": "W-1 email program",
@@ -586,7 +586,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
@@ -601,6 +601,7 @@
           "name": "a-w-a",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -610,6 +611,7 @@
           "name": "a-w-b",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -619,6 +621,7 @@
           "name": "security hardening",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -639,6 +642,7 @@
           "name": "testcontainers",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -648,6 +652,7 @@
           "name": "tenant invite",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -657,6 +662,7 @@
           "name": "connection ingestion",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -666,6 +672,7 @@
           "name": "eob export",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -675,6 +682,7 @@
           "name": "prov audit registry",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "safety-critical-content"
@@ -684,6 +692,7 @@
           "name": "billing wiring",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -693,6 +702,7 @@
           "name": "patient swap",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -702,6 +712,7 @@
           "name": "store wiring",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -711,6 +722,7 @@
           "name": "admin top5 swap",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -720,6 +732,7 @@
           "name": "patient session",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -729,6 +742,7 @@
           "name": "missing fetchers",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -738,6 +752,7 @@
           "name": "pgmem testcontainers",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -747,6 +762,7 @@
           "name": "swr adoption",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -756,6 +772,7 @@
           "name": "saml redis hardening",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -765,6 +782,7 @@
           "name": "provenance hardfail",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -774,6 +792,7 @@
           "name": "issue sweep",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -783,6 +802,7 @@
           "name": "critical followups",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -803,6 +823,7 @@
           "name": "boot wiring",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -812,6 +833,7 @@
           "name": "portal link storage",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -821,6 +843,7 @@
           "name": "cluster",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -830,6 +853,7 @@
           "name": "redos vread",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -839,6 +863,7 @@
           "name": "notification adapter",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -848,6 +873,7 @@
           "name": "bulk export",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -857,6 +883,7 @@
           "name": "everything",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -866,6 +893,7 @@
           "name": "validation",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -875,6 +903,7 @@
           "name": "websocket subs",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -884,6 +913,7 @@
           "name": "epic adapter",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -893,6 +923,7 @@
           "name": "cerner adapter",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -902,6 +933,7 @@
           "name": "athena adapter",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -911,6 +943,7 @@
           "name": "portal link storage",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -931,6 +964,7 @@
           "name": "notify wiring",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -940,6 +974,7 @@
           "name": "provider availability",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -949,6 +984,7 @@
           "name": "admin scheduling ui",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -958,6 +994,7 @@
           "name": "patient slot picker",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -967,6 +1004,7 @@
           "name": "appointment ops",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -976,6 +1014,7 @@
           "name": "telephony",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -985,6 +1024,7 @@
           "name": "speech",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -994,6 +1034,7 @@
           "name": "voice dialog",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1003,6 +1044,7 @@
           "name": "inbound call wiring",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1012,6 +1054,7 @@
           "name": "admin call logs",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1032,6 +1075,7 @@
           "name": "integration",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "integration-or-recovery"
@@ -1041,6 +1085,7 @@
           "name": "integration",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "integration-or-recovery"
@@ -1050,6 +1095,7 @@
           "name": "integration",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "integration-or-recovery"
@@ -1059,6 +1105,7 @@
           "name": "onboarding",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1068,6 +1115,7 @@
           "name": "cernia ops",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1077,6 +1125,7 @@
           "name": "provider lookups",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1086,6 +1135,7 @@
           "name": "office admin",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1095,6 +1145,7 @@
           "name": "voice metering",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1104,6 +1155,7 @@
           "name": "cost safeguards",
           "status": "landed",
           "fileCount": 28,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1113,6 +1165,7 @@
           "name": "rag reviewer",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1122,6 +1175,7 @@
           "name": "voice appt mgmt",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1131,6 +1185,7 @@
           "name": "multi doctor",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1140,6 +1195,7 @@
           "name": "schedule import",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1149,6 +1205,7 @@
           "name": "voice payments",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1158,6 +1215,7 @@
           "name": "portal payments",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1167,6 +1225,7 @@
           "name": "spanish",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1176,6 +1235,7 @@
           "name": "voice persona",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1185,6 +1245,7 @@
           "name": "insurance eligibility",
           "status": "landed",
           "fileCount": 30,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1194,6 +1255,7 @@
           "name": "waitlist",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1203,6 +1265,7 @@
           "name": "triage",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1212,6 +1275,7 @@
           "name": "reminder cadence",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1221,6 +1285,7 @@
           "name": "post visit survey",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1241,6 +1306,7 @@
           "name": "tenant brand",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1250,6 +1316,7 @@
           "name": "brand provider",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1259,6 +1326,7 @@
           "name": "brand assets",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1268,6 +1336,7 @@
           "name": "brand admin ui",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1277,6 +1346,7 @@
           "name": "integration",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "integration-or-recovery"
@@ -1286,6 +1356,7 @@
           "name": "patient rebrand",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1295,6 +1366,7 @@
           "name": "admin rebrand",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1304,6 +1376,7 @@
           "name": "trust rebrand",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1313,6 +1386,7 @@
           "name": "login facility aware",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1322,6 +1396,7 @@
           "name": "email brand aware",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1331,6 +1406,7 @@
           "name": "sms brand aware",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1340,6 +1416,7 @@
           "name": "pdf brand aware",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1349,6 +1426,7 @@
           "name": "integration",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "integration-or-recovery"
@@ -1358,6 +1436,7 @@
           "name": "voice persona",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1367,6 +1446,7 @@
           "name": "custom domain",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1376,6 +1456,7 @@
           "name": "smtp from address",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1385,6 +1466,7 @@
           "name": "integration",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "integration-or-recovery"
@@ -1407,6 +1489,7 @@
           "name": "dnssec",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1416,6 +1499,7 @@
           "name": "caa",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1425,6 +1509,7 @@
           "name": "dmarc",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1434,6 +1519,7 @@
           "name": "bimi",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1443,6 +1529,7 @@
           "name": "mta sts",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1452,6 +1539,7 @@
           "name": "ct",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1473,6 +1561,7 @@
           "name": "subdomain reservation",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1482,6 +1571,7 @@
           "name": "vanity hostnames",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1491,6 +1581,7 @@
           "name": "short url",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1500,6 +1591,7 @@
           "name": "subsub delegation",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1521,6 +1613,7 @@
           "name": "multi org foundation",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "multi-org-hierarchy"
@@ -1530,6 +1623,7 @@
           "name": "multi org tenancy",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "multi-org-hierarchy"
@@ -1539,6 +1633,7 @@
           "name": "multi org billing",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "multi-org-hierarchy"
@@ -1548,6 +1643,7 @@
           "name": "org rbac inheritance",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "multi-org-hierarchy"
@@ -1557,6 +1653,7 @@
           "name": "tenant config inheritance",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "multi-org-hierarchy"
@@ -1566,6 +1663,7 @@
           "name": "multi org hierarchy",
           "status": "landed",
           "fileCount": 18,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "multi-org-hierarchy"
@@ -1575,6 +1673,7 @@
           "name": "idn facility rollup",
           "status": "landed",
           "fileCount": 21,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "multi-org-hierarchy"
@@ -1584,6 +1683,7 @@
           "name": "cross org reporting",
           "status": "landed",
           "fileCount": 21,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "multi-org-hierarchy"
@@ -1593,6 +1693,7 @@
           "name": "user cross org assignment",
           "status": "landed",
           "fileCount": 23,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "multi-org-hierarchy"
@@ -1602,6 +1703,7 @@
           "name": "financial rollup chargeback",
           "status": "landed",
           "fileCount": 25,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "multi-org-hierarchy"
@@ -1611,6 +1713,7 @@
           "name": "access control inheritance",
           "status": "landed",
           "fileCount": 24,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "multi-org-hierarchy"
@@ -1632,6 +1735,7 @@
           "name": "admin role matrix",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1641,6 +1745,7 @@
           "name": "role assignment bulk",
           "status": "landed",
           "fileCount": 20,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -1650,7 +1755,8 @@
           "name": "permission presets",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "static-data-catalog"
         },
@@ -1659,6 +1765,7 @@
           "name": "rbac audit log",
           "status": "landed",
           "fileCount": 23,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "safety-critical-content"
@@ -1668,6 +1775,7 @@
           "name": "specialty role templates",
           "status": "landed",
           "fileCount": 20,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "static-data-catalog"
@@ -1729,7 +1837,8 @@
           "name": "pricing tiers",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "pricing-billing-logic"
         },
@@ -1738,7 +1847,8 @@
           "name": "meters usage license",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "pricing-billing-logic"
         },
@@ -1747,7 +1857,8 @@
           "name": "entitlement engine",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "state-machine-or-engine"
         },
@@ -1756,7 +1867,8 @@
           "name": "metering extension",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "pricing-billing-logic"
         },
@@ -1765,7 +1877,8 @@
           "name": "usage revenue recognition",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "pricing-billing-logic"
         },
@@ -1774,6 +1887,7 @@
           "name": "license server",
           "status": "landed",
           "fileCount": 18,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "pricing-billing-logic"
@@ -1783,6 +1897,7 @@
           "name": "metered usage",
           "status": "landed",
           "fileCount": 19,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "pricing-billing-logic"
@@ -1792,6 +1907,7 @@
           "name": "stripe invoice",
           "status": "landed",
           "fileCount": 24,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "pricing-billing-logic"
@@ -1801,6 +1917,7 @@
           "name": "contract seat limits",
           "status": "landed",
           "fileCount": 25,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "pricing-billing-logic"
@@ -1810,6 +1927,7 @@
           "name": "trial to paid",
           "status": "landed",
           "fileCount": 19,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "pricing-billing-logic"
@@ -1819,6 +1937,7 @@
           "name": "enterprise sso billing",
           "status": "landed",
           "fileCount": 23,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "pricing-billing-logic"
@@ -1848,6 +1967,7 @@
           "name": "ehr per tenant",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "ehr-interop"
@@ -1857,6 +1977,7 @@
           "name": "ehr tenant router",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "ehr-interop"
@@ -1866,6 +1987,7 @@
           "name": "ehr connector dispatcher",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "ehr-interop"
@@ -1875,6 +1997,7 @@
           "name": "ehr field mapping",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "ehr-interop"
@@ -1884,6 +2007,7 @@
           "name": "ehr connection health",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "ehr-interop"
@@ -1893,6 +2017,7 @@
           "name": "ehr sync state machine",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "ehr-interop"
@@ -1902,6 +2027,7 @@
           "name": "ehr webhook receiver",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "ehr-interop"
@@ -1911,6 +2037,7 @@
           "name": "ehr rate limiter",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "ehr-interop"
@@ -1929,12 +2056,15 @@
       "agents": [
         {
           "id": "F-B4",
-          "name": "(running — branch not yet pushed)",
+          "name": "payment retry smart recovery",
           "status": "in-flight",
+          "fileCount": 22,
+          "mergedIntoMain": false,
+          "isRealPackage": true,
           "slot": 4,
           "worktree": "cernia-wt-r1-r",
-          "recommendedModel": "sonnet",
-          "modelReason": "customer-billing"
+          "recommendedModel": "opus",
+          "modelReason": "integration-or-recovery"
         },
         {
           "id": "F-B5",
@@ -1959,7 +2089,8 @@
           "name": "billing alerts foundation",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "customer-billing"
         },
@@ -1968,7 +2099,8 @@
           "name": "billing alert delivery",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "customer-billing"
         },
@@ -1977,7 +2109,8 @@
           "name": "dunning workflow",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "state-machine-or-engine"
         },
@@ -1986,7 +2119,8 @@
           "name": "collections handoff",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "customer-billing"
         },
@@ -1995,7 +2129,8 @@
           "name": "patient statement generator",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "customer-billing"
         },
@@ -2004,7 +2139,8 @@
           "name": "statement delivery router",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "customer-billing"
         },
@@ -2013,7 +2149,8 @@
           "name": "patient payment plans",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "customer-billing"
         },
@@ -2022,6 +2159,7 @@
           "name": "usage threshold",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "customer-billing"
@@ -2031,6 +2169,7 @@
           "name": "alert queue",
           "status": "landed",
           "fileCount": 30,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "customer-billing"
@@ -2040,6 +2179,7 @@
           "name": "dunning workflow",
           "status": "landed",
           "fileCount": 27,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "state-machine-or-engine"
@@ -2061,7 +2201,8 @@
           "name": "delegation foundation",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "delegation-access"
         },
@@ -2070,7 +2211,8 @@
           "name": "access delegation",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "delegation-access"
         },
@@ -2079,7 +2221,8 @@
           "name": "jit access",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "delegation-access"
         },
@@ -2088,7 +2231,8 @@
           "name": "access review attestation",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "delegation-access"
         },
@@ -2097,7 +2241,8 @@
           "name": "saml oidc federation",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "delegation-access"
         },
@@ -2165,6 +2310,7 @@
           "name": "support channel",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -2174,6 +2320,7 @@
           "name": "support tickets",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -2183,6 +2330,7 @@
           "name": "support ticket router",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -2192,6 +2340,7 @@
           "name": "support ticket system",
           "status": "landed",
           "fileCount": 18,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -2201,6 +2350,7 @@
           "name": "sla escalation",
           "status": "landed",
           "fileCount": 20,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -2210,6 +2360,7 @@
           "name": "knowledge base ai",
           "status": "landed",
           "fileCount": 23,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -2219,6 +2370,7 @@
           "name": "customer support dashboard",
           "status": "landed",
           "fileCount": 33,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -2228,6 +2380,7 @@
           "name": "csm workspace",
           "status": "landed",
           "fileCount": 22,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -2237,6 +2390,7 @@
           "name": "enterprise account mgmt",
           "status": "landed",
           "fileCount": 22,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -2258,7 +2412,8 @@
           "name": "workflow designer foundation",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "state-machine-or-engine"
         },
@@ -2267,7 +2422,8 @@
           "name": "workflow presets",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "state-machine-or-engine"
         },
@@ -2276,7 +2432,8 @@
           "name": "workflow execution log",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "state-machine-or-engine"
         },
@@ -2285,7 +2442,8 @@
           "name": "workflow validator",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "state-machine-or-engine"
         },
@@ -2294,7 +2452,8 @@
           "name": "workflow scheduler",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "state-machine-or-engine"
         },
@@ -2303,7 +2462,8 @@
           "name": "workflow marketplace catalog",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "state-machine-or-engine"
         },
@@ -2371,6 +2531,7 @@
           "name": "ai copilot foundation",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "ai-safety-critical"
@@ -2380,6 +2541,7 @@
           "name": "ai copilot foundation",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "ai-safety-critical"
@@ -2389,6 +2551,7 @@
           "name": "ai copilot tools",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "ai-safety-critical"
@@ -2398,6 +2561,7 @@
           "name": "ai copilot guardrails",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "ai-safety-critical"
@@ -2407,6 +2571,7 @@
           "name": "ai citation verifier",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "ai-safety-critical"
@@ -2416,6 +2581,7 @@
           "name": "ai prompt injection defender",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "ai-safety-critical"
@@ -2425,6 +2591,7 @@
           "name": "ai hallucination detector",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "ai-safety-critical"
@@ -2434,6 +2601,7 @@
           "name": "llm gateway",
           "status": "landed",
           "fileCount": 20,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "ai-safety-critical"
@@ -2443,6 +2611,7 @@
           "name": "prompt registry",
           "status": "landed",
           "fileCount": 33,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "ai-safety-critical"
@@ -2452,6 +2621,7 @@
           "name": "model routing",
           "status": "landed",
           "fileCount": 25,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "ai-safety-critical"
@@ -2461,6 +2631,7 @@
           "name": "cost tracking budgets",
           "status": "landed",
           "fileCount": 25,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "ai-safety-critical"
@@ -2470,6 +2641,7 @@
           "name": "llm safety guardrails",
           "status": "landed",
           "fileCount": 24,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "ai-safety-critical"
@@ -2479,6 +2651,7 @@
           "name": "ai observability trace",
           "status": "landed",
           "fileCount": 23,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "ai-safety-critical"
@@ -2500,7 +2673,8 @@
           "name": "ml studio foundation",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "ml-platform"
         },
@@ -2509,7 +2683,8 @@
           "name": "ml model registry",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "ml-platform"
         },
@@ -2518,7 +2693,8 @@
           "name": "ml feature store",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "ml-platform"
         },
@@ -2527,7 +2703,8 @@
           "name": "ml training data validator",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "ml-platform"
         },
@@ -2536,7 +2713,8 @@
           "name": "ml drift detector",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "ml-platform"
         },
@@ -2545,7 +2723,8 @@
           "name": "ml model card generator",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "ml-platform"
         },
@@ -2554,7 +2733,8 @@
           "name": "ml training pipeline",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "ml-platform"
         },
@@ -2622,7 +2802,8 @@
           "name": "telehealth foundation",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "telehealth-clinical"
         },
@@ -2631,7 +2812,8 @@
           "name": "rpm device intake",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "telehealth-clinical"
         },
@@ -2640,7 +2822,8 @@
           "name": "rpm alert thresholds",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "telehealth-clinical"
         },
@@ -2649,7 +2832,8 @@
           "name": "rpm care plan generator",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "telehealth-clinical"
         },
@@ -2726,7 +2910,8 @@
           "name": "allergy immunology fhir",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -2735,6 +2920,7 @@
           "name": "allergy testing fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2744,7 +2930,8 @@
           "name": "anesthesiology fhir",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -2753,6 +2940,7 @@
           "name": "preop fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2762,7 +2950,8 @@
           "name": "assessments",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -2771,7 +2960,8 @@
           "name": "fhir mappings",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recovered": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2781,6 +2971,7 @@
           "name": "screening fhir",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2790,7 +2981,8 @@
           "name": "cardiology fhir",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -2799,6 +2991,7 @@
           "name": "electrophysiology fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2808,7 +3001,8 @@
           "name": "charting",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -2817,6 +3011,7 @@
           "name": "perio fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2826,7 +3021,8 @@
           "name": "dermatology fhir",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -2835,6 +3031,7 @@
           "name": "lesion fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2844,7 +3041,8 @@
           "name": "emergency medicine fhir",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -2853,6 +3051,7 @@
           "name": "triage fhir",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2862,7 +3061,8 @@
           "name": "endocrinology fhir",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -2871,6 +3071,7 @@
           "name": "diabetes thyroid fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2880,6 +3081,7 @@
           "name": "genomics fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2889,6 +3091,7 @@
           "name": "cpic fhir",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2898,7 +3101,8 @@
           "name": "geriatrics fhir",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -2907,6 +3111,7 @@
           "name": "frailty fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2916,7 +3121,8 @@
           "name": "gastroenterology fhir",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -2925,6 +3131,7 @@
           "name": "ibd liver fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2934,7 +3141,8 @@
           "name": "hematology fhir",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -2943,6 +3151,7 @@
           "name": "coagulation fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2952,7 +3161,8 @@
           "name": "health oasis",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -2961,6 +3171,7 @@
           "name": "oasis fhir",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2970,7 +3181,8 @@
           "name": "hospitalist fhir",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -2979,6 +3191,7 @@
           "name": "discharge fhir",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2988,7 +3201,8 @@
           "name": "eligibility",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -2997,6 +3211,7 @@
           "name": "prognosis fhir",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3006,6 +3221,7 @@
           "name": "infectious disease fhir",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3015,6 +3231,7 @@
           "name": "stewardship fhir",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3024,7 +3241,8 @@
           "name": "mds",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -3033,6 +3251,7 @@
           "name": "quality fhir",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3042,7 +3261,8 @@
           "name": "nephrology fhir",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -3051,6 +3271,7 @@
           "name": "ckd fhir",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3060,7 +3281,8 @@
           "name": "neurology fhir",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -3069,6 +3291,7 @@
           "name": "extras fhir",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3078,7 +3301,8 @@
           "name": "obgyn extras fhir",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -3087,6 +3311,7 @@
           "name": "prenatal fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3096,7 +3321,8 @@
           "name": "oncology fhir",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -3105,7 +3331,8 @@
           "name": "oncology treatment fhir",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -3114,6 +3341,7 @@
           "name": "radiation oncology fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3123,7 +3351,8 @@
           "name": "ophthalmology fhir",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -3132,6 +3361,7 @@
           "name": "glaucoma fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3141,7 +3371,8 @@
           "name": "orthopedics fhir",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -3150,6 +3381,7 @@
           "name": "fracture fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3159,6 +3391,7 @@
           "name": "medd fhir",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3168,6 +3401,7 @@
           "name": "palliative care fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3177,6 +3411,7 @@
           "name": "advance care fhir",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3186,7 +3421,8 @@
           "name": "pediatrics fhir",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -3195,6 +3431,7 @@
           "name": "growth vaccines fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3204,6 +3441,7 @@
           "name": "plastic surgery fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3213,6 +3451,7 @@
           "name": "burn flap fhir",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3222,7 +3461,8 @@
           "name": "pulmonology fhir",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -3231,6 +3471,7 @@
           "name": "action plans fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3240,6 +3481,7 @@
           "name": "physical rehab fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3249,6 +3491,7 @@
           "name": "functional fhir",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3258,6 +3501,7 @@
           "name": "reproductive medicine fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3267,6 +3511,7 @@
           "name": "ivf fhir",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3276,7 +3521,8 @@
           "name": "rheumatology fhir",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -3285,6 +3531,7 @@
           "name": "activity fhir",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3294,6 +3541,7 @@
           "name": "sleep medicine fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3303,6 +3551,7 @@
           "name": "psg fhir",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3312,6 +3561,7 @@
           "name": "sports medicine fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3321,6 +3571,7 @@
           "name": "concussion fhir",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3330,7 +3581,8 @@
           "name": "surgery fhir",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -3339,6 +3591,7 @@
           "name": "ssi nsqip fhir",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3348,6 +3601,7 @@
           "name": "toxicology fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3357,6 +3611,7 @@
           "name": "antidote fhir",
           "status": "landed",
           "fileCount": 13,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3366,6 +3621,7 @@
           "name": "trauma surgery fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3375,6 +3631,7 @@
           "name": "atls fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3384,7 +3641,8 @@
           "name": "urology fhir",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -3393,6 +3651,7 @@
           "name": "screening fhir",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3402,7 +3661,8 @@
           "name": "refraction",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -3411,6 +3671,7 @@
           "name": "refraction fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3420,7 +3681,8 @@
           "name": "womens health fhir",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
         },
@@ -3429,6 +3691,7 @@
           "name": "screening fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3450,7 +3713,8 @@
           "name": "mobile push notifications",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "mobile-platform"
         },
@@ -3459,7 +3723,8 @@
           "name": "mobile push notifications",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "mobile-platform"
         },
@@ -3468,7 +3733,8 @@
           "name": "mobile conflict resolver",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "mobile-platform"
         },
@@ -3477,6 +3743,7 @@
           "name": "mobile ios foundation",
           "status": "landed",
           "fileCount": 54,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "mobile-platform"
@@ -3486,6 +3753,7 @@
           "name": "android foundation",
           "status": "landed",
           "fileCount": 71,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "mobile-platform"
@@ -3495,7 +3763,8 @@
           "name": "mobile foundation",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "mobile-platform"
         },
@@ -3504,7 +3773,8 @@
           "name": "patient features",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "mobile-platform"
         },
@@ -3513,7 +3783,8 @@
           "name": "provider features",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "mobile-platform"
         },
@@ -3522,7 +3793,8 @@
           "name": "mobile offline sync",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "mobile-platform"
         },
@@ -3567,7 +3839,8 @@
           "name": "hl7v2",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -3576,7 +3849,8 @@
           "name": "dicom",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -3585,7 +3859,8 @@
           "name": "surescripts",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -3594,7 +3869,8 @@
           "name": "ddi",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -3647,6 +3923,7 @@
           "name": "revenue cycle foundation",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "revenue-cycle-workflow"
@@ -3656,6 +3933,7 @@
           "name": "eob reconciler",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "revenue-cycle-workflow"
@@ -3665,6 +3943,7 @@
           "name": "claims denial workflow",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "revenue-cycle-workflow"
@@ -3674,6 +3953,7 @@
           "name": "prior auth workflow",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "revenue-cycle-workflow"
@@ -3683,6 +3963,7 @@
           "name": "charge capture",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "revenue-cycle-workflow"
@@ -3692,6 +3973,7 @@
           "name": "contractual rate adjudicator",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "revenue-cycle-workflow"
@@ -3701,6 +3983,7 @@
           "name": "revenue cycle kpis",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "revenue-cycle-workflow"
@@ -3710,6 +3993,7 @@
           "name": "underpayment recovery",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "integration-or-recovery"
@@ -3731,6 +4015,7 @@
           "name": "services partners foundation",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "services-catalog"
@@ -3740,6 +4025,7 @@
           "name": "services catalog",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "static-data-catalog"
@@ -3749,6 +4035,7 @@
           "name": "services extension",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "services-catalog"
@@ -3758,6 +4045,7 @@
           "name": "partner certification",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "services-catalog"
@@ -3767,6 +4055,7 @@
           "name": "partner deal reg",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "services-catalog"
@@ -3776,6 +4065,7 @@
           "name": "partner feature gates",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "services-catalog"
@@ -3785,6 +4075,7 @@
           "name": "partner enablement library",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "services-catalog"
@@ -3806,6 +4097,7 @@
           "name": "email program",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -3815,6 +4107,7 @@
           "name": "email program tighter",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -3824,6 +4117,7 @@
           "name": "transactional email",
           "status": "landed",
           "fileCount": 18,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -3833,6 +4127,7 @@
           "name": "email templates",
           "status": "landed",
           "fileCount": 31,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "static-data-catalog"
@@ -3842,6 +4137,7 @@
           "name": "deliverability monitoring",
           "status": "landed",
           "fileCount": 22,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -3851,6 +4147,7 @@
           "name": "unsubscribe gdpr",
           "status": "landed",
           "fileCount": 19,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -3860,6 +4157,7 @@
           "name": "sms push delivery",
           "status": "landed",
           "fileCount": 20,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -3881,7 +4179,8 @@
           "name": "legal docs",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "legal-templates"
         },
@@ -3890,7 +4189,8 @@
           "name": "contract templates",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "static-data-catalog"
         },
@@ -3899,7 +4199,8 @@
           "name": "baa dsa generator",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "legal-templates"
         },
@@ -3908,7 +4209,8 @@
           "name": "control mapper",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "legal-templates"
         },
@@ -3917,7 +4219,8 @@
           "name": "hitrust control mapper",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "legal-templates"
         }
@@ -3938,7 +4241,8 @@
           "name": "business ops",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -3947,7 +4251,8 @@
           "name": "business ops tighter",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -3956,7 +4261,8 @@
           "name": "finops unit economics",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -4024,6 +4330,7 @@
           "name": "security scanning",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "security-critical"
@@ -4033,6 +4340,7 @@
           "name": "incident response",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "security-critical"
@@ -4042,6 +4350,7 @@
           "name": "security policy bundles",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "security-critical"
@@ -4051,6 +4360,7 @@
           "name": "secrets scanner",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "security-critical"
@@ -4060,6 +4370,7 @@
           "name": "vuln scan ingester",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "security-critical"
@@ -4069,6 +4380,7 @@
           "name": "audit tamper detector",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "security-critical"
@@ -4078,6 +4390,7 @@
           "name": "pii detector",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "security-critical"
@@ -4087,6 +4400,7 @@
           "name": "secret rotation tracker",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "security-critical"
@@ -4096,6 +4410,7 @@
           "name": "cis benchmark profiler",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "security-critical"
@@ -4105,6 +4420,7 @@
           "name": "sbom generator",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "security-critical"
@@ -4126,6 +4442,7 @@
           "name": "product analytics",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "instrumentation-cs"
@@ -4135,6 +4452,7 @@
           "name": "feature flags",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "instrumentation-cs"
@@ -4144,6 +4462,7 @@
           "name": "nps csat",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "instrumentation-cs"
@@ -4153,6 +4472,7 @@
           "name": "customer health score",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "instrumentation-cs"
@@ -4162,6 +4482,7 @@
           "name": "onboarding milestones",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "instrumentation-cs"
@@ -4171,6 +4492,7 @@
           "name": "cs task scheduler",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "instrumentation-cs"
@@ -4180,6 +4502,7 @@
           "name": "in app nps widget state",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "instrumentation-cs"
@@ -4189,6 +4512,7 @@
           "name": "churn analytics service",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "instrumentation-cs"
@@ -4210,6 +4534,7 @@
           "name": "marketing campaign templates",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "static-data-catalog"
@@ -4219,6 +4544,7 @@
           "name": "seo landing generator",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "marketing-content"
@@ -4228,6 +4554,7 @@
           "name": "marketing attribution",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "marketing-content"
@@ -4237,6 +4564,7 @@
           "name": "conversion funnel",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "marketing-content"
@@ -4246,6 +4574,7 @@
           "name": "lead scoring",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "marketing-content"
@@ -4255,6 +4584,7 @@
           "name": "churn signal aggregator",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "marketing-content"
@@ -4264,6 +4594,7 @@
           "name": "product analytics events",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "marketing-content"
@@ -4273,6 +4604,7 @@
           "name": "seo keyword tracker",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "marketing-content"
@@ -4282,6 +4614,7 @@
           "name": "marketing scaffold",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "marketing-content"
@@ -4291,6 +4624,7 @@
           "name": "cms adapter",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "marketing-content"
@@ -4312,6 +4646,7 @@
           "name": "customer lifecycle",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "lifecycle-analytics"
@@ -4321,6 +4656,7 @@
           "name": "renewal motion",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recovered": true,
           "recommendedModel": "haiku",
@@ -4331,6 +4667,7 @@
           "name": "win back motion",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "lifecycle-analytics"
@@ -4340,6 +4677,7 @@
           "name": "expansion playbook",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "lifecycle-analytics"
@@ -4349,6 +4687,7 @@
           "name": "win loss analyzer",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "lifecycle-analytics"
@@ -4358,6 +4697,7 @@
           "name": "nps retention plays",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "lifecycle-analytics"
@@ -4367,6 +4707,7 @@
           "name": "qbr builder",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "lifecycle-analytics"
@@ -4376,6 +4717,7 @@
           "name": "cs scorecard builder",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "lifecycle-analytics"
@@ -4385,6 +4727,7 @@
           "name": "retention forecaster",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "lifecycle-analytics"
@@ -4394,6 +4737,7 @@
           "name": "retention cohorts",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "lifecycle-analytics"
@@ -4415,6 +4759,7 @@
           "name": "multi currency foundation",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4424,6 +4769,7 @@
           "name": "v2 segment catalog",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4433,6 +4779,7 @@
           "name": "loinc vital signs catalog",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4442,6 +4789,7 @@
           "name": "eu mdr",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4451,6 +4799,7 @@
           "name": "uk nhs foundation",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4460,6 +4809,7 @@
           "name": "gdpr dsar engine",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4469,6 +4819,7 @@
           "name": "ccpa opt out engine",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4478,6 +4829,7 @@
           "name": "chapter index",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4487,6 +4839,7 @@
           "name": "au privacy act",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4496,6 +4849,7 @@
           "name": "br lgpd engine",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4505,6 +4859,7 @@
           "name": "sg pdpa engine",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4514,6 +4869,7 @@
           "name": "v2 message types",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4523,6 +4879,7 @@
           "name": "ca pipeda phipa",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4532,6 +4889,7 @@
           "name": "fhir r4 resource catalog",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4541,6 +4899,7 @@
           "name": "jp appi engine",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4550,6 +4909,7 @@
           "name": "nucc taxonomy catalog",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4559,6 +4919,7 @@
           "name": "cds hooks catalog",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4568,6 +4929,7 @@
           "name": "export control screener",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4577,6 +4939,7 @@
           "name": "loinc top categories",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4586,6 +4949,7 @@
           "name": "coppa engine",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4595,6 +4959,7 @@
           "name": "eu ai act classifier",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4604,6 +4969,7 @@
           "name": "claim form catalog",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4613,6 +4979,7 @@
           "name": "npi validator",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4622,6 +4989,7 @@
           "name": "control catalog",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4631,6 +4999,7 @@
           "name": "hedis measure catalog",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4640,6 +5009,7 @@
           "name": "fhir operation catalog",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4649,6 +5019,7 @@
           "name": "us geo catalog",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4658,6 +5029,7 @@
           "name": "fhir valueset bindings",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4667,6 +5039,7 @@
           "name": "medication dosing calc",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4676,6 +5049,7 @@
           "name": "webhook signature catalog",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4685,6 +5059,7 @@
           "name": "rxnorm dose forms",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4694,6 +5069,7 @@
           "name": "ihe profiles catalog",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4703,6 +5079,7 @@
           "name": "scope catalog",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4712,6 +5089,7 @@
           "name": "saml attribute mapping",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4721,6 +5099,7 @@
           "name": "pci dss control catalog",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4730,6 +5109,7 @@
           "name": "owasp top10 catalog",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4739,6 +5119,7 @@
           "name": "nist csf catalog",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4748,6 +5129,7 @@
           "name": "gdpr ropa catalog",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4757,6 +5139,7 @@
           "name": "openapi patterns",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4766,6 +5149,7 @@
           "name": "wcag catalog",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4775,6 +5159,7 @@
           "name": "healthcare event catalog",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4784,6 +5169,7 @@
           "name": "medical credentialing catalog",
           "status": "landed",
           "fileCount": 12,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4793,6 +5179,7 @@
           "name": "healthcare data formats",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4802,6 +5189,7 @@
           "name": "smart app launch",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4811,6 +5199,7 @@
           "name": "compliance crosswalk",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4820,6 +5209,7 @@
           "name": "api versioning patterns",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4829,6 +5219,7 @@
           "name": "ehr data quality rules",
           "status": "landed",
           "fileCount": 12,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4838,6 +5229,7 @@
           "name": "patient consent catalog",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4847,6 +5239,7 @@
           "name": "audit log schema",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "safety-critical-content"
@@ -4856,6 +5249,7 @@
           "name": "claim adjustment codes",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4865,6 +5259,7 @@
           "name": "healthcare workflow triggers",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4874,6 +5269,7 @@
           "name": "snomed body sites",
           "status": "landed",
           "fileCount": 12,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4883,6 +5279,7 @@
           "name": "quality measure types",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4892,6 +5289,7 @@
           "name": "patient identifier types",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4901,6 +5299,7 @@
           "name": "telehealth modality catalog",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4910,6 +5309,7 @@
           "name": "v2 ack codes",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4919,6 +5319,7 @@
           "name": "healthcare risk scores",
           "status": "landed",
           "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4928,6 +5329,7 @@
           "name": "medication interactions",
           "status": "landed",
           "fileCount": 13,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4937,6 +5339,7 @@
           "name": "audit type catalog",
           "status": "landed",
           "fileCount": 13,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "safety-critical-content"
@@ -4946,6 +5349,7 @@
           "name": "patient comm preferences",
           "status": "landed",
           "fileCount": 12,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4955,6 +5359,7 @@
           "name": "ctcae v5",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4964,6 +5369,7 @@
           "name": "hcpcs level ii",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4973,6 +5379,7 @@
           "name": "dsm 5 tr",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4982,6 +5389,7 @@
           "name": "icd o 3",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -4991,6 +5399,7 @@
           "name": "atc who",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5000,6 +5409,7 @@
           "name": "uscdi v3 us core",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5009,6 +5419,7 @@
           "name": "carc rarc",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5018,6 +5429,7 @@
           "name": "ndc fda",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5027,6 +5439,7 @@
           "name": "loinc top panels",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5036,6 +5449,7 @@
           "name": "cvx vaccines",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5045,6 +5459,7 @@
           "name": "iso locale",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5054,6 +5469,7 @@
           "name": "fda udi",
           "status": "landed",
           "fileCount": 18,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5063,6 +5479,7 @@
           "name": "cms hcc raf",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5072,6 +5489,7 @@
           "name": "v2 messages",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5081,6 +5499,7 @@
           "name": "hedis my2024",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5090,6 +5509,7 @@
           "name": "cpt modifiers pos",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5099,6 +5519,7 @@
           "name": "snomed clinical findings",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5108,6 +5529,7 @@
           "name": "rxnorm drugs",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5117,6 +5539,7 @@
           "name": "ahrq ccs",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5126,6 +5549,7 @@
           "name": "icd 11 who",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5135,6 +5559,7 @@
           "name": "cdt 2024",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5144,6 +5569,7 @@
           "name": "fhir conceptmaps",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5153,6 +5579,7 @@
           "name": "proms promis",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5162,6 +5589,7 @@
           "name": "medicare coverage",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5171,6 +5599,7 @@
           "name": "cdc notifiable",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5180,6 +5609,7 @@
           "name": "icd10 crosswalk",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5189,6 +5619,7 @@
           "name": "cms mips quality",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5198,6 +5629,7 @@
           "name": "nubc ub04",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5207,6 +5639,7 @@
           "name": "sdoh z codes",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5216,6 +5649,7 @@
           "name": "cms stars",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5225,6 +5659,7 @@
           "name": "davinci igs",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5234,6 +5669,7 @@
           "name": "cda r2",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5243,6 +5679,7 @@
           "name": "omb race ethnicity",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5252,6 +5689,7 @@
           "name": "dea controlled",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5261,6 +5699,7 @@
           "name": "omop cdm",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5270,6 +5709,7 @@
           "name": "hrsa uds",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5279,6 +5719,7 @@
           "name": "cms apms",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5288,6 +5729,7 @@
           "name": "ncci mue",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5297,6 +5739,7 @@
           "name": "pcs",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5306,6 +5749,7 @@
           "name": "ms drg v41",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5315,6 +5759,7 @@
           "name": "apc opps",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5324,6 +5769,7 @@
           "name": "oig leie sam",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5333,6 +5779,7 @@
           "name": "fda rems",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5342,6 +5789,7 @@
           "name": "tjc accreditation",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5351,6 +5799,7 @@
           "name": "openfda api",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5360,6 +5809,7 @@
           "name": "interop networks",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5369,6 +5819,7 @@
           "name": "gpci wage",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5378,6 +5829,7 @@
           "name": "iqr hopd",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5387,6 +5839,7 @@
           "name": "clinicaltrials gov",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5396,6 +5849,7 @@
           "name": "nlm umls",
           "status": "landed",
           "fileCount": 18,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5405,6 +5859,7 @@
           "name": "who icf",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5414,6 +5869,7 @@
           "name": "dicom modality",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5423,6 +5879,7 @@
           "name": "edi transactions",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5432,6 +5889,7 @@
           "name": "uspstf choosing wisely",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5441,6 +5899,7 @@
           "name": "hipaa compliance",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5450,6 +5909,7 @@
           "name": "nci thesaurus drugs",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5459,6 +5919,7 @@
           "name": "hrrp hacrp hvbp",
           "status": "landed",
           "fileCount": 18,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5468,6 +5929,7 @@
           "name": "openehr archetypes",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5477,6 +5939,7 @@
           "name": "ncpdp telecom d0",
           "status": "landed",
           "fileCount": 18,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5486,6 +5949,7 @@
           "name": "clinvar dbsnp",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5495,6 +5959,7 @@
           "name": "nccn guidelines",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5504,6 +5969,7 @@
           "name": "major clinical guidelines",
           "status": "landed",
           "fileCount": 18,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5513,6 +5979,7 @@
           "name": "abms credentialing",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5522,6 +5989,7 @@
           "name": "osha niosh occupational",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5531,6 +5999,7 @@
           "name": "acog asrm",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5540,6 +6009,7 @@
           "name": "cdc sti",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5549,6 +6019,7 @@
           "name": "cms cop",
           "status": "landed",
           "fileCount": 20,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5558,6 +6029,7 @@
           "name": "hpo disease orphanet",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5567,6 +6039,7 @@
           "name": "nist csf hitrust",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5576,6 +6049,7 @@
           "name": "onc 170 315",
           "status": "landed",
           "fileCount": 18,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5596,6 +6070,7 @@
           "name": "erx service",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -5605,6 +6080,7 @@
           "name": "ncpdp script builder",
           "status": "landed",
           "fileCount": 17,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -5614,6 +6090,7 @@
           "name": "pharmacy directory",
           "status": "landed",
           "fileCount": 12,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "static-data-catalog"
@@ -5623,6 +6100,7 @@
           "name": "epcs token issuer",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -5632,6 +6110,7 @@
           "name": "surescripts adapter",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -5641,6 +6120,7 @@
           "name": "pdmp adapter",
           "status": "landed",
           "fileCount": 15,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -5661,6 +6141,7 @@
           "name": "erx composer ui",
           "status": "landed",
           "fileCount": 20,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -5670,6 +6151,7 @@
           "name": "erx history ui",
           "status": "landed",
           "fileCount": 19,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -5679,6 +6161,7 @@
           "name": "erx refill queue ui",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -5688,6 +6171,7 @@
           "name": "erx admin ui",
           "status": "landed",
           "fileCount": 16,
+          "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -5699,6 +6183,20 @@
     }
   ],
   "recentPrActivity": [
+    {
+      "number": 111,
+      "title": "feat(f4-payment-retry-recovery): smart recovery — predictive scheduler + account-updater bridge + dynamic backoff + campaign (F-B4)",
+      "state": "OPEN",
+      "createdAt": "2026-05-22T22:34:54Z",
+      "mergedAt": null
+    },
+    {
+      "number": 110,
+      "title": "feat(t-cardio-fhir): EKG + echo + Holter + procedure mappers + risk stratifier (T-CARDIO) — closes Wave T",
+      "state": "OPEN",
+      "createdAt": "2026-05-22T22:34:48Z",
+      "mergedAt": null
+    },
     {
       "number": 109,
       "title": "feat(l6-access-control-inheritance): policy store + inheritance + overrides + effective-policy engine (L-M6) — closes Wave L",
@@ -5788,20 +6286,6 @@
       "title": "feat(f3-dunning-workflow): smart payment retry + collections + suspension + risk scoring (F-B3)",
       "state": "OPEN",
       "createdAt": "2026-05-22T18:52:29Z",
-      "mergedAt": null
-    },
-    {
-      "number": 96,
-      "title": "feat(l4-user-cross-org-assignment): multi-org user scoping + locum + handoff + SSO mapping (L-M4)",
-      "state": "OPEN",
-      "createdAt": "2026-05-22T17:55:23Z",
-      "mergedAt": null
-    },
-    {
-      "number": 95,
-      "title": "feat(w4-unsubscribe-gdpr): RFC 8058 + CAN-SPAM + CASL + GDPR + double-opt-in (W-E4)",
-      "state": "OPEN",
-      "createdAt": "2026-05-22T17:50:40Z",
       "mergedAt": null
     }
   ],
@@ -6070,6 +6554,7 @@
     "origin/feat/wave-f-b1-usage-threshold@3d9d8a4b4d2f": 16,
     "origin/feat/wave-f-b2-alert-queue@c637f4fc5b99": 30,
     "origin/feat/wave-f-b3-dunning-workflow@627a31e5b006": 27,
+    "origin/feat/wave-f-b4-payment-retry-smart-recovery@c5497f6914a9": 22,
     "origin/feat/wave-g-1-delegation-foundation@04fe537ac21f": 0,
     "origin/feat/wave-g-2-access-delegation@0b9b7854fde0": 0,
     "origin/feat/wave-g-2-delegation-audit@6acf340689f0": 0,
@@ -6214,6 +6699,7 @@
     "origin/feat/wave-t-bh-b-screening-fhir@964da2ecedb7": 15,
     "origin/feat/wave-t-cardio-a-cardiology-fhir@6acf340689f0": 0,
     "origin/feat/wave-t-cardio-b-electrophysiology-fhir@50e3f2b89eac": 14,
+    "origin/feat/wave-t-cardiology-cardio-fhir@809188be3ac6": 21,
     "origin/feat/wave-t-dental-b-perio-fhir@ba7db0fcbb86": 14,
     "origin/feat/wave-t-dental-charting@251ebe92e65d": 0,
     "origin/feat/wave-t-derm-a-dermatology-fhir@6acf340689f0": 0,
@@ -6604,6 +7090,7 @@
     "origin/feat/wave-f-b1-usage-threshold@3d9d8a4b4d2f": 4,
     "origin/feat/wave-f-b2-alert-queue@c637f4fc5b99": 11,
     "origin/feat/wave-f-b3-dunning-workflow@627a31e5b006": 10,
+    "origin/feat/wave-f-b4-payment-retry-smart-recovery@c5497f6914a9": 8,
     "origin/feat/wave-g-1-delegation-foundation@04fe537ac21f": 0,
     "origin/feat/wave-g-2-access-delegation@0b9b7854fde0": 0,
     "origin/feat/wave-g-2-delegation-audit@6acf340689f0": 0,
@@ -6748,6 +7235,7 @@
     "origin/feat/wave-t-bh-b-screening-fhir@964da2ecedb7": 4,
     "origin/feat/wave-t-cardio-a-cardiology-fhir@6acf340689f0": 0,
     "origin/feat/wave-t-cardio-b-electrophysiology-fhir@50e3f2b89eac": 4,
+    "origin/feat/wave-t-cardiology-cardio-fhir@809188be3ac6": 7,
     "origin/feat/wave-t-dental-b-perio-fhir@ba7db0fcbb86": 4,
     "origin/feat/wave-t-dental-charting@251ebe92e65d": 0,
     "origin/feat/wave-t-derm-a-dermatology-fhir@6acf340689f0": 0,
@@ -6872,5 +7360,541 @@
     "origin/feat/wave-z-5-cs-task-scheduler@4201da2b0741": 0,
     "origin/feat/wave-z-6-in-app-nps-widget-state@4201da2b0741": 0,
     "origin/feat/wave-z-7-churn-analytics-service@4201da2b0741": 0
+  },
+  "mergedIntoMainCache": {
+    "origin/feat/cleanup-a2-batch@653be40a6671": true,
+    "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
+    "origin/feat/local-demo-admin-image@742015f42fa3": true,
+    "origin/feat/local-demo-api-image@fd988a2d20f5": true,
+    "origin/feat/local-demo-patient-image@90299849c309": true,
+    "origin/feat/local-demo-trust-image@88c1776c9293": true,
+    "origin/feat/local-dev-compose-phase-a@15462cd8da22": true,
+    "origin/feat/local-smoke-test@7d324fb3d240": true,
+    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": false,
+    "origin/feat/wave-a-integration@9f5d3e77833d": true,
+    "origin/feat/wave-a-real-fhir-calls@f2e18b9bbf2e": true,
+    "origin/feat/wave-a-w-a@b10289c5a44c": true,
+    "origin/feat/wave-a-w-b@e4eb09e10446": true,
+    "origin/feat/wave-a-w-d-security-hardening@337c8cb8cff4": true,
+    "origin/feat/wave-aa-1-legal-docs@1623aef00d37": true,
+    "origin/feat/wave-aa-2-contract-templates@6acf340689f0": true,
+    "origin/feat/wave-aa-2-legal-templates@0b9b7854fde0": true,
+    "origin/feat/wave-aa-3-baa-dsa-generator@4201da2b0741": true,
+    "origin/feat/wave-aa-4-soc2-control-mapper@4201da2b0741": true,
+    "origin/feat/wave-aa-5-hitrust-control-mapper@4201da2b0741": true,
+    "origin/feat/wave-b-b1-testcontainers@f95cd76d4d5c": true,
+    "origin/feat/wave-b-b10-patient-session@284ed4e3a551": true,
+    "origin/feat/wave-b-b11-missing-fetchers@cfbefa77a7ce": true,
+    "origin/feat/wave-b-b12-pgmem-testcontainers@c944dbf1ac7a": true,
+    "origin/feat/wave-b-b13-swr-adoption@16602edff84a": true,
+    "origin/feat/wave-b-b14-saml-redis-hardening@f247ae938b7f": true,
+    "origin/feat/wave-b-b15-provenance-hardfail@11d5f3c1478c": true,
+    "origin/feat/wave-b-b16-issue-sweep@d25d1ea3f8b0": true,
+    "origin/feat/wave-b-b17-critical-followups@bb7abb7e0f4f": true,
+    "origin/feat/wave-b-b2-tenant-invite@e11c02a6332a": true,
+    "origin/feat/wave-b-b3-connection-ingestion@a448b62c8bf1": true,
+    "origin/feat/wave-b-b4-eob-export@4048d676018a": true,
+    "origin/feat/wave-b-b5-prov-audit-registry@636f080eb21c": true,
+    "origin/feat/wave-b-b6-billing-wiring@91a5d40bb58c": true,
+    "origin/feat/wave-b-b7-patient-swap@4da90aa284b2": true,
+    "origin/feat/wave-b-b8-store-wiring@7b8f03718fb2": true,
+    "origin/feat/wave-b-b9-admin-top5-swap@5c75d797b5f7": true,
+    "origin/feat/wave-b-integration@bce1e0279e6b": true,
+    "origin/feat/wave-bb-1-security-scanning@1623aef00d37": true,
+    "origin/feat/wave-bb-1b-incident-response@04fe537ac21f": true,
+    "origin/feat/wave-bb-1c-security-policy-bundles@6acf340689f0": true,
+    "origin/feat/wave-bb-1d-secrets-scanner@6acf340689f0": true,
+    "origin/feat/wave-bb-1e-vuln-scan-ingester@6acf340689f0": true,
+    "origin/feat/wave-bb-1f-audit-tamper-detector@4201da2b0741": true,
+    "origin/feat/wave-bb-1g-pii-detector@4201da2b0741": true,
+    "origin/feat/wave-bb-1h-secret-rotation-tracker@4201da2b0741": true,
+    "origin/feat/wave-bb-1i-cis-benchmark-profiler@4201da2b0741": true,
+    "origin/feat/wave-bb-1j-sbom-generator@0b9b7854fde0": true,
+    "origin/feat/wave-c-c1-boot-wiring@8577bab75bc7": true,
+    "origin/feat/wave-c-c10-epic-adapter@ebcf197ecac8": true,
+    "origin/feat/wave-c-c11-cerner-adapter@101fb59dd6e3": true,
+    "origin/feat/wave-c-c12-athena-adapter@9739e3954c33": true,
+    "origin/feat/wave-c-c13-portal-link-storage@0ce5a7657faf": true,
+    "origin/feat/wave-c-c2-portal-link-storage@bce1e0279e6b": true,
+    "origin/feat/wave-c-c3-i205-cluster@722dfd0e1358": true,
+    "origin/feat/wave-c-c4-redos-vread@c37477a40b3f": true,
+    "origin/feat/wave-c-c5-notification-adapter@69eb7108d62f": true,
+    "origin/feat/wave-c-c6-bulk-export@29fdb6d97ecd": true,
+    "origin/feat/wave-c-c7-everything@1fce00ad0ebd": true,
+    "origin/feat/wave-c-c8-e2e-validation@3a9450384a7a": true,
+    "origin/feat/wave-c-c9-websocket-subs@e55187b8d51e": true,
+    "origin/feat/wave-c-integration@12af721753d2": true,
+    "origin/feat/wave-cc-1-hl7-v2-segment-catalog@5e68409a1a5b": true,
+    "origin/feat/wave-cc-1-multi-currency-foundation@5c9d436fe4dc": true,
+    "origin/feat/wave-cc-10-jp-appi-engine@6acf340689f0": true,
+    "origin/feat/wave-cc-10-us-core-profile-catalog@faa640aa38e3": false,
+    "origin/feat/wave-cc-100-openfda-api@702999ef7af5": false,
+    "origin/feat/wave-cc-101-interop-networks@52d1531a53f9": false,
+    "origin/feat/wave-cc-102-gpci-wage@87927780cb7a": false,
+    "origin/feat/wave-cc-103-iqr-hopd@e03ed886e1b2": false,
+    "origin/feat/wave-cc-104-clinicaltrials-gov@ecd2c94abaf0": false,
+    "origin/feat/wave-cc-105-nlm-umls@0c7cae16850c": false,
+    "origin/feat/wave-cc-106-who-icf@fab5bd9eb6bd": false,
+    "origin/feat/wave-cc-107-dicom-modality@ac9bf325890a": false,
+    "origin/feat/wave-cc-108-x12-edi-transactions@d6fc805f3db1": false,
+    "origin/feat/wave-cc-109-uspstf-choosing-wisely@bba2286053e4": false,
+    "origin/feat/wave-cc-11-nucc-taxonomy-catalog@2d38aa240507": true,
+    "origin/feat/wave-cc-11-za-popia-engine@4201da2b0741": true,
+    "origin/feat/wave-cc-110-hipaa-compliance@8b9abcbfa49c": false,
+    "origin/feat/wave-cc-111-nci-thesaurus-drugs@fbddab603223": false,
+    "origin/feat/wave-cc-112-hrrp-hacrp-hvbp@48de81fab235": false,
+    "origin/feat/wave-cc-113-openehr-archetypes@484934135b20": false,
+    "origin/feat/wave-cc-114-ncpdp-telecom-d0@464568a681d8": false,
+    "origin/feat/wave-cc-115-clinvar-dbsnp@10eac6838e49": false,
+    "origin/feat/wave-cc-116-nccn-guidelines@c9050c60774e": false,
+    "origin/feat/wave-cc-117-major-clinical-guidelines@25b86c35028c": false,
+    "origin/feat/wave-cc-118-abms-credentialing@f0ae27e2e346": false,
+    "origin/feat/wave-cc-119-osha-niosh-occupational@5bd144ee7f4b": false,
+    "origin/feat/wave-cc-12-cds-hooks-catalog@0b9b7854fde0": true,
+    "origin/feat/wave-cc-12-data-residency-router@4201da2b0741": true,
+    "origin/feat/wave-cc-120-acog-asrm@647129b10e8f": false,
+    "origin/feat/wave-cc-121-cdc-sti@49c9271d796c": false,
+    "origin/feat/wave-cc-122-cms-cop@33fe08d35133": false,
+    "origin/feat/wave-cc-123-hpo-disease-orphanet@3830c451a0df": false,
+    "origin/feat/wave-cc-124-nist-csf-hitrust@07a2b9b3aea9": false,
+    "origin/feat/wave-cc-125-onc-170-315@b27949835983": false,
+    "origin/feat/wave-cc-13-export-control-screener@4201da2b0741": true,
+    "origin/feat/wave-cc-13-hipaa-x12-catalog@2d38aa240507": true,
+    "origin/feat/wave-cc-14-loinc-top-categories@0b9b7854fde0": true,
+    "origin/feat/wave-cc-14-pci-dss-mapper@4201da2b0741": true,
+    "origin/feat/wave-cc-15-coppa-engine@4201da2b0741": true,
+    "origin/feat/wave-cc-15-snomed-semantic-tags@0b9b7854fde0": true,
+    "origin/feat/wave-cc-16-eu-ai-act-classifier@4201da2b0741": true,
+    "origin/feat/wave-cc-16-ndc-drug-catalog@0b9b7854fde0": true,
+    "origin/feat/wave-cc-17-claim-form-catalog@0b9b7854fde0": true,
+    "origin/feat/wave-cc-18-npi-validator@0b9b7854fde0": true,
+    "origin/feat/wave-cc-19-soc2-control-catalog@0b9b7854fde0": true,
+    "origin/feat/wave-cc-2-b-eu-mdr@6acf340689f0": true,
+    "origin/feat/wave-cc-2-loinc-vital-signs-catalog@5e68409a1a5b": true,
+    "origin/feat/wave-cc-20-hedis-measure-catalog@0b9b7854fde0": true,
+    "origin/feat/wave-cc-21-fhir-operation-catalog@0b9b7854fde0": true,
+    "origin/feat/wave-cc-22-us-geo-catalog@0b9b7854fde0": true,
+    "origin/feat/wave-cc-23-fhir-valueset-bindings@0b9b7854fde0": true,
+    "origin/feat/wave-cc-24-medication-dosing-calc@0b9b7854fde0": true,
+    "origin/feat/wave-cc-25-webhook-signature-catalog@0b9b7854fde0": true,
+    "origin/feat/wave-cc-26-rxnorm-dose-forms@0b9b7854fde0": true,
+    "origin/feat/wave-cc-27-ihe-profiles-catalog@0b9b7854fde0": true,
+    "origin/feat/wave-cc-28-oauth2-scope-catalog@0b9b7854fde0": true,
+    "origin/feat/wave-cc-29-saml-attribute-mapping@0b9b7854fde0": true,
+    "origin/feat/wave-cc-2a-uk-nhs-foundation@04fe537ac21f": true,
+    "origin/feat/wave-cc-3-gdpr-dsar-engine@6acf340689f0": true,
+    "origin/feat/wave-cc-3-smart-on-fhir-scopes@27778264a2d2": true,
+    "origin/feat/wave-cc-30-pci-dss-control-catalog@0b9b7854fde0": true,
+    "origin/feat/wave-cc-31-owasp-top10-catalog@0b9b7854fde0": true,
+    "origin/feat/wave-cc-32-nist-csf-catalog@0b9b7854fde0": true,
+    "origin/feat/wave-cc-33-gdpr-ropa-catalog@0b9b7854fde0": true,
+    "origin/feat/wave-cc-34-openapi-patterns@0b9b7854fde0": true,
+    "origin/feat/wave-cc-35-wcag-catalog@0b9b7854fde0": true,
+    "origin/feat/wave-cc-36-healthcare-event-catalog@0b9b7854fde0": true,
+    "origin/feat/wave-cc-37-medical-credentialing-catalog@8f9860cc7bda": false,
+    "origin/feat/wave-cc-38-healthcare-data-formats@0b9b7854fde0": true,
+    "origin/feat/wave-cc-39-smart-app-launch@0b9b7854fde0": true,
+    "origin/feat/wave-cc-4-ccpa-opt-out-engine@6acf340689f0": true,
+    "origin/feat/wave-cc-4-icd10-chapter-index@5e68409a1a5b": true,
+    "origin/feat/wave-cc-40-compliance-crosswalk@0b9b7854fde0": true,
+    "origin/feat/wave-cc-41-api-versioning-patterns@0b9b7854fde0": true,
+    "origin/feat/wave-cc-42-ehr-data-quality-rules@2c2a4943133f": false,
+    "origin/feat/wave-cc-43-patient-consent-catalog@0b9b7854fde0": true,
+    "origin/feat/wave-cc-44-audit-log-schema@0b9b7854fde0": true,
+    "origin/feat/wave-cc-45-claim-adjustment-codes@0b9b7854fde0": true,
+    "origin/feat/wave-cc-46-healthcare-workflow-triggers@0b9b7854fde0": true,
+    "origin/feat/wave-cc-47-snomed-body-sites@83802af23c1e": false,
+    "origin/feat/wave-cc-48-quality-measure-types@0b9b7854fde0": true,
+    "origin/feat/wave-cc-49-patient-identifier-types@0b9b7854fde0": true,
+    "origin/feat/wave-cc-5-au-privacy-act@6acf340689f0": true,
+    "origin/feat/wave-cc-5-cpt-category-catalog@5e68409a1a5b": true,
+    "origin/feat/wave-cc-50-telehealth-modality-catalog@0b9b7854fde0": true,
+    "origin/feat/wave-cc-51-hl7-v2-ack-codes@0b9b7854fde0": true,
+    "origin/feat/wave-cc-52-healthcare-risk-scores@0b9b7854fde0": true,
+    "origin/feat/wave-cc-53-medication-interactions@67678b82fccf": false,
+    "origin/feat/wave-cc-54-audit-type-catalog@fe3b18dfa9fa": false,
+    "origin/feat/wave-cc-55-patient-comm-preferences@eef19fe23ea0": false,
+    "origin/feat/wave-cc-56-ctcae-v5@f49a82d6837f": false,
+    "origin/feat/wave-cc-57-hcpcs-level-ii@597734d7af1e": false,
+    "origin/feat/wave-cc-58-dsm-5-tr@a6027d48b528": false,
+    "origin/feat/wave-cc-59-icd-o-3@721b341d7152": false,
+    "origin/feat/wave-cc-6-br-lgpd-engine@6acf340689f0": true,
+    "origin/feat/wave-cc-6-dicom-modality-catalog@0b9b7854fde0": true,
+    "origin/feat/wave-cc-60-atc-who@472029945617": false,
+    "origin/feat/wave-cc-61-uscdi-v3-us-core@9430c0d14344": false,
+    "origin/feat/wave-cc-62-x12-carc-rarc@eb8ff1966b8e": false,
+    "origin/feat/wave-cc-63-ndc-fda@2686d6af6aff": false,
+    "origin/feat/wave-cc-64-loinc-top-panels@fb3ba0ab7fc6": false,
+    "origin/feat/wave-cc-65-cvx-vaccines@af04fecd0fc6": false,
+    "origin/feat/wave-cc-66-iso-locale@e81993de7ca5": false,
+    "origin/feat/wave-cc-67-fda-udi@43f2bec752e3": false,
+    "origin/feat/wave-cc-68-cms-hcc-raf@940242fc7397": false,
+    "origin/feat/wave-cc-69-hl7-v2-messages@63a72d53e07b": false,
+    "origin/feat/wave-cc-7-hl7-v2-message-types@0b9b7854fde0": true,
+    "origin/feat/wave-cc-7-sg-pdpa-engine@6acf340689f0": true,
+    "origin/feat/wave-cc-70-hedis-my2024@120f7fe876b5": false,
+    "origin/feat/wave-cc-71-cpt-modifiers-pos@736c6acec0f8": false,
+    "origin/feat/wave-cc-72-snomed-clinical-findings@7fea96b9dc05": false,
+    "origin/feat/wave-cc-73-rxnorm-drugs@122c5df3832f": false,
+    "origin/feat/wave-cc-74-ahrq-ccs@53b0a9a6f707": false,
+    "origin/feat/wave-cc-75-icd-11-who@a6f8247f3878": false,
+    "origin/feat/wave-cc-76-cdt-2024@63a75cd94676": false,
+    "origin/feat/wave-cc-77-fhir-conceptmaps@a5bdefc3df27": false,
+    "origin/feat/wave-cc-78-proms-promis@62f20a773375": false,
+    "origin/feat/wave-cc-79-medicare-coverage@269de3515c34": false,
+    "origin/feat/wave-cc-8-ca-pipeda-phipa@6acf340689f0": true,
+    "origin/feat/wave-cc-8-hcpcs-level2-catalog@5e68409a1a5b": true,
+    "origin/feat/wave-cc-80-cdc-notifiable@cd0f30682586": false,
+    "origin/feat/wave-cc-81-icd9-icd10-crosswalk@bdd88da64a99": false,
+    "origin/feat/wave-cc-82-cms-mips-quality@59cfed9d7cdb": false,
+    "origin/feat/wave-cc-83-nubc-ub04@a8e517ca924c": false,
+    "origin/feat/wave-cc-84-sdoh-z-codes@c036e55ec353": false,
+    "origin/feat/wave-cc-85-cms-stars@71708404d3f3": false,
+    "origin/feat/wave-cc-86-hl7-davinci-igs@f0e9ca7aacf9": false,
+    "origin/feat/wave-cc-87-hl7-cda-r2@61eb8c082694": false,
+    "origin/feat/wave-cc-88-omb-race-ethnicity@28d36308eb59": false,
+    "origin/feat/wave-cc-89-dea-controlled@f1814e09660c": false,
+    "origin/feat/wave-cc-9-fhir-r4-resource-catalog@5e68409a1a5b": true,
+    "origin/feat/wave-cc-9-in-dpdp-engine@6acf340689f0": true,
+    "origin/feat/wave-cc-90-omop-cdm@eb091c256a1e": false,
+    "origin/feat/wave-cc-91-hrsa-uds@fc74cf690b79": false,
+    "origin/feat/wave-cc-92-cms-apms@bb7a48387086": false,
+    "origin/feat/wave-cc-93-ncci-mue@88bab7b9056d": false,
+    "origin/feat/wave-cc-94-icd10-pcs@aa62fd3ecef7": false,
+    "origin/feat/wave-cc-95-ms-drg-v41@faae8a30cbc9": false,
+    "origin/feat/wave-cc-96-apc-opps@84ad1c902b26": false,
+    "origin/feat/wave-cc-97-oig-leie-sam@702903f3e741": false,
+    "origin/feat/wave-cc-98-fda-rems@80d7ba7b5be2": false,
+    "origin/feat/wave-cc-99-tjc-accreditation@8b5840cc6819": false,
+    "origin/feat/wave-d-d1-notify-wiring@435f38d01962": true,
+    "origin/feat/wave-d-d10-admin-call-logs@a7829a963705": true,
+    "origin/feat/wave-d-d2-provider-availability@ae91266460bd": true,
+    "origin/feat/wave-d-d3-admin-scheduling-ui@b04aa32a82ab": true,
+    "origin/feat/wave-d-d4-patient-slot-picker@4dbd870c897f": true,
+    "origin/feat/wave-d-d5-appointment-ops@5843276a24db": true,
+    "origin/feat/wave-d-d6-telephony@841f192b15d2": true,
+    "origin/feat/wave-d-d7-speech@a1826a6914e0": true,
+    "origin/feat/wave-d-d8-voice-dialog@684d0c830d91": true,
+    "origin/feat/wave-d-d9-inbound-call-wiring@4eeac575f17c": true,
+    "origin/feat/wave-d-integration@58f75ae0bc10": true,
+    "origin/feat/wave-dd-1-customer-lifecycle@25ed6e324527": true,
+    "origin/feat/wave-dd-12-retention-cohorts@0b9b7854fde0": true,
+    "origin/feat/wave-dd-2-renewal-motion@04fe537ac21f": true,
+    "origin/feat/wave-dd-3-win-back-motion@6acf340689f0": true,
+    "origin/feat/wave-dd-4-expansion-playbook@6acf340689f0": true,
+    "origin/feat/wave-dd-5-win-loss-analyzer@4201da2b0741": true,
+    "origin/feat/wave-dd-6-nps-retention-plays@4201da2b0741": true,
+    "origin/feat/wave-dd-7-qbr-builder@4201da2b0741": true,
+    "origin/feat/wave-dd-8-cs-scorecard-builder@4201da2b0741": true,
+    "origin/feat/wave-dd-9-retention-forecaster@5e68409a1a5b": true,
+    "origin/feat/wave-e-e1-provider-lookups@77444793e7ee": true,
+    "origin/feat/wave-e-e10-portal-payments@4463bd2f4e40": true,
+    "origin/feat/wave-e-e2-office-admin@89e1ae191416": true,
+    "origin/feat/wave-e-e3-voice-metering@25717c4e3535": true,
+    "origin/feat/wave-e-e4-cost-safeguards@90f6b8bfb521": false,
+    "origin/feat/wave-e-e5-rag-reviewer@9a6ac0fc68ce": true,
+    "origin/feat/wave-e-e6-voice-appt-mgmt@b3a316662917": true,
+    "origin/feat/wave-e-e7-multi-doctor@f9f662c9e17f": true,
+    "origin/feat/wave-e-e8-schedule-import@9318f3183f12": true,
+    "origin/feat/wave-e-e9-voice-payments@aaf8f1bece55": true,
+    "origin/feat/wave-e-en2-spanish@08bd4faa06b9": true,
+    "origin/feat/wave-e-en3-voice-persona@72f305a280c8": true,
+    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": false,
+    "origin/feat/wave-e-en5-waitlist@b3ed576c7cfa": true,
+    "origin/feat/wave-e-en6-triage@b7956b5356e3": true,
+    "origin/feat/wave-e-en7-reminder-cadence@19bdff3d699c": true,
+    "origin/feat/wave-e-en8-post-visit-survey@239eb9eeb860": true,
+    "origin/feat/wave-e1-integration@63656021b520": true,
+    "origin/feat/wave-e2-integration@2b46159a2c4d": true,
+    "origin/feat/wave-e3-integration@970f08b35ef8": true,
+    "origin/feat/wave-e5-d1-onboarding@c5e0a95b25e6": true,
+    "origin/feat/wave-e5-d2-cernia-ops@d1df482c15c8": true,
+    "origin/feat/wave-erx-1-erx-service@f13214fb4004": false,
+    "origin/feat/wave-erx-2-ncpdp-script-builder@10c7fdbc580e": false,
+    "origin/feat/wave-erx-3-pharmacy-directory@ca485ff5764e": false,
+    "origin/feat/wave-erx-4-epcs-token-issuer@e9df99bf2e3e": false,
+    "origin/feat/wave-erx-5-surescripts-adapter@e64c5211275f": false,
+    "origin/feat/wave-erx-6-pdmp-adapter@61a1dcbc19c5": false,
+    "origin/feat/wave-f-1-billing-alerts-foundation@04fe537ac21f": true,
+    "origin/feat/wave-f-2-billing-alert-delivery@6acf340689f0": true,
+    "origin/feat/wave-f-2-invoice-generator@0b9b7854fde0": true,
+    "origin/feat/wave-f-3-dunning-workflow@6acf340689f0": true,
+    "origin/feat/wave-f-4-collections-handoff@6acf340689f0": true,
+    "origin/feat/wave-f-5-patient-statement-generator@4201da2b0741": true,
+    "origin/feat/wave-f-6-statement-delivery-router@4201da2b0741": true,
+    "origin/feat/wave-f-7-patient-payment-plans@4201da2b0741": true,
+    "origin/feat/wave-f-b1-usage-threshold@3d9d8a4b4d2f": false,
+    "origin/feat/wave-f-b2-alert-queue@c637f4fc5b99": false,
+    "origin/feat/wave-f-b3-dunning-workflow@627a31e5b006": false,
+    "origin/feat/wave-f-b4-payment-retry-smart-recovery@c5497f6914a9": false,
+    "origin/feat/wave-g-1-delegation-foundation@04fe537ac21f": true,
+    "origin/feat/wave-g-2-access-delegation@0b9b7854fde0": true,
+    "origin/feat/wave-g-2-delegation-audit@6acf340689f0": true,
+    "origin/feat/wave-g-3-jit-access@6acf340689f0": true,
+    "origin/feat/wave-g-4-access-review-attestation@4201da2b0741": true,
+    "origin/feat/wave-g-5-saml-oidc-federation@5e68409a1a5b": true,
+    "origin/feat/wave-h-h1-a-tenant-brand@bceaed361b33": true,
+    "origin/feat/wave-h-h1-b-brand-provider@a3bbe5b6c468": true,
+    "origin/feat/wave-h-h1-c-brand-assets@95ed04bc8640": true,
+    "origin/feat/wave-h-h1-d-brand-admin-ui@570ff1cc4939": true,
+    "origin/feat/wave-h-h2-a-patient-rebrand@372fc6d0c809": true,
+    "origin/feat/wave-h-h2-b-admin-rebrand@a5a81fe379b1": true,
+    "origin/feat/wave-h-h2-c-trust-rebrand@e7ae81fb43b8": true,
+    "origin/feat/wave-h-h2-d-login-facility-aware@3443ea138b2c": true,
+    "origin/feat/wave-h-h2-e-email-brand-aware@4812362b7660": true,
+    "origin/feat/wave-h-h2-f-sms-brand-aware@fe470e72d62e": true,
+    "origin/feat/wave-h-h2-g-pdf-brand-aware@e2b5a6d03cd2": true,
+    "origin/feat/wave-h-h2-integration@ba20257005e2": true,
+    "origin/feat/wave-h-h3-a-voice-persona@822d8caefdaa": true,
+    "origin/feat/wave-h-h3-b-custom-domain@03463962e87e": true,
+    "origin/feat/wave-h-h3-c-smtp-from-address@2e4cd95caacb": true,
+    "origin/feat/wave-h-h3-integration@1d3eb1d154e1": true,
+    "origin/feat/wave-h-h4-integration@58083ad512e6": true,
+    "origin/feat/wave-h-h4-ops-cernia-marker@59bea76686d2": true,
+    "origin/feat/wave-hext-1-dnssec@58083ad512e6": true,
+    "origin/feat/wave-hext-2-caa@58083ad512e6": true,
+    "origin/feat/wave-hext-3-dmarc@58083ad512e6": true,
+    "origin/feat/wave-hext-4-bimi@58083ad512e6": true,
+    "origin/feat/wave-hext-5-mta-sts@58083ad512e6": true,
+    "origin/feat/wave-hext-6-ct@58083ad512e6": true,
+    "origin/feat/wave-hext-integration@1623aef00d37": true,
+    "origin/feat/wave-hext2-1-subdomain-reservation@1623aef00d37": true,
+    "origin/feat/wave-hext2-2-vanity-hostnames@1623aef00d37": true,
+    "origin/feat/wave-hext2-3-short-url@1623aef00d37": true,
+    "origin/feat/wave-hext2-4-subsub-delegation@1623aef00d37": true,
+    "origin/feat/wave-hext2-integration@086f4fe9a793": true,
+    "origin/feat/wave-i-1-support-channel@0b9b7854fde0": true,
+    "origin/feat/wave-i-1-support-channel-foundation@086f4fe9a793": true,
+    "origin/feat/wave-i-1a-support-tickets@04fe537ac21f": true,
+    "origin/feat/wave-i-2-support-ticket-router@5e68409a1a5b": true,
+    "origin/feat/wave-i-s1-support-ticket-system@3e81ae8adca3": false,
+    "origin/feat/wave-i-s2-sla-escalation@429028840edd": false,
+    "origin/feat/wave-i-s3-knowledge-base-ai@873172752505": false,
+    "origin/feat/wave-i-s4-customer-support-dashboard@90ed75424be8": false,
+    "origin/feat/wave-i-s5-csm-workspace@250fd64ea772": false,
+    "origin/feat/wave-i-s6-enterprise-account-mgmt@69b38bd7d71c": false,
+    "origin/feat/wave-j-1-workflow-designer-foundation@5c9d436fe4dc": true,
+    "origin/feat/wave-j-2-workflow-presets@04fe537ac21f": true,
+    "origin/feat/wave-j-3-workflow-execution-log@6acf340689f0": true,
+    "origin/feat/wave-j-3-workflow-steps@0b9b7854fde0": true,
+    "origin/feat/wave-j-4-workflow-validator@4201da2b0741": true,
+    "origin/feat/wave-j-5-workflow-scheduler@4201da2b0741": true,
+    "origin/feat/wave-j-6-workflow-marketplace-catalog@4201da2b0741": true,
+    "origin/feat/wave-k-1-admin-role-matrix@0c04cfd5bdf1": false,
+    "origin/feat/wave-k-1-role-templates@0b9b7854fde0": true,
+    "origin/feat/wave-k-1-role-templates-foundation@04fe537ac21f": true,
+    "origin/feat/wave-k-2-role-assignment-bulk@f3b68512acae": false,
+    "origin/feat/wave-k-2-role-ui-tabs@6acf340689f0": true,
+    "origin/feat/wave-k-3-permission-presets@6acf340689f0": true,
+    "origin/feat/wave-k-3-role-aware-nav@a01eac893162": false,
+    "origin/feat/wave-k-4-rbac-audit-log@049ef72de60a": false,
+    "origin/feat/wave-k-4-scim-provisioner@4201da2b0741": true,
+    "origin/feat/wave-k-5-specialty-role-templates@181034986cd9": false,
+    "origin/feat/wave-l-1-multi-org-foundation@1623aef00d37": true,
+    "origin/feat/wave-l-2-multi-org-tenancy@0b9b7854fde0": true,
+    "origin/feat/wave-l-2-org-policy-inheritance@6acf340689f0": true,
+    "origin/feat/wave-l-3-multi-org-billing@6acf340689f0": true,
+    "origin/feat/wave-l-4-org-rbac-inheritance@4201da2b0741": true,
+    "origin/feat/wave-l-5-tenant-config-inheritance@4201da2b0741": true,
+    "origin/feat/wave-l-m1-multi-org-hierarchy@b3a6d38bcded": false,
+    "origin/feat/wave-l-m2-idn-facility-rollup@e084f752ee2d": false,
+    "origin/feat/wave-l-m3-cross-org-reporting@f38970cb2ea2": false,
+    "origin/feat/wave-l-m4-user-cross-org-assignment@6fc261dcc6ed": false,
+    "origin/feat/wave-l-m5-financial-rollup-chargeback@11ba57f1ec55": false,
+    "origin/feat/wave-l-m6-access-control-inheritance@39c1e333350b": false,
+    "origin/feat/wave-m-1a-pricing-tiers@04fe537ac21f": true,
+    "origin/feat/wave-m-1b-meters-usage-license@04fe537ac21f": true,
+    "origin/feat/wave-m-2-entitlement-engine@6acf340689f0": true,
+    "origin/feat/wave-m-3-metering-extension@0b9b7854fde0": true,
+    "origin/feat/wave-m-3-plan-migration-tool@4201da2b0741": true,
+    "origin/feat/wave-m-4-usage-revenue-recognition@5e68409a1a5b": true,
+    "origin/feat/wave-m-p1-license-server@f5542832c1ae": false,
+    "origin/feat/wave-m-p2-metered-usage@3dc04f0ba5e7": false,
+    "origin/feat/wave-m-p3-stripe-invoice@4ca268db39c5": false,
+    "origin/feat/wave-m-p4-contract-seat-limits@163a09aad708": false,
+    "origin/feat/wave-m-p5-trial-to-paid@91fe190189c9": false,
+    "origin/feat/wave-m-p6-enterprise-sso-billing@2c7e023c844e": false,
+    "origin/feat/wave-n-1-ehr-per-tenant@25ed6e324527": true,
+    "origin/feat/wave-n-2-a-ehr-tenant-router@6acf340689f0": true,
+    "origin/feat/wave-n-2-b-ehr-connector-dispatcher@6acf340689f0": true,
+    "origin/feat/wave-n-3-ehr-field-mapping@6acf340689f0": true,
+    "origin/feat/wave-n-4-ehr-connection-health@4201da2b0741": true,
+    "origin/feat/wave-n-5-ehr-sync-state-machine@4201da2b0741": true,
+    "origin/feat/wave-n-6-ehr-webhook-receiver@4201da2b0741": true,
+    "origin/feat/wave-n-7-ehr-rate-limiter@27778264a2d2": true,
+    "origin/feat/wave-o-1-ai-copilot-foundation@0b9b7854fde0": true,
+    "origin/feat/wave-o-1a-ai-copilot-foundation@04fe537ac21f": true,
+    "origin/feat/wave-o-2-ai-copilot-tools@6acf340689f0": true,
+    "origin/feat/wave-o-3-ai-copilot-guardrails@8f714c9e7a0e": true,
+    "origin/feat/wave-o-4-ai-citation-verifier@4201da2b0741": true,
+    "origin/feat/wave-o-5-ai-prompt-injection-defender@4201da2b0741": true,
+    "origin/feat/wave-o-6-ai-hallucination-detector@4201da2b0741": true,
+    "origin/feat/wave-o-ai1-llm-gateway@a36aee395c50": false,
+    "origin/feat/wave-o-ai2-prompt-registry@596b554b98ce": false,
+    "origin/feat/wave-o-ai3-model-routing@1c9a83f0ea06": false,
+    "origin/feat/wave-o-ai4-cost-tracking-budgets@6e001d260a9a": false,
+    "origin/feat/wave-o-ai5-llm-safety-guardrails@47dba5e631e7": false,
+    "origin/feat/wave-o-ai6-ai-observability-trace@333ebe31ef43": false,
+    "origin/feat/wave-p-1-ml-studio-foundation@1623aef00d37": true,
+    "origin/feat/wave-p-2-ml-model-registry@6acf340689f0": true,
+    "origin/feat/wave-p-3-ml-feature-store@0b9b7854fde0": true,
+    "origin/feat/wave-p-4-ml-training-data-validator@4201da2b0741": true,
+    "origin/feat/wave-p-5-ml-drift-detector@4201da2b0741": true,
+    "origin/feat/wave-p-6-ml-model-card-generator@4201da2b0741": true,
+    "origin/feat/wave-p-7-ml-training-pipeline@4201da2b0741": true,
+    "origin/feat/wave-q-1-telehealth-foundation@5c9d436fe4dc": true,
+    "origin/feat/wave-q-2-rpm-device-intake@6acf340689f0": true,
+    "origin/feat/wave-q-3-rpm-alert-thresholds@6acf340689f0": true,
+    "origin/feat/wave-q-4-rpm-care-plan-generator@4201da2b0741": true,
+    "origin/feat/wave-r-3-mobile-push-notifications@0b9b7854fde0": true,
+    "origin/feat/wave-r-4-mobile-push-notifications@6acf340689f0": true,
+    "origin/feat/wave-r-5-mobile-conflict-resolver@4201da2b0741": true,
+    "origin/feat/wave-r-m1-mobile-ios-foundation@e348cc788a36": false,
+    "origin/feat/wave-r-m2-android-foundation@d7175c73534f": false,
+    "origin/feat/wave-r-r1-mobile-foundation@d205eb4e7a5c": true,
+    "origin/feat/wave-r-r1-mobile-foundation-v2@58083ad512e6": true,
+    "origin/feat/wave-r-r2-a-patient-features@58083ad512e6": true,
+    "origin/feat/wave-r-r2-b-provider-features@58083ad512e6": true,
+    "origin/feat/wave-r-r3-mobile-offline-sync@04fe537ac21f": true,
+    "origin/feat/wave-s-foundation@d205eb4e7a5c": true,
+    "origin/feat/wave-s-integration@251ebe92e65d": true,
+    "origin/feat/wave-s-s1-hl7v2@58083ad512e6": true,
+    "origin/feat/wave-s-s2-dicom@58083ad512e6": true,
+    "origin/feat/wave-s-s3-surescripts@58083ad512e6": true,
+    "origin/feat/wave-s-s4-ddi@58083ad512e6": true,
+    "origin/feat/wave-t-allergy-a-allergy-immunology-fhir@4201da2b0741": true,
+    "origin/feat/wave-t-allergy-b-allergy-testing-fhir@d1dd5b7bf87a": false,
+    "origin/feat/wave-t-anesth-a-anesthesiology-fhir@4201da2b0741": true,
+    "origin/feat/wave-t-anesth-b-preop-fhir@6ac7915568fa": false,
+    "origin/feat/wave-t-bh-a-fhir-mappings@04fe537ac21f": true,
+    "origin/feat/wave-t-bh-assessments@58083ad512e6": true,
+    "origin/feat/wave-t-bh-b-screening-fhir@964da2ecedb7": false,
+    "origin/feat/wave-t-cardio-a-cardiology-fhir@6acf340689f0": true,
+    "origin/feat/wave-t-cardio-b-electrophysiology-fhir@50e3f2b89eac": false,
+    "origin/feat/wave-t-cardiology-cardio-fhir@809188be3ac6": false,
+    "origin/feat/wave-t-dental-b-perio-fhir@ba7db0fcbb86": false,
+    "origin/feat/wave-t-dental-charting@251ebe92e65d": true,
+    "origin/feat/wave-t-derm-a-dermatology-fhir@6acf340689f0": true,
+    "origin/feat/wave-t-derm-b-lesion-fhir@1ec3c71cc55c": false,
+    "origin/feat/wave-t-emmed-a-emergency-medicine-fhir@5e68409a1a5b": true,
+    "origin/feat/wave-t-emmed-b-triage-fhir@844e1bce8bb8": false,
+    "origin/feat/wave-t-endo-a-endocrinology-fhir@4201da2b0741": true,
+    "origin/feat/wave-t-endo-b-diabetes-thyroid-fhir@aa884cb8029a": false,
+    "origin/feat/wave-t-foundation@d205eb4e7a5c": true,
+    "origin/feat/wave-t-foundation-v2@58083ad512e6": true,
+    "origin/feat/wave-t-genom-a-genomics-fhir@a6e1fc7c3c29": false,
+    "origin/feat/wave-t-genom-b-cpic-fhir@b555e3085b46": false,
+    "origin/feat/wave-t-geri-a-geriatrics-fhir@6acf340689f0": true,
+    "origin/feat/wave-t-geri-b-frailty-fhir@efc447272826": false,
+    "origin/feat/wave-t-gi-a-gastroenterology-fhir@4201da2b0741": true,
+    "origin/feat/wave-t-gi-b-ibd-liver-fhir@3293932839c3": false,
+    "origin/feat/wave-t-hem-a-hematology-fhir@5e68409a1a5b": true,
+    "origin/feat/wave-t-hem-b-coagulation-fhir@aaee29ef03c3": false,
+    "origin/feat/wave-t-home-b-oasis-fhir@8d93a2ad9641": false,
+    "origin/feat/wave-t-home-health-oasis@58083ad512e6": true,
+    "origin/feat/wave-t-hosp-a-hospitalist-fhir@4201da2b0741": true,
+    "origin/feat/wave-t-hosp-b-discharge-fhir@14f87879ee3c": false,
+    "origin/feat/wave-t-hospice-b-prognosis-fhir@cb415c8f02d5": false,
+    "origin/feat/wave-t-hospice-eligibility@58083ad512e6": true,
+    "origin/feat/wave-t-infect-a-infectious-disease-fhir@372b955dbb74": false,
+    "origin/feat/wave-t-infect-b-stewardship-fhir@3a35f06d6ed4": false,
+    "origin/feat/wave-t-ltc-b-quality-fhir@5a80607a2455": false,
+    "origin/feat/wave-t-ltc-mds@251ebe92e65d": true,
+    "origin/feat/wave-t-nephro-a-nephrology-fhir@4201da2b0741": true,
+    "origin/feat/wave-t-nephro-b-ckd-fhir@3c4bddb2e762": false,
+    "origin/feat/wave-t-neuro-a-neurology-fhir@4201da2b0741": true,
+    "origin/feat/wave-t-neuro-b-extras-fhir@a63eeffa021f": false,
+    "origin/feat/wave-t-obgyn-a-obgyn-extras-fhir@4201da2b0741": true,
+    "origin/feat/wave-t-obgyn-b-prenatal-fhir@02e2e93bc029": false,
+    "origin/feat/wave-t-onc-a-oncology-fhir@6acf340689f0": true,
+    "origin/feat/wave-t-onc-b-oncology-treatment-fhir@0b9b7854fde0": true,
+    "origin/feat/wave-t-onc-c-radiation-oncology-fhir@1753cc4ab0d9": false,
+    "origin/feat/wave-t-oncology-regimens@251ebe92e65d": true,
+    "origin/feat/wave-t-ophthal-a-ophthalmology-fhir@4201da2b0741": true,
+    "origin/feat/wave-t-ophthal-b-glaucoma-fhir@645c7167d6c2": false,
+    "origin/feat/wave-t-ortho-a-orthopedics-fhir@6acf340689f0": true,
+    "origin/feat/wave-t-ortho-b-fracture-fhir@eb752dd5c47b": false,
+    "origin/feat/wave-t-pain-b-medd-fhir@ab009d7234ce": false,
+    "origin/feat/wave-t-painmgmt-a-pain-management-fhir@4201da2b0741": true,
+    "origin/feat/wave-t-pall-a-palliative-care-fhir@d5dcefb7d62b": false,
+    "origin/feat/wave-t-pall-b-advance-care-fhir@e52f2dba0d96": false,
+    "origin/feat/wave-t-peds-a-pediatrics-fhir@6acf340689f0": true,
+    "origin/feat/wave-t-peds-b-growth-vaccines-fhir@1390883acf9b": false,
+    "origin/feat/wave-t-plast-a-plastic-surgery-fhir@def290bfcaf8": false,
+    "origin/feat/wave-t-plast-b-burn-flap-fhir@c782c8385a79": false,
+    "origin/feat/wave-t-pulm-a-pulmonology-fhir@4201da2b0741": true,
+    "origin/feat/wave-t-pulm-b-action-plans-fhir@cb598fbda99a": false,
+    "origin/feat/wave-t-rehab-a-physical-rehab-fhir@35307f4a019e": false,
+    "origin/feat/wave-t-rehab-b-functional-fhir@1ee70d6a860b": false,
+    "origin/feat/wave-t-reprod-a-reproductive-medicine-fhir@e6a53f9d5531": false,
+    "origin/feat/wave-t-reprod-b-ivf-fhir@79cac8a72586": false,
+    "origin/feat/wave-t-rheum-a-rheumatology-fhir@4201da2b0741": true,
+    "origin/feat/wave-t-rheum-b-activity-fhir@7fdb83777545": false,
+    "origin/feat/wave-t-sleep-a-sleep-medicine-fhir@d211af73a4db": false,
+    "origin/feat/wave-t-sleep-b-psg-fhir@aaf192baa082": false,
+    "origin/feat/wave-t-sports-a-sports-medicine-fhir@1b80f3b20f93": false,
+    "origin/feat/wave-t-sports-b-concussion-fhir@c3984c07e6ba": false,
+    "origin/feat/wave-t-surg-a-surgery-fhir@5e68409a1a5b": true,
+    "origin/feat/wave-t-surg-b-ssi-nsqip-fhir@34e26687dc5a": false,
+    "origin/feat/wave-t-tox-a-toxicology-fhir@2368c8f57f44": false,
+    "origin/feat/wave-t-tox-b-antidote-fhir@d1492f0e2ec5": false,
+    "origin/feat/wave-t-trauma-a-trauma-surgery-fhir@48c32e168095": false,
+    "origin/feat/wave-t-trauma-b-atls-fhir@c2a3247f7d3e": false,
+    "origin/feat/wave-t-urol-a-urology-fhir@4201da2b0741": true,
+    "origin/feat/wave-t-urol-b-screening-fhir@7a4e516e1158": false,
+    "origin/feat/wave-t-vision-b-refraction-fhir@0776aad2bcc6": false,
+    "origin/feat/wave-t-vision-refraction@251ebe92e65d": true,
+    "origin/feat/wave-t-whealth-a-womens-health-fhir@6acf340689f0": true,
+    "origin/feat/wave-t-whealth-b-screening-fhir@b2bef25ed8a0": false,
+    "origin/feat/wave-u-1-revenue-cycle-foundation@25ed6e324527": true,
+    "origin/feat/wave-u-2-eob-reconciler@6acf340689f0": true,
+    "origin/feat/wave-u-3-claims-denial-workflow@6acf340689f0": true,
+    "origin/feat/wave-u-4-prior-auth-workflow@4201da2b0741": true,
+    "origin/feat/wave-u-5-charge-capture@4201da2b0741": true,
+    "origin/feat/wave-u-6-contractual-rate-adjudicator@4201da2b0741": true,
+    "origin/feat/wave-u-7-revenue-cycle-kpis@4201da2b0741": true,
+    "origin/feat/wave-u-8-underpayment-recovery@5e68409a1a5b": true,
+    "origin/feat/wave-ui-1-erx-composer-ui@54b3d82ad4b7": false,
+    "origin/feat/wave-ui-2-erx-history-ui@3eca19d81bf7": false,
+    "origin/feat/wave-ui-3-erx-refill-queue-ui@e06ff48da01c": false,
+    "origin/feat/wave-ui-4-erx-admin-ui@02da33f2683a": false,
+    "origin/feat/wave-v-1-services-partners-foundation@25ed6e324527": true,
+    "origin/feat/wave-v-2-a-services-catalog@04fe537ac21f": true,
+    "origin/feat/wave-v-2-b-services-extension@0b9b7854fde0": true,
+    "origin/feat/wave-v-3-partner-certification@6acf340689f0": true,
+    "origin/feat/wave-v-4-partner-deal-reg@4201da2b0741": true,
+    "origin/feat/wave-v-5-partner-feature-gates@4201da2b0741": true,
+    "origin/feat/wave-v-6-partner-enablement-library@4201da2b0741": true,
+    "origin/feat/wave-w-1-email-program@27778264a2d2": true,
+    "origin/feat/wave-w-1-email-program-foundation@04fe537ac21f": true,
+    "origin/feat/wave-w-1a-email-program-tighter@04fe537ac21f": true,
+    "origin/feat/wave-w-e1-transactional-email@ac621450b658": false,
+    "origin/feat/wave-w-e2-email-templates@27f94272475a": false,
+    "origin/feat/wave-w-e3-deliverability-monitoring@bf2c33666a4b": false,
+    "origin/feat/wave-w-e4-unsubscribe-gdpr@fd4a0bc1d9ac": false,
+    "origin/feat/wave-w-e5-sms-push-delivery@cf175ab06a89": false,
+    "origin/feat/wave-x-1-business-ops@0b9b7854fde0": true,
+    "origin/feat/wave-x-1-business-ops-foundation@25ed6e324527": true,
+    "origin/feat/wave-x-1a-business-ops-tighter@04fe537ac21f": true,
+    "origin/feat/wave-x-1b-finops-unit-economics@4201da2b0741": true,
+    "origin/feat/wave-y-2-marketing-campaign-templates@04fe537ac21f": true,
+    "origin/feat/wave-y-3-seo-landing-generator@6acf340689f0": true,
+    "origin/feat/wave-y-4-marketing-attribution@6acf340689f0": true,
+    "origin/feat/wave-y-5-conversion-funnel@4201da2b0741": true,
+    "origin/feat/wave-y-6-lead-scoring@4201da2b0741": true,
+    "origin/feat/wave-y-7-churn-signal-aggregator@4201da2b0741": true,
+    "origin/feat/wave-y-8-product-analytics-events@4201da2b0741": true,
+    "origin/feat/wave-y-9-seo-keyword-tracker@4201da2b0741": true,
+    "origin/feat/wave-y-y1-a-marketing-scaffold@d205eb4e7a5c": true,
+    "origin/feat/wave-y-y1-a-marketing-v2@58083ad512e6": true,
+    "origin/feat/wave-y-y1-b-cms-adapter@58083ad512e6": true,
+    "origin/feat/wave-z-1a-product-analytics@1623aef00d37": true,
+    "origin/feat/wave-z-1b-feature-flags@1623aef00d37": true,
+    "origin/feat/wave-z-2-nps-csat@4201da2b0741": true,
+    "origin/feat/wave-z-3-customer-health-score@04fe537ac21f": true,
+    "origin/feat/wave-z-4-onboarding-milestones@6acf340689f0": true,
+    "origin/feat/wave-z-5-cs-task-scheduler@4201da2b0741": true,
+    "origin/feat/wave-z-6-in-app-nps-widget-state@4201da2b0741": true,
+    "origin/feat/wave-z-7-churn-analytics-service@4201da2b0741": true
   }
 }
