@@ -1,19 +1,19 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-22T21:49:27.858Z",
-    "lastUpdatedDisplay": "May 22, 2026 — 17:49 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #104 feat(i6-enterprise-account-mgmt): enterprise accou"
+    "lastUpdatedIso": "2026-05-22T21:52:42.537Z",
+    "lastUpdatedDisplay": "May 22, 2026 — 17:52 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #105 feat(w5-sms-push-delivery): SMS + push delivery (W"
   },
   "summary": {
     "currentMainCommit": "a499e250",
     "currentTagOnMain": "v0.97-dns-monetization (6 tags total) 🏁",
     "agentsCompletedThisSession": 76,
-    "agentsRemainingToV30": 10,
+    "agentsRemainingToV30": 9,
     "hardeningTrackRecord": "76 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "Idle pool 0/8 — 10 agents remaining to v3.0. Last PR: #104 feat(i6-enterprise-account-mgmt): enterprise account mgmt (I. (refreshed May 22, 2026 — 17:49 EDT)",
-    "totalAgentsShipped": 518,
+    "strategy": "Idle pool 0/8 — 9 agents remaining to v3.0. Last PR: #105 feat(w5-sms-push-delivery): SMS + push delivery (W-E5) — clo. (refreshed May 22, 2026 — 17:52 EDT)",
+    "totalAgentsShipped": 519,
     "modelMix": {
       "haiku": 43,
       "sonnet": 451,
@@ -21,45 +21,45 @@
     },
     "modelMixActive": {
       "haiku": 0,
-      "sonnet": 49,
+      "sonnet": 48,
       "opus": 2
     },
-    "v30Status": "518/528 (98%, 10 to go)",
+    "v30Status": "519/528 (98%, 9 to go)",
     "v30Target": 528,
     "planProgress": {
-      "wavesComplete": 19,
-      "wavesInProgress": 13,
+      "wavesComplete": 20,
+      "wavesInProgress": 12,
       "wavesBlocked": 1,
       "wavesTotal": 34,
-      "percent": 56,
-      "label": "19/34 waves complete (56%)"
+      "percent": 59,
+      "label": "20/34 waves complete (59%)"
     },
     "packagesDelivered": {
-      "count": 378,
-      "emptyBranches": 98,
+      "count": 381,
+      "emptyBranches": 96,
       "target": 528,
       "percent": 72,
       "filterThreshold": 5,
-      "label": "378/528 packages (72%), 98 empty scaffolds excluded"
+      "label": "381/528 packages (72%), 96 empty scaffolds excluded"
     },
     "pipeline": {
       "inflight": 0,
       "poolSize": 8,
       "openPrs": 15,
-      "pendingDispatch": 51,
-      "label": "0/8 in flight · 15 PRs open · 51 pending dispatch"
+      "pendingDispatch": 50,
+      "label": "0/8 in flight · 15 PRs open · 50 pending dispatch"
     },
     "quality": {
       "activeFailures": 0,
       "recoveredFailures": 7,
-      "testFilesLanded": 790,
-      "testsLandedEstimate": 19750,
-      "label": "790 test files landed · 0 active failures"
+      "testFilesLanded": 797,
+      "testsLandedEstimate": 19925,
+      "label": "797 test files landed · 0 active failures"
     },
     "velocity": {
-      "landedLastHour": 3,
+      "landedLastHour": 4,
       "landedLast24h": 15,
-      "label": "3 PRs opened in last hour · 15 in last 24h"
+      "label": "4 PRs opened in last hour · 15 in last 24h"
     },
     "integration": {
       "lastMergeIso": "2026-05-17T17:53:46-04:00",
@@ -511,7 +511,7 @@
       "recovery": "re-dispatched as M-1A with tighter scope; running in slot 1",
       "aged": true,
       "recovered": true,
-      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
+      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
     },
     {
       "agent": "W-1 email program",
@@ -566,7 +566,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
@@ -3769,7 +3769,7 @@
       "id": "W",
       "name": "Email Program",
       "tag": "v2.3-email-program",
-      "status": "in-progress",
+      "status": "complete",
       "agentsTotal": 7,
       "agents": [
         {
@@ -3777,7 +3777,7 @@
           "name": "email program",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -3786,7 +3786,7 @@
           "name": "email program tighter",
           "status": "landed",
           "fileCount": 0,
-          "isRealPackage": false,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -3827,17 +3827,18 @@
           "modelReason": "default"
         },
         {
-          "id": "W-?1",
-          "name": "pending agent (slot 45 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 45,
+          "id": "W-E5",
+          "name": "sms push delivery",
+          "status": "landed",
+          "fileCount": 20,
+          "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         }
       ],
-      "knownAgentCount": 6,
-      "pendingAgentCount": 1,
-      "completionPct": 86
+      "knownAgentCount": 7,
+      "pendingAgentCount": 0,
+      "completionPct": 100
     },
     {
       "id": "AA",
@@ -3932,6 +3933,14 @@
         },
         {
           "id": "X-?1",
+          "name": "pending agent (slot 45 in dispatch queue)",
+          "status": "pending",
+          "activationPosition": 45,
+          "recommendedModel": "sonnet",
+          "modelReason": "default"
+        },
+        {
+          "id": "X-?2",
           "name": "pending agent (slot 46 in dispatch queue)",
           "status": "pending",
           "activationPosition": 46,
@@ -3939,7 +3948,7 @@
           "modelReason": "default"
         },
         {
-          "id": "X-?2",
+          "id": "X-?3",
           "name": "pending agent (slot 47 in dispatch queue)",
           "status": "pending",
           "activationPosition": 47,
@@ -3947,7 +3956,7 @@
           "modelReason": "default"
         },
         {
-          "id": "X-?3",
+          "id": "X-?4",
           "name": "pending agent (slot 48 in dispatch queue)",
           "status": "pending",
           "activationPosition": 48,
@@ -3955,18 +3964,10 @@
           "modelReason": "default"
         },
         {
-          "id": "X-?4",
+          "id": "X-?5",
           "name": "pending agent (slot 49 in dispatch queue)",
           "status": "pending",
           "activationPosition": 49,
-          "recommendedModel": "sonnet",
-          "modelReason": "default"
-        },
-        {
-          "id": "X-?5",
-          "name": "pending agent (slot 50 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 50,
           "recommendedModel": "sonnet",
           "modelReason": "default"
         },
@@ -5670,6 +5671,13 @@
   ],
   "recentPrActivity": [
     {
+      "number": 105,
+      "title": "feat(w5-sms-push-delivery): SMS + push delivery (W-E5) — closes Wave W",
+      "state": "OPEN",
+      "createdAt": "2026-05-22T21:51:57Z",
+      "mergedAt": null
+    },
+    {
       "number": 104,
       "title": "feat(i6-enterprise-account-mgmt): enterprise account mgmt (I-S6) — closes Wave I",
       "state": "OPEN",
@@ -5765,13 +5773,6 @@
       "title": "feat(m4-contract-enforcement): contract enforcement runtime (M-P4)",
       "state": "OPEN",
       "createdAt": "2026-05-22T01:22:12Z",
-      "mergedAt": null
-    },
-    {
-      "number": 90,
-      "title": "feat(k3-role-aware-nav): runtime UI gating (K-R3)",
-      "state": "OPEN",
-      "createdAt": "2026-05-22T01:13:53Z",
       "mergedAt": null
     }
   ],
@@ -6280,6 +6281,7 @@
     "origin/feat/wave-w-e2-email-templates@27f94272475a": 31,
     "origin/feat/wave-w-e3-deliverability-monitoring@bf2c33666a4b": 22,
     "origin/feat/wave-w-e4-unsubscribe-gdpr@fd4a0bc1d9ac": 19,
+    "origin/feat/wave-w-e5-sms-push-delivery@cf175ab06a89": 20,
     "origin/feat/wave-x-1-business-ops@0b9b7854fde0": 0,
     "origin/feat/wave-x-1-business-ops-foundation@25ed6e324527": 0,
     "origin/feat/wave-x-1a-business-ops-tighter@04fe537ac21f": 0,
@@ -6809,6 +6811,7 @@
     "origin/feat/wave-w-e2-email-templates@27f94272475a": 6,
     "origin/feat/wave-w-e3-deliverability-monitoring@bf2c33666a4b": 8,
     "origin/feat/wave-w-e4-unsubscribe-gdpr@fd4a0bc1d9ac": 2,
+    "origin/feat/wave-w-e5-sms-push-delivery@cf175ab06a89": 7,
     "origin/feat/wave-x-1-business-ops@0b9b7854fde0": 0,
     "origin/feat/wave-x-1-business-ops-foundation@25ed6e324527": 0,
     "origin/feat/wave-x-1a-business-ops-tighter@04fe537ac21f": 0,
