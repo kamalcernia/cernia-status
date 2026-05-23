@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-23T11:19:33.951Z",
-    "lastUpdatedDisplay": "May 23, 2026 — 07:19 EDT",
+    "lastUpdatedIso": "2026-05-23T11:29:22.317Z",
+    "lastUpdatedDisplay": "May 23, 2026 — 07:29 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6"
   },
   "summary": {
@@ -12,42 +12,42 @@
     "hardeningTrackRecord": "79 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 570 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 23, 2026 — 07:20 EDT)",
+    "strategy": "v3.0 REACHED — 570 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 23, 2026 — 07:29 EDT)",
     "totalAgentsShipped": 570,
     "modelMix": {
       "haiku": 45,
-      "sonnet": 447,
+      "sonnet": 449,
       "opus": 36
     },
     "modelMixActive": {
       "haiku": 0,
-      "sonnet": 1,
+      "sonnet": 0,
       "opus": 0
     },
     "v30Status": "v3.0 REACHED · +42 over target (570/528)",
     "v30Target": 528,
     "planProgress": {
-      "wavesComplete": 31,
-      "wavesInProgress": 1,
+      "wavesComplete": 32,
+      "wavesInProgress": 0,
       "wavesBlocked": 1,
       "wavesTotal": 34,
-      "percent": 91,
-      "label": "31/34 waves complete (91%)"
+      "percent": 94,
+      "label": "32/34 waves complete (94%)"
     },
     "packagesDelivered": {
-      "count": 526,
+      "count": 529,
       "emptyBranches": 0,
-      "target": 528,
+      "target": 530,
       "percent": 100,
       "filterThreshold": 5,
-      "label": "526/528 packages (100%)"
+      "label": "529/530 packages (100%)"
     },
     "pipeline": {
       "inflight": 0,
       "poolSize": 8,
       "openPrs": 15,
-      "pendingDispatch": 1,
-      "label": "0/8 in flight · 15 PRs open · 1 pending dispatch"
+      "pendingDispatch": 0,
+      "label": "0/8 in flight · 15 PRs open · 0 pending dispatch"
     },
     "quality": {
       "activeFailures": 0,
@@ -67,6 +67,47 @@
       "mergedPrs": 0,
       "openPrs": 15,
       "label": "Last main merge: 5d ago · 15 PRs awaiting batch-merge"
+    },
+    "mainState": {
+      "waveCounts": {
+        "fullyInMain": 15,
+        "integrationReady": 13,
+        "integrationPartial": 5,
+        "partiallyInMain": 1,
+        "inProgress": 0,
+        "planned": 0,
+        "untouched": 0
+      },
+      "tags": [
+        "v0.9-local-demo",
+        "v0.9-pre-wave-e5",
+        "v0.95-white-label",
+        "v0.96-dns-complete",
+        "v0.97-dns-monetization",
+        "v2.0-clinical-interop"
+      ],
+      "integrationBranches": [
+        "CC",
+        "ERX",
+        "F",
+        "G",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "UI",
+        "W",
+        "X"
+      ],
+      "totalIntegrationMerges": 156,
+      "label": "15 on main · 13 integration-ready · 6 partial · 0 in-progress · 0 untouched"
     }
   },
   "pool": {
@@ -124,18 +165,7 @@
       }
     ]
   },
-  "queue": [
-    {
-      "pri": 1,
-      "id": "T-?1",
-      "waveId": "T",
-      "task": "7 Specialty Modules — next agent in this wave",
-      "writableSet": "packages/t-*/**",
-      "deps": [],
-      "status": "pending",
-      "recommendedModel": "sonnet"
-    }
-  ],
+  "queue": [],
   "recentCompletions": [
     {
       "agent": "per-wave mainState derivation + Main-state-by-wave panel",
@@ -319,7 +349,19 @@
       ],
       "knownAgentCount": 3,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 3,
+        "agentsTotal": 3,
+        "agentsOnIntegration": 0,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 100,
+        "integrationBranch": null,
+        "tagOnMain": "v0.9-local-demo",
+        "status": "fully-in-main"
+      }
     },
     {
       "id": "B",
@@ -500,7 +542,19 @@
       ],
       "knownAgentCount": 17,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 17,
+        "agentsTotal": 17,
+        "agentsOnIntegration": 0,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 100,
+        "integrationBranch": null,
+        "tagOnMain": "v0.9-local-demo",
+        "status": "fully-in-main"
+      }
     },
     {
       "id": "C",
@@ -641,7 +695,19 @@
       ],
       "knownAgentCount": 13,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 13,
+        "agentsTotal": 13,
+        "agentsOnIntegration": 0,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 100,
+        "integrationBranch": null,
+        "tagOnMain": "v0.9-local-demo",
+        "status": "fully-in-main"
+      }
     },
     {
       "id": "D",
@@ -752,7 +818,19 @@
       ],
       "knownAgentCount": 10,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 10,
+        "agentsTotal": 10,
+        "agentsOnIntegration": 0,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 100,
+        "integrationBranch": null,
+        "tagOnMain": "v0.9-local-demo",
+        "status": "fully-in-main"
+      }
     },
     {
       "id": "E",
@@ -983,7 +1061,19 @@
       ],
       "knownAgentCount": 22,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 20,
+        "agentsTotal": 22,
+        "agentsOnIntegration": 0,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 91,
+        "integrationBranch": null,
+        "tagOnMain": null,
+        "status": "partially-in-main"
+      }
     },
     {
       "id": "H",
@@ -1165,7 +1255,19 @@
       "knownAgentCount": 17,
       "pendingAgentCount": 0,
       "agentsTotal": 17,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 17,
+        "agentsTotal": 17,
+        "agentsOnIntegration": 0,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 100,
+        "integrationBranch": null,
+        "tagOnMain": "v0.95-white-label",
+        "status": "fully-in-main"
+      }
     },
     {
       "id": "H-EXT",
@@ -1237,7 +1339,19 @@
       ],
       "knownAgentCount": 6,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 6,
+        "agentsTotal": 6,
+        "agentsOnIntegration": 0,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 100,
+        "integrationBranch": null,
+        "tagOnMain": "v0.96-dns-complete",
+        "status": "fully-in-main"
+      }
     },
     {
       "id": "H-EXT-2",
@@ -1289,7 +1403,19 @@
       ],
       "knownAgentCount": 4,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 4,
+        "agentsTotal": 4,
+        "agentsOnIntegration": 0,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 100,
+        "integrationBranch": null,
+        "tagOnMain": "v0.97-dns-monetization",
+        "status": "fully-in-main"
+      }
     },
     {
       "id": "L",
@@ -1411,7 +1537,19 @@
       ],
       "knownAgentCount": 11,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 5,
+        "agentsTotal": 11,
+        "agentsOnIntegration": 6,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 45,
+        "integrationBranch": "integration/wave-L",
+        "tagOnMain": null,
+        "status": "integration-ready"
+      }
     },
     {
       "id": "K",
@@ -1523,7 +1661,19 @@
       ],
       "knownAgentCount": 10,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 1,
+        "agentsTotal": 10,
+        "agentsOnIntegration": 10,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 10,
+        "integrationBranch": "integration/wave-K",
+        "tagOnMain": null,
+        "status": "integration-ready"
+      }
     },
     {
       "id": "M",
@@ -1653,7 +1803,19 @@
       ],
       "knownAgentCount": 12,
       "pendingAgentCount": 0,
-      "completionPct": 92
+      "completionPct": 92,
+      "mainState": {
+        "agentsInMain": 5,
+        "agentsTotal": 12,
+        "agentsOnIntegration": 6,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 1,
+        "inMainPercent": 42,
+        "integrationBranch": "integration/wave-M",
+        "tagOnMain": null,
+        "status": "integration-partial"
+      }
     },
     {
       "id": "N",
@@ -1745,7 +1907,19 @@
       ],
       "knownAgentCount": 8,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 8,
+        "agentsTotal": 8,
+        "agentsOnIntegration": 0,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 100,
+        "integrationBranch": null,
+        "tagOnMain": null,
+        "status": "fully-in-main"
+      }
     },
     {
       "id": "F",
@@ -1887,7 +2061,19 @@
       ],
       "knownAgentCount": 13,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 7,
+        "agentsTotal": 13,
+        "agentsOnIntegration": 6,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 54,
+        "integrationBranch": "integration/wave-F",
+        "tagOnMain": null,
+        "status": "integration-ready"
+      }
     },
     {
       "id": "G",
@@ -2009,7 +2195,19 @@
       ],
       "knownAgentCount": 11,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 5,
+        "agentsTotal": 11,
+        "agentsOnIntegration": 6,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 45,
+        "integrationBranch": "integration/wave-G",
+        "tagOnMain": null,
+        "status": "integration-ready"
+      }
     },
     {
       "id": "I",
@@ -2111,7 +2309,19 @@
       ],
       "knownAgentCount": 9,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 3,
+        "agentsTotal": 9,
+        "agentsOnIntegration": 6,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 33,
+        "integrationBranch": "integration/wave-I",
+        "tagOnMain": null,
+        "status": "integration-ready"
+      }
     },
     {
       "id": "J",
@@ -2243,7 +2453,19 @@
       ],
       "knownAgentCount": 12,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 6,
+        "agentsTotal": 12,
+        "agentsOnIntegration": 6,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 50,
+        "integrationBranch": "integration/wave-J",
+        "tagOnMain": null,
+        "status": "integration-ready"
+      }
     },
     {
       "id": "O",
@@ -2385,7 +2607,19 @@
       ],
       "knownAgentCount": 13,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 7,
+        "agentsTotal": 13,
+        "agentsOnIntegration": 6,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 54,
+        "integrationBranch": "integration/wave-O",
+        "tagOnMain": null,
+        "status": "integration-ready"
+      }
     },
     {
       "id": "P",
@@ -2527,7 +2761,19 @@
       ],
       "knownAgentCount": 13,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 7,
+        "agentsTotal": 13,
+        "agentsOnIntegration": 7,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 54,
+        "integrationBranch": "integration/wave-P",
+        "tagOnMain": null,
+        "status": "integration-ready"
+      }
     },
     {
       "id": "Q",
@@ -2639,14 +2885,26 @@
       ],
       "knownAgentCount": 10,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 4,
+        "agentsTotal": 10,
+        "agentsOnIntegration": 6,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 40,
+        "integrationBranch": "integration/wave-Q",
+        "tagOnMain": null,
+        "status": "integration-ready"
+      }
     },
     {
       "id": "T",
       "name": "7 Specialty Modules",
       "tag": "v1.8-specialty-modules",
-      "status": "in-progress",
-      "agentsTotal": 80,
+      "status": "complete",
+      "agentsTotal": 82,
       "agents": [
         {
           "id": "T-ALLERGY-A",
@@ -2734,6 +2992,16 @@
           "name": "electrophysiology fhir",
           "status": "landed",
           "fileCount": 14,
+          "mergedIntoMain": false,
+          "isRealPackage": true,
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
+          "id": "T-CARDIOLOGY",
+          "name": "cardio fhir",
+          "status": "landed",
+          "fileCount": 21,
           "mergedIntoMain": false,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
@@ -3090,6 +3358,16 @@
           "modelReason": "specialty-fhir-mapping"
         },
         {
+          "id": "T-ONCOLOGY",
+          "name": "regimens",
+          "status": "landed",
+          "fileCount": 0,
+          "mergedIntoMain": true,
+          "isRealPackage": true,
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
           "id": "T-OPHTHAL-A",
           "name": "ophthalmology fhir",
           "status": "landed",
@@ -3135,6 +3413,16 @@
           "status": "landed",
           "fileCount": 15,
           "mergedIntoMain": false,
+          "isRealPackage": true,
+          "recommendedModel": "sonnet",
+          "modelReason": "specialty-fhir-mapping"
+        },
+        {
+          "id": "T-PAINMGMT-A",
+          "name": "pain management fhir",
+          "status": "landed",
+          "fileCount": 0,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3438,19 +3726,23 @@
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
-        },
-        {
-          "id": "T-?1",
-          "name": "pending agent (slot 1 in dispatch queue)",
-          "status": "pending",
-          "activationPosition": 1,
-          "recommendedModel": "sonnet",
-          "modelReason": "specialty-fhir-mapping"
         }
       ],
-      "knownAgentCount": 79,
-      "pendingAgentCount": 1,
-      "completionPct": 99
+      "knownAgentCount": 82,
+      "pendingAgentCount": 0,
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 32,
+        "agentsTotal": 82,
+        "agentsOnIntegration": 8,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 39,
+        "integrationBranch": "integration/wave-T",
+        "tagOnMain": null,
+        "status": "integration-partial"
+      }
     },
     {
       "id": "R",
@@ -3582,7 +3874,19 @@
       ],
       "knownAgentCount": 12,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 7,
+        "agentsTotal": 12,
+        "agentsOnIntegration": 5,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 58,
+        "integrationBranch": "integration/wave-R",
+        "tagOnMain": null,
+        "status": "integration-ready"
+      }
     },
     {
       "id": "S",
@@ -3674,7 +3978,19 @@
       ],
       "knownAgentCount": 8,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 4,
+        "agentsTotal": 8,
+        "agentsOnIntegration": 4,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 50,
+        "integrationBranch": "integration/wave-S",
+        "tagOnMain": "v2.0-clinical-interop",
+        "status": "integration-ready"
+      }
     },
     {
       "id": "U",
@@ -3766,7 +4082,19 @@
       ],
       "knownAgentCount": 8,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 8,
+        "agentsTotal": 8,
+        "agentsOnIntegration": 0,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 100,
+        "integrationBranch": null,
+        "tagOnMain": null,
+        "status": "fully-in-main"
+      }
     },
     {
       "id": "V",
@@ -3848,7 +4176,19 @@
       ],
       "knownAgentCount": 7,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 7,
+        "agentsTotal": 7,
+        "agentsOnIntegration": 0,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 100,
+        "integrationBranch": null,
+        "tagOnMain": null,
+        "status": "fully-in-main"
+      }
     },
     {
       "id": "W",
@@ -3930,7 +4270,19 @@
       ],
       "knownAgentCount": 7,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 2,
+        "agentsTotal": 7,
+        "agentsOnIntegration": 5,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 29,
+        "integrationBranch": "integration/wave-W",
+        "tagOnMain": null,
+        "status": "integration-ready"
+      }
     },
     {
       "id": "AA",
@@ -3992,7 +4344,19 @@
       ],
       "knownAgentCount": 5,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 5,
+        "agentsTotal": 5,
+        "agentsOnIntegration": 0,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 100,
+        "integrationBranch": null,
+        "tagOnMain": null,
+        "status": "fully-in-main"
+      }
     },
     {
       "id": "X",
@@ -4094,7 +4458,19 @@
       ],
       "knownAgentCount": 9,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 3,
+        "agentsTotal": 9,
+        "agentsOnIntegration": 6,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 33,
+        "integrationBranch": "integration/wave-X",
+        "tagOnMain": null,
+        "status": "integration-ready"
+      }
     },
     {
       "id": "BB",
@@ -4206,7 +4582,19 @@
       ],
       "knownAgentCount": 10,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 10,
+        "agentsTotal": 10,
+        "agentsOnIntegration": 0,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 100,
+        "integrationBranch": null,
+        "tagOnMain": null,
+        "status": "fully-in-main"
+      }
     },
     {
       "id": "Z",
@@ -4298,7 +4686,19 @@
       ],
       "knownAgentCount": 8,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 8,
+        "agentsTotal": 8,
+        "agentsOnIntegration": 0,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 100,
+        "integrationBranch": null,
+        "tagOnMain": null,
+        "status": "fully-in-main"
+      }
     },
     {
       "id": "Y",
@@ -4410,7 +4810,19 @@
       ],
       "knownAgentCount": 10,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 10,
+        "agentsTotal": 10,
+        "agentsOnIntegration": 0,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 100,
+        "integrationBranch": null,
+        "tagOnMain": null,
+        "status": "fully-in-main"
+      }
     },
     {
       "id": "DD",
@@ -4523,7 +4935,19 @@
       ],
       "knownAgentCount": 10,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 10,
+        "agentsTotal": 10,
+        "agentsOnIntegration": 0,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 100,
+        "integrationBranch": null,
+        "tagOnMain": null,
+        "status": "fully-in-main"
+      }
     },
     {
       "id": "CC",
@@ -5835,7 +6259,19 @@
       ],
       "knownAgentCount": 130,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 54,
+        "agentsTotal": 130,
+        "agentsOnIntegration": 61,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 42,
+        "integrationBranch": "integration/wave-CC",
+        "tagOnMain": null,
+        "status": "integration-partial"
+      }
     },
     {
       "id": "ERX",
@@ -5906,7 +6342,19 @@
       ],
       "knownAgentCount": 6,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 0,
+        "agentsTotal": 6,
+        "agentsOnIntegration": 1,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 0,
+        "integrationBranch": "integration/wave-ERX",
+        "tagOnMain": null,
+        "status": "integration-partial"
+      }
     },
     {
       "id": "UI",
@@ -5957,7 +6405,19 @@
       ],
       "knownAgentCount": 4,
       "pendingAgentCount": 0,
-      "completionPct": 100
+      "completionPct": 100,
+      "mainState": {
+        "agentsInMain": 0,
+        "agentsTotal": 4,
+        "agentsOnIntegration": 1,
+        "agentsInflight": 0,
+        "agentsPending": 0,
+        "agentsFailed": 0,
+        "inMainPercent": 0,
+        "integrationBranch": "integration/wave-UI",
+        "tagOnMain": null,
+        "status": "integration-partial"
+      }
     }
   ],
   "recentPrActivity": [
