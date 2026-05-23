@@ -158,6 +158,12 @@
     .mainstate-section-header { display: flex; align-items: baseline; gap: 10px; margin-top: 18px; }
     .mainstate-section-header h2 { margin: 0; }
     .mainstate-section-header .legend { font-size: 11px; color: var(--fg-muted); font-family: var(--mono); }
+    /* Health column — typecheck/test/build per-wave audit result. */
+    .health-pill { display: inline-block; padding: 1px 7px; border-radius: 3px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; cursor: help; }
+    .health-pill.h-ok        { background: rgba(74, 222, 128, 0.18); color: var(--accent); }
+    .health-pill.h-issues    { background: rgba(251, 191, 36, 0.22); color: var(--warn); }
+    .health-pill.h-broken    { background: rgba(239, 68, 68, 0.20); color: rgba(252, 165, 165, 1); }
+    .health-pill.h-unknown   { background: rgba(255,255,255,0.04); color: var(--fg-faint); }
   </style>
 </head>
 <body>
@@ -237,6 +243,7 @@
           <th style="width:60px;text-align:right">On main</th>
           <th style="width:80px;text-align:right">Integration</th>
           <th style="width:60px;text-align:right">Total</th>
+          <th style="width:80px" title="Result of the latest per-wave typecheck / test / build audit. Hover over the badge for details.">Health</th>
           <th>Tag · integration branch · notes</th>
         </tr>
       </thead>
@@ -657,6 +664,32 @@
           ? `<a class="mainstate-integ-link" href="https://github.com/kamalcernia/cernia/tree/${m.integrationBranch}" target="_blank" rel="noopener">${m.integrationBranch}</a>`
           : "";
         const notes = [tagHtml, integHtml].filter(Boolean).join(" &middot; ");
+
+        // Health pill — surfaced from `wave.healthCheck` written by the audit
+        // pass. Three states: ok / issues / broken. Tooltip carries the
+        // findings list so the dashboard reader can see WHAT is wrong without
+        // opening a second tab.
+        const hc = w.healthCheck || null;
+        let healthClass = "h-unknown";
+        let healthLabel = "n/a";
+        let healthTitle = "No audit data yet — run `pnpm -r --no-bail typecheck` then refresh.";
+        if (hc) {
+          const issueCount = (hc.issues || []).length;
+          if (hc.status === "ok") {
+            healthClass = "h-ok";
+            healthLabel = "OK";
+            healthTitle = hc.note || `Typecheck + test pass for all packages in this wave (as of ${hc.checkedAt || "last audit"}).`;
+          } else if (hc.status === "issues") {
+            healthClass = "h-issues";
+            healthLabel = `${issueCount}`;
+            healthTitle = (hc.issues || []).map(i => `• ${i.package}: ${i.summary}`).join("\n");
+          } else if (hc.status === "broken") {
+            healthClass = "h-broken";
+            healthLabel = `${issueCount}`;
+            healthTitle = (hc.issues || []).map(i => `• ${i.package}: ${i.summary}`).join("\n");
+          }
+        }
+
         return `<tr>
           <td><strong>${w.id}</strong></td>
           <td><span class="mainstate-pill s-${status}">${status.replace(/-/g, " ")}</span></td>
@@ -670,6 +703,7 @@
           <td style="text-align:right;color:var(--accent)">${inMain}</td>
           <td style="text-align:right;color:var(--running)">${onInteg || ""}</td>
           <td style="text-align:right;color:var(--fg-muted)">${total}</td>
+          <td><span class="health-pill ${healthClass}" title="${healthTitle.replace(/"/g, "&quot;")}">${healthLabel}</span></td>
           <td>${notes}</td>
         </tr>`;
       }).join("");

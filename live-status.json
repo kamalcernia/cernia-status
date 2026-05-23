@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-23T16:29:20.399Z",
-    "lastUpdatedDisplay": "May 23, 2026 — 12:29 EDT",
+    "lastUpdatedIso": "2026-05-23T16:37:22.639Z",
+    "lastUpdatedDisplay": "May 23, 2026 — 12:37 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "584 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 23, 2026 — 12:29 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 23, 2026 — 12:37 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -138,6 +138,31 @@
       ],
       "totalIntegrationMerges": 5,
       "label": "33 on main · 1 integration-ready · 0 partial · 0 in-progress · 0 untouched"
+    },
+    "crossWaveFindings": {
+      "checkedAt": "2026-05-23T16:37:04.802Z",
+      "issues": [
+        {
+          "package": "apps/patient-android",
+          "kind": "typecheck",
+          "summary": "app.config.ts(76,18): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`."
+        },
+        {
+          "package": "apps/cernia-ops",
+          "kind": "typecheck",
+          "summary": "src/components/sidebar.tsx(4,29): error TS2307: Cannot find module 'next/navigation' or its corresponding type declarations."
+        },
+        {
+          "package": "apps/patient-android",
+          "kind": "test",
+          "summary": "Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?"
+        },
+        {
+          "package": "tests/e2e",
+          "kind": "test",
+          "summary": "226 |     const errors = attachErrorCapture(page);"
+        }
+      ]
     }
   },
   "pool": {
@@ -280,7 +305,7 @@
       "recovery": "re-dispatched as M-1A with tighter scope; running in slot 1",
       "aged": true,
       "recovered": true,
-      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
+      "recoveryNote": "re-dispatched as M-1A with tighter scope; running in slot 1 (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed) (auto: re-dispatched as M-1A landed)"
     },
     {
       "agent": "W-1 email program",
@@ -335,7 +360,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
@@ -390,6 +415,12 @@
         "integrationBranch": null,
         "tagOnMain": "v0.9-local-demo",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -583,6 +614,12 @@
         "integrationBranch": null,
         "tagOnMain": "v0.9-local-demo",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -736,6 +773,12 @@
         "integrationBranch": null,
         "tagOnMain": "v0.9-local-demo",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -859,6 +902,12 @@
         "integrationBranch": null,
         "tagOnMain": "v0.9-local-demo",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -1110,6 +1159,12 @@
         "integrationBranch": null,
         "tagOnMain": "v3.5-engagement-full-integration",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -1304,6 +1359,12 @@
         "integrationBranch": null,
         "tagOnMain": "v0.95-white-label",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -1388,6 +1449,12 @@
         "integrationBranch": null,
         "tagOnMain": "v0.96-dns-complete",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -1452,6 +1519,12 @@
         "integrationBranch": null,
         "tagOnMain": "v0.97-dns-monetization",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -1586,6 +1659,12 @@
         "integrationBranch": "integration/wave-L",
         "tagOnMain": "v1.8-multi-org-hierarchy",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -1710,6 +1789,12 @@
         "integrationBranch": "integration/wave-K",
         "tagOnMain": "v1.9-rbac-roles-personas",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -1856,6 +1941,12 @@
         "integrationBranch": "integration/wave-M",
         "tagOnMain": "v2.4-customer-billing-platform",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -1960,6 +2051,12 @@
         "integrationBranch": null,
         "tagOnMain": null,
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -2114,6 +2211,12 @@
         "integrationBranch": "integration/wave-F",
         "tagOnMain": "v1.1-customer-billing-alerts",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -2248,6 +2351,12 @@
         "integrationBranch": "integration/wave-G",
         "tagOnMain": "v0.98-delegation-surface",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -2362,6 +2471,12 @@
         "integrationBranch": "integration/wave-I",
         "tagOnMain": "v1.2-support-channel",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -2506,6 +2621,12 @@
         "integrationBranch": "integration/wave-J",
         "tagOnMain": "v1.4-workflow-marketplace",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -2660,6 +2781,12 @@
         "integrationBranch": "integration/wave-O",
         "tagOnMain": "v2.2-ai-platform",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -2814,6 +2941,12 @@
         "integrationBranch": "integration/wave-P",
         "tagOnMain": "v1.5-no-code-ml-studio",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -2938,6 +3071,12 @@
         "integrationBranch": "integration/wave-Q",
         "tagOnMain": "v1.6-telehealth-rpm",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -3783,6 +3922,12 @@
         "integrationBranch": "integration/wave-T",
         "tagOnMain": "v3.3-specialty-fhir-extended",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -3927,6 +4072,18 @@
         "integrationBranch": "integration/wave-R",
         "tagOnMain": "v2.6-mobile-foundation",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "issues",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [
+          {
+            "package": "packages/r-mobile-ios-foundation",
+            "kind": "test",
+            "summary": "Ran all test suites."
+          }
+        ],
+        "note": "1 package(s) in this wave have failing typecheck or tests."
       }
     },
     {
@@ -4031,6 +4188,12 @@
         "integrationBranch": "integration/wave-S",
         "tagOnMain": "v2.0-clinical-interop",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -4135,6 +4298,12 @@
         "integrationBranch": null,
         "tagOnMain": null,
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -4229,6 +4398,12 @@
         "integrationBranch": null,
         "tagOnMain": null,
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -4323,6 +4498,12 @@
         "integrationBranch": "integration/wave-W",
         "tagOnMain": "v1.0-email-platform",
         "status": "integration-ready"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -4397,6 +4578,12 @@
         "integrationBranch": null,
         "tagOnMain": null,
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -4511,6 +4698,12 @@
         "integrationBranch": "integration/wave-X",
         "tagOnMain": "v1.7-business-ops",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -4635,6 +4828,12 @@
         "integrationBranch": null,
         "tagOnMain": null,
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -4739,6 +4938,12 @@
         "integrationBranch": null,
         "tagOnMain": null,
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -4863,6 +5068,12 @@
         "integrationBranch": null,
         "tagOnMain": null,
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -4988,6 +5199,12 @@
         "integrationBranch": null,
         "tagOnMain": null,
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -6312,6 +6529,12 @@
         "integrationBranch": "integration/wave-CC",
         "tagOnMain": "v3.2-catalogs-extended",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -6395,6 +6618,12 @@
         "integrationBranch": "integration/wave-ERX",
         "tagOnMain": "v3.0-erx-platform-extended",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     },
     {
@@ -6458,6 +6687,12 @@
         "integrationBranch": "integration/wave-UI",
         "tagOnMain": "v3.1-erx-ui-suite",
         "status": "fully-in-main"
+      },
+      "healthCheck": {
+        "status": "ok",
+        "checkedAt": "2026-05-23T16:37:04.802Z",
+        "issues": [],
+        "note": "All packages in this wave typecheck + test clean."
       }
     }
   ],
