@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-23T14:17:52.482Z",
-    "lastUpdatedDisplay": "May 23, 2026 — 10:17 EDT",
+    "lastUpdatedIso": "2026-05-23T14:19:23.810Z",
+    "lastUpdatedDisplay": "May 23, 2026 — 10:19 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "575 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 570 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 23, 2026 — 10:20 EDT)",
+    "strategy": "v3.0 REACHED — 570 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 23, 2026 — 10:27 EDT)",
     "totalAgentsShipped": 570,
     "modelMix": {
       "haiku": 45,
@@ -195,6 +195,11 @@
   "queue": [],
   "recentCompletions": [
     {
+      "agent": "map 4 v3.x extended tags to closing waves",
+      "commit": "66254953",
+      "kind": "chore"
+    },
+    {
       "agent": "regenerate pnpm-lock.yaml after integration/wave-T-extended merge",
       "commit": "6584ef25",
       "kind": "chore"
@@ -262,11 +267,6 @@
     {
       "agent": "feat/wave-t-surg-b-ssi-nsqip-fhir",
       "commit": "14a6fe2f",
-      "kind": "merge"
-    },
-    {
-      "agent": "feat/wave-t-sports-b-concussion-fhir",
-      "commit": "644e6c34",
       "kind": "merge"
     }
   ],
