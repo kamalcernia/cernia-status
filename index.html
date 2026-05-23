@@ -126,6 +126,38 @@
     /* File-count chip on wave-tree agents */
     .file-count-chip { font-size: 10px; color: var(--fg-faint); margin-left: 6px; font-family: var(--mono); }
     .file-count-chip.empty { color: var(--danger); }
+    /* Main-state by wave: per-wave deploy-readiness panel */
+    .mainstate-rollup { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin: 8px 0 12px; }
+    .mainstate-rollup-tile { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; }
+    .mainstate-rollup-tile .label { color: var(--fg-muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .mainstate-rollup-tile .value { font-family: var(--mono); font-size: 18px; font-weight: 700; color: var(--fg); }
+    .mainstate-rollup-tile.s-fully-in-main { border-top: 2px solid var(--accent); }
+    .mainstate-rollup-tile.s-integration-ready { border-top: 2px solid var(--running); }
+    .mainstate-rollup-tile.s-integration-partial { border-top: 2px solid var(--warn); }
+    .mainstate-rollup-tile.s-partially-in-main { border-top: 2px solid var(--purple); }
+    .mainstate-rollup-tile.s-in-progress { border-top: 2px solid rgba(99, 102, 241, 0.7); }
+    .mainstate-rollup-tile.s-untouched { border-top: 2px solid var(--border); }
+    .mainstate-table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 12px; margin-bottom: 16px; }
+    .mainstate-table th { text-align: left; padding: 6px 8px; color: var(--fg-muted); font-weight: 500; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg); }
+    .mainstate-table td { padding: 6px 8px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: middle; }
+    .mainstate-bar { position: relative; height: 14px; background: rgba(255,255,255,0.04); border-radius: 3px; overflow: hidden; min-width: 80px; }
+    .mainstate-bar-main { position: absolute; top: 0; left: 0; height: 100%; background: var(--accent); }
+    .mainstate-bar-integ { position: absolute; top: 0; height: 100%; background: var(--running); opacity: 0.7; }
+    .mainstate-bar-rest { position: absolute; top: 0; height: 100%; background: rgba(251, 191, 36, 0.18); }
+    .mainstate-pill { display: inline-block; padding: 1px 7px; border-radius: 3px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; }
+    .mainstate-pill.s-fully-in-main { background: rgba(74, 222, 128, 0.18); color: var(--accent); }
+    .mainstate-pill.s-integration-ready { background: rgba(96, 165, 250, 0.18); color: var(--running); }
+    .mainstate-pill.s-integration-partial { background: rgba(251, 191, 36, 0.18); color: var(--warn); }
+    .mainstate-pill.s-partially-in-main { background: rgba(139, 92, 246, 0.18); color: var(--purple); }
+    .mainstate-pill.s-in-progress { background: rgba(99, 102, 241, 0.18); color: rgba(165, 180, 252, 1); }
+    .mainstate-pill.s-untouched { background: rgba(255,255,255,0.04); color: var(--fg-faint); }
+    .mainstate-pill.s-planned { background: rgba(255,255,255,0.04); color: var(--fg-faint); }
+    .mainstate-tag { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 10px; background: rgba(0,0,0,0.4); color: var(--fg-muted); border: 1px solid var(--border); }
+    .mainstate-integ-link { color: var(--running); text-decoration: none; }
+    .mainstate-integ-link:hover { text-decoration: underline; }
+    .mainstate-section-header { display: flex; align-items: baseline; gap: 10px; margin-top: 18px; }
+    .mainstate-section-header h2 { margin: 0; }
+    .mainstate-section-header .legend { font-size: 11px; color: var(--fg-muted); font-family: var(--mono); }
   </style>
 </head>
 <body>
@@ -186,6 +218,30 @@
 
     <div class="strategy-bar" id="strategy">—</div>
     <div class="model-bar" id="modelSummary">—</div>
+
+    <!-- Main-state by wave: canonical "what is on main" view.
+         Each wave shows agents on main (green), on integration branch awaiting
+         batch-merge (blue), plus pending/in-flight (yellow) and untouched (gray).
+         Tags mark waves that have been formally closed on main. -->
+    <div class="mainstate-section-header">
+      <h2>Main state by wave</h2>
+      <span class="legend" id="mainStateLegend">—</span>
+    </div>
+    <div class="mainstate-rollup" id="mainStateRollup"></div>
+    <table class="mainstate-table" id="mainStateTable">
+      <thead>
+        <tr>
+          <th style="width:80px">Wave</th>
+          <th style="width:80px">Status</th>
+          <th style="width:140px">Coverage</th>
+          <th style="width:60px;text-align:right">On main</th>
+          <th style="width:80px;text-align:right">Integration</th>
+          <th style="width:60px;text-align:right">Total</th>
+          <th>Tag · integration branch · notes</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
 
     <h2>Pool (8 slots) · Saturation <span class="count" id="saturation">0%</span></h2>
     <div class="pool-grid" id="poolGrid"></div>
@@ -527,6 +583,7 @@
       $("strategy").textContent = s.strategy || "—";
       $("modelSummary").textContent = (data.meta && data.meta.modelSummary) || "";
 
+      renderMainState(s.mainState || null, data.waves || []);
       renderPool(data.pool || { slots: [] });
       renderQueue(data.queue || []);
       renderPrActivity(data.recentPrActivity || []);
@@ -534,6 +591,88 @@
       renderFailures(data.failures || []);
       $("tree").innerHTML = (data.waves || []).map(w => renderWave(w, 0)).join("");
       bindToggles();
+    }
+
+    function renderMainState(ms, waves) {
+      const legendEl = $("mainStateLegend");
+      const rollupEl = $("mainStateRollup");
+      const tbody = $("mainStateTable").querySelector("tbody");
+      if (!ms) {
+        legendEl.textContent = "no data";
+        rollupEl.innerHTML = "";
+        tbody.innerHTML = "";
+        return;
+      }
+      legendEl.textContent = ms.label || "";
+
+      const wc = ms.waveCounts || {};
+      const tiles = [
+        { key: "fully-in-main",        label: "On main",       value: wc.fullyInMain || 0 },
+        { key: "integration-ready",    label: "Integ ready",   value: wc.integrationReady || 0 },
+        { key: "integration-partial",  label: "Integ partial", value: wc.integrationPartial || 0 },
+        { key: "partially-in-main",    label: "Partial / no integ", value: wc.partiallyInMain || 0 },
+        { key: "in-progress",          label: "In-progress",   value: wc.inProgress || 0 },
+        { key: "untouched",            label: "Untouched",     value: (wc.untouched || 0) + (wc.planned || 0) },
+      ];
+      rollupEl.innerHTML = tiles.map(t =>
+        `<div class="mainstate-rollup-tile s-${t.key}">
+           <div class="label">${t.label}</div>
+           <div class="value">${t.value}</div>
+         </div>`
+      ).join("");
+
+      // Sort waves: tagged-on-main first (priority by tag order),
+      // then integration-ready, integration-partial, partially-in-main, in-progress,
+      // then untouched. Within each bucket, sort by wave id.
+      const statusOrder = {
+        "fully-in-main": 0,
+        "integration-ready": 1,
+        "integration-partial": 2,
+        "partially-in-main": 3,
+        "in-progress": 4,
+        "planned": 5,
+        "untouched": 6,
+      };
+      const rows = waves.slice().sort((a, b) => {
+        const sa = a.mainState ? (statusOrder[a.mainState.status] ?? 9) : 9;
+        const sb = b.mainState ? (statusOrder[b.mainState.status] ?? 9) : 9;
+        if (sa !== sb) return sa - sb;
+        return String(a.id).localeCompare(String(b.id), undefined, { numeric: true });
+      });
+
+      tbody.innerHTML = rows.map(w => {
+        const m = w.mainState || {};
+        const total = m.agentsTotal || 0;
+        const inMain = m.agentsInMain || 0;
+        const onInteg = m.agentsOnIntegration || 0;
+        const rest = Math.max(0, total - inMain - onInteg);
+        const mainPct = total > 0 ? Math.round(100 * inMain / total) : 0;
+        const integPct = total > 0 ? Math.round(100 * onInteg / total) : 0;
+        const restPct = total > 0 ? Math.round(100 * rest / total) : 0;
+        const status = m.status || "untouched";
+        const tagHtml = m.tagOnMain
+          ? `<span class="mainstate-tag" title="Tagged release on main">${m.tagOnMain}</span>`
+          : "";
+        const integHtml = m.integrationBranch
+          ? `<a class="mainstate-integ-link" href="https://github.com/kamalcernia/cernia/tree/${m.integrationBranch}" target="_blank" rel="noopener">${m.integrationBranch}</a>`
+          : "";
+        const notes = [tagHtml, integHtml].filter(Boolean).join(" &middot; ");
+        return `<tr>
+          <td><strong>${w.id}</strong></td>
+          <td><span class="mainstate-pill s-${status}">${status.replace(/-/g, " ")}</span></td>
+          <td>
+            <div class="mainstate-bar" title="main ${mainPct}% · integ ${integPct}% · rest ${restPct}%">
+              <div class="mainstate-bar-main" style="width:${mainPct}%"></div>
+              <div class="mainstate-bar-integ" style="left:${mainPct}%;width:${integPct}%"></div>
+              <div class="mainstate-bar-rest" style="left:${mainPct + integPct}%;width:${restPct}%"></div>
+            </div>
+          </td>
+          <td style="text-align:right;color:var(--accent)">${inMain}</td>
+          <td style="text-align:right;color:var(--running)">${onInteg || ""}</td>
+          <td style="text-align:right;color:var(--fg-muted)">${total}</td>
+          <td>${notes}</td>
+        </tr>`;
+      }).join("");
     }
 
     async function refresh() {
