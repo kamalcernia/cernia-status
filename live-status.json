@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-23T13:09:02.514Z",
+    "lastUpdatedIso": "2026-05-23T13:09:23.314Z",
     "lastUpdatedDisplay": "May 23, 2026 — 09:09 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6"
   },
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "428 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 570 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 23, 2026 — 09:09 EDT)",
+    "strategy": "v3.0 REACHED — 570 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 23, 2026 — 09:10 EDT)",
     "totalAgentsShipped": 570,
     "modelMix": {
       "haiku": 45,
@@ -186,6 +186,11 @@
   "queue": [],
   "recentCompletions": [
     {
+      "agent": "clear Wave AA blocked-on-counsel override",
+      "commit": "2fda9abd",
+      "kind": "chore"
+    },
+    {
       "agent": "never cache 'merged-into-main = false'",
       "commit": "7f2d1eec",
       "kind": "fix"
@@ -254,11 +259,6 @@
       "agent": "integration/wave-O → main",
       "commit": "cc8f6288",
       "kind": "merge"
-    },
-    {
-      "agent": "regenerate pnpm-lock.yaml after wave-K merge",
-      "commit": "da860f22",
-      "kind": "chore"
     }
   ],
   "failures": [
