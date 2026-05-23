@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-23T13:59:41.581Z",
-    "lastUpdatedDisplay": "May 23, 2026 — 09:59 EDT",
+    "lastUpdatedIso": "2026-05-23T14:09:39.782Z",
+    "lastUpdatedDisplay": "May 23, 2026 — 10:09 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6"
   },
   "summary": {
-    "currentMainCommit": "5d156d01",
-    "currentTagOnMain": "v2.7-refill-queue-ui (24 tags total) 🏁",
-    "agentsCompletedThisSession": 430,
+    "currentMainCommit": "15295855",
+    "currentTagOnMain": "v3.0-erx-platform-extended (25 tags total) 🏁",
+    "agentsCompletedThisSession": 442,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "430 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "442 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 570 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 23, 2026 — 10:00 EDT)",
+    "strategy": "v3.0 REACHED — 570 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 23, 2026 — 10:11 EDT)",
     "totalAgentsShipped": 570,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 15 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-05-23T08:57:31-04:00",
+      "lastMergeIso": "2026-05-23T10:06:51-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -70,10 +70,10 @@
     },
     "mainState": {
       "waveCounts": {
-        "fullyInMain": 28,
+        "fullyInMain": 29,
         "integrationReady": 1,
         "integrationPartial": 0,
-        "partiallyInMain": 5,
+        "partiallyInMain": 4,
         "inProgress": 0,
         "planned": 0,
         "untouched": 0
@@ -123,13 +123,14 @@
         "R",
         "S",
         "T",
+        "T-EXTENDED",
         "UI",
         "UI-EXTENDED",
         "W",
         "X"
       ],
       "totalIntegrationMerges": 5,
-      "label": "28 on main · 1 integration-ready · 5 partial · 0 in-progress · 0 untouched"
+      "label": "29 on main · 1 integration-ready · 4 partial · 0 in-progress · 0 untouched"
     }
   },
   "pool": {
@@ -190,6 +191,41 @@
   "queue": [],
   "recentCompletions": [
     {
+      "agent": "integration/wave-ERX-extended → main",
+      "commit": "15295855",
+      "kind": "merge"
+    },
+    {
+      "agent": "regenerate pnpm-lock.yaml for integration/wave-ERX-extended",
+      "commit": "3cf8c31d",
+      "kind": "chore"
+    },
+    {
+      "agent": "feat/wave-erx-5-surescripts-adapter",
+      "commit": "5f934435",
+      "kind": "merge"
+    },
+    {
+      "agent": "feat/wave-erx-4-epcs-token-issuer",
+      "commit": "38a44b32",
+      "kind": "merge"
+    },
+    {
+      "agent": "feat/wave-erx-3-pharmacy-directory",
+      "commit": "a4af820e",
+      "kind": "merge"
+    },
+    {
+      "agent": "feat/wave-erx-2-ncpdp-script-builder",
+      "commit": "2f1c43b6",
+      "kind": "merge"
+    },
+    {
+      "agent": "feat/wave-erx-1-erx-service",
+      "commit": "a1f40e93",
+      "kind": "merge"
+    },
+    {
       "agent": "add 'superseded' agent status + apply to M-1",
       "commit": "5d156d01",
       "kind": "feat"
@@ -228,41 +264,6 @@
       "agent": "integration/wave-R → main",
       "commit": "bd55ed4e",
       "kind": "merge"
-    },
-    {
-      "agent": "regenerate pnpm-lock.yaml after wave-T merge",
-      "commit": "2c67aced",
-      "kind": "chore"
-    },
-    {
-      "agent": "integration/wave-T → main",
-      "commit": "02b0168f",
-      "kind": "merge"
-    },
-    {
-      "agent": "regenerate pnpm-lock.yaml after wave-M merge",
-      "commit": "1105b133",
-      "kind": "chore"
-    },
-    {
-      "agent": "integration/wave-M → main",
-      "commit": "6890857e",
-      "kind": "merge"
-    },
-    {
-      "agent": "regenerate pnpm-lock.yaml after wave-CC merge",
-      "commit": "10f3822a",
-      "kind": "chore"
-    },
-    {
-      "agent": "integration/wave-CC → main",
-      "commit": "3d20e62c",
-      "kind": "merge"
-    },
-    {
-      "agent": "regenerate pnpm-lock.yaml after wave-O merge",
-      "commit": "7a96d98e",
-      "kind": "chore"
     }
   ],
   "failures": [
@@ -6309,7 +6310,7 @@
           "name": "erx service",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -6319,7 +6320,7 @@
           "name": "ncpdp script builder",
           "status": "landed",
           "fileCount": 17,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -6329,7 +6330,7 @@
           "name": "pharmacy directory",
           "status": "landed",
           "fileCount": 12,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "haiku",
           "modelReason": "static-data-catalog"
@@ -6339,7 +6340,7 @@
           "name": "epcs token issuer",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -6349,7 +6350,7 @@
           "name": "surescripts adapter",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -6369,16 +6370,16 @@
       "pendingAgentCount": 0,
       "completionPct": 100,
       "mainState": {
-        "agentsInMain": 1,
+        "agentsInMain": 6,
         "agentsTotal": 6,
         "agentsOnIntegration": 0,
         "agentsInflight": 0,
         "agentsPending": 0,
         "agentsFailed": 0,
-        "inMainPercent": 17,
+        "inMainPercent": 100,
         "integrationBranch": "integration/wave-ERX",
         "tagOnMain": "v1.3-pdmp-adapter",
-        "status": "partially-in-main"
+        "status": "fully-in-main"
       }
     },
     {
@@ -7962,11 +7963,11 @@
     "origin/feat/wave-e3-integration@970f08b35ef8": true,
     "origin/feat/wave-e5-d1-onboarding@c5e0a95b25e6": true,
     "origin/feat/wave-e5-d2-cernia-ops@d1df482c15c8": true,
-    "origin/feat/wave-erx-1-erx-service@f13214fb4004": false,
-    "origin/feat/wave-erx-2-ncpdp-script-builder@10c7fdbc580e": false,
-    "origin/feat/wave-erx-3-pharmacy-directory@ca485ff5764e": false,
-    "origin/feat/wave-erx-4-epcs-token-issuer@e9df99bf2e3e": false,
-    "origin/feat/wave-erx-5-surescripts-adapter@e64c5211275f": false,
+    "origin/feat/wave-erx-1-erx-service@f13214fb4004": true,
+    "origin/feat/wave-erx-2-ncpdp-script-builder@10c7fdbc580e": true,
+    "origin/feat/wave-erx-3-pharmacy-directory@ca485ff5764e": true,
+    "origin/feat/wave-erx-4-epcs-token-issuer@e9df99bf2e3e": true,
+    "origin/feat/wave-erx-5-surescripts-adapter@e64c5211275f": true,
     "origin/feat/wave-erx-6-pdmp-adapter@61a1dcbc19c5": true,
     "origin/feat/wave-f-1-billing-alerts-foundation@04fe537ac21f": true,
     "origin/feat/wave-f-2-billing-alert-delivery@6acf340689f0": true,
