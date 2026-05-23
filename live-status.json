@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-23T14:09:39.782Z",
-    "lastUpdatedDisplay": "May 23, 2026 — 10:09 EDT",
+    "lastUpdatedIso": "2026-05-23T14:17:52.482Z",
+    "lastUpdatedDisplay": "May 23, 2026 — 10:17 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6"
   },
   "summary": {
-    "currentMainCommit": "15295855",
-    "currentTagOnMain": "v3.0-erx-platform-extended (25 tags total) 🏁",
-    "agentsCompletedThisSession": 442,
+    "currentMainCommit": "6584ef25",
+    "currentTagOnMain": "v3.3-specialty-fhir-extended (28 tags total) 🏁",
+    "agentsCompletedThisSession": 575,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "442 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "575 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 570 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 23, 2026 — 10:11 EDT)",
+    "strategy": "v3.0 REACHED — 570 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 23, 2026 — 10:20 EDT)",
     "totalAgentsShipped": 570,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 15 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-05-23T10:06:51-04:00",
+      "lastMergeIso": "2026-05-23T10:15:09-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -70,10 +70,10 @@
     },
     "mainState": {
       "waveCounts": {
-        "fullyInMain": 29,
+        "fullyInMain": 32,
         "integrationReady": 1,
         "integrationPartial": 0,
-        "partiallyInMain": 4,
+        "partiallyInMain": 1,
         "inProgress": 0,
         "planned": 0,
         "untouched": 0
@@ -101,6 +101,10 @@
         "v2.5-specialty-fhir",
         "v2.6-mobile-foundation",
         "v2.7-refill-queue-ui",
+        "v3.0-erx-platform-extended",
+        "v3.1-erx-ui-suite",
+        "v3.2-catalogs-extended",
+        "v3.3-specialty-fhir-extended",
         "v0.97-dns-monetization",
         "v2.0-clinical-interop"
       ],
@@ -130,7 +134,7 @@
         "X"
       ],
       "totalIntegrationMerges": 5,
-      "label": "29 on main · 1 integration-ready · 4 partial · 0 in-progress · 0 untouched"
+      "label": "32 on main · 1 integration-ready · 1 partial · 0 in-progress · 0 untouched"
     }
   },
   "pool": {
@@ -191,78 +195,78 @@
   "queue": [],
   "recentCompletions": [
     {
+      "agent": "regenerate pnpm-lock.yaml after integration/wave-T-extended merge",
+      "commit": "6584ef25",
+      "kind": "chore"
+    },
+    {
+      "agent": "integration/wave-T-extended → main",
+      "commit": "99ada1d5",
+      "kind": "merge"
+    },
+    {
+      "agent": "regenerate pnpm-lock.yaml after integration/wave-CC-extended merge",
+      "commit": "d82d9e02",
+      "kind": "chore"
+    },
+    {
+      "agent": "integration/wave-CC-extended → main",
+      "commit": "4578ce4c",
+      "kind": "merge"
+    },
+    {
+      "agent": "integration/wave-UI-extended → main",
+      "commit": "dd80dad3",
+      "kind": "merge"
+    },
+    {
       "agent": "integration/wave-ERX-extended → main",
       "commit": "15295855",
       "kind": "merge"
     },
     {
-      "agent": "regenerate pnpm-lock.yaml for integration/wave-ERX-extended",
-      "commit": "3cf8c31d",
+      "agent": "regenerate pnpm-lock.yaml for integration/wave-T-extended",
+      "commit": "e7c70871",
       "kind": "chore"
     },
     {
-      "agent": "feat/wave-erx-5-surescripts-adapter",
-      "commit": "5f934435",
+      "agent": "feat/wave-t-whealth-b-screening-fhir",
+      "commit": "284a6519",
       "kind": "merge"
     },
     {
-      "agent": "feat/wave-erx-4-epcs-token-issuer",
-      "commit": "38a44b32",
+      "agent": "feat/wave-t-vision-b-refraction-fhir",
+      "commit": "3f9829d6",
       "kind": "merge"
     },
     {
-      "agent": "feat/wave-erx-3-pharmacy-directory",
-      "commit": "a4af820e",
+      "agent": "feat/wave-t-urol-b-screening-fhir",
+      "commit": "bc246dfc",
       "kind": "merge"
     },
     {
-      "agent": "feat/wave-erx-2-ncpdp-script-builder",
-      "commit": "2f1c43b6",
+      "agent": "feat/wave-t-trauma-b-atls-fhir",
+      "commit": "25bd94e1",
       "kind": "merge"
     },
     {
-      "agent": "feat/wave-erx-1-erx-service",
-      "commit": "a1f40e93",
+      "agent": "feat/wave-t-trauma-a-trauma-surgery-fhir",
+      "commit": "fe655d80",
       "kind": "merge"
     },
     {
-      "agent": "add 'superseded' agent status + apply to M-1",
-      "commit": "5d156d01",
-      "kind": "feat"
-    },
-    {
-      "agent": "clear Wave AA blocked-on-counsel override",
-      "commit": "2fda9abd",
-      "kind": "chore"
-    },
-    {
-      "agent": "never cache 'merged-into-main = false'",
-      "commit": "7f2d1eec",
-      "kind": "fix"
-    },
-    {
-      "agent": "map 8 new release tags to closing waves",
-      "commit": "e4be7d75",
-      "kind": "chore"
-    },
-    {
-      "agent": "regenerate pnpm-lock.yaml after wave-UI merge",
-      "commit": "3e0c32b0",
-      "kind": "chore"
-    },
-    {
-      "agent": "integration/wave-UI → main",
-      "commit": "cdc59d7d",
+      "agent": "feat/wave-t-tox-a-toxicology-fhir",
+      "commit": "cc96db33",
       "kind": "merge"
     },
     {
-      "agent": "regenerate pnpm-lock.yaml after wave-R merge",
-      "commit": "65e23575",
-      "kind": "chore"
+      "agent": "feat/wave-t-surg-b-ssi-nsqip-fhir",
+      "commit": "14a6fe2f",
+      "kind": "merge"
     },
     {
-      "agent": "integration/wave-R → main",
-      "commit": "bd55ed4e",
+      "agent": "feat/wave-t-sports-b-concussion-fhir",
+      "commit": "644e6c34",
       "kind": "merge"
     }
   ],
@@ -2947,7 +2951,7 @@
           "name": "allergy testing fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -2967,7 +2971,7 @@
           "name": "preop fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3018,7 +3022,7 @@
           "name": "electrophysiology fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3048,7 +3052,7 @@
           "name": "perio fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3068,7 +3072,7 @@
           "name": "lesion fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3088,7 +3092,7 @@
           "name": "triage fhir",
           "status": "landed",
           "fileCount": 15,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3108,7 +3112,7 @@
           "name": "diabetes thyroid fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3118,7 +3122,7 @@
           "name": "genomics fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3128,7 +3132,7 @@
           "name": "cpic fhir",
           "status": "landed",
           "fileCount": 15,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3148,7 +3152,7 @@
           "name": "frailty fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3168,7 +3172,7 @@
           "name": "ibd liver fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3188,7 +3192,7 @@
           "name": "coagulation fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3208,7 +3212,7 @@
           "name": "oasis fhir",
           "status": "landed",
           "fileCount": 15,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3228,7 +3232,7 @@
           "name": "discharge fhir",
           "status": "landed",
           "fileCount": 15,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3258,7 +3262,7 @@
           "name": "infectious disease fhir",
           "status": "landed",
           "fileCount": 15,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3288,7 +3292,7 @@
           "name": "quality fhir",
           "status": "landed",
           "fileCount": 15,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3308,7 +3312,7 @@
           "name": "ckd fhir",
           "status": "landed",
           "fileCount": 15,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3328,7 +3332,7 @@
           "name": "extras fhir",
           "status": "landed",
           "fileCount": 15,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3348,7 +3352,7 @@
           "name": "prenatal fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3378,7 +3382,7 @@
           "name": "radiation oncology fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3408,7 +3412,7 @@
           "name": "glaucoma fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3428,7 +3432,7 @@
           "name": "fracture fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3438,7 +3442,7 @@
           "name": "medd fhir",
           "status": "landed",
           "fileCount": 15,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3458,7 +3462,7 @@
           "name": "palliative care fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3468,7 +3472,7 @@
           "name": "advance care fhir",
           "status": "landed",
           "fileCount": 15,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3488,7 +3492,7 @@
           "name": "growth vaccines fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3498,7 +3502,7 @@
           "name": "plastic surgery fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3528,7 +3532,7 @@
           "name": "action plans fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3538,7 +3542,7 @@
           "name": "physical rehab fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3558,7 +3562,7 @@
           "name": "reproductive medicine fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3568,7 +3572,7 @@
           "name": "ivf fhir",
           "status": "landed",
           "fileCount": 15,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3588,7 +3592,7 @@
           "name": "activity fhir",
           "status": "landed",
           "fileCount": 15,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3598,7 +3602,7 @@
           "name": "sleep medicine fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3618,7 +3622,7 @@
           "name": "sports medicine fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3628,7 +3632,7 @@
           "name": "concussion fhir",
           "status": "landed",
           "fileCount": 15,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3648,7 +3652,7 @@
           "name": "ssi nsqip fhir",
           "status": "landed",
           "fileCount": 15,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3658,7 +3662,7 @@
           "name": "toxicology fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3678,7 +3682,7 @@
           "name": "trauma surgery fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3688,7 +3692,7 @@
           "name": "atls fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3708,7 +3712,7 @@
           "name": "screening fhir",
           "status": "landed",
           "fileCount": 15,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3728,7 +3732,7 @@
           "name": "refraction fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3748,7 +3752,7 @@
           "name": "screening fhir",
           "status": "landed",
           "fileCount": 14,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "specialty-fhir-mapping"
@@ -3758,16 +3762,16 @@
       "pendingAgentCount": 0,
       "completionPct": 100,
       "mainState": {
-        "agentsInMain": 40,
+        "agentsInMain": 82,
         "agentsTotal": 82,
         "agentsOnIntegration": 0,
         "agentsInflight": 0,
         "agentsPending": 0,
         "agentsFailed": 0,
-        "inMainPercent": 49,
+        "inMainPercent": 100,
         "integrationBranch": "integration/wave-T",
-        "tagOnMain": "v2.5-specialty-fhir",
-        "status": "partially-in-main"
+        "tagOnMain": "v3.3-specialty-fhir-extended",
+        "status": "fully-in-main"
       }
     },
     {
@@ -5397,7 +5401,7 @@
           "name": "medical credentialing catalog",
           "status": "landed",
           "fileCount": 12,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5447,7 +5451,7 @@
           "name": "ehr data quality rules",
           "status": "landed",
           "fileCount": 12,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5497,7 +5501,7 @@
           "name": "snomed body sites",
           "status": "landed",
           "fileCount": 12,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5557,7 +5561,7 @@
           "name": "medication interactions",
           "status": "landed",
           "fileCount": 13,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5567,7 +5571,7 @@
           "name": "audit type catalog",
           "status": "landed",
           "fileCount": 13,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "opus",
           "modelReason": "safety-critical-content"
@@ -5577,7 +5581,7 @@
           "name": "patient comm preferences",
           "status": "landed",
           "fileCount": 12,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5597,7 +5601,7 @@
           "name": "hcpcs level ii",
           "status": "landed",
           "fileCount": 16,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5607,7 +5611,7 @@
           "name": "dsm 5 tr",
           "status": "landed",
           "fileCount": 15,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5667,7 +5671,7 @@
           "name": "loinc top panels",
           "status": "landed",
           "fileCount": 15,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5737,7 +5741,7 @@
           "name": "cpt modifiers pos",
           "status": "landed",
           "fileCount": 16,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5747,7 +5751,7 @@
           "name": "snomed clinical findings",
           "status": "landed",
           "fileCount": 17,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5767,7 +5771,7 @@
           "name": "ahrq ccs",
           "status": "landed",
           "fileCount": 17,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5837,7 +5841,7 @@
           "name": "icd10 crosswalk",
           "status": "landed",
           "fileCount": 16,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -5947,7 +5951,7 @@
           "name": "cms apms",
           "status": "landed",
           "fileCount": 17,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -6097,7 +6101,7 @@
           "name": "dicom modality",
           "status": "landed",
           "fileCount": 16,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "regulatory-compliance"
@@ -6287,16 +6291,16 @@
       "pendingAgentCount": 0,
       "completionPct": 100,
       "mainState": {
-        "agentsInMain": 115,
+        "agentsInMain": 130,
         "agentsTotal": 130,
         "agentsOnIntegration": 0,
         "agentsInflight": 0,
         "agentsPending": 0,
         "agentsFailed": 0,
-        "inMainPercent": 88,
+        "inMainPercent": 100,
         "integrationBranch": "integration/wave-CC",
-        "tagOnMain": "v2.3-regulatory-catalogs",
-        "status": "partially-in-main"
+        "tagOnMain": "v3.2-catalogs-extended",
+        "status": "fully-in-main"
       }
     },
     {
@@ -6378,7 +6382,7 @@
         "agentsFailed": 0,
         "inMainPercent": 100,
         "integrationBranch": "integration/wave-ERX",
-        "tagOnMain": "v1.3-pdmp-adapter",
+        "tagOnMain": "v3.0-erx-platform-extended",
         "status": "fully-in-main"
       }
     },
@@ -6393,7 +6397,7 @@
           "name": "erx composer ui",
           "status": "landed",
           "fileCount": 20,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -6403,7 +6407,7 @@
           "name": "erx history ui",
           "status": "landed",
           "fileCount": 19,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -6423,7 +6427,7 @@
           "name": "erx admin ui",
           "status": "landed",
           "fileCount": 16,
-          "mergedIntoMain": false,
+          "mergedIntoMain": true,
           "isRealPackage": true,
           "recommendedModel": "sonnet",
           "modelReason": "default"
@@ -6433,16 +6437,16 @@
       "pendingAgentCount": 0,
       "completionPct": 100,
       "mainState": {
-        "agentsInMain": 1,
+        "agentsInMain": 4,
         "agentsTotal": 4,
         "agentsOnIntegration": 0,
         "agentsInflight": 0,
         "agentsPending": 0,
         "agentsFailed": 0,
-        "inMainPercent": 25,
+        "inMainPercent": 100,
         "integrationBranch": "integration/wave-UI",
-        "tagOnMain": "v2.7-refill-queue-ui",
-        "status": "partially-in-main"
+        "tagOnMain": "v3.1-erx-ui-suite",
+        "status": "fully-in-main"
       }
     }
   ],
@@ -7781,7 +7785,7 @@
     "origin/feat/wave-cc-1-hl7-v2-segment-catalog@5e68409a1a5b": true,
     "origin/feat/wave-cc-1-multi-currency-foundation@5c9d436fe4dc": true,
     "origin/feat/wave-cc-10-jp-appi-engine@6acf340689f0": true,
-    "origin/feat/wave-cc-10-us-core-profile-catalog@faa640aa38e3": false,
+    "origin/feat/wave-cc-10-us-core-profile-catalog@faa640aa38e3": true,
     "origin/feat/wave-cc-100-openfda-api@702999ef7af5": true,
     "origin/feat/wave-cc-101-interop-networks@52d1531a53f9": true,
     "origin/feat/wave-cc-102-gpci-wage@87927780cb7a": true,
@@ -7789,7 +7793,7 @@
     "origin/feat/wave-cc-104-clinicaltrials-gov@ecd2c94abaf0": true,
     "origin/feat/wave-cc-105-nlm-umls@0c7cae16850c": true,
     "origin/feat/wave-cc-106-who-icf@fab5bd9eb6bd": true,
-    "origin/feat/wave-cc-107-dicom-modality@ac9bf325890a": false,
+    "origin/feat/wave-cc-107-dicom-modality@ac9bf325890a": true,
     "origin/feat/wave-cc-108-x12-edi-transactions@d6fc805f3db1": true,
     "origin/feat/wave-cc-109-uspstf-choosing-wisely@bba2286053e4": true,
     "origin/feat/wave-cc-11-nucc-taxonomy-catalog@2d38aa240507": true,
@@ -7845,19 +7849,19 @@
     "origin/feat/wave-cc-34-openapi-patterns@0b9b7854fde0": true,
     "origin/feat/wave-cc-35-wcag-catalog@0b9b7854fde0": true,
     "origin/feat/wave-cc-36-healthcare-event-catalog@0b9b7854fde0": true,
-    "origin/feat/wave-cc-37-medical-credentialing-catalog@8f9860cc7bda": false,
+    "origin/feat/wave-cc-37-medical-credentialing-catalog@8f9860cc7bda": true,
     "origin/feat/wave-cc-38-healthcare-data-formats@0b9b7854fde0": true,
     "origin/feat/wave-cc-39-smart-app-launch@0b9b7854fde0": true,
     "origin/feat/wave-cc-4-ccpa-opt-out-engine@6acf340689f0": true,
     "origin/feat/wave-cc-4-icd10-chapter-index@5e68409a1a5b": true,
     "origin/feat/wave-cc-40-compliance-crosswalk@0b9b7854fde0": true,
     "origin/feat/wave-cc-41-api-versioning-patterns@0b9b7854fde0": true,
-    "origin/feat/wave-cc-42-ehr-data-quality-rules@2c2a4943133f": false,
+    "origin/feat/wave-cc-42-ehr-data-quality-rules@2c2a4943133f": true,
     "origin/feat/wave-cc-43-patient-consent-catalog@0b9b7854fde0": true,
     "origin/feat/wave-cc-44-audit-log-schema@0b9b7854fde0": true,
     "origin/feat/wave-cc-45-claim-adjustment-codes@0b9b7854fde0": true,
     "origin/feat/wave-cc-46-healthcare-workflow-triggers@0b9b7854fde0": true,
-    "origin/feat/wave-cc-47-snomed-body-sites@83802af23c1e": false,
+    "origin/feat/wave-cc-47-snomed-body-sites@83802af23c1e": true,
     "origin/feat/wave-cc-48-quality-measure-types@0b9b7854fde0": true,
     "origin/feat/wave-cc-49-patient-identifier-types@0b9b7854fde0": true,
     "origin/feat/wave-cc-5-au-privacy-act@6acf340689f0": true,
@@ -7865,12 +7869,12 @@
     "origin/feat/wave-cc-50-telehealth-modality-catalog@0b9b7854fde0": true,
     "origin/feat/wave-cc-51-hl7-v2-ack-codes@0b9b7854fde0": true,
     "origin/feat/wave-cc-52-healthcare-risk-scores@0b9b7854fde0": true,
-    "origin/feat/wave-cc-53-medication-interactions@67678b82fccf": false,
-    "origin/feat/wave-cc-54-audit-type-catalog@fe3b18dfa9fa": false,
-    "origin/feat/wave-cc-55-patient-comm-preferences@eef19fe23ea0": false,
+    "origin/feat/wave-cc-53-medication-interactions@67678b82fccf": true,
+    "origin/feat/wave-cc-54-audit-type-catalog@fe3b18dfa9fa": true,
+    "origin/feat/wave-cc-55-patient-comm-preferences@eef19fe23ea0": true,
     "origin/feat/wave-cc-56-ctcae-v5@f49a82d6837f": true,
-    "origin/feat/wave-cc-57-hcpcs-level-ii@597734d7af1e": false,
-    "origin/feat/wave-cc-58-dsm-5-tr@a6027d48b528": false,
+    "origin/feat/wave-cc-57-hcpcs-level-ii@597734d7af1e": true,
+    "origin/feat/wave-cc-58-dsm-5-tr@a6027d48b528": true,
     "origin/feat/wave-cc-59-icd-o-3@721b341d7152": true,
     "origin/feat/wave-cc-6-br-lgpd-engine@6acf340689f0": true,
     "origin/feat/wave-cc-6-dicom-modality-catalog@0b9b7854fde0": true,
@@ -7878,7 +7882,7 @@
     "origin/feat/wave-cc-61-uscdi-v3-us-core@9430c0d14344": true,
     "origin/feat/wave-cc-62-x12-carc-rarc@eb8ff1966b8e": true,
     "origin/feat/wave-cc-63-ndc-fda@2686d6af6aff": true,
-    "origin/feat/wave-cc-64-loinc-top-panels@fb3ba0ab7fc6": false,
+    "origin/feat/wave-cc-64-loinc-top-panels@fb3ba0ab7fc6": true,
     "origin/feat/wave-cc-65-cvx-vaccines@af04fecd0fc6": true,
     "origin/feat/wave-cc-66-iso-locale@e81993de7ca5": true,
     "origin/feat/wave-cc-67-fda-udi@43f2bec752e3": true,
@@ -7887,10 +7891,10 @@
     "origin/feat/wave-cc-7-hl7-v2-message-types@0b9b7854fde0": true,
     "origin/feat/wave-cc-7-sg-pdpa-engine@6acf340689f0": true,
     "origin/feat/wave-cc-70-hedis-my2024@120f7fe876b5": true,
-    "origin/feat/wave-cc-71-cpt-modifiers-pos@736c6acec0f8": false,
-    "origin/feat/wave-cc-72-snomed-clinical-findings@7fea96b9dc05": false,
+    "origin/feat/wave-cc-71-cpt-modifiers-pos@736c6acec0f8": true,
+    "origin/feat/wave-cc-72-snomed-clinical-findings@7fea96b9dc05": true,
     "origin/feat/wave-cc-73-rxnorm-drugs@122c5df3832f": true,
-    "origin/feat/wave-cc-74-ahrq-ccs@53b0a9a6f707": false,
+    "origin/feat/wave-cc-74-ahrq-ccs@53b0a9a6f707": true,
     "origin/feat/wave-cc-75-icd-11-who@a6f8247f3878": true,
     "origin/feat/wave-cc-76-cdt-2024@63a75cd94676": true,
     "origin/feat/wave-cc-77-fhir-conceptmaps@a5bdefc3df27": true,
@@ -7899,7 +7903,7 @@
     "origin/feat/wave-cc-8-ca-pipeda-phipa@6acf340689f0": true,
     "origin/feat/wave-cc-8-hcpcs-level2-catalog@5e68409a1a5b": true,
     "origin/feat/wave-cc-80-cdc-notifiable@cd0f30682586": true,
-    "origin/feat/wave-cc-81-icd9-icd10-crosswalk@bdd88da64a99": false,
+    "origin/feat/wave-cc-81-icd9-icd10-crosswalk@bdd88da64a99": true,
     "origin/feat/wave-cc-82-cms-mips-quality@59cfed9d7cdb": true,
     "origin/feat/wave-cc-83-nubc-ub04@a8e517ca924c": true,
     "origin/feat/wave-cc-84-sdoh-z-codes@c036e55ec353": true,
@@ -7912,7 +7916,7 @@
     "origin/feat/wave-cc-9-in-dpdp-engine@6acf340689f0": true,
     "origin/feat/wave-cc-90-omop-cdm@eb091c256a1e": true,
     "origin/feat/wave-cc-91-hrsa-uds@fc74cf690b79": true,
-    "origin/feat/wave-cc-92-cms-apms@bb7a48387086": false,
+    "origin/feat/wave-cc-92-cms-apms@bb7a48387086": true,
     "origin/feat/wave-cc-93-ncci-mue@88bab7b9056d": true,
     "origin/feat/wave-cc-94-icd10-pcs@aa62fd3ecef7": true,
     "origin/feat/wave-cc-95-ms-drg-v41@faae8a30cbc9": true,
@@ -8156,89 +8160,89 @@
     "origin/feat/wave-s-s7-pharmacy-fulfillment-tracking@bd724615ae09": true,
     "origin/feat/wave-s-s8-allergy-checking@750f7be33b3e": true,
     "origin/feat/wave-t-allergy-a-allergy-immunology-fhir@4201da2b0741": true,
-    "origin/feat/wave-t-allergy-b-allergy-testing-fhir@d1dd5b7bf87a": false,
+    "origin/feat/wave-t-allergy-b-allergy-testing-fhir@d1dd5b7bf87a": true,
     "origin/feat/wave-t-anesth-a-anesthesiology-fhir@4201da2b0741": true,
-    "origin/feat/wave-t-anesth-b-preop-fhir@6ac7915568fa": false,
+    "origin/feat/wave-t-anesth-b-preop-fhir@6ac7915568fa": true,
     "origin/feat/wave-t-bh-a-fhir-mappings@04fe537ac21f": true,
     "origin/feat/wave-t-bh-assessments@58083ad512e6": true,
     "origin/feat/wave-t-bh-b-screening-fhir@964da2ecedb7": true,
     "origin/feat/wave-t-cardio-a-cardiology-fhir@6acf340689f0": true,
-    "origin/feat/wave-t-cardio-b-electrophysiology-fhir@50e3f2b89eac": false,
+    "origin/feat/wave-t-cardio-b-electrophysiology-fhir@50e3f2b89eac": true,
     "origin/feat/wave-t-cardiology-cardio-fhir@809188be3ac6": true,
-    "origin/feat/wave-t-dental-b-perio-fhir@ba7db0fcbb86": false,
+    "origin/feat/wave-t-dental-b-perio-fhir@ba7db0fcbb86": true,
     "origin/feat/wave-t-dental-charting@251ebe92e65d": true,
     "origin/feat/wave-t-derm-a-dermatology-fhir@6acf340689f0": true,
-    "origin/feat/wave-t-derm-b-lesion-fhir@1ec3c71cc55c": false,
+    "origin/feat/wave-t-derm-b-lesion-fhir@1ec3c71cc55c": true,
     "origin/feat/wave-t-emmed-a-emergency-medicine-fhir@5e68409a1a5b": true,
-    "origin/feat/wave-t-emmed-b-triage-fhir@844e1bce8bb8": false,
+    "origin/feat/wave-t-emmed-b-triage-fhir@844e1bce8bb8": true,
     "origin/feat/wave-t-endo-a-endocrinology-fhir@4201da2b0741": true,
-    "origin/feat/wave-t-endo-b-diabetes-thyroid-fhir@aa884cb8029a": false,
+    "origin/feat/wave-t-endo-b-diabetes-thyroid-fhir@aa884cb8029a": true,
     "origin/feat/wave-t-foundation@d205eb4e7a5c": true,
     "origin/feat/wave-t-foundation-v2@58083ad512e6": true,
-    "origin/feat/wave-t-genom-a-genomics-fhir@a6e1fc7c3c29": false,
-    "origin/feat/wave-t-genom-b-cpic-fhir@b555e3085b46": false,
+    "origin/feat/wave-t-genom-a-genomics-fhir@a6e1fc7c3c29": true,
+    "origin/feat/wave-t-genom-b-cpic-fhir@b555e3085b46": true,
     "origin/feat/wave-t-geri-a-geriatrics-fhir@6acf340689f0": true,
-    "origin/feat/wave-t-geri-b-frailty-fhir@efc447272826": false,
+    "origin/feat/wave-t-geri-b-frailty-fhir@efc447272826": true,
     "origin/feat/wave-t-gi-a-gastroenterology-fhir@4201da2b0741": true,
-    "origin/feat/wave-t-gi-b-ibd-liver-fhir@3293932839c3": false,
+    "origin/feat/wave-t-gi-b-ibd-liver-fhir@3293932839c3": true,
     "origin/feat/wave-t-hem-a-hematology-fhir@5e68409a1a5b": true,
-    "origin/feat/wave-t-hem-b-coagulation-fhir@aaee29ef03c3": false,
-    "origin/feat/wave-t-home-b-oasis-fhir@8d93a2ad9641": false,
+    "origin/feat/wave-t-hem-b-coagulation-fhir@aaee29ef03c3": true,
+    "origin/feat/wave-t-home-b-oasis-fhir@8d93a2ad9641": true,
     "origin/feat/wave-t-home-health-oasis@58083ad512e6": true,
     "origin/feat/wave-t-hosp-a-hospitalist-fhir@4201da2b0741": true,
-    "origin/feat/wave-t-hosp-b-discharge-fhir@14f87879ee3c": false,
+    "origin/feat/wave-t-hosp-b-discharge-fhir@14f87879ee3c": true,
     "origin/feat/wave-t-hospice-b-prognosis-fhir@cb415c8f02d5": true,
     "origin/feat/wave-t-hospice-eligibility@58083ad512e6": true,
-    "origin/feat/wave-t-infect-a-infectious-disease-fhir@372b955dbb74": false,
+    "origin/feat/wave-t-infect-a-infectious-disease-fhir@372b955dbb74": true,
     "origin/feat/wave-t-infect-b-stewardship-fhir@3a35f06d6ed4": true,
-    "origin/feat/wave-t-ltc-b-quality-fhir@5a80607a2455": false,
+    "origin/feat/wave-t-ltc-b-quality-fhir@5a80607a2455": true,
     "origin/feat/wave-t-ltc-mds@251ebe92e65d": true,
     "origin/feat/wave-t-nephro-a-nephrology-fhir@4201da2b0741": true,
-    "origin/feat/wave-t-nephro-b-ckd-fhir@3c4bddb2e762": false,
+    "origin/feat/wave-t-nephro-b-ckd-fhir@3c4bddb2e762": true,
     "origin/feat/wave-t-neuro-a-neurology-fhir@4201da2b0741": true,
-    "origin/feat/wave-t-neuro-b-extras-fhir@a63eeffa021f": false,
+    "origin/feat/wave-t-neuro-b-extras-fhir@a63eeffa021f": true,
     "origin/feat/wave-t-obgyn-a-obgyn-extras-fhir@4201da2b0741": true,
-    "origin/feat/wave-t-obgyn-b-prenatal-fhir@02e2e93bc029": false,
+    "origin/feat/wave-t-obgyn-b-prenatal-fhir@02e2e93bc029": true,
     "origin/feat/wave-t-onc-a-oncology-fhir@6acf340689f0": true,
     "origin/feat/wave-t-onc-b-oncology-treatment-fhir@0b9b7854fde0": true,
-    "origin/feat/wave-t-onc-c-radiation-oncology-fhir@1753cc4ab0d9": false,
+    "origin/feat/wave-t-onc-c-radiation-oncology-fhir@1753cc4ab0d9": true,
     "origin/feat/wave-t-oncology-regimens@251ebe92e65d": true,
     "origin/feat/wave-t-ophthal-a-ophthalmology-fhir@4201da2b0741": true,
-    "origin/feat/wave-t-ophthal-b-glaucoma-fhir@645c7167d6c2": false,
+    "origin/feat/wave-t-ophthal-b-glaucoma-fhir@645c7167d6c2": true,
     "origin/feat/wave-t-ortho-a-orthopedics-fhir@6acf340689f0": true,
-    "origin/feat/wave-t-ortho-b-fracture-fhir@eb752dd5c47b": false,
-    "origin/feat/wave-t-pain-b-medd-fhir@ab009d7234ce": false,
+    "origin/feat/wave-t-ortho-b-fracture-fhir@eb752dd5c47b": true,
+    "origin/feat/wave-t-pain-b-medd-fhir@ab009d7234ce": true,
     "origin/feat/wave-t-painmgmt-a-pain-management-fhir@4201da2b0741": true,
-    "origin/feat/wave-t-pall-a-palliative-care-fhir@d5dcefb7d62b": false,
-    "origin/feat/wave-t-pall-b-advance-care-fhir@e52f2dba0d96": false,
+    "origin/feat/wave-t-pall-a-palliative-care-fhir@d5dcefb7d62b": true,
+    "origin/feat/wave-t-pall-b-advance-care-fhir@e52f2dba0d96": true,
     "origin/feat/wave-t-peds-a-pediatrics-fhir@6acf340689f0": true,
-    "origin/feat/wave-t-peds-b-growth-vaccines-fhir@1390883acf9b": false,
-    "origin/feat/wave-t-plast-a-plastic-surgery-fhir@def290bfcaf8": false,
+    "origin/feat/wave-t-peds-b-growth-vaccines-fhir@1390883acf9b": true,
+    "origin/feat/wave-t-plast-a-plastic-surgery-fhir@def290bfcaf8": true,
     "origin/feat/wave-t-plast-b-burn-flap-fhir@c782c8385a79": true,
     "origin/feat/wave-t-pulm-a-pulmonology-fhir@4201da2b0741": true,
-    "origin/feat/wave-t-pulm-b-action-plans-fhir@cb598fbda99a": false,
-    "origin/feat/wave-t-rehab-a-physical-rehab-fhir@35307f4a019e": false,
+    "origin/feat/wave-t-pulm-b-action-plans-fhir@cb598fbda99a": true,
+    "origin/feat/wave-t-rehab-a-physical-rehab-fhir@35307f4a019e": true,
     "origin/feat/wave-t-rehab-b-functional-fhir@1ee70d6a860b": true,
-    "origin/feat/wave-t-reprod-a-reproductive-medicine-fhir@e6a53f9d5531": false,
-    "origin/feat/wave-t-reprod-b-ivf-fhir@79cac8a72586": false,
+    "origin/feat/wave-t-reprod-a-reproductive-medicine-fhir@e6a53f9d5531": true,
+    "origin/feat/wave-t-reprod-b-ivf-fhir@79cac8a72586": true,
     "origin/feat/wave-t-rheum-a-rheumatology-fhir@4201da2b0741": true,
-    "origin/feat/wave-t-rheum-b-activity-fhir@7fdb83777545": false,
-    "origin/feat/wave-t-sleep-a-sleep-medicine-fhir@d211af73a4db": false,
+    "origin/feat/wave-t-rheum-b-activity-fhir@7fdb83777545": true,
+    "origin/feat/wave-t-sleep-a-sleep-medicine-fhir@d211af73a4db": true,
     "origin/feat/wave-t-sleep-b-psg-fhir@aaf192baa082": true,
-    "origin/feat/wave-t-sports-a-sports-medicine-fhir@1b80f3b20f93": false,
-    "origin/feat/wave-t-sports-b-concussion-fhir@c3984c07e6ba": false,
+    "origin/feat/wave-t-sports-a-sports-medicine-fhir@1b80f3b20f93": true,
+    "origin/feat/wave-t-sports-b-concussion-fhir@c3984c07e6ba": true,
     "origin/feat/wave-t-surg-a-surgery-fhir@5e68409a1a5b": true,
-    "origin/feat/wave-t-surg-b-ssi-nsqip-fhir@34e26687dc5a": false,
-    "origin/feat/wave-t-tox-a-toxicology-fhir@2368c8f57f44": false,
+    "origin/feat/wave-t-surg-b-ssi-nsqip-fhir@34e26687dc5a": true,
+    "origin/feat/wave-t-tox-a-toxicology-fhir@2368c8f57f44": true,
     "origin/feat/wave-t-tox-b-antidote-fhir@d1492f0e2ec5": true,
-    "origin/feat/wave-t-trauma-a-trauma-surgery-fhir@48c32e168095": false,
-    "origin/feat/wave-t-trauma-b-atls-fhir@c2a3247f7d3e": false,
+    "origin/feat/wave-t-trauma-a-trauma-surgery-fhir@48c32e168095": true,
+    "origin/feat/wave-t-trauma-b-atls-fhir@c2a3247f7d3e": true,
     "origin/feat/wave-t-urol-a-urology-fhir@4201da2b0741": true,
-    "origin/feat/wave-t-urol-b-screening-fhir@7a4e516e1158": false,
-    "origin/feat/wave-t-vision-b-refraction-fhir@0776aad2bcc6": false,
+    "origin/feat/wave-t-urol-b-screening-fhir@7a4e516e1158": true,
+    "origin/feat/wave-t-vision-b-refraction-fhir@0776aad2bcc6": true,
     "origin/feat/wave-t-vision-refraction@251ebe92e65d": true,
     "origin/feat/wave-t-whealth-a-womens-health-fhir@6acf340689f0": true,
-    "origin/feat/wave-t-whealth-b-screening-fhir@b2bef25ed8a0": false,
+    "origin/feat/wave-t-whealth-b-screening-fhir@b2bef25ed8a0": true,
     "origin/feat/wave-u-1-revenue-cycle-foundation@25ed6e324527": true,
     "origin/feat/wave-u-2-eob-reconciler@6acf340689f0": true,
     "origin/feat/wave-u-3-claims-denial-workflow@6acf340689f0": true,
@@ -8247,10 +8251,10 @@
     "origin/feat/wave-u-6-contractual-rate-adjudicator@4201da2b0741": true,
     "origin/feat/wave-u-7-revenue-cycle-kpis@4201da2b0741": true,
     "origin/feat/wave-u-8-underpayment-recovery@5e68409a1a5b": true,
-    "origin/feat/wave-ui-1-erx-composer-ui@54b3d82ad4b7": false,
-    "origin/feat/wave-ui-2-erx-history-ui@3eca19d81bf7": false,
+    "origin/feat/wave-ui-1-erx-composer-ui@54b3d82ad4b7": true,
+    "origin/feat/wave-ui-2-erx-history-ui@3eca19d81bf7": true,
     "origin/feat/wave-ui-3-erx-refill-queue-ui@e06ff48da01c": true,
-    "origin/feat/wave-ui-4-erx-admin-ui@02da33f2683a": false,
+    "origin/feat/wave-ui-4-erx-admin-ui@02da33f2683a": true,
     "origin/feat/wave-v-1-services-partners-foundation@25ed6e324527": true,
     "origin/feat/wave-v-2-a-services-catalog@04fe537ac21f": true,
     "origin/feat/wave-v-2-b-services-extension@0b9b7854fde0": true,
