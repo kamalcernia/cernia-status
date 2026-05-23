@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-23T14:46:35.392Z",
-    "lastUpdatedDisplay": "May 23, 2026 — 10:46 EDT",
+    "lastUpdatedIso": "2026-05-23T14:49:25.419Z",
+    "lastUpdatedDisplay": "May 23, 2026 — 10:49 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "580 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 570 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 23, 2026 — 10:49 EDT)",
+    "strategy": "v3.0 REACHED — 570 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 23, 2026 — 10:55 EDT)",
     "totalAgentsShipped": 570,
     "modelMix": {
       "haiku": 45,
@@ -197,6 +197,11 @@
   "queue": [],
   "recentCompletions": [
     {
+      "agent": "Wave E covered via partial integration",
+      "commit": "ecdc4ac4",
+      "kind": "chore"
+    },
+    {
       "agent": "integration/wave-E-extended-clean → main",
       "commit": "bc783d38",
       "kind": "merge"
@@ -264,11 +269,6 @@
     {
       "agent": "feat/wave-t-vision-b-refraction-fhir",
       "commit": "3f9829d6",
-      "kind": "merge"
-    },
-    {
-      "agent": "feat/wave-t-urol-b-screening-fhir",
-      "commit": "bc246dfc",
       "kind": "merge"
     }
   ],
