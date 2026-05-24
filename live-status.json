@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-24T20:39:27.382Z",
-    "lastUpdatedDisplay": "May 24, 2026 — 16:39 EDT",
+    "lastUpdatedIso": "2026-05-24T20:44:22.895Z",
+    "lastUpdatedDisplay": "May 24, 2026 — 16:44 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "607 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 24, 2026 — 16:39 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 24, 2026 — 16:44 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -597,9 +597,9 @@
                 "summary": "marketplace, x1a-tax-compliance, x1b-asc-606-revenue-recognition, x1c-saas-metrics-computation, x2a-enterprise-invoicing, x2b-contract-auto-renewal, x3c-discount-approval-workflow, j1c-sandbox-tenant-lifecycle, j1d-marketplace-checkout all shipped. No marketplace UI in apps/*. No invoice generation job. No tax engine wired into payment paths."
               },
               "current": {
-                "status": "absent",
+                "status": "partial",
                 "asOf": "2026-05-24",
-                "summary": "Unchanged from baseline."
+                "summary": "Marketplace discovery (GET /marketplace/listings) + slug-resolve (GET /marketplace/listings/:slug) + create (POST /marketplace/listings) live, backed by @cernia/marketplace's InMemoryListingStore. Seeded with the Cernia voice-agent listing so the catalogue isn't empty. POST /admin/saas-metrics/snapshot computes MRR/ARR/ARPA via @cernia/x1c-saas-metrics. 8 new integration tests. apps/api: 1910/1910 tests pass."
               },
               "evidence": [
                 {
@@ -613,13 +613,20 @@
                 {
                   "label": "packages/x2a-enterprise-invoicing",
                   "url": "https://github.com/kamalcernia/cernia/tree/main/packages/x2a-enterprise-invoicing"
+                },
+                {
+                  "label": "apps/api/src/saas-billing-marketplace-routes.ts",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/apps/api/src/saas-billing-marketplace-routes.ts"
                 }
               ],
               "remaining": [
                 "Wire x2a invoicing into the existing billing pipeline (currently only Stripe direct charge).",
-                "Mount marketplace + j1d checkout routes; build the customer-facing storefront.",
-                "Schedule x1c SaaS-metrics nightly compute + admin dashboard panel.",
-                "Wire x1a tax engine (Stripe Tax + Avalara fallback) into every payment path."
+                "Mount j1d checkout routes; build the customer-facing storefront UI.",
+                "Schedule x1c SaaS-metrics nightly compute against the real subscription store (current route is stateless pure-function).",
+                "Wire x1a tax engine (Stripe Tax + Avalara fallback) into every payment path.",
+                "Wire x1b ASC 606 revenue recognition into the monthly close.",
+                "Wire x2b contract auto-renewal cron.",
+                "Wire x3c discount-approval workflow."
               ]
             }
           ],
@@ -644,6 +651,13 @@
               "from": "absent",
               "to": "partial",
               "note": "Model registry mounted in apps/api as /admin/ml/models — list names, list versions, resolve, register. In-memory store seeded with risk-classifier-v4.0.0-comprehensive shim. 8 new integration tests. apps/api: 1902/1902 tests pass."
+            },
+            {
+              "date": "2026-05-24",
+              "stage": "saas-billing-marketplace",
+              "from": "absent",
+              "to": "partial",
+              "note": "Marketplace discovery + slug-resolve + create endpoints live at /marketplace/listings, backed by @cernia/marketplace's InMemoryListingStore (seeded with Cernia voice-agent). POST /admin/saas-metrics/snapshot computes MRR/ARR/ARPA via @cernia/x1c-saas-metrics. 8 new integration tests. apps/api: 1910/1910 tests pass."
             }
           ]
         }
@@ -846,7 +860,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
