@@ -295,7 +295,10 @@
       "deferred-tier-2": { class: "status-pending", glyph: "○" },
       "stalled": { class: "status-failed", glyph: "⏸" },
       "blocked-on-counsel": { class: "status-pending", glyph: "⏸" },
-      "failed": { class: "status-failed", glyph: "✗" }
+      "failed": { class: "status-failed", glyph: "✗" },
+      // Superseded — work delivered via a different branch (e.g. an
+      // integration port). Green ✓ because the functionality landed.
+      "superseded": { class: "status-complete", glyph: "✓" }
     };
 
     function statusIcon(status) {
@@ -313,7 +316,10 @@
       "stalled": "failed",
       "blocked-on-counsel": "pending",
       "failed": "failed",
-      "blocked-on-tier-recovery": "pending"
+      "blocked-on-tier-recovery": "pending",
+      // Superseded counts as a "complete" badge — the functionality
+      // landed via a different branch.
+      "superseded": "complete"
     };
     function statusBadge(status) {
       const norm = statusBadgeMap[status] || "pending";
@@ -437,6 +443,13 @@
       const activationInfo = a.activationPosition ? `<span style="color:var(--fg-muted);font-family:var(--mono);font-size:10px">queue #${a.activationPosition}</span>` : "";
       const failureInfo = a.failureNote ? `<span style="color:var(--danger);font-size:10px" title="${(a.failureNote || '').replace(/"/g, '&quot;')}">⚠ failure note</span>` : "";
       const recoveredBadge = a.recovered ? `<span style="color:var(--accent);font-size:10px;font-weight:600">✓ recovered</span>` : "";
+      // Superseded — agent's work delivered via a different branch (port,
+      // integration squash, etc.). Render as a green badge so the wave's
+      // overall completeness is obvious; the tooltip carries the auditor's
+      // note explaining where the functionality actually landed.
+      const supersededBadge = a.status === 'superseded'
+        ? `<span style="color:var(--accent);font-size:10px;font-weight:600" title="${((a.supersededNote || a.failureNote) || '').replace(/"/g, '&quot;')}">✓ superseded by ${(a.supersededBy || []).join(', ')}</span>`
+        : "";
       const modelPill = a.recommendedModel ? renderModelPill(a.recommendedModel, a.modelReason) : "";
       const nameStyle = a.status === 'pending' ? 'color:var(--fg-muted);font-style:italic' : '';
       // File-count chip — shows on landed agents. Surfaces empty branches at a glance
@@ -453,7 +466,7 @@
             <span class="chevron leaf">▶</span>
             ${statusIcon(a.status)}
             <span class="node-name" style="${nameStyle}"><span class="id-prefix">${a.id}</span> · ${a.name || ''}${fileChip}</span>
-            <span class="node-meta">${modelPill} ${slotInfo} ${recoveredBadge} ${failureInfo} ${activationInfo}</span>
+            <span class="node-meta">${modelPill} ${slotInfo} ${recoveredBadge} ${supersededBadge} ${failureInfo} ${activationInfo}</span>
           </div>
         </div>
       `;
