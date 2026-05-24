@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-24T17:19:23.365Z",
-    "lastUpdatedDisplay": "May 24, 2026 — 13:19 EDT",
+    "lastUpdatedIso": "2026-05-24T17:29:20.748Z",
+    "lastUpdatedDisplay": "May 24, 2026 — 13:29 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6"
   },
   "summary": {
-    "currentMainCommit": "0e4a749f",
+    "currentMainCommit": "59e7132c",
     "currentTagOnMain": "v3.5-engagement-full-integration (30 tags total) 🏁",
-    "agentsCompletedThisSession": 598,
+    "agentsCompletedThisSession": 599,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "598 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "599 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 24, 2026 — 13:19 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 24, 2026 — 13:29 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -208,6 +208,11 @@
   "queue": [],
   "recentCompletions": [
     {
+      "agent": "hide recovered failures from the red \\\"Failures\\\" badge",
+      "commit": "59e7132c",
+      "kind": "fix"
+    },
+    {
       "agent": "render superseded agents as green ✓ instead of red ⚠",
       "commit": "0e4a749f",
       "kind": "fix"
@@ -276,11 +281,6 @@
       "agent": "clear 3 post-merge typecheck regressions on main",
       "commit": "15a16e2d",
       "kind": "fix"
-    },
-    {
-      "agent": "Wave E fully integrated — no more deferred work",
-      "commit": "d47d89bf",
-      "kind": "chore"
     }
   ],
   "failures": [
@@ -345,7 +345,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
