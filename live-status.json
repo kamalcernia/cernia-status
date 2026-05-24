@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-24T21:09:23.003Z",
-    "lastUpdatedDisplay": "May 24, 2026 — 17:09 EDT",
+    "lastUpdatedIso": "2026-05-24T21:15:31.606Z",
+    "lastUpdatedDisplay": "May 24, 2026 — 17:15 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "610 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 24, 2026 — 17:09 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 24, 2026 — 17:15 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -461,9 +461,9 @@
                 "summary": "bot-runtime, j1b-workflow-template-registry, j2c-fork-and-modify-diff, j2d-ai-assisted-workflow-gen, j3g-background-bot-template-catalog all shipped with tests. ZERO end-to-end wiring: bot-runtime has 1 importer (an internal package), but no app/api boot path instantiates a bot scheduler or template registry."
               },
               "current": {
-                "status": "absent",
+                "status": "partial",
                 "asOf": "2026-05-24",
-                "summary": "Unchanged from baseline."
+                "summary": "Workflow template discovery live in apps/api: GET /workflows/templates, GET /workflows/templates/:id, GET /workflows/templates/:id/latest. POST /bot-runtime/$analyse runs static analysis on a bot source string (no execution). InMemoryTemplateRegistry seeded with 'cernia-voice-followup' template. 7 new integration tests. Bot sandbox dry-run + scheduler + j2c/j2d/j3g + admin UI remain."
               },
               "evidence": [
                 {
@@ -473,11 +473,18 @@
                 {
                   "label": "packages/j1b-workflow-template-registry",
                   "url": "https://github.com/kamalcernia/cernia/tree/main/packages/j1b-workflow-template-registry"
+                },
+                {
+                  "label": "apps/api/src/bot-workflow-routes.ts",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/apps/api/src/bot-workflow-routes.ts"
                 }
               ],
               "remaining": [
                 "Boot the bot-runtime scheduler in apps/api with the template registry as its catalog.",
-                "Mount POST /workflows + GET /workflows/templates routes.",
+                "Mount POST /bot-runtime/$dry-run that wraps dryRunBot from the sandbox layer.",
+                "Wire j2c fork-and-modify diff + j2d AI-workflow-gen alongside the registry.",
+                "Wire j3g background-bot template catalog.",
+                "Postgres-backed template registry (in-memory ships today).",
                 "Admin UI for browsing / forking / activating workflow templates per tenant."
               ]
             },
@@ -688,6 +695,13 @@
               "from": "absent",
               "to": "partial",
               "note": "Proxy lifecycle (grant / revoke / list-by-patient) + JIT request + break-glass invoke endpoints live in apps/api. In-memory proxy store. JIT + break-glass routes are pure-function with blocker codes for empty-scopes, short-justification, etc. 8 new integration tests. SAML/OIDC federation, persistent store, access-review-attestation, admin UI remain."
+            },
+            {
+              "date": "2026-05-24",
+              "stage": "bot-workflow-runtime",
+              "from": "absent",
+              "to": "partial",
+              "note": "Workflow template discovery (list/find/latest) + bot static-analysis endpoint live in apps/api. InMemoryTemplateRegistry seeded with the cernia-voice-followup template. 7 new integration tests. Scheduler + sandbox dry-run + j2c/j2d/j3g + admin UI remain. All 6 functionality-utilization stages are now partial — none absent."
             }
           ]
         }
@@ -890,7 +904,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
