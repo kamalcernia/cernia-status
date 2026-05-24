@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-24T20:29:21.713Z",
-    "lastUpdatedDisplay": "May 24, 2026 — 16:29 EDT",
+    "lastUpdatedIso": "2026-05-24T20:33:27.221Z",
+    "lastUpdatedDisplay": "May 24, 2026 — 16:33 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "606 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 24, 2026 — 16:29 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 24, 2026 — 16:33 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -491,9 +491,9 @@
                 "summary": "inference-platform, o1-llm-gateway, p1a-dataset-dsl, p1b-automl-orchestrator, p1c-model-registry, p3a-deployment-modes, p3b-drift-fairness-monitoring, p4a-samd-classifier, p-pipe-training-pipeline — ALL shipped with full tests, ZERO importers in apps/*/src. The risk-classifier in ml/risk-classifier/ runs as a Python sidecar but doesn't go through this stack."
               },
               "current": {
-                "status": "absent",
+                "status": "partial",
                 "asOf": "2026-05-24",
-                "summary": "Unchanged from baseline."
+                "summary": "Model registry surfaced via apps/api admin routes. GET /admin/ml/models (list names), GET /admin/ml/models/:name/versions, GET /admin/ml/models/:name/:version, POST /admin/ml/models (register). Seeded with risk-classifier-v4.0.0-comprehensive shim entry that maps to the existing Python sidecar. 8 new integration tests cover discovery, resolve, register-then-discover, 404 paths, 400 on bad input. apps/api: 1902 tests pass. Runner dispatch, real ml/risk-classifier integration, LLM gateway routing, drift telemetry — remain."
               },
               "evidence": [
                 {
@@ -505,15 +505,25 @@
                   "url": "https://github.com/kamalcernia/cernia/tree/main/packages/o1-llm-gateway"
                 },
                 {
-                  "label": "packages/p1c-model-registry",
-                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/p1c-model-registry"
+                  "label": "packages/p1c-ml-model-registry",
+                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/p1c-ml-model-registry"
+                },
+                {
+                  "label": "apps/api/src/ml-platform-routes.ts",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/apps/api/src/ml-platform-routes.ts"
+                },
+                {
+                  "label": "apps/api/src/ml-platform-routes.test.ts",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/apps/api/src/ml-platform-routes.test.ts"
                 }
               ],
               "remaining": [
-                "Front the existing Python risk-classifier through inference-platform's predict() seam so the swap to a different model is a config change.",
-                "Mount p1c-model-registry behind /admin/ml/models so registered models become discoverable.",
+                "Front the existing Python risk-classifier through inference-platform's RequestRouter so /admin/ml/models/:urn/$predict actually dispatches.",
+                "Postgres-backed model registry store (in-memory is wired today; Postgres adapter exists in the package).",
                 "Wire o1-llm-gateway as the central LLM router (replaces direct Anthropic/OpenAI imports across packages).",
-                "Wire p3b-drift-fairness alongside ml/risk-classifier so every prediction emits drift telemetry."
+                "Wire p3b-drift-monitoring alongside ml/risk-classifier so every prediction emits drift telemetry.",
+                "Mount p1a-dataset-dsl + p1b-automl-orchestrator endpoints for the training loop.",
+                "Admin UI for browsing models + promoting versions."
               ]
             },
             {
@@ -627,6 +637,13 @@
               "from": "absent",
               "to": "partial",
               "note": "CDS Hooks runtime mounted in apps/api. GET /cds-services discovery + POST /cds-services/:hookId invocation backed by @cernia/cds-hooks. Starter patient-view service registered with a 'voice-agent available' info card. 6 new integration tests cover discovery, happy path, unknown hookId, invalid body, inactive-service filtering. apps/api: 1894/1894 tests pass."
+            },
+            {
+              "date": "2026-05-24",
+              "stage": "ml-platform",
+              "from": "absent",
+              "to": "partial",
+              "note": "Model registry mounted in apps/api as /admin/ml/models — list names, list versions, resolve, register. In-memory store seeded with risk-classifier-v4.0.0-comprehensive shim. 8 new integration tests. apps/api: 1902/1902 tests pass."
             }
           ]
         }
@@ -829,7 +846,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
