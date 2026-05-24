@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-24T19:40:30.216Z",
-    "lastUpdatedDisplay": "May 24, 2026 — 15:40 EDT",
+    "lastUpdatedIso": "2026-05-24T19:41:16.097Z",
+    "lastUpdatedDisplay": "May 24, 2026 — 15:41 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "605 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 24, 2026 — 15:40 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 24, 2026 — 15:41 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -420,9 +420,9 @@
                 "summary": "packages/cds-hooks and packages/cqm-engine exist with full unit tests; ZERO importers in apps/*/src. No CDS Hook endpoint mounted in apps/api. No CQM batch job. Quality measure scores can't surface in any UI."
               },
               "current": {
-                "status": "absent",
+                "status": "partial",
                 "asOf": "2026-05-24",
-                "summary": "Unchanged from baseline."
+                "summary": "CDS Hooks runtime wired into apps/api. GET /cds-services discovery + POST /cds-services/:hookId invocation are live, backed by @cernia/cds-hooks's InMemoryCdsServiceRegistry + HookRouter + HookInvocationHandler. One starter `patient-view` service ships a `voice-agent available` info card. 6 new integration tests cover discovery, happy-path invocation, unknown hookId 404, invalid body 400, inactive-service filtering. apps/api: 1894 tests pass (was 1888). CQM batch + admin UI remain — see remaining."
               },
               "evidence": [
                 {
@@ -432,12 +432,23 @@
                 {
                   "label": "packages/cqm-engine",
                   "url": "https://github.com/kamalcernia/cernia/tree/main/packages/cqm-engine"
+                },
+                {
+                  "label": "apps/api/src/cds-hooks-routes.ts",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/apps/api/src/cds-hooks-routes.ts"
+                },
+                {
+                  "label": "apps/api/src/cds-hooks-routes.test.ts",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/apps/api/src/cds-hooks-routes.test.ts"
                 }
               ],
               "remaining": [
-                "Mount POST /cds-services and the per-hook handlers in apps/api (medication-prescribe, order-select, patient-view hooks).",
+                "Tenant-scoped service registry (current registry is process-global and shared across tenants).",
+                "Real FHIRPath / workflow / bot dispatcher (the starter dispatcher returns hardcoded cards keyed by hookId).",
+                "Mount the other standard hooks: order-select, order-sign, medication-prescribe, encounter-discharge.",
                 "Schedule a nightly CQM batch job that emits MeasureReport resources per tenant.",
-                "Admin UI panel exposing CQM scores per measure + per provider."
+                "Admin UI panel exposing CQM scores per measure + per provider.",
+                "Flip jwtVerificationEnabled=true once the EHR-issuer trust list is configured."
               ]
             },
             {
@@ -609,6 +620,13 @@
               "from": "—",
               "to": "—",
               "note": "Track created from the 2026-05-24 shelf-ware audit. 6 stages, all baseline+current=absent. ~30-40 genuine shelf-ware packages grouped into clusters; ~140 catalog-* and specialty-* packages are lazy-load-by-design and intentionally NOT included here."
+            },
+            {
+              "date": "2026-05-24",
+              "stage": "cds-hooks-quality",
+              "from": "absent",
+              "to": "partial",
+              "note": "CDS Hooks runtime mounted in apps/api. GET /cds-services discovery + POST /cds-services/:hookId invocation backed by @cernia/cds-hooks. Starter patient-view service registered with a 'voice-agent available' info card. 6 new integration tests cover discovery, happy path, unknown hookId, invalid body, inactive-service filtering. apps/api: 1894/1894 tests pass."
             }
           ]
         }
@@ -810,7 +828,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
