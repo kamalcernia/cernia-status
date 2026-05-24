@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-24T20:59:25.632Z",
-    "lastUpdatedDisplay": "May 24, 2026 — 16:59 EDT",
+    "lastUpdatedIso": "2026-05-24T21:06:04.830Z",
+    "lastUpdatedDisplay": "May 24, 2026 — 17:06 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "609 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 24, 2026 — 16:59 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 24, 2026 — 17:06 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -572,9 +572,9 @@
                 "summary": "g-d1-caregiver-proxy, g-d2-delegation, g-d3-jit-access, g-d4-access-review-attestation, g-d5-saml-oidc-federation, g-d6-break-glass all shipped. Existing auth flow doesn't consult any of them; no SAML/OIDC providers configured in apps/api boot path."
               },
               "current": {
-                "status": "absent",
+                "status": "partial",
                 "asOf": "2026-05-24",
-                "summary": "Unchanged from baseline."
+                "summary": "Proxy lifecycle endpoints live in apps/api: POST /caregiver/proxy/$grant, POST /caregiver/proxy/:id/$revoke, GET /caregiver/proxy/by-patient/:id. JIT request + break-glass invoke endpoints: POST /access/jit/$request, POST /access/break-glass/$invoke (both stateless pure-function with blocker codes for empty-scopes / short-justification / etc). In-memory proxy store. 8 new integration tests. SAML/OIDC federation, access-review-attestation, admin UI remain."
               },
               "evidence": [
                 {
@@ -582,13 +582,24 @@
                   "url": "https://github.com/kamalcernia/cernia/tree/main/packages/g-d1-caregiver-proxy"
                 },
                 {
-                  "label": "packages/g-d5-saml-oidc-federation",
-                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/g-d5-saml-oidc-federation"
+                  "label": "packages/g-d3-jit-access",
+                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/g-d3-jit-access"
+                },
+                {
+                  "label": "packages/g-d6-break-glass",
+                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/g-d6-break-glass"
+                },
+                {
+                  "label": "apps/api/src/caregiver-federation-routes.ts",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/apps/api/src/caregiver-federation-routes.ts"
                 }
               ],
               "remaining": [
+                "Persistent (Postgres) proxy store + JIT request store + break-glass invocation log.",
                 "Wire g-d5 SAML/OIDC into auth-providers + apps/api login routes.",
-                "Mount POST /caregiver/proxy-grant + the JIT/break-glass admin endpoints.",
+                "Wire g-d2 user-to-user delegation alongside g-d1.",
+                "Wire g-d4 access-review-attestation surface for compliance.",
+                "JIT approve/deny + break-glass review endpoints (currently only request/invoke ship).",
                 "Admin UI for delegation requests + access-review attestation."
               ]
             },
@@ -670,6 +681,13 @@
               "from": "absent",
               "to": "partial",
               "note": "RPM compute endpoints live: /rpm/readings/$evaluate (threshold classification), /rpm/care-plan-templates (list 6 shipped), /rpm/care-plans/$generate, /rpm/adherence/$compute (score + intervention). Stateless pure-function over caller-supplied input. 7 new integration tests. Stateful device webhook + WebRTC signaling + UI remain."
+            },
+            {
+              "date": "2026-05-24",
+              "stage": "caregiver-federation",
+              "from": "absent",
+              "to": "partial",
+              "note": "Proxy lifecycle (grant / revoke / list-by-patient) + JIT request + break-glass invoke endpoints live in apps/api. In-memory proxy store. JIT + break-glass routes are pure-function with blocker codes for empty-scopes, short-justification, etc. 8 new integration tests. SAML/OIDC federation, persistent store, access-review-attestation, admin UI remain."
             }
           ]
         }
@@ -872,7 +890,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
