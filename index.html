@@ -393,7 +393,16 @@
     }
 
     function renderFailures(failures) {
-      const list = failures || [];
+      // Drop entries with no agent name AND no failure mode — these are
+      // phantom rows from stale parses that have nothing actionable.
+      const list = (failures || []).filter(
+        (f) => (f.agent || f.id) && (f.failureMode || f.failure)
+      );
+      const active = list.filter((f) => !f.recovered);
+      const recovered = list.filter((f) => f.recovered);
+
+      // Hide the section entirely when there's nothing — neither active
+      // nor recovered to show.
       if (list.length === 0) {
         $("failuresHeader").style.display = "none";
         $("failuresTable").style.display = "none";
@@ -401,11 +410,22 @@
       }
       $("failuresHeader").style.display = "flex";
       $("failuresTable").style.display = "";
-      $("failuresCount").textContent = list.length;
-      const rows = list.map(f =>
-        `<tr><td style='color:var(--danger);font-weight:600'>${f.agent}</td><td style='color:var(--warn)'>${f.failureMode || f.failure || ""}</td><td>${f.recovery || ""}</td></tr>`
-      ).join("");
-      $("failuresTable").querySelector("tbody").innerHTML = rows;
+      // The count badge reflects ACTIVE failures only — recovered ones
+      // are historical signal and shouldn't drive red urgency.
+      $("failuresCount").textContent = active.length;
+
+      const activeRows = active.map(
+        (f) =>
+          `<tr><td style='color:var(--danger);font-weight:600'>${f.agent || f.id}</td><td style='color:var(--warn)'>${f.failureMode || f.failure || ""}</td><td>${f.recovery || ""}</td></tr>`
+      );
+      const recoveredRows = recovered.map(
+        (f) =>
+          `<tr style='opacity:0.6'><td style='color:var(--fg-muted);font-weight:500'><span style='color:var(--accent)'>✓</span> ${f.agent || f.id}</td><td style='color:var(--fg-muted)'>${f.failureMode || f.failure || ""}</td><td style='color:var(--fg-muted)' title='${(f.recoveryNote || '').replace(/'/g, '&apos;').replace(/"/g, '&quot;')}'>recovered: ${f.recovery || (f.recoveryNote || '').split(' (auto:')[0] || ""}</td></tr>`
+      );
+      $("failuresTable").querySelector("tbody").innerHTML = [
+        ...activeRows,
+        ...recoveredRows,
+      ].join("");
     }
 
     function renderWave(wave, depth) {
