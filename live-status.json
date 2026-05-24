@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-24T17:59:22.074Z",
-    "lastUpdatedDisplay": "May 24, 2026 — 13:59 EDT",
+    "lastUpdatedIso": "2026-05-24T18:09:22.131Z",
+    "lastUpdatedDisplay": "May 24, 2026 — 14:09 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6"
   },
   "summary": {
-    "currentMainCommit": "95f79b18",
+    "currentMainCommit": "62c9a985",
     "currentTagOnMain": "v3.5-engagement-full-integration (30 tags total) 🏁",
-    "agentsCompletedThisSession": 600,
+    "agentsCompletedThisSession": 601,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "600 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "601 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 24, 2026 — 13:59 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 24, 2026 — 14:09 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -208,6 +208,11 @@
   "queue": [],
   "recentCompletions": [
     {
+      "agent": "5 more goldens covering verification, red-flag, language, cost-ceiling",
+      "commit": "62c9a985",
+      "kind": "feat"
+    },
+    {
       "agent": "scaffold regression eval harness for the voice agent",
       "commit": "95f79b18",
       "kind": "feat"
@@ -276,11 +281,6 @@
       "agent": "declare process for Expo app.config + globalThis in tests",
       "commit": "82e278de",
       "kind": "fix"
-    },
-    {
-      "agent": "add per-wave Health column + audit infrastructure",
-      "commit": "c72117a7",
-      "kind": "feat"
     }
   ],
   "failures": [
@@ -345,7 +345,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
