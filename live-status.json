@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-24T18:19:20.156Z",
-    "lastUpdatedDisplay": "May 24, 2026 — 14:19 EDT",
+    "lastUpdatedIso": "2026-05-24T18:24:59.438Z",
+    "lastUpdatedDisplay": "May 24, 2026 — 14:24 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "601 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 24, 2026 — 14:19 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 24, 2026 — 14:25 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -146,6 +146,232 @@
           "package": "packages/compliance-evidence",
           "kind": "test",
           "summary": "\u001b[2m   Duration \u001b[22m 11.13s\u001b[2m (transform 14.08s, setup 0ms, collect 23.70s, tests 5.97s, environment 10ms, prepare 25.08s)\u001b[22m"
+        }
+      ]
+    },
+    "productionReadiness": {
+      "$schema": "Hand-edited. Read by update-status.mjs and merged into live-status.json under `summary.productionReadiness`. Render in live-status.html → renderProductionReadiness().",
+      "_updateWorkflow": [
+        "When a stage's status changes, update the matching stage entry in this file.",
+        "Status enum: 'complete' | 'partial' | 'absent'.",
+        "Append a row to `history` with { date: 'YYYY-MM-DD', stage, from, to, note, commit?: 'sha or PR url' }.",
+        "Keep `baseline` IMMUTABLE — that field captures the pre-work state on 2026-05-24. Only `current` and `history` evolve.",
+        "Run `node docs/status/update-status.mjs` to push the change through the cron pipeline.",
+        "DO NOT delete history entries — the dashboard renders them as the audit trail."
+      ],
+      "tracks": [
+        {
+          "id": "voice-agent",
+          "name": "Voice / Digital Assistant",
+          "description": "Production-readiness for the conversational voice agent (Wave E + Wave D). Spans intent coverage, eval regression suite, PHI safety, telephony backends, pilot ops, and runtime monitoring.",
+          "primaryPackages": [
+            "packages/voice-agent",
+            "packages/voice-agent-evals",
+            "packages/telephony",
+            "packages/cost-ceiling",
+            "packages/eligibility-service"
+          ],
+          "stages": [
+            {
+              "id": "capability",
+              "name": "Stage 1 — Capability completeness",
+              "rationale": "Every conversational intent (book / cancel / reschedule / confirm / list / pay / verify-insurance / transfer / end) has an end-to-end implementation + STRIDE adversarial test.",
+              "baseline": {
+                "status": "complete",
+                "asOf": "2026-05-24",
+                "summary": "12 intents shipped end-to-end. 741+ tests across packages/voice-agent; 74% line / 87% branch coverage. STRIDE adversarial cases (prompt injection, identity bypass, cross-tenant leakage) covered."
+              },
+              "current": {
+                "status": "complete",
+                "asOf": "2026-05-24",
+                "summary": "Unchanged. 12 intents, 741+ tests, 74% / 87% coverage."
+              },
+              "evidence": [
+                {
+                  "label": "packages/voice-agent",
+                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/voice-agent"
+                },
+                {
+                  "label": "STRIDE threat model",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/docs/security/threats/wave-d-voice-end-to-end.md"
+                }
+              ]
+            },
+            {
+              "id": "eval-harness",
+              "name": "Stage 2 — Eval harness",
+              "rationale": "Regression suite of scripted golden conversations + scorers. Lets us change prompts / intents / state machine without holding our breath. Runs on every PR.",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-24",
+                "summary": "No `evals/` or `golden-transcripts/` directory existed. Only `improvement/transcript-reviewer.ts` ran post-call heuristics — no pre-deployment gate, no per-intent SLA tracking, no hallucination detector."
+              },
+              "current": {
+                "status": "partial",
+                "asOf": "2026-05-24",
+                "summary": "@cernia/voice-agent-evals package shipped. 8 goldens covering book-appointment, lookup-practitioner, transfer-to-human, PHI gate + verification dance (3-turn DOB/2FA), red-flag chest-pain short-circuit, unsupported-language transfer, cost-ceiling trip. 3 scorers (intent-emission, agent-text expectations, PHI-leak regex). 97 ms wall clock. Wired into CI via `pnpm --filter @cernia/voice-agent-evals test`."
+              },
+              "evidence": [
+                {
+                  "label": "packages/voice-agent-evals",
+                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/voice-agent-evals"
+                },
+                {
+                  "label": "Initial scaffold 95f79b18",
+                  "url": "https://github.com/kamalcernia/cernia/commit/95f79b18"
+                },
+                {
+                  "label": "+5 goldens 62c9a985",
+                  "url": "https://github.com/kamalcernia/cernia/commit/62c9a985"
+                }
+              ],
+              "remaining": [
+                "mfa-locked-out golden (3 wrong DOB attempts → phi-restriction transfer)",
+                "red-flag-bilingual-spanish golden (dolor en el pecho on Spanish-enabled tenant)",
+                "prompt-injection-rejection golden (ignore-previous-instructions adversarial)",
+                "appointment-window-disambiguation golden (disambiguate_practitioner → book_appointment)",
+                "Nightly --live mode against real Anthropic API for one canary golden"
+              ]
+            },
+            {
+              "id": "hipaa-safety",
+              "name": "Stage 3 — HIPAA / PHI safety",
+              "rationale": "PHI redaction in every log sink, audit emission per dialog turn, BAA-covered provider allowlist, output-side clinical-content classifier, caller rate-limiting.",
+              "baseline": {
+                "status": "partial",
+                "asOf": "2026-05-24",
+                "summary": "Core posture solid: redaction.ts (100% tested) covers SSN/phone/email/MRN/DOB/ICD-10, IRedFlagAuditEmitter wired with structured STRIDE events, CostCeilingTracker emits reason enum on cap trip, 3-strike DOB/2FA lock-out gates unverified callers. Survey dispatcher has per-patient at-most-one constraint."
+              },
+              "current": {
+                "status": "partial",
+                "asOf": "2026-05-24",
+                "summary": "Unchanged from baseline."
+              },
+              "evidence": [
+                {
+                  "label": "packages/voice-agent/src/redaction.ts",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/packages/voice-agent/src/redaction.ts"
+                },
+                {
+                  "label": "packages/voice-agent/src/red-flag-screener.ts",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/packages/voice-agent/src/red-flag-screener.ts"
+                },
+                {
+                  "label": "STRIDE threat model",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/docs/security/threats/wave-d-voice-end-to-end.md"
+                }
+              ],
+              "remaining": [
+                "BAA-covered LLM-provider allowlist (packages/voice-agent/src/baa-providers.ts — does not exist yet)",
+                "Output-side clinical content classifier (tracked as I-320 / deferred to Wave-D9)",
+                "Per-caller global rate-limit (tracked as I-321)"
+              ]
+            },
+            {
+              "id": "telephony-ops",
+              "name": "Stage 4 — Telephony + ops",
+              "rationale": "Telephony backends (Twilio, LiveKit/SIP) with recording-pause-on-PHI, KMS encryption at rest, HIPAA retention policy.",
+              "baseline": {
+                "status": "complete",
+                "asOf": "2026-05-24",
+                "summary": "Twilio + LiveKit/SIP backends in packages/telephony. apps/api/src/voice-call-handler.ts wires inbound webhook + barge-in controller + recording-pause on PHI request. KMS encryption at rest + 7-year HIPAA retention default."
+              },
+              "current": {
+                "status": "complete",
+                "asOf": "2026-05-24",
+                "summary": "Unchanged."
+              },
+              "evidence": [
+                {
+                  "label": "packages/telephony",
+                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/telephony"
+                },
+                {
+                  "label": "apps/api/src/voice-call-handler.ts",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/apps/api/src/voice-call-handler.ts"
+                }
+              ]
+            },
+            {
+              "id": "pilot-readiness",
+              "name": "Stage 5 — Pilot readiness",
+              "rationale": "HIL (human-in-the-loop) plumbing, outage runbook, pilot cohort + success-threshold definition.",
+              "baseline": {
+                "status": "partial",
+                "asOf": "2026-05-24",
+                "summary": "handoff-communication.ts (91 lines, 100% tested) constructs FHIR Communication on every transfer with resolvedBrandName audit. Transfer intents emit closed-enum reason (cost-ceiling / phi-restriction / medical-emergency / out-of-hours / agent-uncertain). Full STRIDE threat model. docs/operations/runbooks/voice-agent-outage.md exists as STUB ONLY (trigger / owner / steps / rollback all empty). No pilot cohort / success-rate doc."
+              },
+              "current": {
+                "status": "partial",
+                "asOf": "2026-05-24",
+                "summary": "Unchanged."
+              },
+              "evidence": [
+                {
+                  "label": "packages/voice-agent/src/handoff-communication.ts",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/packages/voice-agent/src/handoff-communication.ts"
+                },
+                {
+                  "label": "voice-agent-outage runbook (STUB)",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/docs/operations/runbooks/voice-agent-outage.md"
+                }
+              ],
+              "remaining": [
+                "Fill the voice-agent-outage runbook (trigger condition, on-call owner, incident steps, rollback)",
+                "Pilot cohort definition: 1 tenant, 1 intent, 2-4 weeks, success threshold (eg 85% intent-completion rate, < 5% unintended-transfer rate)",
+                "Pre-pilot checklist signed off by clinical lead + compliance"
+              ]
+            },
+            {
+              "id": "monitoring",
+              "name": "Stage 6 — Monitoring",
+              "rationale": "Real-time gauges for transfer-to-human rate, cost-per-call, per-intent success, response latency, citation-validity. Without this we can't detect production drift.",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-24",
+                "summary": "Audit events emitted (red-flag, cost-ceiling, transfer, verification). NO Prometheus/StatsD gauges. NO real-time dashboard. Metrics derivable post-hoc from transcripts via the improvement pipeline, but not exposed in any operator-facing surface."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-24",
+                "summary": "Unchanged."
+              },
+              "evidence": [
+                {
+                  "label": "packages/voice-agent/src/cost-ceilings.ts",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/packages/voice-agent/src/cost-ceilings.ts"
+                },
+                {
+                  "label": "improvement pipeline (post-call)",
+                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/voice-agent/src/improvement"
+                }
+              ],
+              "remaining": [
+                "Prometheus metric module in packages/voice-agent — Histograms for response-latency-ms, cost-usd-per-call, agent-turn-count-per-call; Counters for transfer_total{reason}, intent_emitted_total{kind}, verification_outcome_total{outcome}; Gauges for in-flight-calls, ceiling-trips-by-kind",
+                "Wire metrics emission into dialog.ts hot path (post-LLM, post-intent, on transfer, on close)",
+                "Grafana dashboard spec checked in (panels for each metric, alerts for transfer-rate > 25% / 5xx latency > p99)",
+                "Operator runbook for each alert"
+              ]
+            }
+          ],
+          "history": [
+            {
+              "date": "2026-05-24",
+              "stage": "eval-harness",
+              "from": "absent",
+              "to": "partial",
+              "note": "Scaffolded @cernia/voice-agent-evals package with 3 starter goldens (book-appointment, lookup-practitioner, transfer-to-human).",
+              "commit": "https://github.com/kamalcernia/cernia/commit/95f79b18"
+            },
+            {
+              "date": "2026-05-24",
+              "stage": "eval-harness",
+              "from": "partial",
+              "to": "partial",
+              "note": "Added 5 more goldens covering PHI gate, full verification dance, red-flag, language gate, and cost-ceiling. Total 8 goldens passing in 97 ms.",
+              "commit": "https://github.com/kamalcernia/cernia/commit/62c9a985"
+            }
+          ]
         }
       ]
     }
@@ -345,7 +571,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
