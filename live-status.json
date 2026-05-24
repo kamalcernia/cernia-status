@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-24T19:19:22.812Z",
-    "lastUpdatedDisplay": "May 24, 2026 — 15:19 EDT",
+    "lastUpdatedIso": "2026-05-24T19:23:58.370Z",
+    "lastUpdatedDisplay": "May 24, 2026 — 15:23 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "604 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 24, 2026 — 15:19 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 24, 2026 — 15:24 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -385,6 +385,230 @@
               "from": "absent",
               "to": "partial",
               "note": "IVoiceAgentMetrics seam shipped. Emission points wired into dialog.ts (session lifecycle, intents, transfers, LLM latency, cost-ceiling, red-flag, verification outcome, turn count). 12 unit tests verify each emission point. NoopMetricsCollector default + InMemoryMetricsCollector for tests + safeRecord wrapper for adapter-fault tolerance. 782/782 voice-agent tests + 8/8 evals still green. Prometheus adapter + Grafana dashboard + runbooks still to ship."
+            },
+            {
+              "date": "2026-05-24",
+              "stage": "monitoring",
+              "from": "partial",
+              "to": "partial",
+              "note": "Metrics collector wired into apps/api boot (apps/api/src/index.ts:1665). InMemoryMetricsCollector by default; CERNIA_VOICE_METRICS=off opts out. Emission points now actually run in production instead of routing to NoopMetricsCollector. Discovered via the shelf-ware audit — the seam had been shipped but never instantiated in apps/api, so every metric was silently dropped.",
+              "commit": "https://github.com/kamalcernia/cernia/commit/2bff4ee6"
+            }
+          ]
+        },
+        {
+          "id": "functionality-utilization",
+          "name": "Functionality Utilization (cross-package)",
+          "description": "Audit + remediation of packages built but not wired into apps/*. The 2026-05-24 shelf-ware audit found 286 total packages, 36 imported by apps/*/src, ~140 lazy-load-by-design (catalog-* and specialty-* — loaded on-demand per clinical workflow, NOT shelf-ware), and ~30-40 genuine infrastructure built without app wiring. Each stage groups one coherent cluster of unwired infra; current=absent means no app instantiates any package in the cluster.",
+          "primaryPackages": [
+            "packages/cds-hooks",
+            "packages/cqm-engine",
+            "packages/bot-runtime",
+            "packages/inference-platform",
+            "packages/marketplace",
+            "packages/q-s1-webrtc-signaling",
+            "packages/g-d1-caregiver-proxy"
+          ],
+          "stages": [
+            {
+              "id": "cds-hooks-quality",
+              "name": "CDS Hooks & quality measures",
+              "rationale": "FHIR CDS Hooks is the standard for surfacing clinical decision support inside the EMR workflow. CQM is the Centers for Medicare quality-measure compute engine. Both are core regulatory/clinical infra that have to run server-side for the platform to qualify for value-based-care reimbursement.",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-24",
+                "summary": "packages/cds-hooks and packages/cqm-engine exist with full unit tests; ZERO importers in apps/*/src. No CDS Hook endpoint mounted in apps/api. No CQM batch job. Quality measure scores can't surface in any UI."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-24",
+                "summary": "Unchanged from baseline."
+              },
+              "evidence": [
+                {
+                  "label": "packages/cds-hooks",
+                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/cds-hooks"
+                },
+                {
+                  "label": "packages/cqm-engine",
+                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/cqm-engine"
+                }
+              ],
+              "remaining": [
+                "Mount POST /cds-services and the per-hook handlers in apps/api (medication-prescribe, order-select, patient-view hooks).",
+                "Schedule a nightly CQM batch job that emits MeasureReport resources per tenant.",
+                "Admin UI panel exposing CQM scores per measure + per provider."
+              ]
+            },
+            {
+              "id": "bot-workflow-runtime",
+              "name": "Bot / workflow runtime",
+              "rationale": "Self-service workflow authoring lets tenants build their own background bots (eligibility sweep, appointment reminder, lab follow-up) without writing code. Without the runtime wired, the marketplace's workflow templates have nothing to execute against.",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-24",
+                "summary": "bot-runtime, j1b-workflow-template-registry, j2c-fork-and-modify-diff, j2d-ai-assisted-workflow-gen, j3g-background-bot-template-catalog all shipped with tests. ZERO end-to-end wiring: bot-runtime has 1 importer (an internal package), but no app/api boot path instantiates a bot scheduler or template registry."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-24",
+                "summary": "Unchanged from baseline."
+              },
+              "evidence": [
+                {
+                  "label": "packages/bot-runtime",
+                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/bot-runtime"
+                },
+                {
+                  "label": "packages/j1b-workflow-template-registry",
+                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/j1b-workflow-template-registry"
+                }
+              ],
+              "remaining": [
+                "Boot the bot-runtime scheduler in apps/api with the template registry as its catalog.",
+                "Mount POST /workflows + GET /workflows/templates routes.",
+                "Admin UI for browsing / forking / activating workflow templates per tenant."
+              ]
+            },
+            {
+              "id": "ml-platform",
+              "name": "ML / inference platform",
+              "rationale": "The Cernia ML stack — dataset DSL, AutoML orchestrator, model registry, deployment-modes, drift/fairness monitoring, SaMD (software-as-medical-device) classifier, training pipeline, LLM gateway — is the back-end for every learned-model feature (risk-classifier, predicted-no-shows, etc.). All shipped, none wired.",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-24",
+                "summary": "inference-platform, o1-llm-gateway, p1a-dataset-dsl, p1b-automl-orchestrator, p1c-model-registry, p3a-deployment-modes, p3b-drift-fairness-monitoring, p4a-samd-classifier, p-pipe-training-pipeline — ALL shipped with full tests, ZERO importers in apps/*/src. The risk-classifier in ml/risk-classifier/ runs as a Python sidecar but doesn't go through this stack."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-24",
+                "summary": "Unchanged from baseline."
+              },
+              "evidence": [
+                {
+                  "label": "packages/inference-platform",
+                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/inference-platform"
+                },
+                {
+                  "label": "packages/o1-llm-gateway",
+                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/o1-llm-gateway"
+                },
+                {
+                  "label": "packages/p1c-model-registry",
+                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/p1c-model-registry"
+                }
+              ],
+              "remaining": [
+                "Front the existing Python risk-classifier through inference-platform's predict() seam so the swap to a different model is a config change.",
+                "Mount p1c-model-registry behind /admin/ml/models so registered models become discoverable.",
+                "Wire o1-llm-gateway as the central LLM router (replaces direct Anthropic/OpenAI imports across packages).",
+                "Wire p3b-drift-fairness alongside ml/risk-classifier so every prediction emits drift telemetry."
+              ]
+            },
+            {
+              "id": "telehealth-rpm",
+              "name": "Telehealth & remote patient monitoring",
+              "rationale": "RPM (remote patient monitoring) is the Q-wave's reimbursable feature: device ingestion + care-plan generation + adherence tracking. Telehealth visits via WebRTC are the synchronous-care complement. Both built, neither runs.",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-24",
+                "summary": "q-s1-webrtc-signaling, q-s2-rpm-device-ingestion, q-s3-telehealth-visit-audit, q-s4-rpm-careplan-generator, q-s5-visit-summary-generator, q-s6-rpm-adherence-tracker all shipped. No WebRTC signaling endpoint in apps/api, no device webhook routes, no care-plan generation cron, no visit-summary UI."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-24",
+                "summary": "Unchanged from baseline."
+              },
+              "evidence": [
+                {
+                  "label": "packages/q-s1-webrtc-signaling",
+                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/q-s1-webrtc-signaling"
+                },
+                {
+                  "label": "packages/q-s2-rpm-device-ingestion",
+                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/q-s2-rpm-device-ingestion"
+                }
+              ],
+              "remaining": [
+                "Mount the WebRTC signaling websocket in apps/api.",
+                "Mount POST /rpm/device-readings webhook (separate from the existing HMAC-signed device webhook? — design call).",
+                "Schedule the care-plan generator + adherence-tracker as nightly batch jobs.",
+                "Clinic UI for the visit-summary surface."
+              ]
+            },
+            {
+              "id": "caregiver-federation",
+              "name": "Caregiver delegation & identity federation",
+              "rationale": "Allows a patient's family/caregiver to act on their behalf (proxy), JIT-grant temporary access to a covering provider, SAML/OIDC federation for hospital-network SSO, and break-glass emergency access. Compliance-load-bearing for any enterprise pilot.",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-24",
+                "summary": "g-d1-caregiver-proxy, g-d2-delegation, g-d3-jit-access, g-d4-access-review-attestation, g-d5-saml-oidc-federation, g-d6-break-glass all shipped. Existing auth flow doesn't consult any of them; no SAML/OIDC providers configured in apps/api boot path."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-24",
+                "summary": "Unchanged from baseline."
+              },
+              "evidence": [
+                {
+                  "label": "packages/g-d1-caregiver-proxy",
+                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/g-d1-caregiver-proxy"
+                },
+                {
+                  "label": "packages/g-d5-saml-oidc-federation",
+                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/g-d5-saml-oidc-federation"
+                }
+              ],
+              "remaining": [
+                "Wire g-d5 SAML/OIDC into auth-providers + apps/api login routes.",
+                "Mount POST /caregiver/proxy-grant + the JIT/break-glass admin endpoints.",
+                "Admin UI for delegation requests + access-review attestation."
+              ]
+            },
+            {
+              "id": "saas-billing-marketplace",
+              "name": "SaaS billing & marketplace",
+              "rationale": "Enterprise invoicing, ASC 606 revenue recognition, SaaS metrics (MRR/ARR/churn), contract auto-renewal, discount-approval workflow, marketplace checkout, tax compliance. The commercial back-end for selling Cernia at scale.",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-24",
+                "summary": "marketplace, x1a-tax-compliance, x1b-asc-606-revenue-recognition, x1c-saas-metrics-computation, x2a-enterprise-invoicing, x2b-contract-auto-renewal, x3c-discount-approval-workflow, j1c-sandbox-tenant-lifecycle, j1d-marketplace-checkout all shipped. No marketplace UI in apps/*. No invoice generation job. No tax engine wired into payment paths."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-24",
+                "summary": "Unchanged from baseline."
+              },
+              "evidence": [
+                {
+                  "label": "packages/marketplace",
+                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/marketplace"
+                },
+                {
+                  "label": "packages/x1a-tax-compliance",
+                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/x1a-tax-compliance"
+                },
+                {
+                  "label": "packages/x2a-enterprise-invoicing",
+                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/x2a-enterprise-invoicing"
+                }
+              ],
+              "remaining": [
+                "Wire x2a invoicing into the existing billing pipeline (currently only Stripe direct charge).",
+                "Mount marketplace + j1d checkout routes; build the customer-facing storefront.",
+                "Schedule x1c SaaS-metrics nightly compute + admin dashboard panel.",
+                "Wire x1a tax engine (Stripe Tax + Avalara fallback) into every payment path."
+              ]
+            }
+          ],
+          "history": [
+            {
+              "date": "2026-05-24",
+              "stage": "(track-added)",
+              "from": "—",
+              "to": "—",
+              "note": "Track created from the 2026-05-24 shelf-ware audit. 6 stages, all baseline+current=absent. ~30-40 genuine shelf-ware packages grouped into clusters; ~140 catalog-* and specialty-* packages are lazy-load-by-design and intentionally NOT included here."
             }
           ]
         }
@@ -586,7 +810,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
