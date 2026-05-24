@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-24T20:49:28.276Z",
-    "lastUpdatedDisplay": "May 24, 2026 — 16:49 EDT",
+    "lastUpdatedIso": "2026-05-24T20:55:45.533Z",
+    "lastUpdatedDisplay": "May 24, 2026 — 16:55 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "608 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 24, 2026 — 16:49 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 24, 2026 — 16:55 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -536,9 +536,9 @@
                 "summary": "q-s1-webrtc-signaling, q-s2-rpm-device-ingestion, q-s3-telehealth-visit-audit, q-s4-rpm-careplan-generator, q-s5-visit-summary-generator, q-s6-rpm-adherence-tracker all shipped. No WebRTC signaling endpoint in apps/api, no device webhook routes, no care-plan generation cron, no visit-summary UI."
               },
               "current": {
-                "status": "absent",
+                "status": "partial",
                 "asOf": "2026-05-24",
-                "summary": "Unchanged from baseline."
+                "summary": "RPM compute endpoints live in apps/api: POST /rpm/readings/$evaluate (threshold classification), GET /rpm/care-plan-templates, POST /rpm/care-plans/$generate, POST /rpm/adherence/$compute (score + intervention recommendation). All stateless — caller supplies inputs, server runs pure-function compute. 7 new integration tests. WebRTC signaling websocket + stateful device webhook + nightly cron + UI surfaces remain."
               },
               "evidence": [
                 {
@@ -546,15 +546,20 @@
                   "url": "https://github.com/kamalcernia/cernia/tree/main/packages/q-s1-webrtc-signaling"
                 },
                 {
-                  "label": "packages/q-s2-rpm-device-ingestion",
-                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/q-s2-rpm-device-ingestion"
+                  "label": "packages/q-s2-rpm-ingestion",
+                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/q-s2-rpm-ingestion"
+                },
+                {
+                  "label": "apps/api/src/telehealth-rpm-routes.ts",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/apps/api/src/telehealth-rpm-routes.ts"
                 }
               ],
               "remaining": [
-                "Mount the WebRTC signaling websocket in apps/api.",
-                "Mount POST /rpm/device-readings webhook (separate from the existing HMAC-signed device webhook? — design call).",
-                "Schedule the care-plan generator + adherence-tracker as nightly batch jobs.",
-                "Clinic UI for the visit-summary surface."
+                "Mount the WebRTC signaling websocket in apps/api (q-s1).",
+                "Stateful POST /rpm/devices/:deviceId/readings webhook that feeds the AlertEngine and persists EvaluationResult.",
+                "Schedule the care-plan generator + adherence-tracker as nightly batch jobs against the real reading store.",
+                "Wire q-s3 telehealth-visit audit + q-s5 visit-summary into apps/api.",
+                "Clinic UI for visit summary, RPM dashboard, and care-plan management."
               ]
             },
             {
@@ -658,6 +663,13 @@
               "from": "absent",
               "to": "partial",
               "note": "Marketplace discovery + slug-resolve + create endpoints live at /marketplace/listings, backed by @cernia/marketplace's InMemoryListingStore (seeded with Cernia voice-agent). POST /admin/saas-metrics/snapshot computes MRR/ARR/ARPA via @cernia/x1c-saas-metrics. 8 new integration tests. apps/api: 1910/1910 tests pass."
+            },
+            {
+              "date": "2026-05-24",
+              "stage": "telehealth-rpm",
+              "from": "absent",
+              "to": "partial",
+              "note": "RPM compute endpoints live: /rpm/readings/$evaluate (threshold classification), /rpm/care-plan-templates (list 6 shipped), /rpm/care-plans/$generate, /rpm/adherence/$compute (score + intervention). Stateless pure-function over caller-supplied input. 7 new integration tests. Stateful device webhook + WebRTC signaling + UI remain."
             }
           ]
         }
@@ -860,7 +872,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
