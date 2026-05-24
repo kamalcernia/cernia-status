@@ -152,6 +152,41 @@
     .mainstate-pill.s-in-progress { background: rgba(99, 102, 241, 0.18); color: rgba(165, 180, 252, 1); }
     .mainstate-pill.s-untouched { background: rgba(255,255,255,0.04); color: var(--fg-faint); }
     .mainstate-pill.s-planned { background: rgba(255,255,255,0.04); color: var(--fg-faint); }
+
+    /* Production-readiness tracks (sourced from docs/status/production-readiness.json). */
+    .readiness-track { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; margin-bottom: 16px; }
+    .readiness-track-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+    .readiness-track-name { color: var(--fg); font-size: 14px; font-weight: 600; }
+    .readiness-track-desc { color: var(--fg-muted); font-size: 11px; line-height: 1.5; margin: 0 0 12px; }
+    .readiness-track-pkgs { color: var(--fg-faint); font-size: 10px; font-family: var(--mono); }
+    .readiness-stage-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; margin-bottom: 12px; }
+    .readiness-stage { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; }
+    .readiness-stage.s-complete { border-left: 3px solid var(--accent); }
+    .readiness-stage.s-partial { border-left: 3px solid var(--warn); }
+    .readiness-stage.s-absent { border-left: 3px solid var(--danger); }
+    .readiness-stage-name { color: var(--fg); font-size: 12px; font-weight: 600; margin-bottom: 6px; }
+    .readiness-stage-deltarow { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; font-family: var(--mono); font-size: 10px; }
+    .readiness-pill { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 9px; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; }
+    .readiness-pill.s-complete { background: rgba(74, 222, 128, 0.18); color: var(--accent); }
+    .readiness-pill.s-partial { background: rgba(251, 191, 36, 0.18); color: var(--warn); }
+    .readiness-pill.s-absent { background: rgba(248, 113, 113, 0.18); color: var(--danger); }
+    .readiness-stage-arrow { color: var(--fg-muted); }
+    .readiness-stage-summary { color: var(--fg-muted); font-size: 11px; line-height: 1.45; margin: 6px 0 0; }
+    .readiness-stage-rationale { color: var(--fg-faint); font-size: 10px; font-style: italic; line-height: 1.4; margin: 0 0 6px; }
+    .readiness-stage-remaining { color: var(--fg-muted); font-size: 10px; margin: 6px 0 0; padding-left: 14px; }
+    .readiness-stage-remaining li { margin-bottom: 2px; }
+    .readiness-stage-evidence { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; }
+    .readiness-stage-evidence a { color: var(--running); font-size: 10px; font-family: var(--mono); text-decoration: none; padding: 1px 5px; border: 1px solid var(--border); border-radius: 3px; }
+    .readiness-stage-evidence a:hover { background: rgba(96, 165, 250, 0.08); }
+    .readiness-history { margin-top: 10px; border-top: 1px solid var(--border); padding-top: 8px; }
+    .readiness-history-title { color: var(--fg-muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; margin-bottom: 4px; }
+    .readiness-history-row { color: var(--fg-muted); font-size: 11px; font-family: var(--mono); padding: 2px 0; display: flex; gap: 8px; align-items: baseline; }
+    .readiness-history-date { color: var(--fg-faint); width: 90px; flex-shrink: 0; }
+    .readiness-history-stage { color: var(--fg); width: 110px; flex-shrink: 0; }
+    .readiness-history-delta { color: var(--fg-muted); width: 130px; flex-shrink: 0; }
+    .readiness-history-note { color: var(--fg-muted); flex: 1; }
+    .readiness-history-note a { color: var(--running); }
+    .legend-paragraph { color: var(--fg-muted); font-size: 11px; line-height: 1.5; margin: 0 0 12px; }
     .mainstate-tag { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 10px; background: rgba(0,0,0,0.4); color: var(--fg-muted); border: 1px solid var(--border); }
     .mainstate-integ-link { color: var(--running); text-decoration: none; }
     .mainstate-integ-link:hover { text-decoration: underline; }
@@ -249,6 +284,14 @@
       </thead>
       <tbody></tbody>
     </table>
+
+    <h2 id="readinessHeader" style="display:none">Production Readiness Tracks <span class="count" id="readinessCount">0</span></h2>
+    <p id="readinessIntro" class="legend-paragraph" style="display:none">
+      Multi-stage rollout plans for cross-cutting initiatives. Each stage shows the BASELINE (state at plan inception)
+      and the CURRENT status. Hand-curated in
+      <code>docs/status/production-readiness.json</code>; the update workflow is documented inside that file.
+    </p>
+    <div id="readinessTracks"></div>
 
     <h2>Pool (8 slots) · Saturation <span class="count" id="saturation">0%</span></h2>
     <div class="pool-grid" id="poolGrid"></div>
@@ -426,6 +469,110 @@
         ...activeRows,
         ...recoveredRows,
       ].join("");
+    }
+
+    // ── Production-readiness tracks ───────────────────────────────────
+    //
+    // Source of truth: docs/status/production-readiness.json. The
+    // file's `_updateWorkflow` field documents the protocol for keeping
+    // baseline immutable + appending history rows on every status
+    // transition. We render that data here verbatim — no derivation,
+    // no auto-status, no surprises.
+    function escHtml(s) {
+      return String(s ?? "").replace(/[&<>"']/g, (c) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#x27;",
+      }[c]));
+    }
+    function renderReadinessStage(stage) {
+      const cur = stage.current || { status: "absent", summary: "" };
+      const base = stage.baseline || { status: "absent", summary: "" };
+      const changed = base.status !== cur.status;
+      const evidenceHtml = (stage.evidence || []).map(
+        (e) => `<a href="${escHtml(e.url)}" target="_blank" rel="noopener">${escHtml(e.label)}</a>`
+      ).join("");
+      const remainingHtml = (stage.remaining || []).length > 0
+        ? `<ul class="readiness-stage-remaining">${
+            stage.remaining.map((r) => `<li>${escHtml(r)}</li>`).join("")
+          }</ul>`
+        : "";
+      const arrow = changed ? " → " : " · ";
+      return `
+        <div class="readiness-stage s-${escHtml(cur.status)}">
+          <div class="readiness-stage-name">${escHtml(stage.name)}</div>
+          <div class="readiness-stage-deltarow"
+               title="${changed ? 'Status has changed since plan inception' : 'Same as baseline'}">
+            <span class="readiness-pill s-${escHtml(base.status)}">baseline: ${escHtml(base.status)}</span>
+            <span class="readiness-stage-arrow">${arrow}</span>
+            <span class="readiness-pill s-${escHtml(cur.status)}">current: ${escHtml(cur.status)}</span>
+          </div>
+          ${stage.rationale ? `<p class="readiness-stage-rationale">${escHtml(stage.rationale)}</p>` : ""}
+          <p class="readiness-stage-summary">${escHtml(cur.summary)}</p>
+          ${remainingHtml}
+          ${evidenceHtml ? `<div class="readiness-stage-evidence">${evidenceHtml}</div>` : ""}
+        </div>
+      `;
+    }
+    function renderReadinessHistory(history) {
+      if (!history || history.length === 0) return "";
+      const rows = [...history]
+        .reverse() // newest first
+        .map(
+          (h) => `
+            <div class="readiness-history-row">
+              <span class="readiness-history-date">${escHtml(h.date)}</span>
+              <span class="readiness-history-stage">${escHtml(h.stage)}</span>
+              <span class="readiness-history-delta">${escHtml(h.from)} → ${escHtml(h.to)}</span>
+              <span class="readiness-history-note">${escHtml(h.note)}${
+                h.commit
+                  ? ` <a href="${escHtml(h.commit)}" target="_blank" rel="noopener">(commit)</a>`
+                  : ""
+              }</span>
+            </div>
+          `
+        )
+        .join("");
+      return `
+        <div class="readiness-history">
+          <div class="readiness-history-title">History · newest first</div>
+          ${rows}
+        </div>
+      `;
+    }
+    function renderProductionReadiness(pr) {
+      const tracks = (pr && pr.tracks) || [];
+      const $header = $("readinessHeader");
+      const $intro = $("readinessIntro");
+      const $body = $("readinessTracks");
+      if (tracks.length === 0) {
+        $header.style.display = "none";
+        $intro.style.display = "none";
+        $body.innerHTML = "";
+        return;
+      }
+      $header.style.display = "";
+      $intro.style.display = "";
+      $("readinessCount").textContent = tracks.length;
+      $body.innerHTML = tracks
+        .map(
+          (t) => `
+            <div class="readiness-track">
+              <div class="readiness-track-header">
+                <span class="readiness-track-name">${escHtml(t.name)}</span>
+                ${
+                  t.primaryPackages && t.primaryPackages.length
+                    ? `<span class="readiness-track-pkgs">${escHtml(t.primaryPackages.join(" · "))}</span>`
+                    : ""
+                }
+              </div>
+              ${t.description ? `<p class="readiness-track-desc">${escHtml(t.description)}</p>` : ""}
+              <div class="readiness-stage-grid">
+                ${(t.stages || []).map(renderReadinessStage).join("")}
+              </div>
+              ${renderReadinessHistory(t.history)}
+            </div>
+          `
+        )
+        .join("");
     }
 
     function renderWave(wave, depth) {
@@ -624,6 +771,7 @@
       $("modelSummary").textContent = (data.meta && data.meta.modelSummary) || "";
 
       renderMainState(s.mainState || null, data.waves || []);
+      renderProductionReadiness(s.productionReadiness || null);
       renderPool(data.pool || { slots: [] });
       renderQueue(data.queue || []);
       renderPrActivity(data.recentPrActivity || []);
