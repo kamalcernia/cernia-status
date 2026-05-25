@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-25T23:09:20.438Z",
-    "lastUpdatedDisplay": "May 25, 2026 — 19:09 EDT",
+    "lastUpdatedIso": "2026-05-25T23:17:25.126Z",
+    "lastUpdatedDisplay": "May 25, 2026 — 19:17 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #159 feat(speech): ElevenLabs TTS production fetch tran"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "612 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #159 feat(speech): ElevenLabs TTS production fetch transport + ap. (refreshed May 25, 2026 — 19:09 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #159 feat(speech): ElevenLabs TTS production fetch transport + ap. (refreshed May 25, 2026 — 19:17 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -455,7 +455,8 @@
               "note": "Metrics collector wired into apps/api boot (apps/api/src/index.ts:1665). InMemoryMetricsCollector by default; CERNIA_VOICE_METRICS=off opts out. Emission points now actually run in production instead of routing to NoopMetricsCollector. Discovered via the shelf-ware audit — the seam had been shipped but never instantiated in apps/api, so every metric was silently dropped.",
               "commit": "https://github.com/kamalcernia/cernia/commit/2bff4ee6"
             }
-          ]
+          ],
+          "wave": "E"
         },
         {
           "id": "functionality-utilization",
@@ -805,7 +806,8 @@
               "to": "partial",
               "note": "Workflow template discovery (list/find/latest) + bot static-analysis endpoint live in apps/api. InMemoryTemplateRegistry seeded with the cernia-voice-followup template. 7 new integration tests. Scheduler + sandbox dry-run + j2c/j2d/j3g + admin UI remain. All 6 functionality-utilization stages are now partial — none absent."
             }
-          ]
+          ],
+          "wave": null
         },
         {
           "id": "external-integrations",
@@ -1054,7 +1056,8 @@
               "note": "TenantCustomization schema + applyTenantCustomization resolver + FHIR codec in @cernia/voice-agent. buildSystemPrompt systemPromptAugment injection (CLINIC INSTRUCTIONS block, after tone, before injection-defense). 24 unit tests. Admin UI /admin/voice-agent/customization (allowed intents, prompt augment, workflow templates, red-flag phrases, business hours). Admin API client getCustomization + updateCustomization. Remaining: apps/api endpoint mount + dialog-engine wiring + eval golden.",
               "commit": "fix/suite-1-admin-defects branch"
             }
-          ]
+          ],
+          "wave": "I"
         },
         {
           "id": "sample-data-elimination",
@@ -1316,9 +1319,1749 @@
               "note": "Desk workspace (all 7 (office-admin) tabs) fully wired to real backends. Dashboard: 4 stat tiles — live /fhir/Appointment date-range + /fhir/Patient?_summary=count + voiceAgentApi.getOverview('day'). Schedule: status-filter pills + appointment table with computed duration from /fhir/Appointment. Calls: paginated call log from voiceAgentApi.listCalls() with day/week/month window filter. Patients: searchable + paginated /fhir/Patient roster. No-shows: /fhir/Appointment?status=noshow with last-7/30/90-day range toggle. Settings: reminder/escalation/no-show-fee/urgent-line form (in-memory until desk-settings API endpoint ships). Waitlist: wired to new GET /waitlist/entries (resolves follow-up I-E-N5-admin-list-endpoint — added listEntriesForTenant to @cernia/scheduling PostgresWaitlistStore + route in apps/api waitlist-routes.ts). All 3 packages typecheck clean.",
               "commit": "fix/suite-1-admin-defects branch"
             }
+          ],
+          "wave": null
+        },
+        {
+          "id": "comprehensive-integration-testing",
+          "name": "CIT — Comprehensive Integration & Testing",
+          "description": "Closes four gates for every existing wave: integration ladder (B/A/O/P), backend integration tests against real services, Playwright E2E + multi-tenant + RBAC + PHI-boundary + accessibility, SaaS architecture conformance. Plus a fifth gate: zero unresolved deferred items. See .claude/plans/idempotent-growing-dahl.md.",
+          "wave": "CIT",
+          "primaryPackages": [
+            "packages/testing-real-services",
+            "tests/e2e",
+            "tests/external-fakes"
+          ],
+          "stages": [
+            {
+              "id": "audit-tool",
+              "name": "Phase 5 — Build integration-audit tool",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "complete",
+                "asOf": "2026-05-25",
+                "summary": "scripts/audit-wave-integration.mjs shipped; emits 5-state ladder per wave into docs/status/wave-integration-ladder.json + dated MD snapshot."
+              },
+              "evidence": [],
+              "remaining": []
+            },
+            {
+              "id": "deferred-audit",
+              "name": "Deferred-items audit (fifth gate)",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "complete",
+                "asOf": "2026-05-25",
+                "summary": "scripts/audit-deferred-items.mjs shipped; first run surfaced 1430 items (249 blockers / 572 tech-debt / 609 review) across 8 kinds. Output at docs/status/deferred-items.json."
+              },
+              "evidence": [],
+              "remaining": [
+                "Refine wave-inference for unassigned items (1235 currently unassigned)",
+                "Wire WONTFIX demotion flow + docs/decisions/wontfix-*.md authoring",
+                "Surface in status-portal HTML \"Deferred Items\" panel (Phase 9)"
+              ]
+            },
+            {
+              "id": "saas-conformance",
+              "name": "Phase 7 — SaaS architecture conformance",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "complete",
+                "asOf": "2026-05-25",
+                "summary": "scripts/saas-conformance.mjs shipped. 0 blocker-severity violations across 6 architecture invariants (migration tenant_id, query tenant filter, ops PHI boundary, no PHI in logs, BAA enforcement, three-app boundary). 384 in-process-stub usages tagged tech-debt — Phase 2 abolition target."
+              },
+              "evidence": [],
+              "remaining": []
+            },
+            {
+              "id": "harness",
+              "name": "Phase 1 — Real-services test harness",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "packages/testing-real-services pending. createIsolatedTestEnv() factory: per-test Postgres schema + Redis prefix + MinIO bucket + NATS namespace."
+              },
+              "evidence": [],
+              "remaining": [
+                "Build packages/testing-real-services/src/index.ts",
+                "Per-test fresh Postgres schema with migrations applied",
+                "Redis / MinIO / NATS / Mailpit per-test namespacing + cleanup"
+              ]
+            },
+            {
+              "id": "stubs-abolished",
+              "name": "Phase 2 — Abolish in-process stubs",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "384 usages of pg-mem / InMemory* in tests + 6 production InMemory adapters. Replace with real-service-backed adapters; delete pgmem-polyfills.ts."
+              },
+              "evidence": [],
+              "remaining": [
+                "Migration 054 — oidc_state (replaces InMemoryOidcStateStore)",
+                "Migration 055 — tenant_customizations (replaces InMemoryTenantCustomizationStore)",
+                "Finish Redis adapter for CallerRateLimiter (production-only)",
+                "Migrate ~hundreds of *.test.ts files off pg-mem",
+                "Delete packages/storage/src/testing/pgmem-polyfills.ts",
+                "Delete remaining `class InMemory*` declarations"
+              ]
+            },
+            {
+              "id": "external-fakes",
+              "name": "Phase 3 — External API hybrid layer",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "tests/external-fakes/ for Twilio/Stripe sandbox; Anthropic/OpenAI VCR cassettes; Deepgram/ElevenLabs local fake servers."
+              },
+              "evidence": [],
+              "remaining": [
+                "Twilio sandbox-mode credentials documented",
+                "Stripe test-mode credentials documented",
+                "tests/external-fakes/cassette-player.ts (nock-based)",
+                "tests/external-fakes/deepgram-fake.ts (WebSocket emulator)",
+                "tests/external-fakes/elevenlabs-fake.ts (HTTP TTS emulator)",
+                "tests/external-services.md (per-provider strategy doc)"
+              ]
+            },
+            {
+              "id": "playwright-project",
+              "name": "Phase 6 — Playwright E2E project",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "tests/e2e/ with cross-app specs (onboarding / multi-tenant-isolation / rbac / phi-boundary / a11y) + per-wave folders tagged @wave-X."
+              },
+              "evidence": [],
+              "remaining": [
+                "tests/e2e/playwright.config.ts",
+                "tests/e2e/fixtures/{isolated-env, tenants, auth}.ts",
+                "tests/e2e/cross-app/* (5 cross-cutting specs)",
+                "Per-wave tests/e2e/wave-<id>/*.spec.ts folders"
+              ]
+            },
+            {
+              "id": "testcontainers-ci",
+              "name": "Phase 8 — testcontainers CI workflow",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": ".github/workflows/comprehensive-tests.yml: spins up postgres/redis/minio/nats/mailpit via testcontainers; runs unit + integration + Playwright + 3 audit scripts. Required check on PR."
+              },
+              "evidence": [],
+              "remaining": [
+                "Workflow YAML with testcontainers spin-up",
+                "pnpm test + pnpm test:e2e + 3 audit scripts in job matrix",
+                "Required-check enforcement via branch protection"
+              ]
+            },
+            {
+              "id": "status-portal-extension",
+              "name": "Phase 9 — Status portal UI extension",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "docs/status/live-status.html renderWave() extended with 5 badge groups (B/A/O/P + Backend + E2E + SaaS + Deferred). Production Readiness Scorecard section. Deferred Items panel."
+              },
+              "evidence": [],
+              "remaining": [
+                "renderWave() badge groups",
+                "Production Readiness Scorecard section",
+                "Deferred Items panel with vscode://file deep-links",
+                "update-status.mjs derived-fields allowlist extension"
+              ]
+            },
+            {
+              "id": "dynamic-updates",
+              "name": "Phase 0 — Dynamic status-update mechanism",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "post-commit hook + GH Actions on push to main + dev-mode file watcher + scripts/close-gap.mjs. Status mirror reflects closures within ~5s; cron is safety net."
+              },
+              "evidence": [],
+              "remaining": [
+                ".git/hooks/post-commit + scripts/install-hooks.sh",
+                ".github/workflows/status-mirror-update.yml",
+                "scripts/watch-status.mjs (chokidar dev watcher)",
+                "scripts/close-gap.mjs (typed closure CLI)"
+              ]
+            },
+            {
+              "id": "closure-passes",
+              "name": "Phase 12 — Close every wave in 7 priority passes",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Per-gap loop per wave: backend wired → admin/ops/patient page hits real route → Playwright spec → multi-tenant + RBAC + PHI + a11y assertions → SaaS conformance clean → deferred items zero. All five gates green before flipping a wave."
+              },
+              "evidence": [],
+              "remaining": [
+                "Pass 1: ERX + UI",
+                "Pass 2: E + dependent F / I / J / W (voice-agent stack)",
+                "Pass 3: G (caregiver-federation, including SAML 2.0)",
+                "Pass 4: O + P + Q (AI / ML / telehealth-RPM)",
+                "Pass 5: K + L + M + N + R + S + T + U + V",
+                "Pass 6: X + Z + Y + DD + AA + BB",
+                "Pass 7: A + B + C + D + H + H-EXT + H-EXT-2 + CC (foundation + catalogs)"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prod-hipaa-artifacts",
+          "name": "PROD-P1 — HIPAA Compliance Artifacts",
+          "description": "Security Risk Assessment, BAA registry, audit-log retention proof, breach playbook, workforce training log. Required by 45 CFR §164.308.",
+          "wave": "PROD",
+          "primaryPackages": [],
+          "dependencies": [],
+          "stages": [
+            {
+              "id": "scope",
+              "name": "PROD-P1 — HIPAA Compliance Artifacts",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started."
+              },
+              "evidence": [],
+              "remaining": [
+                "docs/compliance/sra/security-risk-assessment.md",
+                "docs/compliance/baa-registry.json + executed-BAA log",
+                "Audit-log 6-year retention proof (SELECT COUNT)",
+                "docs/compliance/breach-playbook.md",
+                "Workforce training log",
+                "KMS-rotation evidence (cross-reference existing tenant-secret-key-rotation runbook)"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prod-security-automation",
+          "name": "PROD-P2 — Security Automation",
+          "description": "SAST + dep scanning + secrets scanning + SBOM + DAST. SOC 2 evidence.",
+          "wave": "PROD",
+          "primaryPackages": [],
+          "dependencies": [],
+          "stages": [
+            {
+              "id": "scope",
+              "name": "PROD-P2 — Security Automation",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started."
+              },
+              "evidence": [],
+              "remaining": [
+                "Semgrep + CodeQL SAST workflow",
+                "Snyk / Dependabot for npm + pnpm-lock.yaml",
+                "gitleaks for committed secrets",
+                "CycloneDX SBOM per release",
+                "OWASP ZAP DAST against staging"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prod-dr-backup",
+          "name": "PROD-P3 — DR / Backup / Restore",
+          "description": "Postgres PITR + cross-region replica + tenant-export. RTO ≤ 1h, RPO ≤ 5 min documented and drilled.",
+          "wave": "PROD",
+          "primaryPackages": [],
+          "dependencies": [
+            "comprehensive-integration-testing/harness"
+          ],
+          "stages": [
+            {
+              "id": "scope",
+              "name": "PROD-P3 — DR / Backup / Restore",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started."
+              },
+              "evidence": [],
+              "remaining": [
+                "Postgres PITR enabled",
+                "Cross-region replica drilled",
+                "scripts/dr-restore-drill.sh + quarterly runbook",
+                "Right-to-portability tenant-export endpoint tested",
+                "RTO + RPO measurements committed"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prod-observability",
+          "name": "PROD-P4 — Observability",
+          "description": "OpenTelemetry + Sentry + correlation-ID structured logs + SLOs + PagerDuty + public status page.",
+          "wave": "PROD",
+          "primaryPackages": [],
+          "dependencies": [],
+          "stages": [
+            {
+              "id": "scope",
+              "name": "PROD-P4 — Observability",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started."
+              },
+              "evidence": [],
+              "remaining": [
+                "OpenTelemetry tracing across all 4 apps",
+                "Sentry init in each app",
+                "SLO definitions per service",
+                "PagerDuty / Opsgenie alert routing",
+                "apps/status-page (public status.cernia.io)"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prod-performance",
+          "name": "PROD-P5 — Performance / Load Testing",
+          "description": "k6 scripts for voice-agent latency SLA + FHIR Bulk Data + multi-tenant noisy-neighbor. Regression gate.",
+          "wave": "PROD",
+          "primaryPackages": [],
+          "dependencies": [
+            "comprehensive-integration-testing/testcontainers-ci"
+          ],
+          "stages": [
+            {
+              "id": "scope",
+              "name": "PROD-P5 — Performance / Load Testing",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started."
+              },
+              "evidence": [],
+              "remaining": [
+                "tests/perf/k6/voice-latency.js",
+                "tests/perf/k6/fhir-bulk.js",
+                "tests/perf/k6/multi-tenant-noisy.js",
+                "Grafana load-test dashboard",
+                "Regression CI gate (> 10% degradation blocks merge)"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prod-tenant-lifecycle",
+          "name": "PROD-P6 — Tenant Lifecycle Edge Cases",
+          "description": "Suspend / unsuspend / delete (right-to-erasure) / export / billing-failure→grace→suspend / tier-downgrade flows tested.",
+          "wave": "PROD",
+          "primaryPackages": [],
+          "dependencies": [
+            "comprehensive-integration-testing/playwright-project"
+          ],
+          "stages": [
+            {
+              "id": "scope",
+              "name": "PROD-P6 — Tenant Lifecycle Edge Cases",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started."
+              },
+              "evidence": [],
+              "remaining": [
+                "Suspend / unsuspend tenant flow + spec",
+                "Delete tenant with right-to-erasure scoped to PHI",
+                "Tenant export (right-to-portability)",
+                "Billing-failure → grace → suspend",
+                "Tier downgrade (Enterprise → Growth) data handling"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prod-cicd-hardening",
+          "name": "PROD-P7 — CI/CD Hardening",
+          "description": "Branch protection + CODEOWNERS + required checks + blue-green deploy + rollback automation.",
+          "wave": "PROD",
+          "primaryPackages": [],
+          "dependencies": [
+            "comprehensive-integration-testing/testcontainers-ci"
+          ],
+          "stages": [
+            {
+              "id": "scope",
+              "name": "PROD-P7 — CI/CD Hardening",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started."
+              },
+              "evidence": [],
+              "remaining": [
+                "Branch protection on main",
+                "CODEOWNERS for apps/api, packages/storage, security-critical packages",
+                "Required status checks (typecheck + test + lint + e2e + SAST + conformance)",
+                "Blue-green or canary deploy automation",
+                "Rollback automation tested in staging"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prod-ehr-migration-validation",
+          "name": "PROD-P8 — EHR Migration Validation",
+          "description": "Real Epic/Cerner/Athena Bulk Data sample dumps imported via installer → parity asserted.",
+          "wave": "PROD",
+          "primaryPackages": [],
+          "dependencies": [
+            "comprehensive-integration-testing/harness"
+          ],
+          "stages": [
+            {
+              "id": "scope",
+              "name": "PROD-P8 — EHR Migration Validation",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started."
+              },
+              "evidence": [],
+              "remaining": [
+                "tests/fixtures/ehr-exports/epic-sample.zip + parity validator",
+                "tests/fixtures/ehr-exports/cerner-sample.zip + parity validator",
+                "tests/fixtures/ehr-exports/athena-sample.zip + parity validator",
+                "Per-EHR runbook in docs/operations/migration/"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prod-browser-a11y-breadth",
+          "name": "PROD-P9 — Cross-Browser + Accessibility Breadth",
+          "description": "Playwright matrix: chromium + firefox + webkit + edge. axe-core on every page. Section 508 + WCAG-AA + ADA evidence pack.",
+          "wave": "PROD",
+          "primaryPackages": [],
+          "dependencies": [
+            "comprehensive-integration-testing/playwright-project"
+          ],
+          "stages": [
+            {
+              "id": "scope",
+              "name": "PROD-P9 — Cross-Browser + Accessibility Breadth",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started."
+              },
+              "evidence": [],
+              "remaining": [
+                "Playwright projects[] for chromium/firefox/webkit/edge",
+                "axe-core on every apps/admin, apps/patient, apps/installer page",
+                "Section 508 + WCAG-AA + ADA evidence pack"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prod-clinical-safety",
+          "name": "PROD-P10 — Clinical Safety Review",
+          "description": "CDS rule audit + ML bias/fairness on production-mirror + SaMD doc reviewed + clinical-advisory sign-off.",
+          "wave": "PROD",
+          "primaryPackages": [],
+          "dependencies": [
+            "comprehensive-integration-testing/harness",
+            "comprehensive-integration-testing/playwright-project"
+          ],
+          "stages": [
+            {
+              "id": "scope",
+              "name": "PROD-P10 — Clinical Safety Review",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started."
+              },
+              "evidence": [],
+              "remaining": [
+                "docs/clinical/cds-rule-audit.md",
+                "tests/clinical/known-incidents.spec.ts (DDI / allergy / dose-range)",
+                "ML bias/fairness report on production-mirror dataset",
+                "Clinical-advisory sign-off recorded"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prod-finops",
+          "name": "PROD-P11 — FinOps / Per-Tenant Cost Tracking",
+          "description": "LLM tokens + voice minutes + storage + compute per tenant. Margin per tier.",
+          "wave": "PROD",
+          "primaryPackages": [],
+          "dependencies": [
+            "comprehensive-integration-testing/status-portal-extension"
+          ],
+          "stages": [
+            {
+              "id": "scope",
+              "name": "PROD-P11 — FinOps / Per-Tenant Cost Tracking",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started."
+              },
+              "evidence": [],
+              "remaining": [
+                "packages/finops/src/per-tenant-cost-tracker.ts",
+                "Cost-attribution wired for Anthropic + OpenAI + Twilio + Deepgram + ElevenLabs",
+                "Postgres storage GB + compute minutes tracked",
+                "FinOps dashboard in apps/cernia-ops",
+                "Margin per tier (sandbox / growth / enterprise) computed monthly"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prod-fhir-conformance",
+          "name": "PROD-P12 — FHIR Conformance + API Versioning",
+          "description": "Inferno / Crucible against /CapabilityStatement. SMART App Launch cert. Da Vinci HRex/PDex profiles.",
+          "wave": "PROD",
+          "primaryPackages": [],
+          "dependencies": [],
+          "stages": [
+            {
+              "id": "scope",
+              "name": "PROD-P12 — FHIR Conformance + API Versioning",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started."
+              },
+              "evidence": [],
+              "remaining": [
+                "docs/compliance/fhir-conformance/inferno-report.html",
+                "SMART App Launch certification",
+                "Da Vinci HRex / PDex profile validation",
+                "Deprecation policy documented",
+                "API-change CI gate via openapi-diff"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prod-customer-facing",
+          "name": "PROD-P13 — Customer-Facing Trust + Support",
+          "description": "Public status page + support ticketing + in-app help + sign-up funnel tested.",
+          "wave": "PROD",
+          "primaryPackages": [],
+          "dependencies": [],
+          "stages": [
+            {
+              "id": "scope",
+              "name": "PROD-P13 — Customer-Facing Trust + Support",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started."
+              },
+              "evidence": [],
+              "remaining": [
+                "status.cernia.io public status page",
+                "Support ticketing (Zendesk / Linear) wired",
+                "In-app help/tour",
+                "Sign-up funnel + trial→paid conversion spec",
+                "Pricing/marketing page parity with installer"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prod-mobile-distribution",
+          "name": "PROD-P14 — Mobile App Distribution",
+          "description": "R-* packages built to Android + iOS bundles. App Store + Play Store submission. Push notifications.",
+          "wave": "PROD",
+          "primaryPackages": [],
+          "dependencies": [
+            "comprehensive-integration-testing/playwright-project"
+          ],
+          "stages": [
+            {
+              "id": "scope",
+              "name": "PROD-P14 — Mobile App Distribution",
+              "rationale": "",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started at plan time."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not started."
+              },
+              "evidence": [],
+              "remaining": [
+                "Android bundle build + signing",
+                "iOS bundle build + signing",
+                "App Store submission listing",
+                "Play Store submission listing",
+                "MDM (Intune / JAMF) integration tested",
+                "Push notifications wired",
+                "Mobile-specific accessibility"
+              ]
+            }
           ]
         }
-      ]
+      ],
+      "deferredItems": {
+        "$generatedFrom": "scripts/audit-deferred-items.mjs → docs/status/deferred-items.json",
+        "generatedAt": "2026-05-25T23:08:07.553Z",
+        "totalCount": 1430,
+        "bySeverity": {
+          "blocker": 249,
+          "tech-debt": 572,
+          "review": 609
+        },
+        "byKind": {
+          "deferred-marker": 188,
+          "todo-comment": 308,
+          "docstring-caveat": 264,
+          "type-cheat-cast": 561,
+          "type-cheat": 48,
+          "not-configured-fallback": 45,
+          "skipped-test": 7,
+          "json-deferred": 9
+        },
+        "byWave": {
+          "(unassigned)": 1235,
+          "G": 35,
+          "E": 78,
+          "H": 4,
+          "DD": 5,
+          "ERX": 1,
+          "F": 11,
+          "I": 15,
+          "J": 1,
+          "K": 10,
+          "L": 1,
+          "M": 5,
+          "O": 6,
+          "P": 2,
+          "R": 4,
+          "W": 9,
+          "X": 8
+        },
+        "blockers": [
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/admin/src/app/(office-admin)/desk/_components/desk-gate-banner.tsx",
+            "line": 10,
+            "snippet": "-mode: the demo principal is hard-coded to `office-admin`;",
+            "marker": "Scaffold",
+            "id": "deferred-00000"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/admin/src/app/admin/api-keys/__tests__/api-key-issue.test.ts",
+            "line": 147,
+            "snippet": "navigator.clipboard",
+            "marker": "Stub",
+            "id": "deferred-00006"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/admin/src/app/admin/patient-portal/accounts/invite/page.tsx",
+            "line": 13,
+            "snippet": "// Stub",
+            "marker": "Stub",
+            "id": "deferred-00012"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/admin/src/app/admin/patient-portal/__tests__/portal-links-page.test.ts",
+            "line": 6,
+            "snippet": ": PortalLinkRow is a custom view-type NOT directly representable as",
+            "marker": "DEFERRED",
+            "id": "deferred-00018"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/admin/src/app/admin/reports/new/page.tsx",
+            "line": 477,
+            "snippet": "— production: POST /fhir/R4/Report with body derived from state",
+            "marker": "Stub",
+            "id": "deferred-0001c"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/admin/src/app/forms/[taskId]/page.tsx",
+            "line": 337,
+            "snippet": "may throw; ignore in Phase 2.5.",
+            "marker": "Stub",
+            "id": "deferred-00021"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/admin/src/components/sidebar.tsx",
+            "line": 513,
+            "snippet": "routes — visible but disabled-style to document future structure */}",
+            "marker": "Deferred",
+            "id": "deferred-0002a"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/admin/src/lib/use-current-roles.ts",
+            "line": 6,
+            "snippet": "-mode: returns ['tenant-admin'] so the dev experience has",
+            "marker": "Scaffold",
+            "id": "deferred-0002f"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/admin/src/lib/use-current-roles.ts",
+            "line": 24,
+            "snippet": "-mode default: `['tenant-admin']` (full editing capability).",
+            "marker": "Scaffold",
+            "id": "deferred-0002h"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/api/src/admin-tenants-notifications.test.ts",
+            "line": 343,
+            "snippet": "mode: response carries the plaintext token; the email body",
+            "marker": "Stub",
+            "id": "deferred-0002m"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/api/src/admin-tenants-routes.ts",
+            "line": 233,
+            "snippet": "send is recorded so tests can assert on it.",
+            "marker": "stub",
+            "id": "deferred-0002s"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/api/src/admin-tenants-routes.ts",
+            "line": 324,
+            "snippet": "email send if a stub backend is wired).  In production",
+            "marker": "stub",
+            "id": "deferred-0002t"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/api/src/admin-tenants-routes.ts",
+            "line": 634,
+            "snippet": ".",
+            "marker": "out of scope",
+            "id": "deferred-0002w"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/caregiver-federation-routes.ts",
+            "line": 244,
+            "snippet": "return { error: 'jit-store-not-configured' };",
+            "marker": "jit-store-not-configured",
+            "wave": "G",
+            "id": "deferred-0003h"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/caregiver-federation-routes.ts",
+            "line": 277,
+            "snippet": "return { error: 'jit-store-not-configured' };",
+            "marker": "jit-store-not-configured",
+            "wave": "G",
+            "id": "deferred-0003i"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/caregiver-federation-routes.ts",
+            "line": 310,
+            "snippet": "return { error: 'jit-store-not-configured', requests: [] };",
+            "marker": "jit-store-not-configured",
+            "wave": "G",
+            "id": "deferred-0003j"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/caregiver-federation-routes.ts",
+            "line": 358,
+            "snippet": "return { error: 'break-glass-store-not-configured' };",
+            "marker": "break-glass-store-not-configured",
+            "wave": "G",
+            "id": "deferred-0003k"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/caregiver-federation-routes.ts",
+            "line": 401,
+            "snippet": "error: 'break-glass-store-not-configured',",
+            "marker": "break-glass-store-not-configured",
+            "wave": "G",
+            "id": "deferred-0003l"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/caregiver-federation-routes.ts",
+            "line": 417,
+            "snippet": "return { error: 'delegation-store-not-configured' };",
+            "marker": "delegation-store-not-configured",
+            "wave": "G",
+            "id": "deferred-0003m"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/caregiver-federation-routes.ts",
+            "line": 443,
+            "snippet": "return { error: 'delegation-store-not-configured' };",
+            "marker": "delegation-store-not-configured",
+            "wave": "G",
+            "id": "deferred-0003n"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/caregiver-federation-routes.ts",
+            "line": 473,
+            "snippet": "return { error: 'delegation-store-not-configured' };",
+            "marker": "delegation-store-not-configured",
+            "wave": "G",
+            "id": "deferred-0003o"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/caregiver-federation-routes.ts",
+            "line": 504,
+            "snippet": "return { error: 'delegation-store-not-configured' };",
+            "marker": "delegation-store-not-configured",
+            "wave": "G",
+            "id": "deferred-0003p"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/caregiver-federation-routes.ts",
+            "line": 539,
+            "snippet": "return { error: 'delegation-store-not-configured', delegations: [] };",
+            "marker": "delegation-store-not-configured",
+            "wave": "G",
+            "id": "deferred-0003q"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/caregiver-federation-routes.ts",
+            "line": 556,
+            "snippet": "return { error: 'delegation-store-not-configured', delegations: [] };",
+            "marker": "delegation-store-not-configured",
+            "wave": "G",
+            "id": "deferred-0003r"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/caregiver-federation-routes.ts",
+            "line": 580,
+            "snippet": "return { error: 'attestation-store-not-configured' };",
+            "marker": "attestation-store-not-configured",
+            "wave": "G",
+            "id": "deferred-0003s"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/caregiver-federation-routes.ts",
+            "line": 611,
+            "snippet": "return { error: 'attestation-store-not-configured' };",
+            "marker": "attestation-store-not-configured",
+            "wave": "G",
+            "id": "deferred-0003t"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/caregiver-federation-routes.ts",
+            "line": 657,
+            "snippet": "return { error: 'attestation-store-not-configured' };",
+            "marker": "attestation-store-not-configured",
+            "wave": "G",
+            "id": "deferred-0003u"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/caregiver-federation-routes.ts",
+            "line": 700,
+            "snippet": "return { error: 'attestation-store-not-configured' };",
+            "marker": "attestation-store-not-configured",
+            "wave": "G",
+            "id": "deferred-0003v"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/caregiver-federation-routes.ts",
+            "line": 740,
+            "snippet": "return { error: 'attestation-store-not-configured' };",
+            "marker": "attestation-store-not-configured",
+            "wave": "G",
+            "id": "deferred-0003w"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/caregiver-federation-routes.ts",
+            "line": 762,
+            "snippet": "return { error: 'attestation-store-not-configured', items: [] };",
+            "marker": "attestation-store-not-configured",
+            "wave": "G",
+            "id": "deferred-0003x"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/api/src/cds-hooks-routes.ts",
+            "line": 113,
+            "snippet": "interpreted. Schema is required by the",
+            "marker": "intentionally not",
+            "id": "deferred-0003y"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/cernia-ops-routes.ts",
+            "line": 373,
+            "snippet": "error: 'voice-agent-fleet-not-configured',",
+            "marker": "voice-agent-fleet-not-configured",
+            "id": "deferred-0003z"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/cernia-ops-routes.ts",
+            "line": 405,
+            "snippet": "error: 'voice-agent-fleet-not-configured',",
+            "marker": "voice-agent-fleet-not-configured",
+            "id": "deferred-00040"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/cernia-ops-routes.ts",
+            "line": 433,
+            "snippet": "await reply.code(503).send({ error: 'voice-agent-fleet-not-configured' });",
+            "marker": "voice-agent-fleet-not-configured",
+            "id": "deferred-00041"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/cernia-ops-routes.ts",
+            "line": 454,
+            "snippet": "error: 'feature-flag-store-not-configured',",
+            "marker": "feature-flag-store-not-configured",
+            "id": "deferred-00042"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/cernia-ops-routes.ts",
+            "line": 495,
+            "snippet": "await reply.code(503).send({ error: 'feature-flag-store-not-configured' });",
+            "marker": "feature-flag-store-not-configured",
+            "id": "deferred-00043"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/cernia-ops-routes.ts",
+            "line": 563,
+            "snippet": "await reply.code(503).send({ error: 'voice-agent-fleet-not-configured' });",
+            "marker": "voice-agent-fleet-not-configured",
+            "id": "deferred-00046"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/api/src/custom-domain/acme-port.ts",
+            "line": 24,
+            "snippet": "is itself the production-default until the adapter lands —",
+            "marker": "stub",
+            "id": "deferred-0004c"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/api/src/custom-domain/acme-port.ts",
+            "line": 72,
+            "snippet": "adapter — production deploys must install acme-client",
+            "marker": "Stub",
+            "id": "deferred-0004d"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/api/src/custom-domain/acme-port.ts",
+            "line": 112,
+            "snippet": "(production-default until acme-client is wired)",
+            "marker": "Stub",
+            "id": "deferred-0004e"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/api/src/dns-bimi/bimi-port.ts",
+            "line": 21,
+            "snippet": "-by-default** posture:",
+            "marker": "stub",
+            "id": "deferred-0004l"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/api/src/dns-caa/caa-publisher.ts",
+            "line": 78,
+            "snippet": "provider — boot default",
+            "marker": "Stub",
+            "id": "deferred-0004r"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/api/src/dns-dmarc/dmarc-port.ts",
+            "line": 235,
+            "snippet": ".  Always populated so customers ALWAYS publish a `rua` even",
+            "marker": "stub",
+            "id": "deferred-0004x"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/api/src/dns-subsub/port.ts",
+            "line": 15,
+            "snippet": "fails-loud so route 9 (\"publish\") returns a 503 until the",
+            "marker": "stub",
+            "id": "deferred-00054"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/api/src/dns-subsub/port.ts",
+            "line": 80,
+            "snippet": "implementation — fails-loud for the publish path, returns empty for",
+            "marker": "Stub",
+            "id": "deferred-00055"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/api/src/dns-vanity/routes.ts",
+            "line": 60,
+            "snippet": "returns `standard` for every tenant so caps are most",
+            "marker": "stub",
+            "id": "deferred-00057"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/api/src/index.ts",
+            "line": 1362,
+            "snippet": "resolver returns empty (production wires recursive DNSSEC-aware",
+            "marker": "Stub",
+            "id": "deferred-00062"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/api/src/mapping-executor-integration.test.ts",
+            "line": 12,
+            "snippet": "that returned null) and the agent's output must surface as the",
+            "marker": "stub",
+            "id": "deferred-00067"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/payment-dispatcher.test.ts",
+            "line": 7,
+            "snippet": "*  - Stripe Connect not configured → `payments-not-configured`; no SMS.",
+            "marker": "payments-not-configured",
+            "id": "deferred-0006n"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/payment-dispatcher.test.ts",
+            "line": 212,
+            "snippet": "expect(r.kind).toBe('payments-not-configured');",
+            "marker": "payments-not-configured",
+            "id": "deferred-0006o"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/payment-dispatcher.test.ts",
+            "line": 222,
+            "snippet": "expect(r.kind).toBe('payments-not-configured');",
+            "marker": "payments-not-configured",
+            "id": "deferred-0006p"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/payment-dispatcher.ts",
+            "line": 126,
+            "snippet": "return { kind: 'payments-not-configured' };",
+            "marker": "payments-not-configured",
+            "id": "deferred-0006q"
+          },
+          {
+            "kind": "skipped-test",
+            "severity": "blocker",
+            "path": "apps/api/src/portal-notify.test.ts",
+            "line": 626,
+            "snippet": "describe.skip('T12: AppointmentReminderJob dispatches + marks sent (legacy D1 interface — superseded by E-N7)', () => {",
+            "marker": "describe.skip",
+            "id": "deferred-0006z"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/schedule-import-routes.ts",
+            "line": 577,
+            "snippet": "error: 'manual-sync-not-configured',",
+            "marker": "manual-sync-not-configured",
+            "id": "deferred-00074"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/sso-routes.test.ts",
+            "line": 25,
+            "snippet": "expect(body.error).toBe('sso-not-configured');",
+            "marker": "sso-not-configured",
+            "wave": "G",
+            "id": "deferred-00076"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/sso-routes.test.ts",
+            "line": 35,
+            "snippet": "expect(body.error).toBe('sso-not-configured');",
+            "marker": "sso-not-configured",
+            "wave": "G",
+            "id": "deferred-00077"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/sso-routes.ts",
+            "line": 18,
+            "snippet": "* a structured \"sso-not-configured\" envelope. This mirrors the",
+            "marker": "sso-not-configured",
+            "wave": "G",
+            "id": "deferred-00079"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/sso-routes.ts",
+            "line": 55,
+            "snippet": "error: 'sso-not-configured',",
+            "marker": "sso-not-configured",
+            "wave": "G",
+            "id": "deferred-0007c"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/api/src/sso-tenant-factory.test.ts",
+            "line": 55,
+            "snippet": "the auth-providers deps. We only need to verify that the",
+            "marker": "Stub",
+            "wave": "G",
+            "id": "deferred-0007e"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/api/src/sso-tenant-factory.ts",
+            "line": 20,
+            "snippet": "(tracked separately on the status portal):",
+            "marker": "Out of scope",
+            "wave": "G",
+            "id": "deferred-0007m"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/api/src/voice-budget-routes.ts",
+            "line": 17,
+            "snippet": "in this PR; the route returns hashes and the UI shows",
+            "marker": "not implemented",
+            "id": "deferred-0007v"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/api/src/voice-call-handler-e6.test.ts",
+            "line": 191,
+            "snippet": "appointment dispatcher.  Captures every call for assertions. */",
+            "marker": "Stub",
+            "wave": "E",
+            "id": "deferred-0007w"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/api/src/voice-call-handler-e7.test.ts",
+            "line": 192,
+            "snippet": "appointment dispatcher — not exercised in E-7 tests.",
+            "marker": "Stub",
+            "wave": "E",
+            "id": "deferred-0007x"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/voice-call-handler-e9.test.ts",
+            "line": 15,
+            "snippet": "*     no SMS sent; audit row carries `payments-not-configured` reason.",
+            "marker": "payments-not-configured",
+            "wave": "E",
+            "id": "deferred-0007y"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/voice-call-handler-e9.test.ts",
+            "line": 448,
+            "snippet": "h.payments.nextResult = { kind: 'payments-not-configured' };",
+            "marker": "payments-not-configured",
+            "wave": "E",
+            "id": "deferred-0007z"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/voice-call-handler-e9.test.ts",
+            "line": 452,
+            "snippet": "expect(row?.detail?.reason).toBe('payments-not-configured');",
+            "marker": "payments-not-configured",
+            "wave": "E",
+            "id": "deferred-00080"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/api/src/voice-call-handler-metering.test.ts",
+            "line": 188,
+            "snippet": "/r.opus', sha256: 'deadbeef' };",
+            "marker": "stub",
+            "wave": "E",
+            "id": "deferred-00081"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/voice-call-handler.ts",
+            "line": 511,
+            "snippet": "| { kind: 'payments-not-configured' }",
+            "marker": "payments-not-configured",
+            "wave": "E",
+            "id": "deferred-0008k"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/voice-call-handler.ts",
+            "line": 1995,
+            "snippet": "case 'payments-not-configured':",
+            "marker": "payments-not-configured",
+            "wave": "E",
+            "id": "deferred-0008l"
+          },
+          {
+            "kind": "not-configured-fallback",
+            "severity": "blocker",
+            "path": "apps/api/src/voice-call-handler.ts",
+            "line": 2001,
+            "snippet": "detail: { ok: false, reason: 'payments-not-configured' },",
+            "marker": "payments-not-configured",
+            "wave": "E",
+            "id": "deferred-0008m"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/patient/src/app/(portal)/forms/[taskId]/page.tsx",
+            "line": 134,
+            "snippet": ".",
+            "marker": "Stub",
+            "id": "deferred-0008v"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/patient/src/app/(portal)/settings/privacy/page.tsx",
+            "line": 40,
+            "snippet": "may throw.",
+            "marker": "Stub",
+            "id": "deferred-00091"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/patient/src/app/login/login-form.tsx",
+            "line": 52,
+            "snippet": "may throw in dev — swallow.",
+            "marker": "Stub",
+            "id": "deferred-00093"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/patient/src/app/login/login-form.tsx",
+            "line": 76,
+            "snippet": ".",
+            "marker": "Stub",
+            "id": "deferred-00094"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "apps/patient-android/__tests__/__mocks__/nativewind.ts",
+            "line": 2,
+            "snippet": "for nativewind — no-ops in test environment.",
+            "marker": "Stub",
+            "id": "deferred-0009v"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/ai-governance/src/cards/card-renderer.ts",
+            "line": 66,
+            "snippet": "');",
+            "marker": "Out of Scope",
+            "id": "deferred-0009z"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/ai-governance/src/cards/card-renderer.ts",
+            "line": 73,
+            "snippet": "');",
+            "marker": "Out of Scope",
+            "id": "deferred-000a0"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/ai-governance/src/samd/evidence-collector.ts",
+            "line": 74,
+            "snippet": ":**');",
+            "marker": "Out of scope",
+            "id": "deferred-000a3"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/auth/README.md",
+            "line": 8,
+            "snippet": "**.  Phase 4 introduces `@cernia/auth-providers`",
+            "marker": "deprecated",
+            "id": "deferred-000ac"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/auth-providers/src/providers/saml-provider.ts",
+            "line": 46,
+            "snippet": "(handled by sibling layers):",
+            "marker": "Out of scope",
+            "id": "deferred-000at"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/brand-assets/src/antivirus-scanner.ts",
+            "line": 93,
+            "snippet": "scanner used in tests + local-dev.  Always returns `clean`",
+            "marker": "Stub",
+            "wave": "H",
+            "id": "deferred-000bd"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/brand-assets/src/antivirus-scanner.ts",
+            "line": 102,
+            "snippet": "for H1-C); production code MUST swap this out before",
+            "marker": "out of scope",
+            "wave": "H",
+            "id": "deferred-000be"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/catalog-abms-credentialing/src/dea-npi-validator.ts",
+            "line": 28,
+            "snippet": ", some legacy registrants",
+            "marker": "Deprecated",
+            "id": "deferred-000bj"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/catalog-abms-credentialing/src/dea-npi-validator.ts",
+            "line": 29,
+            "snippet": "D: 'practitioner',   // Deprecated",
+            "marker": "Deprecated",
+            "id": "deferred-000bk"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/catalog-abms-credentialing/src/dea-npi-validator.ts",
+            "line": 30,
+            "snippet": "E: 'practitioner',   // Deprecated",
+            "marker": "Deprecated",
+            "id": "deferred-000bl"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/catalog-fda-udi/src/api.ts",
+            "line": 176,
+            "snippet": "date — production integration should pull from FDA Recall DB",
+            "marker": "Stub",
+            "id": "deferred-000cl"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/catalog-fda-udi/src/api.ts",
+            "line": 191,
+            "snippet": "— real data available via FDA openFDA API:",
+            "marker": "Stub",
+            "id": "deferred-000cm"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/catalog-fda-udi/src/types.ts",
+            "line": 181,
+            "snippet": "result from getMaudeReportsForDevice(). */",
+            "marker": "Stub",
+            "id": "deferred-000cn"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/catalog-openehr-archetypes/src/adl-parser.ts",
+            "line": 11,
+            "snippet": "; the `definition` field stores the raw block as a string",
+            "marker": "out of scope",
+            "id": "deferred-000d6"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/config/src/defaults.ts",
+            "line": 463,
+            "snippet": "to Phase 14).",
+            "marker": "deferred",
+            "id": "deferred-000e0"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/connectors/src/adapters/all.test.ts",
+            "line": 62,
+            "snippet": "adapters — still throw NotImplementedError (x12-sender, custom)",
+            "marker": "Stub",
+            "id": "deferred-000e2"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/connectors/src/adapters/all.test.ts",
+            "line": 82,
+            "snippet": "adapters: protocolType + method presence + NotImplementedError",
+            "marker": "Stub",
+            "id": "deferred-000e3"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/connectors/src/auth-resolver.ts",
+            "line": 11,
+            "snippet": "(throws with clear error):",
+            "marker": "Not yet implemented",
+            "id": "deferred-000el"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/connectors/src/errors.ts",
+            "line": 43,
+            "snippet": "patterns.",
+            "marker": "scaffold",
+            "id": "deferred-000en"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/connectors/src/mapping-integration.ts",
+            "line": 28,
+            "snippet": "alias that wires no-op invokers — useful for unit tests that",
+            "marker": "deprecated",
+            "id": "deferred-000f3"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/connectors/src/mapping-integration.ts",
+            "line": 145,
+            "snippet": "stub invokers — retained for backwards-compat with callers that",
+            "marker": "Deprecated",
+            "id": "deferred-000f4"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/connectors/src/types.ts",
+            "line": 324,
+            "snippet": "for this PR: the voice-agent consumer wiring — see the",
+            "marker": "Out of scope",
+            "id": "deferred-000fn"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/connectors-athena/src/identity-handoff.ts",
+            "line": 14,
+            "snippet": "for this PR: the voice-agent consumer wiring — see the",
+            "marker": "Out of scope",
+            "id": "deferred-000fp"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/connectors-cerner/src/identity-handoff.ts",
+            "line": 15,
+            "snippet": "for this PR: the voice-agent consumer wiring — see the",
+            "marker": "Out of scope",
+            "id": "deferred-000ft"
+          },
+          {
+            "kind": "deferred-marker",
+            "severity": "blocker",
+            "path": "packages/connectors-epic/src/auth/backend-services.test.ts",
+            "line": 17,
+            "snippet": ".  Private keys are generated in-process with `jose.generateKeyPair`.",
+            "marker": "stub",
+            "id": "deferred-000g4"
+          }
+        ]
+      }
+    },
+    "cit": {
+      "lastAuditAt": "2026-05-25T23:10:42.135Z",
+      "backendRouteSymbolCount": 38,
+      "deferredItems": {
+        "total": 1430,
+        "bySeverity": {
+          "blocker": 249,
+          "tech-debt": 572,
+          "review": 609
+        },
+        "byKind": {
+          "deferred-marker": 188,
+          "todo-comment": 308,
+          "docstring-caveat": 264,
+          "type-cheat-cast": 561,
+          "type-cheat": 48,
+          "not-configured-fallback": 45,
+          "skipped-test": 7,
+          "json-deferred": 9
+        }
+      },
+      "saasConformance": {
+        "totalViolations": 384,
+        "totalBlockers": 0,
+        "byCheck": {
+          "migration-tenant-id": 0,
+          "query-tenant-filter": 0,
+          "ops-phi-boundary": 0,
+          "no-phi-in-logs": 0,
+          "baa-enforcement": 0,
+          "three-app-boundary": 0,
+          "no-in-process-stubs": 384
+        }
+      }
     }
   },
   "pool": {
@@ -1517,7 +3260,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
@@ -1578,7 +3321,8 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "deferredCount": 0
     },
     {
       "id": "B",
@@ -1777,7 +3521,24 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "integrationLadder": {
+        "backend": "shelf",
+        "admin": "n/a",
+        "ops": "n/a",
+        "patient": "n/a",
+        "usesSampleData": true,
+        "overall": "shelf",
+        "packageCount": 4,
+        "packages": [
+          "fhir-graph",
+          "mapping",
+          "patient-auth",
+          "smart-on-fhir"
+        ],
+        "rationale": []
+      },
+      "deferredCount": 0
     },
     {
       "id": "C",
@@ -1936,7 +3697,8 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "deferredCount": 0
     },
     {
       "id": "D",
@@ -2065,7 +3827,8 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "deferredCount": 0
     },
     {
       "id": "E",
@@ -2322,7 +4085,26 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "integrationLadder": {
+        "backend": "wired",
+        "admin": "shelf",
+        "ops": "n/a",
+        "patient": "n/a",
+        "usesSampleData": true,
+        "overall": "shelf",
+        "packageCount": 4,
+        "packages": [
+          "speech",
+          "telephony",
+          "voice-agent",
+          "voice-agent-evals"
+        ],
+        "rationale": [
+          "backend route(s) present but no @cernia/<pkg> import in apps/admin"
+        ]
+      },
+      "deferredCount": 78
     },
     {
       "id": "H",
@@ -2522,7 +4304,24 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "integrationLadder": {
+        "backend": "partial",
+        "admin": "wired",
+        "ops": "wired-with-sample-data",
+        "patient": "wired-with-sample-data",
+        "usesSampleData": true,
+        "overall": "partial",
+        "packageCount": 2,
+        "packages": [
+          "brand-assets",
+          "branding"
+        ],
+        "rationale": [
+          "route file exists but app.register() call not found in index.ts"
+        ]
+      },
+      "deferredCount": 4
     },
     {
       "id": "H-EXT",
@@ -2612,7 +4411,8 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "deferredCount": 0
     },
     {
       "id": "H-EXT-2",
@@ -2682,7 +4482,8 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "deferredCount": 0
     },
     {
       "id": "L",
@@ -2822,7 +4623,26 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "integrationLadder": {
+        "backend": "partial",
+        "admin": "shelf",
+        "ops": "n/a",
+        "patient": "n/a",
+        "usesSampleData": true,
+        "overall": "shelf",
+        "packageCount": 3,
+        "packages": [
+          "l1-multi-org-hierarchy",
+          "l2-idn-facility-rollup",
+          "l3-cross-org-reporting"
+        ],
+        "rationale": [
+          "route file exists but app.register() call not found in index.ts",
+          "backend route(s) present but no @cernia/<pkg> import in apps/admin"
+        ]
+      },
+      "deferredCount": 1
     },
     {
       "id": "K",
@@ -2952,7 +4772,28 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "integrationLadder": {
+        "backend": "partial",
+        "admin": "shelf",
+        "ops": "n/a",
+        "patient": "n/a",
+        "usesSampleData": true,
+        "overall": "shelf",
+        "packageCount": 5,
+        "packages": [
+          "k1a-persona-resource",
+          "k1b-persona-provider",
+          "k2-role-assignment-bulk",
+          "k3-role-aware-nav",
+          "k3a-workflow-surface-registry"
+        ],
+        "rationale": [
+          "route file exists but app.register() call not found in index.ts",
+          "backend route(s) present but no @cernia/<pkg> import in apps/admin"
+        ]
+      },
+      "deferredCount": 10
     },
     {
       "id": "M",
@@ -3104,7 +4945,26 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "integrationLadder": {
+        "backend": "partial",
+        "admin": "shelf",
+        "ops": "n/a",
+        "patient": "n/a",
+        "usesSampleData": true,
+        "overall": "shelf",
+        "packageCount": 3,
+        "packages": [
+          "m1-license-server",
+          "m2-metered-usage",
+          "m3-stripe-invoice"
+        ],
+        "rationale": [
+          "route file exists but app.register() call not found in index.ts",
+          "backend route(s) present but no @cernia/<pkg> import in apps/admin"
+        ]
+      },
+      "deferredCount": 5
     },
     {
       "id": "N",
@@ -3214,7 +5074,8 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "deferredCount": 0
     },
     {
       "id": "F",
@@ -3374,7 +5235,29 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "integrationLadder": {
+        "backend": "partial",
+        "admin": "shelf",
+        "ops": "n/a",
+        "patient": "n/a",
+        "usesSampleData": true,
+        "overall": "shelf",
+        "packageCount": 6,
+        "packages": [
+          "f1-usage-threshold-detector",
+          "f2-alert-queue",
+          "f3-dunning-workflow",
+          "f4-payment-retry-recovery",
+          "f5-grace-period-suspend",
+          "f6-churn-risk-scoring"
+        ],
+        "rationale": [
+          "route file exists but app.register() call not found in index.ts",
+          "backend route(s) present but no @cernia/<pkg> import in apps/admin"
+        ]
+      },
+      "deferredCount": 11
     },
     {
       "id": "G",
@@ -3514,7 +5397,26 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "integrationLadder": {
+        "backend": "shelf",
+        "admin": "n/a",
+        "ops": "n/a",
+        "patient": "n/a",
+        "usesSampleData": true,
+        "overall": "shelf",
+        "packageCount": 6,
+        "packages": [
+          "g-d1-caregiver-proxy",
+          "g-d2-access-delegation",
+          "g-d3-jit-access",
+          "g-d4-access-review-attestation",
+          "g-d5-saml-oidc-federation",
+          "g-d6-break-glass"
+        ],
+        "rationale": []
+      },
+      "deferredCount": 35
     },
     {
       "id": "I",
@@ -3634,7 +5536,29 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "integrationLadder": {
+        "backend": "partial",
+        "admin": "wired",
+        "ops": "n/a",
+        "patient": "n/a",
+        "usesSampleData": true,
+        "overall": "partial",
+        "packageCount": 7,
+        "packages": [
+          "i1-support-ticket-system",
+          "i18n",
+          "i2-sla-escalation",
+          "i3-kb-ai-replies",
+          "i4-customer-support-dashboard",
+          "i5-csm-workspace",
+          "i6-enterprise-account-mgmt"
+        ],
+        "rationale": [
+          "route file exists but app.register() call not found in index.ts"
+        ]
+      },
+      "deferredCount": 15
     },
     {
       "id": "J",
@@ -3784,7 +5708,30 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "integrationLadder": {
+        "backend": "wired",
+        "admin": "shelf",
+        "ops": "n/a",
+        "patient": "n/a",
+        "usesSampleData": true,
+        "overall": "shelf",
+        "packageCount": 8,
+        "packages": [
+          "bot-runtime",
+          "j1b-workflow-template-registry",
+          "j1c-sandbox-tenants",
+          "j1d-marketplace-checkout",
+          "j2c-fork-and-modify",
+          "j2d-ai-workflow-gen",
+          "j3g-background-bots",
+          "marketplace"
+        ],
+        "rationale": [
+          "backend route(s) present but no @cernia/<pkg> import in apps/admin"
+        ]
+      },
+      "deferredCount": 1
     },
     {
       "id": "O",
@@ -3944,7 +5891,29 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "integrationLadder": {
+        "backend": "partial",
+        "admin": "shelf",
+        "ops": "n/a",
+        "patient": "n/a",
+        "usesSampleData": true,
+        "overall": "shelf",
+        "packageCount": 6,
+        "packages": [
+          "o1-llm-gateway",
+          "o2-prompt-registry",
+          "o3-model-routing",
+          "o4-cost-tracking-budgets",
+          "o5-llm-safety-guardrails",
+          "o6-ai-observability-trace"
+        ],
+        "rationale": [
+          "route file exists but app.register() call not found in index.ts",
+          "backend route(s) present but no @cernia/<pkg> import in apps/admin"
+        ]
+      },
+      "deferredCount": 6
     },
     {
       "id": "P",
@@ -4104,7 +6073,27 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "integrationLadder": {
+        "backend": "shelf",
+        "admin": "n/a",
+        "ops": "n/a",
+        "patient": "n/a",
+        "usesSampleData": true,
+        "overall": "shelf",
+        "packageCount": 7,
+        "packages": [
+          "inference-platform",
+          "p1a-dataset-dsl",
+          "p1b-automl-orchestrator",
+          "p1c-ml-model-registry",
+          "p3a-ml-deployment-modes",
+          "p3b-drift-monitoring",
+          "p4a-samd-classifier"
+        ],
+        "rationale": []
+      },
+      "deferredCount": 2
     },
     {
       "id": "Q",
@@ -4234,7 +6223,26 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "integrationLadder": {
+        "backend": "shelf",
+        "admin": "n/a",
+        "ops": "n/a",
+        "patient": "n/a",
+        "usesSampleData": true,
+        "overall": "shelf",
+        "packageCount": 6,
+        "packages": [
+          "q-s1-webrtc-signaling",
+          "q-s2-rpm-ingestion",
+          "q-s3-telehealth-audit",
+          "q-s4-rpm-care-plans",
+          "q-s5-visit-summary",
+          "q-s6-rpm-adherence"
+        ],
+        "rationale": []
+      },
+      "deferredCount": 0
     },
     {
       "id": "T",
@@ -5085,7 +7093,30 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "integrationLadder": {
+        "backend": "n/a",
+        "admin": "n/a",
+        "ops": "n/a",
+        "patient": "n/a",
+        "usesSampleData": true,
+        "overall": "live",
+        "packageCount": 50,
+        "packages": [
+          "specialty-allergy-testing",
+          "specialty-anesth-preop",
+          "specialty-bh-screening",
+          "specialty-coagulation",
+          "specialty-dental-perio",
+          "specialty-derm-lesion",
+          "specialty-diabetes-thyroid",
+          "specialty-electrophysiology",
+          "specialty-emmed-triage",
+          "specialty-genom-cpic"
+        ],
+        "rationale": []
+      },
+      "deferredCount": 0
     },
     {
       "id": "R",
@@ -5235,7 +7266,23 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "integrationLadder": {
+        "backend": "shelf",
+        "admin": "n/a",
+        "ops": "n/a",
+        "patient": "n/a",
+        "usesSampleData": true,
+        "overall": "shelf",
+        "packageCount": 3,
+        "packages": [
+          "r1d-app-store-distribution",
+          "r3b-healthkit-googlefit",
+          "r3c-mobile-shortcuts-widgets"
+        ],
+        "rationale": []
+      },
+      "deferredCount": 4
     },
     {
       "id": "S",
@@ -5345,7 +7392,27 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "integrationLadder": {
+        "backend": "partial",
+        "admin": "shelf",
+        "ops": "n/a",
+        "patient": "n/a",
+        "usesSampleData": true,
+        "overall": "shelf",
+        "packageCount": 4,
+        "packages": [
+          "s5-lab-orderable-directory",
+          "s6-pacs-imaging-workflow",
+          "s7-pharmacy-fulfillment",
+          "s8-allergy-checking"
+        ],
+        "rationale": [
+          "route file exists but app.register() call not found in index.ts",
+          "backend route(s) present but no @cernia/<pkg> import in apps/admin"
+        ]
+      },
+      "deferredCount": 0
     },
     {
       "id": "U",
@@ -5455,7 +7522,8 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "deferredCount": 0
     },
     {
       "id": "V",
@@ -5555,7 +7623,8 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "deferredCount": 0
     },
     {
       "id": "W",
@@ -5655,7 +7724,28 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "integrationLadder": {
+        "backend": "partial",
+        "admin": "shelf",
+        "ops": "n/a",
+        "patient": "n/a",
+        "usesSampleData": true,
+        "overall": "shelf",
+        "packageCount": 5,
+        "packages": [
+          "w1-transactional-email",
+          "w2-email-templates",
+          "w3-deliverability",
+          "w4-unsubscribe-gdpr",
+          "w5-sms-push-delivery"
+        ],
+        "rationale": [
+          "route file exists but app.register() call not found in index.ts",
+          "backend route(s) present but no @cernia/<pkg> import in apps/admin"
+        ]
+      },
+      "deferredCount": 9
     },
     {
       "id": "AA",
@@ -5735,7 +7825,8 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "deferredCount": 0
     },
     {
       "id": "X",
@@ -5855,7 +7946,32 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "integrationLadder": {
+        "backend": "wired",
+        "admin": "shelf",
+        "ops": "wired-with-sample-data",
+        "patient": "n/a",
+        "usesSampleData": true,
+        "overall": "shelf",
+        "packageCount": 10,
+        "packages": [
+          "cernia-ops",
+          "saas-platform",
+          "subscription",
+          "x12-engine",
+          "x1a-tax-compliance",
+          "x1b-revenue-recognition",
+          "x1c-saas-metrics",
+          "x2a-enterprise-invoicing",
+          "x2b-contract-auto-renewal",
+          "x3c-discount-approval"
+        ],
+        "rationale": [
+          "backend route(s) present but no @cernia/<pkg> import in apps/admin"
+        ]
+      },
+      "deferredCount": 8
     },
     {
       "id": "BB",
@@ -5985,7 +8101,8 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "deferredCount": 0
     },
     {
       "id": "Z",
@@ -6095,7 +8212,8 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "deferredCount": 0
     },
     {
       "id": "Y",
@@ -6225,7 +8343,8 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "deferredCount": 0
     },
     {
       "id": "DD",
@@ -6356,7 +8475,8 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "deferredCount": 5
     },
     {
       "id": "CC",
@@ -7686,7 +9806,30 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "integrationLadder": {
+        "backend": "n/a",
+        "admin": "n/a",
+        "ops": "n/a",
+        "patient": "n/a",
+        "usesSampleData": true,
+        "overall": "live",
+        "packageCount": 70,
+        "packages": [
+          "catalog-abms-credentialing",
+          "catalog-acog-asrm-guidelines",
+          "catalog-ahrq-ccs",
+          "catalog-atc-who",
+          "catalog-cdc-notifiable",
+          "catalog-cdc-sti-guidelines",
+          "catalog-cdt-2024",
+          "catalog-clinicaltrials-gov",
+          "catalog-clinvar-dbsnp",
+          "catalog-cms-apc-opps"
+        ],
+        "rationale": []
+      },
+      "deferredCount": 0
     },
     {
       "id": "ERX",
@@ -7775,7 +9918,28 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "integrationLadder": {
+        "backend": "shelf",
+        "admin": "n/a",
+        "ops": "n/a",
+        "patient": "n/a",
+        "usesSampleData": true,
+        "overall": "shelf",
+        "packageCount": 8,
+        "packages": [
+          "erx-admin-ui",
+          "erx-composer-ui",
+          "erx-history-ui",
+          "erx-refill-queue-ui",
+          "erx-service",
+          "pdmp-adapter",
+          "pharmacy-directory",
+          "surescripts"
+        ],
+        "rationale": []
+      },
+      "deferredCount": 1
     },
     {
       "id": "UI",
@@ -7844,7 +10008,44 @@
         "checkedAt": "2026-05-23T23:19:31.194Z",
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
-      }
+      },
+      "deferredCount": 0
+    },
+    {
+      "id": "CIT",
+      "name": "CIT · Comprehensive Integration & Testing",
+      "status": "in-progress",
+      "agentsTotal": 11,
+      "agents": [],
+      "knownAgentCount": 3,
+      "pendingAgentCount": 8,
+      "completionPct": 27,
+      "mainState": {
+        "agentsInMain": 0,
+        "agentsTotal": 11,
+        "status": "in-progress"
+      },
+      "healthCheck": null,
+      "isMeta": true,
+      "synthesizedFrom": "production-readiness.json#comprehensive-integration-testing"
+    },
+    {
+      "id": "PROD",
+      "name": "PROD · Production Readiness (14 categories)",
+      "status": "pending",
+      "agentsTotal": 14,
+      "agents": [],
+      "knownAgentCount": 0,
+      "pendingAgentCount": 14,
+      "completionPct": 0,
+      "mainState": {
+        "agentsInMain": 0,
+        "agentsTotal": 14,
+        "status": "in-progress"
+      },
+      "healthCheck": null,
+      "isMeta": true,
+      "synthesizedFrom": "production-readiness.json#prod-*"
     }
   ],
   "recentPrActivity": [
