@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-25T08:39:24.916Z",
-    "lastUpdatedDisplay": "May 25, 2026 — 04:39 EDT",
+    "lastUpdatedIso": "2026-05-25T08:49:23.971Z",
+    "lastUpdatedDisplay": "May 25, 2026 — 04:49 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "612 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 25, 2026 — 04:39 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 25, 2026 — 04:49 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -970,15 +970,10 @@
                 "summary": "All three pages render from sample-*.ts despite their backend routes existing."
               },
               "current": {
-                "status": "absent",
+                "status": "complete",
                 "asOf": "2026-05-25",
-                "summary": "Not yet started."
-              },
-              "remaining": [
-                "Swap /admin/voice-agent/improvements page to fetch from /voice-agent/improvements; delete sample-voice-improvements.ts.",
-                "Swap voice-budget pages to fetch from /voice-budget routes; delete sample-voice-budget.ts.",
-                "Swap questionnaires page to fetch from /surveys routes; delete sample-questionnaires.ts (1 consumer)."
-              ]
+                "summary": "Done. 3 sample files deleted, 4 admin pages swapped (voice-budget + settings + voice-agent improvements + forms/[taskId]). New typed clients in /billing/voice-budget/api.ts + /voice-agent/improvements/api.ts. All HTTP 200; typecheck + lint clean."
+              }
             },
             {
               "id": "phase-3-2-core-saas",
@@ -990,16 +985,10 @@
                 "summary": "Tenant list, detail, branding, transitions, voice-agent persona, voice-agent credentials all key off SAMPLE_TENANTS today. /admin/users/* keys off SAMPLE_IAM. Billing pages key off sample-billing.ts."
               },
               "current": {
-                "status": "absent",
+                "status": "complete",
                 "asOf": "2026-05-25",
-                "summary": "Not yet started."
-              },
-              "remaining": [
-                "Build /admin/tenants list-and-get endpoints (admin-tenants-routes already has POST; add list + get + patch + delete).",
-                "Swap /admin/tenants/* pages to fetch real tenants; delete sample-tenants.ts.",
-                "Build /admin/iam list endpoints for Users / Roles / ServiceAccounts / ApiKeys (none exist today); swap /admin/users/* and delete sample-iam.ts.",
-                "Swap /admin/billing/* pages to fetch from billing-routes; delete sample-billing.ts."
-              ]
+                "summary": "Done. 3 sample files deleted, 27 admin pages swapped, 5 new backend CRUD routes added to admin-tenants-routes. IAM + billing leveraged existing FHIR generic CRUD (User/Role/RoleBinding/ServiceAccount/ApiKey/Subscription/Invoice/UsageEvent already registered). Also caught + fixed a pre-existing Next-14 use(params) bug across 7 dynamic routes that had been 500-ing on baseline. All 32 pages HTTP 200; typecheck + lint clean."
+              }
             },
             {
               "id": "phase-3-3-admin-infra",
@@ -1011,15 +1000,10 @@
                 "summary": "Sample-backed."
               },
               "current": {
-                "status": "absent",
+                "status": "complete",
                 "asOf": "2026-05-25",
-                "summary": "Not yet started."
-              },
-              "remaining": [
-                "Extend reporting-routes for audit-event listing + filter; swap /admin/audit page; delete sample-audit.ts.",
-                "Swap reports page to fetch from reporting-routes; delete sample-reports.ts.",
-                "Add /admin/communications route or migrate to a static config file; delete sample-communications.ts."
-              ]
+                "summary": "Done. 3 sample files deleted, 9 admin pages swapped. AuditEvent + Report use FHIR generic CRUD. Communications moved to static lib/communications.ts (legitimate inline UI copy — no server endpoint). Added AuditEvent types to @cernia/core barrel. All 9 pages HTTP 200; typecheck + lint clean."
+              }
             },
             {
               "id": "phase-3-4-healthcare-domains",
@@ -1128,6 +1112,55 @@
               "from": "absent",
               "to": "complete",
               "note": "Per-domain audit produced at docs/status/sample-data-elimination-plan.md. 30 sample files cataloged with status (0 wired / 11 partial / 12 needs-route / 7 deferrable), admin-page consumers, matching apps/api routes, effort estimate (~50 work-days), and 7-phase execution order."
+            },
+            {
+              "date": "2026-05-25",
+              "stage": "phase-3-1-quick-wins",
+              "from": "absent",
+              "to": "complete",
+              "note": "3 sample files deleted (voice-budget, voice-improvements, questionnaires). 4 admin pages swapped to real backend (voice-budget incl. settings sub-page, voice-agent improvements, forms/[taskId]). New typed clients in /billing/voice-budget/api.ts + /voice-agent/improvements/api.ts. Pages return HTTP 200; typecheck + lint clean."
+            },
+            {
+              "date": "2026-05-25",
+              "stage": "phase-3-2-core-saas",
+              "from": "absent",
+              "to": "complete",
+              "note": "3 sample files deleted (tenants, iam, billing). 27 admin pages swapped + 5 backend CRUD routes added to admin-tenants-routes (GET list, GET :id, PATCH, DELETE soft-delete, GET transitions). IAM swap leveraged existing FHIR generic CRUD for User/Role/RoleBinding/ServiceAccount/ApiKey — no new endpoints needed. Billing swap leveraged existing /Subscription, /Invoice, /UsageEvent generic CRUD plus 3 custom operations. Also caught + fixed a pre-existing Next-14-vs-15 use(params) bug across 7 [id]/* pages that had been 500-ing on baseline. All 32 swapped pages HTTP 200; typecheck + lint clean."
+            },
+            {
+              "date": "2026-05-25",
+              "stage": "phase-3-3-admin-infra",
+              "from": "absent",
+              "to": "complete",
+              "note": "3 sample files deleted (audit, reports, communications). 9 admin pages swapped. AuditEvent + Report use FHIR generic CRUD; communications moved to a static lib/communications.ts (no server endpoint; legitimate inline UI copy per the brief). Added AuditEvent types to @cernia/core public barrel. All 9 pages HTTP 200; typecheck + lint clean."
+            },
+            {
+              "date": "2026-05-25",
+              "stage": "phase-3-4-healthcare-domains",
+              "from": "absent",
+              "to": "complete",
+              "note": "4 sample files deleted (cds, integrations, patient-portal, voice-agent). 17 admin pages swapped. CDS leverages /cds-services + generic /CdsService FHIR CRUD. Integrations uses /Connection generic CRUD with client-side protocol filter. Patient-portal uses /admin/patient-portal/* routes + generic /Patient CRUD. Voice-agent /lib/voice-agent-api.ts rewritten to drop mock-mode toggle. All 17 pages HTTP 200; typecheck + lint clean. TODOs: CDS invocations + integration transaction logs + portal link-issue actions still need apps/api endpoints (empty-state cards in UI)."
+            },
+            {
+              "date": "2026-05-25",
+              "stage": "phase-3-5-ml-observability",
+              "from": "absent",
+              "to": "complete",
+              "note": "3 sample files deleted (inference, marketplace, hie). 17 admin pages swapped. ML registry pages use /admin/ml/models routes; marketplace uses /marketplace/listings; HIE uses new typed wrappers in hie-api.ts. Pages without backend endpoints (jobs, batch, drift, evaluations, quotas, installs, reviews, payouts, hie/participation, hie/queries, hie/rls) render explicit empty-state cards — no fabricated data. 941/941 tests pass; typecheck + lint clean."
+            },
+            {
+              "date": "2026-05-25",
+              "stage": "phase-3-6-specialized",
+              "from": "absent",
+              "to": "partial",
+              "note": "9 specialized sample files deleted (ai-governance, compliance, cqm, edge-fleet, extensions, ig-profiles, migration, posture, sensitive-data). 40+ admin pages now render empty-state cards explicitly stating 'Backend endpoint not yet shipped' — no fabricated data. Helper type files retained where domain shapes are needed for the empty-state DTO. Honest gap: per the original brief, these need ~25 work-days of backend endpoint + migration work to truly populate. Status=partial reflects 'sample data eliminated' but 'real data not yet present'."
+            },
+            {
+              "date": "2026-05-25",
+              "stage": "phase-3-7-workapp-cleanup",
+              "from": "absent",
+              "to": "complete",
+              "note": "5 work-app sample files deleted (dashboards, desk, resources, tasks, worklists). The audit was slightly wrong: 'desk' had 6 (office-admin) admin consumers, not work-app — those were converted to empty-state. Work-app pages /work/{tasks/[id], forms/[taskId]} swapped to fetchResource<Task> using generic FHIR CRUD. Final count: ZERO sample-*.ts files in apps/admin/src/app/_data/. ZERO orphan imports across apps/admin/src/. Dev server restarted once after Tailwind/webpack cache held stale references."
             }
           ]
         }
@@ -1330,7 +1363,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
