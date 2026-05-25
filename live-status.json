@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-25T04:19:43.164Z",
-    "lastUpdatedDisplay": "May 25, 2026 — 00:19 EDT",
+    "lastUpdatedIso": "2026-05-25T04:25:10.388Z",
+    "lastUpdatedDisplay": "May 25, 2026 — 00:25 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "612 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 25, 2026 — 00:19 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 25, 2026 — 00:25 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -895,6 +895,241 @@
               "note": "End-to-end foundation: migration 046, TenantSecretResolver + Noop/AesGcm ciphers + InMemoryStore in @cernia/core, KyselyTenantSecretStore in @cernia/storage, Fastify routes (GET list / PUT upsert / DELETE clear) with cross-tenant 403 guard + audit, boot wire at slot 10i, admin Credentials & Integrations sub-page with cards for Twilio/Deepgram/ElevenLabs/OpenAI/Anthropic, sub-page nav link from the persona editor. 20 core unit tests + storage pg-mem contract test green. Remaining: Postgres swap, AES-GCM-required boot gate, KMS key rotation runbook."
             }
           ]
+        },
+        {
+          "id": "sample-data-elimination",
+          "name": "Sample-data elimination (\"no mock data\")",
+          "description": "User-driven mandate (2026-05-25): every admin UI page must fetch from a real apps/api endpoint; the 30 sample-*.ts files under apps/admin/src/app/_data/ must be deleted. Tracking per-domain progress phase-by-phase. Full audit: docs/status/sample-data-elimination-plan.md.",
+          "primaryPackages": [
+            "apps/admin (UI swap)",
+            "apps/api (CRUD routes)",
+            "packages/storage (Kysely stores for new domains)"
+          ],
+          "stages": [
+            {
+              "id": "infrastructure",
+              "name": "Phase 1 — Real backend infrastructure",
+              "rationale": "Postgres + MinIO + Redis + Mailpit + NATS in Docker, apps/api boot against real DB, dev-seed produces one real tenant + users + FHIR resources, all 4 Next.js apps running natively. Required for any swap to be testable end-to-end.",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Apps had never been started against a real backend on this machine. Postgres data dir on OneDrive caused fsync hangs; a native PG service was bound to host:5432 colliding with the Docker stack; admin tenant routes weren't wired; api Dockerfile didn't copy scripts/ (postinstall fail); storage migrate.js couldn't find src/migrations/ (tsc doesn't copy .sql); connection-routes.ts double-registered POST /Connection over @cernia/server's generic FHIR CRUD; 122 pnpm-store packages were partially extracted."
+              },
+              "current": {
+                "status": "complete",
+                "asOf": "2026-05-25",
+                "summary": "Full stack up: Postgres 16 on :5433 (production durability flags), MinIO :9000/:9001, Redis, Mailpit, NATS. 40 migrations applied. tenant-acme seeded (20 FHIR resources). apps/api on :8080 with real RSA jwks. Admin :3000, trust :3001, patient :3002, installer :3003 all return HTTP 200. Fixes: docker-compose.override.yml remaps PG to 5433, scripts/ copied into api Dockerfile, migrate.js resolver tries dist/migrations then src/migrations fallback, connection-routes.ts removed duplicate POST /Connection (keeps $run), fix-pnpm-store.mjs repaired 122 broken packages."
+              },
+              "evidence": [
+                {
+                  "label": "infra/docker/docker-compose.override.yml (local-only)",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/infra/docker/docker-compose.override.yml"
+                },
+                {
+                  "label": "apps/api/Dockerfile (scripts/ copy fix)",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/apps/api/Dockerfile"
+                },
+                {
+                  "label": "packages/storage/src/migrate.ts (migrations-dir resolver)",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/packages/storage/src/migrate.ts"
+                },
+                {
+                  "label": "apps/api/src/connection-routes.ts (duplicate-route fix)",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/apps/api/src/connection-routes.ts"
+                }
+              ]
+            },
+            {
+              "id": "audit",
+              "name": "Phase 2 — Per-domain audit",
+              "rationale": "Before swapping anything, know which of the 30 sample-*.ts files map to which admin pages and which existing apps/api routes can be reused vs need to be built. Without this we'd thrash randomly across domains.",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "No catalog existed; ad-hoc grep was the only way to know which page consumed which sample file."
+              },
+              "current": {
+                "status": "complete",
+                "asOf": "2026-05-25",
+                "summary": "docs/status/sample-data-elimination-plan.md produced. 30 files cataloged: 0 wired, 11 partial (apps/api route exists, UI not refactored), 12 need-route (no route exists), 7 deferrable (work-app-only, no admin consumer). Effort estimate: ~50 work-days across the admin-facing surface. Phased execution plan (Phase 3.1 quick wins → Phase 3.6 specialized domains)."
+              },
+              "evidence": [
+                {
+                  "label": "docs/status/sample-data-elimination-plan.md",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/docs/status/sample-data-elimination-plan.md"
+                }
+              ]
+            },
+            {
+              "id": "phase-3-1-quick-wins",
+              "name": "Phase 3.1 — Quick wins (voice-budget, voice-improvements, questionnaires)",
+              "rationale": "All three have an apps/api route already shipped; only the UI fetcher needs to be swapped. ~3 admin pages total. Fastest measurable progress.",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "All three pages render from sample-*.ts despite their backend routes existing."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not yet started."
+              },
+              "remaining": [
+                "Swap /admin/voice-agent/improvements page to fetch from /voice-agent/improvements; delete sample-voice-improvements.ts.",
+                "Swap voice-budget pages to fetch from /voice-budget routes; delete sample-voice-budget.ts.",
+                "Swap questionnaires page to fetch from /surveys routes; delete sample-questionnaires.ts (1 consumer)."
+              ]
+            },
+            {
+              "id": "phase-3-2-core-saas",
+              "name": "Phase 3.2 — Core SaaS layer (tenants, iam, billing)",
+              "rationale": "Foundational. sample-tenants.ts feeds 7 admin pages and sample-iam.ts feeds 12 — together they unblock the majority of the admin surface. Billing is revenue-critical and has a route ready.",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Tenant list, detail, branding, transitions, voice-agent persona, voice-agent credentials all key off SAMPLE_TENANTS today. /admin/users/* keys off SAMPLE_IAM. Billing pages key off sample-billing.ts."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not yet started."
+              },
+              "remaining": [
+                "Build /admin/tenants list-and-get endpoints (admin-tenants-routes already has POST; add list + get + patch + delete).",
+                "Swap /admin/tenants/* pages to fetch real tenants; delete sample-tenants.ts.",
+                "Build /admin/iam list endpoints for Users / Roles / ServiceAccounts / ApiKeys (none exist today); swap /admin/users/* and delete sample-iam.ts.",
+                "Swap /admin/billing/* pages to fetch from billing-routes; delete sample-billing.ts."
+              ]
+            },
+            {
+              "id": "phase-3-3-admin-infra",
+              "name": "Phase 3.3 — Admin infrastructure (audit, reports, communications)",
+              "rationale": "Audit-trail visibility, report exports, in-app banners. Audit + reports have partial routes via reporting-routes.ts; communications is UI-only state.",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Sample-backed."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not yet started."
+              },
+              "remaining": [
+                "Extend reporting-routes for audit-event listing + filter; swap /admin/audit page; delete sample-audit.ts.",
+                "Swap reports page to fetch from reporting-routes; delete sample-reports.ts.",
+                "Add /admin/communications route or migrate to a static config file; delete sample-communications.ts."
+              ]
+            },
+            {
+              "id": "phase-3-4-healthcare-domains",
+              "name": "Phase 3.4 — Healthcare domains (CDS, integrations, patient-portal)",
+              "rationale": "Clinical-decision-support config UI, HL7v2/X12 integration setup, portal account admin. All three have partial routes; UI refactor + minor route extensions.",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Sample-backed."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not yet started."
+              },
+              "remaining": [
+                "Swap /admin/cds-hooks-config page to fetch from cds-hooks-routes; delete sample-cds.ts.",
+                "Swap integration-config pages to fetch from connection-routes; delete sample-integrations.ts.",
+                "Swap /admin/patient-portal pages to fetch from patient-portal-admin-routes; delete sample-patient-portal.ts."
+              ]
+            },
+            {
+              "id": "phase-3-5-ml-observability",
+              "name": "Phase 3.5 — ML platform + marketplace + HIE",
+              "rationale": "ML jobs / model browser, marketplace listings, HIE participation config. All have partial routes; medium-effort UI swaps.",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Sample-backed."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not yet started."
+              },
+              "remaining": [
+                "Swap /admin/inference/* to fetch from ml-platform-routes; delete sample-inference.ts.",
+                "Swap /admin/marketplace/* to fetch from saas-billing-marketplace-routes; delete sample-marketplace.ts.",
+                "Swap /admin/hie/* to fetch from everything-routes / new HIE route; delete sample-hie.ts."
+              ]
+            },
+            {
+              "id": "phase-3-6-specialized",
+              "name": "Phase 3.6 — Specialized domains (compliance, ai-governance, migration, fleet, sensitive-data, cqm, ig-profiles, posture)",
+              "rationale": "These 8 domains have NO apps/api route today — they need new endpoints + new schema in many cases. Largest effort, lowest visibility, save for last.",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Sample-backed; no routes."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not yet started."
+              },
+              "remaining": [
+                "Build /admin/compliance routes + migration for frameworks/controls/evidence (48 controls + 30 evidence artifacts in sample data); swap pages; delete sample-compliance.ts.",
+                "Build /admin/ai-governance routes for model cards, bias reports, approvals, SAMD assessments; swap pages; delete sample-ai-governance.ts.",
+                "Build migration-jobs route + table; swap /admin/migration pages; delete sample-migration.ts.",
+                "Build edge-fleet routes + sync-run tracking; swap /admin/edge/* pages; delete sample-edge-fleet.ts.",
+                "Build sensitive-data access routes (break-glass log, legal holds, proxy grants — last partially overlaps with caregiver-federation-routes); swap pages; delete sample-sensitive-data.ts.",
+                "Build CQM measure routes; swap /admin/cqm pages; delete sample-cqm.ts.",
+                "Build IG-profile routes; swap pages; delete sample-ig-profiles.ts.",
+                "Build security-posture routes; swap pages; delete sample-posture.ts.",
+                "Build extension/plugin routes; swap pages; delete sample-extensions.ts."
+              ]
+            },
+            {
+              "id": "phase-3-7-workapp-cleanup",
+              "name": "Phase 3.7 — Work-app cleanup (deferrable)",
+              "rationale": "5 sample files (dashboards, desk, resources, tasks, worklists) are only consumed by a separate work-app surface, NOT the admin app. Delete-only when their UIs are rewritten or retired.",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Sample-backed; work-app only."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-25",
+                "summary": "Not yet started."
+              },
+              "remaining": [
+                "Decide whether to retire the work-app surface or to wire it to real backends in a future phase.",
+                "Delete sample-dashboards.ts, sample-desk.ts, sample-resources.ts, sample-tasks.ts, sample-worklists.ts once consumers are gone."
+              ]
+            }
+          ],
+          "history": [
+            {
+              "date": "2026-05-25",
+              "stage": "(track-added)",
+              "from": "—",
+              "to": "—",
+              "note": "Track created from user mandate: \"I do not want any mock data. Everything should be wired in properly through backend services.\" Acknowledged as multi-week scope."
+            },
+            {
+              "date": "2026-05-25",
+              "stage": "infrastructure",
+              "from": "absent",
+              "to": "complete",
+              "note": "Brought up full local stack against real Postgres. Postgres 16 :5433 + MinIO + Redis + Mailpit + NATS healthy; 40 migrations applied; tenant-acme seeded (20 FHIR resources); apps/api :8080 returning real RSA jwks; admin :3000, trust :3001, patient :3002, installer :3003 all HTTP 200. Fixed 5 blockers: native PG port collision (override file → 5433), api Dockerfile missing scripts/ copy, migrate.js src/migrations resolver, duplicate POST /Connection registration (@cernia/server already provides FHIR CRUD), 122 partially-extracted pnpm packages (fix-pnpm-store.mjs)."
+            },
+            {
+              "date": "2026-05-25",
+              "stage": "audit",
+              "from": "absent",
+              "to": "complete",
+              "note": "Per-domain audit produced at docs/status/sample-data-elimination-plan.md. 30 sample files cataloged with status (0 wired / 11 partial / 12 needs-route / 7 deferrable), admin-page consumers, matching apps/api routes, effort estimate (~50 work-days), and 7-phase execution order."
+            }
+          ]
         }
       ]
     }
@@ -1095,7 +1330,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
