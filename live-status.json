@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-25T02:09:35.649Z",
-    "lastUpdatedDisplay": "May 24, 2026 — 22:09 EDT",
+    "lastUpdatedIso": "2026-05-25T02:15:45.897Z",
+    "lastUpdatedDisplay": "May 24, 2026 — 22:15 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "612 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 24, 2026 — 22:09 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #156 feat(g-d6-break-glass): emergency PHI access (G-D6) — closes. (refreshed May 24, 2026 — 22:15 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -704,6 +704,197 @@
               "note": "Workflow template discovery (list/find/latest) + bot static-analysis endpoint live in apps/api. InMemoryTemplateRegistry seeded with the cernia-voice-followup template. 7 new integration tests. Scheduler + sandbox dry-run + j2c/j2d/j3g + admin UI remain. All 6 functionality-utilization stages are now partial — none absent."
             }
           ]
+        },
+        {
+          "id": "external-integrations",
+          "name": "External Integrations & per-tenant config",
+          "description": "Per-tenant credentials + vendor backends the voice agent talks to (Twilio for telephony, Deepgram for STT, ElevenLabs for TTS, OpenAI/Anthropic for LLM). Also covers self-serve tenant provisioning + per-tenant workflow customization. Without this layer every tenant shares the platform's trial credentials and can't customize the assistant.",
+          "primaryPackages": [
+            "packages/core (TenantSecretResolver)",
+            "packages/storage (KyselyTenantSecretStore)",
+            "packages/telephony",
+            "packages/voice-agent",
+            "apps/api (tenant-secret-routes, voice boot)",
+            "apps/admin (Credentials & Integrations UI)",
+            "apps/installer"
+          ],
+          "stages": [
+            {
+              "id": "tenant-secrets",
+              "name": "Tenant secrets — per-tenant credential storage",
+              "rationale": "Each tenant must paste their own Twilio/Deepgram/ElevenLabs/LLM credentials so calls bill to their accounts. Plaintext is encrypted at rest with envelope encryption (AES-256-GCM); the resolver falls back to platform-level env vars when no per-tenant override exists.",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-24",
+                "summary": "No per-tenant credential storage. The voice agent's Twilio/Deepgram/ElevenLabs/OpenAI/Anthropic keys came from process.env only. Every tenant in a multi-tenant deploy would share the same vendor accounts — billing attribution impossible, key rotation per tenant impossible, white-glove onboarding meant editing the platform-level env."
+              },
+              "current": {
+                "status": "partial",
+                "asOf": "2026-05-24",
+                "summary": "Foundation shipped end-to-end. Migration 046_tenant_secrets (composite-PK (tenant_id, provider), opaque ciphertext column, JSONB metadata). TenantSecretResolver in @cernia/core with NoopSecretCipher (tests + local-demo) + AesGcmSecretCipher (AES-256-GCM, 12-byte nonce, kid prefix for rotation) + InMemoryTenantSecretStore. KyselyTenantSecretStore in @cernia/storage with pg-mem contract test. Fastify routes /tenants/:id/secrets[/:provider] (GET list / PUT upsert / DELETE clear) wired into apps/api at slot 10i with cross-tenant 403 guard mirroring tenant-brand-routes, audit emission carrying only last4 (never plaintext). Admin UI: Credentials & Integrations sub-page at /admin/tenants/[id]/voice-agent/credentials with cards for Twilio + Deepgram + ElevenLabs + OpenAI + Anthropic; persona editor gets a sub-page nav link to it. 20 core unit tests + storage pg-mem contract test green."
+              },
+              "evidence": [
+                {
+                  "label": "packages/storage/src/migrations/046_tenant_secrets.sql",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/packages/storage/src/migrations/046_tenant_secrets.sql"
+                },
+                {
+                  "label": "packages/core/src/tenant-secret.ts",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/packages/core/src/tenant-secret.ts"
+                },
+                {
+                  "label": "packages/storage/src/stores/tenant-secret-store.ts",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/packages/storage/src/stores/tenant-secret-store.ts"
+                },
+                {
+                  "label": "apps/api/src/tenant-secret-routes.ts",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/apps/api/src/tenant-secret-routes.ts"
+                },
+                {
+                  "label": "apps/admin /admin/tenants/[id]/voice-agent/credentials",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/apps/admin/src/app/admin/tenants/%5Bid%5D/voice-agent/credentials/page.tsx"
+                }
+              ],
+              "remaining": [
+                "Swap apps/api boot from InMemoryTenantSecretStore to KyselyTenantSecretStore once a Kysely pool is wired (today the store is process-local; a restart wipes overrides).",
+                "Boot-time refusal if CERNIA_TENANT_SECRET_KEY/KID is unset in production env (currently logs a warning and falls back to NoopSecretCipher).",
+                "KMS-backed key rotation procedure + runbook (the AesGcmSecretCipher already supports kid-prefixed multi-key decrypt for the rotation window).",
+                "Audit: every PUT/DELETE writes a hil-feedback-style Communication so compliance review can replay credential rotations."
+              ]
+            },
+            {
+              "id": "telephony-backend",
+              "name": "Twilio voice backend boot wiring",
+              "rationale": "@cernia/telephony ships a TwilioVoiceBackend + LiveKit/SIP backend. apps/api needs to instantiate one and wire it into the voice-call handler so an inbound call actually arrives at the dialog engine.",
+              "baseline": {
+                "status": "partial",
+                "asOf": "2026-05-24",
+                "summary": "packages/telephony has TwilioVoiceBackend + LiveKit/SIP backend with full unit coverage. apps/api/src/voice-call-handler.ts handles barge-in + recording-pause-on-PHI. NOT yet wired: the boot path doesn't construct a TwilioVoiceBackend instance and the /telephony/inbound webhook is stub-only."
+              },
+              "current": {
+                "status": "partial",
+                "asOf": "2026-05-24",
+                "summary": "Unchanged from baseline. TenantSecretResolver is now available to feed per-tenant Twilio creds into the backend constructor — the next step."
+              },
+              "evidence": [
+                {
+                  "label": "packages/telephony",
+                  "url": "https://github.com/kamalcernia/cernia/tree/main/packages/telephony"
+                },
+                {
+                  "label": "apps/api/src/voice-call-handler.ts",
+                  "url": "https://github.com/kamalcernia/cernia/blob/main/apps/api/src/voice-call-handler.ts"
+                }
+              ],
+              "remaining": [
+                "Boot wiring in apps/api: construct TwilioVoiceBackend keyed by tenantId via TenantSecretResolver.resolve(tenantId, 'twilio').",
+                "Inbound webhook /telephony/twilio/inbound that looks up tenant from tenant_phone_numbers, resolves the per-tenant Auth Token, and TwiML-bridges to the dialog engine.",
+                "Outbound campaign route + caller-id allowlist enforcement (tenant_phone_numbers.is_active filter).",
+                "Smoke test against the Twilio sandbox using one real test number."
+              ]
+            },
+            {
+              "id": "stt-backend",
+              "name": "Deepgram STT adapter",
+              "rationale": "Speech-to-text is the input side of the voice loop. Deepgram is the BAA-covered default; per-tenant model + language overrides are read from tenant_secrets.metadata.",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-24",
+                "summary": "@cernia/voice-agent has an ISpeechToText seam but no production adapter. All current eval/golden runs use a stubbed STT that echoes back a scripted transcript."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-24",
+                "summary": "Unchanged. Deepgram adapter not yet built. TenantSecretResolver is in place so the adapter, when shipped, can pull per-tenant API key + defaultLanguage/defaultModel metadata at session start."
+              },
+              "remaining": [
+                "Build packages/voice-stt-deepgram implementing ISpeechToText against Deepgram's websocket API.",
+                "Token sourcing: TenantSecretResolver.resolve(tenantId, 'deepgram'); metadata.defaultLanguage/defaultModel control per-tenant model selection.",
+                "Wire into apps/api voice-call-handler so STT frames are forwarded into the dialog engine.",
+                "Eval: add a STT-accuracy golden using a recorded WAV + expected transcript."
+              ]
+            },
+            {
+              "id": "tts-backend",
+              "name": "ElevenLabs TTS adapter",
+              "rationale": "Text-to-speech is the output side of the loop. ElevenLabs is the default; per-tenant voice id is read from tenant_secrets.vendorAccountId. Tenant-defined persona (existing voice-agent persona editor) selects the voice.",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-24",
+                "summary": "ITextToSpeech seam exists; no production adapter. Persona editor already exposes a voiceId picker with sample previews but every save is dropped on the floor."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-24",
+                "summary": "Unchanged. Persona editor + Credentials & Integrations sub-page are both up; once the adapter is wired the persona's voiceId selection will actually drive the synthesized voice via the tenant's ElevenLabs key."
+              },
+              "remaining": [
+                "Build packages/voice-tts-elevenlabs implementing ITextToSpeech against ElevenLabs's REST API.",
+                "Token sourcing: TenantSecretResolver.resolve(tenantId, 'elevenlabs'); vendorAccountId = default voiceId.",
+                "Persist persona voiceId via PATCH /Organization/:id (the persona editor currently console.logs the save).",
+                "Wire the resolver lookup into apps/api so dialog turns get TTS bytes."
+              ]
+            },
+            {
+              "id": "tenant-provisioning",
+              "name": "Self-serve tenant provisioning",
+              "rationale": "A new tenant should be able to land on apps/installer, paste their org details, hook up SSO, paste their Twilio/Deepgram/ElevenLabs keys, and have a working voice agent with no Cernia handholding.",
+              "baseline": {
+                "status": "absent",
+                "asOf": "2026-05-24",
+                "summary": "apps/installer exists as a wizard scaffold (org details, branding, persona) but the 12 config items the voice agent needs (Twilio SID + token, Deepgram key, ElevenLabs key + default voice, phone number registration, LLM provider choice, language allowlist, business hours, transfer phone numbers, cost ceiling, red-flag overrides) are partial / scattered / not wired into apps/api boot."
+              },
+              "current": {
+                "status": "absent",
+                "asOf": "2026-05-24",
+                "summary": "Unchanged. The Credentials & Integrations admin sub-page covers the credential subset for an existing tenant, but the installer wizard doesn't yet route new-tenant signup through it."
+              },
+              "remaining": [
+                "Audit apps/installer for all 12 voice-agent config items; produce a single setup wizard.",
+                "Wire each step to its server-side endpoint (tenant-secret-routes, persona PATCH, tenant_phone_numbers register).",
+                "Post-install smoke test: place an outbound call to the tenant's registered number; verify the agent answers with the tenant's branded greeting in the tenant's chosen voice.",
+                "White-glove import: CSV / JSON ingest for enterprise tenants migrating from another platform."
+              ]
+            },
+            {
+              "id": "tenant-customization",
+              "name": "Per-tenant workflow customization",
+              "rationale": "Different customers want different things: SNF wants 'medication-pickup-reminder' but not 'cancel-appointment'; pain clinic wants a custom intake script; pediatric clinic wants distinct red-flag thresholds. The voice agent must be configurable per tenant — not forked per tenant.",
+              "baseline": {
+                "status": "partial",
+                "asOf": "2026-05-24",
+                "summary": "Building blocks exist: @cernia/j1b-workflow-template-registry (template per tenant), TenantPolicy.allowedActions / practitionerScope / redFlagOverrides, Organization.extension[voice-agent-persona], j2c fork-and-modify-diff, j2d AI-assisted-workflow-gen. None composed into a single configurability surface; tenant admins can't see or change any of it without engineering involvement."
+              },
+              "current": {
+                "status": "partial",
+                "asOf": "2026-05-24",
+                "summary": "Unchanged. Foundation is the same; tenant-customization framework planned next."
+              },
+              "remaining": [
+                "Design + ship a unified Customization config schema at the Organization-extension level (allowedIntents, customWorkflowTemplateIds, systemPromptAugment, intentHandlerOverrides, redFlagOverrides, businessHours).",
+                "Runtime resolver in @cernia/voice-agent that merges platform-default + tenant-customization at session start.",
+                "Admin UI per-tenant: Allowed Intents (multi-select with explanations), Workflow Templates (table with activate/deactivate per template), Prompt Augmentation (free-text appended to system prompt with safety preamble), Intent Handler Overrides (advanced — backend URL per intent), Red Flag Overrides (threshold sliders), Business Hours (calendar widget).",
+                "Test: golden 'tenant-with-customization-applied' replays a session and asserts the system prompt + allowed-intent gate match the tenant's customization payload, not the platform default.",
+                "Documentation: customer-facing 'How to configure your assistant' guide."
+              ]
+            }
+          ],
+          "history": [
+            {
+              "date": "2026-05-24",
+              "stage": "(track-added)",
+              "from": "—",
+              "to": "—",
+              "note": "Track created from the per-tenant architecture decision (lock: per-tenant credentials from day one, self-serve installer, External Integrations track now / Tenant Provisioning track expanded inside it)."
+            },
+            {
+              "date": "2026-05-24",
+              "stage": "tenant-secrets",
+              "from": "absent",
+              "to": "partial",
+              "note": "End-to-end foundation: migration 046, TenantSecretResolver + Noop/AesGcm ciphers + InMemoryStore in @cernia/core, KyselyTenantSecretStore in @cernia/storage, Fastify routes (GET list / PUT upsert / DELETE clear) with cross-tenant 403 guard + audit, boot wire at slot 10i, admin Credentials & Integrations sub-page with cards for Twilio/Deepgram/ElevenLabs/OpenAI/Anthropic, sub-page nav link from the persona editor. 20 core unit tests + storage pg-mem contract test green. Remaining: Postgres swap, AES-GCM-required boot gate, KMS key rotation runbook."
+            }
+          ]
         }
       ]
     }
@@ -904,7 +1095,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
