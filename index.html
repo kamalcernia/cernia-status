@@ -293,6 +293,75 @@
     </p>
     <div id="readinessTracks"></div>
 
+    <!--
+      CIT — Comprehensive Integration & Testing scorecard.
+      Renders aggregate counts from the three audit scripts:
+        - scripts/audit-wave-integration.mjs (B/A/O/P per-wave ladder)
+        - scripts/audit-deferred-items.mjs   (TODO/FIXME/skipped tests/stubs)
+        - scripts/saas-conformance.mjs       (CLAUDE.md architecture invariants)
+      Data source: live-status.json#summary.cit, joined by update-status.mjs.
+      See .claude/plans/idempotent-growing-dahl.md (Waves CIT + PROD plan).
+    -->
+    <h2 id="citHeader" style="display:none">CIT · Comprehensive Integration & Testing
+      <span class="count" id="citLastRun" style="font-weight:normal;color:var(--fg-muted);font-size:14px"></span>
+    </h2>
+    <p id="citIntro" class="legend-paragraph" style="display:none">
+      Five orthogonal gates per wave: <b>Build</b> (commits + tag) · <b>Integration</b> (B/A/O/P ladder + sample-data) ·
+      <b>Backend tests</b> (real services, no in-process stubs) · <b>E2E + conformance</b> (Playwright + SaaS architecture) ·
+      <b>Zero deferred items</b> (TODO/FIXME/skipped tests/stubs all resolved or WONTFIX). A wave is only truly done
+      when all five are green. The four columns in the wave tree above show rungs 2-5 (build is the existing badge).
+    </p>
+    <div id="citScorecard" style="display:none">
+      <div class="cit-tiles" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:16px 0">
+        <div class="mainstate-rollup-tile">
+          <div class="label">Deferred items</div>
+          <div class="value" id="citDeferredTotal">—</div>
+          <div style="font-size:11px;color:var(--fg-muted)"><span id="citDeferredBlockers">—</span> blockers · <span id="citDeferredTechDebt">—</span> tech-debt</div>
+        </div>
+        <div class="mainstate-rollup-tile">
+          <div class="label">SaaS conformance violations</div>
+          <div class="value" id="citConformanceTotal">—</div>
+          <div style="font-size:11px;color:var(--fg-muted)"><span id="citConformanceBlockers">—</span> blockers</div>
+        </div>
+        <div class="mainstate-rollup-tile">
+          <div class="label">Backend route symbols</div>
+          <div class="value" id="citBackendRoutes">—</div>
+          <div style="font-size:11px;color:var(--fg-muted)">registered in apps/api/src/index.ts</div>
+        </div>
+        <div class="mainstate-rollup-tile">
+          <div class="label">Last audit run</div>
+          <div class="value" id="citAuditAge" style="font-size:14px">—</div>
+          <div style="font-size:11px;color:var(--fg-muted)">3 scripts under <code>scripts/audit-*.mjs</code></div>
+        </div>
+      </div>
+      <details style="margin-top:12px">
+        <summary style="cursor:pointer;font-weight:600">▸ Deferred items by kind</summary>
+        <table style="margin-top:8px;border-collapse:collapse;font-family:var(--mono);font-size:12px;width:100%;max-width:600px">
+          <thead>
+            <tr style="text-align:left;border-bottom:1px solid var(--bg-elevated,#1e293b)">
+              <th style="padding:4px 8px">Kind</th><th style="padding:4px 8px;text-align:right">Count</th>
+            </tr>
+          </thead>
+          <tbody id="citDeferredByKind"></tbody>
+        </table>
+      </details>
+      <details style="margin-top:8px">
+        <summary style="cursor:pointer;font-weight:600">▸ SaaS conformance breakdown</summary>
+        <table style="margin-top:8px;border-collapse:collapse;font-family:var(--mono);font-size:12px;width:100%;max-width:600px">
+          <thead>
+            <tr style="text-align:left;border-bottom:1px solid var(--bg-elevated,#1e293b)">
+              <th style="padding:4px 8px">Check</th><th style="padding:4px 8px;text-align:right">Violations</th>
+            </tr>
+          </thead>
+          <tbody id="citConformanceByCheck"></tbody>
+        </table>
+      </details>
+      <p style="font-size:12px;color:var(--fg-muted);margin-top:8px">
+        Plan: <code>.claude/plans/idempotent-growing-dahl.md</code> · Audit outputs:
+        <code>docs/status/{deferred-items,wave-integration-ladder,saas-conformance}.json</code>
+      </p>
+    </div>
+
     <h2>Pool (8 slots) · Saturation <span class="count" id="saturation">0%</span></h2>
     <div class="pool-grid" id="poolGrid"></div>
 
@@ -581,6 +650,7 @@
       const isExpanded = expandedNodes.has(wave.id) || wave.expanded;
       const chevronClass = (hasSubs || hasAgents) ? (isExpanded ? "expanded" : "") : "leaf";
       const tagPill = wave.tag ? `<span class='tag-pill'>${wave.tag}</span>` : "";
+      const metaPill = wave.isMeta ? `<span class='tag-pill' style='background:var(--accent-bg,#1e3a5f);color:var(--accent,#7cc4ff);border:1px solid var(--accent,#7cc4ff)'>meta</span>` : "";
       const subsHtml = (wave.subWaves || []).map(s => renderSubWave(s, depth + 1)).join("");
       const agentsHtml = (wave.agents || []).map(a => renderWaveAgent(a, depth + 1)).join("");
       // Progress mini-bar: known / total
@@ -591,16 +661,65 @@
       const progressMini = total > 0
         ? `<span class="progress-mini">${known}/${total}<span class="progress-mini-bar"><span class="progress-mini-bar-fill" style="width:${progressPct}%"></span></span></span>`
         : '';
+      // CIT integration ladder: 4 micro-dots (Backend/Admin/Ops/Patient) + sample-data warning + deferred-count.
+      // Added 2026-05-25 per Waves CIT + PROD plan §"Phase 9 — Extend the status portal".
+      const ladder = renderIntegrationLadder(wave);
       return `
         <div class="node depth-${depth}" data-id="${wave.id}">
           <div class="node-header" data-toggle="${wave.id}">
             <span class="chevron ${chevronClass}">▶</span>
             ${statusIcon(wave.status)}
             <span class="node-name"><span class="id-prefix">${wave.id}</span> · ${wave.name}</span>
-            <span class="node-meta">${progressMini} ${tagPill} ${statusBadge(wave.status)}</span>
+            <span class="node-meta">${ladder} ${progressMini} ${tagPill} ${metaPill} ${statusBadge(wave.status)}</span>
           </div>
           <div class="node-children" style="display:${isExpanded ? 'block' : 'none'}" data-children="${wave.id}">${subsHtml}${agentsHtml}</div>
         </div>
+      `;
+    }
+
+    /**
+     * Render the integration-ladder badge group for a wave. Four micro-dots
+     * (B = Backend, A = Admin, O = Ops/cernia-ops, P = Patient) coloured by
+     * the per-rung integration state, plus a sample-data warning glyph and a
+     * red badge with the deferred-item count when > 0.
+     *
+     * Data source: docs/status/wave-integration-ladder.json + deferred-items.json,
+     * joined into live-status.json by update-status.mjs (waves[].integrationLadder
+     * and waves[].deferredCount). The 5-state ladder model is documented in
+     * .claude/plans/idempotent-growing-dahl.md.
+     */
+    function renderIntegrationLadder(wave) {
+      const l = wave.integrationLadder;
+      const deferredCount = wave.deferredCount || 0;
+      if (!l) return '';
+      const rungColor = (s) => {
+        if (s === 'live')                       return '#4ade80'; // bright green
+        if (s === 'wired')                      return '#22c55e'; // green
+        if (s === 'wired-with-sample-data')     return '#f97316'; // orange
+        if (s === 'partial')                    return '#facc15'; // yellow
+        if (s === 'shelf')                      return '#ef4444'; // red
+        if (s === 'n/a')                        return '#475569'; // grey
+        return '#64748b';                                       // default
+      };
+      const dot = (label, state) =>
+        `<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${rungColor(state)};margin-right:2px"
+               title="${label}: ${state}"></span>`;
+      const sampleWarn = l.usesSampleData
+        ? `<span title="Imports sample-* / FAKE_ / mock modules — swap to real *-api.ts" style="color:#f97316;font-size:11px;margin-left:2px">⚠</span>`
+        : '';
+      const deferredBadge = deferredCount > 0
+        ? `<span title="${deferredCount} deferred items in this wave (TODO/FIXME/skipped tests/stubs)"
+                 style="background:#7f1d1d;color:#fecaca;font-size:10px;padding:1px 6px;border-radius:8px;margin-left:4px;font-family:var(--mono)">⏳${deferredCount}</span>`
+        : '';
+      return `
+        <span style="display:inline-flex;align-items:center;gap:0;margin-right:6px;padding:2px 4px;border:1px solid var(--bg-elevated,#1e293b);border-radius:4px"
+              title="Integration ladder — Backend/Admin/Ops/Patient · ${l.overall}">
+          ${dot('Backend (apps/api)', l.backend)}
+          ${dot('Admin (apps/admin)', l.admin)}
+          ${dot('Ops (apps/cernia-ops)', l.ops)}
+          ${dot('Patient (apps/patient)', l.patient)}
+          ${sampleWarn}
+        </span>${deferredBadge}
       `;
     }
 
@@ -772,6 +891,7 @@
 
       renderMainState(s.mainState || null, data.waves || []);
       renderProductionReadiness(s.productionReadiness || null);
+      renderCitScorecard(s.cit || null);
       renderPool(data.pool || { slots: [] });
       renderQueue(data.queue || []);
       renderPrActivity(data.recentPrActivity || []);
