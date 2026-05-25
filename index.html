@@ -644,6 +644,66 @@
         .join("");
     }
 
+    /**
+     * Render the CIT (Comprehensive Integration & Testing) scorecard.
+     * Data source: summary.cit, populated by docs/status/update-status.mjs
+     * from the three audit scripts (scripts/audit-*.mjs).
+     */
+    function renderCitScorecard(cit) {
+      const $header = $("citHeader");
+      const $intro = $("citIntro");
+      const $body = $("citScorecard");
+      if (!cit) {
+        $header.style.display = "none";
+        $intro.style.display = "none";
+        $body.style.display = "none";
+        return;
+      }
+      $header.style.display = "";
+      $intro.style.display = "";
+      $body.style.display = "";
+
+      const di = cit.deferredItems;
+      $("citDeferredTotal").textContent = di?.total ?? "—";
+      $("citDeferredBlockers").textContent = di?.bySeverity?.blocker ?? 0;
+      $("citDeferredTechDebt").textContent = di?.bySeverity?.["tech-debt"] ?? 0;
+
+      const sc = cit.saasConformance;
+      $("citConformanceTotal").textContent = sc?.totalViolations ?? "—";
+      $("citConformanceBlockers").textContent = sc?.totalBlockers ?? 0;
+
+      $("citBackendRoutes").textContent = cit.backendRouteSymbolCount ?? "—";
+
+      if (cit.lastAuditAt) {
+        const ms = Date.now() - new Date(cit.lastAuditAt).getTime();
+        const minutes = Math.round(ms / 60000);
+        $("citAuditAge").textContent =
+          minutes < 60 ? `${minutes}m ago` :
+          minutes < 1440 ? `${Math.round(minutes / 60)}h ago` :
+          `${Math.round(minutes / 1440)}d ago`;
+        $("citLastRun").textContent = `· last audit ${minutes}m ago`;
+      } else {
+        $("citAuditAge").textContent = "never";
+      }
+
+      // Deferred-items by-kind table
+      const byKind = di?.byKind || {};
+      const sortedKinds = Object.entries(byKind).sort((a, b) => b[1] - a[1]);
+      $("citDeferredByKind").innerHTML = sortedKinds
+        .map(([k, v]) => `<tr><td style="padding:4px 8px">${escHtml(k)}</td><td style="padding:4px 8px;text-align:right">${v}</td></tr>`)
+        .join("");
+
+      // Conformance by-check
+      const byCheck = sc?.byCheck || {};
+      $("citConformanceByCheck").innerHTML = Object.entries(byCheck)
+        .map(([k, v]) => {
+          const flag = v === 0 ? '✓' : '✗';
+          const color = v === 0 ? 'var(--accent,#22c55e)' : 'var(--danger,#ef4444)';
+          return `<tr><td style="padding:4px 8px"><span style="color:${color}">${flag}</span> ${escHtml(k)}</td><td style="padding:4px 8px;text-align:right">${v}</td></tr>`;
+        })
+        .join("");
+    }
+
     function renderWave(wave, depth) {
       const hasSubs = (wave.subWaves || []).length > 0;
       const hasAgents = (wave.agents || []).length > 0;
