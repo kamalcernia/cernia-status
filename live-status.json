@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-25T09:49:28.036Z",
-    "lastUpdatedDisplay": "May 25, 2026 — 05:49 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #157 feat(telephony): wire TwilioVoiceBackend into apps"
+    "lastUpdatedIso": "2026-05-25T09:59:01.573Z",
+    "lastUpdatedDisplay": "May 25, 2026 — 05:59 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #159 feat(speech): ElevenLabs TTS production fetch tran"
   },
   "summary": {
     "currentMainCommit": "0d384fb6",
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "612 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #157 feat(telephony): wire TwilioVoiceBackend into apps/api boot . (refreshed May 25, 2026 — 05:49 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #159 feat(speech): ElevenLabs TTS production fetch transport + ap. (refreshed May 25, 2026 — 05:59 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -45,9 +45,9 @@
     "pipeline": {
       "inflight": 0,
       "poolSize": 8,
-      "openPrs": 1,
+      "openPrs": 3,
       "pendingDispatch": 0,
-      "label": "0/8 in flight · 1 PRs open · 0 pending dispatch"
+      "label": "0/8 in flight · 3 PRs open · 0 pending dispatch"
     },
     "quality": {
       "activeFailures": 0,
@@ -57,16 +57,16 @@
       "label": "942 test files landed · 0 active failures"
     },
     "velocity": {
-      "landedLastHour": 1,
-      "landedLast24h": 1,
-      "label": "1 PR opened in last hour · 1 in last 24h"
+      "landedLastHour": 3,
+      "landedLast24h": 3,
+      "label": "3 PRs opened in last hour · 3 in last 24h"
     },
     "integration": {
       "lastMergeIso": "2026-05-23T11:19:44-04:00",
       "daysSinceLastMerge": 1,
-      "mergedPrs": 14,
-      "openPrs": 1,
-      "label": "Last main merge: 1d ago · 1 PR awaiting batch-merge"
+      "mergedPrs": 12,
+      "openPrs": 3,
+      "label": "Last main merge: 1d ago · 3 PRs awaiting batch-merge"
     },
     "mainState": {
       "waveCounts": {
@@ -813,15 +813,25 @@
                 "summary": "@cernia/voice-agent has an ISpeechToText seam but no production adapter. All current eval/golden runs use a stubbed STT that echoes back a scripted transcript."
               },
               "current": {
-                "status": "absent",
-                "asOf": "2026-05-24",
-                "summary": "Unchanged. Deepgram adapter not yet built. TenantSecretResolver is in place so the adapter, when shipped, can pull per-tenant API key + defaultLanguage/defaultModel metadata at session start."
+                "status": "complete",
+                "asOf": "2026-05-25",
+                "summary": "DeepgramWsTransport production adapter shipped in apps/api/src/deepgram-ws-transport.ts. Uses ws npm package (already a dependency) with Authorization: Token header. Parses Results, SpeechStarted, UtteranceEnd, Error message types into DeepgramServerEvent. boot path wires DeepgramSttBackend when CERNIA_SPEECH_STT=deepgram + DEEPGRAM_API_KEY are set; falls back to stub STT with warn log otherwise. 13 new unit tests cover factory shape, JSON parsing (all event types), error resilience, and handler idempotency. api typecheck + full api test suite clean."
               },
               "remaining": [
                 "Build packages/voice-stt-deepgram implementing ISpeechToText against Deepgram's websocket API.",
                 "Token sourcing: TenantSecretResolver.resolve(tenantId, 'deepgram'); metadata.defaultLanguage/defaultModel control per-tenant model selection.",
                 "Wire into apps/api voice-call-handler so STT frames are forwarded into the dialog engine.",
                 "Eval: add a STT-accuracy golden using a recorded WAV + expected transcript."
+              ],
+              "history": [
+                {
+                  "date": "2026-05-25",
+                  "stage": "stt-backend",
+                  "from": "absent",
+                  "to": "complete",
+                  "note": "DeepgramWsTransport transport adapter + apps/api boot wiring. 13 tests.",
+                  "commit": "feat/deepgram-stt-wiring"
+                }
               ]
             },
             {
@@ -834,15 +844,25 @@
                 "summary": "ITextToSpeech seam exists; no production adapter. Persona editor already exposes a voiceId picker with sample previews but every save is dropped on the floor."
               },
               "current": {
-                "status": "absent",
-                "asOf": "2026-05-24",
-                "summary": "Unchanged. Persona editor + Credentials & Integrations sub-page are both up; once the adapter is wired the persona's voiceId selection will actually drive the synthesized voice via the tenant's ElevenLabs key."
+                "status": "complete",
+                "asOf": "2026-05-25",
+                "summary": "ElevenLabsFetchTransport production adapter shipped in apps/api/src/elevenlabs-fetch-transport.ts. Uses Node 22 native fetch with xi-api-key header + streaming ReadableStream body iteration. boot path wires ElevenLabsTtsBackend when CERNIA_SPEECH_TTS=elevenlabs + ELEVENLABS_API_KEY are set; falls back to stub TTS with warn log otherwise. 8 new unit tests cover factory shape, streaming multi-chunk assembly, HTTP 4xx error propagation, null body guard, and close idempotency. api typecheck clean."
               },
               "remaining": [
                 "Build packages/voice-tts-elevenlabs implementing ITextToSpeech against ElevenLabs's REST API.",
                 "Token sourcing: TenantSecretResolver.resolve(tenantId, 'elevenlabs'); vendorAccountId = default voiceId.",
                 "Persist persona voiceId via PATCH /Organization/:id (the persona editor currently console.logs the save).",
                 "Wire the resolver lookup into apps/api so dialog turns get TTS bytes."
+              ],
+              "history": [
+                {
+                  "date": "2026-05-25",
+                  "stage": "tts-backend",
+                  "from": "absent",
+                  "to": "complete",
+                  "note": "ElevenLabsFetchTransport native-fetch streaming adapter + apps/api boot wiring. 8 tests.",
+                  "commit": "feat/elevenlabs-tts-wiring"
+                }
               ]
             },
             {
@@ -1359,7 +1379,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
@@ -7691,6 +7711,20 @@
   ],
   "recentPrActivity": [
     {
+      "number": 159,
+      "title": "feat(speech): ElevenLabs TTS production fetch transport + apps/api boot wiring",
+      "state": "OPEN",
+      "createdAt": "2026-05-25T09:58:40Z",
+      "mergedAt": null
+    },
+    {
+      "number": 158,
+      "title": "feat(speech): Deepgram STT production WebSocket transport + apps/api boot wiring",
+      "state": "OPEN",
+      "createdAt": "2026-05-25T09:54:46Z",
+      "mergedAt": null
+    },
+    {
       "number": 157,
       "title": "feat(telephony): wire TwilioVoiceBackend into apps/api boot — native-fetch client, no SDK",
       "state": "OPEN",
@@ -7780,25 +7814,13 @@
       "state": "MERGED",
       "createdAt": "2026-05-23T07:39:17Z",
       "mergedAt": "2026-05-23T11:36:06Z"
-    },
-    {
-      "number": 144,
-      "title": "feat(g-d3-jit-access): JIT engine + scope union (G-D3)",
-      "state": "MERGED",
-      "createdAt": "2026-05-23T07:34:50Z",
-      "mergedAt": "2026-05-23T11:31:11Z"
-    },
-    {
-      "number": 143,
-      "title": "feat(p1b-automl-orchestrator): intensity + budget + state machine (P1-B)",
-      "state": "MERGED",
-      "createdAt": "2026-05-23T07:30:39Z",
-      "mergedAt": "2026-05-23T11:37:12Z"
     }
   ],
   "fileCountCache": {
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
+    "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 6,
+    "origin/feat/elevenlabs-tts-wiring@1b21c92cb8e4": 8,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
@@ -8382,6 +8404,8 @@
   "testFileCountCache": {
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
+    "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 2,
+    "origin/feat/elevenlabs-tts-wiring@1b21c92cb8e4": 3,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
@@ -8965,6 +8989,8 @@
   "mergedIntoMainCache": {
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
+    "origin/feat/deepgram-stt-wiring@d47a3f130ebb": false,
+    "origin/feat/elevenlabs-tts-wiring@1b21c92cb8e4": false,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
     "origin/feat/local-demo-patient-image@90299849c309": true,
