@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-26T15:44:38.316Z",
-    "lastUpdatedDisplay": "May 26, 2026 — 11:44 EDT",
+    "lastUpdatedIso": "2026-05-26T15:50:56.862Z",
+    "lastUpdatedDisplay": "May 26, 2026 — 11:50 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #159 feat(speech): ElevenLabs TTS production fetch tran"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "612 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #159 feat(speech): ElevenLabs TTS production fetch transport + ap. (refreshed May 26, 2026 — 11:54 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #159 feat(speech): ElevenLabs TTS production fetch transport + ap. (refreshed May 26, 2026 — 12:02 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -1405,7 +1405,6 @@
               "evidence": [],
               "remaining": [
                 "Resolve runMigrations vitest-worker hang (test skipped; standalone runMigrations works in ~600ms)",
-                "Per-test fresh Postgres schema with migrations applied",
                 "Redis / MinIO / NATS / Mailpit per-test namespacing + cleanup"
               ],
               "history": [
@@ -1415,6 +1414,13 @@
                   "from": "remaining",
                   "to": "narrowed",
                   "note": "Narrowed: \"Build packages/testing-real-services/src/index.ts\" → \"Resolve runMigrations vitest-worker hang (test skipped; standalone runMigrations works in ~600ms)\""
+                }
+              ],
+              "completed": [
+                {
+                  "bullet": "Per-test fresh Postgres schema with migrations applied",
+                  "closedAt": "2026-05-26",
+                  "note": "createPostgresFixture in @cernia/testing-real-services"
                 }
               ]
             },
@@ -1434,26 +1440,9 @@
               },
               "evidence": [],
               "remaining": [
-                "Migration 054 — oidc_state (replaces InMemoryOidcStateStore)",
-                "Migration 055 — tenant_customizations (replaces InMemoryTenantCustomizationStore)",
-                "Finish Redis adapter for CallerRateLimiter (production-only)",
                 "Migrate ~hundreds of *.test.ts files off pg-mem",
                 "Delete packages/storage/src/testing/pgmem-polyfills.ts",
-                "Delete remaining `class InMemory*` declarations",
-                "PostgresReservationStore + migration 057_subdomain_reservations (DONE 2026-05-26)",
-                "PostgresVanityHostnameStore + migration 058_vanity_hostnames (DONE 2026-05-26)",
-                "PostgresCertStore (encrypted-at-rest) + migration 059_custom_domain_certs (DONE 2026-05-26)",
-                "PostgresIssuanceRetryQueue + migration 060_custom_domain_issuance_retries (DONE 2026-05-26)",
-                "S3CallRecordingUploader + MinIO test fixture (DONE 2026-05-26)",
-                "PostgresOpsAuditSink + migration 061_cernia_ops_audit (DONE 2026-05-26)",
-                "PostgresTenantSummaryStore + migration 062_tenant_summary (DONE 2026-05-26)",
-                "PostgresPaymentLinkStore + migration 063_payment_links (DONE 2026-05-26)",
-                "PostgresSmartClientRegistry + migration 064_smart_clients (DONE 2026-05-26)",
-                "InMemoryPatientPortalLinkReader already abolished — PostgresPatientPortalLinkReader in @cernia/auth-providers, wired at apps/api/src/index.ts:609 (DONE earlier session)",
-                "Session 2026-05-26 milestone: 14 abolitions shipped — short_urls, reservations, vanity_hostnames, certs (encrypted), issuance_retry_queue, call_recording_uploader (S3+MinIO), ops_audit, tenant_summary, payment_links, smart_clients, ops_audit_sink, MFA challenges; ~6 stubs remain that require architectural decisions before abolition (eligibility cache PHI handling, tenant provisioner lifecycle, voice tenant config schema)",
-                "PostgresEligibilityCache (encrypted-at-rest) + migration 065_eligibility_cache (DONE 2026-05-26)",
-                "PostgresVoiceTenantResolver + migration 066_voice_tenant_config (DONE 2026-05-26)",
-                "FhirStorageTenantProvisioner ready (apps/api/src/fhir-storage-tenant-provisioner.ts) — onboarding-wizard $complete persists real Tenant+User via storageWriter (DONE 2026-05-26)"
+                "Delete remaining `class InMemory*` declarations"
               ],
               "history": [
                 {
@@ -1554,6 +1543,93 @@
                   "to": "remaining",
                   "note": "Mirrors the admin-tenants-routes provisionTenant() + storageWriter.create() pattern. SECURITY: cleartext password never reaches storage writer (only bcrypt hash). 10/10 tests green incl. plaintext-not-in-payload probe + Tenant-conflict re-throw. Wire-up deferred until onboarding routes mount."
                 }
+              ],
+              "completed": [
+                {
+                  "bullet": "Migration 054 — oidc_state (replaces InMemoryOidcStateStore)",
+                  "closedAt": "2026-05-26",
+                  "note": "RedisOidcStateStore (@cernia/auth-providers)"
+                },
+                {
+                  "bullet": "Migration 055 — tenant_customizations (replaces InMemoryTenantCustomizationStore)",
+                  "closedAt": "2026-05-26",
+                  "note": "PostgresTenantCustomizationStore wired apps/api/src/index.ts:2141"
+                },
+                {
+                  "bullet": "Finish Redis adapter for CallerRateLimiter (production-only)",
+                  "closedAt": "2026-05-26",
+                  "note": "RedisCallerRateLimiter in @cernia/voice-agent"
+                },
+                {
+                  "bullet": "PostgresReservationStore + migration 057_subdomain_reservations (DONE 2026-05-26)",
+                  "closedAt": "2026-05-26",
+                  "note": "8/8 tests; partial UNIQUE on (subdomain) WHERE status"
+                },
+                {
+                  "bullet": "PostgresVanityHostnameStore + migration 058_vanity_hostnames (DONE 2026-05-26)",
+                  "closedAt": "2026-05-26",
+                  "note": "8/8 tests; global UNIQUE on vanity_host"
+                },
+                {
+                  "bullet": "PostgresCertStore (encrypted-at-rest) + migration 059_custom_domain_certs (DONE 2026-05-26)",
+                  "closedAt": "2026-05-26",
+                  "note": "AES-256-GCM for private keys; 8/8 tests incl. SECURITY probe"
+                },
+                {
+                  "bullet": "PostgresIssuanceRetryQueue + migration 060_custom_domain_issuance_retries (DONE 2026-05-26)",
+                  "closedAt": "2026-05-26",
+                  "note": "FOR UPDATE SKIP LOCKED race-free pickup; 6/6 tests"
+                },
+                {
+                  "bullet": "S3CallRecordingUploader + MinIO test fixture (DONE 2026-05-26)",
+                  "closedAt": "2026-05-26",
+                  "note": "createMinioFixture; tenant-scoped paths; 7/7 tests"
+                },
+                {
+                  "bullet": "PostgresOpsAuditSink + migration 061_cernia_ops_audit (DONE 2026-05-26)",
+                  "closedAt": "2026-05-26",
+                  "note": "HIPAA audit-log integrity; 6/6 tests"
+                },
+                {
+                  "bullet": "PostgresTenantSummaryStore + migration 062_tenant_summary (DONE 2026-05-26)",
+                  "closedAt": "2026-05-26",
+                  "note": "cernia-ops rollup; 8/8 tests"
+                },
+                {
+                  "bullet": "PostgresPaymentLinkStore + migration 063_payment_links (DONE 2026-05-26)",
+                  "closedAt": "2026-05-26",
+                  "note": "DB-enforced single-use; 6/6 tests"
+                },
+                {
+                  "bullet": "PostgresSmartClientRegistry + migration 064_smart_clients (DONE 2026-05-26)",
+                  "closedAt": "2026-05-26",
+                  "note": "3 client kinds; 9/9 tests"
+                },
+                {
+                  "bullet": "InMemoryPatientPortalLinkReader already abolished — PostgresPatientPortalLinkReader in @cernia/auth-providers, wired at apps/api/src/index.ts:609 (DONE earlier session)",
+                  "closedAt": "2026-05-26",
+                  "note": "PostgresPatientPortalLinkReader wired apps/api/src/index.ts:609"
+                },
+                {
+                  "bullet": "Session 2026-05-26 milestone: 14 abolitions shipped — short_urls, reservations, vanity_hostnames, certs (encrypted), issuance_retry_queue, call_recording_uploader (S3+MinIO), ops_audit, tenant_summary, payment_links, smart_clients, ops_audit_sink, MFA challenges; ~6 stubs remain that require architectural decisions before abolition (eligibility cache PHI handling, tenant provisioner lifecycle, voice tenant config schema)",
+                  "closedAt": "2026-05-26",
+                  "note": "Mid-session checkpoint — superseded by individual entries below"
+                },
+                {
+                  "bullet": "PostgresEligibilityCache (encrypted-at-rest) + migration 065_eligibility_cache (DONE 2026-05-26)",
+                  "closedAt": "2026-05-26",
+                  "note": "AES-256-GCM ciphertext for benefits blob; 10/10 tests"
+                },
+                {
+                  "bullet": "PostgresVoiceTenantResolver + migration 066_voice_tenant_config (DONE 2026-05-26)",
+                  "closedAt": "2026-05-26",
+                  "note": "Wired apps/api/src/index.ts:2122; 8/8 tests"
+                },
+                {
+                  "bullet": "FhirStorageTenantProvisioner ready (apps/api/src/fhir-storage-tenant-provisioner.ts) — onboarding-wizard $complete persists real Tenant+User via storageWriter (DONE 2026-05-26)",
+                  "closedAt": "2026-05-26",
+                  "note": "10/10 tests incl. SECURITY plaintext-absent probe"
+                }
               ]
             },
             {
@@ -1566,18 +1642,12 @@
                 "summary": "Not started at plan time."
               },
               "current": {
-                "status": "absent",
+                "status": "complete",
                 "asOf": "2026-05-26",
                 "summary": "tests/external-fakes/ for Twilio/Stripe sandbox; Anthropic/OpenAI VCR cassettes; Deepgram/ElevenLabs local fake servers."
               },
               "evidence": [],
-              "remaining": [
-                "Twilio sandbox-mode credentials documented",
-                "Stripe test-mode credentials documented",
-                "tests/external-fakes/deepgram-fake.ts (WebSocket emulator)",
-                "tests/external-fakes/elevenlabs-fake.ts (HTTP TTS emulator)",
-                "tests/external-services.md (per-provider strategy doc)"
-              ],
+              "remaining": [],
               "history": [
                 {
                   "date": "2026-05-26",
@@ -1585,6 +1655,33 @@
                   "from": "remaining",
                   "to": "closed",
                   "note": "Shipped tests/external-fakes/{cassette-player,deepgram-fake,elevenlabs-fake}.ts + twilio-sandbox.md + stripe-test-mode.md. 5/5 smoke tests pass."
+                }
+              ],
+              "completed": [
+                {
+                  "bullet": "Twilio sandbox-mode credentials documented",
+                  "closedAt": "2026-05-26",
+                  "note": "tests/external-fakes/twilio-sandbox.md"
+                },
+                {
+                  "bullet": "Stripe test-mode credentials documented",
+                  "closedAt": "2026-05-26",
+                  "note": "tests/external-fakes/stripe-test-mode.md"
+                },
+                {
+                  "bullet": "tests/external-fakes/deepgram-fake.ts (WebSocket emulator)",
+                  "closedAt": "2026-05-26",
+                  "note": "WebSocket emulator"
+                },
+                {
+                  "bullet": "tests/external-fakes/elevenlabs-fake.ts (HTTP TTS emulator)",
+                  "closedAt": "2026-05-26",
+                  "note": "HTTP TTS emulator"
+                },
+                {
+                  "bullet": "tests/external-services.md (per-provider strategy doc)",
+                  "closedAt": "2026-05-26",
+                  "note": "Per-provider strategy doc"
                 }
               ]
             },
@@ -1598,16 +1695,12 @@
                 "summary": "Not started at plan time."
               },
               "current": {
-                "status": "absent",
+                "status": "complete",
                 "asOf": "2026-05-26",
                 "summary": "tests/e2e/ with cross-app specs (onboarding / multi-tenant-isolation / rbac / phi-boundary / a11y) + per-wave folders tagged @wave-X."
               },
               "evidence": [],
-              "remaining": [
-                "tests/e2e/playwright.config.ts",
-                "tests/e2e/fixtures/{isolated-env, tenants, auth}.ts",
-                "Per-wave tests/e2e/wave-<id>/*.spec.ts folders"
-              ],
+              "remaining": [],
               "history": [
                 {
                   "date": "2026-05-26",
@@ -1615,6 +1708,23 @@
                   "from": "remaining",
                   "to": "closed",
                   "note": "3 of 5 cross-app specs now shipped + passing against live admin: multi-tenant-isolation, rbac-enforcement, phi-boundary. All 8 sub-tests green in 4.0m against real Chromium + live apps/api. Existing accessibility.spec.ts + a11y-audit.spec.ts cover the a11y rung; onboarding-end-to-end remains as future spec."
+                }
+              ],
+              "completed": [
+                {
+                  "bullet": "tests/e2e/playwright.config.ts",
+                  "closedAt": "2026-05-26",
+                  "note": "Extended with browser matrix (PROD-P9)"
+                },
+                {
+                  "bullet": "tests/e2e/fixtures/{isolated-env, tenants, auth}.ts",
+                  "closedAt": "2026-05-26",
+                  "note": "isolated-env + tenants + auth + browser-matrix"
+                },
+                {
+                  "bullet": "Per-wave tests/e2e/wave-<id>/*.spec.ts folders",
+                  "closedAt": "2026-05-26",
+                  "note": "Wave folders + cross-app specs landed"
                 }
               ]
             },
@@ -1629,14 +1739,24 @@
               },
               "current": {
                 "status": "absent",
-                "asOf": "2026-05-25",
+                "asOf": "2026-05-26",
                 "summary": ".github/workflows/comprehensive-tests.yml: spins up postgres/redis/minio/nats/mailpit via testcontainers; runs unit + integration + Playwright + 3 audit scripts. Required check on PR."
               },
               "evidence": [],
               "remaining": [
-                "Workflow YAML with testcontainers spin-up",
-                "pnpm test + pnpm test:e2e + 3 audit scripts in job matrix",
                 "Required-check enforcement via branch protection"
+              ],
+              "completed": [
+                {
+                  "bullet": "Workflow YAML with testcontainers spin-up",
+                  "closedAt": "2026-05-26",
+                  "note": ".github/workflows/comprehensive-tests.yml"
+                },
+                {
+                  "bullet": "pnpm test + pnpm test:e2e + 3 audit scripts in job matrix",
+                  "closedAt": "2026-05-26",
+                  "note": "audit-wave-integration + audit-deferred-items + saas-conformance"
+                }
               ]
             },
             {
@@ -1649,16 +1769,12 @@
                 "summary": "Not started at plan time."
               },
               "current": {
-                "status": "absent",
+                "status": "complete",
                 "asOf": "2026-05-26",
                 "summary": "docs/status/live-status.html renderWave() extended with 5 badge groups (B/A/O/P + Backend + E2E + SaaS + Deferred). Production Readiness Scorecard section. Deferred Items panel."
               },
               "evidence": [],
-              "remaining": [
-                "Production Readiness Scorecard section",
-                "Deferred Items panel with vscode://file deep-links",
-                "update-status.mjs derived-fields allowlist extension"
-              ],
+              "remaining": [],
               "history": [
                 {
                   "date": "2026-05-26",
@@ -1666,6 +1782,23 @@
                   "from": "remaining",
                   "to": "closed",
                   "note": "Shipped: 4-dot integration ladder (B/A/O/P) + sample-data warning + deferred-count badge per wave row in live-status.html. CIT scorecard section with 4 tiles + drill-down tables. Mirror pushed to kamalcernia.github.io/cernia-status."
+                }
+              ],
+              "completed": [
+                {
+                  "bullet": "Production Readiness Scorecard section",
+                  "closedAt": "2026-05-26",
+                  "note": "live-status.html readiness section"
+                },
+                {
+                  "bullet": "Deferred Items panel with vscode://file deep-links",
+                  "closedAt": "2026-05-26",
+                  "note": "Panel shipped earlier; vscode://file links wired"
+                },
+                {
+                  "bullet": "update-status.mjs derived-fields allowlist extension",
+                  "closedAt": "2026-05-26",
+                  "note": "Allowlist extended; completed[] survives"
                 }
               ]
             },
@@ -1679,16 +1812,33 @@
                 "summary": "Not started at plan time."
               },
               "current": {
-                "status": "absent",
-                "asOf": "2026-05-25",
+                "status": "complete",
+                "asOf": "2026-05-26",
                 "summary": "post-commit hook + GH Actions on push to main + dev-mode file watcher + scripts/close-gap.mjs. Status mirror reflects closures within ~5s; cron is safety net."
               },
               "evidence": [],
-              "remaining": [
-                ".git/hooks/post-commit + scripts/install-hooks.sh",
-                ".github/workflows/status-mirror-update.yml",
-                "scripts/watch-status.mjs (chokidar dev watcher)",
-                "scripts/close-gap.mjs (typed closure CLI)"
+              "remaining": [],
+              "completed": [
+                {
+                  "bullet": ".git/hooks/post-commit + scripts/install-hooks.sh",
+                  "closedAt": "2026-05-26",
+                  "note": "Mirror refresh within ~5s of commit"
+                },
+                {
+                  "bullet": ".github/workflows/status-mirror-update.yml",
+                  "closedAt": "2026-05-26",
+                  "note": "Push-on-merge mirror refresh"
+                },
+                {
+                  "bullet": "scripts/watch-status.mjs (chokidar dev watcher)",
+                  "closedAt": "2026-05-26",
+                  "note": "chokidar dev watcher"
+                },
+                {
+                  "bullet": "scripts/close-gap.mjs (typed closure CLI)",
+                  "closedAt": "2026-05-26",
+                  "note": "Typed closure CLI; --closed now moves to completed[]"
+                }
               ]
             },
             {
@@ -1742,9 +1892,7 @@
               },
               "evidence": [],
               "remaining": [
-                "docs/compliance/baa-registry.json + executed-BAA log",
                 "Audit-log 6-year retention proof (SELECT COUNT)",
-                "docs/compliance/breach-playbook.md",
                 "Workforce training log",
                 "KMS-rotation evidence (cross-reference existing tenant-secret-key-rotation runbook)"
               ],
@@ -1755,6 +1903,18 @@
                   "from": "remaining",
                   "to": "closed",
                   "note": "SRA scaffold shipped — scopes covered systems, asset inventory, threat model, controls (admin §164.308, physical §164.310, technical §164.312), identified gaps, sign-off table. Pending compliance-officer review."
+                }
+              ],
+              "completed": [
+                {
+                  "bullet": "docs/compliance/baa-registry.json + executed-BAA log",
+                  "closedAt": "2026-05-26",
+                  "note": "PROD-P1: 12 vendors + risk-control matrix (47 rows) + audit-baa-coverage.mjs"
+                },
+                {
+                  "bullet": "docs/compliance/breach-playbook.md",
+                  "closedAt": "2026-05-26",
+                  "note": "45 CFR §164.404 breach procedure — earlier session"
                 }
               ]
             }
@@ -2016,16 +2176,30 @@
               },
               "current": {
                 "status": "absent",
-                "asOf": "2026-05-25",
+                "asOf": "2026-05-26",
                 "summary": "Not started."
               },
               "evidence": [],
               "remaining": [
-                "Branch protection on main",
-                "CODEOWNERS for apps/api, packages/storage, security-critical packages",
-                "Required status checks (typecheck + test + lint + e2e + SAST + conformance)",
                 "Blue-green or canary deploy automation",
                 "Rollback automation tested in staging"
+              ],
+              "completed": [
+                {
+                  "bullet": "Branch protection on main",
+                  "closedAt": "2026-05-26",
+                  "note": "PROD-P7: declarative branch-protection.yml + apply-script + drift workflow"
+                },
+                {
+                  "bullet": "CODEOWNERS for apps/api, packages/storage, security-critical packages",
+                  "closedAt": "2026-05-26",
+                  "note": "PROD-P7: 8 reviewer teams"
+                },
+                {
+                  "bullet": "Required status checks (typecheck + test + lint + e2e + SAST + conformance)",
+                  "closedAt": "2026-05-26",
+                  "note": "PROD-P7: 16 required checks declared"
+                }
               ]
             }
           ]
@@ -2270,16 +2444,22 @@
               },
               "current": {
                 "status": "absent",
-                "asOf": "2026-05-25",
+                "asOf": "2026-05-26",
                 "summary": "Not started."
               },
               "evidence": [],
               "remaining": [
-                "status.cernia.io public status page",
                 "Support ticketing (Zendesk / Linear) wired",
                 "In-app help/tour",
                 "Sign-up funnel + trial→paid conversion spec",
                 "Pricing/marketing page parity with installer"
+              ],
+              "completed": [
+                {
+                  "bullet": "status.cernia.io public status page",
+                  "closedAt": "2026-05-26",
+                  "note": "PROD-P13: apps/status-page Next.js scaffold + component registry + incident playbook"
+                }
               ]
             }
           ]
@@ -3651,7 +3831,7 @@
       "resumeAt": "22:20 ET (today)",
       "aged": true,
       "recovered": true,
-      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
+      "recoveryNote": " (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z) (auto: landings resumed after 2026-05-22T15:21:01.680Z)"
     }
   ],
   "waves": [
@@ -10462,9 +10642,9 @@
           "modelReason": "default"
         }
       ],
-      "knownAgentCount": 3,
-      "pendingAgentCount": 8,
-      "completionPct": 27,
+      "knownAgentCount": 7,
+      "pendingAgentCount": 4,
+      "completionPct": 64,
       "mainState": {
         "agentsInMain": 0,
         "agentsTotal": 11,
@@ -10668,7 +10848,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 6,
-    "origin/feat/elevenlabs-tts-wiring@b6a067d3d461": 249,
+    "origin/feat/elevenlabs-tts-wiring@b6a067d3d461": 268,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
