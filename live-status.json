@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-26T19:10:25.081Z",
-    "lastUpdatedDisplay": "May 26, 2026 — 15:10 EDT",
+    "lastUpdatedIso": "2026-05-26T19:19:57.213Z",
+    "lastUpdatedDisplay": "May 26, 2026 — 15:19 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #159 feat(speech): ElevenLabs TTS production fetch tran"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "612 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #159 feat(speech): ElevenLabs TTS production fetch transport + ap. (refreshed May 26, 2026 — 15:21 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #159 feat(speech): ElevenLabs TTS production fetch transport + ap. (refreshed May 26, 2026 — 15:25 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -2001,8 +2001,7 @@
               },
               "evidence": [],
               "remaining": [
-                "Cross-region replica drilled",
-                "Right-to-portability tenant-export endpoint tested"
+                "Cross-region replica drilled"
               ],
               "history": [
                 {
@@ -2025,6 +2024,11 @@
                   "bullet": "Postgres PITR enabled",
                   "closedAt": "2026-05-26",
                   "note": "PITR runbook + dev-compose override + drill scaffold"
+                },
+                {
+                  "bullet": "Right-to-portability tenant-export endpoint tested",
+                  "closedAt": "2026-05-26",
+                  "note": "PROD-P3: tenant_export_jobs table (migration 069) + PostgresTenantExportJobStore + 4 admin routes + 18/18 tests + 426-line runbook. Race-free worker pickup via FOR UPDATE SKIP LOCKED. Commit 1b69c129."
                 }
               ]
             }
@@ -2054,7 +2058,6 @@
               },
               "evidence": [],
               "remaining": [
-                "SLO definitions per service",
                 "PagerDuty / Opsgenie alert routing",
                 "apps/status-page (public status.cernia.io)"
               ],
@@ -2077,6 +2080,11 @@
                   "bullet": "Sentry init in each app",
                   "closedAt": "2026-05-26",
                   "note": "PROD-P4 (partial): observability/sentry module + apps/api sentry-init + 305/306 tests. Per-Next.js-app instrumentation.ts files remain TODO (admin, cernia-ops, patient, installer). Commit e5dcb971."
+                },
+                {
+                  "bullet": "SLO definitions per service",
+                  "closedAt": "2026-05-26",
+                  "note": "PROD-P4: PER_SERVICE_SLOS catalogue with 20 SLOs across 5 services (api/admin/cernia-ops/patient/installer). 3 hard SLOs (zero-PHI-leak posture) flagged via isHardSlo(). 22/22 catalogue tests green; full observability suite 327 passing. Commit 21f87c3e."
                 }
               ]
             }
@@ -10940,7 +10948,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 6,
-    "origin/feat/elevenlabs-tts-wiring@2d6921097954": 367,
+    "origin/feat/elevenlabs-tts-wiring@21f87c3e9563": 378,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
@@ -11525,7 +11533,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 2,
-    "origin/feat/elevenlabs-tts-wiring@2d6921097954": 52,
+    "origin/feat/elevenlabs-tts-wiring@21f87c3e9563": 55,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
@@ -12110,7 +12118,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": false,
-    "origin/feat/elevenlabs-tts-wiring@2d6921097954": false,
+    "origin/feat/elevenlabs-tts-wiring@21f87c3e9563": false,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
     "origin/feat/local-demo-patient-image@90299849c309": true,
