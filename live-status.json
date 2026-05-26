@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-26T05:49:03.411Z",
+    "lastUpdatedIso": "2026-05-26T05:49:21.848Z",
     "lastUpdatedDisplay": "May 26, 2026 — 01:49 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #159 feat(speech): ElevenLabs TTS production fetch tran"
   },
@@ -11104,7 +11104,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 2,
-    "origin/feat/elevenlabs-tts-wiring@ca426760297b": 30,
+    "origin/feat/elevenlabs-tts-wiring@ca426760297b": 31,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
