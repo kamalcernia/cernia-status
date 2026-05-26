@@ -175,6 +175,23 @@
     .readiness-stage-rationale { color: var(--fg-faint); font-size: 10px; font-style: italic; line-height: 1.4; margin: 0 0 6px; }
     .readiness-stage-remaining { color: var(--fg-muted); font-size: 10px; margin: 6px 0 0; padding-left: 14px; }
     .readiness-stage-remaining li { margin-bottom: 2px; }
+    .readiness-stage-completed {
+      list-style: none; padding-left: 0; margin: 6px 0 0;
+      font-size: 10px;
+    }
+    .readiness-stage-completed li {
+      color: var(--accent); text-decoration: line-through;
+      text-decoration-thickness: 1px; text-decoration-color: rgba(74, 222, 128, 0.5);
+      margin-bottom: 3px; display: flex; align-items: baseline; gap: 6px;
+    }
+    .readiness-stage-completed li::before {
+      content: "✓"; color: var(--accent); text-decoration: none;
+      font-weight: 700; flex-shrink: 0;
+    }
+    .readiness-stage-completed .when {
+      color: var(--fg-faint); font-family: var(--mono); font-size: 9px;
+      text-decoration: none; margin-left: auto; flex-shrink: 0;
+    }
     .readiness-stage-evidence { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; }
     .readiness-stage-evidence a { color: var(--running); font-size: 10px; font-family: var(--mono); text-decoration: none; padding: 1px 5px; border: 1px solid var(--border); border-radius: 3px; }
     .readiness-stage-evidence a:hover { background: rgba(96, 165, 250, 0.08); }
@@ -564,6 +581,20 @@
             stage.remaining.map((r) => `<li>${escHtml(r)}</li>`).join("")
           }</ul>`
         : "";
+      // Render closed bullets in green with strikethrough so progress
+      // within a stage is visible at a glance — see CSS class
+      // .readiness-stage-completed.
+      const completedHtml = (stage.completed || []).length > 0
+        ? `<ul class="readiness-stage-completed">${
+            stage.completed.map((c) => {
+              const bullet = typeof c === "string" ? c : (c.bullet || "");
+              const when = typeof c === "string" ? "" : (c.closedAt || "");
+              const noteAttr = (typeof c !== "string" && c.note)
+                ? ` title="${escHtml(c.note)}"` : "";
+              return `<li${noteAttr}><span>${escHtml(bullet)}</span>${when ? `<span class="when">${escHtml(when)}</span>` : ""}</li>`;
+            }).join("")
+          }</ul>`
+        : "";
       const arrow = changed ? " → " : " · ";
       return `
         <div class="readiness-stage s-${escHtml(cur.status)}">
@@ -576,6 +607,7 @@
           </div>
           ${stage.rationale ? `<p class="readiness-stage-rationale">${escHtml(stage.rationale)}</p>` : ""}
           <p class="readiness-stage-summary">${escHtml(cur.summary)}</p>
+          ${completedHtml}
           ${remainingHtml}
           ${evidenceHtml ? `<div class="readiness-stage-evidence">${evidenceHtml}</div>` : ""}
         </div>
