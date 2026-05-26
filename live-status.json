@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-26T17:11:56.558Z",
-    "lastUpdatedDisplay": "May 26, 2026 — 13:11 EDT",
+    "lastUpdatedIso": "2026-05-26T17:13:41.335Z",
+    "lastUpdatedDisplay": "May 26, 2026 — 13:13 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #159 feat(speech): ElevenLabs TTS production fetch tran"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "612 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #159 feat(speech): ElevenLabs TTS production fetch transport + ap. (refreshed May 26, 2026 — 13:14 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #159 feat(speech): ElevenLabs TTS production fetch transport + ap. (refreshed May 26, 2026 — 13:16 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -2515,18 +2515,33 @@
               },
               "current": {
                 "status": "absent",
-                "asOf": "2026-05-25",
+                "asOf": "2026-05-26",
                 "summary": "Not started."
               },
               "evidence": [],
               "remaining": [
-                "Android bundle build + signing",
                 "iOS bundle build + signing",
                 "App Store submission listing",
                 "Play Store submission listing",
                 "MDM (Intune / JAMF) integration tested",
                 "Push notifications wired",
                 "Mobile-specific accessibility"
+              ],
+              "history": [
+                {
+                  "date": "2026-05-26",
+                  "stage": "scope",
+                  "from": "remaining",
+                  "to": "closed",
+                  "note": "PROD-P14: .github/workflows/mobile-android-build.yml active + iOS skeleton .future + scripts/mobile-bootstrap-signing-key.sh + 7 docs/mobile/* (signing-vault + listing checklists + MDM plan + accessibility plan + runbook). Intune + JAMF Pro coverage. Commit 82685966."
+                }
+              ],
+              "completed": [
+                {
+                  "bullet": "Android bundle build + signing",
+                  "closedAt": "2026-05-26",
+                  "note": "PROD-P14: .github/workflows/mobile-android-build.yml active + iOS skeleton .future + scripts/mobile-bootstrap-signing-key.sh + 7 docs/mobile/* (signing-vault + listing checklists + MDM plan + accessibility plan + runbook). Intune + JAMF Pro coverage. Commit 82685966."
+                }
               ]
             }
           ]
@@ -3509,7 +3524,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-05-26T17:13:31.089Z",
+      "lastAuditAt": "2026-05-26T17:15:40.218Z",
       "backendRouteSymbolCount": 38,
       "deferredItems": {
         "total": 1625,
