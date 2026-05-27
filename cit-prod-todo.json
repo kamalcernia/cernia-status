@@ -4,11 +4,11 @@
   "generatedAt": "2026-05-27",
   "_currentTaskRule": "When an agent (or human) is actively working a TODO, they set `currentTask` to the active item's id + a one-line description. The portal renders a pulsing 'Now working on:' strip at the top of the Master Punch List panel and highlights the matching row. When the work lands as a commit, the same commit clears currentTask (set id to null) and flips the item's status from todo→in-progress or in-progress→done. The cron + post-commit hook propagate within seconds. Set currentTask to null when idle.",
   "currentTask": {
-    "id": "ra-bot-1",
-    "title": "Boot bot-runtime scheduler in apps/api with template registry as catalog",
+    "id": "ra-cds-3",
+    "title": "Mount order-select / order-sign / medication-prescribe / encounter-discharge CDS hooks",
     "category": "remaining-track-bullets",
-    "startedAt": "2026-05-27T20:10:00Z",
-    "evidence": "functionality-utilization/bot-workflow-runtime remaining[] bullet 1"
+    "startedAt": "2026-05-27T20:20:00Z",
+    "evidence": "functionality-utilization/cds-hooks-quality remaining[] bullet 3"
   },
   "categories": [
     {
@@ -83,8 +83,8 @@
         { "id": "ra-cds-4", "track": "functionality-utilization/cds-hooks-quality", "title": "Nightly CQM batch job emitting MeasureReport per tenant", "status": "todo" },
         { "id": "ra-cds-5", "track": "functionality-utilization/cds-hooks-quality", "title": "Admin UI panel: CQM scores per measure + per provider", "status": "todo" },
         { "id": "ra-cds-6", "track": "functionality-utilization/cds-hooks-quality", "title": "Flip jwtVerificationEnabled=true once EHR-issuer trust list configured", "status": "todo" },
-        { "id": "ra-bot-1", "track": "functionality-utilization/bot-workflow-runtime", "title": "Boot bot-runtime scheduler in apps/api with template registry as catalog", "status": "todo" },
-        { "id": "ra-bot-2", "track": "functionality-utilization/bot-workflow-runtime", "title": "Mount POST /bot-runtime/$dry-run wrapping dryRunBot", "status": "todo" },
+        { "id": "ra-bot-1", "track": "functionality-utilization/bot-workflow-runtime", "title": "Boot bot-runtime scheduler in apps/api with template registry as catalog", "status": "done", "evidence": "apps/api/src/bot-runtime-scheduler.ts shipped — bootBotRuntimeScheduler() walks registry every 60s with cleanup hook" },
+        { "id": "ra-bot-2", "track": "functionality-utilization/bot-workflow-runtime", "title": "Mount POST /bot-runtime/$dry-run wrapping dryRunBot", "status": "done", "evidence": "apps/api/src/bot-workflow-routes.ts extended with POST /bot-runtime/$dry-run" },
         { "id": "ra-bot-3", "track": "functionality-utilization/bot-workflow-runtime", "title": "Wire j2c fork-and-modify diff + j2d AI-workflow-gen alongside registry", "status": "todo" },
         { "id": "ra-bot-4", "track": "functionality-utilization/bot-workflow-runtime", "title": "Wire j3g background-bot template catalog", "status": "todo" },
         { "id": "ra-bot-5", "track": "functionality-utilization/bot-workflow-runtime", "title": "Postgres-backed template registry (in-memory ships today)", "status": "todo" },
@@ -188,9 +188,9 @@
   "rollup": {
     "totalItems": 116,
     "byStatus": {
-      "done": 32,
+      "done": 34,
       "in-progress": 9,
-      "todo": 75,
+      "todo": 73,
       "blocked": 0
     },
     "byCategory": {
