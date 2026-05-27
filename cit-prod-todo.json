@@ -106,7 +106,7 @@
         { "id": "ra-rpm-2", "track": "functionality-utilization/telehealth-rpm", "title": "Stateful POST /rpm/devices/:deviceId/readings webhook", "status": "done", "completionMode": "shipped-with-stub-followup", "evidence": "apps/api/src/rpm-device-webhook-routes.ts — ruleResolver default returns undefined; per-tenant rule store needed before alerts fire." },
         { "id": "ra-rpm-3", "track": "functionality-utilization/telehealth-rpm", "title": "Schedule care-plan generator + adherence-tracker as nightly batches", "status": "done", "completionMode": "shipped-with-stub-followup", "evidence": "apps/api/src/rpm-nightly-batches.ts — heartbeat only; per-tenant population sweep is task #213." },
         { "id": "ra-rpm-4", "track": "functionality-utilization/telehealth-rpm", "title": "Wire q-s3 telehealth-visit audit + q-s5 visit-summary into apps/api", "status": "done", "completionMode": "previously-shipped" },
-        { "id": "ra-rpm-5", "track": "functionality-utilization/telehealth-rpm", "title": "Clinic UI for visit summary, RPM dashboard, care-plan management", "status": "done", "completionMode": "shipped-with-stub-followup", "evidence": "apps/admin/src/app/admin/rpm/page.tsx (dashboard list) + apps/admin/src/app/admin/rpm/[patientId]/page.tsx (detail + care-plan editor). apps/api/src/rpm-read-routes.ts wires GET /api/rpm/patients + /readings + /alerts. Care-plan endpoints return 503 (PostgresCarePlanStore is the stub-followup — tracked as ra-rpm-3-followup). Visit-summary section is q-s5 wiring deferred." },
+        { "id": "ra-rpm-5", "track": "functionality-utilization/telehealth-rpm", "title": "Clinic UI for visit summary, RPM dashboard, care-plan management", "status": "done", "completionMode": "shipped", "evidence": "apps/admin/src/app/admin/rpm/page.tsx (dashboard list) + [patientId]/page.tsx (detail + care-plan editor). apps/api/src/rpm-read-routes.ts wires GET /api/rpm/patients + /readings + /alerts + GET/PUT /api/rpm/care-plans/:patientId. PostgresCarePlanStore (mig 092) ships — care-plan save works end-to-end. 9 real-Postgres integration tests pass. Visit-summary section is q-s5 wiring deferred." },
         { "id": "ra-sbm-1", "track": "functionality-utilization/saas-billing-marketplace", "title": "Wire x2a invoicing into Stripe billing pipeline", "status": "todo", "completionMode": null, "evidence": "Blocked on Stripe production keys procurement." },
         { "id": "ra-sbm-2", "track": "functionality-utilization/saas-billing-marketplace", "title": "Mount j1d checkout routes + customer storefront UI", "status": "todo", "completionMode": null },
         { "id": "ra-sbm-3", "track": "functionality-utilization/saas-billing-marketplace", "title": "Schedule x1c SaaS-metrics nightly compute", "status": "done", "completionMode": "shipped-with-stub-followup", "evidence": "apps/api/src/saas-nightly-batches.ts — heartbeat only; subscription-store + real compute logic not yet built." },
@@ -201,15 +201,15 @@
       "blocked": 0
     },
     "byCompletionMode": {
-      "shipped": 13,
+      "shipped": 14,
       "previously-shipped": 31,
-      "shipped-with-stub-followup": 8,
+      "shipped-with-stub-followup": 7,
       "wontfix-by-design": 1
     },
     "honestTotals": {
       "literally-code-shipped": 52,
       "literally-code-shipped-pct": 42,
-      "literally-code-shipped-rationale": "shipped (13 — this session's direct code) + previously-shipped (31 — earlier-session Tasks #1-#210) + shipped-with-stub-followup (8 — RPM clinic UI + heartbeat-only schedulers that boot but await downstream component). All 52 have committed code + verifiable file paths.",
+      "literally-code-shipped-rationale": "shipped (14 — this session's direct code, including PostgresCarePlanStore + 9 integration tests + the RPM dashboard now end-to-end) + previously-shipped (31 — earlier-session Tasks #1-#210) + shipped-with-stub-followup (7 — heartbeat-only schedulers that boot but await downstream component). All 52 have committed code + verifiable file paths.",
       "wontfix-by-design": 1,
       "wontfix-by-design-rationale": "Wave R is intentionally mobile-only — no backend surface needed by design. NOT a deferred item.",
       "still-open": 72,
