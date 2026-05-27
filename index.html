@@ -333,7 +333,7 @@
         <div class="mainstate-rollup-tile">
           <div class="label">Deferred items</div>
           <div class="value" id="citDeferredTotal">—</div>
-          <div style="font-size:11px;color:var(--fg-muted)"><span id="citDeferredBlockers">—</span> blockers · <span id="citDeferredTechDebt">—</span> tech-debt</div>
+          <div style="font-size:11px;color:var(--fg-muted)"><span id="citDeferredBlockers">—</span> blockers · <span id="citDeferredTechDebt">—</span> tech-debt · <span id="citWontfixCount">0</span> WONTFIX</div>
         </div>
         <div class="mainstate-rollup-tile">
           <div class="label">SaaS conformance violations</div>
@@ -360,6 +360,30 @@
             </tr>
           </thead>
           <tbody id="citDeferredByKind"></tbody>
+        </table>
+      </details>
+      <details style="margin-top:8px">
+        <summary style="cursor:pointer;font-weight:600">▸ Deferred items by wave</summary>
+        <table style="margin-top:8px;border-collapse:collapse;font-family:var(--mono);font-size:12px;width:100%;max-width:600px">
+          <thead>
+            <tr style="text-align:left;border-bottom:1px solid var(--bg-elevated,#1e293b)">
+              <th style="padding:4px 8px">Wave</th><th style="padding:4px 8px;text-align:right">Count</th>
+            </tr>
+          </thead>
+          <tbody id="citDeferredByWave"></tbody>
+        </table>
+      </details>
+      <details style="margin-top:8px">
+        <summary style="cursor:pointer;font-weight:600">▸ WONTFIX demotions</summary>
+        <table style="margin-top:8px;border-collapse:collapse;font-family:var(--mono);font-size:12px;width:100%;max-width:800px">
+          <thead>
+            <tr style="text-align:left;border-bottom:1px solid var(--bg-elevated,#1e293b)">
+              <th style="padding:4px 8px">Slug</th>
+              <th style="padding:4px 8px">Signers</th>
+              <th style="padding:4px 8px">Date</th>
+            </tr>
+          </thead>
+          <tbody id="citWontfixRows"></tbody>
         </table>
       </details>
       <details style="margin-top:8px">
@@ -724,6 +748,28 @@
       $("citDeferredByKind").innerHTML = sortedKinds
         .map(([k, v]) => `<tr><td style="padding:4px 8px">${escHtml(k)}</td><td style="padding:4px 8px;text-align:right">${v}</td></tr>`)
         .join("");
+
+      // Deferred-items by-wave table
+      const byWave = di?.byWave || {};
+      const sortedWaves = Object.entries(byWave).sort((a, b) => b[1] - a[1]);
+      $("citDeferredByWave").innerHTML = sortedWaves
+        .map(([w, v]) => {
+          const label = w === "(unassigned)" ? "<em style='color:var(--fg-muted)'>(unassigned)</em>" : escHtml(w);
+          return `<tr><td style="padding:4px 8px">${label}</td><td style="padding:4px 8px;text-align:right">${v}</td></tr>`;
+        })
+        .join("");
+
+      // WONTFIX demotions
+      const wontfix = di?.wontfixDemotions || [];
+      $("citWontfixCount").textContent = String(wontfix.length);
+      $("citWontfixRows").innerHTML = wontfix.length === 0
+        ? `<tr><td colspan="3" style="padding:4px 8px;color:var(--fg-muted)">(none — no items demoted yet)</td></tr>`
+        : wontfix.map((d) => {
+            const date = d.demotedAt ? d.demotedAt.slice(0, 10) : "—";
+            const signers = `${escHtml(d.engineeringLead || "?")} + ${escHtml(d.reviewer || "?")}`;
+            const slugLink = `<a href="../decisions/wontfix-${escHtml(d.slug)}.md" style="color:var(--accent)">${escHtml(d.slug)}</a>`;
+            return `<tr><td style="padding:4px 8px">${slugLink}</td><td style="padding:4px 8px">${signers}</td><td style="padding:4px 8px">${escHtml(date)}</td></tr>`;
+          }).join("");
 
       // Conformance by-check
       const byCheck = sc?.byCheck || {};
