@@ -4,11 +4,11 @@
   "generatedAt": "2026-05-27",
   "_currentTaskRule": "When an agent (or human) is actively working a TODO, they set `currentTask` to the active item's id + a one-line description. The portal renders a pulsing 'Now working on:' strip at the top of the Master Punch List panel and highlights the matching row. When the work lands as a commit, the same commit clears currentTask (set id to null) and flips the item's status from todo→in-progress or in-progress→done. The cron + post-commit hook propagate within seconds. Set currentTask to null when idle.",
   "currentTask": {
-    "id": "ra-rpm-1",
-    "title": "Mount WebRTC signaling websocket in apps/api (q-s1)",
+    "id": "ra-rpm-2",
+    "title": "Stateful POST /rpm/devices/:deviceId/readings webhook feeding AlertEngine",
     "category": "remaining-track-bullets",
-    "startedAt": "2026-05-27T19:50:00Z",
-    "evidence": "functionality-utilization/telehealth-rpm remaining[] bullet 1"
+    "startedAt": "2026-05-27T20:00:00Z",
+    "evidence": "functionality-utilization/telehealth-rpm remaining[] bullet 2"
   },
   "categories": [
     {
@@ -95,7 +95,7 @@
         { "id": "ra-ml-4", "track": "functionality-utilization/ml-platform", "title": "Wire p3b-drift-monitoring alongside ml/risk-classifier", "status": "todo" },
         { "id": "ra-ml-5", "track": "functionality-utilization/ml-platform", "title": "Mount p1a-dataset-dsl + p1b-automl-orchestrator endpoints", "status": "todo" },
         { "id": "ra-ml-6", "track": "functionality-utilization/ml-platform", "title": "Admin UI for browsing models + promoting versions", "status": "todo" },
-        { "id": "ra-rpm-1", "track": "functionality-utilization/telehealth-rpm", "title": "Mount WebRTC signaling websocket in apps/api (q-s1)", "status": "todo" },
+        { "id": "ra-rpm-1", "track": "functionality-utilization/telehealth-rpm", "title": "Mount WebRTC signaling websocket in apps/api (q-s1)", "status": "done", "evidence": "apps/api/src/webrtc-signaling-routes.ts shipped — ws://.../telehealth/webrtc/signaling" },
         { "id": "ra-rpm-2", "track": "functionality-utilization/telehealth-rpm", "title": "Stateful POST /rpm/devices/:deviceId/readings webhook feeding AlertEngine", "status": "todo" },
         { "id": "ra-rpm-3", "track": "functionality-utilization/telehealth-rpm", "title": "Schedule care-plan generator + adherence-tracker as nightly batches", "status": "todo" },
         { "id": "ra-rpm-4", "track": "functionality-utilization/telehealth-rpm", "title": "Wire q-s3 telehealth-visit audit + q-s5 visit-summary into apps/api", "status": "todo" },
@@ -188,9 +188,9 @@
   "rollup": {
     "totalItems": 116,
     "byStatus": {
-      "done": 30,
+      "done": 31,
       "in-progress": 9,
-      "todo": 77,
+      "todo": 76,
       "blocked": 0
     },
     "byCategory": {
