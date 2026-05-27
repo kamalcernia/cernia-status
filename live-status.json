@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-27T15:59:20.283Z",
+    "lastUpdatedIso": "2026-05-27T15:59:35.027Z",
     "lastUpdatedDisplay": "May 27, 2026 — 11:59 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #159 feat(speech): ElevenLabs TTS production fetch tran"
   },
@@ -11290,7 +11290,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 6,
-    "origin/feat/elevenlabs-tts-wiring@4f8348d5974e": 598,
+    "origin/feat/elevenlabs-tts-wiring@187de2147935": 603,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
@@ -11875,7 +11875,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 2,
-    "origin/feat/elevenlabs-tts-wiring@4f8348d5974e": 89,
+    "origin/feat/elevenlabs-tts-wiring@187de2147935": 90,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
@@ -12460,7 +12460,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": false,
-    "origin/feat/elevenlabs-tts-wiring@4f8348d5974e": false,
+    "origin/feat/elevenlabs-tts-wiring@187de2147935": false,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
     "origin/feat/local-demo-patient-image@90299849c309": true,
