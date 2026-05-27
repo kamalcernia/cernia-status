@@ -1402,6 +1402,23 @@
       return `<span style="background:${s.bg};color:${s.fg};border:1px solid ${s.fg};border-radius:4px;padding:2px 8px;font-size:11px;font-weight:600">${s.label}</span>`;
     }
 
+    function cppCompletionModeChip(mode) {
+      // Honest completion-mode chip. Renders next to the DONE pill so the
+      // user can tell shipped code apart from WONTFIX demotions at a glance.
+      if (!mode) return "";
+      const map = {
+        "shipped":                    { bg: "rgba(34,197,94,0.10)",  fg: "#22c55e", label: "shipped",              tip: "Real code shipped this session — verifiable file path" },
+        "previously-shipped":         { bg: "rgba(34,197,94,0.08)",  fg: "#86efac", label: "prev-shipped",         tip: "Done in an earlier session (Task #N in project list)" },
+        "shipped-with-stub-followup": { bg: "rgba(96,165,250,0.10)", fg: "#60a5fa", label: "shipped+stub",         tip: "Code shipped + functional in catalog/no-op mode; full behavior needs downstream component" },
+        "wontfix-rolling":            { bg: "rgba(251,191,36,0.10)", fg: "#fbbf24", label: "wontfix-rolling",      tip: "Demoted to rolling closure per docs/decisions/wontfix-deferred-items-bulk-sweep.md" },
+        "wontfix-admin-ui":           { bg: "rgba(167,139,250,0.10)",fg: "#a78bfa", label: "wontfix-admin-ui",     tip: "Backend wired; admin UI deferred to separate apps/admin sprint" },
+        "wontfix-credentials":        { bg: "rgba(244,114,182,0.10)",fg: "#f472b6", label: "wontfix-credentials",  tip: "Code ready; blocked on procurement (Twilio/Stripe/Deepgram/ElevenLabs production keys + BAAs)" },
+        "wontfix-operational":        { bg: "rgba(251,146,60,0.10)", fg: "#fb923c", label: "wontfix-operational",  tip: "Code/workflow ships; requires operational artifact (signature, 7-day window)" },
+      };
+      const s = map[mode] || { bg: "rgba(255,255,255,0.06)", fg: "#9ca3af", label: mode, tip: "" };
+      return `<span title="${s.tip}" style="background:${s.bg};color:${s.fg};border:1px solid ${s.fg};border-radius:4px;padding:2px 6px;font-size:10px;font-weight:500;margin-left:6px;font-family:var(--mono)">${s.label}</span>`;
+    }
+
     function cppRenderCurrentTask() {
       if (!cppState.data) return;
       const cur = cppState.data.currentTask;
@@ -1453,12 +1470,35 @@
       const blk = tot.byStatus.blocked || 0;
       const total = done + ip + todo + blk;
       const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-      $("cppRollup").innerHTML =
+      let html =
         `<span style="background:#0b1220;border:1px solid var(--border);padding:6px 12px;border-radius:6px"><b>${total}</b> total items</span>` +
         `<span style="background:rgba(34,197,94,0.10);border:1px solid #22c55e;padding:6px 12px;border-radius:6px;color:#22c55e"><b>${done}</b> done (${pct}%)</span>` +
         `<span style="background:rgba(96,165,250,0.10);border:1px solid #60a5fa;padding:6px 12px;border-radius:6px;color:#60a5fa"><b>${ip}</b> in-progress</span>` +
         `<span style="background:rgba(251,191,36,0.10);border:1px solid #fbbf24;padding:6px 12px;border-radius:6px;color:#fbbf24"><b>${todo}</b> todo</span>` +
         (blk > 0 ? `<span style="background:rgba(248,113,113,0.10);border:1px solid #f87171;padding:6px 12px;border-radius:6px;color:#f87171"><b>${blk}</b> blocked</span>` : "");
+      // Honest secondary rollup: literally-code-shipped vs deferred-with-rationale.
+      const ht = tot.honestTotals || {};
+      const shipped = ht["literally-code-shipped"];
+      const deferred = ht["deferred-with-rationale"];
+      const shippedPct = ht["literally-code-shipped-pct"];
+      const deferredPct = ht["deferred-with-rationale-pct"];
+      if (typeof shipped === "number" && typeof deferred === "number") {
+        html +=
+          `<span style="flex-basis:100%;height:0"></span>` +
+          `<span title="${(ht["literally-code-shipped-rationale"] || "").replace(/"/g,'&quot;')}" style="background:rgba(34,197,94,0.06);border:1px solid #22c55e;padding:6px 12px;border-radius:6px;color:#86efac;font-size:12px"><b>${shipped}</b> literally code-shipped${shippedPct != null ? ' (' + shippedPct + '%)' : ''}</span>` +
+          `<span title="${(ht["deferred-with-rationale-rationale"] || "").replace(/"/g,'&quot;')}" style="background:rgba(251,191,36,0.06);border:1px solid #fbbf24;padding:6px 12px;border-radius:6px;color:#fbbf24;font-size:12px"><b>${deferred}</b> deferred-with-rationale${deferredPct != null ? ' (' + deferredPct + '%)' : ''}</span>`;
+      }
+      // Per-completion-mode breakdown chips.
+      const bcm = tot.byCompletionMode || {};
+      const modeOrder = ["shipped", "previously-shipped", "shipped-with-stub-followup", "wontfix-rolling", "wontfix-admin-ui", "wontfix-credentials", "wontfix-operational"];
+      const modeChips = modeOrder
+        .filter((m) => bcm[m])
+        .map((m) => `<span style="background:rgba(255,255,255,0.04);border:1px solid var(--border);padding:4px 8px;border-radius:4px;font-size:11px;font-family:var(--mono);color:var(--muted)"><b style="color:var(--fg)">${bcm[m]}</b> ${m}</span>`)
+        .join("");
+      if (modeChips) {
+        html += `<span style="flex-basis:100%;height:0"></span>` + modeChips;
+      }
+      $("cppRollup").innerHTML = html;
     }
 
     function cppRenderPanel() {
@@ -1495,10 +1535,14 @@
           const ev = item.evidence || item.note || "";
           const tag = item.phase || item.wave || item.track || item.category || "";
           const isActive = activeId && item.id === activeId;
+          // Build a sensible title for items lacking an explicit `title`
+          // field (older wave-gate rows used wave + rung instead).
+          const title = item.title
+            || (item.wave && item.rung ? `Wave ${item.wave} ${item.rung} rung` : "(no title)");
           html.push(`<tr class="${isActive ? "cpp-active-row" : ""}" style="border-bottom:1px solid rgba(255,255,255,0.04)">
-            <td style="padding:8px;vertical-align:top;white-space:nowrap">${cppPillHtml(item.status)}</td>
+            <td style="padding:8px;vertical-align:top;white-space:nowrap">${cppPillHtml(item.status)}${item.status === "done" ? cppCompletionModeChip(item.completionMode) : ""}</td>
             <td style="padding:8px;vertical-align:top;color:var(--muted);font-family:monospace;font-size:11px">${item.id}${tag ? `<br><span style="color:#60a5fa">${tag}</span>` : ""}</td>
-            <td style="padding:8px;vertical-align:top">${item.title}</td>
+            <td style="padding:8px;vertical-align:top">${title}</td>
             <td style="padding:8px;vertical-align:top;color:var(--muted);font-size:11px">${ev}</td>
           </tr>`);
         }
