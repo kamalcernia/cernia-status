@@ -133,7 +133,7 @@
       "items": [
         { "id": "wg-h-backend", "wave": "H", "rung": "Backend", "status": "in-progress", "note": "partial — route file exists but app.register() call not found" },
         { "id": "wg-h-overall", "wave": "H", "rung": "Overall", "status": "in-progress", "note": "partial (was wired) — Admin uses sample data" },
-        { "id": "wg-o-backend", "wave": "O", "rung": "Backend", "status": "in-progress", "note": "partial — o1/o4/o6 api-routes exist but not Fastify-mounted; PostgresBudgetStore + PostgresTraceStore shipped, wiring pending" },
+        { "id": "wg-o-backend", "wave": "O", "rung": "Backend", "status": "done", "note": "WIRED — apps/api/src/llm-observability-routes.ts mounts 7 read-only routes against PostgresCostLedgerStore + PostgresBudgetStore + PostgresTraceStore" },
         { "id": "wg-o-admin", "wave": "O", "rung": "Admin", "status": "todo", "note": "no API path matching ai-native/llm-gateway/o1-llm-gateway in *-api.ts" },
         { "id": "wg-r-backend", "wave": "R", "rung": "Backend", "status": "todo", "note": "shelf — mobile packages have no backend surface by design; needs explicit n/a wave override or Postgres-backed mobile-shortcut audit log" },
         { "id": "wg-w-backend", "wave": "W", "rung": "Backend", "status": "in-progress", "note": "partial — route file exists but not registered" },
@@ -180,8 +180,8 @@
   "rollup": {
     "totalItems": 116,
     "byStatus": {
-      "done": 26,
-      "in-progress": 12,
+      "done": 27,
+      "in-progress": 11,
       "todo": 78,
       "blocked": 0
     },

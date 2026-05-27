@@ -1990,6 +1990,13 @@
               "from": "in-progress",
               "to": "in-progress",
               "note": "Closure-pass 5 multi-wave wire-up — apps/api/src/platform-policies-routes.ts batches three Postgres stores' CRUD into Fastify: (F-5) GET/PUT/DELETE /grace/policy/:tenantId + GET /grace/policies; (M-5) GET /trials/active + /trials/by-user/:userId + /trials/by-user/:userId/active + /trials/:id; (L-6) GET/POST/PUT/DELETE /policies with orgId/tenantId scoping. apps/api/package.json adds @cernia/f5-grace-period-suspend + @cernia/m5-trial-conversion + @cernia/l6-access-control-inheritance as workspace:* deps. scripts/audit-wave-integration.mjs wave-inference regex extended from `[123]` to `[1-9]` for L/M/N — so l4/l5/l6 + m4/m5/m6 + n4..n9 now correctly map to their waves (previously they fell through to (unassigned)). Engines (GraceLifecycle / ReactivationEngine / BulkSuspendCoordinator / TrialLifecycleManager / ActivationTracker / ConversionScorer / InheritanceResolver) remain deferred. Effect: Wave F (partial→wired), Wave L (partial→wired), Wave M (partial→wired) flipped Backend dots from grey to green. Cumulative session: 4 (B/G/P/Q) + 1 (I) + 3 (F/L/M) = 8 Backend rungs greened by audit-script improvements + apps/api wires in this session."
+            },
+            {
+              "date": "2026-05-27",
+              "stage": "closure-passes",
+              "from": "in-progress",
+              "to": "in-progress",
+              "note": "Closure-pass 4 (Wave O-AI4 + O-AI6) extends: apps/api/src/llm-observability-routes.ts wires 7 read-only routes against PostgresCostLedgerStore (mig 075) + PostgresBudgetStore (mig 090) + PostgresTraceStore (mig 091): GET /api/o4/cost (list), /api/o4/cost/summary, /api/o4/cost/:id, /api/o4/budgets/:tenantId; GET /api/o6/traces (list), /api/o6/traces/:traceId, /api/o6/traces/:traceId/spans. Writes stay on the producer side — the LLM gateway records cost + traces at request time; dashboards just query. Engines (AlertEngine / Reconciler / ReplayEngine / AggregationEngine / CostAttributor) remain deferred. apps/api typecheck clean. Wave O Backend ladder rung partial → wired. Effect: 17 of 19 wave Backend rungs now green (only H and W still partial; R is mobile-only by design)."
             }
           ]
         }
