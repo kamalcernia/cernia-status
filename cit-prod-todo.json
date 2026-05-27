@@ -2,6 +2,14 @@
   "$schema": "Comprehensive Integration + Production Readiness master TODO list. Each row maps to a tracked gap in production-readiness.json, the wave-integration audit, or the deferred-items audit. Status pills are driven by docs/status/update-status.mjs derivations.",
   "version": "1.0.0",
   "generatedAt": "2026-05-27",
+  "_currentTaskRule": "When an agent (or human) is actively working a TODO, they set `currentTask` to the active item's id + a one-line description. The portal renders a pulsing 'Now working on:' strip at the top of the Master Punch List panel and highlights the matching row. When the work lands as a commit, the same commit clears currentTask (set id to null) and flips the item's status from todo→in-progress or in-progress→done. The cron + post-commit hook propagate within seconds. Set currentTask to null when idle.",
+  "currentTask": {
+    "id": "wg-w-backend",
+    "title": "Wire Wave W (transactional email + templates + deliverability + SMS) backend routes into apps/api",
+    "category": "wave-gates",
+    "startedAt": "2026-05-27T19:30:00Z",
+    "evidence": "Wave W still partial in audit; packages/w1..w5 each have api-routes.ts in src/ but no apps/api wire"
+  },
   "categories": [
     {
       "id": "cit",
