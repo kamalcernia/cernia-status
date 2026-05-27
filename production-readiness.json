@@ -2004,6 +2004,13 @@
               "from": "in-progress",
               "to": "in-progress",
               "note": "Closure-pass 7 (Wave H, H1-A tenant-brand) extends: apps/api/src/index.ts now registers `tenantBrandRoutes` with KyselyTenantBrandStore (migration 045_tenant_brands.sql). 3 routes: GET/PUT/DELETE /tenants/:id/brand. slugResolver is a boot-time stub that throws (production wires it to platform `tenants` table) — GET/DELETE still work; PUT returns 500 until slug resolver is wired. The route's tenant-A-vs-tenant-B authorization invariant (ADR 0126) IS enforced at the route layer. scripts/audit-wave-integration.mjs extended with ROUTE_FILE_WAVE_OVERRIDES map — explicit mapping from apps/api/src/<base>-routes.ts filename to wave (handles cases where the route basename doesn't textually match any wave package — e.g. tenant-brand-routes.ts belongs to Wave H even though Wave H's packages are `branding` + `brand-assets`). Effect: Wave H Backend (partial→wired) + Overall (partial→wired). 18 of 19 wave Backend rungs now green (only W still partial; R is mobile-only by design). cit-prod-todo.json rollup: done 27 → 29, in-progress 11 → 9."
+            },
+            {
+              "date": "2026-05-27",
+              "stage": "closure-passes",
+              "from": "in-progress",
+              "to": "in-progress",
+              "note": "Closure-pass 5 (Wave W, W2 email-templates) extends: apps/api/src/email-template-routes.ts (new) wraps the framework-agnostic buildApiHandlers() from @cernia/w2-email-templates into Fastify. 6 routes mounted: POST /api/email-templates/drafts (createDraft), PUT /api/email-templates/drafts/:id (updateDraft), POST /api/email-templates/drafts/:id/publish, GET /api/email-templates (list), GET /api/email-templates/:id (get), POST /api/email-templates/:id/render. Backed by InMemoryTemplateRegistry (W2's reference impl) — sufficient for admin UI + seeded templates. Postgres-backed registry remains deferred. apps/api/package.json adds @cernia/w2-email-templates as workspace:* dep. apps/api typecheck clean. Wave W Backend ladder rung partial → wired. Milestone: 19 of 19 wave Backend rungs are now green — every wave except R (mobile-only by design) is backend-wired. cit-prod-todo.json rollup: done 29 → 30, todo 78 → 77."
             }
           ]
         }
