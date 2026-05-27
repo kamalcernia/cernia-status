@@ -4,11 +4,11 @@
   "generatedAt": "2026-05-27",
   "_currentTaskRule": "When an agent (or human) is actively working a TODO, they set `currentTask` to the active item's id + a one-line description. The portal renders a pulsing 'Now working on:' strip at the top of the Master Punch List panel and highlights the matching row. When the work lands as a commit, the same commit clears currentTask (set id to null) and flips the item's status from todo→in-progress or in-progress→done. The cron + post-commit hook propagate within seconds. Set currentTask to null when idle.",
   "currentTask": {
-    "id": "ra-voice-eval-3",
-    "title": "Write prompt-injection-rejection golden (ignore-previous-instructions adversarial)",
+    "id": "ra-sbm-3",
+    "title": "Schedule x1c SaaS-metrics nightly compute against real subscription store",
     "category": "remaining-track-bullets",
-    "startedAt": "2026-05-27T20:40:00Z",
-    "evidence": "voice-agent/eval-harness remaining[] bullet 3"
+    "startedAt": "2026-05-27T20:50:00Z",
+    "evidence": "functionality-utilization/saas-billing-marketplace remaining[] bullet 3"
   },
   "categories": [
     {
@@ -72,7 +72,7 @@
       "items": [
         { "id": "ra-voice-eval-1", "track": "voice-agent/eval-harness", "title": "mfa-locked-out golden (3 wrong DOB attempts → phi-restriction transfer)", "status": "todo" },
         { "id": "ra-voice-eval-2", "track": "voice-agent/eval-harness", "title": "red-flag-bilingual-spanish golden (dolor en el pecho)", "status": "todo" },
-        { "id": "ra-voice-eval-3", "track": "voice-agent/eval-harness", "title": "prompt-injection-rejection golden", "status": "todo" },
+        { "id": "ra-voice-eval-3", "track": "voice-agent/eval-harness", "title": "prompt-injection-rejection golden", "status": "done", "evidence": "packages/voice-agent-evals/src/goldens/prompt-injection-rejection.json — 2-turn adversarial fixture with mustNotContainIntentKinds assertion" },
         { "id": "ra-voice-eval-4", "track": "voice-agent/eval-harness", "title": "appointment-window-disambiguation golden", "status": "todo" },
         { "id": "ra-voice-eval-5", "track": "voice-agent/eval-harness", "title": "Nightly --live mode against real Anthropic API for one canary golden", "status": "todo" },
         { "id": "ra-voice-mon-1", "track": "voice-agent/monitoring", "title": "cernia-ops feature rollout flags page (needs FeatureFlagStore abstraction)", "status": "todo" },
@@ -188,9 +188,9 @@
   "rollup": {
     "totalItems": 116,
     "byStatus": {
-      "done": 36,
+      "done": 37,
       "in-progress": 9,
-      "todo": 71,
+      "todo": 70,
       "blocked": 0
     },
     "byCategory": {
