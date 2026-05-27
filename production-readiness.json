@@ -1997,6 +1997,13 @@
               "from": "in-progress",
               "to": "in-progress",
               "note": "Closure-pass 4 (Wave O-AI4 + O-AI6) extends: apps/api/src/llm-observability-routes.ts wires 7 read-only routes against PostgresCostLedgerStore (mig 075) + PostgresBudgetStore (mig 090) + PostgresTraceStore (mig 091): GET /api/o4/cost (list), /api/o4/cost/summary, /api/o4/cost/:id, /api/o4/budgets/:tenantId; GET /api/o6/traces (list), /api/o6/traces/:traceId, /api/o6/traces/:traceId/spans. Writes stay on the producer side — the LLM gateway records cost + traces at request time; dashboards just query. Engines (AlertEngine / Reconciler / ReplayEngine / AggregationEngine / CostAttributor) remain deferred. apps/api typecheck clean. Wave O Backend ladder rung partial → wired. Effect: 17 of 19 wave Backend rungs now green (only H and W still partial; R is mobile-only by design)."
+            },
+            {
+              "date": "2026-05-27",
+              "stage": "closure-passes",
+              "from": "in-progress",
+              "to": "in-progress",
+              "note": "Closure-pass 7 (Wave H, H1-A tenant-brand) extends: apps/api/src/index.ts now registers `tenantBrandRoutes` with KyselyTenantBrandStore (migration 045_tenant_brands.sql). 3 routes: GET/PUT/DELETE /tenants/:id/brand. slugResolver is a boot-time stub that throws (production wires it to platform `tenants` table) — GET/DELETE still work; PUT returns 500 until slug resolver is wired. The route's tenant-A-vs-tenant-B authorization invariant (ADR 0126) IS enforced at the route layer. scripts/audit-wave-integration.mjs extended with ROUTE_FILE_WAVE_OVERRIDES map — explicit mapping from apps/api/src/<base>-routes.ts filename to wave (handles cases where the route basename doesn't textually match any wave package — e.g. tenant-brand-routes.ts belongs to Wave H even though Wave H's packages are `branding` + `brand-assets`). Effect: Wave H Backend (partial→wired) + Overall (partial→wired). 18 of 19 wave Backend rungs now green (only W still partial; R is mobile-only by design). cit-prod-todo.json rollup: done 27 → 29, in-progress 11 → 9."
             }
           ]
         }

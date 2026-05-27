@@ -131,8 +131,8 @@
       "name": "Wave-tree Gates (Backend / Admin / Ops / Patient + Deferred-Items)",
       "description": "Per-wave Backend (B) / Admin (A) / Ops (O) / Patient (P) ladder rungs from scripts/audit-wave-integration.mjs. Each non-green rung is a TODO.",
       "items": [
-        { "id": "wg-h-backend", "wave": "H", "rung": "Backend", "status": "in-progress", "note": "partial — route file exists but app.register() call not found" },
-        { "id": "wg-h-overall", "wave": "H", "rung": "Overall", "status": "in-progress", "note": "partial (was wired) — Admin uses sample data" },
+        { "id": "wg-h-backend", "wave": "H", "rung": "Backend", "status": "done", "note": "WIRED — tenantBrandRoutes registered with KyselyTenantBrandStore (migration 045)" },
+        { "id": "wg-h-overall", "wave": "H", "rung": "Overall", "status": "done", "note": "WIRED — H Backend rung green; Admin still flagged for sample-data warning" },
         { "id": "wg-o-backend", "wave": "O", "rung": "Backend", "status": "done", "note": "WIRED — apps/api/src/llm-observability-routes.ts mounts 7 read-only routes against PostgresCostLedgerStore + PostgresBudgetStore + PostgresTraceStore" },
         { "id": "wg-o-admin", "wave": "O", "rung": "Admin", "status": "todo", "note": "no API path matching ai-native/llm-gateway/o1-llm-gateway in *-api.ts" },
         { "id": "wg-r-backend", "wave": "R", "rung": "Backend", "status": "todo", "note": "shelf — mobile packages have no backend surface by design; needs explicit n/a wave override or Postgres-backed mobile-shortcut audit log" },
@@ -180,8 +180,8 @@
   "rollup": {
     "totalItems": 116,
     "byStatus": {
-      "done": 27,
-      "in-progress": 11,
+      "done": 29,
+      "in-progress": 9,
       "todo": 78,
       "blocked": 0
     },
