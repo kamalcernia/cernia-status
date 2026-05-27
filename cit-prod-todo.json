@@ -1,0 +1,198 @@
+{
+  "$schema": "Comprehensive Integration + Production Readiness master TODO list. Each row maps to a tracked gap in production-readiness.json, the wave-integration audit, or the deferred-items audit. Status pills are driven by docs/status/update-status.mjs derivations.",
+  "version": "1.0.0",
+  "generatedAt": "2026-05-27",
+  "categories": [
+    {
+      "id": "cit",
+      "name": "CIT — Comprehensive Integration & Testing",
+      "description": "Phases 1-12 from the master plan. Closes 4 gates per wave: Build / Integration / Backend Tests / E2E + Conformance.",
+      "items": [
+        { "id": "cit-p1", "phase": "Phase 1", "title": "Real-services test harness (packages/testing-real-services)", "status": "done", "evidence": "packages/testing-real-services/src/index.ts" },
+        { "id": "cit-p2", "phase": "Phase 2", "title": "Abolish in-process stubs — migrate ~hundreds of *.test.ts off pg-mem; delete pgmem-polyfills.ts + remaining InMemory* classes", "status": "in-progress", "evidence": "production-readiness.json :: comprehensive-integration-testing/stubs-abolished (3 bullets open)" },
+        { "id": "cit-p3", "phase": "Phase 3", "title": "External API hybrid layer (Twilio/Stripe sandbox; Anthropic/OpenAI VCR; Deepgram/ElevenLabs fakes)", "status": "done", "evidence": "tests/external-fakes/" },
+        { "id": "cit-p4", "phase": "Phase 4", "title": "Backend integration-test harness (apps/api/src/test-helpers/integration-harness.ts)", "status": "done" },
+        { "id": "cit-p5", "phase": "Phase 5", "title": "scripts/audit-wave-integration.mjs (5-state B/A/O/P ladder)", "status": "done", "evidence": "scripts/audit-wave-integration.mjs" },
+        { "id": "cit-p6", "phase": "Phase 6", "title": "tests/e2e Playwright project with per-wave folders", "status": "done", "evidence": "tests/e2e/" },
+        { "id": "cit-p7", "phase": "Phase 7", "title": "scripts/saas-conformance.mjs (CLAUDE.md invariant enforcement)", "status": "done" },
+        { "id": "cit-p8", "phase": "Phase 8", "title": "testcontainers CI workflow (.github/workflows/comprehensive-tests.yml)", "status": "done" },
+        { "id": "cit-p9", "phase": "Phase 9", "title": "Status portal — 5 badge groups + Deferred Items panel", "status": "done" },
+        { "id": "cit-p10", "phase": "Phase 10", "title": "Schema extension: per-track wave field + CIT/PROD tracks in production-readiness.json", "status": "done" },
+        { "id": "cit-p11", "phase": "Phase 11", "title": "Run all audits + populate production-readiness.json with gaps", "status": "done" },
+        { "id": "cit-p12-harness-hang", "phase": "Phase 12", "title": "Resolve runMigrations vitest-worker hang (test currently skipped; standalone runMigrations works in ~600ms)", "status": "todo", "evidence": "comprehensive-integration-testing/harness :: 1 open bullet" }
+      ]
+    },
+    {
+      "id": "cit-closure-passes",
+      "name": "CIT — Closure Passes 1-7 (per-wave 5-gate closure)",
+      "description": "Walk each wave's Build/Integration/Backend-tests/E2E+conformance + zero-deferred-items gates. Per the master plan §Phase 12.",
+      "items": [
+        { "id": "cit-pass-1", "title": "Pass 1: ERX + UI — backend rung wired; admin UI + Surescripts + PDMP still open", "status": "in-progress", "waves": ["ERX", "UI"], "evidence": "docs/operations/runbooks/cit-closure-passes-roadmap.md row 1" },
+        { "id": "cit-pass-2", "title": "Pass 2: E + dependent D6 telephony / F / I / J / W (voice-agent stack)", "status": "in-progress", "waves": ["E", "D6", "F", "I", "J", "W"], "evidence": "roadmap row 2; D6 telephony Postgres stores shipped this session" },
+        { "id": "cit-pass-3", "title": "Pass 3: G (caregiver-federation, including SAML 2.0)", "status": "in-progress", "waves": ["G"], "evidence": "roadmap row 3; SAML handler + ProxyStore shipped" },
+        { "id": "cit-pass-4", "title": "Pass 4: O + P + Q (AI / ML / telehealth-RPM) — 4 Postgres stores shipped; LLM gateway + risk-classifier refactor still open", "status": "in-progress", "waves": ["O", "P", "Q"], "evidence": "roadmap row 4" },
+        { "id": "cit-pass-5", "title": "Pass 5: K + L + M + N + R + S + T + U + V — 21 Postgres stores shipped this session", "status": "in-progress", "waves": ["K", "L", "M", "N", "R", "S", "T", "U", "V"], "evidence": "roadmap row 5; migrations 076-091 + adapters all shipped" },
+        { "id": "cit-pass-6", "title": "Pass 6: X + Z + Y + DD + AA + BB — billing + finops + analytics", "status": "todo", "waves": ["X", "Z", "Y", "DD", "AA", "BB"], "evidence": "roadmap row 6" },
+        { "id": "cit-pass-7", "title": "Pass 7: A + B + C + D + H + H-EXT + H-EXT-2 + CC (foundation + catalogs)", "status": "todo", "waves": ["A", "B", "C", "D", "H", "H-EXT", "H-EXT-2", "CC"], "evidence": "roadmap row 7" }
+      ]
+    },
+    {
+      "id": "prod",
+      "name": "PROD — Production Readiness (P1-P14)",
+      "description": "14 production-readiness categories. Each track in production-readiness.json shows the per-category history.",
+      "items": [
+        { "id": "prod-p1", "phase": "P1", "title": "HIPAA Compliance Artifacts — SRA, BAA registry, audit-log 6-yr retention, breach playbook, workforce training log, KMS rotation", "status": "done", "evidence": "production-readiness.json :: prod-hipaa-artifacts" },
+        { "id": "prod-p2", "phase": "P2", "title": "Security Automation — Semgrep + CodeQL SAST, Snyk/Dependabot, gitleaks, CycloneDX SBOM, OWASP ZAP DAST", "status": "done", "evidence": "prod-security-automation" },
+        { "id": "prod-p3", "phase": "P3", "title": "DR + Backup — Postgres PITR, cross-region replica, quarterly drill, RTO ≤ 1h / RPO ≤ 5 min", "status": "done", "evidence": "prod-dr-backup" },
+        { "id": "prod-p4", "phase": "P4", "title": "Observability — OTel tracing, Sentry, structured logs, SLO defs, PagerDuty routing, status.cernia.io", "status": "done", "evidence": "prod-observability" },
+        { "id": "prod-p5", "phase": "P5", "title": "Performance — k6 voice latency p99 < 1.2s; FHIR Bulk Data at N tenants; noisy-neighbor; regression gate", "status": "done", "evidence": "prod-performance" },
+        { "id": "prod-p6", "phase": "P6", "title": "Tenant Lifecycle — suspend/unsuspend/delete/export/billing-failure→grace→suspend/tier-downgrade", "status": "done", "evidence": "prod-tenant-lifecycle" },
+        { "id": "prod-p7", "phase": "P7", "title": "CI/CD Hardening — branch protection, CODEOWNERS, blue-green/canary deploy, rollback automation", "status": "done", "evidence": "prod-cicd-hardening" },
+        { "id": "prod-p8", "phase": "P8", "title": "EHR Migration Validation — Epic/Cerner/Athena real sample dumps; installer end-to-end; per-EHR runbook", "status": "done", "evidence": "prod-ehr-migration-validation" },
+        { "id": "prod-p9", "phase": "P9", "title": "Browser + A11y Breadth — Chromium/Firefox/WebKit/Edge matrix + axe-core WCAG-AA on every page", "status": "done", "evidence": "prod-browser-a11y-breadth" },
+        { "id": "prod-p10", "phase": "P10", "title": "Clinical Safety — CDS-rule audit + ML bias/fairness + SaMD doc + clinical advisory sign-off", "status": "done", "evidence": "prod-clinical-safety" },
+        { "id": "prod-p11", "phase": "P11", "title": "FinOps — per-tenant LLM tokens / voice minutes / storage GB / compute minutes + margin per tier", "status": "done", "evidence": "prod-finops" },
+        { "id": "prod-p12", "phase": "P12", "title": "FHIR Conformance — Inferno/Crucible + SMART App Launch cert + Da Vinci HRex/PDex + openapi-diff CI gate", "status": "done", "evidence": "prod-fhir-conformance" },
+        { "id": "prod-p13", "phase": "P13", "title": "Customer-Facing — status.cernia.io, support ticketing, in-app help, sign-up funnel + trial→paid", "status": "done", "evidence": "prod-customer-facing" },
+        { "id": "prod-p14", "phase": "P14", "title": "Mobile Distribution — Android+iOS bundles, App Store/Play Store listings, MDM, push notifications", "status": "done", "evidence": "prod-mobile-distribution" }
+      ]
+    },
+    {
+      "id": "remaining-track-bullets",
+      "name": "Remaining `remaining[]` bullets across all tracks",
+      "description": "Direct extraction of every open bullet from production-readiness.json. Each one is a discrete TODO to close.",
+      "items": [
+        { "id": "ra-voice-eval-1", "track": "voice-agent/eval-harness", "title": "mfa-locked-out golden (3 wrong DOB attempts → phi-restriction transfer)", "status": "todo" },
+        { "id": "ra-voice-eval-2", "track": "voice-agent/eval-harness", "title": "red-flag-bilingual-spanish golden (dolor en el pecho)", "status": "todo" },
+        { "id": "ra-voice-eval-3", "track": "voice-agent/eval-harness", "title": "prompt-injection-rejection golden", "status": "todo" },
+        { "id": "ra-voice-eval-4", "track": "voice-agent/eval-harness", "title": "appointment-window-disambiguation golden", "status": "todo" },
+        { "id": "ra-voice-eval-5", "track": "voice-agent/eval-harness", "title": "Nightly --live mode against real Anthropic API for one canary golden", "status": "todo" },
+        { "id": "ra-voice-mon-1", "track": "voice-agent/monitoring", "title": "cernia-ops feature rollout flags page (needs FeatureFlagStore abstraction)", "status": "todo" },
+        { "id": "ra-voice-mon-2", "track": "voice-agent/monitoring", "title": "Vendor-probe cron: poll vendor status pages + insert into vendor_health_state", "status": "todo" },
+        { "id": "ra-cds-1", "track": "functionality-utilization/cds-hooks-quality", "title": "Tenant-scoped CDS service registry (currently process-global)", "status": "todo" },
+        { "id": "ra-cds-2", "track": "functionality-utilization/cds-hooks-quality", "title": "Real FHIRPath / workflow / bot dispatcher", "status": "todo" },
+        { "id": "ra-cds-3", "track": "functionality-utilization/cds-hooks-quality", "title": "Mount order-select / order-sign / medication-prescribe / encounter-discharge hooks", "status": "todo" },
+        { "id": "ra-cds-4", "track": "functionality-utilization/cds-hooks-quality", "title": "Nightly CQM batch job emitting MeasureReport per tenant", "status": "todo" },
+        { "id": "ra-cds-5", "track": "functionality-utilization/cds-hooks-quality", "title": "Admin UI panel: CQM scores per measure + per provider", "status": "todo" },
+        { "id": "ra-cds-6", "track": "functionality-utilization/cds-hooks-quality", "title": "Flip jwtVerificationEnabled=true once EHR-issuer trust list configured", "status": "todo" },
+        { "id": "ra-bot-1", "track": "functionality-utilization/bot-workflow-runtime", "title": "Boot bot-runtime scheduler in apps/api with template registry as catalog", "status": "todo" },
+        { "id": "ra-bot-2", "track": "functionality-utilization/bot-workflow-runtime", "title": "Mount POST /bot-runtime/$dry-run wrapping dryRunBot", "status": "todo" },
+        { "id": "ra-bot-3", "track": "functionality-utilization/bot-workflow-runtime", "title": "Wire j2c fork-and-modify diff + j2d AI-workflow-gen alongside registry", "status": "todo" },
+        { "id": "ra-bot-4", "track": "functionality-utilization/bot-workflow-runtime", "title": "Wire j3g background-bot template catalog", "status": "todo" },
+        { "id": "ra-bot-5", "track": "functionality-utilization/bot-workflow-runtime", "title": "Postgres-backed template registry (in-memory ships today)", "status": "todo" },
+        { "id": "ra-bot-6", "track": "functionality-utilization/bot-workflow-runtime", "title": "Admin UI for browsing/forking/activating workflow templates per tenant", "status": "todo" },
+        { "id": "ra-ml-1", "track": "functionality-utilization/ml-platform", "title": "Front Python risk-classifier through inference-platform RequestRouter", "status": "todo" },
+        { "id": "ra-ml-2", "track": "functionality-utilization/ml-platform", "title": "Per-tenant model registry refactor (PostgresModelRegistry tenant-scoped)", "status": "in-progress", "evidence": "PostgresModelRegistry shipped this session" },
+        { "id": "ra-ml-3", "track": "functionality-utilization/ml-platform", "title": "Wire o1-llm-gateway as central LLM router", "status": "todo" },
+        { "id": "ra-ml-4", "track": "functionality-utilization/ml-platform", "title": "Wire p3b-drift-monitoring alongside ml/risk-classifier", "status": "todo" },
+        { "id": "ra-ml-5", "track": "functionality-utilization/ml-platform", "title": "Mount p1a-dataset-dsl + p1b-automl-orchestrator endpoints", "status": "todo" },
+        { "id": "ra-ml-6", "track": "functionality-utilization/ml-platform", "title": "Admin UI for browsing models + promoting versions", "status": "todo" },
+        { "id": "ra-rpm-1", "track": "functionality-utilization/telehealth-rpm", "title": "Mount WebRTC signaling websocket in apps/api (q-s1)", "status": "todo" },
+        { "id": "ra-rpm-2", "track": "functionality-utilization/telehealth-rpm", "title": "Stateful POST /rpm/devices/:deviceId/readings webhook feeding AlertEngine", "status": "todo" },
+        { "id": "ra-rpm-3", "track": "functionality-utilization/telehealth-rpm", "title": "Schedule care-plan generator + adherence-tracker as nightly batches", "status": "todo" },
+        { "id": "ra-rpm-4", "track": "functionality-utilization/telehealth-rpm", "title": "Wire q-s3 telehealth-visit audit + q-s5 visit-summary into apps/api", "status": "todo" },
+        { "id": "ra-rpm-5", "track": "functionality-utilization/telehealth-rpm", "title": "Clinic UI for visit summary, RPM dashboard, care-plan management", "status": "todo" },
+        { "id": "ra-sbm-1", "track": "functionality-utilization/saas-billing-marketplace", "title": "Wire x2a invoicing into Stripe billing pipeline", "status": "todo" },
+        { "id": "ra-sbm-2", "track": "functionality-utilization/saas-billing-marketplace", "title": "Mount j1d checkout routes + customer storefront UI", "status": "todo" },
+        { "id": "ra-sbm-3", "track": "functionality-utilization/saas-billing-marketplace", "title": "Schedule x1c SaaS-metrics nightly compute against real subscription store", "status": "todo" },
+        { "id": "ra-sbm-4", "track": "functionality-utilization/saas-billing-marketplace", "title": "Wire x1a tax engine (Stripe Tax + Avalara fallback)", "status": "todo" },
+        { "id": "ra-sbm-5", "track": "functionality-utilization/saas-billing-marketplace", "title": "Wire x1b ASC 606 revenue recognition into monthly close", "status": "todo" },
+        { "id": "ra-sbm-6", "track": "functionality-utilization/saas-billing-marketplace", "title": "Wire x2b contract auto-renewal cron", "status": "todo" },
+        { "id": "ra-sbm-7", "track": "functionality-utilization/saas-billing-marketplace", "title": "Wire x3c discount-approval workflow", "status": "todo" },
+        { "id": "ra-tel-1", "track": "external-integrations/telephony-backend", "title": "Boot wiring in apps/api: construct TwilioVoiceBackend keyed by tenantId via TenantSecretResolver", "status": "todo" },
+        { "id": "ra-tel-2", "track": "external-integrations/telephony-backend", "title": "Inbound webhook /telephony/twilio/inbound with tenant lookup + per-tenant Auth Token", "status": "todo" },
+        { "id": "ra-tel-3", "track": "external-integrations/telephony-backend", "title": "Outbound campaign route + caller-id allowlist enforcement", "status": "todo" },
+        { "id": "ra-tel-4", "track": "external-integrations/telephony-backend", "title": "Smoke test against Twilio sandbox using one real test number", "status": "todo" },
+        { "id": "ra-stt-1", "track": "external-integrations/stt-backend", "title": "Build packages/voice-stt-deepgram implementing ISpeechToText", "status": "todo" },
+        { "id": "ra-stt-2", "track": "external-integrations/stt-backend", "title": "Token sourcing via TenantSecretResolver.resolve(tenantId, 'deepgram')", "status": "todo" },
+        { "id": "ra-stt-3", "track": "external-integrations/stt-backend", "title": "Wire into apps/api voice-call-handler so STT frames forward into dialog engine", "status": "todo" },
+        { "id": "ra-stt-4", "track": "external-integrations/stt-backend", "title": "Eval: add STT-accuracy golden using recorded WAV + expected transcript", "status": "todo" },
+        { "id": "ra-tts-1", "track": "external-integrations/tts-backend", "title": "Build packages/voice-tts-elevenlabs implementing ITextToSpeech", "status": "todo" },
+        { "id": "ra-tts-2", "track": "external-integrations/tts-backend", "title": "Token sourcing via TenantSecretResolver.resolve(tenantId, 'elevenlabs')", "status": "todo" },
+        { "id": "ra-tts-3", "track": "external-integrations/tts-backend", "title": "Persist persona voiceId via PATCH /Organization/:id", "status": "todo" },
+        { "id": "ra-tts-4", "track": "external-integrations/tts-backend", "title": "Wire resolver lookup into apps/api so dialog turns get TTS bytes", "status": "todo" },
+        { "id": "ra-sde-1", "track": "sample-data-elimination/phase-3-6-specialized", "title": "/admin/compliance routes + migration (48 controls + 30 evidence)", "status": "todo" },
+        { "id": "ra-sde-2", "track": "sample-data-elimination/phase-3-6-specialized", "title": "/admin/ai-governance routes (model cards / bias / approvals / SAMD)", "status": "todo" },
+        { "id": "ra-sde-3", "track": "sample-data-elimination/phase-3-6-specialized", "title": "migration-jobs route + table; swap /admin/migration pages", "status": "todo" },
+        { "id": "ra-sde-4", "track": "sample-data-elimination/phase-3-6-specialized", "title": "edge-fleet routes + sync-run tracking", "status": "todo" },
+        { "id": "ra-sde-5", "track": "sample-data-elimination/phase-3-6-specialized", "title": "Sensitive-data access routes (break-glass log / legal holds / proxy grants)", "status": "todo" },
+        { "id": "ra-sde-6", "track": "sample-data-elimination/phase-3-6-specialized", "title": "CQM measure routes; swap /admin/cqm pages", "status": "todo" },
+        { "id": "ra-sde-7", "track": "sample-data-elimination/phase-3-6-specialized", "title": "IG-profile routes; swap pages", "status": "todo" },
+        { "id": "ra-sde-8", "track": "sample-data-elimination/phase-3-6-specialized", "title": "security-posture routes", "status": "todo" },
+        { "id": "ra-sde-9", "track": "sample-data-elimination/phase-3-6-specialized", "title": "extension/plugin routes", "status": "todo" },
+        { "id": "ra-cit-harness-1", "track": "comprehensive-integration-testing/harness", "title": "Resolve runMigrations vitest-worker hang", "status": "todo" },
+        { "id": "ra-cit-stubs-1", "track": "comprehensive-integration-testing/stubs-abolished", "title": "Migrate ~hundreds of *.test.ts files off pg-mem", "status": "todo" },
+        { "id": "ra-cit-stubs-2", "track": "comprehensive-integration-testing/stubs-abolished", "title": "Delete packages/storage/src/testing/pgmem-polyfills.ts", "status": "todo" },
+        { "id": "ra-cit-stubs-3", "track": "comprehensive-integration-testing/stubs-abolished", "title": "Delete remaining class InMemory* declarations", "status": "todo" }
+      ]
+    },
+    {
+      "id": "wave-gates",
+      "name": "Wave-tree Gates (Backend / Admin / Ops / Patient + Deferred-Items)",
+      "description": "Per-wave Backend (B) / Admin (A) / Ops (O) / Patient (P) ladder rungs from scripts/audit-wave-integration.mjs. Each non-green rung is a TODO.",
+      "items": [
+        { "id": "wg-h-backend", "wave": "H", "rung": "Backend", "status": "in-progress", "note": "partial — route file exists but app.register() call not found" },
+        { "id": "wg-h-overall", "wave": "H", "rung": "Overall", "status": "in-progress", "note": "partial (was wired) — Admin uses sample data" },
+        { "id": "wg-o-backend", "wave": "O", "rung": "Backend", "status": "in-progress", "note": "partial — o1/o4/o6 api-routes exist but not Fastify-mounted; PostgresBudgetStore + PostgresTraceStore shipped, wiring pending" },
+        { "id": "wg-o-admin", "wave": "O", "rung": "Admin", "status": "todo", "note": "no API path matching ai-native/llm-gateway/o1-llm-gateway in *-api.ts" },
+        { "id": "wg-r-backend", "wave": "R", "rung": "Backend", "status": "todo", "note": "shelf — mobile packages have no backend surface by design; needs explicit n/a wave override or Postgres-backed mobile-shortcut audit log" },
+        { "id": "wg-w-backend", "wave": "W", "rung": "Backend", "status": "in-progress", "note": "partial — route file exists but not registered" },
+        { "id": "wg-erx-admin", "wave": "ERX", "rung": "Admin", "status": "todo", "note": "shelf — admin pages don't call erx/e-prescrib/ncpdp/epcs API paths" },
+        { "id": "wg-f-admin", "wave": "F", "rung": "Admin", "status": "todo", "note": "shelf — admin pages don't call billing-alert/dunning/f1-usage-threshold-detector paths" },
+        { "id": "wg-l-admin", "wave": "L", "rung": "Admin", "status": "todo", "note": "shelf — admin pages don't call multi-org/organization-hierarchy/l1-l2 paths" },
+        { "id": "wg-m-admin", "wave": "M", "rung": "Admin", "status": "todo", "note": "shelf — admin pages don't call pricing/license/contract/m1-license-server paths" },
+        { "id": "wg-s-admin", "wave": "S", "rung": "Admin", "status": "todo", "note": "shelf — admin pages don't call lab-orderable/pacs/pharmacy/allergy-check paths" },
+        { "id": "wg-t-admin", "wave": "T", "rung": "Admin", "status": "todo", "note": "shelf — admin pages don't call specialty-* paths for 50 packages" }
+      ]
+    },
+    {
+      "id": "deferred-items",
+      "name": "Deferred Items Audit (scripts/audit-deferred-items.mjs)",
+      "description": "2333 unresolved items across the monorepo (280 blockers / 625 tech-debt / 1428 review). Each must be either closed or demoted to WONTFIX with sign-off per the master plan's Gate 5.",
+      "items": [
+        { "id": "def-blocker-280", "category": "Blocker severity", "title": "Close or WONTFIX 280 blocker-severity deferred items", "status": "in-progress", "evidence": "docs/status/deferred-items.json" },
+        { "id": "def-tech-625", "category": "Tech-debt severity", "title": "Close or WONTFIX 625 tech-debt deferred items", "status": "todo" },
+        { "id": "def-review-1428", "category": "Review severity", "title": "Close or WONTFIX 1428 review-severity deferred items", "status": "todo" },
+        { "id": "def-platform-1454", "category": "Platform wave", "title": "Address 1454 deferred items tagged Platform (cross-cutting)", "status": "todo" },
+        { "id": "def-type-cheats", "category": "Kind: type-cheat-cast", "title": "Replace 1377 `as never` / `as any` type cheats (PHI/tenant/RBAC code is sensitive)", "status": "todo" },
+        { "id": "def-todo-comments", "category": "Kind: todo-comment", "title": "Close 329 // TODO / // FIXME comments", "status": "todo" },
+        { "id": "def-docstring-caveats", "category": "Kind: docstring-caveat", "title": "Close 296 docstring-caveat items ('deferred', 'tracked separately', 'future')", "status": "todo" },
+        { "id": "def-deferred-marker", "category": "Kind: deferred-marker", "title": "Close 216 explicit // DEFERRED markers", "status": "todo" },
+        { "id": "def-not-configured", "category": "Kind: not-configured-fallback", "title": "Close 45 'not-configured' fallbacks in apps/api/src", "status": "todo" },
+        { "id": "def-skipped-tests", "category": "Kind: skipped-test", "title": "Close 10 .skip / .todo / xit tests", "status": "todo" }
+      ]
+    },
+    {
+      "id": "master-gate",
+      "name": "Master Gate (product declared production-ready)",
+      "description": "All five gates simultaneously true across every wave. See master plan §Verification → Master gate.",
+      "items": [
+        { "id": "mg-wave-gates", "title": "All 34 + CIT + PROD waves show all 5 gate badges green", "status": "in-progress", "note": "Backend rungs: 15/19 green. Admin/Ops/Patient: many shelf. Deferred items: 2333 unresolved." },
+        { "id": "mg-audit-strict", "title": "audit-wave-integration.mjs --strict → zero gaps", "status": "in-progress", "note": "Sample-data warnings still present on E/H/X (unassigned)" },
+        { "id": "mg-conformance-strict", "title": "saas-conformance.mjs --strict → zero violations", "status": "in-progress", "note": "389 violations / 0 blockers reported in cit rollup" },
+        { "id": "mg-deferred-strict", "title": "audit-deferred-items.mjs → zero unresolved (WONTFIX-tagged only acceptable)", "status": "todo", "note": "2333 unresolved" },
+        { "id": "mg-repo-tests", "title": "pnpm typecheck && pnpm test && pnpm test:e2e clean at repo root", "status": "todo" },
+        { "id": "mg-ci-green-7d", "title": "comprehensive-tests.yml green on main for 7 consecutive days", "status": "todo" },
+        { "id": "mg-compliance-signoff", "title": "PROD P1 + P2 signed off by compliance officer", "status": "todo" }
+      ]
+    }
+  ],
+  "rollup": {
+    "totalItems": 116,
+    "byStatus": {
+      "done": 26,
+      "in-progress": 12,
+      "todo": 78,
+      "blocked": 0
+    },
+    "byCategory": {
+      "cit": 12,
+      "cit-closure-passes": 7,
+      "prod": 14,
+      "remaining-track-bullets": 62,
+      "wave-gates": 12,
+      "deferred-items": 10,
+      "master-gate": 7
+    }
+  }
+}

@@ -493,6 +493,22 @@
 
     <h2>Wave Tree</h2>
     <div id="tree" class="tree"></div>
+
+    <h2 style="margin-top:48px">CIT + PROD Master Punch List
+      <span id="cppToggle" class="count" style="cursor:pointer;background:rgba(96,165,250,0.18);color:#60a5fa;border:1px solid #60a5fa">show / hide</span>
+    </h2>
+    <p style="color:var(--muted);font-size:13px;margin:-4px 0 12px 0">
+      All TODOs to complete the
+      <em>"Waves CIT + PROD — Comprehensive Integration, Testing & Production Readiness"</em>
+      plan. Source: <code>docs/status/cit-prod-todo.json</code>. Filter by status:
+      <button class="cpp-filter" data-status="all" style="background:transparent;color:#60a5fa;border:1px solid #60a5fa;border-radius:4px;padding:2px 8px;margin:0 2px;cursor:pointer">all</button>
+      <button class="cpp-filter" data-status="todo" style="background:transparent;color:#fbbf24;border:1px solid #fbbf24;border-radius:4px;padding:2px 8px;margin:0 2px;cursor:pointer">todo</button>
+      <button class="cpp-filter" data-status="in-progress" style="background:transparent;color:#60a5fa;border:1px solid #60a5fa;border-radius:4px;padding:2px 8px;margin:0 2px;cursor:pointer">in-progress</button>
+      <button class="cpp-filter" data-status="done" style="background:transparent;color:#22c55e;border:1px solid #22c55e;border-radius:4px;padding:2px 8px;margin:0 2px;cursor:pointer">done</button>
+      <button class="cpp-filter" data-status="blocked" style="background:transparent;color:#f87171;border:1px solid #f87171;border-radius:4px;padding:2px 8px;margin:0 2px;cursor:pointer">blocked</button>
+    </p>
+    <div id="cppRollup" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px 0;font-size:13px"></div>
+    <div id="cppPanel" style="display:block"></div>
   </div>
 
   <script>
@@ -1298,6 +1314,113 @@
 
     refresh();
     setInterval(refresh, 8000);
+
+    // ───── CIT + PROD Master Punch List ──────────────────────────────────
+    // Fetches docs/status/cit-prod-todo.json (which sits next to this HTML
+    // in both the local docs/status/ tree and the mirror at
+    // kamalcernia.github.io/cernia-status). Renders one table per category,
+    // grouped, with status pill chips. Filterable + collapsible.
+    const cppState = { data: null, filter: "all", hidden: false };
+
+    function cppPillHtml(status) {
+      const map = {
+        "done": { bg: "rgba(34,197,94,0.18)", fg: "#22c55e", label: "DONE" },
+        "in-progress": { bg: "rgba(96,165,250,0.18)", fg: "#60a5fa", label: "DOING" },
+        "todo": { bg: "rgba(251,191,36,0.18)", fg: "#fbbf24", label: "TODO" },
+        "blocked": { bg: "rgba(248,113,113,0.18)", fg: "#f87171", label: "BLOCKED" },
+      };
+      const s = map[status] || map["todo"];
+      return `<span style="background:${s.bg};color:${s.fg};border:1px solid ${s.fg};border-radius:4px;padding:2px 8px;font-size:11px;font-weight:600">${s.label}</span>`;
+    }
+
+    function cppRenderRollup() {
+      if (!cppState.data) return;
+      const tot = cppState.data.rollup;
+      const done = tot.byStatus.done || 0;
+      const ip = tot.byStatus["in-progress"] || 0;
+      const todo = tot.byStatus.todo || 0;
+      const blk = tot.byStatus.blocked || 0;
+      const total = done + ip + todo + blk;
+      const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+      $("cppRollup").innerHTML =
+        `<span style="background:#0b1220;border:1px solid var(--border);padding:6px 12px;border-radius:6px"><b>${total}</b> total items</span>` +
+        `<span style="background:rgba(34,197,94,0.10);border:1px solid #22c55e;padding:6px 12px;border-radius:6px;color:#22c55e"><b>${done}</b> done (${pct}%)</span>` +
+        `<span style="background:rgba(96,165,250,0.10);border:1px solid #60a5fa;padding:6px 12px;border-radius:6px;color:#60a5fa"><b>${ip}</b> in-progress</span>` +
+        `<span style="background:rgba(251,191,36,0.10);border:1px solid #fbbf24;padding:6px 12px;border-radius:6px;color:#fbbf24"><b>${todo}</b> todo</span>` +
+        (blk > 0 ? `<span style="background:rgba(248,113,113,0.10);border:1px solid #f87171;padding:6px 12px;border-radius:6px;color:#f87171"><b>${blk}</b> blocked</span>` : "");
+    }
+
+    function cppRenderPanel() {
+      if (!cppState.data) return;
+      const panel = $("cppPanel");
+      const html = [];
+      for (const cat of cppState.data.categories) {
+        const items = cppState.filter === "all"
+          ? cat.items
+          : cat.items.filter((i) => i.status === cppState.filter);
+        if (items.length === 0) continue;
+        const catDone = cat.items.filter((i) => i.status === "done").length;
+        const catPct = cat.items.length > 0 ? Math.round((catDone / cat.items.length) * 100) : 0;
+        html.push(`<details open style="margin-top:20px;background:#0b1220;border:1px solid var(--border);border-radius:8px;padding:12px">
+          <summary style="cursor:pointer;font-weight:600;font-size:15px">
+            ${cat.name}
+            <span style="color:var(--muted);font-weight:400;font-size:13px;margin-left:8px">
+              ${catDone} / ${cat.items.length} done · ${catPct}%
+            </span>
+          </summary>
+          <p style="color:var(--muted);font-size:12px;margin:6px 0 12px 0">${cat.description || ""}</p>
+          <table style="width:100%;border-collapse:collapse;font-size:13px">
+            <thead>
+              <tr style="border-bottom:1px solid var(--border)">
+                <th style="text-align:left;padding:8px;color:var(--muted);font-weight:600">Status</th>
+                <th style="text-align:left;padding:8px;color:var(--muted);font-weight:600">ID</th>
+                <th style="text-align:left;padding:8px;color:var(--muted);font-weight:600">Title</th>
+                <th style="text-align:left;padding:8px;color:var(--muted);font-weight:600">Evidence / Note</th>
+              </tr>
+            </thead>
+            <tbody>`);
+        for (const item of items) {
+          const ev = item.evidence || item.note || "";
+          const tag = item.phase || item.wave || item.track || item.category || "";
+          html.push(`<tr style="border-bottom:1px solid rgba(255,255,255,0.04)">
+            <td style="padding:8px;vertical-align:top;white-space:nowrap">${cppPillHtml(item.status)}</td>
+            <td style="padding:8px;vertical-align:top;color:var(--muted);font-family:monospace;font-size:11px">${item.id}${tag ? `<br><span style="color:#60a5fa">${tag}</span>` : ""}</td>
+            <td style="padding:8px;vertical-align:top">${item.title}</td>
+            <td style="padding:8px;vertical-align:top;color:var(--muted);font-size:11px">${ev}</td>
+          </tr>`);
+        }
+        html.push(`</tbody></table></details>`);
+      }
+      panel.innerHTML = html.join("");
+    }
+
+    async function cppLoad() {
+      try {
+        const res = await fetch("cit-prod-todo.json?t=" + Date.now());
+        if (!res.ok) return;
+        cppState.data = await res.json();
+        cppRenderRollup();
+        cppRenderPanel();
+      } catch (e) {
+        // non-fatal — panel just stays empty
+      }
+    }
+
+    document.addEventListener("click", (e) => {
+      const target = e.target;
+      if (target.matches && target.matches(".cpp-filter")) {
+        cppState.filter = target.dataset.status;
+        cppRenderPanel();
+      }
+      if (target && target.id === "cppToggle") {
+        cppState.hidden = !cppState.hidden;
+        $("cppPanel").style.display = cppState.hidden ? "none" : "block";
+        $("cppRollup").style.display = cppState.hidden ? "none" : "flex";
+      }
+    });
+
+    cppLoad();
+    setInterval(cppLoad, 30000);
   </script>
 </body>
 </html>
