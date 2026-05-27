@@ -4,11 +4,11 @@
   "generatedAt": "2026-05-27",
   "_currentTaskRule": "When an agent (or human) is actively working a TODO, they set `currentTask` to the active item's id + a one-line description. The portal renders a pulsing 'Now working on:' strip at the top of the Master Punch List panel and highlights the matching row. When the work lands as a commit, the same commit clears currentTask (set id to null) and flips the item's status from todo→in-progress or in-progress→done. The cron + post-commit hook propagate within seconds. Set currentTask to null when idle.",
   "currentTask": {
-    "id": "ra-rpm-3",
-    "title": "Schedule care-plan generator + adherence-tracker as nightly batches",
+    "id": "ra-voice-eval-3",
+    "title": "Write prompt-injection-rejection golden (ignore-previous-instructions adversarial)",
     "category": "remaining-track-bullets",
-    "startedAt": "2026-05-27T20:30:00Z",
-    "evidence": "functionality-utilization/telehealth-rpm remaining[] bullet 3"
+    "startedAt": "2026-05-27T20:40:00Z",
+    "evidence": "voice-agent/eval-harness remaining[] bullet 3"
   },
   "categories": [
     {
@@ -97,7 +97,7 @@
         { "id": "ra-ml-6", "track": "functionality-utilization/ml-platform", "title": "Admin UI for browsing models + promoting versions", "status": "todo" },
         { "id": "ra-rpm-1", "track": "functionality-utilization/telehealth-rpm", "title": "Mount WebRTC signaling websocket in apps/api (q-s1)", "status": "done", "evidence": "apps/api/src/webrtc-signaling-routes.ts shipped — ws://.../telehealth/webrtc/signaling" },
         { "id": "ra-rpm-2", "track": "functionality-utilization/telehealth-rpm", "title": "Stateful POST /rpm/devices/:deviceId/readings webhook feeding AlertEngine", "status": "done", "evidence": "apps/api/src/rpm-device-webhook-routes.ts shipped — persists reading + feeds AlertEngine + persists alert" },
-        { "id": "ra-rpm-3", "track": "functionality-utilization/telehealth-rpm", "title": "Schedule care-plan generator + adherence-tracker as nightly batches", "status": "todo" },
+        { "id": "ra-rpm-3", "track": "functionality-utilization/telehealth-rpm", "title": "Schedule care-plan generator + adherence-tracker as nightly batches", "status": "done", "evidence": "apps/api/src/rpm-nightly-batches.ts — bootRpmNightlyBatches() runs q-s4 care-plan + q-s6 adherence every 24h" },
         { "id": "ra-rpm-4", "track": "functionality-utilization/telehealth-rpm", "title": "Wire q-s3 telehealth-visit audit + q-s5 visit-summary into apps/api", "status": "todo" },
         { "id": "ra-rpm-5", "track": "functionality-utilization/telehealth-rpm", "title": "Clinic UI for visit summary, RPM dashboard, care-plan management", "status": "todo" },
         { "id": "ra-sbm-1", "track": "functionality-utilization/saas-billing-marketplace", "title": "Wire x2a invoicing into Stripe billing pipeline", "status": "todo" },
@@ -188,9 +188,9 @@
   "rollup": {
     "totalItems": 116,
     "byStatus": {
-      "done": 35,
+      "done": 36,
       "in-progress": 9,
-      "todo": 72,
+      "todo": 71,
       "blocked": 0
     },
     "byCategory": {
