@@ -32,6 +32,57 @@
     .live-indicator { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 11px; color: var(--accent); }
     .live-indicator::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 1.5s ease-in-out infinite; }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    /* "Now working on" banner — flashes when the parent agent (or the latest commit) is actively driving a wave. */
+    .now-working-banner {
+      display: none; /* shown only when nowWorkingOn is populated */
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      margin-bottom: 16px;
+      border-radius: 8px;
+      background: linear-gradient(90deg, rgba(74, 222, 128, 0.18) 0%, rgba(74, 222, 128, 0.05) 100%);
+      border: 1px solid rgba(74, 222, 128, 0.45);
+      font-family: var(--mono);
+      font-size: 13px;
+      color: #d8ffe6;
+      animation: now-working-flash 2.4s ease-in-out infinite;
+    }
+    .now-working-banner.visible { display: flex; }
+    .now-working-banner::before {
+      content: "";
+      display: inline-block;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+      animation: now-working-dot 1.4s ease-out infinite;
+      flex-shrink: 0;
+    }
+    .now-working-label { color: #9ae6b4; text-transform: uppercase; letter-spacing: 0.08em; font-size: 10px; font-weight: 600; }
+    .now-working-wave { color: #4ade80; font-weight: 700; font-size: 14px; }
+    .now-working-detail { color: var(--fg-muted); flex: 1; font-size: 12px; }
+    .now-working-commit { color: var(--fg-muted); font-size: 11px; opacity: 0.75; }
+    @keyframes now-working-flash {
+      0%, 100% { border-color: rgba(74, 222, 128, 0.45); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+      50%      { border-color: rgba(74, 222, 128, 0.95); box-shadow: 0 0 18px 2px rgba(74, 222, 128, 0.25); }
+    }
+    @keyframes now-working-dot {
+      0%   { box-shadow: 0 0 0 0   rgba(74, 222, 128, 0.7); transform: scale(1); }
+      70%  { box-shadow: 0 0 0 12px rgba(74, 222, 128, 0); transform: scale(1.05); }
+      100% { box-shadow: 0 0 0 0   rgba(74, 222, 128, 0); transform: scale(1); }
+    }
+
+    /* Just-landed wave row — brief green flash for ~10s after the page loads
+       on any wave whose id appears in summary.justLandedWaves. */
+    .node.just-landed {
+      animation: just-landed-flash 1.6s ease-out 3;
+      border-radius: 6px;
+    }
+    @keyframes just-landed-flash {
+      0%   { background: rgba(74, 222, 128, 0.35); }
+      100% { background: transparent; }
+    }
     .updated { margin-left: auto; color: var(--fg-muted); font-family: var(--mono); font-size: 11px; }
     .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-bottom: 16px; }
     .stat-tile { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px; }
@@ -227,6 +278,16 @@
     </header>
 
     <div id="errorBanner" class="error-banner">Failed to load status — last successful render shown below.</div>
+
+    <!-- "Now working on" banner — populated from summary.nowWorkingOn.
+         Flashes green while an agent (or the parent) is actively driving a wave.
+         Hidden when no active work is detected. -->
+    <div id="nowWorkingBanner" class="now-working-banner" role="status" aria-live="polite">
+      <span class="now-working-label">Now working on</span>
+      <span class="now-working-wave" id="nowWorkingWave">—</span>
+      <span class="now-working-detail" id="nowWorkingDetail">—</span>
+      <span class="now-working-commit" id="nowWorkingCommit">—</span>
+    </div>
 
     <!-- 4-tile primary dashboard — replaces the misleading "Agents to v3.0" headline.
          Each tile measures one orthogonal dimension of progress, stable across
@@ -970,6 +1031,20 @@
       $("errorBanner").classList.remove("shown");
       $("updated").textContent = "Updated " + data.meta.lastUpdatedDisplay;
       const s = data.summary || {};
+
+      // "Now working on" banner — derived in update-status.mjs from the
+      // freshest commit on origin/main; visible only when populated.
+      const nw = s.nowWorkingOn;
+      const banner = $("nowWorkingBanner");
+      if (nw && nw.wave) {
+        $("nowWorkingWave").textContent = nw.wave;
+        $("nowWorkingDetail").textContent = nw.detail || "active build in progress…";
+        $("nowWorkingCommit").textContent = nw.commit ? `(${nw.commit})` : "";
+        banner.classList.add("visible");
+      } else {
+        banner.classList.remove("visible");
+      }
+
       $("currentMainCommit").textContent = s.currentMainCommit || "—";
       $("currentTagOnMain").textContent = s.currentTagOnMain || "—";
       $("hardeningTrackRecord").textContent = s.hardeningTrackRecord || "—";
@@ -1037,6 +1112,24 @@
       renderFailures(data.failures || []);
       $("tree").innerHTML = (data.waves || []).map(w => renderWave(w, 0)).join("");
       bindToggles();
+
+      // Flash green on waves that have just landed (derived in update-status.mjs
+      // from the freshest commits on origin/main). The class is added AFTER the
+      // tree paints so the CSS animation fires every render.
+      const justLanded = new Set((s.justLandedWaves || []).map(w => String(w).toUpperCase()));
+      if (justLanded.size > 0) {
+        document.querySelectorAll('#tree .node[data-id]').forEach((node) => {
+          const id = (node.getAttribute('data-id') || '').toUpperCase();
+          // Re-trigger animation on every render by removing + re-adding.
+          node.classList.remove('just-landed');
+          if (justLanded.has(id)) {
+            // Force reflow before re-adding so the keyframes restart.
+            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+            void node.offsetWidth;
+            node.classList.add('just-landed');
+          }
+        });
+      }
     }
 
     function renderMainState(ms, waves) {
