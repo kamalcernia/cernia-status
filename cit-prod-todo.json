@@ -4,11 +4,11 @@
   "generatedAt": "2026-05-27",
   "_currentTaskRule": "When an agent (or human) is actively working a TODO, they set `currentTask` to the active item's id + a one-line description. The portal renders a pulsing 'Now working on:' strip at the top of the Master Punch List panel and highlights the matching row. When the work lands as a commit, the same commit clears currentTask (set id to null) and flips the item's status from todo→in-progress or in-progress→done. The cron + post-commit hook propagate within seconds. Set currentTask to null when idle.",
   "currentTask": {
-    "id": "ra-cds-3",
-    "title": "Mount order-select / order-sign / medication-prescribe / encounter-discharge CDS hooks",
+    "id": "ra-rpm-3",
+    "title": "Schedule care-plan generator + adherence-tracker as nightly batches",
     "category": "remaining-track-bullets",
-    "startedAt": "2026-05-27T20:20:00Z",
-    "evidence": "functionality-utilization/cds-hooks-quality remaining[] bullet 3"
+    "startedAt": "2026-05-27T20:30:00Z",
+    "evidence": "functionality-utilization/telehealth-rpm remaining[] bullet 3"
   },
   "categories": [
     {
@@ -79,7 +79,7 @@
         { "id": "ra-voice-mon-2", "track": "voice-agent/monitoring", "title": "Vendor-probe cron: poll vendor status pages + insert into vendor_health_state", "status": "todo" },
         { "id": "ra-cds-1", "track": "functionality-utilization/cds-hooks-quality", "title": "Tenant-scoped CDS service registry (currently process-global)", "status": "todo" },
         { "id": "ra-cds-2", "track": "functionality-utilization/cds-hooks-quality", "title": "Real FHIRPath / workflow / bot dispatcher", "status": "todo" },
-        { "id": "ra-cds-3", "track": "functionality-utilization/cds-hooks-quality", "title": "Mount order-select / order-sign / medication-prescribe / encounter-discharge hooks", "status": "todo" },
+        { "id": "ra-cds-3", "track": "functionality-utilization/cds-hooks-quality", "title": "Mount order-select / order-sign / medication-prescribe / encounter-discharge hooks", "status": "done", "evidence": "apps/api/src/cds-hooks-routes.ts — buildStarterClinicalWorkflowServices() registers all 4 hooks with hand-off cards" },
         { "id": "ra-cds-4", "track": "functionality-utilization/cds-hooks-quality", "title": "Nightly CQM batch job emitting MeasureReport per tenant", "status": "todo" },
         { "id": "ra-cds-5", "track": "functionality-utilization/cds-hooks-quality", "title": "Admin UI panel: CQM scores per measure + per provider", "status": "todo" },
         { "id": "ra-cds-6", "track": "functionality-utilization/cds-hooks-quality", "title": "Flip jwtVerificationEnabled=true once EHR-issuer trust list configured", "status": "todo" },
@@ -188,9 +188,9 @@
   "rollup": {
     "totalItems": 116,
     "byStatus": {
-      "done": 34,
+      "done": 35,
       "in-progress": 9,
-      "todo": 73,
+      "todo": 72,
       "blocked": 0
     },
     "byCategory": {
