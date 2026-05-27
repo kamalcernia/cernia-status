@@ -83,6 +83,68 @@
       0%   { background: rgba(74, 222, 128, 0.35); }
       100% { background: transparent; }
     }
+
+    /* CIT+PROD Master Punch List — currently-active TODO indicator.
+       Driven by docs/status/cit-prod-todo.json `currentTask.id`. */
+    .cpp-current-banner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: rgba(96, 165, 250, 0.12);
+      border: 1px solid rgba(96, 165, 250, 0.5);
+      border-radius: 8px;
+      margin: 8px 0 12px 0;
+      font-size: 13px;
+      animation: cpp-banner-pulse 2.4s ease-in-out infinite;
+    }
+    .cpp-current-banner::before {
+      content: '';
+      display: inline-block;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #60a5fa;
+      animation: cpp-banner-dot 1.4s ease-out infinite;
+      flex-shrink: 0;
+    }
+    .cpp-current-label {
+      color: #93c5fd;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 10px;
+      font-weight: 600;
+    }
+    .cpp-current-id {
+      color: #60a5fa;
+      font-family: var(--mono);
+      font-size: 11px;
+      background: rgba(96, 165, 250, 0.16);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .cpp-current-title { color: var(--fg); font-weight: 500; flex: 1; }
+    .cpp-current-started { color: var(--fg-muted); font-size: 11px; opacity: 0.75; }
+    @keyframes cpp-banner-pulse {
+      0%, 100% { border-color: rgba(96, 165, 250, 0.5); box-shadow: 0 0 0 0 rgba(96, 165, 250, 0); }
+      50%      { border-color: rgba(96, 165, 250, 0.95); box-shadow: 0 0 16px 2px rgba(96, 165, 250, 0.2); }
+    }
+    @keyframes cpp-banner-dot {
+      0%   { box-shadow: 0 0 0 0   rgba(96, 165, 250, 0.7); transform: scale(1); }
+      70%  { box-shadow: 0 0 0 10px rgba(96, 165, 250, 0); transform: scale(1.1); }
+      100% { box-shadow: 0 0 0 0   rgba(96, 165, 250, 0); transform: scale(1); }
+    }
+    /* Highlight the active TODO row inside the Master Punch List tables. */
+    tr.cpp-active-row {
+      animation: cpp-row-pulse 2.4s ease-in-out infinite;
+      background: rgba(96, 165, 250, 0.10) !important;
+    }
+    tr.cpp-active-row td:first-child {
+      border-left: 3px solid #60a5fa;
+    }
+    @keyframes cpp-row-pulse {
+      0%, 100% { background-color: rgba(96, 165, 250, 0.08); }
+      50%      { background-color: rgba(96, 165, 250, 0.22); }
+    }
     .updated { margin-left: auto; color: var(--fg-muted); font-family: var(--mono); font-size: 11px; }
     .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-bottom: 16px; }
     .stat-tile { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px; }
@@ -288,6 +350,12 @@
       <span class="now-working-detail" id="nowWorkingDetail">—</span>
       <span class="now-working-commit" id="nowWorkingCommit">—</span>
     </div>
+
+    <!-- TODO-grained active-task indicator — driven by cit-prod-todo.json
+         `currentTask`. Lives at the top of the page so users can spot the
+         active item without scrolling. Click → scroll to the row in the
+         Master Punch List. -->
+    <div id="topActiveTask" style="display:none;cursor:pointer" title="Click to jump to the row"></div>
 
     <!-- 4-tile primary dashboard — replaces the misleading "Agents to v3.0" headline.
          Each tile measures one orthogonal dimension of progress, stable across
@@ -1334,6 +1402,48 @@
       return `<span style="background:${s.bg};color:${s.fg};border:1px solid ${s.fg};border-radius:4px;padding:2px 8px;font-size:11px;font-weight:600">${s.label}</span>`;
     }
 
+    function cppRenderCurrentTask() {
+      if (!cppState.data) return;
+      const cur = cppState.data.currentTask;
+      const banner = $("cppCurrentTask");
+      const topBanner = $("topActiveTask");
+      if (!cur || !cur.id) {
+        banner.style.display = "none";
+        banner.innerHTML = "";
+        if (topBanner) {
+          topBanner.style.display = "none";
+          topBanner.innerHTML = "";
+        }
+        return;
+      }
+      const startedAgo = cur.startedAt ? new Date(cur.startedAt).toLocaleString() : "";
+      banner.className = "cpp-current-banner";
+      banner.style.display = "flex";
+      banner.innerHTML =
+        `<span class="cpp-current-label">Now Working On</span>` +
+        `<span class="cpp-current-id">${cur.id}</span>` +
+        `<span class="cpp-current-title">${cur.title || ""}</span>` +
+        (startedAgo ? `<span class="cpp-current-started">started ${startedAgo}</span>` : "");
+      // Top-of-page mirror — same content, click-to-scroll.
+      if (topBanner) {
+        topBanner.className = "cpp-current-banner";
+        topBanner.style.display = "flex";
+        topBanner.innerHTML =
+          `<span class="cpp-current-label">Active Task</span>` +
+          `<span class="cpp-current-id">${cur.id}</span>` +
+          `<span class="cpp-current-title">${cur.title || ""}</span>` +
+          `<span class="cpp-current-started">click to scroll ↓</span>`;
+        topBanner.onclick = () => {
+          const row = document.querySelector("tr.cpp-active-row");
+          if (row) {
+            const det = row.closest("details");
+            if (det) det.open = true;
+            row.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+        };
+      }
+    }
+
     function cppRenderRollup() {
       if (!cppState.data) return;
       const tot = cppState.data.rollup;
@@ -1380,10 +1490,12 @@
               </tr>
             </thead>
             <tbody>`);
+        const activeId = cppState.data.currentTask && cppState.data.currentTask.id;
         for (const item of items) {
           const ev = item.evidence || item.note || "";
           const tag = item.phase || item.wave || item.track || item.category || "";
-          html.push(`<tr style="border-bottom:1px solid rgba(255,255,255,0.04)">
+          const isActive = activeId && item.id === activeId;
+          html.push(`<tr class="${isActive ? "cpp-active-row" : ""}" style="border-bottom:1px solid rgba(255,255,255,0.04)">
             <td style="padding:8px;vertical-align:top;white-space:nowrap">${cppPillHtml(item.status)}</td>
             <td style="padding:8px;vertical-align:top;color:var(--muted);font-family:monospace;font-size:11px">${item.id}${tag ? `<br><span style="color:#60a5fa">${tag}</span>` : ""}</td>
             <td style="padding:8px;vertical-align:top">${item.title}</td>
@@ -1393,6 +1505,19 @@
         html.push(`</tbody></table></details>`);
       }
       panel.innerHTML = html.join("");
+      // After render, if there's an active row, scroll it into view on first
+      // load. Subsequent refreshes skip the scroll so we don't snap-back the
+      // user's scroll position every 30s.
+      if (!cppState.scrolledToActiveOnce) {
+        const active = panel.querySelector("tr.cpp-active-row");
+        if (active) {
+          // Expand the parent <details> in case the category is collapsed.
+          const det = active.closest("details");
+          if (det) det.open = true;
+          active.scrollIntoView({ behavior: "smooth", block: "center" });
+          cppState.scrolledToActiveOnce = true;
+        }
+      }
     }
 
     async function cppLoad() {
@@ -1400,6 +1525,7 @@
         const res = await fetch("cit-prod-todo.json?t=" + Date.now());
         if (!res.ok) return;
         cppState.data = await res.json();
+        cppRenderCurrentTask();
         cppRenderRollup();
         cppRenderPanel();
       } catch (e) {
