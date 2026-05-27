@@ -4,11 +4,11 @@
   "generatedAt": "2026-05-27",
   "_currentTaskRule": "When an agent (or human) is actively working a TODO, they set `currentTask` to the active item's id + a one-line description. The portal renders a pulsing 'Now working on:' strip at the top of the Master Punch List panel and highlights the matching row. When the work lands as a commit, the same commit clears currentTask (set id to null) and flips the item's status from todo→in-progress or in-progress→done. The cron + post-commit hook propagate within seconds. Set currentTask to null when idle.",
   "currentTask": {
-    "id": "wg-w-backend",
-    "title": "Wire Wave W (transactional email + templates + deliverability + SMS) backend routes into apps/api",
-    "category": "wave-gates",
-    "startedAt": "2026-05-27T19:30:00Z",
-    "evidence": "Wave W still partial in audit; packages/w1..w5 each have api-routes.ts in src/ but no apps/api wire"
+    "id": "ra-rpm-1",
+    "title": "Mount WebRTC signaling websocket in apps/api (q-s1)",
+    "category": "remaining-track-bullets",
+    "startedAt": "2026-05-27T19:50:00Z",
+    "evidence": "functionality-utilization/telehealth-rpm remaining[] bullet 1"
   },
   "categories": [
     {
@@ -144,7 +144,7 @@
         { "id": "wg-o-backend", "wave": "O", "rung": "Backend", "status": "done", "note": "WIRED — apps/api/src/llm-observability-routes.ts mounts 7 read-only routes against PostgresCostLedgerStore + PostgresBudgetStore + PostgresTraceStore" },
         { "id": "wg-o-admin", "wave": "O", "rung": "Admin", "status": "todo", "note": "no API path matching ai-native/llm-gateway/o1-llm-gateway in *-api.ts" },
         { "id": "wg-r-backend", "wave": "R", "rung": "Backend", "status": "todo", "note": "shelf — mobile packages have no backend surface by design; needs explicit n/a wave override or Postgres-backed mobile-shortcut audit log" },
-        { "id": "wg-w-backend", "wave": "W", "rung": "Backend", "status": "in-progress", "note": "partial — route file exists but not registered" },
+        { "id": "wg-w-backend", "wave": "W", "rung": "Backend", "status": "done", "note": "WIRED — apps/api/src/email-template-routes.ts mounts buildApiHandlers(InMemoryTemplateRegistry); 6 routes covering W2 email-templates CRUD + render" },
         { "id": "wg-erx-admin", "wave": "ERX", "rung": "Admin", "status": "todo", "note": "shelf — admin pages don't call erx/e-prescrib/ncpdp/epcs API paths" },
         { "id": "wg-f-admin", "wave": "F", "rung": "Admin", "status": "todo", "note": "shelf — admin pages don't call billing-alert/dunning/f1-usage-threshold-detector paths" },
         { "id": "wg-l-admin", "wave": "L", "rung": "Admin", "status": "todo", "note": "shelf — admin pages don't call multi-org/organization-hierarchy/l1-l2 paths" },
@@ -188,9 +188,9 @@
   "rollup": {
     "totalItems": 116,
     "byStatus": {
-      "done": 29,
+      "done": 30,
       "in-progress": 9,
-      "todo": 78,
+      "todo": 77,
       "blocked": 0
     },
     "byCategory": {
