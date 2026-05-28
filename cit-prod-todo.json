@@ -12,10 +12,10 @@
   },
   "currentTask": {
     "id": "ra-tts-4",
-    "title": "Wire voice-persona PATCH endpoint + replace console.log placeholder",
+    "title": "Persona editor: GET /api/voice-agent/persona on mount + merge with form state",
     "category": "remaining-track-bullets",
-    "startedAt": "2026-05-28T18:38:00Z",
-    "evidence": "Self-paced /loop iteration 71 — SUBSTANTIVE CLOSE. apps/api/src/voice-agent-admin-routes.ts now exposes GET + PATCH /api/voice-agent/persona keyed by tenantId from rbacClaims, backed by an in-memory personaStore. apps/admin/src/app/admin/tenants/[id]/voice-agent/page.tsx handleSave replaced the console.log placeholder with a real fetch('/api/voice-agent/persona', {method:'PATCH', headers:{X-Cernia-Tenant:id}, body:JSON.stringify(persona)}) — full VoiceAgentPersona shape round-trips through real HTTP. Honest chip: shipped-with-stub-followup. Single-pod safe today; cross-pod followup is writing through to Organization.extension[voice-agent-persona] via PgStorageAdapter so the voice-call-handler tenant resolver sees the update. Updated production-readiness.json ra-tts-* remaining + history. apps/api typecheck clean."
+    "startedAt": "2026-05-28T18:50:00Z",
+    "evidence": "Self-paced /loop iteration 72 — ROUND-TRIP COMPLETION. Iter 71 wired the PATCH but a page reload reset the form to DEFAULT_VOICE_PERSONA — the user's saved persona was on the server but invisible. Added a useEffect on `id` that calls GET /api/voice-agent/persona with credentials + X-Cernia-Tenant header, merges non-empty server responses into the persona state. Empty `{}` response (no persona saved) leaves DEFAULT_VOICE_PERSONA in place. Network errors are non-fatal — editor stays usable; Save will surface PATCH errors. apps/api typecheck clean. apps/admin typecheck clean for the modified file (pre-existing wave7.test.ts unrelated)."
   },
   "categories": [
     {
