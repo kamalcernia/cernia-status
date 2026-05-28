@@ -12,10 +12,10 @@
   },
   "currentTask": {
     "id": "def-docstring-caveats",
-    "title": "Wire patientPortalPrefsRoutes into apps/api boot graph (closes one NOT YET REGISTERED bullet)",
+    "title": "Wire reportingRoutes into apps/api boot (closes ADR-0022 NOT YET REGISTERED bullet)",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T16:58:00Z",
-    "evidence": "Self-paced /loop iteration 60 — SUBSTANTIVE CLOSE. apps/api/src/patient-portal-prefs-routes.ts had a `NOT YET REGISTERED` header — the Wave-C C3 notification-preferences route POST /Patient/:id/$update-notification-prefs was never wired. Wired the plugin into apps/api/src/index.ts §9b-prefs (after patientPortalAdminRoutes) with PgStorageAdapter as the PrefsStorageAdapter seam and a logger-backed PrefsAuditEmitter that emits `patient.notification-prefs.updated` events with field NAMES only (never values — PHI-adjacent contact info per the file's PHI-safety header). Updated the file header from NOT YET REGISTERED → REGISTERED. Typecheck clean (`pnpm --filter @cernia/api typecheck`)."
+    "startedAt": "2026-05-28T17:06:00Z",
+    "evidence": "Self-paced /loop iteration 61 — SUBSTANTIVE CLOSE. apps/api/src/reporting-routes.ts had a `NOT YET REGISTERED` header — three Phase-6b reporting surfaces (POST /Report/{id}/$run, POST /Report/{id}/$export, GET /ReportExport/{id}) were never reachable. Wired the plugin into apps/api/src/index.ts §10f-reporting (after revenueRecognitionRoutes) with: ReportRunner with platform defaults, ReportScheduler with empty deliveryAdapters Map (production wires EmailDeliverer/SftpDeliverer/HttpPostDeliverer/S3Deliverer from @cernia/reporting), PgStorageAdapter satisfying StorageReader + IamStorageReader structurally, resolveTenantId reading req.rbacClaims.tenantId, resolvePrincipal reading req.principal.userId. ReportSchedule.metadata.tenantId fallback for scheduler tenant resolution (no first-class field per ADR-0022 §6). Updated file header NOT YET REGISTERED → REGISTERED. Typecheck clean."
   },
   "categories": [
     {
