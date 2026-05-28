@@ -395,8 +395,14 @@
             "Mount POST /bot-runtime/$dry-run that wraps dryRunBot from the sandbox layer.",
             "Wire j2c fork-and-modify diff + j2d AI-workflow-gen alongside the registry.",
             "Wire j3g background-bot template catalog.",
-            "Postgres-backed template registry (in-memory ships today).",
             "Admin UI for browsing / forking / activating workflow templates per tenant."
+          ],
+          "history": [
+            {
+              "date": "2026-05-27",
+              "stage": "bot-workflow-runtime",
+              "note": "ra-bot-5 closed — Postgres-backed template registry shipped. Migration 093_workflow_templates.sql creates workflow_templates + workflow_template_versions (platform-scoped, registered in scripts/saas-conformance.mjs PLATFORM_SCOPED_TABLES). PostgresTemplateRegistry adapter in packages/j1b-workflow-template-registry/src/postgres-template-registry.ts implements new AsyncTemplateRegistry interface; idempotent seedIfAbsent() for boot-time SEED_TEMPLATE. 9 real-Postgres integration tests cover round-trip / duplicate-id rejection / idempotent seed / publishVersion ordering / latestVersion / versionAt / list / JSONB columns / cascade delete. apps/api buildBotWorkflowRuntime now accepts opts.db; bot-workflow-routes + bot-runtime-scheduler use AsyncTemplateRegistry uniformly (InMemoryTemplateRegistry wrapped via inMemoryToAsync for the no-db fallback). Existing bot-workflow-routes test suite (7/7) still green after refactor."
+            }
           ]
         },
         {
