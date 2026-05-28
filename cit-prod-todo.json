@@ -12,10 +12,10 @@
   },
   "currentTask": {
     "id": "def-docstring-caveats",
-    "title": "Audit-script: drop `out of scope` from docstring-caveat marker list (46 false positives)",
+    "title": "Wire patientPortalPrefsRoutes into apps/api boot graph (closes one NOT YET REGISTERED bullet)",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T16:50:00Z",
-    "evidence": "Self-paced /loop iteration 59 — STRUCTURAL FIX. Sampled all 46 `out of scope` docstring-caveat matches and every one described legitimate separation of concerns (`out of scope for unit tests`, `out of scope for this issue`, `Out of scope (handled by sibling layers)`), not deferred work. Removed the marker from scripts/audit-deferred-items.mjs. docstring-caveat count 269 → 223. Total deferred items 1117 → 1071. Genuine deferred docstrings invariably use `deferred`, `not yet`, `tracked separately`, or `placeholder for` — all preserved."
+    "startedAt": "2026-05-28T16:58:00Z",
+    "evidence": "Self-paced /loop iteration 60 — SUBSTANTIVE CLOSE. apps/api/src/patient-portal-prefs-routes.ts had a `NOT YET REGISTERED` header — the Wave-C C3 notification-preferences route POST /Patient/:id/$update-notification-prefs was never wired. Wired the plugin into apps/api/src/index.ts §9b-prefs (after patientPortalAdminRoutes) with PgStorageAdapter as the PrefsStorageAdapter seam and a logger-backed PrefsAuditEmitter that emits `patient.notification-prefs.updated` events with field NAMES only (never values — PHI-adjacent contact info per the file's PHI-safety header). Updated the file header from NOT YET REGISTERED → REGISTERED. Typecheck clean (`pnpm --filter @cernia/api typecheck`)."
   },
   "categories": [
     {
