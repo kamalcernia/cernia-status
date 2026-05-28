@@ -12,10 +12,10 @@
   },
   "currentTask": {
     "id": "def-docstring-caveats",
-    "title": "Refresh stale NOT YET REGISTERED billing-routes header — registered at index.ts:778",
+    "title": "Refresh stale NOT YET REGISTERED patient-portal-routes header — registered at index.ts:632",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T15:20:00Z",
-    "evidence": "Self-paced /loop iteration 44 — REAL CODE (audit-narrowing). apps/api/src/billing-routes.ts header claimed \"NOT YET REGISTERED in apps/api/src/index.ts\" — but billingRoutes was registered at apps/api/src/index.ts:778. Updated the header to point readers at the wire-up line. apps/api typecheck clean."
+    "startedAt": "2026-05-28T15:25:00Z",
+    "evidence": "Self-paced /loop iteration 45 — REAL CODE (audit-narrowing). apps/api/src/patient-portal-routes.ts header claimed \"NOT YET REGISTERED in apps/api/src/index.ts\" — but patientPortalRoutes was registered at apps/api/src/index.ts:632. Updated header to point readers at the wire-up line. apps/api typecheck clean."
   },
   "categories": [
     {
