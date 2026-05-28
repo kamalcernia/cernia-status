@@ -937,21 +937,23 @@
           "title": "Close or WONTFIX 280 blocker-severity deferred items",
           "status": "in-progress",
           "completionMode": null,
-          "evidence": "Surfaced on portal Deferred Items panel; reduced via per-feature closure commits."
+          "evidence": "Audit re-run 2026-05-28: 284 blocker-severity items (was 280 — audit drift as new code lands). Iter 35 closed TODO(I-046) ConnectionRun.replayOf type-drift in apps/api/src/connection-replay.ts."
         },
         {
           "id": "def-tech-625",
           "category": "Tech-debt severity",
           "title": "Close or WONTFIX 625 tech-debt deferred items",
           "status": "todo",
-          "completionMode": null
+          "completionMode": null,
+          "evidence": "Audit re-run 2026-05-28: 692 tech-debt items (was 625 — audit drift)."
         },
         {
           "id": "def-review-1428",
           "category": "Review severity",
           "title": "Close or WONTFIX 1428 review-severity deferred items",
           "status": "todo",
-          "completionMode": null
+          "completionMode": null,
+          "evidence": "Audit re-run 2026-05-28: 1538 review-severity items (was 1428 — audit drift)."
         },
         {
           "id": "def-platform-1454",
@@ -965,28 +967,32 @@
           "category": "Kind: type-cheat-cast",
           "title": "Replace 1377 `as never` / `as any` type cheats",
           "status": "todo",
-          "completionMode": null
+          "completionMode": null,
+          "evidence": "Audit re-run 2026-05-28: 1487 type-cheat-cast + 51 type-cheat items = 1538 total (was 1377 — audit drift)."
         },
         {
           "id": "def-todo-comments",
           "category": "Kind: todo-comment",
           "title": "Close 329 // TODO / // FIXME comments",
           "status": "todo",
-          "completionMode": null
+          "completionMode": null,
+          "evidence": "Audit re-run 2026-05-28: 391 todo-comment items (was 329 — audit drift). Iter 35 closed TODO(I-046) in apps/api/src/connection-replay.ts (-2 markers)."
         },
         {
           "id": "def-docstring-caveats",
           "category": "Kind: docstring-caveat",
           "title": "Close 296 docstring-caveat items",
           "status": "todo",
-          "completionMode": null
+          "completionMode": null,
+          "evidence": "Audit re-run 2026-05-28: 300 docstring-caveat items (was 296 — audit drift)."
         },
         {
           "id": "def-deferred-marker",
           "category": "Kind: deferred-marker",
           "title": "Close 216 explicit // DEFERRED markers",
           "status": "todo",
-          "completionMode": null
+          "completionMode": null,
+          "evidence": "Audit re-run 2026-05-28: 220 deferred-marker items (was 216 — audit drift)."
         },
         {
           "id": "def-not-configured",
