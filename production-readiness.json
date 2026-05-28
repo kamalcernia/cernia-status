@@ -1639,6 +1639,13 @@
               "from": "remaining",
               "to": "remaining",
               "note": "Iter 32 — narrowed  surface in apps/api production code: apps/api/src/caregiver-federation-routes.ts no longer imports InMemoryProxyStore as fallback. buildCaregiverFederationRuntime() now requires opts.proxyStore explicitly (apps/api boot has always passed PostgresProxyStore at index.ts:1099; the fallback was dead code but kept InMemoryProxyStore in the production module). Test injected new InMemoryProxyStore() explicitly. apps/api typecheck clean."
+            },
+            {
+              "date": "2026-05-28",
+              "stage": "stubs-abolished",
+              "from": "remaining",
+              "to": "remaining",
+              "note": "Iter 33 — narrowed another InMemory* fallback in apps/api: apps/api/src/tenant-secret-routes.ts buildTenantSecretRuntime() no longer defaults opts.store to new InMemoryTenantSecretStore(). store is now required; apps/api boot has always passed KyselyTenantSecretStore (index.ts:1189). Test suite has no caller-of-buildTenantSecretRuntime() so no test update needed. apps/api typecheck clean. Continues the iter-32 pattern (caregiver-federation-routes InMemoryProxyStore fallback removed)."
             }
           ],
           "completed": [

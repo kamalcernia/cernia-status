@@ -12,10 +12,10 @@
   },
   "currentTask": {
     "id": "ra-cit-stubs-3",
-    "title": "Narrow InMemory* surface — removed implicit fallback in caregiver-federation-routes",
+    "title": "Narrow InMemory* surface — remove InMemoryTenantSecretStore fallback from tenant-secret-routes",
     "category": "remaining-track-bullets",
-    "startedAt": "2026-05-28T13:25:00Z",
-    "evidence": "Self-paced /loop iteration 32 — REAL CODE. Narrowed ra-cit-stubs-3 by one production-code surface: apps/api/src/caregiver-federation-routes.ts no longer ships an implicit InMemoryProxyStore fallback. buildCaregiverFederationRuntime now requires opts.proxyStore explicitly. apps/api boot has always passed PostgresProxyStore (index.ts:1099); the fallback was unreachable in prod, but its existence kept the InMemoryProxyStore import sitting in the route module and counted by ra-cit-stubs-3 audits. Removed import + made proxyStore required. Test file updated to inject new InMemoryProxyStore() explicitly (the class stays in @cernia/g-d1-caregiver-proxy for unit tests where it belongs). apps/api typecheck clean."
+    "startedAt": "2026-05-28T13:35:00Z",
+    "evidence": "Self-paced /loop iteration 33 — REAL CODE. Second InMemory* fallback narrowing for ra-cit-stubs-3 (continuing from iter 32). apps/api/src/tenant-secret-routes.ts buildTenantSecretRuntime() has been dead-code-defaulting to new InMemoryTenantSecretStore() but apps/api boot has always passed KyselyTenantSecretStore (index.ts:1189). Making store required + removing InMemoryTenantSecretStore import removes one more production-code surface counted by ra-cit-stubs-3."
   },
   "categories": [
     {
