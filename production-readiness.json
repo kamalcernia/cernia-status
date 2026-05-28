@@ -631,12 +631,18 @@
           ],
           "remaining": [
             "Wire x2a invoicing into the existing billing pipeline (currently only Stripe direct charge).",
-            "Mount j1d checkout routes; build the customer-facing storefront UI.",
+            "Build the customer-facing storefront UI (browse → Buy → Stripe Checkout redirect → entitlement record) on top of the now-mounted j1d compute layer. Persistence + real Stripe webhook handlers are procurement-blocked on Stripe production keys.",
             "Schedule x1c SaaS-metrics nightly compute against the real subscription store (current route is stateless pure-function).",
             "Wire x1a tax engine (Stripe Tax + Avalara fallback) into every payment path.",
             "Wire x1b ASC 606 revenue recognition into the monthly close.",
             "Wire x2b contract auto-renewal cron.",
             "Wire x3c discount-approval workflow."
+          ],
+          "history": [
+            {
+              "date": "2026-05-28",
+              "note": "ra-sbm-2 partial close — j1d-marketplace-checkout compute layer mounted. apps/api/src/marketplace-checkout-routes.ts wraps 5 pure functions as HTTP endpoints (POST /admin/marketplace/checkout/$build-session + entitlements/$create + /$cancel + /$extend + /$has-active). Input validation rejects malformed bodies with 400; pricing-model + URL-scheme checks return the engine's BlockerCode + message. 13 in-process tests pass covering happy-path build / 4×400 rejection / one-time + rental entitlement (rental sets nextBillingAt ~30d) / cancel mutation / has-active true/false matrix + rental extend. apps/api/package.json adds @cernia/j1d-marketplace-checkout workspace dep. Real Stripe API integration (SDK + webhook signature validation) + per-tenant entitlement persistence (table + tenant_id scoped store) are procurement-blocked on Stripe production keys; customer storefront UI is the next followup once the Buy flow can post to /$build-session."
+            }
           ]
         }
       ],
