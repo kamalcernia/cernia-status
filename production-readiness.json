@@ -2052,6 +2052,13 @@
               "stage": "closure-passes",
               "from": "in-progress",
               "to": "in-progress",
+              "note": "wg-m-admin closed — Wave M Admin rung. apps/admin/src/app/admin/trials/trials-api.ts typed client for /trials/* GET routes + statusBadgeClass + planBadgeClass + daysRemaining helper. /admin/trials/page.tsx dashboard: 4 summary tiles (active trials / expiring ≤7d / conversion rate % / plan distribution), debounced user-id filter (empty → /trials/active; with-value → /trials/by-user/:userId), plan dropdown with per-plan counts, table with trial-id link / user / plan badge / status badge / color-coded days-remaining (red <0, amber ≤7, emerald >7) / started / subscription-id. /admin/trials/[id]/page.tsx detail card: plan+status badges header + 3-col grid (user/tenant/subscription/started/expires/days-remaining/closed) + notes + metadata pills. Read-only by design — lifecycle writes flow through TrialLifecycleManager engine. /admin/billing/{tier,invoices,usage,voice-budget} already covered the pricing-tier + invoice + usage surfaces in prior closures; this iteration adds the missing trial-lifecycle view. Admin typecheck clean. Followups: license-state read view (M-1) + contract-auto-renewal status (X-2)."
+            },
+            {
+              "date": "2026-05-28",
+              "stage": "closure-passes",
+              "from": "in-progress",
+              "to": "in-progress",
               "note": "wg-o-admin closed — Wave O Admin rung. apps/admin/src/app/admin/llm-observability/llm-api.ts typed client for /api/o4 (cost ledger + budgets) + /api/o6 (traces + spans). /admin/llm-observability/page.tsx dashboard: 4 summary tiles (total spend USD / prompt tokens / completion tokens / error trace count), filter row (tenant id + model + provider + trace status), recent cost-entries table + recent traces table linking into detail. /admin/llm-observability/traces/[traceId]/page.tsx detail: trace header (status + feature + duration + started/ended + requestId + costEntryId + tag pills) + per-span table walking parentSpanId to compute depth and rendering tree-indented (name+indent / kind badge / status badge / duration / per-span error message). Tenant scope per ADR 0004 — cross-tenant aggregates live in apps/cernia-ops not here. Admin typecheck clean. Followups: budget upsert UI; replay+aggregation engines still deferred per llm-observability-routes.ts header."
             },
             {
