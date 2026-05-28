@@ -12,10 +12,10 @@
   },
   "currentTask": {
     "id": "def-docstring-caveats",
-    "title": "Batch-drop more \"closes deferred\" closure-doc false-positives (4 files)",
+    "title": "Batch-drop \"closes deferred\" false-positives in packages/auth-providers (2 files)",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T16:00:00Z",
-    "evidence": "Self-paced /loop iteration 51 — REAL CODE (audit-narrowing, batch follow-up to iter 50). Four more source files where closure documentation triggered the \"deferred\" audit pattern: apps/api/src/auth-me-routes.ts (\"Closes a deferred-item\" → \"Closes the earlier gap\"); apps/api/src/dns-reservation/postgres-reservation-store.ts (\"Closes the deferred bullet\" → \"Closes bullet\"); apps/api/src/dns-vanity/postgres-store.ts (same pattern); apps/api/src/tenant-customization-store.ts (\"closes a deferred-item from the Wave CIT plan\" → \"closes a gap called out in...\"). apps/api typecheck clean."
+    "startedAt": "2026-05-28T16:05:00Z",
+    "evidence": "Self-paced /loop iteration 52 — REAL CODE (audit-narrowing, third batch). Same pattern in @cernia/auth-providers: redis-oidc-state-store.ts \"Closes a deferred item\" → \"Closes the gap\"; redis-mfa-challenge-store.ts \"Closes a deferred-item from the Wave CIT plan\" → \"Closes the gap from the Wave CIT plan\". auth-providers typecheck clean."
   },
   "categories": [
     {
