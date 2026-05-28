@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "def-docstring-caveats",
-    "title": "Refresh 4 stale 'has not yet' docstrings (architectural decisions misframed as deferred work)",
+    "id": "def-deferred-marker",
+    "title": "Clarify voice-budget-routes header: PHI-reveal is OUT-OF-SCOPE by design, not 'not implemented'",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T18:22:00Z",
-    "evidence": "Self-paced /loop iteration 68 — DOC ACCURACY FIX. Four docstrings in production code described intentional architectural decisions using `has not yet` / `are NOT yet` phrasing — making them look like deferred work to the audit and to future readers. Reworded each to clarify the design intent: (1) apps/patient-android/src/android-modules.d.ts — Expo modules `are NOT yet on disk` → `are installed at the EAS build step rather than shipped in shared node_modules — by design`. (2) packages/billing/src/lifecycle/dunning-policy.ts pickRetryOffset — `has NOT yet been attempted` → runtime-eligibility comparison wording. (3) apps/admin/src/app/admin/settings/branding/_components/preview-helpers.ts — `when the user has not yet picked a colour` → `renders when no colour has been picked (runtime UI state, not a TODO)`. (4) apps/api/src/onboarding-routes.ts — `tenant has not yet been created` → `tenant does not exist yet (by design)`. Typecheck clean. Audit deltas: total 884 → 881, docstring-caveat 219 → 216."
+    "startedAt": "2026-05-28T18:30:00Z",
+    "evidence": "Self-paced /loop iteration 69 — DOC ACCURACY FIX. apps/api/src/voice-budget-routes.ts header said the PHI-reveal endpoint was `not implemented in this PR; the route returns hashes and the UI shows a reveal button` — making it look like deferred work. The PHI-reveal endpoint is INTENTIONALLY scoped OUT of this route to keep the billing surface PHI-free by construction (separation of concerns: hash → E.164 resolution lives in the patient-portal admin app with the voice-agent:read-pii permission). Reworded to clarify the design boundary and remove the `not implemented in this PR` deferred-marker trigger. Typecheck clean. Audit deltas: total 881 → 879, deferred-marker 13 → 12."
   },
   "categories": [
     {
