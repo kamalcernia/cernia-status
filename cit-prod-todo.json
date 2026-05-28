@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "next-pick-pending",
-    "title": "Loop iteration 16 complete — stale-TODO sweep shipped + use-current-roles verified previously-shipped",
+    "id": "stale-todo-sweep-r2",
+    "title": "Round-2 stale-TODO sweep — voice-agent-fleet-source header docstring",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T11:55:00Z",
-    "evidence": "Self-paced /loop iteration 16. (a) use-current-roles-scaffold VERIFIED previously-shipped — apps/admin/src/lib/use-current-roles.ts already calls GET /api/auth/me/roles via fetchRolesOnce() (file header explicitly notes 'This closes the prior scaffold'); apps/api/src/auth-me-routes.ts is mounted at apps/api/src/index.ts:611. No code change needed. (b) Stale-TODO sweep SHIPPED — apps/api/src/index.ts:1516 said 'Vendor health is static all-operational for now (TODO: vendor-probe cron + table)' but voice-agent-fleet-source.ts:vendorHealth() actually reads vendor_health_state populated by the ra-voice-mon-2 nightly batch (already shipped task #216). Updated 2 comments (index.ts + packages/cernia-ops/src/metrics-aggregator.ts × 2) to reflect reality. Typecheck clean. Real progress: 1 TODO marker removed from the def-todo-comments backlog of 329."
+    "startedAt": "2026-05-28T11:58:00Z",
+    "evidence": "Self-paced /loop iteration 17 — continuing def-todo-comments backlog reduction. apps/api/src/voice-agent-fleet-source.ts header (lines 16-20) said 'Vendor health is intentionally NOT in the database — there are no upstream-probe rows yet. The source returns a static \"all operational\" placeholder with a TODO' — directly contradicted by the same file's vendorHealth() implementation at lines 231-274 which reads from vendor_health_state. Rewrote header to reflect reality: reads + pads with operational placeholders for unprobed vendors. Typecheck clean. Total session sweep: 4 stale TODOs removed."
   },
   "categories": [
     {
