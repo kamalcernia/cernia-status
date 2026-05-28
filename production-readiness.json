@@ -1089,7 +1089,6 @@
             "Persist SamdAssessment / BiasReport / ApprovalRequest FHIR resources per tenant (the /admin/ai-governance dashboard + SaMD wizard are live; classification ruleset is wired; cross-tenant persistence is the remaining gap).",
             "Build edge-fleet routes + sync-run tracking; swap /admin/edge/* pages; delete sample-edge-fleet.ts.",
             "Build sensitive-data access routes (break-glass log, legal holds, proxy grants — last partially overlaps with caregiver-federation-routes); swap pages; delete sample-sensitive-data.ts.",
-            "Build CQM measure routes; swap /admin/cqm pages; delete sample-cqm.ts.",
             "Build security-posture routes; swap pages; delete sample-posture.ts.",
             "Build extension/plugin routes; swap pages; delete sample-extensions.ts."
           ],
