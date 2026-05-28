@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "ra-cit-harness-1",
-    "title": "Resolve runMigrations vitest-worker hang in real-services test harness",
+    "id": "ra-cds-6",
+    "title": "Ship JWT verification config + EHR-issuer trust-list scaffolding for CDS Hooks (jwtVerificationEnabled gate)",
     "category": "remaining-track-bullets",
-    "startedAt": "2026-05-28T11:17:00Z",
-    "evidence": "Self-paced /loop iteration 13. ra-cit-stubs-2 audit complete — 34 test files (10 in apps/api + 24 in packages) still import createPgMemKysely, so deleting pgmem-polyfills.ts is consumer-gated on completing ra-cit-stubs-1 first (mass test-file migration). Pivoted to ra-cit-harness-1: investigate the vitest-worker hang on runMigrations to unblock the testing-real-services harness — currently the only test using runMigrations is .skip()'d as a workaround."
+    "startedAt": "2026-05-28T11:23:00Z",
+    "evidence": "Self-paced /loop iteration 13.5 — ra-cit-harness-1 investigated: dedicated short-lived pool hypothesis falsified (reproduces 60s hang). Falsified hypothesis documented in production-readiness.json :: harness/remaining + history. Next hypotheses listed for the next agent. Pivoted to ra-cds-6: ship trust-list scaffolding so the JWT verification config is wired end-to-end even without a real EHR partner — the only thing actually gated on procurement is populating the trust list with a real EHR's issuer JWKS URL."
   },
   "categories": [
     {
