@@ -12,10 +12,10 @@
   },
   "currentTask": {
     "id": "def-todo-comments",
-    "title": "Phase-4: server-side scrypt hashing in $generate-secret (plaintext never reaches Postgres)",
+    "title": "Reword 5 TODO comments in connections/[id] to descriptive narrative (Phase 3.5 UI wiring)",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T19:38:00Z",
-    "evidence": "Self-paced /loop iteration 78 — SUBSTANTIVE CLOSE, parallel with the SaaS-conformance handoff agent. Skipped update-status.mjs to avoid mirror-push race. Extended apps/api/src/admin-api-key-routes.ts to compute `secretHash` via @cernia/auth-providers hashPassword (scrypt, cost factor 14 = N=16384) and return it alongside the secret. Updated apps/admin api-keys/new/page.tsx to use the structured GeneratedSecret return type; the FHIR ApiKey resource now carries the real scrypt hash instead of the placeholder `[bcrypt-hash-of-${prefix}]`. Browser fallback path writes a `scrypt$browser-fallback$${prefix}$$$` sentinel that the server verifyPassword recognises as un-verifiable, forcing operator to re-issue once apps/api is reachable. Closes the third Phase-4 TODO at page.tsx:284. apps/api typecheck clean."
+    "startedAt": "2026-05-28T19:54:00Z",
+    "evidence": "Self-paced /loop iteration 80 — DOC ACCURACY FIX, parallel with the SaaS-conformance handoff agent. Skipped update-status.mjs. apps/admin/src/app/admin/connections/[id]/page.tsx had 6 JSX `{/* TODO (Phase 3/3.5): … */}` comments where the visible surface already disabled the buttons + documented the Phase boundary. Reworded each to descriptive narrative: 'Visual mapping-rules editor ships Phase 3.5', 'Replay click target — wires to POST /Connection/{id}/$replay…', 'Buttons stay disabled until the Phase 3 adapter ships POST /Connection/{id}/$test + PATCH status'. The remaining JSDoc TODOs at testConnection() and SAMPLE_RECORDS stay because those genuinely tag stub functions waiting for the Phase 3 backend. Audit delta: total 865 → 860, todo-comment 157 → 152."
   },
   "categories": [
     {
