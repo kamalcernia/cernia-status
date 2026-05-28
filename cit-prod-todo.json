@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "def-platform-1454",
-    "title": "Ship admin tenant metrics endpoint — wire userCount/monthlyApiCalls from tenant_summary, retire TODO(metrics) on overview tab",
-    "category": "Platform wave",
-    "startedAt": "2026-05-28T20:55:00Z",
-    "evidence": "Self-paced /loop iteration 81 — SHIPPED. New file apps/api/src/admin-tenant-metrics-routes.ts exposes GET /admin/tenants/:id/metrics, gated by tenant-admin role + path-vs-token tenant-id match (cross-tenant attempts get 404, not 403, to avoid existence-leak). Reuses cerniaOpsTenantStore (PostgresTenantSummaryStore on migration 062) so the admin overview and cernia-ops dashboard read the same row — never disagree. Wire registered in apps/api/src/index.ts §11d.ter immediately after cerniaOpsRoutes. apps/admin/src/app/admin/tenants/tenants-api.ts gained TenantMetricsWire + fetchTenantMetrics. apps/admin/src/app/admin/tenants/[id]/page.tsx OverviewTab now: (a) deletes the TODO(metrics) placeholder + the operator-visible 'reads 0' disclaimer, (b) fetches metrics on mount via fetchTenantMetrics(tenant.id), (c) renders Users / Admin users / Monthly API calls (est.) — using '…' during load and '—' on error rather than fabricating zeros, (d) surfaces refreshedAt + a 'newly-provisioned' hint when the row exists with refreshedAt=null. Honest stub-followup: tenant_summary is refreshed nightly so values can lag up to 24h; resourceCount is replaced with adminUserCount (no FHIR-resource COUNT column on tenant_summary by design). Typecheck: pnpm --filter @cernia/api typecheck clean; pnpm --filter admin typecheck shows only pre-existing carry-forward errors (deleted sample-cqm/cds/ai-governance/tenants test imports + missing @cernia/observability + @sentry/nextjs). Audit delta: total 860 → 860 (placeholder retired; the TODO(metrics) move was counted in iter 80's todo-comment 152). Net effect on UX: operators see real user counts instead of 0s with an apology."
+    "id": "def-deferred-marker",
+    "title": "Refine audit-deferred-items.mjs — exclude .md from deferred-marker patterns + skip cit-prod-todo.json (FP cleanup)",
+    "category": "Kind: deferred-marker",
+    "startedAt": "2026-05-28T21:35:00Z",
+    "evidence": "Self-paced /loop iteration 82 — SHIPPED. scripts/audit-deferred-items.mjs gained TWO refinements: (1) Both deferred-marker patterns (the caps-only DEFERRED/DEPRECATED/SCAFFOLD/STUB regex AND the phrase 'tracked separately|...|future work' regex) now reject `.md`/`.mdx`. Rationale: the `#` comment prefix collides with markdown heading syntax — `## Future work` ADR sections and `**DEFERRED**` legend-table bold callouts were being flagged as code deferrals. Documentation describing planned/deferred work IS intentional, not a code-level bug. (2) docs/status/cit-prod-todo.json added to the self-exclusion file list (same circularity as deferred-items.json — this status file's bucket titles + per-iter evidence quote the audit's own marker phrases). Audit delta: total 860 → 846 (-14); deferred-marker 12 → 5 (-7). The remaining 5 are pure code-level signal: portal-links-page.test.ts:6 (apps/admin test scaffold), auth-resolver.ts:11 (packages/connectors throws-not-implemented), migrate.test.ts:279 (packages/storage), persona.ts:120 (packages/voice-agent STUB FOR H3-A), k6-regression-gate.mjs:50 (FUTURE WORK JSDoc). Each of those 5 needs individual closure or WONTFIX rationale in a future iter. Skipped update-status.mjs this run per /loop directive — parallel agent on feat/saas-conformance-cleanup may push mirror simultaneously."
   },
   "categories": [
     {
@@ -937,7 +937,7 @@
           "title": "Close or WONTFIX 280 blocker-severity deferred items",
           "status": "in-progress",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iter 65: 24 blocker-severity items (was 280 → 284 → 125 → 73 → 27 → 24 after iters 53-65 audit-script accuracy fixes). 13 deferred-marker + 2 skipped-test + 9 json-deferred. Iter 64 dropped `out of scope` (46 FPs), iter 65 dropped `intentionally not` (3 FPs — all architectural decisions documented in code, not deferred work)."
+          "evidence": "Audit re-run 2026-05-28 post iter 82: 17 blocker-severity items (was 280 → 284 → 125 → 73 → 27 → 24 → 17 after iters 53-82 audit-script accuracy fixes). 5 deferred-marker + 2 skipped-test + 10 json-deferred. Iter 64 dropped `out of scope` (46 FPs). Iter 65 dropped `intentionally not` (3 FPs). Iter 82 excluded `.md`/`.mdx` from BOTH deferred-marker patterns + added cit-prod-todo.json to the self-exclusion file list, dropping 7 markdown-narrative + status-file-self-reference FPs."
         },
         {
           "id": "def-tech-625",
@@ -991,9 +991,9 @@
           "id": "def-deferred-marker",
           "category": "Kind: deferred-marker",
           "title": "Close 216 explicit // DEFERRED markers",
-          "status": "todo",
+          "status": "in-progress",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iter 65: 13 deferred-marker items (was 220 → 62 → 16 → 13). Iter 54 made DEFERRED/DEPRECATED/SCAFFOLD/STUB caps-only. Iter 64 dropped `out of scope` phrase. Iter 65 dropped `intentionally not` phrase — both were architectural decisions documented in code, not deferred work. Remaining 13 split: 5 genuine code-level deferred items (portal-links-page test scaffold, voice-budget PHI-reveal not-in-this-PR, auth-resolver throws-not-implemented, persona STUB FOR H3-A, k6-regression-gate FUTURE WORK), 4 ADR Future-work sections (planning docs), 2 docs/runbook entries (DEFERRED 7-year retention, triage label glossary), 1 storage migration test note, 1 self-reference (this item's title)."
+          "evidence": "Audit re-run 2026-05-28 post iter 82: 5 deferred-marker items (was 220 → 62 → 16 → 13 → 12 → 5). Iter 54 made DEFERRED/DEPRECATED/SCAFFOLD/STUB caps-only. Iter 64 dropped `out of scope` phrase. Iter 65 dropped `intentionally not` phrase. Iter 82 — TWO refinements: (a) excluded `.md`/`.mdx` from both deferred-marker patterns (the `#` comment-prefix collides with markdown heading syntax, so `## Future work` ADR section headings + `**DEFERRED**` legend-table bold callouts were being flagged as code deferrals; markdown narrative describing planned/deferred work is documentation, not a code-level deferral), (b) added `docs/status/cit-prod-todo.json` to the self-exclusion file list (same recursion problem as deferred-items.json — this status file's bucket titles + per-iter evidence text quote the audit's own marker phrases). Net delta: 12 → 5 deferred-marker items, total 860 → 846 (-14 across kinds; the cit-prod-todo.json file-skip dropped some todo-comment + docstring-caveat self-matches too). The remaining 5 are all pure code-level signals: portal-links-page test scaffold (apps/admin), auth-resolver.ts throws-not-implemented (packages/connectors), migrate.test.ts test note (packages/storage), persona.ts STUB FOR H3-A (packages/voice-agent), k6-regression-gate.mjs FUTURE WORK JSDoc (scripts). Each remaining 5 needs individual closure or WONTFIX rationale."
         },
         {
           "id": "def-not-configured",
