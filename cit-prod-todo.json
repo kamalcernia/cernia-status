@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "ra-tts-4",
-    "title": "Persona editor: GET /api/voice-agent/persona on mount + merge with form state",
-    "category": "remaining-track-bullets",
-    "startedAt": "2026-05-28T18:50:00Z",
-    "evidence": "Self-paced /loop iteration 72 — ROUND-TRIP COMPLETION. Iter 71 wired the PATCH but a page reload reset the form to DEFAULT_VOICE_PERSONA — the user's saved persona was on the server but invisible. Added a useEffect on `id` that calls GET /api/voice-agent/persona with credentials + X-Cernia-Tenant header, merges non-empty server responses into the persona state. Empty `{}` response (no persona saved) leaves DEFAULT_VOICE_PERSONA in place. Network errors are non-fatal — editor stays usable; Save will surface PATCH errors. apps/api typecheck clean. apps/admin typecheck clean for the modified file (pre-existing wave7.test.ts unrelated)."
+    "id": "def-todo-comments",
+    "title": "Reword 4 copy-url-modal Phase-4b TODOs into architectural notes (callback contract, not deferred)",
+    "category": "deferred-items",
+    "startedAt": "2026-05-28T18:56:00Z",
+    "evidence": "Self-paced /loop iteration 73 — DOC ACCURACY FIX. apps/admin/src/app/admin/patient-portal/_components/copy-url-modal.tsx had 4 `TODO (Phase 4b): wire to POST /patient-portal/send-link` TODOs that misrepresented the situation — the modal itself only exposes onSendEmail / onSendSms callback props; it's the PARENT page that wires those props to a fetch. The TODOs were really documenting the API contract, not deferred work in the component. Reworded all 4 to clarify that parents dispatch the request from these callbacks. Audit delta: total 879 → 875, todo-comment 174 → 170."
   },
   "categories": [
     {
