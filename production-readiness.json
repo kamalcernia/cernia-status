@@ -574,6 +574,13 @@
               "from": "remaining",
               "to": "closed",
               "note": "Closed q-s3 + q-s5 wire-up bullet. apps/api/src/telehealth-visit-routes.ts mounts 6 pure-compute endpoints wrapping @cernia/q-s3-telehealth-audit (computeQuality, recordEvent, markNoShow, markCancelled, toFhirEncounter) and @cernia/q-s5-visit-summary (generateSummary): POST /admin/telehealth/visits/$compute-quality, $record-event, $mark-no-show, $mark-cancelled, $to-fhir-encounter, $generate-summary. apps/api/package.json gained both deps; apps/api/src/index.ts registers telehealthVisitRoutes alongside webRtcSignalingRoutes. 8 unit tests cover happy paths + invalid-input rejections. apps/api typecheck clean. Per ADR 0004 tenant context via X-Cernia-Tenant header with env fallback; per CLAUDE.md no PHI logged."
+            },
+            {
+              "date": "2026-05-28",
+              "stage": "telehealth-rpm",
+              "from": "remaining",
+              "to": "narrowed",
+              "note": "Shipped first slice of the clinic UI bullet. apps/admin/src/app/admin/telehealth/visit-summary/page.tsx renders the q-s5 summary by calling the apps/api -summary route from iteration 29. RPM dashboard + care-plan management UI remain - the clinic UI bullet stays open but is now partially shipped."
             }
           ]
         },
