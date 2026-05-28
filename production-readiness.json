@@ -1317,6 +1317,13 @@
               "from": "remaining",
               "to": "closed",
               "note": "CIT deferred-audit final: docs/status/live-status.html extended with 'Deferred items by wave' table (top-N sorted) + 'WONTFIX demotions' table (slug + signers + date with link to the per-slug decision doc); WONTFIX count surfaced on the main Deferred-items tile. docs/status/update-status.mjs derived-fields allowlist extended with byWave + wontfixDemotions."
+            },
+            {
+              "date": "2026-05-28",
+              "stage": "deferred-audit",
+              "from": "remaining",
+              "to": "closed",
+              "note": "CIT def-not-configured triage complete. 48 'not-configured'/'not-implemented' hits in apps/api/src categorized: (a) 24 dead-defensive guards in caregiver-federation-routes.ts (19) + cernia-ops-routes.ts (5) — cannot fire because PostgresJit/BreakGlass/Delegation/Attestation/Proxy + voiceAgentFleet + featureFlagStore ARE wired at apps/api/src/index.ts boot (lines 1080-1106 + 1524 + 1534); optional `?` typing kept so route files load standalone in tests. (b) 6 correct-UX-by-design: sso-routes × 2 (factory deliberately deferred per index.ts:1132 — SAML 2.0 followup), schedule-import × 1, payment-dispatcher + voice-call-handler × 4 (per-tenant Stripe Connect gating — load-bearing for polite-refusal voice UX, gated on tenant's own Stripe linkage). (c) 15 test-only sites exercising the fallback branches. Conclusion: zero real wiring gaps; pattern is intentional defensive programming + correct feature-gating UX. Closed as wontfix-by-design in cit-prod-todo.json :: def-not-configured."
             }
           ],
           "completed": [
