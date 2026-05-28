@@ -12,10 +12,10 @@
   },
   "currentTask": {
     "id": "def-deferred-marker",
-    "title": "Wire cerniaOpsFinopsRoutes at apps/api boot (PROD-P11 dashboard)",
+    "title": "Update finops dashboard page docstring/banner — reflect iter-39 wire-up",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T14:15:00Z",
-    "evidence": "Self-paced /loop iteration 39 — REAL CODE. Closed the DEFERRED wire-up marker in apps/api/src/cernia-ops-finops-routes.ts (PROD-P11 cost-tracker dashboard route module). Added @cernia/finops as workspace dep in apps/api/package.json. Imported cerniaOpsFinopsRoutes + PostgresCostTracker. Registered at apps/api/src/index.ts §11d.bis with a tiny inline RbacGate adapter that mirrors cernia-ops-routes role-check (cernia-super-admin claim). Updated route docstring from \"DEFERRED — not registered\" to \"REGISTERED\". Skipped when db is unset (dev). apps/api typecheck clean. Audit re-run confirms drop."
+    "startedAt": "2026-05-28T14:30:00Z",
+    "evidence": "Self-paced /loop iteration 40 — REAL CODE (follow-up to iter 39). apps/cernia-ops/src/app/cernia-ops/finops/page.tsx page-level docstring said \"routes are NOT registered at apps/api boot in this commit\" — stale after iter 39 wired the routes. Updated docstring + WireUpBanner copy to reflect REGISTERED status with the gating conditions (db-set, cernia-super-admin role, API reachable). cernia-ops-portal typecheck clean."
   },
   "categories": [
     {
