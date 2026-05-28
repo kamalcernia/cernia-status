@@ -823,9 +823,14 @@
             "Build packages/voice-stt-deepgram implementing ISpeechToText against Deepgram's websocket API.",
             "Token sourcing: TenantSecretResolver.resolve(tenantId, 'deepgram'); metadata.defaultLanguage/defaultModel control per-tenant model selection.",
             "Wire into apps/api voice-call-handler so STT frames are forwarded into the dialog engine.",
-            "Eval: add a STT-accuracy golden using a recorded WAV + expected transcript."
+            "Commit real-Deepgram WAV+transcript fixtures + run the STT-accuracy goldens nightly against the production API (the scaffolding ships in @cernia/voice-agent-evals/stt; procurement-blocked on Deepgram production key + BAA)."
           ],
           "history": [
+            {
+              "date": "2026-05-28",
+              "stage": "stt-backend",
+              "note": "ra-stt-4 closed (eval scaffolding level) — STT-accuracy goldens ship in @cernia/voice-agent-evals. packages/voice-agent-evals/src/stt/wer.ts implements canonical Word Error Rate via Levenshtein DP at word level (case-insensitive, punctuation-stripped tokenization) with full S/D/I breakdown. scoreSttAccuracy returns {passed, notes, wer, result} with a default 0.2 threshold (80% accuracy). packages/voice-agent-evals/src/stt/golden.ts: SttGolden type + runSttGolden with a pluggable Transcriber interface — the same goldens run against (a) tests/external-fakes/deepgram-fake.ts in CI, (b) real Deepgram nightly, (c) Whisper / Azure Speech. echoTranscriber + constantTranscriber for unit tests. 16 tests pass: 12 WER unit (identical text + case/punct ignored + S/D/I single-error + empty edge cases + threshold boundary) + 4 golden runner (echo passes / constant fails / custom threshold / ENOENT on missing WAV). Public barrel exports added. Real-Deepgram WAV+transcript fixture commit + nightly run is the next followup (procurement-blocked on Deepgram production key + BAA per ra-stt-2)."
+            },
             {
               "date": "2026-05-25",
               "stage": "stt-backend",
