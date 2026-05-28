@@ -949,9 +949,14 @@
           },
           "remaining": [
             "Followup: write persona through to Organization.extension[voice-agent-persona] so the voice-call-handler tenant resolver sees the update across pods (today the PATCH is process-local — single-pod safe).",
-            "Wire the resolver lookup into apps/api boot — the helper (apps/api/src/per-tenant-speech-credentials.ts) ships ra-tts-2; what remains is making SpeechServiceFactory per-tenant-aware so dialog turns resolve the ElevenLabs credential + voiceId per call rather than reading a single global env var at startup."
+            "Followup (per-tenant voiceId routing): the per-tenant TTS router (apps/api/src/per-tenant-tts-router.ts) routes the API key per tenant but does NOT yet override the voiceId — that still comes from the tenant persona via voice-call-handler.ts. When tenant_secrets.metadata.defaultVoiceId is populated, the TtsOpts.voiceId on synthesize() should prefer that override (per-secret) over the persona default."
           ],
           "history": [
+            {
+              "date": "2026-05-28",
+              "stage": "tts-backend",
+              "note": "ra-tts-4 closed — PerTenantTtsRouter shipped in apps/api/src/per-tenant-tts-router.ts. Wraps the default TextToSpeech backend (built at boot from ELEVENLABS_API_KEY env var) with a tenant-aware adapter that consults PerTenantSpeechCredentials.resolveElevenLabs(tenantId) on each synthesize() call. When the resolver returns source='tenant' the router builds (or reuses a cached) ElevenLabsTtsBackend keyed on that tenant's API key and delegates to it; when source='platform-env' or no override exists, falls through to the boot default backend. Bounded LRU cache (default 64 tenants, eviction by lastUsedAt) prevents unbounded growth at scale. Each tenant-keyed call emits a speech.tts.started audit row with backend='elevenlabs-tenant' for cost-allocation. Boot wiring in apps/api/src/index.ts: initialiseVoiceCallStack() now accepts deps.tenantSecretResolver; when supplied AND the default tts.id is 'elevenlabs', the tts is wrapped before being passed to registerInboundCallHandler. 9 unit tests cover the full matrix: no override → default fallthrough, source='platform-env' → default fallthrough, source='tenant' → tenant backend used, cache reuse, secret rotation triggers rebuild, LRU eviction, audit double-emit suppression on default fallthrough, id+hasBaa report the default's (audit-field stability), invalidate() drops a cached entry. apps/api typecheck clean (only pre-existing carry-forward errors on admin-tenants-routes 'update' field, unchanged)."
+            },
             {
               "date": "2026-05-28",
               "stage": "tts-backend",
