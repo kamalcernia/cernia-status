@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "telehealth-rpm-2-stale-bullets",
-    "title": "Narrow 2 stale telehealth-rpm bullets — WebRTC signaling + RPM webhook both shipped",
+    "id": "saas-billing-2-bullets-narrowed",
+    "title": "Narrow 2 saas-billing-marketplace bullets — x2b + x3c crons wired (catalog-only mode)",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T12:14:00Z",
-    "evidence": "Self-paced /loop iteration 21. (1) 'Mount the WebRTC signaling websocket in apps/api (q-s1)' — shipped at apps/api/src/index.ts:911 via webRtcSignalingRoutes. (2) 'Stateful POST /rpm/devices/:deviceId/readings webhook that feeds the AlertEngine and persists EvaluationResult' — shipped at apps/api/src/rpm-device-webhook-routes.ts:199; module header (lines 10-11) + body (lines 143-146) confirm it feeds AlertEngine + persists alerts (task #179 ra-rpm-1). Remaining 2 telehealth-rpm bullets stay open: q-s3/q-s5 not yet routed; visit-summary + care-plan UIs not built. Open bullet count: 46 -> 44."
+    "startedAt": "2026-05-28T12:18:00Z",
+    "evidence": "Self-paced /loop iteration 22. Narrowed (not removed) 2 bullets to reflect catalog-only-mode reality: x2b contract auto-renewal cron + x3c discount-approval timeout sweep are both scheduled in apps/api/src/saas-nightly-batches.ts (lines 56 + 68) and run nightly. They operate on empty catalog stubs so the GENUINE remaining work is Postgres subscription / discount-approval store wire-in (gated on the same subscription store as x1c metrics-compute). Honest narrowing - reduces the surprise factor for future readers without claiming the work is done. Open bullet count stays 44 (bullets narrowed, not removed)."
   },
   "categories": [
     {
