@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "def-deferred-marker",
-    "title": "Audit-script fix: deferred-marker single-word triggers now caps-only",
+    "id": "def-todo-comments",
+    "title": "Audit-script fix: todo-comment markers now caps-only (TODO/FIXME/XXX/HACK)",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T16:20:00Z",
-    "evidence": "Self-paced /loop iteration 54 — STRUCTURAL FIX (second of two in a row). scripts/audit-deferred-items.mjs deferred-marker pattern had case-insensitive flag i applied to all triggers — including the single-word markers DEFERRED/DEPRECATED/SCAFFOLD/STUB. Natural-language usage of those words in normal comments (e.g. \"// Stub navigator.clipboard\" in test code, \"// Scaffold the directory structure\") was being self-flagged. Split the pattern: single-word markers are now CAPS-ONLY (the convention that distinguishes a deliberate marker from natural language); multi-word phrases (\"tracked separately\" etc.) remain case-insensitive (they ARE natural language and the trigger is unambiguous in context). Re-run: total 2473 → 2317 (-156), deferred-marker 218 → 62 (-156). Best single audit drop of the session."
+    "startedAt": "2026-05-28T16:25:00Z",
+    "evidence": "Self-paced /loop iteration 55 — STRUCTURAL FIX (third of three audit pattern improvements in a row). Same case-insensitive false-positive pattern as iter 54: todo-comment matcher had i flag, causing XXX inside SAML XML test fixtures (saml-provider.test.ts:1052), XXX in catalog-code placeholders (catalog-ahrq-ccs/types.ts:40), and casual Todo / todo in docs to all self-flag. Removed i flag — convention is CAPS-only. Re-run: total 2317 → 2249 (-68), todo-comment 383 → 315 (-68)."
   },
   "categories": [
     {
