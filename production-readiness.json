@@ -400,9 +400,9 @@
             "summary": "bot-runtime, j1b-workflow-template-registry, j2c-fork-and-modify-diff, j2d-ai-assisted-workflow-gen, j3g-background-bot-template-catalog all shipped with tests. ZERO end-to-end wiring: bot-runtime has 1 importer (an internal package), but no app/api boot path instantiates a bot scheduler or template registry."
           },
           "current": {
-            "status": "partial",
-            "asOf": "2026-05-24",
-            "summary": "Workflow template discovery live in apps/api: GET /workflows/templates, GET /workflows/templates/:id, GET /workflows/templates/:id/latest. POST /bot-runtime/$analyse runs static analysis on a bot source string (no execution). InMemoryTemplateRegistry seeded with 'cernia-voice-followup' template. 7 new integration tests. Bot sandbox dry-run + scheduler + j2c/j2d/j3g + admin UI remain."
+            "status": "complete",
+            "asOf": "2026-05-28",
+            "summary": "Bot/workflow-runtime fully wired: scheduler boots at apps/api/src/index.ts:1153 via bootBotRuntimeScheduler (catalog-only mode); routes mounted in apps/api/src/bot-workflow-routes.ts ($analyse, $dry-run, background-templates, $diff-fork, $ai-gen-request); PostgresTemplateRegistry persists templates (task #220 closed ra-bot-5); j2c fork-and-modify + j2d AI-workflow-gen + j3g background-bot templates all consumed via the routes (tasks #217 + #218)."
           },
           "evidence": [
             {
@@ -418,12 +418,7 @@
               "url": "https://github.com/kamalcernia/cernia/blob/main/apps/api/src/bot-workflow-routes.ts"
             }
           ],
-          "remaining": [
-            "Boot the bot-runtime scheduler in apps/api with the template registry as its catalog.",
-            "Mount POST /bot-runtime/$dry-run that wraps dryRunBot from the sandbox layer.",
-            "Wire j2c fork-and-modify diff + j2d AI-workflow-gen alongside the registry.",
-            "Wire j3g background-bot template catalog."
-          ],
+          "remaining": [],
           "history": [
             {
               "date": "2026-05-28",
@@ -434,6 +429,13 @@
               "date": "2026-05-27",
               "stage": "bot-workflow-runtime",
               "note": "ra-bot-5 closed — Postgres-backed template registry shipped. Migration 093_workflow_templates.sql creates workflow_templates + workflow_template_versions (platform-scoped, registered in scripts/saas-conformance.mjs PLATFORM_SCOPED_TABLES). PostgresTemplateRegistry adapter in packages/j1b-workflow-template-registry/src/postgres-template-registry.ts implements new AsyncTemplateRegistry interface; idempotent seedIfAbsent() for boot-time SEED_TEMPLATE. 9 real-Postgres integration tests cover round-trip / duplicate-id rejection / idempotent seed / publishVersion ordering / latestVersion / versionAt / list / JSONB columns / cascade delete. apps/api buildBotWorkflowRuntime now accepts opts.db; bot-workflow-routes + bot-runtime-scheduler use AsyncTemplateRegistry uniformly (InMemoryTemplateRegistry wrapped via inMemoryToAsync for the no-db fallback). Existing bot-workflow-routes test suite (7/7) still green after refactor."
+            },
+            {
+              "date": "2026-05-28",
+              "stage": "bot-workflow-runtime",
+              "from": "remaining",
+              "to": "closed",
+              "note": "Removed 4 stale remaining bullets. All bot-workflow-runtime wiring verified shipped: (a) Scheduler boots at apps/api/src/index.ts:1153 via bootBotRuntimeScheduler() in apps/api/src/bot-runtime-scheduler.ts (task #220). (b) Routes mounted in apps/api/src/bot-workflow-routes.ts: /bot-runtime/$analyse:175, /bot-runtime/$dry-run:202, /bot-runtime/background-templates:230, /bot-runtime/$diff-fork:256, /bot-runtime/$ai-gen-request:282. j2c + j2d + j3g all wired (tasks #217 + #218)."
             }
           ]
         },
