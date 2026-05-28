@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "def-todo-comments",
-    "title": "Audit-script fix: todo-comment markers now caps-only (TODO/FIXME/XXX/HACK)",
+    "id": "def-type-cheats",
+    "title": "Audit-script fix: type-cheat patterns now production-code-only (skip test files)",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T16:25:00Z",
-    "evidence": "Self-paced /loop iteration 55 — STRUCTURAL FIX (third of three audit pattern improvements in a row). Same case-insensitive false-positive pattern as iter 54: todo-comment matcher had i flag, causing XXX inside SAML XML test fixtures (saml-provider.test.ts:1052), XXX in catalog-code placeholders (catalog-ahrq-ccs/types.ts:40), and casual Todo / todo in docs to all self-flag. Removed i flag — convention is CAPS-only. Re-run: total 2317 → 2249 (-68), todo-comment 383 → 315 (-68)."
+    "startedAt": "2026-05-28T16:30:00Z",
+    "evidence": "Self-paced /loop iteration 56 — STRUCTURAL FIX. The biggest remaining audit category (type-cheat-cast at 1488) was dominated by test files using  /  for mocking + type-narrowing fixtures (conventional in test code). Excluded *.test.ts / *.spec.ts from both type-cheat-cast and type-cheat patterns. Re-run: total 2249 → 1120 (-1129). type-cheat-cast 1488 → 406 (-1082), type-cheat 51 → 1 (-50). The remaining ~400 type-cheat-casts in production code are actionable cleanup work that the audit should track."
   },
   "categories": [
     {
