@@ -12,10 +12,10 @@
   },
   "currentTask": {
     "id": "def-docstring-caveats",
-    "title": "Refresh stale NOT YET REGISTERED patient-portal-routes header — registered at index.ts:632",
+    "title": "Refresh stale migration-helpers \"not yet exposed\" — MigrationJob backend wired",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T15:25:00Z",
-    "evidence": "Self-paced /loop iteration 45 — REAL CODE (audit-narrowing). apps/api/src/patient-portal-routes.ts header claimed \"NOT YET REGISTERED in apps/api/src/index.ts\" — but patientPortalRoutes was registered at apps/api/src/index.ts:632. Updated header to point readers at the wire-up line. apps/api typecheck clean."
+    "startedAt": "2026-05-28T15:30:00Z",
+    "evidence": "Self-paced /loop iteration 46 — REAL CODE (audit-narrowing). apps/admin/src/app/admin/migration/_lib/migration-helpers.ts + __tests__/migration.test.ts headers said \"MigrationJob / CutoverPlan resource types not yet exposed by apps/api\". MigrationJob was wired in task #222 (apps/api/src/migration-job-routes.ts + migration-job-store.ts). Updated both docstrings to acknowledge MigrationJob is live and call out CutoverPlan as the actual follow-up."
   },
   "categories": [
     {
