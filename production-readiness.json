@@ -750,8 +750,6 @@
           ],
           "remaining": [
             "Boot wiring in apps/api: construct TwilioVoiceBackend keyed by tenantId via TenantSecretResolver.resolve(tenantId, 'twilio').",
-            "Inbound webhook /telephony/twilio/inbound that looks up tenant from tenant_phone_numbers, resolves the per-tenant Auth Token, and TwiML-bridges to the dialog engine.",
-            "Outbound campaign route + caller-id allowlist enforcement (tenant_phone_numbers.is_active filter).",
             "Smoke test against the Twilio sandbox using one real test number."
           ],
           "history": [
@@ -762,6 +760,11 @@
               "to": "complete",
               "note": "buildTwilioVoiceClient native-fetch factory + TwilioVoiceBackend boot wiring in apps/api. 26 new tests.",
               "commit": "0d384fb6+"
+            },
+            {
+              "date": "2026-05-27",
+              "stage": "telephony-backend",
+              "note": "ra-tel-2 + ra-tel-3 closed. telephonyRoutes plugin (apps/api/src/telephony-routes.ts) registered in apps/api/src/index.ts section 10g-telephony — POST /telephony/twilio/voice (inbound HMAC-verified webhook with tenant lookup via PostgresTenantPhoneNumberStore), POST /telephony/twilio/status (status callback), POST /telephony/outbound (internal REST surface wrapping placeAuditedOutboundCall). Caller-id allowlist enforced via phoneNumbers.assertOwnedByTenant; OutboundSpoofError → 403 with call.spoof-attempt-blocked audit row. HMAC verification uses computeTwilioSignature from @cernia/notifications + constant-time compare. 5 new unit tests pass; full telephony-routes suite is 17/17 green."
             }
           ]
         },
