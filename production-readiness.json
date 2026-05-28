@@ -2052,6 +2052,13 @@
               "stage": "closure-passes",
               "from": "in-progress",
               "to": "in-progress",
+              "note": "wg-o-admin closed — Wave O Admin rung. apps/admin/src/app/admin/llm-observability/llm-api.ts typed client for /api/o4 (cost ledger + budgets) + /api/o6 (traces + spans). /admin/llm-observability/page.tsx dashboard: 4 summary tiles (total spend USD / prompt tokens / completion tokens / error trace count), filter row (tenant id + model + provider + trace status), recent cost-entries table + recent traces table linking into detail. /admin/llm-observability/traces/[traceId]/page.tsx detail: trace header (status + feature + duration + started/ended + requestId + costEntryId + tag pills) + per-span table walking parentSpanId to compute depth and rendering tree-indented (name+indent / kind badge / status badge / duration / per-span error message). Tenant scope per ADR 0004 — cross-tenant aggregates live in apps/cernia-ops not here. Admin typecheck clean. Followups: budget upsert UI; replay+aggregation engines still deferred per llm-observability-routes.ts header."
+            },
+            {
+              "date": "2026-05-28",
+              "stage": "closure-passes",
+              "from": "in-progress",
+              "to": "in-progress",
               "note": "wg-erx-admin closed — Wave ERX Admin rung. apps/admin/src/app/admin/prescribing/erx-api.ts typed client (listPrescriptions / getPrescription / validatePrescription / advancePrescription) + statusBadgeClass + deaScheduleBadgeClass helpers. /admin/prescribing/page.tsx queue dashboard: 4 summary tiles (total / pending-review / pending-signature / in-transit), full-text search across id+patient+prescriber+medication, status dropdown with per-status counts, paginated table with medication+strength+doseForm / patient / prescriber / status badge / DEA badge / days / refills used÷total / written-at. /admin/prescribing/[id]/page.tsx detail page: full prescription header (medication + strength + doseForm + quantity + days supply + refills + substitution + NDC + RxCUI + pharmacy + patient + prescriber + written/signed/submitted timestamps + status reason + notes + dosage instructions) + Validate action (POST $validate; renders per-issue table with severity badges) + Advance action (target-status dropdown excluding current + free-text reason; server-side state machine rejects invalid hops with 400). Tenant scope via x-cernia-tenant-id; 404 (not 403) on cross-tenant per ADR 0004. Admin typecheck clean. Refill-specific flow + bulk-actions queue are the next followups."
             },
             {
