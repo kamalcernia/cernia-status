@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "def-todo-comments",
-    "title": "Ship useCurrentSession() hook + retire users/new 'User/current' placeholder",
-    "category": "Kind: todo-comment",
-    "startedAt": "2026-05-28T22:18:00Z",
-    "evidence": "Self-paced /loop iteration 94 — SHIPPED. apps/admin/src/lib/use-current-roles.ts gained useCurrentSession() — fetches GET /api/auth/me (the existing apps/api endpoint at apps/api/src/auth-me-routes.ts that returns {tenantId, userId, roles}), memoised at module scope so mounting multiple gated panels triggers one network call. CurrentSession interface exported. ?as=<role> dev override preserved; under override, userId resolves to literal 'dev-override' so synthetic audit-log Reference values are obviously not production identities. apps/admin/src/app/admin/users/new/page.tsx wired: imports useCurrentSession, derives session at component top, and replaces lifecycle.createdBy from the hardcoded 'User/current' to 'User/{session.userId}' with a 'User/unknown' fallback during in-flight session fetch. The server still overwrites lifecycle.createdBy from the JWT subject during user create (apps/api authoritative path), so the body hint is informational — but at least it's now honestly informational instead of a placeholder lie. Three other consumers of 'User/current' (desk-gate-banner.tsx, api-keys/new/page.tsx, service-accounts/new/page.tsx) remain as followups. Audit delta: total 721 → 720; todo-comment 44 → 43. apps/admin typecheck clean for both edited files."
+    "id": "ra-cds-2-followup",
+    "title": "Ship POST /workflows/:id/$run + POST /bots/:id/$run kickoff routes (acknowledgement mode) — closes 90% of cds-hooks-quality bullet 1",
+    "category": "remaining-track-bullets",
+    "startedAt": "2026-05-28T22:23:00Z",
+    "evidence": "Self-paced /loop iteration 96 IN PROGRESS — SHIPPING. cds-hooks-quality stage bullet 1 says: 'Wire actual workflow/bot kickoff from the SMART app-launch landing pages'. Iter 88 shipped the admin landing pages (workflows/[id]/run + bots/[id]/run); they currently parse SMART params + render acknowledgement but do NOT POST to apps/api. This iter ships the apps/api backend slot: POST /admin/workflows/:id/$run + POST /admin/bots/:id/$run. Each: tenant-admin gated via extractPrincipal, accepts {hookInstance, fhirServer, launch, smartContext} body, returns {dispatchId, queuedAt, mode: 'catalog-acknowledged'} — honest about the bot-runtime-execution gap (real per-tenant fire still gated on tenant_bot_instances table per bot-workflow-runtime stage). Tests cover: 401 on no principal, 403 on non-admin, 200 happy path with dispatchId + mode echoed, 400 on missing hookInstance. PHI posture: never logs the SMART launch token — only its presence (boolean). This is shipped-with-stub-followup: real per-tenant kickoff is the next followup (gated on tenant_bot_instances)."
   },
   "categories": [
     {
