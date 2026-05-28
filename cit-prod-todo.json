@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "def-todo-comments",
-    "title": "voice-call-handler: thread real ttsSeconds from TTS layer (closes iter-39 voice-metering TODO)",
+    "id": "def-docstring-caveats",
+    "title": "Refresh 4 stale 'has not yet' docstrings (architectural decisions misframed as deferred work)",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T18:11:00Z",
-    "evidence": "Self-paced /loop iteration 67 — SUBSTANTIVE CLOSE. apps/api/src/voice-call-handler.ts:2328 had `ttsSeconds: 0, // TODO: thread through from TTS layer in a follow-up` — a real follow-up to iter 39's voice-metering wiring. Added a `ttsSecondsAccumulated` field on InboundCallSession, wrapped the speak() TTS-synthesize loop with wall-clock instrumentation (Date.now() before + after, accumulated in `finally` so barge-in-aborted partial synthesis still bills), and threaded the value into the call-end metering emit (rounded to 2 decimal places). Wall-clock is the correct metric for TTS vendor cost-attribution — a TTS adapter that takes 800ms to synthesise a 5-second utterance is consuming 800ms of paid TTS time. Typecheck clean. Audit delta: todo-comment 175 → 174, total 884 → 883."
+    "startedAt": "2026-05-28T18:22:00Z",
+    "evidence": "Self-paced /loop iteration 68 — DOC ACCURACY FIX. Four docstrings in production code described intentional architectural decisions using `has not yet` / `are NOT yet` phrasing — making them look like deferred work to the audit and to future readers. Reworded each to clarify the design intent: (1) apps/patient-android/src/android-modules.d.ts — Expo modules `are NOT yet on disk` → `are installed at the EAS build step rather than shipped in shared node_modules — by design`. (2) packages/billing/src/lifecycle/dunning-policy.ts pickRetryOffset — `has NOT yet been attempted` → runtime-eligibility comparison wording. (3) apps/admin/src/app/admin/settings/branding/_components/preview-helpers.ts — `when the user has not yet picked a colour` → `renders when no colour has been picked (runtime UI state, not a TODO)`. (4) apps/api/src/onboarding-routes.ts — `tenant has not yet been created` → `tenant does not exist yet (by design)`. Typecheck clean. Audit deltas: total 884 → 881, docstring-caveat 219 → 216."
   },
   "categories": [
     {
