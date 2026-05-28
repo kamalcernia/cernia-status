@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "def-skipped-tests",
-    "title": "Reconcile WONTFIX doc with iter-41 deletion of portal-notify skip block",
+    "id": "def-docstring-caveats",
+    "title": "Refresh apps/admin helpers docstrings (edge/compliance/extensions) — now wired",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T14:55:00Z",
-    "evidence": "Self-paced /loop iteration 42 — HONEST CORRECTION. Iter 41 deleted the apps/api/src/portal-notify.test.ts T12 describe.skip block but did so without checking the existing WONTFIX-keep decision in docs/decisions/wontfix-skipped-tests-residual.md. This iter reconciles the discrepancy: updated the WONTFIX doc to record the reconsidered decision (Removed, with rationale: git log preserves archaeology, file-header pointer kept, skipped blocks carry audit signal without verification value). Updated the master-gate summary from 3 → 2 skipped tests remaining."
+    "startedAt": "2026-05-28T15:05:00Z",
+    "evidence": "Self-paced /loop iteration 43 — REAL CODE (audit-narrowing). 6 stale docstrings in apps/admin that claimed \"backend is not yet exposed by apps/api\" were updated to reflect reality. Edge backend lives at apps/api/src/edge-fleet-routes.ts (task #229), compliance at apps/api/src/compliance-routes.ts (task #230), extensions at apps/api/src/extensions-routes.ts (task #228) — all already shipped. Updated: edge/_lib/edge-helpers.ts + __tests__/edge-helpers.test.ts; compliance/_lib/compliance-helpers.ts + __tests__/compliance-helpers.test.ts; extensions/_lib/extensions-helpers.ts + __tests__/extensions.test.ts. apps/admin typecheck — pre-existing baseline errors only (wave7.test.ts, instrumentation.ts) verified via stash baseline; my touched files have zero errors."
   },
   "categories": [
     {
