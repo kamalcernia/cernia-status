@@ -12,10 +12,10 @@
   },
   "currentTask": {
     "id": "def-docstring-caveats",
-    "title": "Refresh stale migration-helpers \"not yet exposed\" — MigrationJob backend wired",
+    "title": "Refresh stale RPM dashboard page docstring — read routes wired at index.ts:950",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T15:30:00Z",
-    "evidence": "Self-paced /loop iteration 46 — REAL CODE (audit-narrowing). apps/admin/src/app/admin/migration/_lib/migration-helpers.ts + __tests__/migration.test.ts headers said \"MigrationJob / CutoverPlan resource types not yet exposed by apps/api\". MigrationJob was wired in task #222 (apps/api/src/migration-job-routes.ts + migration-job-store.ts). Updated both docstrings to acknowledge MigrationJob is live and call out CutoverPlan as the actual follow-up."
+    "startedAt": "2026-05-28T15:40:00Z",
+    "evidence": "Self-paced /loop iteration 47 — REAL CODE (audit-narrowing). apps/admin/src/app/admin/rpm/page.tsx file header claimed \"the /api/rpm/patients route does not yet exist on apps/api\". The read routes (GET /api/rpm/patients + per-patient readings/alerts) live at apps/api/src/rpm-read-routes.ts and are registered at apps/api/src/index.ts:950 (aggregating PostgresRpmAlertsStore + PostgresRpmReadingsStore). Updated the docstring to point readers at the live wire-up."
   },
   "categories": [
     {
