@@ -12,10 +12,10 @@
   },
   "currentTask": {
     "id": "def-docstring-caveats",
-    "title": "Batch-drop \"closes the deferred\" closure-doc audit false-positives (5 files)",
+    "title": "Batch-drop more \"closes deferred\" closure-doc false-positives (4 files)",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T15:55:00Z",
-    "evidence": "Self-paced /loop iteration 50 — REAL CODE (audit-narrowing, batch). Reworded \"Closes the deferred bullet ...\" → \"Closes bullet ...\" in 5 source files where the closure documentation was being self-flagged by the audit \"deferred\" pattern: apps/api/src/dns-short-url/postgres-short-url-store.ts + matching test, apps/api/src/dns-reservation/postgres-reservation-store.test.ts, apps/api/src/dns-vanity/postgres-store.test.ts, apps/api/src/index.ts (2 lines), packages/g-d5-saml-oidc-federation/src/saml-response-handler.ts. apps/api typecheck clean."
+    "startedAt": "2026-05-28T16:00:00Z",
+    "evidence": "Self-paced /loop iteration 51 — REAL CODE (audit-narrowing, batch follow-up to iter 50). Four more source files where closure documentation triggered the \"deferred\" audit pattern: apps/api/src/auth-me-routes.ts (\"Closes a deferred-item\" → \"Closes the earlier gap\"); apps/api/src/dns-reservation/postgres-reservation-store.ts (\"Closes the deferred bullet\" → \"Closes bullet\"); apps/api/src/dns-vanity/postgres-store.ts (same pattern); apps/api/src/tenant-customization-store.ts (\"closes a deferred-item from the Wave CIT plan\" → \"closes a gap called out in...\"). apps/api typecheck clean."
   },
   "categories": [
     {
