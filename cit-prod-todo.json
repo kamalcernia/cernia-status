@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "bot-workflow-runtime-stage-closed",
-    "title": "Flip functionality-utilization/bot-workflow-runtime stage to complete — all 4 bullets stale",
+    "id": "telehealth-rpm-2-stale-bullets",
+    "title": "Narrow 2 stale telehealth-rpm bullets — WebRTC signaling + RPM webhook both shipped",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T12:12:00Z",
-    "evidence": "Self-paced /loop iteration 20 — bigger sweep this round. All 4 bullets in functionality-utilization/bot-workflow-runtime/remaining were stale: (a) scheduler boot — shipped at apps/api/src/index.ts:1153 via bootBotRuntimeScheduler (task #220), (b) /bot-runtime/$dry-run mount — apps/api/src/bot-workflow-routes.ts:202, (c) j2c+j2d wiring — lines 256+282 ($diff-fork + $ai-gen-request, task #218), (d) j3g background-bot catalog — line 230 (task #217). Removed all 4 from remaining[]; flipped stage current.status from partial -> complete; history entry recorded the verification trail. Open bullet count: 50 -> 46. ENTIRE bot-workflow-runtime stage is now closed."
+    "startedAt": "2026-05-28T12:14:00Z",
+    "evidence": "Self-paced /loop iteration 21. (1) 'Mount the WebRTC signaling websocket in apps/api (q-s1)' — shipped at apps/api/src/index.ts:911 via webRtcSignalingRoutes. (2) 'Stateful POST /rpm/devices/:deviceId/readings webhook that feeds the AlertEngine and persists EvaluationResult' — shipped at apps/api/src/rpm-device-webhook-routes.ts:199; module header (lines 10-11) + body (lines 143-146) confirm it feeds AlertEngine + persists alerts (task #179 ra-rpm-1). Remaining 2 telehealth-rpm bullets stay open: q-s3/q-s5 not yet routed; visit-summary + care-plan UIs not built. Open bullet count: 46 -> 44."
   },
   "categories": [
     {

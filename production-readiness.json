@@ -540,8 +540,6 @@
             }
           ],
           "remaining": [
-            "Mount the WebRTC signaling websocket in apps/api (q-s1).",
-            "Stateful POST /rpm/devices/:deviceId/readings webhook that feeds the AlertEngine and persists EvaluationResult.",
             "Wire q-s3 telehealth-visit audit + q-s5 visit-summary into apps/api.",
             "Clinic UI for visit summary, RPM dashboard, and care-plan management."
           ],
@@ -549,6 +547,13 @@
             {
               "date": "2026-05-27",
               "note": "ra-rpm-3 closed — apps/api/src/rpm-nightly-batches.ts upgraded from heartbeat-only to REAL population sweep. Exposes runCarePlanSweep + runAdherenceSweep helpers; bootRpmNightlyBatches accepts opts.db and runs them every tick. Per-tenant walk: SELECT DISTINCT rpm_care_plans.tenant_id → per-tenant PostgresCarePlanStore.list() → for each plan, PostgresRpmReadingsStore.query over the past 7 days → checkIns built from readings → computeAdherence + recommendIntervention from q-s6-rpm-adherence → buildInterventionQueue. Aggregate per-level counts logged. 5 real-Postgres integration tests prove it (apps/api/src/rpm-nightly-batches.test.ts): tenant enumeration; score-against-real-readings; tenant isolation (tenant-A patient never appears in tenant-B sweep); empty-readings patient → home-visit intervention (streak gate at 7 days); empty-goals plan skipped. apps/api/src/index.ts now passes db to the scheduler. Persisting InterventionRecommendation to a new rpm_interventions table is the next followup so the care-coordinator worklist can drain them."
+            },
+            {
+              "date": "2026-05-28",
+              "stage": "telehealth-rpm",
+              "from": "remaining",
+              "to": "closed",
+              "note": "Removed 2 stale remaining bullets. (1) WebRTC signaling websocket - shipped: webRtcSignalingRoutes registered at apps/api/src/index.ts:911 (q-s1, task #32). (2) Stateful POST /rpm/devices/:deviceId/readings - shipped: apps/api/src/rpm-device-webhook-routes.ts:199 mounts the route; lines 11/143-146 confirm it feeds AlertEngine and persists alerts (task #179 ra-rpm-1). Remaining 2 bullets stay open: q-s3/q-s5 (telehealth-visit-audit + visit-summary) are not yet routed in apps/api; clinic UI exists only for RPM dashboard (apps/admin/src/app/admin/rpm, task #212 ra-rpm-5) but not visit-summary or care-plan management."
             }
           ]
         },
