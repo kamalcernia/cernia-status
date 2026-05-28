@@ -12,10 +12,10 @@
   },
   "currentTask": {
     "id": "def-docstring-caveats",
-    "title": "Refresh apps/admin helpers docstrings (edge/compliance/extensions) — now wired",
+    "title": "Refresh stale NOT YET REGISTERED billing-routes header — registered at index.ts:778",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T15:05:00Z",
-    "evidence": "Self-paced /loop iteration 43 — REAL CODE (audit-narrowing). 6 stale docstrings in apps/admin that claimed \"backend is not yet exposed by apps/api\" were updated to reflect reality. Edge backend lives at apps/api/src/edge-fleet-routes.ts (task #229), compliance at apps/api/src/compliance-routes.ts (task #230), extensions at apps/api/src/extensions-routes.ts (task #228) — all already shipped. Updated: edge/_lib/edge-helpers.ts + __tests__/edge-helpers.test.ts; compliance/_lib/compliance-helpers.ts + __tests__/compliance-helpers.test.ts; extensions/_lib/extensions-helpers.ts + __tests__/extensions.test.ts. apps/admin typecheck — pre-existing baseline errors only (wave7.test.ts, instrumentation.ts) verified via stash baseline; my touched files have zero errors."
+    "startedAt": "2026-05-28T15:20:00Z",
+    "evidence": "Self-paced /loop iteration 44 — REAL CODE (audit-narrowing). apps/api/src/billing-routes.ts header claimed \"NOT YET REGISTERED in apps/api/src/index.ts\" — but billingRoutes was registered at apps/api/src/index.ts:778. Updated the header to point readers at the wire-up line. apps/api typecheck clean."
   },
   "categories": [
     {
