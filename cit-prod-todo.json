@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "def-todo-comments",
-    "title": "Reword redactPhone PHI doc — replace XXX placeholder with NPA",
+    "id": "def-deferred-marker",
+    "title": "Wire cerniaOpsFinopsRoutes at apps/api boot (PROD-P11 dashboard)",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T14:05:00Z",
-    "evidence": "Self-paced /loop iteration 38 — REAL CODE (audit-narrowing). apps/api/src/voice-agent-admin-routes.ts redactPhone() docstring used XXX as the digit placeholder in the redacted display format. The audit pattern at scripts/audit-deferred-items.mjs:144 matches XXX as a code marker (alongside TODO/FIXME/HACK), so this PHI-doc was being counted as an active todo-comment. Reworded to use NPA (North American area code) — accurate domain term, no audit hit. apps/api typecheck clean. Audit re-run: todo-comment 393 → 389 (-4 total, includes propagated re-detection)."
+    "startedAt": "2026-05-28T14:15:00Z",
+    "evidence": "Self-paced /loop iteration 39 — REAL CODE. Closed the DEFERRED wire-up marker in apps/api/src/cernia-ops-finops-routes.ts (PROD-P11 cost-tracker dashboard route module). Added @cernia/finops as workspace dep in apps/api/package.json. Imported cerniaOpsFinopsRoutes + PostgresCostTracker. Registered at apps/api/src/index.ts §11d.bis with a tiny inline RbacGate adapter that mirrors cernia-ops-routes role-check (cernia-super-admin claim). Updated route docstring from \"DEFERRED — not registered\" to \"REGISTERED\". Skipped when db is unset (dev). apps/api typecheck clean. Audit re-run confirms drop."
   },
   "categories": [
     {
