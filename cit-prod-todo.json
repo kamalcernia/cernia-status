@@ -12,10 +12,10 @@
   },
   "currentTask": {
     "id": "ra-cit-stubs-3",
-    "title": "Narrow InMemory* surface — remove InMemoryTenantSecretStore fallback from tenant-secret-routes",
+    "title": "Narrow InMemory* surface — remove InMemoryTenantCustomizationStore fallback from voice-agent-admin-routes",
     "category": "remaining-track-bullets",
-    "startedAt": "2026-05-28T13:35:00Z",
-    "evidence": "Self-paced /loop iteration 33 — REAL CODE. Second InMemory* fallback narrowing for ra-cit-stubs-3 (continuing from iter 32). apps/api/src/tenant-secret-routes.ts buildTenantSecretRuntime() has been dead-code-defaulting to new InMemoryTenantSecretStore() but apps/api boot has always passed KyselyTenantSecretStore (index.ts:1189). Making store required + removing InMemoryTenantSecretStore import removes one more production-code surface counted by ra-cit-stubs-3."
+    "startedAt": "2026-05-28T13:42:00Z",
+    "evidence": "Self-paced /loop iteration 34 — REAL CODE. Third InMemory* fallback narrowing for ra-cit-stubs-3 (continuing from iters 32-33). apps/api/src/voice-agent-admin-routes.ts removed dead-code InMemoryTenantCustomizationStore fallback (the parent boot in index.ts:2541 already passes either PostgresTenantCustomizationStore or InMemoryTenantCustomizationStore explicitly). customizationStore is now required in VoiceAgentAdminRouteOptions. apps/api typecheck clean."
   },
   "categories": [
     {

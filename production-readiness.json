@@ -1646,6 +1646,13 @@
               "from": "remaining",
               "to": "remaining",
               "note": "Iter 33 — narrowed another InMemory* fallback in apps/api: apps/api/src/tenant-secret-routes.ts buildTenantSecretRuntime() no longer defaults opts.store to new InMemoryTenantSecretStore(). store is now required; apps/api boot has always passed KyselyTenantSecretStore (index.ts:1189). Test suite has no caller-of-buildTenantSecretRuntime() so no test update needed. apps/api typecheck clean. Continues the iter-32 pattern (caregiver-federation-routes InMemoryProxyStore fallback removed)."
+            },
+            {
+              "date": "2026-05-28",
+              "stage": "stubs-abolished",
+              "from": "remaining",
+              "to": "remaining",
+              "note": "Iter 34 — third apps/api InMemory* fallback narrowed: voice-agent-admin-routes.ts no longer imports/defaults InMemoryTenantCustomizationStore. customizationStore is now required in VoiceAgentAdminRouteOptions; apps/api boot (index.ts:2541-2543) already passes either PostgresTenantCustomizationStore or InMemoryTenantCustomizationStore depending on whether db is configured. The fallback was dead code in the route module. Iters 32+33+34 have now removed 3 dead-code InMemory* fallback paths from apps/api production route modules."
             }
           ],
           "completed": [
