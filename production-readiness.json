@@ -357,10 +357,14 @@
             "Real FHIRPath / workflow / bot dispatcher (the starter dispatcher returns hardcoded cards keyed by hookId).",
             "Mount the other standard hooks: order-select, order-sign, medication-prescribe, encounter-discharge.",
             "Schedule a nightly CQM batch job that emits MeasureReport resources per tenant.",
-            "Admin UI panel exposing CQM scores per measure + per provider.",
             "Flip jwtVerificationEnabled=true once the EHR-issuer trust list is configured."
           ],
           "history": [
+            {
+              "date": "2026-05-28",
+              "stage": "cds-hooks-quality",
+              "note": "ra-cds-5 closed — CQM scores admin UI panel. apps/admin/src/app/admin/cqm/scores/page.tsx pulls FHIR MeasureReport bundle via /fhir/MeasureReport?_count=200&_sort=-date (existing FHIR R4 generic CRUD from @cernia/server). Client-side aggregation computes (a) per-measure performance rate = sum(numerator) / sum(denominator) with trend up/down/flat from latest-2 reports, (b) per-provider performance rate grouped by MeasureReport.reporter.display|reference, (c) 4 summary tiles (reports total + final count / measures scored / providers / population avg rate). Color-coded rate cells (emerald ≥85% / amber ≥70% / red <70%) match clinical-quality green-yellow-red convention. Honest empty-state when no MeasureReports exist (links back to /admin/cqm catalog + the nightly q-cqm-measure-report batch). /admin/cqm/page.tsx adds a 'View scores' button linking to the new page. Per-tenant MeasureReport generation in the nightly batch is the next followup. Admin typecheck clean."
+            },
             {
               "date": "2026-05-27",
               "stage": "cds-hooks-quality",
