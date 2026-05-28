@@ -354,12 +354,18 @@
             }
           ],
           "remaining": [
-            "Tenant-scoped service registry (current registry is process-global and shared across tenants).",
             "Real FHIRPath / workflow / bot dispatcher (the starter dispatcher returns hardcoded cards keyed by hookId).",
             "Mount the other standard hooks: order-select, order-sign, medication-prescribe, encounter-discharge.",
             "Schedule a nightly CQM batch job that emits MeasureReport resources per tenant.",
             "Admin UI panel exposing CQM scores per measure + per provider.",
             "Flip jwtVerificationEnabled=true once the EHR-issuer trust list is configured."
+          ],
+          "history": [
+            {
+              "date": "2026-05-27",
+              "stage": "cds-hooks-quality",
+              "note": "ra-cds-1 closed — registry is no longer process-global. New MultiTenantCdsServiceRegistry in packages/cds-hooks/src/service/multi-tenant-registry.ts holds a Map<tenantId, ICdsServiceRegistry>; per-tenant registries are lazily created + seeded via a configurable seedFn on first access. 9 unit tests cover cross-tenant isolation (tenant-A.register does NOT mutate tenant-B / list / listByHook / totalServiceCount aggregation / dropTenant / empty-tenantId rejection). apps/api/src/cds-hooks-routes.ts buildCdsHooksRuntime now returns { multiRegistry, handlerForTenant }; route handlers (GET /cds-services, POST /cds-services/:hookId) resolve tenantId from X-Cernia-Tenant header (falls back to CERNIA_DEFAULT_TENANT_ID env, then 'platform') and dispatch to the per-tenant registry + cached per-tenant HookInvocationHandler. New tenant-isolation route test asserts tenant-A registration is invisible to tenant-B discovery. apps/api typecheck clean; cds-hooks 218/218 tests green; cds-hooks-routes 7/7 green (also fixed a pre-existing baseline assertion that asserted exact services-array length)."
+            }
           ]
         },
         {
