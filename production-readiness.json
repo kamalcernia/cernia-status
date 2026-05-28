@@ -459,7 +459,7 @@
             "Front the existing Python risk-classifier through inference-platform's RequestRouter so /admin/ml/models/:urn/$predict actually dispatches.",
             "Per-tenant model registry refactor: PostgresModelRegistryStore is tenant-scoped (RegisteredModel rows have tenant_id PK); buildMlPlatformRuntime currently returns a single process-wide TrackedModelRegistry. Resolution: tenant-keyed registry map (instantiate-on-demand from request principal) OR a per-route lookup. Easier path now that buildMlPlatformRuntime accepts opts.store + seed registration is idempotent.",
             "Wire o1-llm-gateway as the central LLM router (replaces direct Anthropic/OpenAI imports across packages).",
-            "Wire p3b-drift-monitoring alongside ml/risk-classifier so every prediction emits drift telemetry."
+            "Capture live prediction streams from /admin/ml/models/:name/:version dispatch into a rolling-window reference + current dataset feeding the drift endpoint (today the endpoint is purely computational; the prediction-stream capture pipeline is the next followup)."
           ],
           "history": [
             {
@@ -473,6 +473,10 @@
             {
               "date": "2026-05-28",
               "note": "ra-ml-6 closed — admin UI for browsing models + promoting versions. apps/api/src/ml-platform-routes.ts adds POST /admin/ml/models/:name/:version/$promote + $demote (wraps IModelRegistryStore.setPromoted; 404 on unknown). 4 new tests pass. apps/admin inference-api.ts gains promoteModelVersion + demoteModelVersion. /admin/inference/models/page.tsx ModelDetail gains a Promote/Demote button with inline SaMD class III/IV approval reminder. On success: row + selected state update optimistically; full list reflects the new promoted=true/false."
+            },
+            {
+              "date": "2026-05-28",
+              "note": "ra-ml-4 closed — drift + fairness monitoring wired. apps/api/src/ml-drift-routes.ts mounts POST /admin/ml/drift/$compute (validates PredictionRecord[] shape; 400 on missing-fields or empty arrays; returns DriftReport from @cernia/p3b-drift-monitoring.computeReport) + GET /admin/ml/drift/$thresholds (canonical PSI minor/major/severe + fairness alert/auto-pause). 6 in-process tests pass: no-drift baseline + severe distribution shift + 3×400 validation + GET $thresholds shape. apps/admin /admin/inference/drift/page.tsx swapped from empty-state to a real interactive panel: 2 textarea inputs (reference + current PredictionRecord JSON, pre-filled with 20-record samples showing a 0.15-upward synthetic shift), Compute + Reset buttons, 4-tile result card (PSI / fairness gap / Brier score / sample sizes), severity badge + ALERT/AUTO-PAUSE chips from the DriftReport triggers, thresholds card sourced from the GET endpoint. apps/api typecheck clean; apps/admin typecheck clean. Real prediction-stream capture (live serving → rolling-window reference + current) is the next followup."
             }
           ]
         },
