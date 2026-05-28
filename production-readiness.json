@@ -228,10 +228,7 @@
               "url": "https://github.com/kamalcernia/cernia/tree/main/packages/voice-agent/src/improvement"
             }
           ],
-          "remaining": [
-            "cernia-ops feature rollout flags page (needs FeatureFlagStore abstraction)",
-            "Vendor-probe cron: poll vendor status pages + insert into vendor_health_state (manual recording endpoint already shipped)"
-          ],
+          "remaining": [],
           "history": [
             {
               "date": "2026-05-25",
@@ -268,6 +265,13 @@
             {
               "date": "2026-05-25",
               "note": "Shipped voice_agent_tenant_feature_flags table (migration 048) + rollout page (/cernia-ops/platform/voice-agents/rollout). PostgresVoiceAgentFeatureFlagStore with upsert ON CONFLICT. GET (cross-tenant grid) + PATCH (single-cell toggle) endpoints, server-validated against VOICE_AGENT_FEATURE_FLAGS closed enum. 5 unit tests. Audit trail via updatedBy=super-admin:<id> on each row."
+            },
+            {
+              "date": "2026-05-28",
+              "stage": "monitoring",
+              "from": "remaining",
+              "to": "closed",
+              "note": "Removed 2 stale remaining bullets. (1) cernia-ops feature rollout flags page - shipped via PostgresVoiceAgentFeatureFlagStore at apps/api/src/index.ts:1527 + UI at apps/cernia-ops/src/app/cernia-ops/platform/voice-agents/rollout/page.tsx (task #114). (2) Vendor-probe cron - shipped (task #216 / ra-voice-mon-2). apps/api/src/saas-nightly-batches.ts runs the vendor-probe job; voice-agent-fleet-source.ts:vendorHealth() reads from vendor_health_state. Also rewrote stale (deferred) comment in apps/api/src/cernia-ops-routes.ts:526 to reference the actual nightly batch."
             }
           ]
         }

@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "desk-gate-banner-real-roles",
-    "title": "Wire desk-gate-banner.tsx to useCurrentRoleNames() (replace TODO(prod) hardcoded ['office-admin'] scaffold)",
+    "id": "voice-agent-monitoring-stale-bullets",
+    "title": "Narrow 2 stale voice-agent/monitoring bullets — both already shipped per task #114 + #216",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T12:08:00Z",
-    "evidence": "Self-paced /loop iteration 18 — real-code wiring fix. Replaced hardcoded useDemoPrincipalRoles() returning ['office-admin'] in apps/admin/src/app/(office-admin)/desk/_components/desk-gate-banner.tsx with the canonical useCurrentRoleNames() hook from @/lib/use-current-roles. The hook fetches GET /api/auth/me/roles (mounted at apps/api/src/index.ts:611). canAccessDesk(roles) now reflects the real session. Banner label now shows the real allowed role (first canAccessDesk-passing role) instead of hardcoded 'office-admin'. Investigation of apps/api/src TODOs (connection-replay I-046, ct-monitor wave-BB scheduler, payment-link KmsBackedSigner Phase 11, voice-call-handler ttsSeconds) confirmed all 4 are real active deferred work — not stale. apps/admin typecheck clean for desk-gate-banner.tsx (2 pre-existing errors in instrumentation.ts are unrelated baseline)."
+    "startedAt": "2026-05-28T12:38:00Z",
+    "evidence": "Self-paced /loop iteration 19 — verified+removed 2 stale remaining bullets in production-readiness.json :: voice-agent/monitoring. (1) 'cernia-ops feature rollout flags page (needs FeatureFlagStore abstraction)' — shipped (task #114). PostgresVoiceAgentFeatureFlagStore wired at apps/api/src/index.ts:1527; UI at apps/cernia-ops/src/app/cernia-ops/platform/voice-agents/rollout/page.tsx. (2) 'Vendor-probe cron' — shipped (task #216 / ra-voice-mon-2). apps/api/src/saas-nightly-batches.ts:109 runs the vendor-probe job. Stale comment at apps/api/src/cernia-ops-routes.ts:526 also rewritten. Open bullet count: 52 -> 50. History entry added."
   },
   "categories": [
     {
