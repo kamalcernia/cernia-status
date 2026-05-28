@@ -12,10 +12,10 @@
   },
   "currentTask": {
     "id": "def-docstring-caveats",
-    "title": "Wire dataGovernanceRoutes into apps/api boot (closes ADR-0025 NOT YET REGISTERED bullet)",
+    "title": "Wire scaleRoutes into apps/api boot (closes LAST NOT YET REGISTERED route in apps/api/src/)",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T17:18:00Z",
-    "evidence": "Self-paced /loop iteration 62 — SUBSTANTIVE CLOSE. apps/api/src/data-governance-routes.ts had a `NOT YET REGISTERED` header — nine Phase-11b / ADR-0025 surfaces (MPI $match/$accept/$reject/$unmerge, DeidentificationJob $run/$reidentify, DataResidencyZone GET/POST, RetentionPolicy $apply) were never reachable. Wired the plugin into apps/api/src/index.ts §10f-datagov (after reportingRoutes) with: MpiLinker at platform-default thresholds (0.95 / 0.80), DeidentificationOrchestrator (stateless), per-tenant ReviewerQueue factory backed by an in-memory Map (Redis adapter is the follow-up), in-process vault registry (persistent vault adapter awaits migration 056), logger-backed JanitorActions in catalog-only mode (real destructive ops await ADR-0025 §8), thin DataGovernanceStorageReader + Writer adapters around PgStorageAdapter, resolveTenantId reading req.rbacClaims.tenantId, resolvePrincipal reading req.principal.userId. Updated file header NOT YET REGISTERED → REGISTERED with the four catalog-only-mode caveats called out. Typecheck clean. Honest chip: shipped-with-stub-followup (reviewerQueue + vault + janitor destructive ops are catalog-only until follow-ups land)."
+    "startedAt": "2026-05-28T17:36:00Z",
+    "evidence": "Self-paced /loop iteration 63 — SUBSTANTIVE CLOSE. apps/api/src/scale-routes.ts had a `NOT YET REGISTERED` header — four Phase-11 / ADR-0024 operator surfaces (GET /scale/replication-status, POST /scale/$promote-replica, GET /scale/slo, POST /scale/$rotate-snapshot) were never reachable. Wired into apps/api/src/index.ts §10f-scale (after dataGovernanceRoutes) with single-pod safe defaults: LagChecker(probes=[], maxLagMs=5000), InMemoryLeaderElection + no-op PromotionExecutor (POST /$promote-replica fail-closes until Patroni/Stolon adapter), DefaultSloRegistry(7-day window, empty until instrumentation feeds it), SnapshotScheduler with logger-backed SnapshotAdapter (records intent, no real backup until pg_basebackup→S3 adapter lands). PgStorageAdapter satisfies IamStorageReader. Updated header NOT YET REGISTERED → REGISTERED with five follow-up caveats. Typecheck clean. With this, ZERO `NOT YET REGISTERED` route plugins remain in apps/api/src/. Honest chip: shipped-with-stub-followup (real cluster adapters await the DR-drill runbook)."
   },
   "categories": [
     {
