@@ -12,10 +12,10 @@
   },
   "currentTask": {
     "id": "def-todo-comments",
-    "title": "Reword 4 copy-url-modal Phase-4b TODOs into architectural notes (callback contract, not deferred)",
+    "title": "Remove 2 redundant JSX TODO comments in connections/new (duplicate of visible-text TODO)",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T18:56:00Z",
-    "evidence": "Self-paced /loop iteration 73 — DOC ACCURACY FIX. apps/admin/src/app/admin/patient-portal/_components/copy-url-modal.tsx had 4 `TODO (Phase 4b): wire to POST /patient-portal/send-link` TODOs that misrepresented the situation — the modal itself only exposes onSendEmail / onSendSms callback props; it's the PARENT page that wires those props to a fetch. The TODOs were really documenting the API contract, not deferred work in the component. Reworded all 4 to clarify that parents dispatch the request from these callbacks. Audit delta: total 879 → 875, todo-comment 174 → 170."
+    "startedAt": "2026-05-28T19:02:00Z",
+    "evidence": "Self-paced /loop iteration 74 — DOC DEDUP. apps/admin/src/app/admin/connections/new/page.tsx had `{/* TODO: note for Phase 3 implementer */}` JSX comments directly above `<strong>TODO (Phase 3):</strong>` user-visible text — the JSX comment was redundant with the rendered admin-facing message and only existed to satisfy a code-review checklist. Removed both. The user-visible `<strong>TODO (Phase 3):</strong>` paragraphs remain (intentional UX: warns operators that the demo data isn't real until Phase 3 ships). The two JSDoc TODO blocks above testConnection() and SAMPLE_RECORDS stay because they correctly identify those as stubs awaiting the Phase 3 backend. Audit delta: total 875 → 873, todo-comment 170 → 168."
   },
   "categories": [
     {
