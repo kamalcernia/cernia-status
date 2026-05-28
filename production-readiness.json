@@ -554,7 +554,6 @@
             }
           ],
           "remaining": [
-            "Wire q-s3 telehealth-visit audit + q-s5 visit-summary into apps/api.",
             "Clinic UI for visit summary, RPM dashboard, and care-plan management."
           ],
           "history": [
@@ -568,6 +567,13 @@
               "from": "remaining",
               "to": "closed",
               "note": "Removed 2 stale remaining bullets. (1) WebRTC signaling websocket - shipped: webRtcSignalingRoutes registered at apps/api/src/index.ts:911 (q-s1, task #32). (2) Stateful POST /rpm/devices/:deviceId/readings - shipped: apps/api/src/rpm-device-webhook-routes.ts:199 mounts the route; lines 11/143-146 confirm it feeds AlertEngine and persists alerts (task #179 ra-rpm-1). Remaining 2 bullets stay open: q-s3/q-s5 (telehealth-visit-audit + visit-summary) are not yet routed in apps/api; clinic UI exists only for RPM dashboard (apps/admin/src/app/admin/rpm, task #212 ra-rpm-5) but not visit-summary or care-plan management."
+            },
+            {
+              "date": "2026-05-28",
+              "stage": "telehealth-rpm",
+              "from": "remaining",
+              "to": "closed",
+              "note": "Closed q-s3 + q-s5 wire-up bullet. apps/api/src/telehealth-visit-routes.ts mounts 6 pure-compute endpoints wrapping @cernia/q-s3-telehealth-audit (computeQuality, recordEvent, markNoShow, markCancelled, toFhirEncounter) and @cernia/q-s5-visit-summary (generateSummary): POST /admin/telehealth/visits/$compute-quality, $record-event, $mark-no-show, $mark-cancelled, $to-fhir-encounter, $generate-summary. apps/api/package.json gained both deps; apps/api/src/index.ts registers telehealthVisitRoutes alongside webRtcSignalingRoutes. 8 unit tests cover happy paths + invalid-input rejections. apps/api typecheck clean. Per ADR 0004 tenant context via X-Cernia-Tenant header with env fallback; per CLAUDE.md no PHI logged."
             }
           ]
         },

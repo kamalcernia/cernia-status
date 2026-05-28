@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "ra-ml-1-followup-shipped",
-    "title": "Close ra-ml-1-followup — HttpInferenceRunner wired into buildMlPlatformRuntime + $predict route",
+    "id": "q-s3-q-s5-wired",
+    "title": "Wire q-s3 telehealth-visit-audit + q-s5 visit-summary into apps/api",
     "category": "remaining-track-bullets",
-    "startedAt": "2026-05-28T12:39:00Z",
-    "evidence": "Self-paced /loop iteration 28 — REAL CODE. Closed the ra-ml-1 followup I deferred 7 iterations ago. apps/api/src/ml-platform-routes.ts now: (a) buildMlPlatformRuntime() auto-detects an HttpInferenceRunner from env via buildHttpInferenceRunnerFromEnv() when no runner override is passed; (b) POST /admin/ml/models/:name/:version/$predict resolves model, runs canServe, dispatches Runner.invoke, returns RunnerOutput verbatim; (c) 503 when no runner wired (same pattern as sso-routes); (d) HttpInferenceRunnerError 4xx maps to 400, 5xx to 502; (e) tenantId from X-Cernia-Tenant header. apps/api/src/index.ts:810 threads runner through register call. 6 new unit tests pass (18 total in ml-platform-routes.test.ts). apps/api typecheck clean. Followup (ra-ml-1-followup-router) would mount RequestRouter with RunnerFactory but the current direct-runner path covers the single-sidecar production deployment."
+    "startedAt": "2026-05-28T12:46:00Z",
+    "evidence": "Self-paced /loop iteration 29 — REAL CODE. apps/api/src/telehealth-visit-routes.ts mounts 6 pure-compute endpoints wrapping @cernia/q-s3-telehealth-audit + @cernia/q-s5-visit-summary: POST /admin/telehealth/visits/$compute-quality, $record-event, $mark-no-show, $mark-cancelled, $to-fhir-encounter, $generate-summary. apps/api/package.json gained 2 deps; apps/api/src/index.ts:920 registers telehealthVisitRoutes after webRtcSignalingRoutes. 8 unit tests pass. Typecheck clean. Closes the functionality-utilization/telehealth-rpm q-s3 + q-s5 wire-up bullet. Open bullet count: 35 -> 34. Followup remains: clinic UI for visit summary + RPM dashboard."
   },
   "categories": [
     {
