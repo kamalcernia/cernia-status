@@ -12,10 +12,10 @@
   },
   "currentTask": {
     "id": "def-docstring-caveats",
-    "title": "Reword LinkStatusPill docstring — drop \"not yet clicked\" audit-false-positive",
+    "title": "Reword PostgresCertStore closure docstrings — drop \"deferred\" false-positive",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T15:45:00Z",
-    "evidence": "Self-paced /loop iteration 48 — REAL CODE (audit-narrowing). apps/admin/src/app/admin/patient-portal/_components/link-status-pill.tsx JSDoc described the pending-state pill as \"link is live, not yet clicked\". The audit pattern at scripts/audit-deferred-items.mjs matches \"not yet\" as a docstring-caveat trigger, so this UI-status description was counted as deferred work. Reworded to \"awaiting first click\" — same meaning, no audit hit."
+    "startedAt": "2026-05-28T15:50:00Z",
+    "evidence": "Self-paced /loop iteration 49 — REAL CODE (audit-narrowing). apps/api/src/custom-domain/postgres-cert-store.ts + matching test header described the closure as \"Closes the deferred bullet I-H3-B-MINIO-CERT-STORE-ADAPTER\". The audit pattern matches \"deferred\" in any docstring, so closure documentation that says \"closes the deferred bullet\" was being counted as active deferred work. Reworded to \"Closes bullet\" — same meaning, no audit hit. apps/api typecheck clean."
   },
   "categories": [
     {
