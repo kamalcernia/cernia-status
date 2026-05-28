@@ -12,10 +12,10 @@
   },
   "currentTask": {
     "id": "def-deferred-marker",
-    "title": "Audit-script: drop `out of scope` from deferred-marker phrase list (46 false positives)",
+    "title": "Audit-script: drop `intentionally not` from deferred-marker phrase list (3 false positives)",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T17:50:00Z",
-    "evidence": "Self-paced /loop iteration 64 — STRUCTURAL FIX + DOC REFRESH. Sampled all 46 `out of scope` deferred-marker matches in code comments; every one is architectural separation-of-concerns (`Out of scope (handled by sibling layers)`, `Out of scope for this PR: voice-agent wiring`, `// out of scope.`, Model Card section headers), not deferred work. Same rationale as iter 59's docstring-caveat fix. Removed `out of scope` from the deferred-marker phrase regex. Also refreshed apps/api/src/eligibility-cache.ts header: stale `A future PostgresEligibilityCache` text replaced with the real reference to the shipping class at apps/api/src/postgres-eligibility-cache.ts. Audit deltas: total 1073 → 1027 (-46), deferred-marker 62 → 16, blocker 73 → 27, docstring-caveat 223 → 219."
+    "startedAt": "2026-05-28T17:55:00Z",
+    "evidence": "Self-paced /loop iteration 65 — STRUCTURAL FIX. Sampled all 3 remaining `intentionally not` matches and every one is an architectural decision documented in code, not deferred work: cds-hooks-routes.ts (`intentionally not interpreted. Schema is required by [Fastify ajv]`), m2-metered-usage/index.ts (`intentionally NOT re-exported` — public-API surface), observability/tracing/otlp-exporter.ts (`Intentionally not re-throwing` — error-handling decision). Removed from the deferred-marker phrase regex. Audit deltas: total 1027 → 1024, deferred-marker 16 → 13, blocker 27 → 24."
   },
   "categories": [
     {
@@ -937,7 +937,7 @@
           "title": "Close or WONTFIX 280 blocker-severity deferred items",
           "status": "in-progress",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iter 64: 27 blocker-severity items (was 280 → 284 → 125 → 73 → 27 after iters 53-64 audit-script accuracy fixes). 16 deferred-marker + 2 skipped-test + 9 json-deferred. Iter 64 dropped `out of scope` from deferred-marker phrases (46 architectural-separation-of-concerns matches, not deferred work)."
+          "evidence": "Audit re-run 2026-05-28 post iter 65: 24 blocker-severity items (was 280 → 284 → 125 → 73 → 27 → 24 after iters 53-65 audit-script accuracy fixes). 13 deferred-marker + 2 skipped-test + 9 json-deferred. Iter 64 dropped `out of scope` (46 FPs), iter 65 dropped `intentionally not` (3 FPs — all architectural decisions documented in code, not deferred work)."
         },
         {
           "id": "def-tech-625",
@@ -993,7 +993,7 @@
           "title": "Close 216 explicit // DEFERRED markers",
           "status": "todo",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iter 64: 16 deferred-marker items (was 220 → 62 → 16). Iter 54 made DEFERRED/DEPRECATED/SCAFFOLD/STUB single-word markers caps-only. Iter 64 dropped `out of scope` phrase (46 architectural-separation-of-concerns matches in code comments — `Out of scope (handled by sibling layers)`, `Out of scope for this PR`, Model Card section headers — not deferred work)."
+          "evidence": "Audit re-run 2026-05-28 post iter 65: 13 deferred-marker items (was 220 → 62 → 16 → 13). Iter 54 made DEFERRED/DEPRECATED/SCAFFOLD/STUB caps-only. Iter 64 dropped `out of scope` phrase. Iter 65 dropped `intentionally not` phrase — both were architectural decisions documented in code, not deferred work. Remaining 13 split: 5 genuine code-level deferred items (portal-links-page test scaffold, voice-budget PHI-reveal not-in-this-PR, auth-resolver throws-not-implemented, persona STUB FOR H3-A, k6-regression-gate FUTURE WORK), 4 ADR Future-work sections (planning docs), 2 docs/runbook entries (DEFERRED 7-year retention, triage label glossary), 1 storage migration test note, 1 self-reference (this item's title)."
         },
         {
           "id": "def-not-configured",
