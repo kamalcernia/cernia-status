@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "def-todo-comments",
-    "title": "Drop legacy describe.skip block in apps/api portal-notify.test.ts",
+    "id": "def-skipped-tests",
+    "title": "Reconcile WONTFIX doc with iter-41 deletion of portal-notify skip block",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T14:50:00Z",
-    "evidence": "Self-paced /loop iteration 41 — REAL CODE. apps/api/src/portal-notify.test.ts had a describe.skip block (T12 legacy D1 AppointmentReminderJob interface). The block was documented as superseded by Wave-E E-N7 with full behavioural coverage at packages/notifications/src/scheduled-jobs/appointment-reminder-job.test.ts (17 tests). Deleted the skip block + the dead AppointmentReminderJob/Store/Row imports + collapsed the file header T12 line to a pointer. apps/api typecheck clean. Audit re-run: skipped-test 3 → 2 (-1)."
+    "startedAt": "2026-05-28T14:55:00Z",
+    "evidence": "Self-paced /loop iteration 42 — HONEST CORRECTION. Iter 41 deleted the apps/api/src/portal-notify.test.ts T12 describe.skip block but did so without checking the existing WONTFIX-keep decision in docs/decisions/wontfix-skipped-tests-residual.md. This iter reconciles the discrepancy: updated the WONTFIX doc to record the reconsidered decision (Removed, with rationale: git log preserves archaeology, file-header pointer kept, skipped blocks carry audit signal without verification value). Updated the master-gate summary from 3 → 2 skipped tests remaining."
   },
   "categories": [
     {
