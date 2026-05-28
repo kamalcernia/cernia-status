@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "ra-cit-harness-1-bisect",
-    "title": "Resolve runMigrations vitest hang — test the migration-bisect hypothesis (Hypothesis B)",
-    "category": "remaining-track-bullets",
-    "startedAt": "2026-05-28T11:29:30Z",
-    "evidence": "Self-paced /loop iteration 14 — ra-cds-6 EHR-issuer trust-list scaffolding shipped (buildCdsJwtRuntimeConfig env loader + wired into apps/api boot; 10 unit tests pass; 7 existing cds-hooks tests still pass). Cryptographic signature verification stays as a followup behind JWKS fetcher. Next pick: ra-cit-harness-1 retry — hypothesis B (specific migration triggers the hang). Bisect by running migrations in slices to identify the offending file."
+    "id": "use-current-roles-scaffold",
+    "title": "Wire apps/admin use-current-roles.ts to /api/auth/me/roles (replace hardcoded ['tenant-admin'] scaffold)",
+    "category": "deferred-items",
+    "startedAt": "2026-05-28T11:50:00Z",
+    "evidence": "Self-paced /loop iteration 15 — ra-cit-harness-1 deep investigation: Hypothesis B (bisect by file) isolated to migration 013_audit_sharding.sql; Hypothesis C (statement-split) refined to migration 010 stmt #20 (GENERATED ALWAYS AS STORED column ALTER, took 8.7s in vitest); Hypothesis F (pool=threads) also hangs. Root-cause class: PostgreSQL GENERATED-STORED column DDL × pg-driver × vitest worker. Findings recorded inline in skipped-test comment + production-readiness.json history. ra-cit-harness-1 remains open (no chip claimed). Next pick: small concrete RBAC scaffold fix — wire useCurrentRoleNames() to the real /api/auth/me/roles endpoint."
   },
   "categories": [
     {
