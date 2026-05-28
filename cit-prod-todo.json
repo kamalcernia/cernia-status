@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "q-s3-q-s5-wired",
-    "title": "Wire q-s3 telehealth-visit-audit + q-s5 visit-summary into apps/api",
+    "id": "telehealth-visit-summary-admin-ui",
+    "title": "Telehealth visit-summary admin UI — call POST /admin/telehealth/visits/$generate-summary",
     "category": "remaining-track-bullets",
-    "startedAt": "2026-05-28T12:46:00Z",
-    "evidence": "Self-paced /loop iteration 29 — REAL CODE. apps/api/src/telehealth-visit-routes.ts mounts 6 pure-compute endpoints wrapping @cernia/q-s3-telehealth-audit + @cernia/q-s5-visit-summary: POST /admin/telehealth/visits/$compute-quality, $record-event, $mark-no-show, $mark-cancelled, $to-fhir-encounter, $generate-summary. apps/api/package.json gained 2 deps; apps/api/src/index.ts:920 registers telehealthVisitRoutes after webRtcSignalingRoutes. 8 unit tests pass. Typecheck clean. Closes the functionality-utilization/telehealth-rpm q-s3 + q-s5 wire-up bullet. Open bullet count: 35 -> 34. Followup remains: clinic UI for visit summary + RPM dashboard."
+    "startedAt": "2026-05-28T12:50:00Z",
+    "evidence": "Queued for /loop iteration 30. Natural followup to iteration 29 (q-s3 + q-s5 backend wire-up just landed in commit fbe90ec3). Plan: ship a minimal apps/admin page at /admin/telehealth/visit-summary that takes VisitFacts input + audience toggle (provider/patient) and renders the summary by calling the $generate-summary route. Same typed-client + page pattern as the MEDD calculator page I shipped earlier (wg-t-admin). Backend already done so this is purely client-side."
   },
   "categories": [
     {
