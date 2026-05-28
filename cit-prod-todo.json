@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "ra-cit-stubs-2",
-    "title": "Delete packages/storage/src/testing/pgmem-polyfills.ts (CIT Phase 2 — abolish in-process stubs)",
+    "id": "ra-cit-harness-1",
+    "title": "Resolve runMigrations vitest-worker hang in real-services test harness",
     "category": "remaining-track-bullets",
-    "startedAt": "2026-05-28T11:14:00Z",
-    "evidence": "Self-paced /loop iteration 12 — ra-cds-2 FHIRPath/workflow/bot dispatcher shipped (RealDecisionDispatcher + 14 unit tests; composes with starter dispatcher; existing 7 cds-hooks tests still pass). Next: ra-cit-stubs-2 pgmem-polyfills.ts deletion — only safe if there are no remaining consumers (audit + delete or narrow-scope the removal)."
+    "startedAt": "2026-05-28T11:17:00Z",
+    "evidence": "Self-paced /loop iteration 13. ra-cit-stubs-2 audit complete — 34 test files (10 in apps/api + 24 in packages) still import createPgMemKysely, so deleting pgmem-polyfills.ts is consumer-gated on completing ra-cit-stubs-1 first (mass test-file migration). Pivoted to ra-cit-harness-1: investigate the vitest-worker hang on runMigrations to unblock the testing-real-services harness — currently the only test using runMigrations is .skip()'d as a workaround."
   },
   "categories": [
     {
