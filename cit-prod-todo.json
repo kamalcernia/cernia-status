@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "telehealth-visit-summary-admin-ui-shipped",
-    "title": "SHIPPED: Telehealth visit-summary admin UI at /admin/telehealth/visit-summary",
+    "id": "telehealth-visit-quality-admin-ui-shipped",
+    "title": "SHIPPED: Visit-quality + FHIR Encounter admin UI",
     "category": "remaining-track-bullets",
-    "startedAt": "2026-05-28T12:52:00Z",
-    "evidence": "Self-paced /loop iteration 30 — REAL CODE shipped. apps/admin/src/app/admin/telehealth/visit-summary/visit-summary-api.ts: typed fetch client for POST /admin/telehealth/visits/$generate-summary + VisitFacts/SummaryAudience/VisitOutcome types + OUTCOME_LABELS. apps/admin/src/app/admin/telehealth/visit-summary/page.tsx: provider/patient audience toggle, 8 VisitFacts form fields (patientDisplay, providerDisplay, startedAt, endedAt, connectedSeconds, reconnectCount, outcome, optional followUpNote), generate button, structured summary render (sections + plain text). Same typed-client + page pattern as the MEDD calculator (wg-t-admin). apps/admin typecheck clean for touched files (2 pre-existing instrumentation.ts baseline errors unrelated). Natural followup to iteration 29 backend wire-up. Closes a chunk of the 'Clinic UI for visit summary' bullet on telehealth-rpm (RPM dashboard + care-plan still open)."
+    "startedAt": "2026-05-28T12:58:00Z",
+    "evidence": "Self-paced /loop iteration 31 — REAL CODE shipped. Sibling page to iteration 30's visit-summary. apps/admin/src/app/admin/telehealth/visit-quality/visit-quality-api.ts: typed client for $compute-quality + $to-fhir-encounter + TelehealthVisit/VisitStatus/EventKind types. page.tsx: 8 visit-metadata fields, computes both endpoints in parallel via Promise.all, renders VisitQualityMetrics (4 stat tiles + emerald/amber bothPartiesConnected badge) + FHIR Encounter (JSON pre block). apps/admin typecheck clean for touched files (2 pre-existing instrumentation.ts baseline errors unrelated). Iteration 30+31 together close most of the telehealth-rpm 'Clinic UI for visit summary' bullet — RPM dashboard + care-plan UI remain."
   },
   "categories": [
     {
