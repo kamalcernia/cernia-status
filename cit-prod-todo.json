@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "def-todo-comments",
-    "title": "Reword 5 TODO comments in connections/[id] to descriptive narrative (Phase 3.5 UI wiring)",
-    "category": "deferred-items",
-    "startedAt": "2026-05-28T19:54:00Z",
-    "evidence": "Self-paced /loop iteration 80 — DOC ACCURACY FIX, parallel with the SaaS-conformance handoff agent. Skipped update-status.mjs. apps/admin/src/app/admin/connections/[id]/page.tsx had 6 JSX `{/* TODO (Phase 3/3.5): … */}` comments where the visible surface already disabled the buttons + documented the Phase boundary. Reworded each to descriptive narrative: 'Visual mapping-rules editor ships Phase 3.5', 'Replay click target — wires to POST /Connection/{id}/$replay…', 'Buttons stay disabled until the Phase 3 adapter ships POST /Connection/{id}/$test + PATCH status'. The remaining JSDoc TODOs at testConnection() and SAMPLE_RECORDS stay because those genuinely tag stub functions waiting for the Phase 3 backend. Audit delta: total 865 → 860, todo-comment 157 → 152."
+    "id": "def-platform-1454",
+    "title": "Ship admin tenant metrics endpoint — wire userCount/monthlyApiCalls from tenant_summary, retire TODO(metrics) on overview tab",
+    "category": "Platform wave",
+    "startedAt": "2026-05-28T20:55:00Z",
+    "evidence": "Self-paced /loop iteration 81 — SHIPPED. New file apps/api/src/admin-tenant-metrics-routes.ts exposes GET /admin/tenants/:id/metrics, gated by tenant-admin role + path-vs-token tenant-id match (cross-tenant attempts get 404, not 403, to avoid existence-leak). Reuses cerniaOpsTenantStore (PostgresTenantSummaryStore on migration 062) so the admin overview and cernia-ops dashboard read the same row — never disagree. Wire registered in apps/api/src/index.ts §11d.ter immediately after cerniaOpsRoutes. apps/admin/src/app/admin/tenants/tenants-api.ts gained TenantMetricsWire + fetchTenantMetrics. apps/admin/src/app/admin/tenants/[id]/page.tsx OverviewTab now: (a) deletes the TODO(metrics) placeholder + the operator-visible 'reads 0' disclaimer, (b) fetches metrics on mount via fetchTenantMetrics(tenant.id), (c) renders Users / Admin users / Monthly API calls (est.) — using '…' during load and '—' on error rather than fabricating zeros, (d) surfaces refreshedAt + a 'newly-provisioned' hint when the row exists with refreshedAt=null. Honest stub-followup: tenant_summary is refreshed nightly so values can lag up to 24h; resourceCount is replaced with adminUserCount (no FHIR-resource COUNT column on tenant_summary by design). Typecheck: pnpm --filter @cernia/api typecheck clean; pnpm --filter admin typecheck shows only pre-existing carry-forward errors (deleted sample-cqm/cds/ai-governance/tenants test imports + missing @cernia/observability + @sentry/nextjs). Audit delta: total 860 → 860 (placeholder retired; the TODO(metrics) move was counted in iter 80's todo-comment 152). Net effect on UX: operators see real user counts instead of 0s with an apology."
   },
   "categories": [
     {
