@@ -361,7 +361,7 @@
             }
           ],
           "remaining": [
-            "RealDecisionDispatcher shipped (apps/api/src/cds-decision-dispatcher.ts, 14 unit tests). Followup (ra-cds-2-followup): the workflow + bot dispatch path emits app-link cards pointing at apps/admin SMART runners — those runners (/admin/workflows/<id>/run + /admin/bots/<id>/run pages) are not yet built, so a clinician clicking the card gets a 404 from apps/admin. Build the SMART app-launch handler pages in apps/admin so workflow/bot executions complete asynchronously, and wire actual workflow/bot kickoff to the existing bot-runtime scheduler (already wired into apps/api).",
+            "Wire actual workflow/bot kickoff from the SMART app-launch landing pages (apps/admin/src/app/admin/workflows/[id]/run/page.tsx + apps/admin/src/app/admin/bots/[id]/run/page.tsx now exist as of iter 88 — see history; they parse the SMART launch params + acknowledge the dispatch but DO NOT yet POST a kickoff to the bot-runtime scheduler). Real per-tenant execution is gated on the tenant_bot_instances table (see functionality-utilization bot-workflow-runtime stage remaining). Once that table ships, add POST /workflows/:id/$run + POST /bots/:id/$run kickoff routes and call them from these landing pages.",
             "Cryptographic signature verification against the EHR's JWKS (followup to ra-cds-6). The trust-list scaffolding shipped at apps/api/src/cds-jwt-config.ts + the env-driven wire-in at apps/api/src/cds-hooks-routes.ts buildCdsHooksRuntime() reads CERNIA_CDS_{JWT_VERIFICATION,TRUSTED_ISSUERS,EXPECTED_AUDIENCE,...}; the @cernia/cds-hooks v1 verifier checks header.alg + kid presence + iss/aud/exp/iat. What remains: wire a JWKS fetcher + LRU cache (backed by @cernia/auth-providers) so verifyEhrJwt actually verifies the signature with the issuer's public key. Only that signature path is gated on a real EHR partner publishing a JWKS endpoint we can call."
           ],
           "history": [
@@ -395,6 +395,13 @@
               "from": "remaining",
               "to": "closed",
               "note": "Removed 2 stale remaining bullets. (1) Mount the other standard hooks (order-select / order-sign / medication-prescribe / encounter-discharge) - shipped at apps/api/src/cds-hooks-routes.ts:159-184 (buildStarterClinicalWorkflowServices registers all 4 as info-card handoff services in the starter catalogue, task #100). (2) Schedule a nightly CQM batch job that emits MeasureReport resources per tenant - shipped at apps/api/src/saas-nightly-batches.ts:89 (task #216 ra-cds-4). Remaining 2 bullets stay open: RealDecisionDispatcher SMART runner followup (ra-cds-2-followup) + cryptographic JWKS verification (ra-cds-6-followup) - both are my own narrowed bullets from prior iterations."
+            },
+            {
+              "date": "2026-05-28",
+              "stage": "cds-hooks-quality",
+              "from": "remaining",
+              "to": "narrowed",
+              "note": "Iter 88 — SMART app-launch landing pages shipped. apps/admin/src/app/admin/workflows/[id]/run/page.tsx + apps/admin/src/app/admin/bots/[id]/run/page.tsx now exist. They parse the SMART launch query params (hookInstance, fhirServer, launch, smartContext) and render a 'Dispatch received' state with a context dump + back-link to the workflow/bot detail. This retires the 404 a clinician got when clicking an app-link CDS card emitted by apps/api/src/cds-decision-dispatcher.ts. Honest scope boundary: neither page POSTs a kickoff to the bot-runtime — that still rides on the bot-workflow-runtime stage's tenant_bot_instances followup. Status: ra-cds-2-followup bullet narrowed (the 404 is closed; what remains is the actual workflow/bot dispatch wire to apps/api). apps/admin typecheck clean for both new files."
             }
           ]
         },
