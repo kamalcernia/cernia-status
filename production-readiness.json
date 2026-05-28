@@ -929,10 +929,15 @@
             "summary": "ElevenLabsFetchTransport production adapter shipped in apps/api/src/elevenlabs-fetch-transport.ts. Uses Node 22 native fetch with xi-api-key header + streaming ReadableStream body iteration. boot path wires ElevenLabsTtsBackend when CERNIA_SPEECH_TTS=elevenlabs + ELEVENLABS_API_KEY are set; falls back to stub TTS with warn log otherwise. 8 new unit tests cover factory shape, streaming multi-chunk assembly, HTTP 4xx error propagation, null body guard, and close idempotency. api typecheck clean."
           },
           "remaining": [
-            "Persist persona voiceId via PATCH /Organization/:id (the persona editor currently console.logs the save).",
+            "Followup: write persona through to Organization.extension[voice-agent-persona] so the voice-call-handler tenant resolver sees the update across pods (today the PATCH is process-local — single-pod safe).",
             "Wire the resolver lookup into apps/api boot — the helper (apps/api/src/per-tenant-speech-credentials.ts) ships ra-tts-2; what remains is making SpeechServiceFactory per-tenant-aware so dialog turns resolve the ElevenLabs credential + voiceId per call rather than reading a single global env var at startup."
           ],
           "history": [
+            {
+              "date": "2026-05-28",
+              "stage": "tts-backend",
+              "note": "Voice persona PATCH endpoint shipped — apps/api/src/voice-agent-admin-routes.ts now exposes GET + PATCH /api/voice-agent/persona keyed by tenantId from rbacClaims, backed by an in-memory personaStore (single-pod safe). Replaces the console.log placeholder in apps/admin/src/app/admin/tenants/[id]/voice-agent/page.tsx handleSave — the persona editor's Save now round-trips the full VoiceAgentPersona shape (agentName, voiceId, voiceGender, voiceAccent, formality, warmth, pace, greeting/signoff templates) through real HTTP with the X-Cernia-Tenant header. Cross-pod followup: write through to Organization.extension[voice-agent-persona] via PgStorageAdapter so the voice-call-handler tenant resolver sees the update. apps/api typecheck clean."
+            },
             {
               "date": "2026-05-28",
               "stage": "tts-backend",

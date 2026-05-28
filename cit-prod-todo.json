@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": null,
-    "title": null,
-    "category": null,
-    "startedAt": null,
-    "evidence": "Iter 70 — END-TO-END PORTAL REFRESH. All three audits re-run (deferred=879, wave-integration=21 waves, saas-conformance=399 violations / 9 blockers), live-status.json regenerated, mirror pushed. Remaining substantive items (PostgresModelRegistry per-tenant refactor, voice-persona PATCH endpoint, HL7v2 message-log feed, SSO factory wiring, server-side API-key gen) all require multi-file refactors with cross-package work — outside the small-step structural refinement that produced iters 53-69. Loop is at a natural pause point: audit accuracy down 2480+ → 879 (-64%), 4 NOT YET REGISTERED routes wired, ttsSeconds threaded, 5 misleading docstrings reworded. Clearing currentTask to null until next substantive close target is identified."
+    "id": "ra-tts-4",
+    "title": "Wire voice-persona PATCH endpoint + replace console.log placeholder",
+    "category": "remaining-track-bullets",
+    "startedAt": "2026-05-28T18:38:00Z",
+    "evidence": "Self-paced /loop iteration 71 — SUBSTANTIVE CLOSE. apps/api/src/voice-agent-admin-routes.ts now exposes GET + PATCH /api/voice-agent/persona keyed by tenantId from rbacClaims, backed by an in-memory personaStore. apps/admin/src/app/admin/tenants/[id]/voice-agent/page.tsx handleSave replaced the console.log placeholder with a real fetch('/api/voice-agent/persona', {method:'PATCH', headers:{X-Cernia-Tenant:id}, body:JSON.stringify(persona)}) — full VoiceAgentPersona shape round-trips through real HTTP. Honest chip: shipped-with-stub-followup. Single-pod safe today; cross-pod followup is writing through to Organization.extension[voice-agent-persona] via PgStorageAdapter so the voice-call-handler tenant resolver sees the update. Updated production-readiness.json ra-tts-* remaining + history. apps/api typecheck clean."
   },
   "categories": [
     {
