@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "cit-pass-2-and-5-evidence-refresh",
-    "title": "Refresh cit-pass-2 + cit-pass-5 evidence to reflect shipped wave-gate admin UIs",
-    "category": "deferred-items",
-    "startedAt": "2026-05-28T12:36:00Z",
-    "evidence": "Self-paced /loop iteration 27. cit-pass-2 said 'Admin gate ✗ for F/I' but wg-f-admin grace-policy shipped during the wave-gate Admin sprint - updated to F ✓, I/J/W still ✗. cit-pass-5 said 'Admin gate ✗ (multiple wg-*-admin shelves)' but wg-l-admin (policies/access-control) + wg-m-admin (trials) + wg-s-admin S8 portion + wg-t-admin T-PAIN-A portion all shipped - L/M ✓, S/T △ (partial), K/N/R/U/V still ✗. Updated both evidence strings; pass statuses stay in-progress."
+    "id": "ra-ml-1-followup-shipped",
+    "title": "Close ra-ml-1-followup — HttpInferenceRunner wired into buildMlPlatformRuntime + $predict route",
+    "category": "remaining-track-bullets",
+    "startedAt": "2026-05-28T12:39:00Z",
+    "evidence": "Self-paced /loop iteration 28 — REAL CODE. Closed the ra-ml-1 followup I deferred 7 iterations ago. apps/api/src/ml-platform-routes.ts now: (a) buildMlPlatformRuntime() auto-detects an HttpInferenceRunner from env via buildHttpInferenceRunnerFromEnv() when no runner override is passed; (b) POST /admin/ml/models/:name/:version/$predict resolves model, runs canServe, dispatches Runner.invoke, returns RunnerOutput verbatim; (c) 503 when no runner wired (same pattern as sso-routes); (d) HttpInferenceRunnerError 4xx maps to 400, 5xx to 502; (e) tenantId from X-Cernia-Tenant header. apps/api/src/index.ts:810 threads runner through register call. 6 new unit tests pass (18 total in ml-platform-routes.test.ts). apps/api typecheck clean. Followup (ra-ml-1-followup-router) would mount RequestRouter with RunnerFactory but the current direct-runner path covers the single-sidecar production deployment."
   },
   "categories": [
     {

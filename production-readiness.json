@@ -484,7 +484,6 @@
             }
           ],
           "remaining": [
-            "Wire the HttpInferenceRunner adapter (shipped in apps/api/src/http-inference-runner.ts with 12 unit tests) into buildMlPlatformRuntime — instantiate RequestRouter with a RunnerFactory that selects HttpInferenceRunner when CERNIA_RISK_CLASSIFIER_URL is set (else CpuRunner stub) and mount POST /admin/ml/models/:urn/$predict that calls router.submit. The adapter itself is done; the RequestRouter boot-path swap is the remaining work.",
             "Per-tenant model registry refactor: PostgresModelRegistryStore is tenant-scoped (RegisteredModel rows have tenant_id PK); buildMlPlatformRuntime currently returns a single process-wide TrackedModelRegistry. Resolution: tenant-keyed registry map (instantiate-on-demand from request principal) OR a per-route lookup. Easier path now that buildMlPlatformRuntime accepts opts.store + seed registration is idempotent.",
             "Wire LlmGateway into voice-call-handler.ts (followup to ra-ml-3): replace the @anthropic-ai/sdk IClaudeClient adapter with a gateway-backed adapter so dialog turns gain PHI redaction + cost recording + audit for free. Also persist gateway CostStore + AuditLog into PostgresCostLedgerStore + PostgresTraceStore (Wave O-AI4/O-AI6) so the FinOps + AI-obs dashboards see real gateway traffic. The /admin/llm/$complete + budget + $report routes already ship (apps/api/src/llm-gateway-routes.ts, 14 unit tests pass).",
             "Capture live prediction streams from /admin/ml/models/:name/:version dispatch into a rolling-window reference + current dataset feeding the drift endpoint (today the endpoint is purely computational; the prediction-stream capture pipeline is the next followup)."
@@ -516,6 +515,13 @@
               "from": "remaining",
               "to": "narrowed",
               "note": "Shipped ra-ml-3 LLM gateway routes: apps/api/src/llm-gateway-routes.ts mounts POST /admin/llm/$complete (proxies through LlmGateway.complete — validation + budget pre-check + PHI redaction + provider routing + safety + cost record + audit), POST /admin/llm/budget (admin sets per-tenant monthlyLimitUSD + alertThresholdUSD), GET /admin/llm/$report (returns CostReport scoped to header tenantId — no cross-tenant query path). Tenant context comes from X-Cernia-Tenant header with CERNIA_DEFAULT_TENANT_ID fallback; body tenantId must match header (403 tenant-mismatch otherwise) per ADR 0004 row-level isolation. buildLlmGatewayFromEnv() reads ANTHROPIC_API_KEY + OPENAI_API_KEY + AZURE_OPENAI_API_KEY + GOOGLE_API_KEY + AWS_BEDROCK_REGION; default routing is hipaa-strict + redaction=strict so misconfigured prod fails closed. Returns undefined when no provider keys set, so the routes register and 503 'llm-gateway-not-configured' (mirrors sso-routes/payment-dispatcher pattern). 14 unit tests pass (not-configured fallback × 3, happy path × 4, tenant mismatch, budget validation, report scoping + invalid range, env factory × 4). apps/api/package.json gained @cernia/o1-llm-gateway workspace dep. Followup narrowed in remaining[] above: voice-call-handler IClaudeClient swap + CostStore/AuditLog → Postgres persistence."
+            },
+            {
+              "date": "2026-05-28",
+              "stage": "ml-platform",
+              "from": "remaining",
+              "to": "closed",
+              "note": "Closed ra-ml-1-followup. apps/api/src/ml-platform-routes.ts now mounts POST /admin/ml/models/:name/:version/$predict that resolves the registered model from the registry, runs runner.canServe(model), then dispatches via Runner.invoke(). buildMlPlatformRuntime() auto-detects an HttpInferenceRunner from buildHttpInferenceRunnerFromEnv() (CERNIA_RISK_CLASSIFIER_URL + friends) when no runner is passed explicitly. apps/api/src/index.ts:810 boot path threads the runner through. Returns 503 inference-runner-not-configured when no runner is wired (same fallback pattern as sso-routes + payment-dispatcher). HttpInferenceRunnerError 4xx maps to 400; 5xx maps to 502; unknown URN 404; canServe=false 400. Tenant via X-Cernia-Tenant header with env fallback. 6 new unit tests cover all paths (apps/api/src/ml-platform-routes.test.ts now has 18 tests total)."
             }
           ]
         },
