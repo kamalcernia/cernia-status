@@ -400,10 +400,14 @@
             "Boot the bot-runtime scheduler in apps/api with the template registry as its catalog.",
             "Mount POST /bot-runtime/$dry-run that wraps dryRunBot from the sandbox layer.",
             "Wire j2c fork-and-modify diff + j2d AI-workflow-gen alongside the registry.",
-            "Wire j3g background-bot template catalog.",
-            "Admin UI for browsing / forking / activating workflow templates per tenant."
+            "Wire j3g background-bot template catalog."
           ],
           "history": [
+            {
+              "date": "2026-05-28",
+              "stage": "bot-workflow-runtime",
+              "note": "ra-bot-6 closed — admin UI for browsing/forking/activating workflow templates per tenant. apps/admin/src/app/admin/workflows/templates/templates-api.ts typed client (listTemplates / getTemplate / getLatestVersion / formatVersion) hits the existing GET /workflows/templates + GET /workflows/templates/:id routes from PostgresTemplateRegistry. /admin/workflows/templates/page.tsx renders 3 summary tiles (templates available with per-category counts / publisher list / free-templates count) + full-text catalog filter + paginated table with display-name + category + publisher + latest-version + pricing + tags badges. /admin/workflows/templates/[id]/page.tsx detail page: header (id + category + pricing + tags), latest-version graph view (entry node + node table + edge count + signature/key-id), action row (Activate as new workflow / Fork & modify / AI-assisted modify — all deep-link with templateId query param into existing /admin/workflows/new wizard|canvas|ai-assisted), full version history sorted desc. Admin typecheck clean (pre-existing instrumentation.ts errors unchanged)."
+            },
             {
               "date": "2026-05-27",
               "stage": "bot-workflow-runtime",
