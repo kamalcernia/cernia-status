@@ -354,7 +354,7 @@
             }
           ],
           "remaining": [
-            "Real FHIRPath / workflow / bot dispatcher (the starter dispatcher returns hardcoded cards keyed by hookId).",
+            "RealDecisionDispatcher shipped (apps/api/src/cds-decision-dispatcher.ts, 14 unit tests). Followup (ra-cds-2-followup): the workflow + bot dispatch path emits app-link cards pointing at apps/admin SMART runners — those runners (/admin/workflows/<id>/run + /admin/bots/<id>/run pages) are not yet built, so a clinician clicking the card gets a 404 from apps/admin. Build the SMART app-launch handler pages in apps/admin so workflow/bot executions complete asynchronously, and wire actual workflow/bot kickoff to the existing bot-runtime scheduler (already wired into apps/api).",
             "Mount the other standard hooks: order-select, order-sign, medication-prescribe, encounter-discharge.",
             "Schedule a nightly CQM batch job that emits MeasureReport resources per tenant.",
             "Flip jwtVerificationEnabled=true once the EHR-issuer trust list is configured."
@@ -369,6 +369,13 @@
               "date": "2026-05-27",
               "stage": "cds-hooks-quality",
               "note": "ra-cds-1 closed — registry is no longer process-global. New MultiTenantCdsServiceRegistry in packages/cds-hooks/src/service/multi-tenant-registry.ts holds a Map<tenantId, ICdsServiceRegistry>; per-tenant registries are lazily created + seeded via a configurable seedFn on first access. 9 unit tests cover cross-tenant isolation (tenant-A.register does NOT mutate tenant-B / list / listByHook / totalServiceCount aggregation / dropTenant / empty-tenantId rejection). apps/api/src/cds-hooks-routes.ts buildCdsHooksRuntime now returns { multiRegistry, handlerForTenant }; route handlers (GET /cds-services, POST /cds-services/:hookId) resolve tenantId from X-Cernia-Tenant header (falls back to CERNIA_DEFAULT_TENANT_ID env, then 'platform') and dispatch to the per-tenant registry + cached per-tenant HookInvocationHandler. New tenant-isolation route test asserts tenant-A registration is invisible to tenant-B discovery. apps/api typecheck clean; cds-hooks 218/218 tests green; cds-hooks-routes 7/7 green (also fixed a pre-existing baseline assertion that asserted exact services-array length)."
+            },
+            {
+              "date": "2026-05-28",
+              "stage": "cds-hooks-quality",
+              "from": "remaining",
+              "to": "narrowed",
+              "note": "Shipped ra-cds-2 RealDecisionDispatcher. apps/api/src/cds-decision-dispatcher.ts implements all three CdsServiceDecisionCallback kinds: (a) inline-fhirpath evaluates the FHIRPath expression via @cernia/core evaluatePath against {context, prefetch, hookInstance, hook}; truthy result emits a card built from cardTemplate with {fhirpath-expression} placeholders interpolated as sub-expressions against the same scope; falsy result or malformed expression emits no cards (degrades gracefully — never 500 to the EHR). (b) workflow kind emits an app-link SMART card pointing at <CERNIA_ADMIN_BASE_URL>/admin/workflows/<workflowRef.id>/run?hookInstance=<hi> per the v2.0 §1.2 long-running-logic rule. (c) bot kind emits the same shape pointing at /admin/bots/<botRef.id>/run. Composes with StarterCardDispatcher via {coversHookId, dispatch} delegate so the seeded handoff services preserve their hardcoded info-card UX while tenant-registered services exercise the real path. apps/api/src/cds-hooks-routes.ts buildCdsHooksRuntime() now wires the composite dispatcher with appBaseUrl sourced from CERNIA_ADMIN_BASE_URL env (default http://localhost:3000). 14 new unit tests pass + existing 7 cds-hooks-routes tests still pass — the starter UX is preserved. Per ADR 0033 the inline-fhirpath path runs synchronously through the in-repo FHIRPath evaluator (fast-path for pure dot-notation; AST for complex expressions) — well within the 500ms p95 budget. Per ADR 0004 the dispatcher has no tenant awareness; the per-tenant CdsService comes from the multi-tenant registry the router already scoped."
             }
           ]
         },
