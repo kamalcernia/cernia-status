@@ -12,10 +12,10 @@
   },
   "currentTask": {
     "id": "def-docstring-caveats",
-    "title": "Wire reportingRoutes into apps/api boot (closes ADR-0022 NOT YET REGISTERED bullet)",
+    "title": "Wire dataGovernanceRoutes into apps/api boot (closes ADR-0025 NOT YET REGISTERED bullet)",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T17:06:00Z",
-    "evidence": "Self-paced /loop iteration 61 — SUBSTANTIVE CLOSE. apps/api/src/reporting-routes.ts had a `NOT YET REGISTERED` header — three Phase-6b reporting surfaces (POST /Report/{id}/$run, POST /Report/{id}/$export, GET /ReportExport/{id}) were never reachable. Wired the plugin into apps/api/src/index.ts §10f-reporting (after revenueRecognitionRoutes) with: ReportRunner with platform defaults, ReportScheduler with empty deliveryAdapters Map (production wires EmailDeliverer/SftpDeliverer/HttpPostDeliverer/S3Deliverer from @cernia/reporting), PgStorageAdapter satisfying StorageReader + IamStorageReader structurally, resolveTenantId reading req.rbacClaims.tenantId, resolvePrincipal reading req.principal.userId. ReportSchedule.metadata.tenantId fallback for scheduler tenant resolution (no first-class field per ADR-0022 §6). Updated file header NOT YET REGISTERED → REGISTERED. Typecheck clean."
+    "startedAt": "2026-05-28T17:18:00Z",
+    "evidence": "Self-paced /loop iteration 62 — SUBSTANTIVE CLOSE. apps/api/src/data-governance-routes.ts had a `NOT YET REGISTERED` header — nine Phase-11b / ADR-0025 surfaces (MPI $match/$accept/$reject/$unmerge, DeidentificationJob $run/$reidentify, DataResidencyZone GET/POST, RetentionPolicy $apply) were never reachable. Wired the plugin into apps/api/src/index.ts §10f-datagov (after reportingRoutes) with: MpiLinker at platform-default thresholds (0.95 / 0.80), DeidentificationOrchestrator (stateless), per-tenant ReviewerQueue factory backed by an in-memory Map (Redis adapter is the follow-up), in-process vault registry (persistent vault adapter awaits migration 056), logger-backed JanitorActions in catalog-only mode (real destructive ops await ADR-0025 §8), thin DataGovernanceStorageReader + Writer adapters around PgStorageAdapter, resolveTenantId reading req.rbacClaims.tenantId, resolvePrincipal reading req.principal.userId. Updated file header NOT YET REGISTERED → REGISTERED with the four catalog-only-mode caveats called out. Typecheck clean. Honest chip: shipped-with-stub-followup (reviewerQueue + vault + janitor destructive ops are catalog-only until follow-ups land)."
   },
   "categories": [
     {
