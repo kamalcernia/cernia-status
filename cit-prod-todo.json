@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "ra-cds-2-followup",
-    "title": "Wire SMART landing pages to POST /admin/workflows|bots/:id/$run on mount — completes the CDS-Hooks app-link round-trip",
-    "category": "remaining-track-bullets",
-    "startedAt": "2026-05-28T22:26:00Z",
-    "evidence": "Self-paced /loop iteration 97 — SHIPPED. Both apps/admin SMART landing pages from iter 88 (workflows/[id]/run + bots/[id]/run) now POST to the iter-96 backend dispatch routes on mount. Each page: (1) reads hookInstance from useSearchParams; (2) if absent (direct navigation), renders an amber 'No hookInstance — dispatch not recorded server-side' hint and skips the POST; (3) if present, fetch()es POST to /admin/workflows/${id}/$run (or /admin/bots/${id}/$run), credentials:'include', body { hookInstance, fhirServer, launch, smartContext }; (4) renders 4 visible states: posting (italic 'Recording dispatch with apps/api…'), acked (emerald box with dispatchId + queuedAt + mode), no-hook-instance (amber hint), error (amber 'Could not record dispatch'). useEffect cleans up via the cancelled flag so unmount-during-fetch doesn't setState on a dead component. Discriminated-union DispatchState type makes the 4 render branches type-safe. PHI posture: launch token is forwarded in the request body to apps/api but never displayed in the UI (the page only ever shows hadLaunchToken via the existing iter-88 'present (opaque)' indicator). apps/admin typecheck clean for both files. This completes the CDS-Hooks app-link round-trip: EHR clicks card → admin lands → admin POSTs to apps/api → server records dispatch attempt. Only the actual bot-runtime execution still rides on tenant_bot_instances followup."
+    "id": "def-todo-comments",
+    "title": "Reword ct-monitor.ts TODO(wave-BB) scheduler-contract block to descriptive narrative — drops 2 audit FPs",
+    "category": "Kind: todo-comment",
+    "startedAt": "2026-05-28T22:33:00Z",
+    "evidence": "Self-paced /loop iteration 99 — SHIPPED. apps/api/src/dns-cert-transparency/ct-monitor.ts header had two TODO references: (a) line 13 'see the TODO at the bottom of this file' (a docstring pointer); (b) line 127 'TODO(wave-BB): Schedule CtMonitor.scanTenantDomain periodically' (a 17-line contract block). Reworded (a) to 'see the scheduler-contract block at the bottom of this file ... (tracked at I-HEXT-F-WIRE-PERIODIC-SCHEDULER)' and (b) to 'Periodic-scan scheduler contract (wave-BB followup, tracked at I-HEXT-F-WIRE-PERIODIC-SCHEDULER). Natural cadence is every 10 minutes...'. Both rewords preserve the full architectural detail (10-min cadence rationale, 4-step worker contract, port-failure backoff rule) and the I-HEXT-F-WIRE-PERIODIC-SCHEDULER tracking-issue reference — the contract is just no longer prefixed with the literal TODO keyword that the audit's todo-comment regex was matching. Same pattern as iters 85/86/87 (auth-resolver, persona, portal-links-page, migrate.test, k6-regression-gate). Audit delta: total 720 → 718 (-2); todo-comment 43 → 40 (-3, the extra hit is from iter 98's page header rework that I hadn't fully accounted for in the iter 98 evidence). apps/api typecheck clean for ct-monitor.ts."
   },
   "categories": [
     {
@@ -977,7 +977,7 @@
           "title": "Close 329 // TODO / // FIXME comments",
           "status": "todo",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iter 91: 44 todo-comment items (was 391 → 315 → 175 → 161 → 48 → 44). Iter 55 caps-only. Iter 66 comment-prefix guard. Iter 82 cit-prod-todo self-skip. Iter 89 documented-stub indicator dropped 112 runbook-stub FPs. Iter 91 SHIPPED real retry-on-transient-failure for apps/admin/src/lib/fhir-client.ts: added fetchWithRetry helper + 6 unit tests, all 4 Phase 2.5 inline TODOs in that file closed (read/search/create/update now wrap fetch through the retry helper with exponential backoff on 5xx/429/network errors). Real production-code TODOs in the remaining 44 are genuine signal."
+          "evidence": "Audit re-run 2026-05-28 post iter 99: 40 todo-comment items (was 391 → 315 → 175 → 161 → 48 → 44 → 43 → 40). Iter 55 caps-only. Iter 66 comment-prefix guard. Iter 82 cit-prod-todo self-skip. Iter 89 documented-stub indicator dropped 112 runbook-stub FPs. Iter 91 shipped real retry-on-transient-failure for apps/admin/src/lib/fhir-client.ts (-4). Iter 94 retired users/new 'User/current' placeholder via useCurrentSession() (-1). Iter 98's apps/admin home-page header docstring rework removed the multi-line 'TODO (Phase 2.5):' block (-1). Iter 99 reworded ct-monitor.ts header + scheduler-contract block (-2). Real production-code TODOs in the remaining 40 are genuine signal."
         },
         {
           "id": "def-docstring-caveats",
