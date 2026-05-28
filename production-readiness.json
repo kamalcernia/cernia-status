@@ -1092,7 +1092,7 @@
             "Persist SamdAssessment / BiasReport / ApprovalRequest FHIR resources per tenant (the /admin/ai-governance dashboard + SaMD wizard are live; classification ruleset is wired; cross-tenant persistence is the remaining gap).",
             "Build edge-fleet routes + sync-run tracking; swap /admin/edge/* pages; delete sample-edge-fleet.ts.",
             "Build sensitive-data access routes (break-glass log, legal holds, proxy grants — last partially overlaps with caregiver-federation-routes); swap pages; delete sample-sensitive-data.ts.",
-            "Build extension/plugin routes; swap pages; delete sample-extensions.ts."
+            "Per-tenant tenant_plugin_installations table + manifest validation pipeline (the /admin/extensions catalog is live; per-tenant install/upload flow is the remaining gap)."
           ],
           "history": [
             {
