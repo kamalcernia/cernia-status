@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": null,
-    "title": "Idle — ALL 7 wave-gate Admin items closed (ERX/O/M/L/F/S/T). Next pick will be a non-wave-gate item from remaining-track-bullets (ra-cds-2 dispatcher / ra-ml-1 Python HTTP bridge / ra-cit-stubs-* test migration) or deferred-items cleanup.",
-    "category": null,
-    "startedAt": null,
-    "evidence": null
+    "id": "ra-ml-1",
+    "title": "Front Python risk-classifier through inference-platform RequestRouter — HTTP bridge",
+    "category": "remaining-track-bullets",
+    "startedAt": "2026-05-28T10:33:00Z",
+    "evidence": "Self-paced /loop iteration 8 — pivot from wave-gate Admin rungs to remaining-track-bullets. Investigating: build a PythonSidecarInferenceRunner that POSTs to ml/risk-classifier/serve.py + register it with the existing buildMlPlatformRuntime in apps/api so POST /admin/ml/models/risk-classifier-v4.0.0-comprehensive/$predict dispatches via HTTP instead of returning 503."
   },
   "categories": [
     {
