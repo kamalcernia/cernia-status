@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "def-docstring-caveats",
-    "title": "Audit-script fix: docstring-caveat regex skips closure documentation",
+    "id": "def-deferred-marker",
+    "title": "Audit-script fix: deferred-marker single-word triggers now caps-only",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T16:10:00Z",
-    "evidence": "Self-paced /loop iteration 53 — STRUCTURAL FIX. Iters 49-52 were chasing one closure-doc false-positive at a time. Root cause: scripts/audit-deferred-items.mjs docstring-caveat regex matched lines like \"Closes the deferred bullet X\" — closure documentation, not active deferred work. Added negative lookahead  so the docstring-caveat pattern skips lines whose trigger word is preceded by Closes/closed/closing. Re-run: total 2480 → 2473 (-7), docstring-caveat 276 → 269 (-7). Permanently prevents this class of false-positive going forward."
+    "startedAt": "2026-05-28T16:20:00Z",
+    "evidence": "Self-paced /loop iteration 54 — STRUCTURAL FIX (second of two in a row). scripts/audit-deferred-items.mjs deferred-marker pattern had case-insensitive flag i applied to all triggers — including the single-word markers DEFERRED/DEPRECATED/SCAFFOLD/STUB. Natural-language usage of those words in normal comments (e.g. \"// Stub navigator.clipboard\" in test code, \"// Scaffold the directory structure\") was being self-flagged. Split the pattern: single-word markers are now CAPS-ONLY (the convention that distinguishes a deliberate marker from natural language); multi-word phrases (\"tracked separately\" etc.) remain case-insensitive (they ARE natural language and the trigger is unambiguous in context). Re-run: total 2473 → 2317 (-156), deferred-marker 218 → 62 (-156). Best single audit drop of the session."
   },
   "categories": [
     {
