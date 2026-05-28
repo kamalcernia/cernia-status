@@ -1518,7 +1518,7 @@
           "remaining": [
             "Migrate ~hundreds of *.test.ts files off pg-mem",
             "Delete packages/storage/src/testing/pgmem-polyfills.ts",
-            "Delete remaining `class InMemory*` declarations"
+            "Delete remaining `class InMemory*` declarations from apps/api production code (caregiver-federation-routes.ts fallback removed iter 32; still TODO: InMemoryOidcStateStore, InMemoryMfaChallengeStore, InMemoryRefreshTokenStore as defaults in @cernia/auth-providers consumers — and the InMemory* classes that remain in @cernia/* packages as test-fixtures should be moved to /testing subpaths)"
           ],
           "history": [
             {
@@ -1632,6 +1632,13 @@
               "from": "partial",
               "to": "partial",
               "note": "PostgresProxyStore replaces InMemoryProxyStore — one less deferred Category-C consumer per cit-stubs-abolition-roadmap.md. apps/api wiring (CERNIA_DEFAULT_TENANT_ID instance → PostgresProxyStore) is the follow-up."
+            },
+            {
+              "date": "2026-05-28",
+              "stage": "stubs-abolished",
+              "from": "remaining",
+              "to": "remaining",
+              "note": "Iter 32 — narrowed  surface in apps/api production code: apps/api/src/caregiver-federation-routes.ts no longer imports InMemoryProxyStore as fallback. buildCaregiverFederationRuntime() now requires opts.proxyStore explicitly (apps/api boot has always passed PostgresProxyStore at index.ts:1099; the fallback was dead code but kept InMemoryProxyStore in the production module). Test injected new InMemoryProxyStore() explicitly. apps/api typecheck clean."
             }
           ],
           "completed": [

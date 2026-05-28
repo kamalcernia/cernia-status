@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "telehealth-visit-quality-admin-ui-shipped",
-    "title": "SHIPPED: Visit-quality + FHIR Encounter admin UI",
+    "id": "ra-cit-stubs-3",
+    "title": "Narrow InMemory* surface — removed implicit fallback in caregiver-federation-routes",
     "category": "remaining-track-bullets",
-    "startedAt": "2026-05-28T12:58:00Z",
-    "evidence": "Self-paced /loop iteration 31 — REAL CODE shipped. Sibling page to iteration 30's visit-summary. apps/admin/src/app/admin/telehealth/visit-quality/visit-quality-api.ts: typed client for $compute-quality + $to-fhir-encounter + TelehealthVisit/VisitStatus/EventKind types. page.tsx: 8 visit-metadata fields, computes both endpoints in parallel via Promise.all, renders VisitQualityMetrics (4 stat tiles + emerald/amber bothPartiesConnected badge) + FHIR Encounter (JSON pre block). apps/admin typecheck clean for touched files (2 pre-existing instrumentation.ts baseline errors unrelated). Iteration 30+31 together close most of the telehealth-rpm 'Clinic UI for visit summary' bullet — RPM dashboard + care-plan UI remain."
+    "startedAt": "2026-05-28T13:25:00Z",
+    "evidence": "Self-paced /loop iteration 32 — REAL CODE. Narrowed ra-cit-stubs-3 by one production-code surface: apps/api/src/caregiver-federation-routes.ts no longer ships an implicit InMemoryProxyStore fallback. buildCaregiverFederationRuntime now requires opts.proxyStore explicitly. apps/api boot has always passed PostgresProxyStore (index.ts:1099); the fallback was unreachable in prod, but its existence kept the InMemoryProxyStore import sitting in the route module and counted by ra-cit-stubs-3 audits. Removed import + made proxyStore required. Test file updated to inject new InMemoryProxyStore() explicitly (the class stays in @cernia/g-d1-caregiver-proxy for unit tests where it belongs). apps/api typecheck clean."
   },
   "categories": [
     {
@@ -808,8 +808,9 @@
           "id": "ra-cit-stubs-3",
           "track": "comprehensive-integration-testing/stubs-abolished",
           "title": "Delete remaining class InMemory* declarations from production code",
-          "status": "todo",
-          "completionMode": null
+          "status": "in-progress",
+          "completionMode": null,
+          "evidence": "Iter 32 (2026-05-28): Removed InMemoryProxyStore fallback from apps/api/src/caregiver-federation-routes.ts (buildCaregiverFederationRuntime now requires proxyStore). Remaining: many other InMemory* classes still used as fallback defaults (InMemoryOidcStateStore, InMemoryMfaChallengeStore, InMemoryRefreshTokenStore, InMemoryBulkExportJobStore, InMemoryBulkExportBlobStore, InMemoryDeliveryAttemptStore, etc.) — each needs the same narrow."
         }
       ]
     },
