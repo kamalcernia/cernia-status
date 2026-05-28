@@ -1087,13 +1087,19 @@
           "remaining": [
             "Build /admin/compliance routes + migration for frameworks/controls/evidence (48 controls + 30 evidence artifacts in sample data); swap pages; delete sample-compliance.ts.",
             "Build /admin/ai-governance routes for model cards, bias reports, approvals, SAMD assessments; swap pages; delete sample-ai-governance.ts.",
-            "Build migration-jobs route + table; swap /admin/migration pages; delete sample-migration.ts.",
             "Build edge-fleet routes + sync-run tracking; swap /admin/edge/* pages; delete sample-edge-fleet.ts.",
             "Build sensitive-data access routes (break-glass log, legal holds, proxy grants — last partially overlaps with caregiver-federation-routes); swap pages; delete sample-sensitive-data.ts.",
             "Build CQM measure routes; swap /admin/cqm pages; delete sample-cqm.ts.",
             "Build IG-profile routes; swap pages; delete sample-ig-profiles.ts.",
             "Build security-posture routes; swap pages; delete sample-posture.ts.",
             "Build extension/plugin routes; swap pages; delete sample-extensions.ts."
+          ],
+          "history": [
+            {
+              "date": "2026-05-27",
+              "stage": "phase-3-6-specialized",
+              "note": "ra-sde-3 closed — migration-jobs end-to-end. Migration 094_migration_jobs.sql creates the table with tenant_id, 6-phase pipeline (discovery → mapping → shadow-load → dual-write → cutover → post-cutover), 6-status lifecycle, JSONB resource_breakdown, counters. apps/api/src/migration-job-store.ts PostgresMigrationJobStore (per-tenant list/get/create/update/delete). apps/api/src/migration-job-routes.ts mounts GET/POST/PATCH/DELETE /admin/migration/jobs[/:id] with tenancy via X-Cernia-Tenant header. 9 real-Postgres integration tests: create-201 / list / get-or-404 / PATCH advance phase+status+counters / PATCH 400 on invalid phase|status / DELETE-204-or-404 / tenant-A cannot see tenant-B / POST 400 missing fields / JSONB resourceBreakdown round-trip. apps/admin/migration: new migration-api.ts typed client; jobs/page.tsx + jobs/[id]/page.tsx + jobs/new/page.tsx all swapped from empty-state placeholders to real fetch + create wizard. apps/api typecheck clean; apps/admin typecheck clean (pre-existing instrumentation.ts errors unchanged)."
+            }
           ]
         },
         {
