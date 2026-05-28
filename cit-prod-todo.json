@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "cit-pass-evidence-refresh",
-    "title": "Refresh cit-pass-1 + cit-pass-4 evidence to reflect Admin gates shipped",
+    "id": "cit-pass-2-and-5-evidence-refresh",
+    "title": "Refresh cit-pass-2 + cit-pass-5 evidence to reflect shipped wave-gate admin UIs",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T12:33:00Z",
-    "evidence": "Self-paced /loop iteration 26. Honest evidence refresh: cit-pass-1 said 'Admin gate ✗ (no ERX prescription queue UI built)' but wg-erx-admin shipped at apps/admin/src/app/admin/prescribing/ (task #237 STT golden alongside). cit-pass-4 said 'Admin gate ✗ for clinic UI (ra-rpm-5 + ra-ml-6)' but ra-rpm-5 dashboard (task #212), ra-ml-6 promote/demote (task #226), and drift monitoring UI (task #234) all shipped. Updated both evidence strings to reflect current state; pass status stays in-progress (other gates still incomplete). No false-closure claimed."
+    "startedAt": "2026-05-28T12:36:00Z",
+    "evidence": "Self-paced /loop iteration 27. cit-pass-2 said 'Admin gate ✗ for F/I' but wg-f-admin grace-policy shipped during the wave-gate Admin sprint - updated to F ✓, I/J/W still ✗. cit-pass-5 said 'Admin gate ✗ (multiple wg-*-admin shelves)' but wg-l-admin (policies/access-control) + wg-m-admin (trials) + wg-s-admin S8 portion + wg-t-admin T-PAIN-A portion all shipped - L/M ✓, S/T △ (partial), K/N/R/U/V still ✗. Updated both evidence strings; pass statuses stay in-progress."
   },
   "categories": [
     {
@@ -142,7 +142,7 @@
             "J",
             "W"
           ],
-          "evidence": "Backend gate ✓; vendor wiring blocked on Twilio/Deepgram/ElevenLabs procurement; Admin gate ✗ for F/I; conformance ✓."
+          "evidence": "Backend gate ✓; vendor wiring (Twilio/Deepgram/ElevenLabs) blocked on procurement; Admin gate ✓ for F (wg-f-admin billing/grace-policy shipped); Admin gate ✗ still for E (voice-agent admin), I, J, W; conformance ✓."
         },
         {
           "id": "cit-pass-3",
@@ -182,7 +182,7 @@
             "U",
             "V"
           ],
-          "evidence": "Backend gate ✓ (21 Postgres adapters shipped this session); Admin gate ✗ (multiple wg-*-admin shelves)."
+          "evidence": "Backend gate ✓ (21 Postgres adapters shipped); Admin gate: L ✓ (wg-l-admin policies/access-control), M ✓ (wg-m-admin trials), S △ (wg-s-admin allergy S8 only; S5/S6/S7 followups), T △ (wg-t-admin T-PAIN-A only; 49 other specialty modules outstanding); K + N + R + U + V Admin gates still ✗."
         },
         {
           "id": "cit-pass-6",
