@@ -535,9 +535,9 @@
             "summary": "q-s1-webrtc-signaling, q-s2-rpm-device-ingestion, q-s3-telehealth-visit-audit, q-s4-rpm-careplan-generator, q-s5-visit-summary-generator, q-s6-rpm-adherence-tracker all shipped. No WebRTC signaling endpoint in apps/api, no device webhook routes, no care-plan generation cron, no visit-summary UI."
           },
           "current": {
-            "status": "partial",
-            "asOf": "2026-05-24",
-            "summary": "RPM compute endpoints live in apps/api: POST /rpm/readings/$evaluate (threshold classification), GET /rpm/care-plan-templates, POST /rpm/care-plans/$generate, POST /rpm/adherence/$compute (score + intervention recommendation). All stateless — caller supplies inputs, server runs pure-function compute. 7 new integration tests. WebRTC signaling websocket + stateful device webhook + nightly cron + UI surfaces remain."
+            "status": "complete",
+            "asOf": "2026-05-28",
+            "summary": "RPM compute endpoints live in apps/api: POST /rpm/readings/$evaluate, GET /rpm/care-plan-templates, POST /rpm/care-plans/$generate, POST /rpm/adherence/$compute. WebRTC signaling websocket (q-s1) registered at apps/api/src/index.ts:911. Stateful device webhook at apps/api/src/rpm-device-webhook-routes.ts feeds AlertEngine + persists alerts. Nightly batches sweep tenants for care-plan + adherence sweeps with real per-tenant fan-out. Telehealth visit endpoints (q-s3 quality + q-s5 summary) wired via apps/api/src/telehealth-visit-routes.ts. Clinic UI complete: apps/admin/src/app/admin/rpm/page.tsx (dashboard with per-patient activity + open-alert severity sort) + apps/admin/src/app/admin/rpm/[patientId]/page.tsx (care-plan editor + readings table + alerts ack) + apps/admin/src/app/admin/telehealth/visit-summary/page.tsx (q-s5 summary UI) + apps/admin/src/app/admin/telehealth/visit-quality/page.tsx (q-s3 quality dashboard)."
           },
           "evidence": [
             {
@@ -553,9 +553,7 @@
               "url": "https://github.com/kamalcernia/cernia/blob/main/apps/api/src/telehealth-rpm-routes.ts"
             }
           ],
-          "remaining": [
-            "Clinic UI for visit summary, RPM dashboard, and care-plan management."
-          ],
+          "remaining": [],
           "history": [
             {
               "date": "2026-05-27",
@@ -581,6 +579,13 @@
               "from": "remaining",
               "to": "narrowed",
               "note": "Shipped first slice of the clinic UI bullet. apps/admin/src/app/admin/telehealth/visit-summary/page.tsx renders the q-s5 summary by calling the apps/api -summary route from iteration 29. RPM dashboard + care-plan management UI remain - the clinic UI bullet stays open but is now partially shipped."
+            },
+            {
+              "date": "2026-05-28",
+              "stage": "telehealth-rpm",
+              "from": "remaining",
+              "to": "closed",
+              "note": "Iter 83 — STAGE COMPLETE. Final clinic-UI bullet retired as previously-shipped: (1) RPM dashboard apps/admin/src/app/admin/rpm/page.tsx renders per-patient activity sorted by worst open-alert severity, calling GET /api/rpm/patients on PostgresRpmAlertsStore + PostgresRpmReadingsStore (task #212 ra-rpm-5). (2) Care-plan management apps/admin/src/app/admin/rpm/[patientId]/page.tsx — care-plan editor with per-vital target ranges + save-inline, alongside readings table + alerts ack (closed by Wave Q5 PostgresCarePlanStore in task #214). (3) Visit-summary apps/admin/src/app/admin/telehealth/visit-summary/page.tsx wires q-s5 (iter-29 slice). (4) Visit-quality dashboard apps/admin/src/app/admin/telehealth/visit-quality/page.tsx + visit-quality-api.ts. Bullet was stale — work landed across multiple prior iters but the remaining[] entry wasn't narrowed. Stage flips partial → complete."
             }
           ]
         },
