@@ -133,17 +133,40 @@
       70%  { box-shadow: 0 0 0 10px rgba(96, 165, 250, 0); transform: scale(1.1); }
       100% { box-shadow: 0 0 0 0   rgba(96, 165, 250, 0); transform: scale(1); }
     }
-    /* Highlight the active TODO row inside the Master Punch List tables. */
+    /* Highlight the active TODO row inside the Master Punch List tables.
+       2026-05-28: visually amplified — earlier version was too subtle
+       to be visible at a glance. */
     tr.cpp-active-row {
-      animation: cpp-row-pulse 2.4s ease-in-out infinite;
-      background: rgba(96, 165, 250, 0.10) !important;
+      animation: cpp-row-pulse 1.6s ease-in-out infinite;
+      background: rgba(96, 165, 250, 0.28) !important;
+      outline: 2px solid #60a5fa !important;
+      outline-offset: -2px;
+      box-shadow: 0 0 12px 0 rgba(96, 165, 250, 0.35);
+    }
+    tr.cpp-active-row td {
+      color: #e2e8f0 !important;
+      font-weight: 600;
     }
     tr.cpp-active-row td:first-child {
-      border-left: 3px solid #60a5fa;
+      border-left: 5px solid #60a5fa !important;
+      position: relative;
+    }
+    tr.cpp-active-row td:first-child::before {
+      content: "▶ ACTIVE";
+      position: absolute;
+      left: -2px;
+      top: -10px;
+      background: #60a5fa;
+      color: #0b1220;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 2px;
+      letter-spacing: 0.05em;
     }
     @keyframes cpp-row-pulse {
-      0%, 100% { background-color: rgba(96, 165, 250, 0.08); }
-      50%      { background-color: rgba(96, 165, 250, 0.22); }
+      0%, 100% { background-color: rgba(96, 165, 250, 0.22); box-shadow: 0 0 8px 0 rgba(96, 165, 250, 0.25); }
+      50%      { background-color: rgba(96, 165, 250, 0.42); box-shadow: 0 0 18px 2px rgba(96, 165, 250, 0.50); }
     }
     .updated { margin-left: auto; color: var(--fg-muted); font-family: var(--mono); font-size: 11px; }
     .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-bottom: 16px; }
