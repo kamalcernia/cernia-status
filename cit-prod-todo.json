@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "def-blocker-280",
-    "title": "Audit-script: not-configured-fallback severity blocker → review (intentional graceful degradation)",
+    "id": "def-docstring-caveats",
+    "title": "Audit-script: drop `out of scope` from docstring-caveat marker list (46 false positives)",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T16:35:00Z",
-    "evidence": "Self-paced /loop iteration 58 — STRUCTURAL FIX. The 52 not-configured-fallback hits (45 in apps/api/src, mostly caregiver-federation-routes.ts) are intentional graceful-degradation paths returning { error: X-store-not-configured } when optional Postgres stores arent injected — thats correct production fail-closed behavior, not deferred work. Changed severity blocker → review. Bloker total dropped 125 → 73."
+    "startedAt": "2026-05-28T16:50:00Z",
+    "evidence": "Self-paced /loop iteration 59 — STRUCTURAL FIX. Sampled all 46 `out of scope` docstring-caveat matches and every one described legitimate separation of concerns (`out of scope for unit tests`, `out of scope for this issue`, `Out of scope (handled by sibling layers)`), not deferred work. Removed the marker from scripts/audit-deferred-items.mjs. docstring-caveat count 269 → 223. Total deferred items 1117 → 1071. Genuine deferred docstrings invariably use `deferred`, `not yet`, `tracked separately`, or `placeholder for` — all preserved."
   },
   "categories": [
     {
@@ -937,7 +937,7 @@
           "title": "Close or WONTFIX 280 blocker-severity deferred items",
           "status": "in-progress",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iters 53-56 fixes: 125 blocker-severity items (was 280 → 284 → 125 after audit-script accuracy fixes). 62 deferred-marker + 52 not-configured-fallback + 2 skipped-test + 9 json-deferred (legacy fallbacks + intentional 503s remain in production code)."
+          "evidence": "Audit re-run 2026-05-28 post iter 59: 73 blocker-severity items (was 280 → 284 → 125 → 73 after iters 53-58 audit-script accuracy fixes). 62 deferred-marker + 2 skipped-test + 9 json-deferred. (not-configured-fallback was demoted blocker→review in iter 58 — intentional graceful degradation, not deferred work.)"
         },
         {
           "id": "def-tech-625",
@@ -945,7 +945,7 @@
           "title": "Close or WONTFIX 625 tech-debt deferred items",
           "status": "todo",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iters 53-56 fixes: 588 tech-debt items (was 625 → 692 → 588). Comprised mostly of todo-comment (318) + docstring-caveat (269). Real TODOs in production code."
+          "evidence": "Audit re-run 2026-05-28 post iter 59: 539 tech-debt items (was 625 → 692 → 588 → 539). Comprised mostly of todo-comment (315) + docstring-caveat (223). Real TODOs in production code. Iter 59 dropped `out of scope` from the docstring-caveat marker list (46 benign separation-of-concerns matches eliminated)."
         },
         {
           "id": "def-review-1428",
@@ -953,7 +953,7 @@
           "title": "Close or WONTFIX 1428 review-severity deferred items",
           "status": "todo",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iters 53-56 fixes: 407 review-severity items (was 1428 → 1538 → 407 after test-file exclusion). Almost all are type-cheat-cast in production code — real cleanup work."
+          "evidence": "Audit re-run 2026-05-28 post iter 59: 459 review-severity items. Iter 58 added 52 not-configured-fallback (demoted from blocker — intentional graceful degradation paths). The remaining 407 are type-cheat-cast in production code — real cleanup work."
         },
         {
           "id": "def-platform-1454",
@@ -961,7 +961,7 @@
           "title": "Address 1454 deferred items tagged Platform",
           "status": "todo",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iters 53-56 fixes. Wave/track breakdown in deferred-items.json byWave. Platform tag tracks cross-cutting cleanup; specific counts available in the JSON report."
+          "evidence": "Audit re-run 2026-05-28 post iter 59. Wave/track breakdown in deferred-items.json byWave. Platform tag tracks cross-cutting cleanup; specific counts available in the JSON report (currently 664 Platform out of 1071 total)."
         },
         {
           "id": "def-type-cheats",
@@ -977,7 +977,7 @@
           "title": "Close 329 // TODO / // FIXME comments",
           "status": "todo",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iter 55: 318 todo-comment items (was 391 → 318 after CAPS-only convention fix). Iter 55 removed the i flag from the TODO/FIXME/XXX/HACK matcher — natural-language Todo / todo in docs and XXX in SAML XML fixtures + catalog placeholders no longer self-flag. Real TODOs remain."
+          "evidence": "Audit re-run 2026-05-28 post iter 55: 315 todo-comment items (was 391 → 315 after CAPS-only convention fix). Iter 55 removed the i flag from the TODO/FIXME/XXX/HACK matcher — natural-language Todo / todo in docs and XXX in SAML XML fixtures + catalog placeholders no longer self-flag. Real TODOs remain."
         },
         {
           "id": "def-docstring-caveats",
@@ -985,7 +985,7 @@
           "title": "Close 296 docstring-caveat items",
           "status": "todo",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iter 53: 269 docstring-caveat items (was 300 → 269). Iter 53 added negative-lookahead for Closes/closed/closing before the trigger word — closure documentation no longer self-flags."
+          "evidence": "Audit re-run 2026-05-28 post iter 59: 223 docstring-caveat items (was 300 → 269 → 223). Iter 53 added negative-lookahead for Closes/closed/closing before the trigger word — closure documentation no longer self-flags. Iter 59 dropped `out of scope` from the marker list — sample of all 46 matches showed they describe legitimate separation of concerns (`out of scope for unit tests`, `out of scope for this issue`, `Out of scope (handled by sibling layers)`), not deferred work."
         },
         {
           "id": "def-deferred-marker",
