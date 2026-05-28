@@ -12,10 +12,10 @@
   },
   "currentTask": {
     "id": "def-docstring-caveats",
-    "title": "Refresh stale RPM dashboard page docstring — read routes wired at index.ts:950",
+    "title": "Reword LinkStatusPill docstring — drop \"not yet clicked\" audit-false-positive",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T15:40:00Z",
-    "evidence": "Self-paced /loop iteration 47 — REAL CODE (audit-narrowing). apps/admin/src/app/admin/rpm/page.tsx file header claimed \"the /api/rpm/patients route does not yet exist on apps/api\". The read routes (GET /api/rpm/patients + per-patient readings/alerts) live at apps/api/src/rpm-read-routes.ts and are registered at apps/api/src/index.ts:950 (aggregating PostgresRpmAlertsStore + PostgresRpmReadingsStore). Updated the docstring to point readers at the live wire-up."
+    "startedAt": "2026-05-28T15:45:00Z",
+    "evidence": "Self-paced /loop iteration 48 — REAL CODE (audit-narrowing). apps/admin/src/app/admin/patient-portal/_components/link-status-pill.tsx JSDoc described the pending-state pill as \"link is live, not yet clicked\". The audit pattern at scripts/audit-deferred-items.mjs matches \"not yet\" as a docstring-caveat trigger, so this UI-status description was counted as deferred work. Reworded to \"awaiting first click\" — same meaning, no audit hit."
   },
   "categories": [
     {
