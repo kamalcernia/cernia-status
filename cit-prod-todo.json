@@ -937,7 +937,7 @@
           "title": "Close or WONTFIX 280 blocker-severity deferred items",
           "status": "in-progress",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28: 284 blocker-severity items (was 280 — audit drift as new code lands). Iter 35 closed TODO(I-046) ConnectionRun.replayOf type-drift in apps/api/src/connection-replay.ts."
+          "evidence": "Audit re-run 2026-05-28 post iters 53-56 fixes: 125 blocker-severity items (was 280 → 284 → 125 after audit-script accuracy fixes). 62 deferred-marker + 52 not-configured-fallback + 2 skipped-test + 9 json-deferred (legacy fallbacks + intentional 503s remain in production code)."
         },
         {
           "id": "def-tech-625",
@@ -945,7 +945,7 @@
           "title": "Close or WONTFIX 625 tech-debt deferred items",
           "status": "todo",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28: 692 tech-debt items (was 625 — audit drift)."
+          "evidence": "Audit re-run 2026-05-28 post iters 53-56 fixes: 588 tech-debt items (was 625 → 692 → 588). Comprised mostly of todo-comment (318) + docstring-caveat (269). Real TODOs in production code."
         },
         {
           "id": "def-review-1428",
@@ -953,14 +953,15 @@
           "title": "Close or WONTFIX 1428 review-severity deferred items",
           "status": "todo",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28: 1538 review-severity items (was 1428 — audit drift)."
+          "evidence": "Audit re-run 2026-05-28 post iters 53-56 fixes: 407 review-severity items (was 1428 → 1538 → 407 after test-file exclusion). Almost all are type-cheat-cast in production code — real cleanup work."
         },
         {
           "id": "def-platform-1454",
           "category": "Platform wave",
           "title": "Address 1454 deferred items tagged Platform",
           "status": "todo",
-          "completionMode": null
+          "completionMode": null,
+          "evidence": "Audit re-run 2026-05-28 post iters 53-56 fixes. Wave/track breakdown in deferred-items.json byWave. Platform tag tracks cross-cutting cleanup; specific counts available in the JSON report."
         },
         {
           "id": "def-type-cheats",
@@ -968,7 +969,7 @@
           "title": "Replace 1377 `as never` / `as any` type cheats",
           "status": "todo",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28: 1487 type-cheat-cast + 51 type-cheat items = 1538 total (was 1377 — audit drift)."
+          "evidence": "Audit re-run 2026-05-28 post iter 56: 406 type-cheat-cast + 1 type-cheat = 407 total (was 1487+51=1538). Iter 56 excluded test-file casts (conventional mocking idioms, not production tech-debt). The remaining 407 are real production-code cleanups."
         },
         {
           "id": "def-todo-comments",
@@ -976,7 +977,7 @@
           "title": "Close 329 // TODO / // FIXME comments",
           "status": "todo",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28: 391 todo-comment items (was 329 — audit drift). Iter 35 closed TODO(I-046) in apps/api/src/connection-replay.ts (-2 markers)."
+          "evidence": "Audit re-run 2026-05-28 post iter 55: 318 todo-comment items (was 391 → 318 after CAPS-only convention fix). Iter 55 removed the i flag from the TODO/FIXME/XXX/HACK matcher — natural-language Todo / todo in docs and XXX in SAML XML fixtures + catalog placeholders no longer self-flag. Real TODOs remain."
         },
         {
           "id": "def-docstring-caveats",
@@ -984,7 +985,7 @@
           "title": "Close 296 docstring-caveat items",
           "status": "todo",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28: 300 docstring-caveat items (was 296 — audit drift)."
+          "evidence": "Audit re-run 2026-05-28 post iter 53: 269 docstring-caveat items (was 300 → 269). Iter 53 added negative-lookahead for Closes/closed/closing before the trigger word — closure documentation no longer self-flags."
         },
         {
           "id": "def-deferred-marker",
@@ -992,7 +993,7 @@
           "title": "Close 216 explicit // DEFERRED markers",
           "status": "todo",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28: 220 deferred-marker items (was 216 — audit drift)."
+          "evidence": "Audit re-run 2026-05-28 post iter 54: 62 deferred-marker items (was 220 → 62 after CAPS-only fix). Iter 54 made DEFERRED/DEPRECATED/SCAFFOLD/STUB single-word markers caps-only — natural-language usage like \"// Stub navigator.clipboard\" no longer self-flags."
         },
         {
           "id": "def-not-configured",
