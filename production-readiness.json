@@ -634,11 +634,15 @@
             "Build the customer-facing storefront UI (browse → Buy → Stripe Checkout redirect → entitlement record) on top of the now-mounted j1d compute layer. Persistence + real Stripe webhook handlers are procurement-blocked on Stripe production keys.",
             "Schedule x1c SaaS-metrics nightly compute against the real subscription store (current route is stateless pure-function).",
             "Wire x1a tax engine (Stripe Tax + Avalara fallback) into every payment path.",
-            "Wire x1b ASC 606 revenue recognition into the monthly close.",
+            "Persistent contract + revenue-event storage (today the $build-schedule + $close-month routes accept inputs in the body; the NetSuite/QuickBooks export job can call them with whatever event stream it has).",
             "Wire x2b contract auto-renewal cron.",
             "Wire x3c discount-approval workflow."
           ],
           "history": [
+            {
+              "date": "2026-05-28",
+              "note": "ra-sbm-5 partial close — x1b-revenue-recognition compute layer mounted. apps/api/src/revenue-recognition-routes.ts wraps the package's buildSchedule + buildPointInTimeSchedule + buildUsageBasedSchedule pure functions as 2 HTTP endpoints. POST /admin/revenue/$build-schedule validates Contract + RevenueEvent[] body, sorts events by occurredAt ascending, routes to the right helper per contract.method, returns RecognitionSchedule with periods + cumulative + deferred-balance — daily-prorated waterfall. POST /admin/revenue/$close-month is the CFO monthly-close endpoint: take a YYYY-MM string + Array<{contract, events}>, build each schedule, sum recognizedCents across periods whose periodStart starts with the month, return {monthIso, totalRecognizedCents, byContract[]}. 10 in-process tests pass: ratable schedule (~10_192¢/month for a $1200/yr contract, daily-prorated), point-in-time method, 3×400 validation, multi-contract close sum, 400 on bad monthIso, 400 on missing contracts, zero-period return, cache-control headers. apps/api/package.json adds @cernia/x1b-revenue-recognition workspace dep. Persistent contract + event storage is the next followup."
+            },
             {
               "date": "2026-05-28",
               "note": "ra-sbm-2 partial close — j1d-marketplace-checkout compute layer mounted. apps/api/src/marketplace-checkout-routes.ts wraps 5 pure functions as HTTP endpoints (POST /admin/marketplace/checkout/$build-session + entitlements/$create + /$cancel + /$extend + /$has-active). Input validation rejects malformed bodies with 400; pricing-model + URL-scheme checks return the engine's BlockerCode + message. 13 in-process tests pass covering happy-path build / 4×400 rejection / one-time + rental entitlement (rental sets nextBillingAt ~30d) / cancel mutation / has-active true/false matrix + rental extend. apps/api/package.json adds @cernia/j1d-marketplace-checkout workspace dep. Real Stripe API integration (SDK + webhook signature validation) + per-tenant entitlement persistence (table + tenant_id scoped store) are procurement-blocked on Stripe production keys; customer storefront UI is the next followup once the Buy flow can post to /$build-session."
