@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-28T14:19:19.110Z",
+    "lastUpdatedIso": "2026-05-28T14:19:25.534Z",
     "lastUpdatedDisplay": "May 28, 2026 — 10:19 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #159 feat(speech): ElevenLabs TTS production fetch tran"
   },
@@ -4293,7 +4293,7 @@
       "wave": "STATUS",
       "detail": "rotate currentTask → wg-s-admin",
       "commit": "cf01105d",
-      "freshSeconds": 316
+      "freshSeconds": 321
     }
   },
   "pool": {
