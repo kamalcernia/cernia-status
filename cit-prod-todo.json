@@ -12,10 +12,10 @@
   },
   "currentTask": {
     "id": "wg-s-admin",
-    "title": "Wave S Admin rung — clinical (lab-orderable / PACS hanging-protocol / pharmacy / allergy) admin UI",
+    "title": "Wave S Admin rung — clinical admin UI (allergy-checking shipping this iteration; lab/PACS/pharmacy routes need apps/api mounting as followups)",
     "category": "wave-gates",
-    "startedAt": "2026-05-28T10:13:00Z",
-    "evidence": "Self-paced /loop iteration 6 (after wg-erx-admin, wg-o-admin, wg-m-admin, wg-l-admin, wg-f-admin). Backend routes for all 4 surfaces already wired in apps/api: allergy-routes.ts (S-S8) + lab/PACS/pharmacy via FHIR generic CRUD (ServiceRequest/ImagingStudy/MedicationRequest). Loop fires in ~60s; this chip will rotate to the next item when the closure commit lands."
+    "startedAt": "2026-05-28T10:15:00Z",
+    "evidence": "Self-paced /loop iteration 6. Investigation confirmed: S-S8 allergy-routes.ts is wired (5 routes: POST/GET/$verify/DELETE) — building allergy admin UI now. S-S5 lab-orderable / S-S6 PACS hanging-protocol / S-S7 pharmacy fulfillment packages exist but apps/api route mounts don't yet exist; these get followup chips."
   },
   "categories": [
     {
