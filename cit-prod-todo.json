@@ -12,10 +12,10 @@
   },
   "currentTask": {
     "id": "def-todo-comments",
-    "title": "Audit-script: require todo-comment markers to be inside comments (140 string-literal false positives)",
+    "title": "voice-call-handler: thread real ttsSeconds from TTS layer (closes iter-39 voice-metering TODO)",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T18:01:00Z",
-    "evidence": "Self-paced /loop iteration 66 — STRUCTURAL FIX. The todo-comment regex `/\\b(TODO|FIXME|XXX|HACK)\\b\\s*:?\\s*(.{0,200})/` was matching `XXX` inside string literals — most notably `globalPeriod: 'XXX'` inside packages/catalog-cms-gpci-wage/src/mpfs-calculator.ts (CMS MPFS RVU data table; 'XXX' is the CMS billing code for 'global period not applicable', NOT a TODO marker). 52 such hits in CPT-code data alone. Added a comment-prefix guard `(?:\\/\\/|\\/\\*|\\*|#|^)\\s*` so the marker must be inside a `// /* * #` comment or at line start. Real TODO/FIXME comments still match. Audit deltas: total 1024 → 884 (-140), todo-comment 315 → 175, tech-debt 535 → 395. Total deferred items have dropped from the original 2480+ baseline to under 900."
+    "startedAt": "2026-05-28T18:11:00Z",
+    "evidence": "Self-paced /loop iteration 67 — SUBSTANTIVE CLOSE. apps/api/src/voice-call-handler.ts:2328 had `ttsSeconds: 0, // TODO: thread through from TTS layer in a follow-up` — a real follow-up to iter 39's voice-metering wiring. Added a `ttsSecondsAccumulated` field on InboundCallSession, wrapped the speak() TTS-synthesize loop with wall-clock instrumentation (Date.now() before + after, accumulated in `finally` so barge-in-aborted partial synthesis still bills), and threaded the value into the call-end metering emit (rounded to 2 decimal places). Wall-clock is the correct metric for TTS vendor cost-attribution — a TTS adapter that takes 800ms to synthesise a 5-second utterance is consuming 800ms of paid TTS time. Typecheck clean. Audit delta: todo-comment 175 → 174, total 884 → 883."
   },
   "categories": [
     {
