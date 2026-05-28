@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": null,
-    "title": "Idle — RPM clinic dashboard shipped (UI + read routes); next pick from todo list.",
-    "category": null,
-    "startedAt": null,
-    "evidence": null
+    "id": "wg-s-admin",
+    "title": "Wave S Admin rung — clinical (lab-orderable / PACS hanging-protocol / pharmacy / allergy) admin UI",
+    "category": "wave-gates",
+    "startedAt": "2026-05-28T10:13:00Z",
+    "evidence": "Self-paced /loop iteration 6 (after wg-erx-admin, wg-o-admin, wg-m-admin, wg-l-admin, wg-f-admin). Backend routes for all 4 surfaces already wired in apps/api: allergy-routes.ts (S-S8) + lab/PACS/pharmacy via FHIR generic CRUD (ServiceRequest/ImagingStudy/MedicationRequest). Loop fires in ~60s; this chip will rotate to the next item when the closure commit lands."
   },
   "categories": [
     {
