@@ -863,7 +863,6 @@
             "summary": "DeepgramWsTransport production adapter shipped in apps/api/src/deepgram-ws-transport.ts. Uses ws npm package (already a dependency) with Authorization: Token header. Parses Results, SpeechStarted, UtteranceEnd, Error message types into DeepgramServerEvent. boot path wires DeepgramSttBackend when CERNIA_SPEECH_STT=deepgram + DEEPGRAM_API_KEY are set; falls back to stub STT with warn log otherwise. 13 new unit tests cover factory shape, JSON parsing (all event types), error resilience, and handler idempotency. api typecheck + full api test suite clean."
           },
           "remaining": [
-            "Build packages/voice-stt-deepgram implementing ISpeechToText against Deepgram's websocket API.",
             "Wire the per-tenant credentials resolver into apps/api boot — the helper class (apps/api/src/per-tenant-speech-credentials.ts) ships ra-stt-2; what remains is making SpeechServiceFactory per-tenant-aware so that voice-call-handler resolves the Deepgram credential per call rather than reading a single global env var at startup.",
             "Commit real-Deepgram WAV+transcript fixtures + run the STT-accuracy goldens nightly against the production API (the scaffolding ships in @cernia/voice-agent-evals/stt; procurement-blocked on Deepgram production key + BAA)."
           ],
@@ -903,7 +902,6 @@
             "summary": "ElevenLabsFetchTransport production adapter shipped in apps/api/src/elevenlabs-fetch-transport.ts. Uses Node 22 native fetch with xi-api-key header + streaming ReadableStream body iteration. boot path wires ElevenLabsTtsBackend when CERNIA_SPEECH_TTS=elevenlabs + ELEVENLABS_API_KEY are set; falls back to stub TTS with warn log otherwise. 8 new unit tests cover factory shape, streaming multi-chunk assembly, HTTP 4xx error propagation, null body guard, and close idempotency. api typecheck clean."
           },
           "remaining": [
-            "Build packages/voice-tts-elevenlabs implementing ITextToSpeech against ElevenLabs's REST API.",
             "Persist persona voiceId via PATCH /Organization/:id (the persona editor currently console.logs the save).",
             "Wire the resolver lookup into apps/api boot — the helper (apps/api/src/per-tenant-speech-credentials.ts) ships ra-tts-2; what remains is making SpeechServiceFactory per-tenant-aware so dialog turns resolve the ElevenLabs credential + voiceId per call rather than reading a single global env var at startup."
           ],
@@ -920,6 +918,13 @@
               "to": "complete",
               "note": "ElevenLabsFetchTransport native-fetch streaming adapter + apps/api boot wiring. 8 tests.",
               "commit": "feat/elevenlabs-tts-wiring"
+            },
+            {
+              "date": "2026-05-28",
+              "stage": "tts-backend",
+              "from": "remaining",
+              "to": "closed",
+              "note": "Removed 2 stale remaining bullets across stt-backend + tts-backend. Both claimed \"Build packages/voice-stt-deepgram\" / \"Build packages/voice-tts-elevenlabs\". In fact the backends shipped in a different package path: packages/speech/src/backends/deepgram-stt-backend.ts (task #96) + packages/speech/src/backends/elevenlabs-tts-backend.ts (task #97). The path-prefix mismatch made these read as un-shipped. Remaining bullets on both stages (resolver-boot wiring, nightly fixtures, voiceId PATCH) stay open - those are genuinely partial."
             }
           ]
         },

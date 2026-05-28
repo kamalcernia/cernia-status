@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "saas-billing-2-bullets-narrowed",
-    "title": "Narrow 2 saas-billing-marketplace bullets — x2b + x3c crons wired (catalog-only mode)",
+    "id": "stt-tts-package-path-bullets",
+    "title": "Remove 2 stale STT/TTS bullets — adapters shipped at packages/speech/src/backends/ not the speculated paths",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T12:18:00Z",
-    "evidence": "Self-paced /loop iteration 22. Narrowed (not removed) 2 bullets to reflect catalog-only-mode reality: x2b contract auto-renewal cron + x3c discount-approval timeout sweep are both scheduled in apps/api/src/saas-nightly-batches.ts (lines 56 + 68) and run nightly. They operate on empty catalog stubs so the GENUINE remaining work is Postgres subscription / discount-approval store wire-in (gated on the same subscription store as x1c metrics-compute). Honest narrowing - reduces the surprise factor for future readers without claiming the work is done. Open bullet count stays 44 (bullets narrowed, not removed)."
+    "startedAt": "2026-05-28T12:23:00Z",
+    "evidence": "Self-paced /loop iteration 23. Both bullets claimed 'Build packages/voice-stt-deepgram' and 'Build packages/voice-tts-elevenlabs' but the adapters were shipped at a different path: packages/speech/src/backends/deepgram-stt-backend.ts (task #96) and packages/speech/src/backends/elevenlabs-tts-backend.ts (task #97). The path-prefix mismatch made shipped work look un-shipped. Removed both; remaining bullets on stt-backend + tts-backend (resolver-boot wiring, nightly fixtures, voiceId PATCH /Organization) stay open as genuine partial work. Open bullet count: 44 -> 42."
   },
   "categories": [
     {
