@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "ra-cit-stubs-3",
-    "title": "Wire eligibilityRoutes into apps/api boot (Wave-E E-N4 — POST /Coverage/$check-eligibility)",
-    "category": "remaining-track-bullets",
-    "startedAt": "2026-05-28T19:14:00Z",
-    "evidence": "Self-paced /loop iteration 76 — SUBSTANTIVE CLOSE. apps/api/src/eligibility-routes.ts + eligibility-service.ts + eligibility-cache.ts shipped Wave-E E-N4 but the route was never registered. Wired the boot graph: StubClearinghouse (from @cernia/x12-engine) for catalog-only mode that synthesizes 271 responses from inbound 270 — production swaps for ChangeHealthcareAdapter when credentials are wired; InMemoryEligibilityCache (process-local LRU; PostgresEligibilityCache migration 065 is the cross-pod follow-up); PgStorageAdapter satisfies EligibilityStorageAdapter structurally; logger-backed audit emitter (memberIdHash already PHI-safe — eligibility-service hashes before emit); per-tenant config resolver reads CERNIA_ELIGIBILITY_{SENDER_ID,RECEIVER_ID,PROVIDER_NAME,PROVIDER_NPI} env vars (default 'CERNIA'/'STUB'/'CERNIA HEALTHCARE'/'0000000000'). Registered as §11b in index.ts. apps/api typecheck clean. Chip: shipped-with-stub-followup — boot wiring is real, but production-grade clearinghouse adapter swap and per-tenant trading-partner config resolver are named follow-ups."
+    "id": "def-todo-comments",
+    "title": "Phase-4: server-side scrypt hashing in $generate-secret (plaintext never reaches Postgres)",
+    "category": "deferred-items",
+    "startedAt": "2026-05-28T19:38:00Z",
+    "evidence": "Self-paced /loop iteration 78 — SUBSTANTIVE CLOSE, parallel with the SaaS-conformance handoff agent. Skipped update-status.mjs to avoid mirror-push race. Extended apps/api/src/admin-api-key-routes.ts to compute `secretHash` via @cernia/auth-providers hashPassword (scrypt, cost factor 14 = N=16384) and return it alongside the secret. Updated apps/admin api-keys/new/page.tsx to use the structured GeneratedSecret return type; the FHIR ApiKey resource now carries the real scrypt hash instead of the placeholder `[bcrypt-hash-of-${prefix}]`. Browser fallback path writes a `scrypt$browser-fallback$${prefix}$$$` sentinel that the server verifyPassword recognises as un-verifiable, forcing operator to re-issue once apps/api is reachable. Closes the third Phase-4 TODO at page.tsx:284. apps/api typecheck clean."
   },
   "categories": [
     {
