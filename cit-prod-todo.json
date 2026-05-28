@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "stale-todo-sweep-r2",
-    "title": "Round-2 stale-TODO sweep — voice-agent-fleet-source header docstring",
+    "id": "desk-gate-banner-real-roles",
+    "title": "Wire desk-gate-banner.tsx to useCurrentRoleNames() (replace TODO(prod) hardcoded ['office-admin'] scaffold)",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T11:58:00Z",
-    "evidence": "Self-paced /loop iteration 17 — continuing def-todo-comments backlog reduction. apps/api/src/voice-agent-fleet-source.ts header (lines 16-20) said 'Vendor health is intentionally NOT in the database — there are no upstream-probe rows yet. The source returns a static \"all operational\" placeholder with a TODO' — directly contradicted by the same file's vendorHealth() implementation at lines 231-274 which reads from vendor_health_state. Rewrote header to reflect reality: reads + pads with operational placeholders for unprobed vendors. Typecheck clean. Total session sweep: 4 stale TODOs removed."
+    "startedAt": "2026-05-28T12:08:00Z",
+    "evidence": "Self-paced /loop iteration 18 — real-code wiring fix. Replaced hardcoded useDemoPrincipalRoles() returning ['office-admin'] in apps/admin/src/app/(office-admin)/desk/_components/desk-gate-banner.tsx with the canonical useCurrentRoleNames() hook from @/lib/use-current-roles. The hook fetches GET /api/auth/me/roles (mounted at apps/api/src/index.ts:611). canAccessDesk(roles) now reflects the real session. Banner label now shows the real allowed role (first canAccessDesk-passing role) instead of hardcoded 'office-admin'. Investigation of apps/api/src TODOs (connection-replay I-046, ct-monitor wave-BB scheduler, payment-link KmsBackedSigner Phase 11, voice-call-handler ttsSeconds) confirmed all 4 are real active deferred work — not stale. apps/admin typecheck clean for desk-gate-banner.tsx (2 pre-existing errors in instrumentation.ts are unrelated baseline)."
   },
   "categories": [
     {
