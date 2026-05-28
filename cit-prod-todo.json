@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "voice-agent-eval-goldens-4-stale",
-    "title": "Remove 4 stale eval-harness golden bullets — all 4 named goldens already shipped",
+    "id": "cds-hooks-2-stale-bullets",
+    "title": "Remove 2 stale cds-hooks-quality bullets — clinical hooks mounted + CQM cron scheduled",
     "category": "deferred-items",
-    "startedAt": "2026-05-28T12:27:00Z",
-    "evidence": "Self-paced /loop iteration 24. 4 stale bullets removed from voice-agent/eval-harness: mfa-locked-out.json, red-flag-bilingual-spanish.json, prompt-injection-rejection.json, appointment-window-disambiguation.json. All 4 exist in packages/voice-agent-evals/src/goldens/ (task #82 authored these). Only remaining bullet on the stage is the 'Nightly --live mode against real Anthropic API canary golden' which is genuinely open (needs cost-controlled budget). Open bullet count: 42 -> 38."
+    "startedAt": "2026-05-28T12:30:00Z",
+    "evidence": "Self-paced /loop iteration 25. 2 stale bullets removed from functionality-utilization/cds-hooks-quality. (1) Mount order-select/order-sign/medication-prescribe/encounter-discharge - shipped at apps/api/src/cds-hooks-routes.ts:159-184 (buildStarterClinicalWorkflowServices registers all 4 as info-card handoffs, task #100). (2) Nightly CQM MeasureReport batch - shipped at apps/api/src/saas-nightly-batches.ts:89 (task #216 ra-cds-4). Remaining 2 bullets are my own narrowed followups from prior iterations (RealDecisionDispatcher SMART runner + cryptographic JWKS verification). Open bullet count: 38 -> 36."
   },
   "categories": [
     {
