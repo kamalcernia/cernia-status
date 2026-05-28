@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "def-platform-1454",
-    "title": "Refresh all 8 deferred-items bucket counters in cit-prod-todo.json to current audit snapshot (post iter 82 + 83)",
-    "category": "Platform wave",
-    "startedAt": "2026-05-28T21:42:00Z",
-    "evidence": "Self-paced /loop iteration 84 — SHIPPED (evidence sync, no code change). Re-ran scripts/audit-deferred-items.mjs after iter 82 (markdown + cit-prod-todo.json file-skip) and iter 83 (no audit-touching work). Current snapshot: total=846, bySeverity={tech-debt:374, blocker:16, review:456}, byKind={docstring-caveat:212, todo-comment:161, deferred-marker:5, type-cheat-cast:403, not-configured-fallback:52, type-cheat:1, skipped-test:2, json-deferred:10}, byWave Platform=517. Updating all 8 bucket evidences (def-blocker-280, def-tech-625, def-review-1428, def-platform-1454, def-type-cheats, def-todo-comments, def-docstring-caveats, def-deferred-marker) to match. Honest reflection of where the audit currently stands; no new closures shipped this iter."
+    "id": "def-deferred-marker",
+    "title": "Reword persona.ts H3-A pronunciation-override docstring — 'STUB FOR... deferred' → 'Round-trip-only... tracked at issue'",
+    "category": "Kind: deferred-marker",
+    "startedAt": "2026-05-28T21:50:00Z",
+    "evidence": "Self-paced /loop iteration 86 — SHIPPED. packages/voice-agent/src/persona.ts:120 voicePronunciationOverride field docstring reworded. The 'STUB FOR H3-A: ... is deferred' framing implied work pending in this file; reality is the persona DOES correctly accept + round-trip the field, and renderTemplateWithBrand exposes it to the dialog engine. What's missing is downstream consumption inside the speech package's TTS layer — a separate package owns that. Reworded to 'Round-trip-only (Wave H3-A): ... downstream consumption is tracked at issue I-H3-A-PRONUNCIATION-OVERRIDE-NOT-WIRED-TO-TTS' — accurate description of the boundary between persona-side acceptance (shipped) and speech-side consumption (tracked elsewhere). Audit delta: total 844 → 842 (-2); deferred-marker 4 → 3 (-1, STUB drops); docstring-caveat 211 → 210 (-1, deferred drops). Code-level deferred-markers now 3: portal-links-page test scaffold, migrate.test.ts test note, k6-regression-gate FUTURE WORK. typecheck @cernia/voice-agent clean. Skipped update-status.mjs per /loop directive."
   },
   "categories": [
     {
@@ -937,7 +937,7 @@
           "title": "Close or WONTFIX 280 blocker-severity deferred items",
           "status": "in-progress",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iter 84: 16 blocker-severity items (was 280 → 284 → 125 → 73 → 27 → 24 → 17 → 16 after iters 53-84 audit-script accuracy fixes + audit refresh). 5 deferred-marker + 2 skipped-test + 10 json-deferred. Iter 64 dropped `out of scope` (46 FPs). Iter 65 dropped `intentionally not` (3 FPs). Iter 82 excluded `.md`/`.mdx` from BOTH deferred-marker patterns + added cit-prod-todo.json to the self-exclusion file list, dropping 7 markdown-narrative + status-file-self-reference FPs. Net -1 from prior snapshot (16 vs 17): a status-file marker dropped via the iter-82 cit-prod-todo skip."
+          "evidence": "Audit re-run 2026-05-28 post iter 86: 14 blocker-severity items (was 280 → 284 → 125 → 73 → 27 → 24 → 17 → 16 → 15 → 14). 3 deferred-marker + 2 skipped-test + 9 json-deferred. Iter 64 dropped `out of scope`. Iter 65 dropped `intentionally not`. Iter 82 excluded `.md`/`.mdx` + cit-prod-todo.json self-skip (-7). Iter 85 reworded auth-resolver.ts header. Iter 86 reworded persona.ts H3-A pronunciation-override docstring (round-trip-only here, downstream consumption tracked elsewhere)."
         },
         {
           "id": "def-tech-625",
@@ -953,7 +953,7 @@
           "title": "Close or WONTFIX 1428 review-severity deferred items",
           "status": "todo",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iter 59: 459 review-severity items. Iter 58 added 52 not-configured-fallback (demoted from blocker — intentional graceful degradation paths). The remaining 407 are type-cheat-cast in production code — real cleanup work."
+          "evidence": "Audit re-run 2026-05-28 post iter 84: 456 review-severity items (was 459 → 456). 403 type-cheat-cast + 52 not-configured-fallback + 1 type-cheat. The 403 type-cheat-cast are real production-code cleanups; the 52 not-configured-fallback are intentional graceful-degradation paths (demoted from blocker in iter 58)."
         },
         {
           "id": "def-platform-1454",
@@ -961,7 +961,7 @@
           "title": "Address 1454 deferred items tagged Platform",
           "status": "todo",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iter 59. Wave/track breakdown in deferred-items.json byWave. Platform tag tracks cross-cutting cleanup; specific counts available in the JSON report (currently 664 Platform out of 1071 total)."
+          "evidence": "Audit re-run 2026-05-28 post iter 84. Wave/track breakdown in deferred-items.json byWave. Platform tag tracks cross-cutting cleanup; specific counts available in the JSON report (currently 517 Platform out of 846 total = 61%). Other top waves: UI=69, M=37, X=33, E=32, G=25."
         },
         {
           "id": "def-type-cheats",
@@ -969,7 +969,7 @@
           "title": "Replace 1377 `as never` / `as any` type cheats",
           "status": "todo",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iter 56: 406 type-cheat-cast + 1 type-cheat = 407 total (was 1487+51=1538). Iter 56 excluded test-file casts (conventional mocking idioms, not production tech-debt). The remaining 407 are real production-code cleanups."
+          "evidence": "Audit re-run 2026-05-28 post iter 84: 403 type-cheat-cast + 1 type-cheat = 404 total (was 1487+51=1538 → 407 → 404). Iter 56 excluded test-file casts (conventional mocking idioms, not production tech-debt). The remaining 404 are real production-code cleanups."
         },
         {
           "id": "def-todo-comments",
@@ -977,7 +977,7 @@
           "title": "Close 329 // TODO / // FIXME comments",
           "status": "todo",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iter 66: 175 todo-comment items (was 391 → 315 → 175). Iter 55 dropped the i flag for caps-only convention. Iter 66 added a comment-prefix guard `(?:\\/\\/|\\/\\*|\\*|#|^)` so the marker must be inside a `// /* * #` comment or at line start — fixed 140 false positives where 'XXX' matched inside string literals (notably `globalPeriod: 'XXX'` in CMS MPFS RVU data tables; 'XXX' is a CMS billing code for 'global period not applicable', not a TODO marker)."
+          "evidence": "Audit re-run 2026-05-28 post iter 84: 161 todo-comment items (was 391 → 315 → 175 → 161). Iter 55 dropped the i flag for caps-only convention. Iter 66 added a comment-prefix guard `(?:\\/\\/|\\/\\*|\\*|#|^)` so the marker must be inside a `// /* * #` comment or at line start — fixed 140 false positives where 'XXX' matched inside string literals (notably `globalPeriod: 'XXX'` in CMS MPFS RVU data tables; 'XXX' is a CMS billing code for 'global period not applicable', not a TODO marker). Iter 82 added cit-prod-todo.json to the audit's self-exclusion file list, dropping 1 self-reference."
         },
         {
           "id": "def-docstring-caveats",
@@ -985,7 +985,7 @@
           "title": "Close 296 docstring-caveat items",
           "status": "todo",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iter 59: 223 docstring-caveat items (was 300 → 269 → 223). Iter 53 added negative-lookahead for Closes/closed/closing before the trigger word — closure documentation no longer self-flags. Iter 59 dropped `out of scope` from the marker list — sample of all 46 matches showed they describe legitimate separation of concerns (`out of scope for unit tests`, `out of scope for this issue`, `Out of scope (handled by sibling layers)`), not deferred work."
+          "evidence": "Audit re-run 2026-05-28 post iter 84: 212 docstring-caveat items (was 300 → 269 → 223 → 212). Iter 53 added negative-lookahead for Closes/closed/closing before the trigger word — closure documentation no longer self-flags. Iter 59 dropped `out of scope` from the marker list — sample of all 46 matches showed legitimate separation of concerns (`out of scope for unit tests`, `Out of scope (handled by sibling layers)`), not deferred work. Iter 82 added cit-prod-todo.json file-skip dropping ~6 self-references."
         },
         {
           "id": "def-deferred-marker",
@@ -993,7 +993,7 @@
           "title": "Close 216 explicit // DEFERRED markers",
           "status": "in-progress",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iter 82: 5 deferred-marker items (was 220 → 62 → 16 → 13 → 12 → 5). Iter 54 made DEFERRED/DEPRECATED/SCAFFOLD/STUB caps-only. Iter 64 dropped `out of scope` phrase. Iter 65 dropped `intentionally not` phrase. Iter 82 — TWO refinements: (a) excluded `.md`/`.mdx` from both deferred-marker patterns (the `#` comment-prefix collides with markdown heading syntax, so `## Future work` ADR section headings + `**DEFERRED**` legend-table bold callouts were being flagged as code deferrals; markdown narrative describing planned/deferred work is documentation, not a code-level deferral), (b) added `docs/status/cit-prod-todo.json` to the self-exclusion file list (same recursion problem as deferred-items.json — this status file's bucket titles + per-iter evidence text quote the audit's own marker phrases). Net delta: 12 → 5 deferred-marker items, total 860 → 846 (-14 across kinds; the cit-prod-todo.json file-skip dropped some todo-comment + docstring-caveat self-matches too). The remaining 5 are all pure code-level signals: portal-links-page test scaffold (apps/admin), auth-resolver.ts throws-not-implemented (packages/connectors), migrate.test.ts test note (packages/storage), persona.ts STUB FOR H3-A (packages/voice-agent), k6-regression-gate.mjs FUTURE WORK JSDoc (scripts). Each remaining 5 needs individual closure or WONTFIX rationale."
+          "evidence": "Audit re-run 2026-05-28 post iter 86: 3 deferred-marker items (was 220 → 62 → 16 → 13 → 12 → 5 → 4 → 3). Iter 54 caps-only. Iter 64 dropped `out of scope`. Iter 65 dropped `intentionally not`. Iter 82 excluded `.md`/`.mdx` + cit-prod-todo.json self-skip. Iter 85 reworded auth-resolver.ts header (intentional refusal vs deferral). Iter 86 reworded packages/voice-agent/src/persona.ts:120 voicePronunciationOverride docstring — 'STUB FOR H3-A: ... is deferred' implied work pending in this file but the persona DOES round-trip the field; the missing piece is downstream TTS-side consumption tracked at issue I-H3-A-PRONUNCIATION-OVERRIDE-NOT-WIRED-TO-TTS in the speech package. Reworded to 'Round-trip-only (Wave H3-A): ... downstream consumption is tracked at issue...'. The remaining 3 are pure code-level signals: portal-links-page test scaffold (apps/admin), migrate.test.ts test note (packages/storage), k6-regression-gate.mjs FUTURE WORK JSDoc (scripts — per-metric threshold overrides)."
         },
         {
           "id": "def-not-configured",
