@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-29T13:29:18.479Z",
-    "lastUpdatedDisplay": "May 29, 2026 — 09:29 EDT",
+    "lastUpdatedIso": "2026-05-29T13:39:19.195Z",
+    "lastUpdatedDisplay": "May 29, 2026 — 09:39 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #173 feat(admin): sensitive-data routes + UI swap (phas"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "334 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #173 feat(admin): sensitive-data routes + UI swap (phase-3-6 bull. (refreshed May 29, 2026 — 09:29 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #173 feat(admin): sensitive-data routes + UI swap (phase-3-6 bull. (refreshed May 29, 2026 — 09:39 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -4480,7 +4480,7 @@
       "wave": "COORD",
       "detail": "open Machine-B handoff — reserve migrations 100–149 + stub-abolition boundary",
       "commit": "db07b3ef",
-      "freshSeconds": 320
+      "freshSeconds": 923
     }
   },
   "pool": {
