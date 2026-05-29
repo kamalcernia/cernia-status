@@ -1487,15 +1487,23 @@
             "summary": "Not started at plan time."
           },
           "current": {
-            "status": "partial",
-            "asOf": "2026-05-27",
-            "summary": "packages/testing-real-services pending. createIsolatedTestEnv() factory: per-test Postgres schema + Redis prefix + MinIO bucket + NATS namespace."
+            "status": "complete",
+            "asOf": "2026-05-29",
+            "summary": "packages/testing-real-services shipped: per-test Postgres schema (createPostgresFixture) + Redis prefix + MinIO bucket + NATS namespace + Mailpit. The full-schema path is now FAST via createMigratedDatabaseFixture() — a CREATE DATABASE TEMPLATE clone (~60ms/test) of a once-built template, replacing the slow per-test migration run. ra-cit-harness-1 resolved (was never a hang — fsync-bound table rewrites; see iter-110/111 history)."
           },
           "evidence": [],
           "remaining": [
-            "Resolve runMigrations vitest-worker hang. **Root cause class narrowed to PostgreSQL GENERATED-ALWAYS-AS-STORED column DDL under vitest forks-worker** (bisect + statement-split tests on 2026-05-28). Whole-file `sql.raw(text)` mode hangs in 013_audit_sharding.sql (which has multiple `ALTER TABLE resources ADD COLUMN ... GENERATED ALWAYS AS (...) STORED` statements). Statement-by-statement mode reaches migration 010_phase2_tier3_terminology_context.sql statement #20 (also an `ALTER TABLE resources ADD COLUMN grp_actual TEXT GENERATED ALWAYS AS ...`) — took 8731ms then a subsequent stmt hung. The exact statement class always involves a STORED-mode generated column on `resources`. Standalone Node script applies all 88 migrations in ~600ms with no slow points, so this is a vitest-forks-worker × pg-driver × GENERATED-column interaction, not a Postgres-level bug. Falsified hypotheses (will not re-test): (A) dedicated short-lived pool — no help; (B) bulk vs per-statement application — both hang. Next hypotheses to try: (D) force pg`s extended query protocol via `query()` instead of `query.execute()`; (E) wrap each generated-column ALTER with an explicit `SET statement_timeout = 10000` so the hang surfaces as an error rather than blocking; (F) try pool=threads instead of pool=forks in vitest config — threads share the parent`s event loop and may not exhibit the same backpressure; (G) try testcontainers Postgres instead of dev.ps1 Postgres to rule out a host-Postgres-version interaction."
+            "Followup (non-blocking): add a no-DB drift-guard test asserting the committed cernia-schema-snapshot.sql is in sync with packages/storage/src/migrations/*.sql (e.g. an embedded migrations hash), so a new migration can't silently leave the snapshot stale.",
+            "Followup (non-blocking): seed schema_migrations rows in the template so a clone reports as fully-migrated (today the snapshot is schema-only, so schema_migrations exists but is empty — the contract is 'don't re-run migrations on a clone')."
           ],
           "history": [
+            {
+              "date": "2026-05-29",
+              "stage": "harness",
+              "from": "partial",
+              "to": "complete",
+              "note": "ra-cit-harness-1 RESOLVED. Re-diagnosed (iter 110) with side-channel pg_stat_activity instrumentation: the prior 'GENERATED × pg-driver × vitest worker' root-cause class was WRONG. It is NOT a hang — the migration backend is `active` on wait_event=IO:DataFileImmediateSync (synchronous fsync of relation rewrites from dozens of `ALTER TABLE resources ADD COLUMN ... GENERATED ALWAYS AS STORED`); the fresh 87-migration run is genuinely ~60-90s (slower with fsync=on) and only LOOKED like a hang vs vitest's 5s default timeout. The 'standalone ~600ms' baseline was a false comparison (idempotent no-op re-run). FIX (iter 111): createMigratedDatabaseFixture() in packages/testing-real-services/src/postgres-fixture.ts — builds a shared template DB ONCE by replaying a committed end-state schema snapshot (cernia-schema-snapshot.sql via scripts/generate-schema-snapshot.mjs; 479 inline GENERATED columns, 0 ADD COLUMN → rewrite-free ~30s build) under an advisory lock with atomic staging-rename, then clones it per test via CREATE DATABASE ... TEMPLATE (~60ms). New test passes (tables>30, schema_migrations present, resources empty, clone isolation, clone<10s). Unblocks cit-p2 + ra-cit-stubs pg-mem migration + cit-closure-passes."
+            },
             {
               "date": "2026-05-26",
               "stage": "harness",
