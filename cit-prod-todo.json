@@ -11,11 +11,11 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": null,
-    "title": "def-todo-comments CLOSED (todo-comment audit kind = 0). Next: docstring-caveat bucket (211) or remaining-track-bullets.",
-    "category": "Kind: todo-comment",
-    "startedAt": "2026-05-29T00:50:00Z",
-    "evidence": "/loop iteration 108 — CLOSED def-todo-comments. Final 4 markdown references reworded: (1) docs/architecture/adrs/0020-audit-at-scale.md:260 — stale ref to the audit.ts '// TODO(W3-A integration)' comment (already reworded in iter 107) updated to describe the new 'W3-A integration followup' note. (2) docs/architecture/adrs/0134-cert-transparency.md:127 — stale ref to ct-monitor.ts '// TODO(wave-BB)' (reworded iter 102) updated to 'wave-BB followup scheduler-contract note'. (3) docs/issue-log.md:632 I-227 (a RESOLVED issue) — rephrased the quoted '// TODO: I-XXX' marker as 'placeholder comment pointing at a non-existent issue id (I-XXX)' to keep the historical record faithful without the literal trigger. (4) tests/e2e/tenant-lifecycle/README.md — renamed the 'TODO' status-label convention to 'PLANNED' across all 3 references (lines 14/85/116). Audit: total 686 → 682 (-4); todo-comment 4 → 0. todo-comment KIND is now fully cleared. Doc-only edits, zero typecheck impact."
+    "id": "ra-tts-4",
+    "title": "ra-tts-4 voiceId-routing followup — PerTenantTtsRouter applies per-tenant voice id override",
+    "category": "remaining-track-bullets / external-integrations / tts-backend",
+    "startedAt": "2026-05-29T00:58:00Z",
+    "evidence": "/loop iteration 109 — SHIPPED real code + tests. Closed the per-tenant voiceId-routing followup I created when closing ra-tts-4 in iter 105. PerTenantTtsRouter (apps/api/src/per-tenant-tts-router.ts) now applies a per-tenant voice id override: in synthesize(), when the tenant secret resolved source='tenant', TtsOpts.voiceId is overridden with the secret's metadata.defaultVoiceId (preferred) or vendorAccountId (fallback) before delegating to the per-tenant ElevenLabs backend. Default fall-through (no tenant secret / platform-env) preserves the caller's persona voiceId unchanged. The override is stored in CacheEntry.voiceIdOverride and refreshed on every resolve, so an operator updating only the voice id (same API key, no rotation) takes effect on the next call. 6 new unit tests added (15 total in the file, all pass): (1) metadata.defaultVoiceId override applied; (2) vendorAccountId fallback when metadata absent; (3) metadata.defaultVoiceId preferred over vendorAccountId when both present; (4) no-override preserves caller voiceId; (5) default-fallthrough preserves caller voiceId; (6) same-key voice-id refresh updates the override without rebuilding the backend. apps/api typecheck: 3 pre-existing carry-forward errors (admin-tenants-routes), zero in per-tenant-tts-router. production-readiness.json :: external-integrations/tts-backend — voiceId followup bullet removed from remaining[] (1 bullet left: cross-pod persona Organization.extension write-through), new 2026-05-29 history entry added. This was a 'remaining-track-bullets' pick, not a deferred-items reword."
   },
   "categories": [
     {

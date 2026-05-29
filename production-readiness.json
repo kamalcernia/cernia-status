@@ -948,10 +948,14 @@
             "summary": "ElevenLabsFetchTransport production adapter shipped in apps/api/src/elevenlabs-fetch-transport.ts. Uses Node 22 native fetch with xi-api-key header + streaming ReadableStream body iteration. boot path wires ElevenLabsTtsBackend when CERNIA_SPEECH_TTS=elevenlabs + ELEVENLABS_API_KEY are set; falls back to stub TTS with warn log otherwise. 8 new unit tests cover factory shape, streaming multi-chunk assembly, HTTP 4xx error propagation, null body guard, and close idempotency. api typecheck clean."
           },
           "remaining": [
-            "Followup: write persona through to Organization.extension[voice-agent-persona] so the voice-call-handler tenant resolver sees the update across pods (today the PATCH is process-local — single-pod safe).",
-            "Followup (per-tenant voiceId routing): the per-tenant TTS router (apps/api/src/per-tenant-tts-router.ts) routes the API key per tenant but does NOT yet override the voiceId — that still comes from the tenant persona via voice-call-handler.ts. When tenant_secrets.metadata.defaultVoiceId is populated, the TtsOpts.voiceId on synthesize() should prefer that override (per-secret) over the persona default."
+            "Followup: write persona through to Organization.extension[voice-agent-persona] so the voice-call-handler tenant resolver sees the update across pods (today the PATCH is process-local — single-pod safe)."
           ],
           "history": [
+            {
+              "date": "2026-05-29",
+              "stage": "tts-backend",
+              "note": "ra-tts-4 voiceId-routing followup closed — PerTenantTtsRouter now applies a per-tenant voice id override. On each synthesize() call, when the tenant secret resolved source='tenant', the router overrides TtsOpts.voiceId with the secret's metadata.defaultVoiceId (preferred) or vendorAccountId (fallback) before delegating to the per-tenant ElevenLabs backend; default fall-through preserves the caller's persona voiceId unchanged. The override is cached alongside the backend in CacheEntry.voiceIdOverride and refreshed on each resolve so an operator updating only the voice id (same API key) takes effect without a key rotation. 6 new unit tests (15 total): metadata.defaultVoiceId override, vendorAccountId fallback, metadata-preferred-over-vendorAccountId, no-override preserves caller voiceId, default-fallthrough preserves caller voiceId, same-key voice-id refresh. apps/api typecheck clean (3 pre-existing carry-forward errors only). Files: apps/api/src/per-tenant-tts-router.ts + .test.ts."
+            },
             {
               "date": "2026-05-28",
               "stage": "tts-backend",
