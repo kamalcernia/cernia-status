@@ -1475,7 +1475,13 @@
             "summary": "scripts/saas-conformance.mjs shipped. 0 blocker-severity violations across 6 architecture invariants (migration tenant_id, query tenant filter, ops PHI boundary, no PHI in logs, BAA enforcement, three-app boundary). 384 in-process-stub usages tagged tech-debt — Phase 2 abolition target."
           },
           "evidence": [],
-          "remaining": []
+          "remaining": [],
+          "history": [
+            {
+              "date": "2026-05-28",
+              "note": "Regression closure: migration-tenant-id (7 violations) + query-tenant-filter (2→3 violations, line 363 surfaced after first fix) cleared back to 0/0. Tenant-scoped tables (usage_dedupe in 079, invoice_failures in 080, pharmacy_status_events in 083, hanging_protocols in 084, llm_trace_spans in 091) gained a tenant_id column + covering index in their CREATE TABLE; backfill carried in new packages/storage/src/migrations/096_add_tenant_id_to_existing_tables.sql (DEFAULT 'platform' → DROP DEFAULT pattern). Genuinely platform-scoped tables (invoice_discounts, enterprise_accounts) added to PLATFORM_SCOPED_TABLES whitelist in scripts/saas-conformance.mjs. Edge-fleet SELECT-by-id sites (apps/api/src/edge-fleet-routes.ts lines 303, 363, 499) gained the missing .where('tenant_id','=',tenantId). Follow-up tracked here: PostgresUsageStore / PostgresInvoiceStore / PostgresStatusStore / PostgresHangingProtocolStore / PostgresTraceStore must thread tenant_id through their writes once Agent-A's branch lands, otherwise inserts will violate the NOT NULL constraint after the DEFAULT is dropped."
+            }
+          ]
         },
         {
           "id": "harness",
