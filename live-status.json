@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-29T16:09:18.784Z",
-    "lastUpdatedDisplay": "May 29, 2026 — 12:09 EDT",
+    "lastUpdatedIso": "2026-05-29T16:13:59.451Z",
+    "lastUpdatedDisplay": "May 29, 2026 — 12:13 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #173 feat(admin): sensitive-data routes + UI swap (phas"
   },
   "summary": {
-    "currentMainCommit": "e81d4b3c",
+    "currentMainCommit": "f20e4667",
     "currentTagOnMain": "audit-baseline-2026-05-29 🏁",
-    "agentsCompletedThisSession": 339,
+    "agentsCompletedThisSession": 346,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "339 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "346 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #173 feat(admin): sensitive-data routes + UI swap (phase-3-6 bull. (refreshed May 29, 2026 — 12:09 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #173 feat(admin): sensitive-data routes + UI swap (phase-3-6 bull. (refreshed May 29, 2026 — 12:14 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 13 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-05-29T08:50:44-04:00",
+      "lastMergeIso": "2026-05-29T11:58:30-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 4,
       "openPrs": 11,
@@ -4480,7 +4480,7 @@
       "wave": "INGEST",
       "detail": "regenerate lockfile + record Machine-B stub-abolition ingest",
       "commit": "f20e4667",
-      "freshSeconds": 6
+      "freshSeconds": 282
     }
   },
   "pool": {
@@ -4602,14 +4602,44 @@
   ],
   "recentCompletions": [
     {
+      "agent": "regenerate lockfile + record Machine-B stub-abolition ingest",
+      "commit": "f20e4667",
+      "kind": "chore"
+    },
+    {
+      "agent": "Machine-B Cluster B — bulk-export/extension-runtime/data-governance...",
+      "commit": "1d88e72f",
+      "kind": "merge"
+    },
+    {
+      "agent": "Machine-B Cluster A — f1-f5 InMemory→Postgres adapters + migrations...",
+      "commit": "8607761a",
+      "kind": "merge"
+    },
+    {
+      "agent": "Postgres/MinIO adapters for platform leaf stubs (Cluster B)",
+      "commit": "d03c0090",
+      "kind": "feat"
+    },
+    {
       "agent": "Phase 3 — build + bounded real-services test green (isolated)",
       "commit": "e81d4b3c",
       "kind": "docs"
     },
     {
+      "agent": "Postgres adapters for f3, f4 stubs (Cluster A batch 2)",
+      "commit": "f81d00ea",
+      "kind": "feat"
+    },
+    {
       "agent": "Phase 4 built-vs-wired integration audit",
       "commit": "48d07de5",
       "kind": "docs"
+    },
+    {
+      "agent": "Postgres adapters for f1, f2, f5 stubs (Cluster A batch 1)",
+      "commit": "497c1cbf",
+      "kind": "feat"
     },
     {
       "agent": "ci(guardrail): scheduled branch-coverage audit (CIT Phase 5)",
@@ -4627,6 +4657,11 @@
       "kind": "chore"
     },
     {
+      "agent": "open Machine-B session log — decisions, env, migration allocation",
+      "commit": "c47603b1",
+      "kind": "chore"
+    },
+    {
       "agent": "open Machine-B handoff — reserve migrations 100–149 + stub-abolitio...",
       "commit": "db07b3ef",
       "kind": "chore"
@@ -4640,41 +4675,6 @@
       "agent": "agent-B feat/saas-conformance-cleanup — tenant_id backfill + confor...",
       "commit": "a94228cc",
       "kind": "merge"
-    },
-    {
-      "agent": "close the last failing package — apps/admin typecheck 17→0",
-      "commit": "7f532659",
-      "kind": "fix"
-    },
-    {
-      "agent": "repo-wide typecheck sweep — apps/admin is the sole failing package ...",
-      "commit": "bfe65306",
-      "kind": "docs"
-    },
-    {
-      "agent": "add lost-source detector + confirm the carry-forward class is conta...",
-      "commit": "75100ccf",
-      "kind": "chore"
-    },
-    {
-      "agent": "reconstruct admin-tenants lifecycle CRUD routes — apps/api typechec...",
-      "commit": "4ca7e2c5",
-      "kind": "fix"
-    },
-    {
-      "agent": "tenant-secret carry-forward fixed (13/16 apps/api errors); admin-te...",
-      "commit": "dc764add",
-      "kind": "docs"
-    },
-    {
-      "agent": "restore missing tenant-secret sources (clears 13 of 16 apps/api typ...",
-      "commit": "e1ca8513",
-      "kind": "fix"
-    },
-    {
-      "agent": "close cit-p2 + ra-cit-stubs-3 — in-process stubs abolished",
-      "commit": "d2fc3e7a",
-      "kind": "docs"
     }
   ],
   "failures": [
@@ -11711,15 +11711,15 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 6,
-    "origin/feat/elevenlabs-tts-wiring@e81d4b3c821b": 0,
+    "origin/feat/elevenlabs-tts-wiring@f20e46672e7c": 0,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
     "origin/feat/local-demo-trust-image@88c1776c9293": 0,
     "origin/feat/local-dev-compose-phase-a@15462cd8da22": 0,
     "origin/feat/local-smoke-test@7d324fb3d240": 0,
-    "origin/feat/mb-dunning-stores@f81d00eae3df": 64,
-    "origin/feat/mb-platform-stores@d03c00909a1c": 31,
+    "origin/feat/mb-dunning-stores@f81d00eae3df": 0,
+    "origin/feat/mb-platform-stores@d03c00909a1c": 0,
     "origin/feat/saas-conformance-cleanup@758cab946519": 8,
     "origin/feat/sensitive-data-routes@92780a57ad67": 12,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 4,
@@ -12300,15 +12300,15 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 2,
-    "origin/feat/elevenlabs-tts-wiring@e81d4b3c821b": 0,
+    "origin/feat/elevenlabs-tts-wiring@f20e46672e7c": 0,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
     "origin/feat/local-demo-trust-image@88c1776c9293": 0,
     "origin/feat/local-dev-compose-phase-a@15462cd8da22": 0,
     "origin/feat/local-smoke-test@7d324fb3d240": 0,
-    "origin/feat/mb-dunning-stores@f81d00eae3df": 15,
-    "origin/feat/mb-platform-stores@d03c00909a1c": 7,
+    "origin/feat/mb-dunning-stores@f81d00eae3df": 0,
+    "origin/feat/mb-platform-stores@d03c00909a1c": 0,
     "origin/feat/saas-conformance-cleanup@758cab946519": 0,
     "origin/feat/sensitive-data-routes@92780a57ad67": 2,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 1,
@@ -12889,15 +12889,15 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
-    "origin/feat/elevenlabs-tts-wiring@e81d4b3c821b": true,
+    "origin/feat/elevenlabs-tts-wiring@f20e46672e7c": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
     "origin/feat/local-demo-patient-image@90299849c309": true,
     "origin/feat/local-demo-trust-image@88c1776c9293": true,
     "origin/feat/local-dev-compose-phase-a@15462cd8da22": true,
     "origin/feat/local-smoke-test@7d324fb3d240": true,
-    "origin/feat/mb-dunning-stores@f81d00eae3df": false,
-    "origin/feat/mb-platform-stores@d03c00909a1c": false,
+    "origin/feat/mb-dunning-stores@f81d00eae3df": true,
+    "origin/feat/mb-platform-stores@d03c00909a1c": true,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
