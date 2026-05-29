@@ -12,10 +12,9 @@
   },
   "currentTask": {
     "id": null,
-    "title": "Machine-A: prepping batch-2 handoff to Machine-B (real-services integration-test coverage, ~34 feature packages, isolated worktree) + apps/api boot-wiring of batch-1 adapters next.",
-    "category": "remaining-track-bullets / comprehensive-integration-testing / backend-tested",
-    "startedAt": "2026-05-29T13:00:00Z",
-    "evidence": "Batch-1 ingested to main @ f20e4667 (verified). Batch-2 handoff prepared with batch-1 lessons designed out: Machine-B works in a Machine-A-pre-created+verified worktree (MEDPLUM/cernia-mb2 on feat/mb2-integration-tests off f20e4667), NEVER the shared cernia-fhir checkout (root cause of the batch-1 collision); ONE branch (no cross-branch lockfile/handoff conflict); NO migrations (test-only — numbers 100-131 used). Scope: add *.integration.test.ts (real Postgres/MinIO via @cernia/testing-real-services) to ~34 feature packages with DB code but no real-services coverage (admin-role-matrix, audit-posture, cds-hooks, erx-service, finops, caregiver-proxy, i1/i3/i4/i6 support, j1b, k1a/k2/k4/k5, l2/l4/l6, m1-m6, marketplace, notifications, o4/o6, onboarding, ops-maturity, p1c, q-s2/q-s4, reporting, s5/s6/s7) — judgment-based, no make-work. Boundary + brief in docs/status/handoff-machineB2-log.md. Machine-A keeps apps/** (incl. boot-wiring batch-1 adapters), status JSONs, scripts, CI, and core/auth/billing/cernia-ops/storage/config/observability/inference-platform."
+    "title": "Machine-A: f1 usage-threshold-detector mounted END-TO-END into apps/api (HTTP → ThresholdDetectorApi → 5 Postgres stores), verified vs real Postgres. Idle — awaiting Machine-B batch-2 (feat/mb2-integration-tests) to ingest.",
+    "startedAt": "2026-05-29T12:45:00Z",
+    "evidence": "NEW apps/api/src/usage-threshold-routes.ts: buildThresholdDetectorApi(db) constructs the 5 Postgres stores (PostgresUsage/Rules/Suppression/Notification/PreferencesStore from migrations 100-104) + 5 engines (UsageTracker, ThresholdRulesManager, RulesEngine, NotificationDispatcher, AnomalyDetector) + ThresholdDetectorApi; usageThresholdRoutes plugin exposes 3 tenant-scoped endpoints (GET /admin/usage-threshold/rules, GET .../notifications, POST .../evaluate) via X-Cernia-Tenant header. Wired into apps/api/src/index.ts (db-guarded app.register) + added @cernia/f1-usage-threshold-detector workspace dep. Verified ADR-0127: pnpm --filter @cernia/api typecheck=0, lint=0 (new files; 217 pre-existing carry-forward), build=0, and NEW usage-threshold-routes.integration.test.ts = 4/4 PASS against real Postgres (dedicated :5434, bootstrapSql=migrations 100-104, per-test schema isolation) proving the HTTP→engine→Postgres round-trip + 400 tenant-gating."
   },
   "categories": [
     {
