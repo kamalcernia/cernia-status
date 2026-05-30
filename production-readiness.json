@@ -1513,7 +1513,7 @@
           },
           "evidence": [],
           "remaining": [
-            "Followup (non-blocking): add a no-DB drift-guard test asserting the committed cernia-schema-snapshot.sql is in sync with packages/storage/src/migrations/*.sql (e.g. an embedded migrations hash), so a new migration can't silently leave the snapshot stale.",
+            "Followup (non-blocking): REGENERATE cernia-schema-snapshot.sql — it is STALE (52 of 126 migration-created tables; 74 current tables added since it was generated are missing, e.g. alerts, cost_ledger, dunning_*, enterprise_accounts, erx_prescriptions). Since it is the createMigratedDatabaseFixture() clone template, any test using the fast-clone path that touches a post-snapshot table would get a DB missing it. Re-run scripts/generate-schema-snapshot.mjs against a fully-migrated DB, then add the reverse guard (migrations ⊆ snapshot). The forward guard (snapshot ⊆ migrations — catches lost migrations like 046_tenant_secrets) SHIPPED 2026-05-30 in packages/testing-real-services/src/migration-drift-guard.test.ts.",
             "Followup (non-blocking): seed schema_migrations rows in the template so a clone reports as fully-migrated (today the snapshot is schema-only, so schema_migrations exists but is empty — the contract is 'don't re-run migrations on a clone')."
           ],
           "history": [

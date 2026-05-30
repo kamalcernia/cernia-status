@@ -12,9 +12,9 @@
   },
   "currentTask": {
     "id": null,
-    "title": "Machine-A: closed the per-tenant ML model registry gap (cross-tenant isolation) — PerTenantModelRegistry + Postgres per-tenant stores. Idle.",
-    "startedAt": "2026-05-30T16:45:00Z",
-    "evidence": "apps/api/src/ml-platform-routes.ts: PerTenantModelRegistry lazily builds + caches one TrackedModelRegistry per tenant id (PostgresModelRegistryStore({db,tenantId}) in prod, per-tenant InMemory otherwise), seeded idempotently; all 6 /admin/ml routes resolve X-Cernia-Tenant before touching the registry. buildMlPlatformRuntime now takes {db?,buildStore?,runner?}; boot (apps/api/src/index.ts) passes db. Fixes a cross-tenant data-isolation defect (was a single process-wide in-memory registry shared across ALL tenants — CLAUDE.md invariant #1). Tested vs real Postgres :5434: ml-platform-routes.integration.test.ts bootstraps real 019_ml_model_registry.sql — tenant A's model invisible to tenant B (discovery + 404 on direct lookup + direct DB tenant_id assertion). 3 new + 18 existing tests = 21/21. ADR-0127: typecheck=0, build=0, new-file lint=0. Committed + FF main. Mirrors PerTenantTtsRouter/SttRouter/TwilioVoiceRouter."
+    "title": "Machine-A: shipped a no-DB migration drift-guard test (every schema-snapshot table must have a creating migration — the lost-migration class that hit 046_tenant_secrets). Surfaced that the snapshot is stale (52/126 tables) → flagged regeneration. Idle.",
+    "startedAt": "2026-05-30T17:00:00Z",
+    "evidence": "packages/testing-real-services/src/migration-drift-guard.test.ts — pure file-parse (no Docker), asserts snapshotTables ⊆ migrationCreatedTables so a deleted/renamed/lost migration whose table still lives in cernia-schema-snapshot.sql fails CI with the table name (exactly the 046_tenant_secrets failure class). 2/2 pass; @cernia/testing-real-services typecheck=0. While verifying, found the snapshot is STALE (52 of 126 migration-created tables; 74 current tables — alerts, cost_ledger, dunning_*, enterprise_accounts, erx_prescriptions — missing since it is the createMigratedDatabaseFixture clone template); narrowed the Phase 1 harness remaining bullet to call for snapshot regeneration + the reverse guard, and spawned a follow-up task. Committed + FF main."
   },
   "categories": [
     {
