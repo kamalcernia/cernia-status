@@ -1253,7 +1253,7 @@
           },
           "remaining": [
             "Persist BiasReport + ApprovalRequest per tenant (SaMD Model Card persistence SHIPPED 2026-05-30 — ai_governance_model_cards migration 133 + PostgresModelCardStore; POST /admin/ai-governance/model-cards/$generate now persists + returns an id, GET list/:id read back per-tenant. The /admin/ai-governance dashboard + SaMD wizard are live; classification ruleset wired. BiasReport + ApprovalRequest cross-tenant persistence are the remaining gap).",
-            "Sensitive-data follow-up: dedicated `legal_holds` Postgres table (currently surfaced via rbac_audit_events policy-changed meta-audit only — see apps/api/src/sensitive-data-routes.ts), full paginated list endpoints for proxies / break-glass / legal-holds (today only counts + recent[] cap-100 are exposed), and reviewer-write-back on break-glass events.",
+            "Sensitive-data follow-up: dedicated `legal_holds` Postgres table (currently surfaced via rbac_audit_events policy-changed meta-audit only — see apps/api/src/sensitive-data-routes.ts) + reviewer-write-back on break-glass events. Full paginated list endpoints SHIPPED 2026-05-30 — GET .../break-glass-events/list, .../legal-holds/list, .../proxy-grants/list (offset/limit, total + hasMore, tenant-isolated, admin-gated) close the 'only counts + recent[] cap-100' gap.",
             "Plugin UPLOAD flow (.cernia-plugin archive ingest via @cernia/extension-runtime package-loader + signature verification) — the manifest-based per-tenant install record + validation shipped 2026-05-30 (tenant_plugin_installations); accepting + unpacking the signed archive is the remaining piece."
           ],
           "history": [

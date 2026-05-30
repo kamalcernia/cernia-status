@@ -12,9 +12,9 @@
   },
   "currentTask": {
     "id": null,
-    "title": "Machine-A: shipped per-tenant SaMD Model Card persistence (ai_governance_model_cards migration 133 + PostgresModelCardStore + $generate-persists + list/get on ai-governance routes, tenant-isolated). Idle.",
-    "startedAt": "2026-05-30T17:25:00Z",
-    "evidence": "ai-governance stage. migration 133_ai_governance_model_cards.sql (PK tenant_id+id, card jsonb + markdown); apps/api/src/model-card-store.ts (PostgresModelCardStore save/list/get, tenant-scoped); ai-governance-routes.ts gained {db}: $generate now persists the generated FDA/IMDRF Model Card (was discarded) + returns id, plus GET /admin/ai-governance/model-cards (per-tenant) + GET :id; index.ts boot passes db. Tested vs real Postgres :5434: ai-governance-model-cards.integration.test.ts bootstraps real migration 133 — persists+returns id, list+get, per-tenant isolation (B sees 0 + 404 on A's id), unknown-id 404, invalid-body 400-no-row. 4 new + 12 existing = 16/16. ADR-0127: typecheck=0, build=0, new files lint=0. Committed + FF main. Remaining ai-governance: BiasReport + ApprovalRequest persistence."
+    "title": "Machine-A: shipped sensitive-data paginated full-list endpoints (break-glass/legal-holds/proxy-grants — offset/limit, tenant-isolated, admin-gated). Idle.",
+    "startedAt": "2026-05-30T17:35:00Z",
+    "evidence": "apps/api/src/sensitive-data-routes.ts gained GET .../break-glass-events/list, .../legal-holds/list, .../proxy-grants/list — offset/limit pagination (total + hasMore) over the existing rbac_audit_events + caregiver_proxy_relationships tables, closing the 'only counts + recent[] cap-100' gap. Purely additive reads (no new table, no write-path change); gateAdmin + parsePagination helpers added. Tested vs real Postgres :5434: sensitive-data-list.integration.test.ts bootstraps real migrations 077+049, seeds tenant A (3 break-glass / 2 legal-hold / 2 proxy) + tenant B — proves pagination (limit=2 → hasMore page boundary), placed/released mapping, per-tenant isolation (B sees only its own), 401/403 gate. 5 new + 8 existing = 13/13. ADR-0127: typecheck=0, build=0, changed file lint=0. Committed + FF main. Remaining sensitive-data: dedicated legal_holds table + reviewer-write-back."
   },
   "categories": [
     {
