@@ -12,9 +12,9 @@
   },
   "currentTask": {
     "id": null,
-    "title": "Machine-A: closed ra-tel-1 — per-tenant TwilioVoiceBackend via TenantSecretResolver + recreated lost migration 046_tenant_secrets.sql. telephony-backend stage now 100% (all 4 ra-tel bullets done). Idle.",
-    "startedAt": "2026-05-30T16:00:00Z",
-    "evidence": "apps/api/src/per-tenant-twilio-router.ts (PerTenantTwilioVoiceRouter) resolves TenantSecretResolver.resolve(tenantId,'twilio') per outbound call (Account SID=vendorAccountId, Auth Token=plaintext) → lazily-cached, rotation-aware per-tenant TwilioVoiceBackend; wired as outboundBackend in apps/api/src/index.ts (inbound twilio field stays concrete — router has no _dispatchInbound). Recreated lost packages/storage/src/migrations/046_tenant_secrets.sql (045→047 gap; table survived only in cernia-schema-snapshot.sql). Tested vs real Postgres :5434: per-tenant-twilio-router.integration.test.ts bootstraps the real 046 + seeds via KyselyTenantSecretStore+TenantSecretResolver — 5/5 (per-tenant isolation, default fall-through, cache+rotation). ADR-0127: apps/api typecheck=0, build=0, new-file lint=0, telephony-routes+boot-dedup+dev-auth 25/25. Committed + FF main."
+    "title": "Machine-A: closed ra-stt-3 — per-tenant Deepgram STT via PerTenantSpeechCredentials (twin of ra-tts-4/ra-tel-1). External-integrations voice path (Twilio + Deepgram + ElevenLabs) is now fully per-tenant. Idle.",
+    "startedAt": "2026-05-30T16:20:00Z",
+    "evidence": "apps/api/src/per-tenant-stt-router.ts (PerTenantSttRouter) resolves PerTenantSpeechCredentials.resolveDeepgram(tenantId) per openStream → lazily-cached, rotation-aware per-tenant DeepgramSttBackend; wired in apps/api/src/index.ts initialiseVoiceCallStack gated on CERNIA_SPEECH_STT=deepgram + tenantSecretResolver. Tested vs real Postgres :5434: per-tenant-stt-router.integration.test.ts bootstraps recovered 046_tenant_secrets.sql + seeds via KyselyTenantSecretStore+TenantSecretResolver — 4/4 (isolation, default fall-through, cache+rotation). ADR-0127: apps/api typecheck=0, build=0, new-file lint=0. Committed + FF main. Remaining ra-stt bullet (nightly real-Deepgram fixtures) is procurement-blocked on a Deepgram prod key + BAA."
   },
   "categories": [
     {
@@ -667,8 +667,9 @@
           "id": "ra-stt-3",
           "track": "external-integrations/stt-backend",
           "title": "Wire into apps/api voice-call-handler so STT frames forward into dialog engine",
-          "status": "todo",
-          "completionMode": null
+          "status": "done",
+          "completionMode": "shipped-tested-real-postgres",
+          "evidence": "apps/api/src/per-tenant-stt-router.ts (PerTenantSttRouter) wraps the boot STT backend; on each openStream() resolves PerTenantSpeechCredentials.resolveDeepgram(tenantId) (ra-stt-2 helper) → lazily-cached, rotation-aware per-tenant DeepgramSttBackend so STT runs on the tenant's own Deepgram account; falls through to platform default otherwise. Wired in apps/api/src/index.ts initialiseVoiceCallStack gated on CERNIA_SPEECH_STT=deepgram + tenantSecretResolver. Twin of ra-tts-4/ra-tel-1. Tested vs real Postgres :5434: per-tenant-stt-router.integration.test.ts bootstraps the recovered 046_tenant_secrets.sql + seeds via KyselyTenantSecretStore+TenantSecretResolver — 4/4 (isolation, default fall-through, cache+rotation). ADR-0127: apps/api typecheck=0, build=0, new-file lint=0. Only the procurement-blocked nightly-real-Deepgram fixture run remains on the stt-backend stage."
         },
         {
           "id": "ra-stt-4",

@@ -916,10 +916,14 @@
             "summary": "DeepgramWsTransport production adapter shipped in apps/api/src/deepgram-ws-transport.ts. Uses ws npm package (already a dependency) with Authorization: Token header. Parses Results, SpeechStarted, UtteranceEnd, Error message types into DeepgramServerEvent. boot path wires DeepgramSttBackend when CERNIA_SPEECH_STT=deepgram + DEEPGRAM_API_KEY are set; falls back to stub STT with warn log otherwise. 13 new unit tests cover factory shape, JSON parsing (all event types), error resilience, and handler idempotency. api typecheck + full api test suite clean."
           },
           "remaining": [
-            "Wire the per-tenant credentials resolver into apps/api boot — the helper class (apps/api/src/per-tenant-speech-credentials.ts) ships ra-stt-2; what remains is making SpeechServiceFactory per-tenant-aware so that voice-call-handler resolves the Deepgram credential per call rather than reading a single global env var at startup.",
             "Commit real-Deepgram WAV+transcript fixtures + run the STT-accuracy goldens nightly against the production API (the scaffolding ships in @cernia/voice-agent-evals/stt; procurement-blocked on Deepgram production key + BAA)."
           ],
           "history": [
+            {
+              "date": "2026-05-30",
+              "stage": "stt-backend",
+              "note": "ra-stt-3 closed — STT is now per-tenant-aware. NEW apps/api/src/per-tenant-stt-router.ts (PerTenantSttRouter): wraps the boot-time STT backend and, on each openStream(), resolves PerTenantSpeechCredentials.resolveDeepgram(tenantId) (the ra-stt-2 helper over TenantSecretResolver) — when source==='tenant' it builds a lazily-cached, rotation-aware per-tenant DeepgramSttBackend so a tenant transcribes on — and is billed on — their own Deepgram account; otherwise it delegates to the platform default. Twin of the ra-tts-4 PerTenantTtsRouter / ra-tel-1 PerTenantTwilioVoiceRouter. Wired in apps/api/src/index.ts initialiseVoiceCallStack, gated on CERNIA_SPEECH_STT=deepgram + tenantSecretResolver (so a deployment with no platform Deepgram key still honours a per-tenant override). Tested vs real Postgres (:5434): apps/api/src/per-tenant-stt-router.integration.test.ts bootstraps the recovered 046_tenant_secrets.sql migration, seeds via KyselyTenantSecretStore+TenantSecretResolver — 4/4 (per-tenant isolation A≠B, platform-default fall-through, cache + rotation). ADR-0127: apps/api typecheck=0, build=0, new-file lint=0. Only the procurement-blocked nightly-real-Deepgram fixture run remains on this stage."
+            },
             {
               "date": "2026-05-28",
               "stage": "stt-backend",
