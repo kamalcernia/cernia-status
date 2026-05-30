@@ -12,9 +12,9 @@
   },
   "currentTask": {
     "id": null,
-    "title": "Machine-A: BOTH apps/api E2E blockers cleared on main — (#1) duplicate POST /Connection fixed (excludeInteractions knob) + (#2) env-gated dev-token seam (/dev/login). Machine-B batch-3 (per-wave authenticated E2E) is now fully unblocked.",
-    "startedAt": "2026-05-29T16:10:00Z",
-    "evidence": "NEW apps/api/src/dev-auth-routes.ts: POST /dev/login mints a bearer via the same jwtIssuer (KmsBackedJwtIssuer.sign) the IdentityProvider verifies, so Playwright can authenticate. HARD-GATED: registers nothing unless CERNIA_DEV_LOGIN=1 AND NODE_ENV!=production; handler re-checks at request time (fail-closed); loud boot warning when enabled. Wired into index.ts (db-guarded isDevLoginEnabled() registration, jwtIssuer in scope from buildJwtBootstrap). Verified ADR-0127: apps/api typecheck=0, lint=0 (new file), build=0, NEW dev-auth-routes.test.ts 5/5 (minted token round-trips through jwtIssuer.verify with requested tenant/roles/subject; 404 when flag off; 404 in production; 400 without tenantId; isDevLoginEnabled matrix). Follows the boot-dup fix (commit 28549293). OPS: never set CERNIA_DEV_LOGIN in prod/staging."
+    "title": "Machine-A: added the missing full-route-tree boot guard (apps/api/src/boot-route-dedup.test.ts) — closes the root-cause gap that let the duplicate POST /Connection outage ship. Idle; awaiting Machine-B batch-3 (feat/mb3-e2e-coverage) to ingest.",
+    "startedAt": "2026-05-29T16:35:00Z",
+    "evidence": "The Connection boot-dup shipped because NO test booted the full route tree (all apps/api tests use isolated app.inject on one plugin). NEW boot-route-dedup.test.ts builds the REAL resource registry (registerResources, all types) + createServer with apps/api’s actual excludeInteractions config + the dedicated Connection plugins (connectionRoutes + connectionReplayRoutes), then asserts ready() resolves; a negative control asserts ready() throws FST_ERR_DUPLICATED_ROUTE without the exclusion (proves the guard is load-bearing). 2/2 pass, typecheck=0, DB-free. Scope: guards the FHIR-resource-vs-dedicated-route collision class (the outage cause); a full all-plugins boot test awaits a buildApp() extraction from main(). Both apps/api E2E blockers (boot dup 28549293 + dev-token seam 5767030e) already on main; this hardens against recurrence."
   },
   "categories": [
     {
