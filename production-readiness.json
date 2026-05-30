@@ -1252,11 +1252,16 @@
             "summary": "Sample data eliminated, real data NOT yet present. 9 sample files deleted (ai-governance, compliance, cqm, edge-fleet, extensions, ig-profiles, migration, posture, sensitive-data). 40+ admin pages now render explicit 'Backend endpoint not yet shipped' empty-state cards — no fabricated data. Helper type files retained where the empty-state DTO shape is needed. Honest gap: ~25 work-days of backend endpoint + migration work remains before these pages can populate."
           },
           "remaining": [
-            "Persist SamdAssessment / BiasReport / ApprovalRequest FHIR resources per tenant (the /admin/ai-governance dashboard + SaMD wizard are live; classification ruleset is wired; cross-tenant persistence is the remaining gap).",
+            "Persist BiasReport + ApprovalRequest per tenant (SaMD Model Card persistence SHIPPED 2026-05-30 — ai_governance_model_cards migration 133 + PostgresModelCardStore; POST /admin/ai-governance/model-cards/$generate now persists + returns an id, GET list/:id read back per-tenant. The /admin/ai-governance dashboard + SaMD wizard are live; classification ruleset wired. BiasReport + ApprovalRequest cross-tenant persistence are the remaining gap).",
             "Sensitive-data follow-up: dedicated `legal_holds` Postgres table (currently surfaced via rbac_audit_events policy-changed meta-audit only — see apps/api/src/sensitive-data-routes.ts), full paginated list endpoints for proxies / break-glass / legal-holds (today only counts + recent[] cap-100 are exposed), and reviewer-write-back on break-glass events.",
             "Plugin UPLOAD flow (.cernia-plugin archive ingest via @cernia/extension-runtime package-loader + signature verification) — the manifest-based per-tenant install record + validation shipped 2026-05-30 (tenant_plugin_installations); accepting + unpacking the signed archive is the remaining piece."
           ],
           "history": [
+            {
+              "date": "2026-05-30",
+              "stage": "phase-3-6-specialized",
+              "note": "Per-tenant SaMD Model Card persistence shipped. NEW migration 133_ai_governance_model_cards.sql (PK (tenant_id,id), card jsonb + rendered markdown, samd_class CHECK). NEW apps/api/src/model-card-store.ts (PostgresModelCardStore: save/list/get, tenant-scoped). apps/api/src/ai-governance-routes.ts gained an optional {db}: POST /admin/ai-governance/model-cards/$generate now PERSISTS the generated card when db is wired (returns {id, persisted:true, card, markdown}, 201) instead of discarding it; without db it returns {persisted:false, card, markdown} (back-compat). NEW GET /admin/ai-governance/model-cards (list this tenant) + GET /admin/ai-governance/model-cards/:id (tenant-scoped, 404 otherwise). apps/api/src/index.ts boot passes { db }. Tested vs real Postgres (:5434): ai-governance-model-cards.integration.test.ts bootstraps the real 133 migration — $generate persists + returns id, list+get round-trip, per-tenant isolation (tenant B sees 0 + 404s on A's card id), unknown-id 404, invalid body still 400 with no row written. 4 new tests + existing 12 ai-governance tests green (16/16). ADR-0127: apps/api typecheck=0, build=0, new files lint=0. Remaining: BiasReport + ApprovalRequest persistence."
+            },
             {
               "date": "2026-05-30",
               "stage": "phase-3-6-specialized",

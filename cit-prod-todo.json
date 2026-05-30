@@ -12,9 +12,9 @@
   },
   "currentTask": {
     "id": null,
-    "title": "Machine-A: shipped per-tenant plugin install flow (tenant_plugin_installations migration 132 + PostgresPluginInstallationStore + install/list/uninstall routes on extensions-routes, manifest-validated + tenant-isolated). Idle.",
-    "startedAt": "2026-05-30T17:15:00Z",
-    "evidence": "Greenfield per-tenant install record (extensions stage). migration 132_tenant_plugin_installations.sql (PK tenant_id+plugin_urn); apps/api/src/plugin-installation-store.ts (PostgresPluginInstallationStore, tenant-scoped install/list/get/uninstall); extensions-routes.ts gained {db}-gated POST /admin/extensions/installations (validatePluginManifest → 400{failures}), GET list (per-tenant), POST $uninstall; index.ts boot passes db. Tested vs real Postgres :5434: extensions-installations.integration.test.ts bootstraps real migration 132 — install+list, per-tenant isolation (B sees 0 of A's), invalid-manifest 400, idempotent re-install upgrade, uninstall→404. 5 new + 5 existing catalog tests = 10/10. ADR-0127: apps/api typecheck=0, build=0, new files lint=0. Committed + FF main. Remaining extensions piece: signed .cernia-plugin archive upload/unpack."
+    "title": "Machine-A: shipped per-tenant SaMD Model Card persistence (ai_governance_model_cards migration 133 + PostgresModelCardStore + $generate-persists + list/get on ai-governance routes, tenant-isolated). Idle.",
+    "startedAt": "2026-05-30T17:25:00Z",
+    "evidence": "ai-governance stage. migration 133_ai_governance_model_cards.sql (PK tenant_id+id, card jsonb + markdown); apps/api/src/model-card-store.ts (PostgresModelCardStore save/list/get, tenant-scoped); ai-governance-routes.ts gained {db}: $generate now persists the generated FDA/IMDRF Model Card (was discarded) + returns id, plus GET /admin/ai-governance/model-cards (per-tenant) + GET :id; index.ts boot passes db. Tested vs real Postgres :5434: ai-governance-model-cards.integration.test.ts bootstraps real migration 133 — persists+returns id, list+get, per-tenant isolation (B sees 0 + 404 on A's id), unknown-id 404, invalid-body 400-no-row. 4 new + 12 existing = 16/16. ADR-0127: typecheck=0, build=0, new files lint=0. Committed + FF main. Remaining ai-governance: BiasReport + ApprovalRequest persistence."
   },
   "categories": [
     {
