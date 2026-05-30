@@ -12,9 +12,9 @@
   },
   "currentTask": {
     "id": null,
-    "title": "Machine-A: shipped a no-DB migration drift-guard test (every schema-snapshot table must have a creating migration — the lost-migration class that hit 046_tenant_secrets). Surfaced that the snapshot is stale (52/126 tables) → flagged regeneration. Idle.",
-    "startedAt": "2026-05-30T17:00:00Z",
-    "evidence": "packages/testing-real-services/src/migration-drift-guard.test.ts — pure file-parse (no Docker), asserts snapshotTables ⊆ migrationCreatedTables so a deleted/renamed/lost migration whose table still lives in cernia-schema-snapshot.sql fails CI with the table name (exactly the 046_tenant_secrets failure class). 2/2 pass; @cernia/testing-real-services typecheck=0. While verifying, found the snapshot is STALE (52 of 126 migration-created tables; 74 current tables — alerts, cost_ledger, dunning_*, enterprise_accounts, erx_prescriptions — missing since it is the createMigratedDatabaseFixture clone template); narrowed the Phase 1 harness remaining bullet to call for snapshot regeneration + the reverse guard, and spawned a follow-up task. Committed + FF main."
+    "title": "Machine-A: shipped per-tenant plugin install flow (tenant_plugin_installations migration 132 + PostgresPluginInstallationStore + install/list/uninstall routes on extensions-routes, manifest-validated + tenant-isolated). Idle.",
+    "startedAt": "2026-05-30T17:15:00Z",
+    "evidence": "Greenfield per-tenant install record (extensions stage). migration 132_tenant_plugin_installations.sql (PK tenant_id+plugin_urn); apps/api/src/plugin-installation-store.ts (PostgresPluginInstallationStore, tenant-scoped install/list/get/uninstall); extensions-routes.ts gained {db}-gated POST /admin/extensions/installations (validatePluginManifest → 400{failures}), GET list (per-tenant), POST $uninstall; index.ts boot passes db. Tested vs real Postgres :5434: extensions-installations.integration.test.ts bootstraps real migration 132 — install+list, per-tenant isolation (B sees 0 of A's), invalid-manifest 400, idempotent re-install upgrade, uninstall→404. 5 new + 5 existing catalog tests = 10/10. ADR-0127: apps/api typecheck=0, build=0, new files lint=0. Committed + FF main. Remaining extensions piece: signed .cernia-plugin archive upload/unpack."
   },
   "categories": [
     {
