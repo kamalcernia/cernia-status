@@ -875,8 +875,7 @@
             }
           ],
           "remaining": [
-            "Boot wiring in apps/api: construct TwilioVoiceBackend keyed by tenantId via TenantSecretResolver.resolve(tenantId, 'twilio').",
-            "Smoke test against the Twilio sandbox using one real test number."
+            "Boot wiring in apps/api: construct TwilioVoiceBackend keyed by tenantId via TenantSecretResolver.resolve(tenantId, 'twilio')."
           ],
           "history": [
             {
@@ -891,6 +890,11 @@
               "date": "2026-05-27",
               "stage": "telephony-backend",
               "note": "ra-tel-2 + ra-tel-3 closed. telephonyRoutes plugin (apps/api/src/telephony-routes.ts) registered in apps/api/src/index.ts section 10g-telephony — POST /telephony/twilio/voice (inbound HMAC-verified webhook with tenant lookup via PostgresTenantPhoneNumberStore), POST /telephony/twilio/status (status callback), POST /telephony/outbound (internal REST surface wrapping placeAuditedOutboundCall). Caller-id allowlist enforced via phoneNumbers.assertOwnedByTenant; OutboundSpoofError → 403 with call.spoof-attempt-blocked audit row. HMAC verification uses computeTwilioSignature from @cernia/notifications + constant-time compare. 5 new unit tests pass; full telephony-routes suite is 17/17 green."
+            },
+            {
+              "date": "2026-05-30",
+              "stage": "telephony-backend",
+              "note": "ra-tel-4 closed. Verified the Twilio integration against the REAL Twilio Test API using account-provided test credentials: a SIMULATED outbound call to the magic number +15005550006 via the package's buildTwilioVoiceClient + TwilioVoiceBackend returned a valid CallSid (no real call placed, $0). Added durable gated smoke test packages/telephony/src/backends/twilio-backend.sandbox.test.ts — runs against the real Test API when TWILIO_ACCOUNT_SID + TWILIO_AUTH_TOKEN are present (skips cleanly otherwise; CI maps TWILIO_TEST_* org secrets). Test creds live in gitignored apps/api/.env (never committed). Remaining ra-tel-1 (per-tenant TwilioVoiceBackend keyed via TenantSecretResolver) is unchanged — separate code task, not creds-blocked."
             }
           ]
         },

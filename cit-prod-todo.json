@@ -12,9 +12,9 @@
   },
   "currentTask": {
     "id": null,
-    "title": "Machine-A: fixed a SECOND apps/api boot dup (GET /grace/policy/:tenantId) — a regression my own f5 mount introduced, caught by Machine-B full-boot verification. apps/api boots clean again; Machine-B batch-3 unblocked (resume signal needed).",
-    "startedAt": "2026-05-30T12:20:00Z",
-    "evidence": "My f5 mount (4acd4fb2, grace-suspend-routes.ts) registered the full f5 surface incl. GET/PUT /grace/policy/:tenantId, colliding with the pre-existing platform-policies-routes.ts (GET/PUT/DELETE /grace/policy + /grace/policies, index.ts:1055). My isolated app.inject f5 test missed it for the SAME reason the Connection bug hid — no full boot. MB caught it (FST_ERR_DUPLICATED_ROUTE at grace-suspend-routes.js:44) and stopped. Fix: grace-suspend-routes filters /grace/policy/:tenantId from buildRouteSpecs (platform-policies owns the policy surface; f5 owns lifecycle: state/suspend/reactivate/suspended/bulk-suspend; lifecycle still READS policies via the shared store). Retargeted grace-suspend-routes.integration.test.ts (GET /grace/state, GET /grace/suspended, + 404-proof that /grace/policy is not registered here) — 3/3 vs real Postgres. EXTENDED boot-route-dedup.test.ts with a grace-family regression (platform-policies + grace-suspend register without collision) — now 3/3; this guard would have caught the bug. Verified ADR-0127: typecheck=0, lint=0, build=0."
+    "title": "Machine-A: closed ra-tel-4 — verified Twilio integration against the REAL Twilio Test API (user-provided test creds) + added a durable gated sandbox smoke test. Idle.",
+    "startedAt": "2026-05-30T14:20:00Z",
+    "evidence": "User provided Twilio TEST credentials (in gitignored apps/api/.env). Verified the credentials authenticate against real Twilio: a simulated outbound call to magic number +15005550006 via packages/telephony buildTwilioVoiceClient + TwilioVoiceBackend returned a valid CallSid (201, no real call, $0). Added packages/telephony/src/backends/twilio-backend.sandbox.test.ts — env-gated (runs when TWILIO_ACCOUNT_SID+TWILIO_AUTH_TOKEN present, skips otherwise): 1 passed with creds, 1 skipped without. Verified ADR-0127: telephony typecheck=0, build=0, sandbox test green, existing mocked twilio-backend.test.ts unaffected. production-readiness.json telephony-backend remaining narrowed (ra-tel-4 bullet removed; ra-tel-1 per-tenant wiring remains). No creds committed (.env gitignored)."
   },
   "categories": [
     {
@@ -644,7 +644,7 @@
           "id": "ra-tel-4",
           "track": "external-integrations/telephony-backend",
           "title": "Smoke test against Twilio sandbox using one real test number",
-          "status": "todo",
+          "status": "done",
           "completionMode": null
         },
         {
