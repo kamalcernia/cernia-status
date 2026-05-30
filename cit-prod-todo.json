@@ -12,9 +12,9 @@
   },
   "currentTask": {
     "id": null,
-    "title": "Machine-A: closed ra-tel-4 — verified Twilio integration against the REAL Twilio Test API (user-provided test creds) + added a durable gated sandbox smoke test. Idle.",
-    "startedAt": "2026-05-30T14:20:00Z",
-    "evidence": "User provided Twilio TEST credentials (in gitignored apps/api/.env). Verified the credentials authenticate against real Twilio: a simulated outbound call to magic number +15005550006 via packages/telephony buildTwilioVoiceClient + TwilioVoiceBackend returned a valid CallSid (201, no real call, $0). Added packages/telephony/src/backends/twilio-backend.sandbox.test.ts — env-gated (runs when TWILIO_ACCOUNT_SID+TWILIO_AUTH_TOKEN present, skips otherwise): 1 passed with creds, 1 skipped without. Verified ADR-0127: telephony typecheck=0, build=0, sandbox test green, existing mocked twilio-backend.test.ts unaffected. production-readiness.json telephony-backend remaining narrowed (ra-tel-4 bullet removed; ra-tel-1 per-tenant wiring remains). No creds committed (.env gitignored)."
+    "title": "Machine-A: closed ra-tel-1 — per-tenant TwilioVoiceBackend via TenantSecretResolver + recreated lost migration 046_tenant_secrets.sql. telephony-backend stage now 100% (all 4 ra-tel bullets done). Idle.",
+    "startedAt": "2026-05-30T16:00:00Z",
+    "evidence": "apps/api/src/per-tenant-twilio-router.ts (PerTenantTwilioVoiceRouter) resolves TenantSecretResolver.resolve(tenantId,'twilio') per outbound call (Account SID=vendorAccountId, Auth Token=plaintext) → lazily-cached, rotation-aware per-tenant TwilioVoiceBackend; wired as outboundBackend in apps/api/src/index.ts (inbound twilio field stays concrete — router has no _dispatchInbound). Recreated lost packages/storage/src/migrations/046_tenant_secrets.sql (045→047 gap; table survived only in cernia-schema-snapshot.sql). Tested vs real Postgres :5434: per-tenant-twilio-router.integration.test.ts bootstraps the real 046 + seeds via KyselyTenantSecretStore+TenantSecretResolver — 5/5 (per-tenant isolation, default fall-through, cache+rotation). ADR-0127: apps/api typecheck=0, build=0, new-file lint=0, telephony-routes+boot-dedup+dev-auth 25/25. Committed + FF main."
   },
   "categories": [
     {
