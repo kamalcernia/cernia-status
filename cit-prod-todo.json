@@ -620,9 +620,9 @@
           "id": "ra-tel-1",
           "track": "external-integrations/telephony-backend",
           "title": "Boot wiring in apps/api: TwilioVoiceBackend keyed by tenantId",
-          "status": "todo",
-          "completionMode": null,
-          "evidence": "Blocked on Twilio production account + per-tenant BAA."
+          "status": "done",
+          "completionMode": "shipped-tested-real-postgres",
+          "evidence": "apps/api/src/per-tenant-twilio-router.ts (PerTenantTwilioVoiceRouter) wraps the boot telephony backend; on each outbound call resolves TenantSecretResolver.resolve(tenantId,'twilio') — Account SID from vendorAccountId, Auth Token from plaintext — to build a lazily-cached, rotation-aware per-tenant TwilioVoiceBackend so a tenant originates + is billed on their own account. Wired in apps/api/src/index.ts initialiseVoiceCallStack: only outboundBackend is wrapped (inbound `twilio` field stays the concrete backend — router has no _dispatchInbound). ALSO recreated lost migration packages/storage/src/migrations/046_tenant_secrets.sql (source jumped 045→047; table survived only in cernia-schema-snapshot.sql — every tenant-secret read 500s without it). Tested vs real Postgres (:5434): per-tenant-twilio-router.integration.test.ts bootstraps the real 046 migration + seeds via KyselyTenantSecretStore+TenantSecretResolver — 5/5 pass (per-tenant isolation A≠B, platform-default fall-through for unconfigured + token-without-SID, cache + rotation). ADR-0127: apps/api typecheck=0, build=0, new file lint=0 (index.ts lint errors all pre-existing/unrelated), telephony-routes+boot-dedup+dev-auth 25/25 green. Note: ra-tel-1 was NOT actually blocked on a Twilio prod account/BAA — it is the per-tenant resolution mechanism, testable with seeded creds."
         },
         {
           "id": "ra-tel-2",
