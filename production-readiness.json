@@ -961,10 +961,13 @@
             "asOf": "2026-05-25",
             "summary": "ElevenLabsFetchTransport production adapter shipped in apps/api/src/elevenlabs-fetch-transport.ts. Uses Node 22 native fetch with xi-api-key header + streaming ReadableStream body iteration. boot path wires ElevenLabsTtsBackend when CERNIA_SPEECH_TTS=elevenlabs + ELEVENLABS_API_KEY are set; falls back to stub TTS with warn log otherwise. 8 new unit tests cover factory shape, streaming multi-chunk assembly, HTTP 4xx error propagation, null body guard, and close idempotency. api typecheck clean."
           },
-          "remaining": [
-            "Followup: write persona through to Organization.extension[voice-agent-persona] so the voice-call-handler tenant resolver sees the update across pods (today the PATCH is process-local — single-pod safe)."
-          ],
+          "remaining": [],
           "history": [
+            {
+              "date": "2026-05-30",
+              "stage": "tts-backend",
+              "note": "Cross-pod persona persistence CLOSED (the last tts-backend followup). Admin PATCH /api/voice-agent/persona now persists to voice_tenant_config.persona (migration 066) via PostgresVoiceTenantResolver.getPersona/setPersona — the SAME jsonb column the voice-call-handler resolver reads in rowToConfig(), so a persona edit is durable + visible to every pod's resolve(), not process-local. This SUPERSEDES the original Organization.extension[voice-agent-persona] followup target: the resolver does not read Organization.extension, it reads voice_tenant_config.persona, so writing to Organization.extension would never reach the call path. setPersona does a targeted UPDATE (leaves brand_name / escalation_phone / dialog_policy untouched) and returns false → PATCH 409 {error:'no-voice-config'} when the tenant has no base voice config (brand_name + escalation_phone are NOT NULL, so a persona can't precede the base row). personaStore wired in apps/api/src/index.ts (the PostgresVoiceTenantResolver is passed as personaStore when db is present; in-memory Map fallback retained for no-db / tests). 5 new real-Postgres integration tests + 8 existing resolver tests pass (13/13) against cernia-f1-test-pg:5434; apps/api typecheck clean; 7 pre-existing carry-forward lint errors only (verified identical via git-stash baseline — my additions introduce zero new lint errors). Files: apps/api/src/postgres-voice-tenant-resolver.ts (getPersona/setPersona), apps/api/src/voice-agent-admin-routes.ts (exported PersonaStore interface + persona GET/PATCH rewired to opts.personaStore with Map fallback), apps/api/src/index.ts (personaStore wiring), apps/api/src/voice-agent-persona-persistence.integration.test.ts."
+            },
             {
               "date": "2026-05-29",
               "stage": "tts-backend",
