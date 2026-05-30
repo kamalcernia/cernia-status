@@ -874,9 +874,7 @@
               "url": "https://github.com/kamalcernia/cernia/blob/main/apps/api/src/voice-call-handler.ts"
             }
           ],
-          "remaining": [
-            "Boot wiring in apps/api: construct TwilioVoiceBackend keyed by tenantId via TenantSecretResolver.resolve(tenantId, 'twilio')."
-          ],
+          "remaining": [],
           "history": [
             {
               "date": "2026-05-25",
@@ -895,6 +893,11 @@
               "date": "2026-05-30",
               "stage": "telephony-backend",
               "note": "ra-tel-4 closed. Verified the Twilio integration against the REAL Twilio Test API using account-provided test credentials: a SIMULATED outbound call to the magic number +15005550006 via the package's buildTwilioVoiceClient + TwilioVoiceBackend returned a valid CallSid (no real call placed, $0). Added durable gated smoke test packages/telephony/src/backends/twilio-backend.sandbox.test.ts — runs against the real Test API when TWILIO_ACCOUNT_SID + TWILIO_AUTH_TOKEN are present (skips cleanly otherwise; CI maps TWILIO_TEST_* org secrets). Test creds live in gitignored apps/api/.env (never committed). Remaining ra-tel-1 (per-tenant TwilioVoiceBackend keyed via TenantSecretResolver) is unchanged — separate code task, not creds-blocked."
+            },
+            {
+              "date": "2026-05-30",
+              "stage": "telephony-backend",
+              "note": "ra-tel-1 closed — telephony-backend stage now complete (remaining empty). New apps/api/src/per-tenant-twilio-router.ts (PerTenantTwilioVoiceRouter): wraps the boot-time telephony backend and, on each outbound call, resolves TenantSecretResolver.resolve(tenantId,'twilio') — Account SID from vendorAccountId, Auth Token from plaintext — to build (lazily, LRU-cached, rebuilt on credential rotation) a per-tenant TwilioVoiceBackend so a tenant originates + is billed on their OWN Twilio account; tenants without an override fall through to the platform default. Mirrors the ra-tts-4 PerTenantTtsRouter pattern. Wired in apps/api/src/index.ts initialiseVoiceCallStack: only the outbound surface is wrapped (outboundBackend) — the inbound `twilio` field stays the concrete TwilioVoiceBackend because the router does not implement the Twilio-specific _dispatchInbound. ALSO recreated the lost migration packages/storage/src/migrations/046_tenant_secrets.sql (source jumped 045→047; the table survived only in cernia-schema-snapshot.sql — a deploy migrating without it would 500 on every tenant-secret read for tenant-secrets routes + PerTenantTtsRouter + this router). Tested vs real Postgres: apps/api/src/per-tenant-twilio-router.integration.test.ts bootstraps the real 046 migration, seeds tenant_secrets via KyselyTenantSecretStore+TenantSecretResolver, and proves per-tenant isolation (tenant A vs B resolve to distinct accounts), platform-default fall-through (unconfigured tenant + token-without-SID), and cache + rotation semantics. apps/api typecheck=0."
             }
           ]
         },
