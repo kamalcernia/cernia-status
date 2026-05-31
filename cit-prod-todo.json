@@ -12,8 +12,8 @@
   },
   "currentTask": {
     "id": null,
-    "title": "Machine-A: resolved all 3 skipped-test 'blockers' from the deferred fifth-gate (12→9 blockers, skipped-test 3→0). One was implemented for REAL (real-Redis ICache contract against cernia-redis, closing I-212); two were dead/obsolete placeholders deleted. Idle on actionable code work.",
-    "startedAt": "2026-05-31T01:10:00Z",
+    "title": "Machine-A: triaged + resolved the deferred fifth-gate 'blockers'. 3 skipped-tests resolved (1 implemented real — Redis contract closing I-212; 2 dead/obsolete deleted). 1 json-deferred (tenant-customization persistence) found ALREADY RESOLVED (PostgresTenantCustomizationStore wired) → stale bullet closed. Blockers 12→8. Remaining 8 are genuine decisions/scheduled/feature deferrals — surfaced for your call. Idle on actionable code work.",
+    "startedAt": "2026-05-31T01:25:00Z",
     "evidence": "User: 'check the status of each [CIT item] and resolve.' Triaged the 12 deferred 'blockers'; the 3 skipped-test ones were all intentional/obsolete, now genuinely resolved: (1) packages/observability/src/cache/cache.test.ts — replaced the empty `it.skip('round-trips against a real Redis instance')` placeholder with a REAL ICache contract run against cernia-redis (dynamic ioredis import, logical DB 15 + flushdb, gated by CERNIA_TESTCONTAINERS). Verified: CERNIA_TESTCONTAINERS=1 → 39 tests pass incl. the real-Redis contract; default → 29 pass / 10 runtime-conditionally skipped (skipIf, which the audit excludes). Closes I-212. (2) packages/testing-real-services/src/postgres-fixture.test.ts — deleted the obsolete `applyMigrations:true slow` skip (its 'snapshot-restore' followup already landed as createMigratedDatabaseFixture). 6/6 pass. (3) apps/api/src/sensitive-data-routes.test.ts — deleted a dead documentary `it.skip('NOW_ISO reference')` + its unused const. 8/8 pass. Re-ran audit-deferred-items: skipped-test 3→0, total 756→753, blockers 12→9. The remaining 9 blockers are json-deferred bullets in production-readiness.json (decision/feature deferrals) — triage next. typecheck=0 (observability)."
   },
   "categories": [

@@ -1063,10 +1063,13 @@
             {
               "date": "2026-05-25",
               "note": "Shipped InMemoryTenantCustomizationStore + wired single instance into voice-agent-admin-routes + voice-call-handler. applyTenantCustomization called at session start; allowedIntents override now reaches the dialog policy. Customer-facing customization guide authored."
+            },
+            {
+              "date": "2026-05-31",
+              "note": "RESOLVED the 'persist via Organization.extension' deferral — tenant customization is now durably Postgres-persisted. PostgresTenantCustomizationStore (apps/api/src/tenant-customization-store.ts, backed by migration 055_tenant_customizations) is wired at apps/api/src/index.ts:3236 (db present → Postgres; InMemory only as the no-db fallback) and passed to BOTH voice-agent-admin-routes (PATCH) and voice-call-handler (session start). Customization now survives apps/api restart + is multi-pod safe, so the Organization.extension FHIR-codec alternative is superseded (same resolution shape as the cross-pod persona fix). Verified by boot-wiring inspection; the bullet's 'in-memory, restart wipes it' claim was stale."
             }
           ],
           "deferred": [
-            "Persist via Organization.extension FHIR codec (encode/decode helpers exist in @cernia/voice-agent — wire them to a Postgres-backed Medplum write so customization survives restart of the apps/api process). Today the store is in-memory and shared across handlers; restart wipes it.",
             "Intent Handler Overrides (advanced): per-intent backend URL override so a tenant can replace the platform handler for a specific intent with their own webhook. Deferred — out of scope for the pilot.",
             "Thread systemPromptAugment + additionalRedFlagPhrases through DialogStartOpts → buildSystemPrompt + red-flag screener. Today the policy override flows through but the augment + extra red-flag phrases need DialogStartOpts schema additions before they bind. Tracked separately so the policy override ships now.",
             "Eval golden: 'tenant-with-customization-applied' — replays a session against a policy with custom allowedIntents + systemPromptAugment; asserts system prompt contains CLINIC INSTRUCTIONS and the blocked intent is absent. Deferred until systemPromptAugment threading lands."
