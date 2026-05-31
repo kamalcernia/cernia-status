@@ -1620,16 +1620,20 @@
           },
           "current": {
             "status": "partial",
-            "asOf": "2026-05-26",
-            "summary": "384 usages of pg-mem / InMemory* in tests + 6 production InMemory adapters. Replace with real-service-backed adapters; delete pgmem-polyfills.ts."
+            "asOf": "2026-05-31",
+            "summary": "pg-mem is FULLY ELIMINATED (verified 2026-05-31: absent from every package.json, zero createPgMemKysely() callers across packages+apps, pgmem-polyfills.ts deleted). The remaining stub class is InMemory* only — saas-conformance.mjs no-in-process-stubs counts 360 (down from 384), ALL tech-debt severity, 0 blocker. Those split into: (a) apps/api no-db FALLBACK adapters — boot wires the Postgres store when a db is present, the InMemory one runs only db-less (local/test); abolishing them = dropping db-less boot support (architecture decision); (b) @cernia/auth-providers default stores whose abolition is gated on the Redis-vs-Postgres OIDC-state decision; (c) package test-fixtures to relocate to /testing subpaths (cosmetic). None are dead code."
           },
           "evidence": [],
           "remaining": [
-            "Migrate ~hundreds of *.test.ts files off pg-mem",
-            "Delete packages/storage/src/testing/pgmem-polyfills.ts",
-            "Delete remaining `class InMemory*` declarations from apps/api production code (caregiver-federation-routes.ts fallback removed iter 32; still TODO: InMemoryOidcStateStore, InMemoryMfaChallengeStore, InMemoryRefreshTokenStore as defaults in @cernia/auth-providers consumers — and the InMemory* classes that remain in @cernia/* packages as test-fixtures should be moved to /testing subpaths)"
+            "DONE 2026-05-31 — pg-mem fully eliminated: not a dependency in any package.json, zero createPgMemKysely() callers, and packages/storage/src/testing/pgmem-polyfills.ts is deleted. (The earlier 'migrate ~hundreds of pg-mem tests' + 'delete pgmem-polyfills.ts' bullets are closed — pg-mem has no remaining footprint; the real-services migration happened incrementally across the closure passes.)",
+            "InMemory* abolition (DECISION-GATED — all tech-debt / 0 blocker): the 18 apps/api InMemory* classes are the db-less boot FALLBACK (Postgres wired when a db is present), so removing them is an architecture decision (drop db-less boot?). The @cernia/auth-providers default InMemoryOidcStateStore / InMemoryMfaChallengeStore / InMemoryRefreshTokenStore abolition is gated on the Redis-vs-Postgres OIDC-state decision. Remaining package test-fixture InMemory* classes should move to /testing subpaths (cosmetic). None are dead code; each needs a product/architecture call, not a mechanical sweep."
           ],
           "history": [
+            {
+              "date": "2026-05-31",
+              "stage": "stubs-abolished",
+              "note": "Honest re-scope after an end-to-end portal refresh (all 3 audits re-run). VERIFIED pg-mem is fully gone: `pg-mem` is in no package.json, `createPgMemKysely(` has zero callers across packages+apps, and packages/storage/src/testing/pgmem-polyfills.ts no longer exists. So the two pg-mem `remaining` bullets were stale-but-done — closed. Re-characterised the remaining InMemory* work (saas-conformance no-in-process-stubs: 360, was 384, all tech-debt / 0 blocker): the apps/api InMemory* classes are the db-less boot FALLBACK (not dead — Postgres wired when a db is present), the auth-providers defaults are gated on the Redis-vs-Postgres OIDC decision, and package test-fixtures need relocation to /testing. None are a mechanical sweep — each is decision-gated. No code changed; this corrects the portal which was UNDER-reporting Phase 2 progress."
+            },
             {
               "date": "2026-05-26",
               "stage": "stubs-abolished",
