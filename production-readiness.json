@@ -730,6 +730,10 @@
           ],
           "history": [
             {
+              "date": "2026-05-31",
+              "note": "Billing-backend selection is now env-flippable + Stripe env-var names reconciled to the codebase convention (the load-bearing prereq for turning Stripe on). packages/config/src/from-env.ts: implemented the previously documented-but-unimplemented CERNIA_BILLING_BACKEND override (validated against the noop|stripe|aws-marketplace|gcp-marketplace union via parseBillingBackendEnv — an unknown value THROWS at process start so a typo can't silently leave billing off) plus CERNIA_STRIPE_API_KEY_ENV / CERNIA_STRIPE_WEBHOOK_SECRET_ENV name overrides. packages/config/src/defaults.ts: changed the default Stripe env-var NAMES (CERNIA_STRIPE_API_KEY/CERNIA_STRIPE_WEBHOOK_SECRET → STRIPE_SECRET_KEY/STRIPE_WEBHOOK_SECRET) so they match the rest of the repo (apps/api billing-bootstrap.test.ts, tests/external-fakes/stripe-test-mode.md, scripts/audit-baa-coverage.mjs) — defaults.ts was the lone outlier. Net effect: a deployment sets CERNIA_BILLING_BACKEND=stripe + STRIPE_SECRET_KEY=sk_... and the platform constructs StripeBillingBackend at boot with NO code change, while the dev/test default stays noop (no key required). Updated packages/billing/src/backends/billing-backend.test.ts to the new default name. ADR-0127: @cernia/config typecheck/lint/build=0 + 47 tests (incl. 7 new billing-override cases in from-env.test.ts covering default-noop, CERNIA_BILLING_BACKEND=stripe flip, all-4-kinds, throw-on-typo, default + override of the var names, no-mutation); @cernia/billing typecheck/build=0 + 425 tests pass vs real Postgres :5434 (postgres-invoice-store 8/8, billing-backend factory 6/6); apps/api typecheck stays 0. Remaining Stripe work (webhook signing secret config, sandbox invoicing e2e, storefront UI + webhook handlers) still open in the bullets below."
+            },
+            {
               "date": "2026-05-28",
               "note": "ra-sbm-5 partial close — x1b-revenue-recognition compute layer mounted. apps/api/src/revenue-recognition-routes.ts wraps the package's buildSchedule + buildPointInTimeSchedule + buildUsageBasedSchedule pure functions as 2 HTTP endpoints. POST /admin/revenue/$build-schedule validates Contract + RevenueEvent[] body, sorts events by occurredAt ascending, routes to the right helper per contract.method, returns RecognitionSchedule with periods + cumulative + deferred-balance — daily-prorated waterfall. POST /admin/revenue/$close-month is the CFO monthly-close endpoint: take a YYYY-MM string + Array<{contract, events}>, build each schedule, sum recognizedCents across periods whose periodStart starts with the month, return {monthIso, totalRecognizedCents, byContract[]}. 10 in-process tests pass: ratable schedule (~10_192¢/month for a $1200/yr contract, daily-prorated), point-in-time method, 3×400 validation, multi-contract close sum, 400 on bad monthIso, 400 on missing contracts, zero-period return, cache-control headers. apps/api/package.json adds @cernia/x1b-revenue-recognition workspace dep. Persistent contract + event storage is the next followup."
             },
@@ -1055,8 +1059,8 @@
           },
           "current": {
             "status": "complete",
-            "asOf": "2026-05-25",
-            "summary": "TenantCustomization schema + runtime resolver + FHIR codec shipped in @cernia/voice-agent. Shared InMemoryTenantCustomizationStore wires GET/PATCH /api/voice-agent/customization (voice-agent-admin-routes) and the voice-call-handler — same instance, so a PATCH made by the tenant admin is visible at the next inbound session start. applyTenantCustomization() called in voice-call-handler.InboundCallSession.handle() before dialog.start; allowedIntents override applies for the session (mandatory intents re-injected by the resolver). Customer-facing How-to-configure guide at docs/guides/voice-agent-customization.md."
+            "asOf": "2026-05-31",
+            "summary": "Full tenant-customization surface now binds end-to-end. TenantCustomization schema + resolver + FHIR codec in @cernia/voice-agent; PostgresTenantCustomizationStore (migration 055) wired at apps/api boot + passed to voice-agent-admin-routes (PATCH) and voice-call-handler (session start). applyTenantCustomization() runs before dialog.start; ALL three resolved fields now bind: allowedIntents narrows the policy (mandatory intents re-injected), systemPromptAugment is injected as a CLINIC INSTRUCTIONS block in the system prompt (prompt.ts buildSystemPrompt, after tone / before injection-defense), and additionalRedFlagPhrases extend the red-flag screener catalogue (red-flag-screener.ts; extend-only urgent-2h/transfer-clinician-now synthetic flags — can never narrow the safety floor). Wired via two new DialogStartOpts fields (types.ts). Eval golden 'tenant-with-customization-applied' (packages/voice-agent-evals) asserts the resolved system prompt carries CLINIC INSTRUCTIONS + the augment text, allowedIntents narrowed the allowed-tools line, and the tenant red-flag phrase short-circuits to a clinician transfer. Customer-facing guide at docs/guides/voice-agent-customization.md."
           },
           "remaining": [],
           "history": [
@@ -1066,13 +1070,15 @@
             },
             {
               "date": "2026-05-31",
+              "note": "Closed the last two tenant-customization deferrals (blockers 8→6). Threaded systemPromptAugment + additionalRedFlagPhrases through new DialogStartOpts fields (packages/voice-agent/src/types.ts) → buildSystemPrompt CLINIC INSTRUCTIONS block (prompt.ts) + red-flag screener additionalPhrases (red-flag-screener.ts, extend-only synthetic urgent-2h flags); captured immutably at dialog start (dialog.ts) and wired in apps/api/src/voice-call-handler.ts. Satisfied the prior TDD-red spec in tenant-customization.test.ts (CLINIC INSTRUCTIONS: header). Added eval golden tenant-with-customization-applied.json + runner systemPrompts capture + 3 dedicated harness assertions (packages/voice-agent-evals). Verified: voice-agent typecheck/build clean, 179 tests in the 4 touched test files green; evals 28 green; @cernia/api typecheck clean. Remaining tenant-customization 'deferred' is only the advanced Intent Handler Overrides (out of pilot scope)."
+            },
+            {
+              "date": "2026-05-31",
               "note": "RESOLVED the 'persist via Organization.extension' deferral — tenant customization is now durably Postgres-persisted. PostgresTenantCustomizationStore (apps/api/src/tenant-customization-store.ts, backed by migration 055_tenant_customizations) is wired at apps/api/src/index.ts:3236 (db present → Postgres; InMemory only as the no-db fallback) and passed to BOTH voice-agent-admin-routes (PATCH) and voice-call-handler (session start). Customization now survives apps/api restart + is multi-pod safe, so the Organization.extension FHIR-codec alternative is superseded (same resolution shape as the cross-pod persona fix). Verified by boot-wiring inspection; the bullet's 'in-memory, restart wipes it' claim was stale."
             }
           ],
           "deferred": [
-            "Intent Handler Overrides (advanced): per-intent backend URL override so a tenant can replace the platform handler for a specific intent with their own webhook. Deferred — out of scope for the pilot.",
-            "Thread systemPromptAugment + additionalRedFlagPhrases through DialogStartOpts → buildSystemPrompt + red-flag screener. Today the policy override flows through but the augment + extra red-flag phrases need DialogStartOpts schema additions before they bind. Tracked separately so the policy override ships now.",
-            "Eval golden: 'tenant-with-customization-applied' — replays a session against a policy with custom allowedIntents + systemPromptAugment; asserts system prompt contains CLINIC INSTRUCTIONS and the blocked intent is absent. Deferred until systemPromptAugment threading lands."
+            "Intent Handler Overrides (advanced): per-intent backend URL override so a tenant can replace the platform handler for a specific intent with their own webhook. Deferred — out of scope for the pilot."
           ]
         }
       ],
@@ -1098,6 +1104,13 @@
           "to": "partial",
           "note": "TenantCustomization schema + applyTenantCustomization resolver + FHIR codec in @cernia/voice-agent. buildSystemPrompt systemPromptAugment injection (CLINIC INSTRUCTIONS block, after tone, before injection-defense). 24 unit tests. Admin UI /admin/voice-agent/customization (allowed intents, prompt augment, workflow templates, red-flag phrases, business hours). Admin API client getCustomization + updateCustomization. Remaining: apps/api endpoint mount + dialog-engine wiring + eval golden.",
           "commit": "fix/suite-1-admin-defects branch"
+        },
+        {
+          "date": "2026-05-31",
+          "stage": "tenant-customization",
+          "from": "complete",
+          "to": "complete",
+          "note": "Final dialog-engine wiring + eval golden — the two remaining tenant-customization deferrals. systemPromptAugment + additionalRedFlagPhrases now thread through new DialogStartOpts fields into buildSystemPrompt (CLINIC INSTRUCTIONS) + the red-flag screener (extend-only synthetic urgent-2h flags); wired in voice-call-handler. Eval golden tenant-with-customization-applied added with system-prompt capture in the runner. Satisfied the prior TDD-red spec. typecheck/build/lint(of touched files) clean; 179 voice-agent + 28 evals tests green."
         }
       ],
       "wave": "I"
