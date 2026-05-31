@@ -622,8 +622,8 @@
           },
           "current": {
             "status": "complete",
-            "asOf": "2026-05-25",
-            "summary": "Caregiver-federation backend substantively complete. 5 Postgres stores (proxy, JIT, break-glass, delegation, attestation), 22 endpoints (caregiver + access + idp-connection + sso), 2 admin UI pages (delegations + attestations), per-tenant OIDC factory with cache. 46 unit tests passing. Two infrastructure pieces explicitly deferred: SSO route deps (JwtIssuer + UserProvisioner + state store + http client + secret resolver) and SAML 2.0 handshake (needs library choice). Routes are mounted with 503-when-not-configured so the contract is in place; flipping a single line at boot wires them once the deps land."
+            "asOf": "2026-05-31",
+            "summary": "Caregiver-federation backend complete, and the OIDC SSO login flow is now fully wired end-to-end at apps/api boot. 5 Postgres stores, 22 endpoints, 2 admin UI pages, per-tenant OIDC factory with cache. The TenantSsoFactory is now constructed at boot (index.ts step 10i.1) with all deps: KmsBackedJwtIssuer, FHIR-User-backed provisioner + lookup over the StorageAdapter (apps/api/src/sso-user-store.ts — JIT-provisions User resources, resolves roles from RoleBindings, safe-by-default empty roles), RedisOidcStateStore when REDIS_HOST is set (else in-memory, single-pod), FetchOidcHttpClient, and a ClientSecretResolver over the tenant-secret store. SSO routes still 503 for tenants with no enabled IdP connection, so wiring only widens what works. Only SAML 2.0 handshake (library choice) remains deferred."
           },
           "evidence": [
             {
@@ -680,10 +680,13 @@
             {
               "date": "2026-05-25",
               "note": "Shipped final piece of g-d5 OIDC chain: ssoRoutes (apps/api/src/sso-routes.ts) mounting GET /api/auth/sso/:tenantId/start + /callback. Routes default to 503 sso-not-configured until apps/api boot wires JwtIssuer + UserProvisioner + UserLookup + OidcStateStore + OidcHttpClient + ClientSecretResolver (clean stub in index.ts with explicit TODO inventory). 6 route tests cover the 503 path + a working happy path via a stub factory (302 redirect on /start, 200 authenticated payload with trusted user fields on /callback, 400 on idp-rejected / invalid-callback). Total caregiver-federation tests now 46 passing across 5 suites."
+            },
+            {
+              "date": "2026-05-31",
+              "note": "Wired the OIDC SSO route deps at apps/api boot — closed the last actionable caregiver-federation deferral (the SSO-boot-wiring bullet). New apps/api/src/sso-user-store.ts ships FhirUserProvisioner + FhirUserLookup over the same tenant-scoped StorageAdapter the FHIR server uses: create() JIT-provisions a FHIR User (authProvider=oidc, status=active), findByExternal() dedups by externalIdentifier (paged auth-provider search + in-memory filter — User has no external-identifier search param yet; dedicated param is a future optimization), resolveRoles() reads active RoleBindings→Role names mirroring iam-route-guards' resolver, loadMfaCredentials() returns null (IdP owns MFA). Safe-by-default: JIT users get NO RoleBindings (least privilege); a shared bounded userId→tenantId index recovers tenant for the tenant-less resolveRoles call (always preceded by find/create in the OIDC flow). index.ts step 10i.1 now builds TenantSsoFactory with KmsBackedJwtIssuer + RedisOidcStateStore (REDIS_HOST-gated, else InMemory) + FetchOidcHttpClient + ClientSecretResolver over tenantSecrets.resolver (connection clientSecretRef doubles as the secret provider key) + the new provisioner/lookup; SSO registration moved after the tenant-secret runtime so the resolver is available. Routes still 503 for tenants with no enabled IdP connection — wiring only widens what works. 13 new adapter unit tests; existing 6 sso-route tests still green. @cernia/api typecheck + build clean. Remaining: SAML 2.0 handshake only."
             }
           ],
           "deferred": [
-            "Wire SSO route deps in apps/api boot: KmsBackedJwtIssuer (from @cernia/auth-providers) + Postgres-backed UserProvisioner + UserLookup against the users table + Redis-backed OidcStateStore for multi-pod + FetchOidcHttpClient + ClientSecretResolver against TenantSecretResolver. Routes already mounted; they 503 until wired. Each dep is a focused piece.",
             "SAML 2.0 protocol handshake: requires samlify or passport-saml dependency choice + XML signature verification + SP metadata endpoint + AuthnRequest signing + SAMLResponse verification. The config layer (migration 053) already supports SAML connections; the handshake itself is a deferred infrastructure piece."
           ]
         },
@@ -793,6 +796,13 @@
           "from": "absent",
           "to": "partial",
           "note": "Proxy lifecycle (grant / revoke / list-by-patient) + JIT request + break-glass invoke endpoints live in apps/api. In-memory proxy store. JIT + break-glass routes are pure-function with blocker codes for empty-scopes, short-justification, etc. 8 new integration tests. SAML/OIDC federation, persistent store, access-review-attestation, admin UI remain."
+        },
+        {
+          "date": "2026-05-31",
+          "stage": "caregiver-federation",
+          "from": "complete",
+          "to": "complete",
+          "note": "OIDC SSO login flow wired end-to-end at apps/api boot — closed the SSO-boot-wiring deferral. New sso-user-store.ts (FHIR-User provisioner + lookup over the StorageAdapter; JIT provisioning, RoleBinding role resolution, safe-by-default empty roles, MFA delegated to IdP) + TenantSsoFactory composed at index.ts step 10i.1 with KmsBackedJwtIssuer, Redis/InMemory OIDC state store, FetchOidcHttpClient, and a tenant-secret-backed ClientSecretResolver. 13 adapter tests; @cernia/api typecheck + build clean. Only SAML 2.0 handshake remains deferred."
         },
         {
           "date": "2026-05-24",
