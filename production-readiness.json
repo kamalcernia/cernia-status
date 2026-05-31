@@ -1927,6 +1927,11 @@
           "remaining": [],
           "history": [
             {
+              "date": "2026-05-31",
+              "stage": "playwright-project",
+              "note": "FIXED a suite-wide collection break. tests/e2e/specs/branding.spec.ts had two per-describe `test.use({ ...devices['Desktop Firefox'/'Desktop Safari'] })` blocks (added with the PROD-P9 browser matrix) — forcing a browser INSIDE a describe is invalid in Playwright ('Cannot use({ defaultBrowserType }) in a describe group'), and that single error broke COLLECTION of the ENTIRE e2e suite: `playwright test --list` returned `Total: 0 tests in 0 files`. So NONE of the e2e specs could run (a hard failure that also left the integration-ladder E2E column at n/a). Removed the two redundant blocks (their assertions — load-without-errors / WCAG warning / preview tabs — are already in the main describe, which the 5-project matrix runs on every browser) + the now-unused `devices` import. Verified: `playwright test --list` now collects Total: 1060 tests in 16 files across chromium/firefox/webkit/edge/chromium-mobile (212 under chromium-desktop). Full execution still requires the dev stack booted (apps/admin :3210 webServer + apps/api) — collection/compile is the loop-verifiable gate; per-wave run is CI's job. File: tests/e2e/specs/branding.spec.ts."
+            },
+            {
               "date": "2026-05-26",
               "stage": "playwright-project",
               "from": "remaining",
