@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-31T07:01:57.774Z",
-    "lastUpdatedDisplay": "May 31, 2026 — 03:01 EDT",
+    "lastUpdatedIso": "2026-05-31T07:06:23.888Z",
+    "lastUpdatedDisplay": "May 31, 2026 — 03:06 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #173 feat(admin): sensitive-data routes + UI swap (phas"
   },
   "summary": {
     "currentMainCommit": "be565bca",
     "currentTagOnMain": "audit-baseline-2026-05-29 🏁",
-    "agentsCompletedThisSession": 376,
+    "agentsCompletedThisSession": 378,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "376 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "378 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #173 feat(admin): sensitive-data routes + UI swap (phase-3-6 bull. (refreshed May 31, 2026 — 03:37 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #173 feat(admin): sensitive-data routes + UI swap (phase-3-6 bull. (refreshed May 31, 2026 — 03:40 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -4551,10 +4551,10 @@
     },
     "justLandedWaves": [],
     "nowWorkingOn": {
-      "wave": "CONFIG",
-      "detail": "env-flip billing backend to Stripe + reconcile Stripe env-var names",
-      "commit": "d95d65a6",
-      "freshSeconds": 1635
+      "wave": "STATUS",
+      "detail": "refresh live-status after tenant-customization close (blockers 8->6)",
+      "commit": "82280afc",
+      "freshSeconds": 55
     }
   },
   "pool": {
@@ -11796,7 +11796,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 6,
-    "origin/feat/elevenlabs-tts-wiring@be565bcacd4e": 0,
+    "origin/feat/elevenlabs-tts-wiring@d95d65a668fa": 0,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
@@ -12387,7 +12387,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 2,
-    "origin/feat/elevenlabs-tts-wiring@be565bcacd4e": 0,
+    "origin/feat/elevenlabs-tts-wiring@d95d65a668fa": 0,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
@@ -12978,7 +12978,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
-    "origin/feat/elevenlabs-tts-wiring@be565bcacd4e": true,
+    "origin/feat/elevenlabs-tts-wiring@d95d65a668fa": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
     "origin/feat/local-demo-patient-image@90299849c309": true,
