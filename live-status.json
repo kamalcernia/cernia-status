@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-05-31T07:06:23.888Z",
-    "lastUpdatedDisplay": "May 31, 2026 — 03:06 EDT",
+    "lastUpdatedIso": "2026-05-31T07:13:10.924Z",
+    "lastUpdatedDisplay": "May 31, 2026 — 03:13 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #173 feat(admin): sensitive-data routes + UI swap (phas"
   },
   "summary": {
-    "currentMainCommit": "be565bca",
+    "currentMainCommit": "d95d65a6",
     "currentTagOnMain": "audit-baseline-2026-05-29 🏁",
     "agentsCompletedThisSession": 378,
     "agentsRemainingToV30": 0,
     "hardeningTrackRecord": "378 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #173 feat(admin): sensitive-data routes + UI swap (phase-3-6 bull. (refreshed May 31, 2026 — 03:40 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #173 feat(admin): sensitive-data routes + UI swap (phase-3-6 bull. (refreshed May 31, 2026 — 03:43 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -4554,7 +4554,7 @@
       "wave": "STATUS",
       "detail": "refresh live-status after tenant-customization close (blockers 8->6)",
       "commit": "82280afc",
-      "freshSeconds": 55
+      "freshSeconds": 207
     }
   },
   "pool": {
