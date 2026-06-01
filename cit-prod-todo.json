@@ -11,10 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "ra-sbm-9",
-    "title": "x2b expiry sweep — churn ended non-renewing subscriptions so MRR/ARR isn't inflated",
-    "startedAt": "2026-06-01T14:15:00Z",
-    "evidence": "Adding PostgresSubscriptionStore.listExpiredNonRenewing(asOf) + runSubscriptionExpirySweep in saas-nightly-batches.ts (marks active + auto_renew=false + period-ended subs churned at their period end), wired into tick() Mode A, with a real-PG integration test."
+    "id": null,
+    "title": "ra-sbm-9 (x2b expiry sweep) shipped; next: ra-sbm-10 renewal-alert email dispatch",
+    "startedAt": null,
+    "evidence": "ra-sbm-9 landed (feat+main): listExpiredNonRenewing + runSubscriptionExpirySweep, real-PG 1/1. Next: ra-sbm-10 (x2b renewal-alert email dispatch T-120/T-90/T-30 via the email pipeline)."
   },
   "categories": [
     {
@@ -628,9 +628,17 @@
           "id": "ra-sbm-9",
           "track": "functionality-utilization/saas-billing-marketplace",
           "title": "x2b expiry sweep — churn ended non-renewing subscriptions",
-          "status": "in-progress",
+          "status": "done",
+          "completionMode": "shipped",
+          "evidence": "SHIPPED — x2b subscription-expiry sweep. PostgresSubscriptionStore.listExpiredNonRenewing(asOf) + runSubscriptionExpirySweep in saas-nightly-batches.ts (marks active + auto_renew=false + period-ended subs churned at their own period end), wired into tick() Mode A after the auto-renewal sweep. Fixes the silent MRR/ARR inflation where ended non-renewing subs sat 'active' forever (toContractSnapshots counts active). Real-PG 1/1 (saas-subscription-expiry.integration.test.ts: churn ended non-renewing at period end; renewing/future/paused untouched; cross-tenant 2/2; idempotent). ADR-0127: @cernia/api typecheck=0, build=0, new files lint-clean. Committed this tick (feat+main)."
+        },
+        {
+          "id": "ra-sbm-10",
+          "track": "functionality-utilization/saas-billing-marketplace",
+          "title": "x2b renewal-alert email dispatch (T-120/T-90/T-30) via the email pipeline",
+          "status": "todo",
           "completionMode": null,
-          "evidence": "x2b auto-renewal sweep (ra-sbm-6) rolls active+auto_renew subs forward, but subs with auto_renew=false whose current period has ended were left 'active' forever — inflating MRR/ARR because toContractSnapshots counts active rows. Adding PostgresSubscriptionStore.listExpiredNonRenewing + runSubscriptionExpirySweep (marks them churned at period end) wired into tick() Mode A, with a real-PG test. (The customer renewal-alert email schedule — scheduleAlerts T-120/T-90/T-30 — is split to ra-sbm-10 since it needs the email pipeline.)"
+          "evidence": "Split from ra-sbm-9. @cernia/x2b scheduleAlerts computes CSM T-120 / customer-window-opens T-90 / customer-last-chance T-30 / expired-not-renewed alerts, but nothing persists or dispatches them. Next: a saas_renewal_alerts queue table + store + a sweep that computes due alerts per upcoming-renewal sub and dispatches them through the email pipeline (mailpit in dev), with a real-PG test."
         },
         {
           "id": "ra-tel-1",
