@@ -11,10 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": null,
-    "title": "Three parallel batches shipped this session (13 items); idle between batches",
-    "startedAt": null,
-    "evidence": "Batch 3 landed (feat+main, 19/19 integrated tests, typecheck=0/build=0/lint=0): ra-ml-voicegw + ra-ml-driftcap + ra-sbm-revstore + ra-sbm-10b. Session total 13 items. Next open (mostly wiring-into-host + UI followups): voice-call-handler gateway swap, ml-drift capture hook + read route, revenue-recognition routes read-from-store, production RenewalAlertNotifier, break-glass→legal_holds write-back, apps/admin discount UI, apps/cernia-ops FinOps trend UI, Python risk-classifier through the inference RequestRouter."
+    "id": "ra-sbm-revwire",
+    "title": "PARALLEL BATCH 4 (3 agents, each in a pool slot): revenue routes read-from-store + ml-drift capture/read routes + production RenewalAlertNotifier",
+    "startedAt": "2026-06-01T16:18:00Z",
+    "evidence": "Fourth fan-out. Per-agent progress now ALSO shown in the pool slots (set-slot.mjs): slot 1 ra-sbm-revwire (Agent J), slot 2 ra-ml-driftwire (Agent K), slot 3 ra-sbm-10c (Agent L). Disjoint writable sets; orchestrator owns index.ts + status JSONs + commits. Chip pinned to ra-sbm-revwire; all three rows show in-progress + their slots show running while in flight."
   },
   "categories": [
     {
@@ -719,6 +719,30 @@
           "status": "done",
           "completionMode": "shipped-with-stub-followup",
           "evidence": "SHIPPED (batch 3, orchestrator) — saas-nightly-batches.ts: runRenewalAlertScheduleSweep (enumerate subscription tenants → active subs with bounded period → pendingAlertsForSubscription → PostgresRenewalAlertStore.schedule, idempotent) + runRenewalAlertDispatchSweep (enumerate renewal-alert tenants → listDue → injected RenewalAlertNotifier.notify → markDispatched; a throwing notifier leaves the alert pending = at-least-once). Both wired into tick() Mode A; new optional renewalAlertNotifier option (default log-only). Real-PG 2/2 (renewal-alert-sweep.integration.test.ts: schedule persists 6 future alerts across 2 tenants + idempotent re-run 0; dispatch drains only the due csm T-120 exactly-once; throwing-notifier leaves pending then a healthy run delivers). ADR-0127: @cernia/api typecheck=0, build=0, new files lint-clean. Committed this tick (feat+main). STUB-FOLLOWUP: inject a production RenewalAlertNotifier over @cernia/notifications (customer-contact resolve + T-120/T-90/T-30 template + SMTP/SES) at apps/api boot."
+        },
+        {
+          "id": "ra-sbm-revwire",
+          "track": "functionality-utilization/saas-billing-marketplace",
+          "title": "Wire revenue-recognition routes to read from PostgresRevenueStore",
+          "status": "in-progress",
+          "completionMode": null,
+          "evidence": "PARALLEL BATCH 4 / Agent J (pool slot 1) — ra-sbm-revstore followup. The $build-schedule/$close-month routes take Contract+RevenueEvent[] in the body; wiring revenue-recognition-routes.ts to optionally read persisted contracts+events from PostgresRevenueStore (revenue-store.ts) + a POST to record events, keeping the body path backward-compatible. Real-PG route test; orchestrator wires the db option in index.ts."
+        },
+        {
+          "id": "ra-ml-driftwire",
+          "track": "functionality-utilization/ml-platform",
+          "title": "ml-drift capture + windowed-drift read routes",
+          "status": "in-progress",
+          "completionMode": null,
+          "evidence": "PARALLEL BATCH 4 / Agent K (pool slot 2) — ra-ml-driftcap followup. ml-drift-routes.ts only exposes the computational $compute; adding POST $capture (persist a prediction sample via ml-prediction-capture-store) + GET windowed-drift (windowedDatasets → computeReport) so live predictions feed the drift report. Real-PG route test; orchestrator wires the db option in index.ts."
+        },
+        {
+          "id": "ra-sbm-10c",
+          "track": "functionality-utilization/saas-billing-marketplace",
+          "title": "Production RenewalAlertNotifier over @cernia/notifications",
+          "status": "in-progress",
+          "completionMode": null,
+          "evidence": "PARALLEL BATCH 4 / Agent L (pool slot 3) — ra-sbm-10b followup. The dispatch sweep drains to an injected RenewalAlertNotifier (default log-only). Adding a NEW apps/api/src/renewal-alert-email-notifier.ts implementing RenewalAlertNotifier over @cernia/notifications (NotificationService/SmtpBackend; renders the T-120/T-90/T-30 template; PHI-safe via hashRecipient/assertPhiSafe), with a unit test against StubBackend. Orchestrator injects it at apps/api boot (index.ts)."
         },
         {
           "id": "ra-tel-1",
