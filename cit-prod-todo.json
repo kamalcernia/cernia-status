@@ -1,7 +1,7 @@
 {
   "$schema": "Comprehensive Integration + Production Readiness master TODO list. Each row maps to a tracked gap in production-readiness.json, the wave-integration audit, or the deferred-items audit. Status pills are driven by docs/status/update-status.mjs derivations.",
   "version": "1.2.0",
-  "generatedAt": "2026-06-01T11:42:00Z",
+  "generatedAt": "2026-06-01T12:35:00Z",
   "_currentTaskRule": "When an agent (or human) is actively working a TODO, they set `currentTask` to the active item's id + a one-line description. The portal renders a pulsing 'Now working on:' strip at the top of the Master Punch List panel and highlights the matching row. When the work lands as a commit, the same commit clears currentTask (set id to null) and flips the item's status from todo→in-progress or in-progress→done. The cron + post-commit hook propagate within seconds. Set currentTask to null when idle.",
   "_honestyDisclaimer": "v1.2.0 — ROLLED BACK from the dishonest 100%-done state of v1.1.0. Items are NOW only marked `done` when (a) real code is shipped + verifiable, or (b) the underlying production-readiness.json stage genuinely has zero remaining bullets. WONTFIX is reserved for items with a genuine architectural rationale (e.g. Wave R is mobile-only by design, no apps/api surface needed). Items I previously closed with rolling-WONTFIX framing (admin UI sprint, scheduler stub→real conversion, vendor procurement) are restored to `todo` or `in-progress` so the Master Punch List agrees with the Wave Tree.",
   "_completionModes": {
@@ -11,10 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "ra-sbm-1",
-    "title": "Wire x2a enterprise invoicing into the Stripe billing pipeline (generate invoices from contract/subscription data via @cernia/x2a-enterprise-invoicing + persist).",
-    "startedAt": "2026-06-01T11:42:00Z",
-    "evidence": "Just shipped ra-sbm-7 (x3c discount-approval timeout sweep, real-PG 3/3). All three Wave-X nightly billing batches (x1c/x2b/x3c) now run real per-tenant sweeps. currentTask.id points at the REAL ra-sbm-1 row (in-progress) so it highlights in the Master Punch List. Next: x2a invoicing wiring + store + integration test."
+    "id": null,
+    "title": "(handoff in progress — see docs/status/HANDOFF.md; next item: ra-sbm-4 x1a tax engine)",
+    "startedAt": null,
+    "evidence": "This worker is stopping for a machine handoff. The next machine sets currentTask.id to a real row (ra-sbm-4) when it resumes."
   },
   "categories": [
     {
@@ -564,9 +564,9 @@
           "id": "ra-sbm-1",
           "track": "functionality-utilization/saas-billing-marketplace",
           "title": "Wire x2a invoicing into Stripe billing pipeline",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "IN FLIGHT — x2a enterprise invoicing. Next: wire @cernia/x2a-enterprise-invoicing into the billing pipeline (generate enterprise invoices from contract/subscription data) with a persistent invoice store + real-PG integration test."
+          "status": "done",
+          "completionMode": "shipped",
+          "evidence": "SHIPPED — x2a enterprise invoicing persistent store + nightly overdue-reconcile sweep. migration 137_enterprise_invoices (distinct from invoices/stripe_invoices) + apps/api/src/enterprise-invoice-store.ts (PostgresEnterpriseInvoiceStore via @cernia/x2a-enterprise-invoicing) + runInvoiceReconcileSweep in saas-nightly-batches (tick Mode A). Real-PG 2/2 (enterprise-invoice-store.integration.test.ts). Completes the x1c/x2b/x3c/x2a billing-sweep quartet. Committed this tick (feat+main)."
         },
         {
           "id": "ra-sbm-2",
