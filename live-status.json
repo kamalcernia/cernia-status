@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-01T16:52:14.560Z",
-    "lastUpdatedDisplay": "Jun 1, 2026 — 12:52 EDT",
+    "lastUpdatedIso": "2026-06-01T16:59:36.753Z",
+    "lastUpdatedDisplay": "Jun 1, 2026 — 12:59 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #173 feat(admin): sensitive-data routes + UI swap (phas"
   },
   "summary": {
-    "currentMainCommit": "3a44f49a",
+    "currentMainCommit": "3a6204a1",
     "currentTagOnMain": "audit-baseline-2026-05-29 🏁",
     "agentsCompletedThisSession": 400,
     "agentsRemainingToV30": 0,
     "hardeningTrackRecord": "400 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #173 feat(admin): sensitive-data routes + UI swap (phase-3-6 bull. (refreshed Jun 1, 2026 — 12:59 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #173 feat(admin): sensitive-data routes + UI swap (phase-3-6 bull. (refreshed Jun 1, 2026 — 13:04 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -4636,7 +4636,7 @@
       "wave": "ADMIN",
       "detail": "consume AI-governance bias/approvals routes in apps/admin + handoff doc",
       "commit": "3a6204a1",
-      "freshSeconds": 376
+      "freshSeconds": 724
     }
   },
   "pool": {
