@@ -646,6 +646,10 @@
           "remaining": [],
           "history": [
             {
+              "date": "2026-05-31",
+              "note": "SAML 2.0 real XML-DSig verification SHIPPED — closes the cryptographic core of the long-deferred handshake (library = @node-saml/node-saml, operator-chosen). apps/api/src/saml-validator.ts: buildTenantSamlValidator(connection, opts) wraps node-saml SAML.validatePostResponseAsync for authoritative validation — XML signature (via xml-crypto), NotBefore/NotOnOrAfter, AudienceRestriction, StatusCode — plus a DEFENSE-IN-DEPTH explicit Issuer pin (node-saml's signature trust is certificate-based, so it accepts a validly-signed response regardless of the Issuer string; we additionally require profile.issuer === connection.issuer). Fail-closed: validatePostResponse throws on any failure → {ok:false}; claims never surface from an unverified response (ADR 0026 §3). wantAssertionsSigned=true. Maps node-saml Profile → typed SamlValidatedClaims (nameId, email, flattened attributes); SP metadata via generateServiceProviderMetadata. Tests (apps/api/src/saml-validator.test.ts) are REAL not mocked: generate a throwaway RSA keypair at RUNTIME (openssl; no committed secrets — repo gitignores *.pem) and sign a SAML Response with xml-crypto, then assert the validator ACCEPTS the valid signature + extracts claims and REJECTS tampered-payload / expired-Conditions / wrong-Audience / wrong-Issuer / unsigned (7/7). Deliberately NO stub verifier — that is exactly the bug class just fixed in the Stripe webhook path. Deps @node-saml/node-saml@^5.1.0 + xml-crypto@^6.1.2 added to apps/api. ADR-0127: @cernia/api typecheck=0, new-file lint=0, build=0, 7/7 tests. Remaining (now narrowed in `deferred`): the Fastify ACS route + boot wiring + JIT claim mapping."
+            },
+            {
               "date": "2026-05-25",
               "note": "Shipped PostgresProxyStore (apps/api/src/caregiver-proxy-store.ts) + migration 049_caregiver_proxy_relationships. Implements ProxyStore from @cernia/g-d1-caregiver-proxy with tenant-scoped CRUD: grant, revoke (legal-kind admin-only enforcement preserved), findById, listForCaregiver, listForPatient, sweepExpired (CTE-based bulk flip of active rows whose expires_at is past). 12 pg-mem unit tests cover happy path, kind-specific default expiry, legal-kind admin requirement, double-revoke protection, tenant isolation across all reads, sweepExpired CTE correctness. JIT request store + break-glass invocation log remain on InMemory (separate stores, same refactor pattern)."
             },
@@ -687,7 +691,7 @@
             }
           ],
           "deferred": [
-            "SAML 2.0 protocol handshake: requires samlify or passport-saml dependency choice + XML signature verification + SP metadata endpoint + AuthnRequest signing + SAMLResponse verification. The config layer (migration 053) already supports SAML connections; the handshake itself is a deferred infrastructure piece."
+            "SAML 2.0 ACS route + boot wiring + JIT claim mapping. The crypto core is now DONE (see history 2026-05-31): library chosen (@node-saml/node-saml), and real XML-DSig SAMLResponse verification + SP metadata + Conditions/Issuer/Audience checks ship in apps/api/src/saml-validator.ts with 7 real signed-fixture tests. What remains: the Fastify ACS POST endpoint + SP-metadata GET endpoint wired at apps/api boot (gated like ssoRoutes), mapping validated claims → the existing FHIR-User provisioner (sso-user-store.ts) + session mint; optional SP-initiated AuthnRequest signing (IdP-initiated SSO works without it)."
           ]
         },
         {
