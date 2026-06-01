@@ -692,33 +692,33 @@
           "id": "ra-ml-voicegw",
           "track": "functionality-utilization/ml-platform",
           "title": "LlmGateway-backed IClaudeClient adapter for the voice agent",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "PARALLEL BATCH 3 / Agent G — ra-ml-3 followup. voice-call-handler.ts dialog turns go through a raw @anthropic-ai/sdk IClaudeClient (createAnthropicClaudeClient). Adding a NEW createLlmGatewayClaudeClient(gateway) adapter implementing IClaudeClient over @cernia/o1-llm-gateway LlmGateway (so turns gain PHI redaction + cost recording + audit), with a unit test against a stub gateway. Orchestrator swaps the wiring in voice-call-handler.ts."
+          "status": "done",
+          "completionMode": "shipped-with-stub-followup",
+          "evidence": "SHIPPED (parallel batch 3) — apps/api/src/voice-call-llm-gateway-client.ts: createLlmGatewayClaudeClient({gateway, tenantId, defaultModel?, ...}) implements the @cernia/voice-agent IClaudeClient.complete contract over @cernia/o1-llm-gateway LlmGateway.complete (system→leading system message; content blocks→text; model string→ModelId map; finishReason→stopReason; usage→inputTokens/outputTokens; toolCalls→tool_use blocks). Routes voice dialog turns through the gateway for PHI redaction + cost recording + audit. 8/8 unit tests (stub gateway) + lint clean. ADR-0127: @cernia/api typecheck=0, build=0. Committed this tick (feat+main). STUB-FOLLOWUP: swap voice-call-handler.ts to construct this adapter in tenant scope (it needs per-call tenantId, so not a static boot swap) + persist gateway CostStore/AuditLog into Postgres."
         },
         {
           "id": "ra-ml-driftcap",
           "track": "functionality-utilization/ml-platform",
           "title": "Prediction-stream capture feeding the ML drift endpoint",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "PARALLEL BATCH 3 / Agent H. The /admin/ml/drift/$compute endpoint (ml-drift-routes.ts) is purely computational (reference+current datasets in the body). Adding migration 142 + a prediction-sample store that captures live predictions into a rolling-window reference/current dataset the drift endpoint can read, with a real-PG test. Orchestrator wires the capture hook + read route."
+          "status": "done",
+          "completionMode": "shipped-with-stub-followup",
+          "evidence": "SHIPPED (parallel batch 3) — migration 142_ml_prediction_samples + apps/api/src/ml-prediction-capture-store.ts: PostgresMlPredictionCaptureStore.capture(model,version,{score,subgroup,observed?,features?}) + referenceWindow/currentWindow/windowedDatasets returning @cernia/p3b-drift-monitoring PredictionRecord[] (the exact shape /admin/ml/drift/$compute consumes) via recent-N or cutoff strategies. Real-PG 5/5 (incl. a smoke that windowedDatasets feeds computeReport() without throwing) + lint clean. ADR-0127: @cernia/api typecheck=0, build=0. Committed this tick (feat+main). STUB-FOLLOWUP: wire capture() into the live model-dispatch path + add a read route that feeds windowedDatasets into $compute."
         },
         {
           "id": "ra-sbm-revstore",
           "track": "functionality-utilization/saas-billing-marketplace",
           "title": "Persistent contract + revenue-event storage for x1b recognition",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "PARALLEL BATCH 3 / Agent I — ra-sbm-5 followup. The x1b $build-schedule/$close-month routes accept Contract + RevenueEvent[] in the request body (nothing persists them). Adding migration 143 + a PostgresContractStore + revenue-event store (tenant-scoped) so the NetSuite/QuickBooks close job has a durable event ledger, with a real-PG test. Orchestrator wires the read/write routes."
+          "status": "done",
+          "completionMode": "shipped-with-stub-followup",
+          "evidence": "SHIPPED (parallel batch 3) — migration 143_revenue_contracts (revenue_contracts + revenue_events, per-tenant, full x1b jsonb + extracted columns) + apps/api/src/revenue-store.ts: PostgresRevenueStore.saveContract/getContract/listContracts + recordEvent/listEventsForContract (occurredAt ASC = engine order) + enumerateRevenueTenants. Real-PG 4/4 (incl. a smoke that a round-tripped contract+events feed @cernia/x1b buildSchedule → recognizedTotalCents=1.2M) + lint clean. ADR-0127: @cernia/api typecheck=0, build=0. Committed this tick (feat+main). STUB-FOLLOWUP: wire revenue-recognition-routes.ts $build-schedule/$close-month to read from the store (replace body input) + a write route to record events."
         },
         {
           "id": "ra-sbm-10b",
           "track": "functionality-utilization/saas-billing-marketplace",
           "title": "Renewal-alert nightly sweep + SMTP dispatch (orchestrator-owned)",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "BATCH 3 / orchestrator — ra-sbm-10 followup. Wiring runRenewalAlertScheduleSweep (enumerate tenants → upcoming-renewal subs → pendingAlertsForSubscription → renewal-alert-store.schedule) + runRenewalAlertDispatchSweep (listDue → send via @cernia/notifications SMTP/SES seam → markDispatched) into saas-nightly-batches.ts tick(), with a real-PG test. Touches the shared saas-nightly-batches.ts so the orchestrator owns it, not a sub-agent."
+          "status": "done",
+          "completionMode": "shipped-with-stub-followup",
+          "evidence": "SHIPPED (batch 3, orchestrator) — saas-nightly-batches.ts: runRenewalAlertScheduleSweep (enumerate subscription tenants → active subs with bounded period → pendingAlertsForSubscription → PostgresRenewalAlertStore.schedule, idempotent) + runRenewalAlertDispatchSweep (enumerate renewal-alert tenants → listDue → injected RenewalAlertNotifier.notify → markDispatched; a throwing notifier leaves the alert pending = at-least-once). Both wired into tick() Mode A; new optional renewalAlertNotifier option (default log-only). Real-PG 2/2 (renewal-alert-sweep.integration.test.ts: schedule persists 6 future alerts across 2 tenants + idempotent re-run 0; dispatch drains only the due csm T-120 exactly-once; throwing-notifier leaves pending then a healthy run delivers). ADR-0127: @cernia/api typecheck=0, build=0, new files lint-clean. Committed this tick (feat+main). STUB-FOLLOWUP: inject a production RenewalAlertNotifier over @cernia/notifications (customer-contact resolve + T-120/T-90/T-30 template + SMTP/SES) at apps/api boot."
         },
         {
           "id": "ra-tel-1",
