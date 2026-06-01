@@ -1,7 +1,7 @@
 {
   "$schema": "Comprehensive Integration + Production Readiness master TODO list. Each row maps to a tracked gap in production-readiness.json, the wave-integration audit, or the deferred-items audit. Status pills are driven by docs/status/update-status.mjs derivations.",
   "version": "1.2.0",
-  "generatedAt": "2026-05-27",
+  "generatedAt": "2026-06-01T10:45:00Z",
   "_currentTaskRule": "When an agent (or human) is actively working a TODO, they set `currentTask` to the active item's id + a one-line description. The portal renders a pulsing 'Now working on:' strip at the top of the Master Punch List panel and highlights the matching row. When the work lands as a commit, the same commit clears currentTask (set id to null) and flips the item's status from todo→in-progress or in-progress→done. The cron + post-commit hook propagate within seconds. Set currentTask to null when idle.",
   "_honestyDisclaimer": "v1.2.0 — ROLLED BACK from the dishonest 100%-done state of v1.1.0. Items are NOW only marked `done` when (a) real code is shipped + verifiable, or (b) the underlying production-readiness.json stage genuinely has zero remaining bullets. WONTFIX is reserved for items with a genuine architectural rationale (e.g. Wave R is mobile-only by design, no apps/api surface needed). Items I previously closed with rolling-WONTFIX framing (admin UI sprint, scheduler stub→real conversion, vendor procurement) are restored to `todo` or `in-progress` so the Master Punch List agrees with the Wave Tree.",
   "_completionModes": {
@@ -11,10 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "ai-gov-bias-approval-routes",
-    "title": "NOW WORKING: expose the AI-governance BiasReport + ApprovalRequest persistence (shipped 1523e7d5: migration 134 + stores + quorum, real-PG 4/4) via /admin/ai-governance HTTP routes + integration test. Closing the phase-3-6 BiasReport/ApprovalRequest gap end-to-end.",
-    "startedAt": "2026-06-01T10:25:00Z",
-    "evidence": "Wiring into apps/api/src/ai-governance-routes.ts: POST /admin/ai-governance/bias-reports (persist a provided BiasReport via PostgresBiasReportStore) + GET list + GET :id; POST /admin/ai-governance/approvals (create ModelApprovalRequest) + GET list + GET :id + POST :id/$decide (recordDecision → quorum recompute). Tenant via X-Cernia-Tenant. Route-level real-PG integration test (bootstraps migration 134). Persistence layer already verified 4/4 (ai-governance-store.integration.test.ts). Loop now runs at ~60s cadence per user request; portal refreshed each tick to show the active item."
+    "id": "billing-postgres-subscription-store",
+    "title": "NOW WORKING: PostgresSubscriptionStore — the persistent subscription/contract store the SaaS-billing nightly crons (x1c SaaS-metrics, x2b contract auto-renewal, x3c discount-approval sweep) need so they operate on REAL tenant subscriptions instead of the empty catalog-only stubs they run against today (apps/api/src/saas-nightly-batches.ts lines 56/68).",
+    "startedAt": "2026-06-01T10:45:00Z",
+    "evidence": "JUST SHIPPED the prior item: AI-governance BiasReport + ApprovalRequest HTTP routes wired into apps/api/src/ai-governance-routes.ts (POST/GET bias-reports, POST/GET approvals + POST :id/$decide quorum recompute), route-level real-PG integration test 5/5 (ai-governance-bias-approvals.integration.test.ts), mounted at boot. NEXT: design migration + PostgresSubscriptionStore (tenant-scoped subscriptions w/ plan/tier/status/period + contract terms), wire the three nightly batches to read it, real-PG integration test. Loop runs ~60s cadence; portal refreshed each tick."
   },
   "categories": [
     {
