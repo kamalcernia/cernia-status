@@ -126,7 +126,7 @@
             "ERX",
             "UI"
           ],
-          "evidence": "Backend gate ✓ (erx-routes mounted, PostgresErxStore shipped); Admin gate ✓ (wg-erx-admin UI shipped at apps/admin/src/app/admin/prescribing/, task #237); E2E gate △ (skeleton spec only); Conformance gate △.\n  WHY-NOT-DONE (2026-06-01 comprehensive-plan review): Backend ✓ + Admin ✓ (ERX UI). Open: real @wave-ERX Playwright E2E (skeleton only) + per-wave conformance --strict. Multi-day E2E authoring; roadmap-tracked (cit-closure-passes-roadmap.md)."
+          "evidence": "Backend gate ✓ (erx-routes mounted, PostgresErxStore shipped). Admin gate ✓ + Conformance gate ✓ as of 2026-06-01: audit-wave-integration now reports ERX backend=wired, admin=WIRED (clean, no sample-data), overall=wired, NO ⚠ — closed by a scripts/audit-wave-integration.mjs accuracy fix ((a) extracts API paths AFTER a `${apiBase()}` interpolation so the prescribing erx-api.ts client registers as wired instead of false-shelf; (b) scopes the sample-data flag to a wave's OWN admin surface so ERX isn't tainted by other pages' fixtures). E2E gate △ STILL OPEN: tests/e2e/wave-ERX/erx-draft-workflow.spec.ts is a full 4-test flow but targets /admin/erx/composer + /admin/erx with erx-* testids whereas the shipped UI is /admin/prescribing — the spec must be aligned to the real UI (or the UI given matching routes/testids), then run via Playwright. WHY-NOT-FULLY-DONE: only the E2E gate remains and it is CI-verified (needs the built admin app in CERNIA_ADMIN_DEMO + chromium; comprehensive-tests.yml runs it) — cannot be run green in this workspace without the dev stack."
         },
         {
           "id": "cit-pass-2",
