@@ -11,10 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "ra-sbm-revwire",
-    "title": "PARALLEL BATCH 4 (3 agents, each in a pool slot): revenue routes read-from-store + ml-drift capture/read routes + production RenewalAlertNotifier",
-    "startedAt": "2026-06-01T16:18:00Z",
-    "evidence": "Fourth fan-out. Per-agent progress now ALSO shown in the pool slots (set-slot.mjs): slot 1 ra-sbm-revwire (Agent J), slot 2 ra-ml-driftwire (Agent K), slot 3 ra-sbm-10c (Agent L). Disjoint writable sets; orchestrator owns index.ts + status JSONs + commits. Chip pinned to ra-sbm-revwire; all three rows show in-progress + their slots show running while in flight."
+    "id": null,
+    "title": "Four parallel batches shipped this session (16 items); idle between batches. Per-agent work now mirrored in the pool slots.",
+    "startedAt": null,
+    "evidence": "Batch 4 landed (feat+main, 30/30 integrated tests, typecheck=0/build=0): ra-sbm-revwire + ra-ml-driftwire + ra-sbm-10c. Pool slots were set running per-agent during flight (set-slot.mjs) then idle on completion. Session total 16 items. Next open: break-glass→legal_holds write-back, voice-call-handler gateway swap, apps/admin discount UI, apps/cernia-ops FinOps trend UI, Python risk-classifier through the inference RequestRouter, real customer-contact resolver to activate the RenewalAlertNotifier at boot."
   },
   "categories": [
     {
@@ -724,25 +724,25 @@
           "id": "ra-sbm-revwire",
           "track": "functionality-utilization/saas-billing-marketplace",
           "title": "Wire revenue-recognition routes to read from PostgresRevenueStore",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "PARALLEL BATCH 4 / Agent J (pool slot 1) — ra-sbm-revstore followup. The $build-schedule/$close-month routes take Contract+RevenueEvent[] in the body; wiring revenue-recognition-routes.ts to optionally read persisted contracts+events from PostgresRevenueStore (revenue-store.ts) + a POST to record events, keeping the body path backward-compatible. Real-PG route test; orchestrator wires the db option in index.ts."
+          "status": "done",
+          "completionMode": "shipped",
+          "evidence": "SHIPPED (parallel batch 4) — revenue-recognition-routes.ts gained opts{db}: $build-schedule additionally accepts {contractId} (loads stored contract+events, 404 if absent); $close-month accepts a no-contracts form fanning out over enumerateRevenueTenants→listContracts→listEventsForContract; NEW POST /admin/revenue/contracts (saveContract) + POST /admin/revenue/events (recordEvent). Body path unchanged (backward-compatible). Orchestrator registered with {db} in index.ts. Real-PG 5/5 (revenue-recognition-store-routes.integration.test.ts: persist+build-by-id, tenant 404, malformed 400, unknown-id 404, close-month ledger fan-out) + existing revenue-recognition-routes.test.ts still 10/10. ADR-0127: @cernia/api typecheck=0, build=0, 0 NEW lint errors (one pre-existing no-unnecessary-type-assertion in the unmodified isContract helper, verified carry-forward on origin/main). Committed this tick (feat+main)."
         },
         {
           "id": "ra-ml-driftwire",
           "track": "functionality-utilization/ml-platform",
           "title": "ml-drift capture + windowed-drift read routes",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "PARALLEL BATCH 4 / Agent K (pool slot 2) — ra-ml-driftcap followup. ml-drift-routes.ts only exposes the computational $compute; adding POST $capture (persist a prediction sample via ml-prediction-capture-store) + GET windowed-drift (windowedDatasets → computeReport) so live predictions feed the drift report. Real-PG route test; orchestrator wires the db option in index.ts."
+          "status": "done",
+          "completionMode": "shipped",
+          "evidence": "SHIPPED (parallel batch 4) — ml-drift-routes.ts gained opts{db}: NEW POST /admin/ml/drift/:model/:version/$capture (store.capture → 201) + GET /admin/ml/drift/:model/:version/windowed?currentSize=&referenceSize= (or ?cutoff=) → windowedDatasets → computeReport → DriftReport (422 insufficient-data when a window is empty). Existing $compute/$thresholds unchanged. Orchestrator registered with {db} in index.ts. Real-PG 5/5 (ml-drift-capture-routes.integration.test.ts: capture 201, windowed severe-shift report from stored windows, tenant isolation 422, malformed 400, missing-params 400) + existing ml-drift-routes.test.ts still 6/6. ADR-0127: @cernia/api typecheck=0, build=0, new file lint-clean. Committed this tick (feat+main)."
         },
         {
           "id": "ra-sbm-10c",
           "track": "functionality-utilization/saas-billing-marketplace",
           "title": "Production RenewalAlertNotifier over @cernia/notifications",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "PARALLEL BATCH 4 / Agent L (pool slot 3) — ra-sbm-10b followup. The dispatch sweep drains to an injected RenewalAlertNotifier (default log-only). Adding a NEW apps/api/src/renewal-alert-email-notifier.ts implementing RenewalAlertNotifier over @cernia/notifications (NotificationService/SmtpBackend; renders the T-120/T-90/T-30 template; PHI-safe via hashRecipient/assertPhiSafe), with a unit test against StubBackend. Orchestrator injects it at apps/api boot (index.ts)."
+          "status": "done",
+          "completionMode": "shipped-with-stub-followup",
+          "evidence": "SHIPPED (parallel batch 4) — NEW apps/api/src/renewal-alert-email-notifier.ts: RenewalAlertEmailNotifier implements the RenewalAlertNotifier interface over @cernia/notifications ({sender: NotificationService/backend, fromAddress, resolveRecipient seam}); maps the 4 AlertKinds to distinct T-120/T-90/T-30/expiry subject+body copy, runs assertPhiSafe as a fail-closed backstop, idempotencyKey=renewal-alert:<id>, and THROWS on unresolved recipient / unknown kind / non-sent DeliveryResult so the sweep's at-least-once retry holds. NO PHI (opaque subscriptionId + tenant only). Unit-tested 4/4 against StubBackend (single send + right recipient/subject, distinct copy across kinds, unresolved→throw, backend-failure→throw) + lint clean. ADR-0127: @cernia/api typecheck=0, build=0. Committed this tick (feat+main). STUB-FOLLOWUP: inject at apps/api boot once a real customer-contact resolver exists (saas_subscriptions has no email column) — until then the dispatch sweep keeps its log-only default."
         },
         {
           "id": "ra-tel-1",
