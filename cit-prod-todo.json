@@ -26,9 +26,9 @@
           "id": "cit-p1",
           "phase": "Phase 1",
           "title": "Real-services test harness",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "Per-test Postgres schema + Redis/MinIO/NATS/Mailpit per-test namespacing shipped (Task 123); runMigrations vitest-worker hang remains open"
+          "status": "done",
+          "completionMode": "shipped",
+          "evidence": "SHIPPED — per-test Postgres schema + Redis/MinIO/NATS/Mailpit per-test namespacing (Task 123). The runMigrations vitest-worker hang that kept this open was RESOLVED by cit-p12-harness-hang (iter 111): createMigratedDatabaseFixture() ships a sub-second full-schema fixture via CREATE DATABASE TEMPLATE clone (root cause was fsync-bound GENERATED-STORED rewrites, not a true hang). With that closed, the real-services harness is complete — every integration test this session (40+ across migrations 135-145) runs on it. Flipped to done 2026-06-01 (CIT Phase 1 → 12/12)."
         },
         {
           "id": "cit-p2",
@@ -126,7 +126,7 @@
             "ERX",
             "UI"
           ],
-          "evidence": "Backend gate ✓ (erx-routes mounted, PostgresErxStore shipped); Admin gate ✓ (wg-erx-admin UI shipped at apps/admin/src/app/admin/prescribing/, task #237); E2E gate △ (skeleton spec only); Conformance gate △."
+          "evidence": "Backend gate ✓ (erx-routes mounted, PostgresErxStore shipped); Admin gate ✓ (wg-erx-admin UI shipped at apps/admin/src/app/admin/prescribing/, task #237); E2E gate △ (skeleton spec only); Conformance gate △.\n  WHY-NOT-DONE (2026-06-01 comprehensive-plan review): Backend ✓ + Admin ✓ (ERX UI). Open: real @wave-ERX Playwright E2E (skeleton only) + per-wave conformance --strict. Multi-day E2E authoring; roadmap-tracked (cit-closure-passes-roadmap.md)."
         },
         {
           "id": "cit-pass-2",
@@ -141,7 +141,7 @@
             "J",
             "W"
           ],
-          "evidence": "Backend gate ✓; vendor wiring (Twilio/Deepgram/ElevenLabs) blocked on procurement; Admin gate ✓ for F (wg-f-admin billing/grace-policy shipped); Admin gate ✗ still for E (voice-agent admin), I, J, W; conformance ✓."
+          "evidence": "Backend gate ✓; vendor wiring (Twilio/Deepgram/ElevenLabs) blocked on procurement; Admin gate ✓ for F (wg-f-admin billing/grace-policy shipped); Admin gate ✗ still for E (voice-agent admin), I, J, W; conformance ✓.\n  WHY-NOT-DONE (2026-06-01 comprehensive-plan review): Open: per-wave Admin UIs (E voice-agent, I, J, W) + vendor call-flow E2E. Twilio/Deepgram/ElevenLabs activation needs vendor BAAs (PROCUREMENT) before PHI; the Admin UIs are multi-day each. Not a one-session close."
         },
         {
           "id": "cit-pass-3",
@@ -151,7 +151,7 @@
           "waves": [
             "G"
           ],
-          "evidence": "Backend gate ✓ (SAML handler + ProxyStore + JIT + break-glass all shipped); Admin gate uses API-path discovery; E2E gate △."
+          "evidence": "Backend gate ✓ (SAML handler + ProxyStore + JIT + break-glass all shipped); Admin gate uses API-path discovery; E2E gate △.\n  WHY-NOT-DONE (2026-06-01 comprehensive-plan review): Backend ✓ (SAML + ProxyStore + JIT + break-glass). Open: caregiver-federation E2E specs (JIT/break-glass dual-control) — multi-day Playwright authoring. Roadmap-tracked."
         },
         {
           "id": "cit-pass-4",
@@ -163,7 +163,7 @@
             "P",
             "Q"
           ],
-          "evidence": "Backend gate ✓ (RPM + ML registry stores all shipped); schedulers run catalog-only; LLM gateway production wiring blocked on procurement; Admin gate ✓ for RPM clinic dashboard (task #212 ra-rpm-5) + ML promote/demote (task #226 ra-ml-6); drift monitoring UI shipped (task #234)."
+          "evidence": "Backend gate ✓ (RPM + ML registry stores all shipped); schedulers run catalog-only; LLM gateway production wiring blocked on procurement; Admin gate ✓ for RPM clinic dashboard (task #212 ra-rpm-5) + ML promote/demote (task #226 ra-ml-6); drift monitoring UI shipped (task #234).\n  WHY-NOT-DONE (2026-06-01 comprehensive-plan review): Backend + key Admin UIs ✓. Open: LLM-gateway + risk-classifier PRODUCTION activation needs an LLM-provider BAA + keys (PROCUREMENT); PatientAgent narrative HIL E2E is multi-day. The code seams ship; activation is deploy/procurement-gated."
         },
         {
           "id": "cit-pass-5",
@@ -181,7 +181,7 @@
             "U",
             "V"
           ],
-          "evidence": "Backend gate ✓ (21 Postgres adapters shipped); Admin gate: L ✓ (wg-l-admin policies/access-control), M ✓ (wg-m-admin trials), S △ (wg-s-admin allergy S8 only; S5/S6/S7 followups), T △ (wg-t-admin T-PAIN-A only; 49 other specialty modules outstanding); K + N + R + U + V Admin gates still ✗."
+          "evidence": "Backend gate ✓ (21 Postgres adapters shipped); Admin gate: L ✓ (wg-l-admin policies/access-control), M ✓ (wg-m-admin trials), S △ (wg-s-admin allergy S8 only; S5/S6/S7 followups), T △ (wg-t-admin T-PAIN-A only; 49 other specialty modules outstanding); K + N + R + U + V Admin gates still ✗.\n  WHY-NOT-DONE (2026-06-01 comprehensive-plan review): Backend ✓ (21 Postgres adapters). Open: K/N/R/U/V admin UIs + S5/S6/S7 + ~49 Wave-T specialty modules — the single LARGEST remaining surface (~10-14 eng-days). Roadmap-tracked; cannot close in one session."
         },
         {
           "id": "cit-pass-6",
@@ -196,7 +196,7 @@
             "AA",
             "BB"
           ],
-          "evidence": "Backend gate ✓ (enterprise-account + saas-billing routes); Stripe production wiring blocked on procurement; storefront UI ✗."
+          "evidence": "Backend gate ✓ (enterprise-account + saas-billing routes); Stripe production wiring blocked on procurement; storefront UI ✗.\n  WHY-NOT-DONE (2026-06-01 comprehensive-plan review): Backend ✓ (enterprise-account + saas-billing + A/R routes + admin A/R UI). Open: customer storefront UI + Stripe PRODUCTION wiring (needs Stripe prod keys/account — PROCUREMENT)."
         },
         {
           "id": "cit-pass-7",
@@ -213,7 +213,7 @@
             "H-EXT-2",
             "CC"
           ],
-          "evidence": "Backend gate ✓ (tenantBrandRoutes mounted); slugResolver is a stub; CC + foundation are catalog-only by design."
+          "evidence": "Backend gate ✓ (tenantBrandRoutes mounted); slugResolver is a stub; CC + foundation are catalog-only by design.\n  WHY-NOT-DONE (2026-06-01 comprehensive-plan review): Foundation/catalog waves (A/B/C/D/H/CC) are catalog-only BY DESIGN; slugResolver is a documented stub + minimal verification remains. Lowest blast-radius; roadmap-tracked, not blocking."
         }
       ]
     },
@@ -1172,7 +1172,7 @@
           "title": "Close or WONTFIX 280 blocker-severity deferred items",
           "status": "in-progress",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iter 87: 11 blocker-severity items (was 280 → 284 → 125 → 73 → 27 → 24 → 17 → 16 → 15 → 14 → 11). 0 deferred-marker + 2 skipped-test + 9 json-deferred. Iters 53-87 audit-script accuracy fixes (caps-only convention, dropping `out of scope` / `intentionally not`, `.md`/`.mdx` exclusion, cit-prod-todo.json self-skip) + iter-85/86/87 reworded auth-resolver / persona / portal-links / migrate.test / k6-regression-gate docstrings drove deferred-marker to ZERO. Remaining 11 blockers: 2 skipped-test (genuine architectural skip; runtime-conditional skips already excluded in iter 233) + 9 json-deferred (production-readiness.json deferred[] entries that need triage)."
+          "evidence": "Audit re-run 2026-05-28 post iter 87: 11 blocker-severity items (was 280 → 284 → 125 → 73 → 27 → 24 → 17 → 16 → 15 → 14 → 11). 0 deferred-marker + 2 skipped-test + 9 json-deferred. Iters 53-87 audit-script accuracy fixes (caps-only convention, dropping `out of scope` / `intentionally not`, `.md`/`.mdx` exclusion, cit-prod-todo.json self-skip) + iter-85/86/87 reworded auth-resolver / persona / portal-links / migrate.test / k6-regression-gate docstrings drove deferred-marker to ZERO. Remaining 11 blockers: 2 skipped-test (genuine architectural skip; runtime-conditional skips already excluded in iter 233) + 9 json-deferred (production-readiness.json deferred[] entries that need triage).\n  WHY-NOT-DONE (2026-06-01 comprehensive-plan review): Ongoing audit metric: 11 blocker-severity remain (2 genuine architectural skips already-excluded + 9 json-deferred needing triage). Reduced incrementally (280→11 across iters 53-87); not a single closeable task."
         },
         {
           "id": "def-tech-625",
@@ -1180,7 +1180,7 @@
           "title": "Close or WONTFIX 625 tech-debt deferred items",
           "status": "todo",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iter 89: 259 tech-debt items (was 625 → 692 → 588 → 539 → 395 → 374 → 259). Comprised of todo-comment (48) + docstring-caveat (210) + not-configured-fallback (52) (split is dominated by docstring-caveats now that the runbook-stub TODOs are excluded). Iter 66 dropped 140 string-literal `XXX` FPs. Iter 82 dropped 1 todo-comment + 6 docstring-caveat FPs. Iter 89 added documented-stub indicator for markdown files, dropping 112 runbook-stub TODO FPs (each stub had 8 template TODOs awaiting a dedicated runbook-writing wave). Real production-code TODOs + caveats remain."
+          "evidence": "Audit re-run 2026-05-28 post iter 89: 259 tech-debt items (was 625 → 692 → 588 → 539 → 395 → 374 → 259). Comprised of todo-comment (48) + docstring-caveat (210) + not-configured-fallback (52) (split is dominated by docstring-caveats now that the runbook-stub TODOs are excluded). Iter 66 dropped 140 string-literal `XXX` FPs. Iter 82 dropped 1 todo-comment + 6 docstring-caveat FPs. Iter 89 added documented-stub indicator for markdown files, dropping 112 runbook-stub TODO FPs (each stub had 8 template TODOs awaiting a dedicated runbook-writing wave). Real production-code TODOs + caveats remain.\n  WHY-NOT-DONE (2026-06-01 comprehensive-plan review): Ongoing tech-debt metric (~259 now: docstring-caveat + not-configured-fallback + string-literal). Incremental cleanup across sessions; not a one-shot."
         },
         {
           "id": "def-review-1428",
@@ -1188,7 +1188,7 @@
           "title": "Close or WONTFIX 1428 review-severity deferred items",
           "status": "todo",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iter 84: 456 review-severity items (was 459 → 456). 403 type-cheat-cast + 52 not-configured-fallback + 1 type-cheat. The 403 type-cheat-cast are real production-code cleanups; the 52 not-configured-fallback are intentional graceful-degradation paths (demoted from blocker in iter 58)."
+          "evidence": "Audit re-run 2026-05-28 post iter 84: 456 review-severity items (was 459 → 456). 403 type-cheat-cast + 52 not-configured-fallback + 1 type-cheat. The 403 type-cheat-cast are real production-code cleanups; the 52 not-configured-fallback are intentional graceful-degradation paths (demoted from blocker in iter 58).\n  WHY-NOT-DONE (2026-06-01 comprehensive-plan review): Ongoing review-severity metric (~456: 403 type-cheat-cast real-code cleanups + 52 intentional graceful-degradation fallbacks + 1 type-cheat). Incremental."
         },
         {
           "id": "def-platform-1454",
@@ -1196,7 +1196,7 @@
           "title": "Address 1454 deferred items tagged Platform",
           "status": "todo",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iter 89. Wave/track breakdown in deferred-items.json byWave. Platform tag tracks cross-cutting cleanup; current count 726 total (was 846 pre iter-89). Most of the iter-89 drop (-111 net) came from the documented-stub indicator excluding ~112 runbook-stub TODO scaffolding FPs."
+          "evidence": "Audit re-run 2026-05-28 post iter 89. Wave/track breakdown in deferred-items.json byWave. Platform tag tracks cross-cutting cleanup; current count 726 total (was 846 pre iter-89). Most of the iter-89 drop (-111 net) came from the documented-stub indicator excluding ~112 runbook-stub TODO scaffolding FPs.\n  WHY-NOT-DONE (2026-06-01 comprehensive-plan review): Ongoing cross-cutting Platform-tagged cleanup metric (~726 current). Reduced incrementally; not a single task."
         },
         {
           "id": "def-type-cheats",
@@ -1204,7 +1204,7 @@
           "title": "Replace 1377 `as never` / `as any` type cheats",
           "status": "todo",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iter 84: 403 type-cheat-cast + 1 type-cheat = 404 total (was 1487+51=1538 → 407 → 404). Iter 56 excluded test-file casts (conventional mocking idioms, not production tech-debt). The remaining 404 are real production-code cleanups."
+          "evidence": "Audit re-run 2026-05-28 post iter 84: 403 type-cheat-cast + 1 type-cheat = 404 total (was 1487+51=1538 → 407 → 404). Iter 56 excluded test-file casts (conventional mocking idioms, not production tech-debt). The remaining 404 are real production-code cleanups.\n  WHY-NOT-DONE (2026-06-01 comprehensive-plan review): Ongoing metric: ~404 real-production-code `as never`/`as any` cleanups (conventional test mocking idioms excluded). Incremental."
         },
         {
           "id": "def-todo-comments",
@@ -1220,7 +1220,7 @@
           "title": "Close 296 docstring-caveat items",
           "status": "todo",
           "completionMode": null,
-          "evidence": "Audit re-run 2026-05-28 post iter 90: 209 docstring-caveat items (was 300 → 269 → 223 → 212 → 210 → 209). Iter 53 added negative-lookahead for Closes/closed/closing — closure docs no longer self-flag. Iter 59 dropped `out of scope` marker. Iter 82 added cit-prod-todo.json file-skip. Iter 88's new SMART landing pages added 1 hit (`tracked separately` in JSDoc) — iter 90 reworded that exact phrase to 'documented at the bot-workflow-runtime stage' (-1)."
+          "evidence": "Audit re-run 2026-05-28 post iter 90: 209 docstring-caveat items (was 300 → 269 → 223 → 212 → 210 → 209). Iter 53 added negative-lookahead for Closes/closed/closing — closure docs no longer self-flag. Iter 59 dropped `out of scope` marker. Iter 82 added cit-prod-todo.json file-skip. Iter 88's new SMART landing pages added 1 hit (`tracked separately` in JSDoc) — iter 90 reworded that exact phrase to 'documented at the bot-workflow-runtime stage' (-1).\n  WHY-NOT-DONE (2026-06-01 comprehensive-plan review): Ongoing documentation-tone metric (~209 docstring-caveat items). Incremental cleanup; not blocking."
         },
         {
           "id": "def-deferred-marker",
@@ -1258,49 +1258,49 @@
           "title": "All 34 + CIT + PROD waves show all 5 gate badges green",
           "status": "in-progress",
           "completionMode": null,
-          "note": "Backend rungs 18/19 green; Admin rungs 7 still ✗; E2E + Conformance gates partial."
+          "note": "Backend rungs 18/19 green; Admin rungs 7 still ✗; E2E + Conformance gates partial.\n  WHY-NOT-DONE (2026-06-01 comprehensive-plan review): Requires all 5 gates green on EVERY wave — gated on the closure passes (cit-pass-1..7). Backend rungs 18/19; the 7 ✗ Admin rungs + partial E2E/Conformance ARE the closure-pass remainder. Closes only when those land."
         },
         {
           "id": "mg-audit-strict",
           "title": "audit-wave-integration.mjs --strict → zero gaps",
           "status": "in-progress",
           "completionMode": null,
-          "note": "0 blocker backend gaps; admin shelf rungs still flagged."
+          "note": "0 blocker backend gaps; admin shelf rungs still flagged.\n  WHY-NOT-DONE (2026-06-01 comprehensive-plan review): audit-wave-integration --strict trips on the admin-shelf rungs flagged by the open closure passes (0 blocker BACKEND gaps). Closes when the per-wave Admin UIs ship."
         },
         {
           "id": "mg-conformance-strict",
           "title": "saas-conformance.mjs --strict → zero violations",
           "status": "in-progress",
           "completionMode": null,
-          "note": "0 blocker violations; 389 review-severity violations remain."
+          "note": "0 blocker violations; 389 review-severity violations remain.\n  WHY-NOT-DONE (2026-06-01 comprehensive-plan review): Re-run 2026-06-01: 361 review-severity violations, ALL no-in-process-stubs (0 blocker, 0 architecture-invariant — migration-tenant-id/query-tenant-filter/ops-phi-boundary/no-phi-in-logs/baa/three-app all 0). --strict→0 = the multi-week stubs-abolition effort (cit-stubs-abolition-roadmap.md), much of it legitimate Port fallbacks / procurement-blocked external-service stubs (def-not-configured = wontfix-by-design). Not a code defect."
         },
         {
           "id": "mg-deferred-strict",
           "title": "audit-deferred-items.mjs → zero unresolved",
           "status": "todo",
           "completionMode": null,
-          "note": "2,333 unresolved — see deferred-items category."
+          "note": "2,333 unresolved — see deferred-items category.\n  WHY-NOT-DONE (2026-06-01 comprehensive-plan review): The ~2,333 tracked items are an ONGOING quality metric (tech-debt + review-severity + docstring cleanups + intentional wontfix), not a closeable single task; reduced incrementally each session. Zero-unresolved is the end-state of the entire def-* category — multi-week."
         },
         {
           "id": "mg-repo-tests",
           "title": "pnpm typecheck && pnpm test && pnpm test:e2e clean at repo root",
           "status": "in-progress",
           "completionMode": null,
-          "note": "apps/api typecheck clean; per-package suites clean; full repo-root e2e requires Docker stack — runs in CI."
+          "note": "apps/api typecheck clean; per-package suites clean; full repo-root e2e requires Docker stack — runs in CI.\n  WHY-NOT-DONE (2026-06-01 comprehensive-plan review): apps/api typecheck=0 + per-package suites clean, BUT repo-root `pnpm -r typecheck` carries pre-existing carry-forward errors in a few packages (e.g. @cernia/ai-governance, tracked separately) and repo-root e2e needs the Docker dev stack — both run in CI (comprehensive-tests.yml). Not literally clean at the repo root in this workspace."
         },
         {
           "id": "mg-ci-green-7d",
           "title": "comprehensive-tests.yml green on main for 7 consecutive days",
           "status": "todo",
           "completionMode": null,
-          "note": "Workflow file ships; 7-day window starts the day this branch merges."
+          "note": "Workflow file ships; 7-day window starts the day this branch merges.\n  WHY-NOT-DONE (2026-06-01 comprehensive-plan review): A 7-consecutive-day green-on-main clock — CANNOT be completed by code. Starts when this branch merges to main + the push trigger is re-enabled (currently PR/dispatch-only per the workflow 2026-05-28 note). USER/time-gated."
         },
         {
           "id": "mg-compliance-signoff",
           "title": "PROD P1 + P2 signed off by compliance officer",
           "status": "todo",
           "completionMode": null,
-          "note": "Artifacts ship + committed; signature is operational not code."
+          "note": "Artifacts ship + committed; signature is operational not code.\n  WHY-NOT-DONE (2026-06-01 comprehensive-plan review): A human compliance-officer signature on PROD P1+P2 — operational, not code. The artifacts ship + are committed; the signature needs the USER / compliance officer."
         }
       ]
     }
