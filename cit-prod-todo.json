@@ -11,10 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "ra-sbm-11",
-    "title": "x3c discount-approval HTTP routes — create / list / get / approve / deny over PostgresDiscountApprovalStore",
-    "startedAt": "2026-06-01T14:45:00Z",
-    "evidence": "Adding apps/api/src/discount-approval-routes.ts (5 routes wrapping the existing PostgresDiscountApprovalStore + @cernia/x3c-discount-approval) registered in index.ts, with a real-PG route test (Fastify inject over migration 136)."
+    "id": null,
+    "title": "Billing cluster tail shipped (ra-sbm-4/8/9/11); next open: ra-sbm-10 renewal-alert email dispatch",
+    "startedAt": null,
+    "evidence": "This session shipped ra-sbm-4 (x1a tax engine), ra-sbm-8 (x1c metric snapshots), ra-sbm-9 (x2b expiry sweep), ra-sbm-11 (x3c discount routes) — all feat+main, all real-PG tested. Next open billing item: ra-sbm-10 (x2b renewal-alert email dispatch via the email pipeline); then ML adapters / plugin-archive upload / CDS-dispatch per HANDOFF §5."
   },
   "categories": [
     {
@@ -644,9 +644,9 @@
           "id": "ra-sbm-11",
           "track": "functionality-utilization/saas-billing-marketplace",
           "title": "x3c discount-approval HTTP routes (create / list / get / approve / deny)",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "ra-sbm-7 shipped the PostgresDiscountApprovalStore + nightly timeout sweep, but the store has no HTTP surface — sales/admin can't actually create a discount request or approvers record sign-off. Adding apps/api/src/discount-approval-routes.ts (POST create → x3c classifyDiscount chain; GET list/get; POST :id/$approve → recordApproval; POST :id/$deny → recordDenial) registered in index.ts, with a real-PG route test (Fastify inject over migration 136)."
+          "status": "done",
+          "completionMode": "shipped-with-stub-followup",
+          "evidence": "SHIPPED — apps/api/src/discount-approval-routes.ts: POST /admin/discount-approvals (create → x3c classifyDiscount chain) + GET list/get (tenant-scoped) + POST :id/$approve (recordApproval) + POST :id/$deny (recordDenial), registered in index.ts (db-gated, 10e-x3c). Real-PG 4/4 (discount-approval-routes.integration.test.ts via Fastify inject over migration 136: chain classification + tenant isolation, validation 400s, csm-only chain → approved, $deny → denied + 404). ADR-0127: @cernia/api typecheck=0, build=0, new files lint-clean. Committed this tick (feat+main). STUB-FOLLOWUP: apps/admin UI driving these routes + approver notifications (ra-sbm-10)."
         },
         {
           "id": "ra-tel-1",
