@@ -1,7 +1,7 @@
 {
   "$schema": "Comprehensive Integration + Production Readiness master TODO list. Each row maps to a tracked gap in production-readiness.json, the wave-integration audit, or the deferred-items audit. Status pills are driven by docs/status/update-status.mjs derivations.",
   "version": "1.2.0",
-  "generatedAt": "2026-06-01T11:05:00Z",
+  "generatedAt": "2026-06-01T11:25:00Z",
   "_currentTaskRule": "When an agent (or human) is actively working a TODO, they set `currentTask` to the active item's id + a one-line description. The portal renders a pulsing 'Now working on:' strip at the top of the Master Punch List panel and highlights the matching row. When the work lands as a commit, the same commit clears currentTask (set id to null) and flips the item's status from todo→in-progress or in-progress→done. The cron + post-commit hook propagate within seconds. Set currentTask to null when idle.",
   "_honestyDisclaimer": "v1.2.0 — ROLLED BACK from the dishonest 100%-done state of v1.1.0. Items are NOW only marked `done` when (a) real code is shipped + verifiable, or (b) the underlying production-readiness.json stage genuinely has zero remaining bullets. WONTFIX is reserved for items with a genuine architectural rationale (e.g. Wave R is mobile-only by design, no apps/api surface needed). Items I previously closed with rolling-WONTFIX framing (admin UI sprint, scheduler stub→real conversion, vendor procurement) are restored to `todo` or `in-progress` so the Master Punch List agrees with the Wave Tree.",
   "_completionModes": {
@@ -11,10 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "ra-sbm-6",
-    "title": "Wire x2b contract auto-renewal sweep to real subscriptions (store-unblocked by migration 135). Feed renewals-due saas_subscriptions rows through @cernia/x2b-contract-auto-renewal + roll the billing period forward; real-PG test.",
-    "startedAt": "2026-06-01T11:05:00Z",
-    "evidence": "Just shipped ra-sbm-3 (x1c real metrics sweep, e3d607b3) + ra-sde-2 bias/approval routes (b59987de). currentTask.id now points at the REAL ra-sbm-6 row so this row highlights + pulses in the Master Punch List (prior free-form ids matched no row)."
+    "id": "ra-sbm-7",
+    "title": "Wire x3c discount-approval timeout sweep to a real Postgres-backed discount-approval store (auto-expire stale pending approvals via @cernia/x3c-discount-approval).",
+    "startedAt": "2026-06-01T11:25:00Z",
+    "evidence": "Just shipped ra-sbm-6 (x2b auto-renewal real sweep, real-PG 1/1). currentTask.id points at the REAL ra-sbm-7 row (in-progress) so it highlights + pulses in the Master Punch List. Next: migration + PostgresDiscountApprovalStore + nightly timeout sweep + integration test."
   },
   "categories": [
     {
@@ -604,17 +604,17 @@
           "id": "ra-sbm-6",
           "track": "functionality-utilization/saas-billing-marketplace",
           "title": "Wire x2b contract auto-renewal cron",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "IN FLIGHT. Store-unblocked: migration 135 ships auto_renew + current_period_end + the idx_saas_subscriptions_renewal_due partial index. Wiring the nightly tick to feed renewals-due rows through @cernia/x2b-contract-auto-renewal and roll current_period_start/end forward, with a real-PG integration test (:5434)."
+          "status": "done",
+          "completionMode": "shipped",
+          "evidence": "SHIPPED — real x2b auto-renewal sweep. apps/api/src/saas-nightly-batches.ts runContractAutoRenewalSweep: renewals-due saas_subscriptions rows (active+auto_renew+period-ended) through @cernia/x2b-contract-auto-renewal processEndOfTerm (bounded catch-up loop) then rollPeriodForward. Real-PG 1/1 (saas-contract-auto-renewal.integration.test.ts: tenants=2 due=2 renewed=2; auto_renew=false/future/paused untouched; idempotent). Committed this tick (feat+main)."
         },
         {
           "id": "ra-sbm-7",
           "track": "functionality-utilization/saas-billing-marketplace",
           "title": "Wire x3c discount-approval workflow",
-          "status": "done",
-          "completionMode": "shipped-with-stub-followup",
-          "evidence": "apps/api/src/saas-nightly-batches.ts — heartbeat only."
+          "status": "in-progress",
+          "completionMode": null,
+          "evidence": "IN FLIGHT — x3c discount-approval timeout sweep still heartbeat-only. Next: a Postgres-backed discount-approval-request store + nightly sweep that auto-expires real stale pending approvals via @cernia/x3c-discount-approval, with a real-PG integration test."
         },
         {
           "id": "ra-tel-1",
