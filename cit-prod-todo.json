@@ -11,10 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": null,
-    "title": "Two parallel batches shipped (6 items); idle between batches",
-    "startedAt": null,
-    "evidence": "Session shipped (feat+main, all real-PG tested): solo ra-sbm-4/8/9/11; batch 1 ra-sd-legalhold + ra-ext-archive + ra-fin-trend; batch 2 ra-sbm-10 + ra-ext-upload + ra-sd-wire (reconciled). Next open: ML adapters (LlmGateway→voice-call-handler / drift capture / risk-classifier router), CDS landing-page dispatch, the renewal-alert nightly sweep+SMTP (ra-sbm-10 followup), and the apps/admin + apps/cernia-ops UI follow-ups."
+    "id": "ra-ml-voicegw",
+    "title": "PARALLEL BATCH 3: LlmGateway voice adapter + ML drift capture + revenue-event store (+ orchestrator: renewal sweep+SMTP)",
+    "startedAt": "2026-06-01T15:50:00Z",
+    "evidence": "Third fan-out (HANDOFF §6, disjoint writable sets): ra-ml-voicegw (LlmGateway→IClaudeClient adapter), ra-ml-driftcap (migration 142 prediction-capture store), ra-sbm-revstore (migration 143 contract+revenue-event store); orchestrator owns ra-sbm-10b (renewal sweep+SMTP in saas-nightly-batches.ts) + all shared files + commits. Chip pinned to ra-ml-voicegw; the others show in-progress."
   },
   "categories": [
     {
@@ -687,6 +687,38 @@
           "status": "done",
           "completionMode": "shipped-with-stub-followup",
           "evidence": "SHIPPED (parallel batch) — GET /cernia-ops/finops/metric-trend in apps/api/src/cernia-ops-finops-routes.ts reads PostgresMetricSnapshotStore.listTrend across tenants (migration 139), RBAC-guarded + audited; raw tenant_id NEVER emitted (sha256-hex(16) tenantHash only, CLAUDE.md invariant 5); optional metricSnapshotDb option wired in index.ts (graceful-degrade when absent). Real-PG 3/3 (cernia-ops-finops-trend.integration.test.ts via Fastify inject: 2 tenants + newest-first + totals + raw-tenant-id-absent assertion; limit cap; absent-db degrade). ADR-0127: @cernia/api typecheck=0, build=0, new files lint-clean. Committed this tick (feat+main). STUB-FOLLOWUP: the apps/cernia-ops UI charting the series."
+        },
+        {
+          "id": "ra-ml-voicegw",
+          "track": "functionality-utilization/ml-platform",
+          "title": "LlmGateway-backed IClaudeClient adapter for the voice agent",
+          "status": "in-progress",
+          "completionMode": null,
+          "evidence": "PARALLEL BATCH 3 / Agent G — ra-ml-3 followup. voice-call-handler.ts dialog turns go through a raw @anthropic-ai/sdk IClaudeClient (createAnthropicClaudeClient). Adding a NEW createLlmGatewayClaudeClient(gateway) adapter implementing IClaudeClient over @cernia/o1-llm-gateway LlmGateway (so turns gain PHI redaction + cost recording + audit), with a unit test against a stub gateway. Orchestrator swaps the wiring in voice-call-handler.ts."
+        },
+        {
+          "id": "ra-ml-driftcap",
+          "track": "functionality-utilization/ml-platform",
+          "title": "Prediction-stream capture feeding the ML drift endpoint",
+          "status": "in-progress",
+          "completionMode": null,
+          "evidence": "PARALLEL BATCH 3 / Agent H. The /admin/ml/drift/$compute endpoint (ml-drift-routes.ts) is purely computational (reference+current datasets in the body). Adding migration 142 + a prediction-sample store that captures live predictions into a rolling-window reference/current dataset the drift endpoint can read, with a real-PG test. Orchestrator wires the capture hook + read route."
+        },
+        {
+          "id": "ra-sbm-revstore",
+          "track": "functionality-utilization/saas-billing-marketplace",
+          "title": "Persistent contract + revenue-event storage for x1b recognition",
+          "status": "in-progress",
+          "completionMode": null,
+          "evidence": "PARALLEL BATCH 3 / Agent I — ra-sbm-5 followup. The x1b $build-schedule/$close-month routes accept Contract + RevenueEvent[] in the request body (nothing persists them). Adding migration 143 + a PostgresContractStore + revenue-event store (tenant-scoped) so the NetSuite/QuickBooks close job has a durable event ledger, with a real-PG test. Orchestrator wires the read/write routes."
+        },
+        {
+          "id": "ra-sbm-10b",
+          "track": "functionality-utilization/saas-billing-marketplace",
+          "title": "Renewal-alert nightly sweep + SMTP dispatch (orchestrator-owned)",
+          "status": "in-progress",
+          "completionMode": null,
+          "evidence": "BATCH 3 / orchestrator — ra-sbm-10 followup. Wiring runRenewalAlertScheduleSweep (enumerate tenants → upcoming-renewal subs → pendingAlertsForSubscription → renewal-alert-store.schedule) + runRenewalAlertDispatchSweep (listDue → send via @cernia/notifications SMTP/SES seam → markDispatched) into saas-nightly-batches.ts tick(), with a real-PG test. Touches the shared saas-nightly-batches.ts so the orchestrator owns it, not a sub-agent."
         },
         {
           "id": "ra-tel-1",
