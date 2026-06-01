@@ -790,7 +790,15 @@
           "title": "Discount-approval approver notifications over @cernia/notifications",
           "status": "done",
           "completionMode": "shipped-with-stub-followup",
-          "evidence": "SHIPPED (parallel batch 6) — apps/api/src/discount-approval-notifier.ts: DiscountApprovalNotifier({sender, fromAddress, resolveApproverContact}) + notifyPendingApprovers(req) emails the NEXT-needed roles (requiredApprovers minus approvedBy; pure nextNeededApproverRoles helper); no-PHI subject/body (discount %, quote line, justification), assertPhiSafe, idempotencyKey discount-approval:<id>:<role>; throws on send-failure (retry), skips+logs unresolved contacts (at-least-once per role), notifies nobody unless status==='pending'. Unit-tested 7/7 vs StubBackend. ADR-0127: @cernia/api typecheck=0, build=0, new files lint-clean. Committed this tick (feat+main). STUB-FOLLOWUP: inject a per-tenant approver-role→contact directory + call notifyPendingApprovers from the create/approve route path."
+          "evidence": "SHIPPED (parallel batch 6) — apps/api/src/discount-approval-notifier.ts: DiscountApprovalNotifier({sender, fromAddress, resolveApproverContact}) + notifyPendingApprovers(req) emails the NEXT-needed roles (requiredApprovers minus approvedBy; pure nextNeededApproverRoles helper); no-PHI subject/body (discount %, quote line, justification), assertPhiSafe, idempotencyKey discount-approval:<id>:<role>; throws on send-failure (retry), skips+logs unresolved contacts (at-least-once per role), notifies nobody unless status==='pending'. Unit-tested 7/7 vs StubBackend. ADR-0127: @cernia/api typecheck=0, build=0, new files lint-clean. The approver-contact directory (ra-sbm-approver-dir, migration 145) + the route CALL-SITE (ra-sbm-discount-wire) now ship too. FINAL STEP: construct + inject the notifier at boot with an env-gated SMTP/SES backend (deploy-config)."
+        },
+        {
+          "id": "ra-sbm-discount-wire",
+          "track": "functionality-utilization/saas-billing-marketplace",
+          "title": "Discount routes fire the approver-notifier on create/approve",
+          "status": "done",
+          "completionMode": "shipped-with-stub-followup",
+          "evidence": "SHIPPED (batch 9, orchestrator) — apps/api/src/discount-approval-routes.ts gained an optional notifier option (DiscountApproverNotifierLike) + a best-effort notifyBestEffort(req, stored) that calls notifyPendingApprovers after create + after a still-pending approve; pending-only; a notify failure NEVER fails the HTTP request. Real-PG 3/3 (discount-approval-notify-wiring.integration.test.ts: notify on create + still-pending approve; NOT on chain-complete approve or deny; throwing notifier doesn't fail the request) + existing discount-approval-routes.integration.test.ts still 4/4 (registered with no notifier → unchanged). ADR-0127: @cernia/api typecheck=0, build=0, lint-clean. Committed this tick (feat+main). FINAL STEP (deploy-config): construct DiscountApprovalNotifier at boot (makeApproverContactResolver(db) + an env-gated @cernia/notifications SMTP/SES backend — needs nodemailer/SES transport + creds) and pass as the routes' notifier option."
         },
         {
           "id": "ra-ui-discount",
