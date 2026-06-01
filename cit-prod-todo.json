@@ -649,6 +649,30 @@
           "evidence": "SHIPPED — apps/api/src/discount-approval-routes.ts: POST /admin/discount-approvals (create → x3c classifyDiscount chain) + GET list/get (tenant-scoped) + POST :id/$approve (recordApproval) + POST :id/$deny (recordDenial), registered in index.ts (db-gated, 10e-x3c). Real-PG 4/4 (discount-approval-routes.integration.test.ts via Fastify inject over migration 136: chain classification + tenant isolation, validation 400s, csm-only chain → approved, $deny → denied + 404). ADR-0127: @cernia/api typecheck=0, build=0, new files lint-clean. Committed this tick (feat+main). STUB-FOLLOWUP: apps/admin UI driving these routes + approver notifications (ra-sbm-10)."
         },
         {
+          "id": "ra-sd-legalhold",
+          "track": "functionality-utilization/phase-3-6-specialized",
+          "title": "Dedicated legal_holds Postgres table + reviewer write-back",
+          "status": "in-progress",
+          "completionMode": null,
+          "evidence": "PARALLEL AGENT 1. Today legal holds are surfaced only via rbac_audit_events policy-changed meta-audit (apps/api/src/sensitive-data-routes.ts). Adding a dedicated legal_holds table (migration 140) + apps/api/src/legal-hold-store.ts (PostgresLegalHoldRegistry implementing the @cernia/k4-rbac-audit-log LegalHoldRegistry interface — place/release/getById/listActive/isEventOnHold with placedBy/releasedBy reviewer write-back) + a real-PG integration test."
+        },
+        {
+          "id": "ra-ext-archive",
+          "track": "functionality-utilization/extensions",
+          "title": "Plugin-archive (.cernia-plugin) ingest + signature verification",
+          "status": "in-progress",
+          "completionMode": null,
+          "evidence": "PARALLEL AGENT 2. The @cernia/extension-runtime package-loader (loadPluginPackage + SignatureVerifier) is pure-data and unused by apps/api. Adding apps/api/src/plugin-archive-ingest.ts that verifies + loads a RawPackageContents archive (fails closed on bad signature / forbidden imports) and records the install via the existing PostgresPluginInstallationStore (migration 132), with a real-PG integration test."
+        },
+        {
+          "id": "ra-fin-trend",
+          "track": "functionality-utilization/saas-billing-marketplace",
+          "title": "cernia-ops FinOps MRR/ARR/churn trend route (reads saas_metric_snapshots)",
+          "status": "in-progress",
+          "completionMode": null,
+          "evidence": "PARALLEL AGENT 3 — closes the ra-sbm-8 stub-followup. Adding GET /cernia-ops/finops/metric-trend to apps/api/src/cernia-ops-finops-routes.ts reading PostgresMetricSnapshotStore.listTrend across tenants (migration 139), RBAC-guarded + tenant ids HASHED before cross-tenant display (CLAUDE.md invariant 5), with a real-PG route test. Orchestrator wires the new db option in index.ts."
+        },
+        {
           "id": "ra-tel-1",
           "track": "external-integrations/telephony-backend",
           "title": "Boot wiring in apps/api: TwilioVoiceBackend keyed by tenantId",
