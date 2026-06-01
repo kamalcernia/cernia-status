@@ -11,10 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "ra-sd-wire",
-    "title": "Reconciling ra-sd-wire — legacy sensitive-data tests pin the old meta-audit source; updating them to the dedicated legal_holds table",
-    "startedAt": "2026-06-01T15:35:00Z",
-    "evidence": "Batch 2: ra-sbm-10 + ra-ext-upload SHIPPED (feat+main, 18/18 integrated tests). ra-sd-wire's legal_holds rewire + new test (5/5) are correct but break 4 pre-existing tests that assert the OLD rbac_audit_events meta-audit source; orchestrator is updating those two test files to seed the dedicated legal_holds table (migration 140) before committing the rewire."
+    "id": null,
+    "title": "Two parallel batches shipped (6 items); idle between batches",
+    "startedAt": null,
+    "evidence": "Session shipped (feat+main, all real-PG tested): solo ra-sbm-4/8/9/11; batch 1 ra-sd-legalhold + ra-ext-archive + ra-fin-trend; batch 2 ra-sbm-10 + ra-ext-upload + ra-sd-wire (reconciled). Next open: ML adapters (LlmGateway→voice-call-handler / drift capture / risk-classifier router), CDS landing-page dispatch, the renewal-alert nightly sweep+SMTP (ra-sbm-10 followup), and the apps/admin + apps/cernia-ops UI follow-ups."
   },
   "categories": [
     {
@@ -676,9 +676,9 @@
           "id": "ra-sd-wire",
           "track": "functionality-utilization/phase-3-6-specialized",
           "title": "sensitive-data-routes legal-holds reads the dedicated legal_holds table",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "PARALLEL BATCH 2 / Agent F — ra-sd-legalhold followup. apps/api/src/sensitive-data-routes.ts legal-holds endpoints today read the rbac_audit_events policy-changed meta-audit; rewiring them to read PostgresLegalHoldRegistry (legal-hold-store.ts, migration 140) so the dedicated table is the source of truth, with a real-PG test. Already-registered plugin → no index.ts change."
+          "status": "done",
+          "completionMode": "shipped",
+          "evidence": "SHIPPED (parallel batch 2, orchestrator-reconciled) — apps/api/src/sensitive-data-routes.ts legal-holds endpoints (GET /admin/sensitive-data/legal-holds + /legal-holds/list) now read the dedicated legal_holds table (migration 140) via PostgresLegalHoldRegistry.listActive() instead of the rbac_audit_events meta-audit trail; break-glass + proxy endpoints unchanged. Real-PG: NEW sensitive-data-legal-holds.integration.test.ts 5/5. The intentional data-source swap broke 4 pre-existing test cases that pinned the old source; orchestrator reconciled them: in-process sensitive-data-routes.test.ts moved legal-holds coverage to real PG (now 7/7), and sensitive-data-list.integration.test.ts now bootstraps migration 140 + seeds via the registry (5/5). ADR-0127: @cernia/api typecheck=0, build=0, lint=0; no regressions. Committed this tick (feat+main)."
         },
         {
           "id": "ra-fin-trend",
