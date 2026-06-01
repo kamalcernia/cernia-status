@@ -12,9 +12,9 @@
   },
   "currentTask": {
     "id": null,
-    "title": "Batch 8 in progress — orchestrator integration wirings. 28 items shipped; nightly invoice-gen sweep just landed.",
+    "title": "Batch 8 (orchestrator wirings) landed: nightly invoice-gen sweep + admin nav links. 29 items shipped; idle.",
     "startedAt": null,
-    "evidence": "Batch 8 pivots to orchestrator-owned wirings (clean parallel NEW-file backlog thinning). ra-sbm-invsweep (nightly invoice-gen sweep) shipped feat+main (real-PG 1/1, idempotent). Continuing with: admin sidebar nav links (invoices + discount-approvals); discount-notifier call-site; RenewalAlertNotifier at boot; voice-call-handler gateway swap. Session total 28 items."
+    "evidence": "Batch 8 shipped feat+main: ra-sbm-invsweep (nightly invoice-gen sweep, real-PG 1/1, idempotent) + admin sidebar nav links (/admin/invoices + /admin/discount-approvals). Session total 29 items across 7 agent batches + 5 solo/orchestrator. REMAINING wirings are now deploy/config-gated, not pure code: discount-notifier + RenewalAlertNotifier at boot both need an env-gated @cernia/notifications SMTP/SES NotificationService constructed at boot (every code seam — resolvers, notifiers, sweeps — already exists + is tested). Pure-code work still open: voice-call-handler gateway-adapter swap (intricate, per-call tenantId); Python risk-classifier through the inference RequestRouter; Stripe push of finalized invoices."
   },
   "categories": [
     {
