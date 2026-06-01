@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-01T13:49:35.975Z",
-    "lastUpdatedDisplay": "Jun 1, 2026 — 09:49 EDT",
+    "lastUpdatedIso": "2026-06-01T13:59:35.198Z",
+    "lastUpdatedDisplay": "Jun 1, 2026 — 09:59 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #173 feat(admin): sensitive-data routes + UI swap (phas"
   },
   "summary": {
-    "currentMainCommit": "db79222e",
+    "currentMainCommit": "7aa57aae",
     "currentTagOnMain": "audit-baseline-2026-05-29 🏁",
-    "agentsCompletedThisSession": 391,
+    "agentsCompletedThisSession": 392,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "391 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "392 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #173 feat(admin): sensitive-data routes + UI swap (phase-3-6 bull. (refreshed Jun 1, 2026 — 09:59 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #173 feat(admin): sensitive-data routes + UI swap (phase-3-6 bull. (refreshed Jun 1, 2026 — 10:00 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -4601,7 +4601,7 @@
       "wave": "API",
       "detail": "mount LLM gateway at boot (env-driven multi-provider) + live smoke",
       "commit": "7aa57aae",
-      "freshSeconds": 113
+      "freshSeconds": 138
     }
   },
   "pool": {
@@ -11843,7 +11843,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 6,
-    "origin/feat/elevenlabs-tts-wiring@db79222eaad2": 0,
+    "origin/feat/elevenlabs-tts-wiring@7aa57aaed280": 0,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
@@ -12434,7 +12434,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 2,
-    "origin/feat/elevenlabs-tts-wiring@db79222eaad2": 0,
+    "origin/feat/elevenlabs-tts-wiring@7aa57aaed280": 0,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
@@ -13025,7 +13025,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
-    "origin/feat/elevenlabs-tts-wiring@db79222eaad2": true,
+    "origin/feat/elevenlabs-tts-wiring@7aa57aaed280": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
     "origin/feat/local-demo-patient-image@90299849c309": true,
