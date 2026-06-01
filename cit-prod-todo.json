@@ -11,10 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "ra-sd-bg-hold",
-    "title": "PARALLEL BATCH 5 (3 agents, each in a pool slot): break-glass→legal-hold + ml auto-capture + customer-contact store",
-    "startedAt": "2026-06-01T16:46:00Z",
-    "evidence": "Fifth fan-out. Pool slots (set-slot.mjs): slot 1 ra-sd-bg-hold (Agent M), slot 2 ra-ml-autocapture (Agent N), slot 3 ra-sbm-contacts (Agent O). Disjoint writable sets; orchestrator owns index.ts + status JSONs + commits. Chip pinned to ra-sd-bg-hold; all three rows in-progress + slots running while in flight."
+    "id": null,
+    "title": "Five parallel batches shipped this session (19 items); idle between batches. Per-agent work mirrored in the pool slots each batch.",
+    "startedAt": null,
+    "evidence": "Batch 5 landed (feat+main, 40/40 integrated tests, typecheck=0/build=0): ra-sd-bg-hold + ra-ml-autocapture + ra-sbm-contacts. Session total 19 items. Next open: voice-call-handler gateway-adapter swap (orchestrator, per-call tenantId); construct RenewalAlertEmailNotifier at boot (resolver now exists; needs env-gated SMTP/SES backend); apps/admin discount UI; apps/cernia-ops FinOps trend UI; Python risk-classifier through the inference RequestRouter; scheduled NetSuite/QuickBooks revenue close job."
   },
   "categories": [
     {
@@ -748,25 +748,25 @@
           "id": "ra-sd-bg-hold",
           "track": "functionality-utilization/phase-3-6-specialized",
           "title": "Break-glass invocation auto-places a legal hold",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "PARALLEL BATCH 5 / Agent M (pool slot 1) — ra-sd-legalhold followup. On a successful POST /access/break-glass/$invoke (caregiver-federation-routes.ts, persisted via PostgresBreakGlassStore.insert), also place() a legal hold via PostgresLegalHoldRegistry scoped to the invocation (tenant + actor + target) so the emergency-access audit trail is pinned from retention purge. MODIFY the invoke path (new optional legalHoldRegistry option) + real-PG test; run the existing caregiver-federation test for regressions. Orchestrator wires the registry in index.ts."
+          "status": "done",
+          "completionMode": "shipped",
+          "evidence": "SHIPPED (parallel batch 5) — caregiver-federation-routes.ts: after a successful POST /access/break-glass/$invoke persists via PostgresBreakGlassStore.insert, it now place()s a legal hold (PostgresLegalHoldRegistry, migration 140) scoped to {tenantId, actorUserId: invoker, targetId: patient}, reason 'break-glass emergency access — audit retention hold'. Best-effort/non-fatal (try/catch + log) so a hold-placement failure NEVER blocks emergency access; response shape unchanged; new options legalHoldRegistry + legalHoldTenantId (backward-compatible). Orchestrator wired PostgresLegalHoldRegistry into buildCaregiverFederationRuntime in index.ts. Real-PG 4/4 (break-glass-legal-hold.integration.test.ts: hold placed scoped to invoker+patient, tenant isolation, no-option path still succeeds, blocked $invoke places no hold) + existing caregiver-federation-routes.test.ts still 8/8. ADR-0127: @cernia/api typecheck=0, build=0, 0 NEW lint (2 pre-existing require-await carry-forward verified vs HEAD). Committed this tick (feat+main)."
         },
         {
           "id": "ra-ml-autocapture",
           "track": "functionality-utilization/ml-platform",
           "title": "Auto-capture predictions from the live model-dispatch path",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "PARALLEL BATCH 5 / Agent N (pool slot 2) — ra-ml-driftcap/driftwire followup. The /admin/ml/models/:name/:version/$predict path doesn't feed the drift capture store. Adding an optional predictionCaptureStore to ml-platform-routes.ts and a best-effort (non-fatal) capture() call on each successful prediction, so drift windows populate without an explicit $capture POST. MODIFY ml-platform-routes.ts + real-PG test; keep existing ml-platform tests green. Orchestrator wires the store in index.ts."
+          "status": "done",
+          "completionMode": "shipped",
+          "evidence": "SHIPPED (parallel batch 5) — ml-platform-routes.ts: on a successful $predict, best-effort captures a drift sample via PostgresMlPredictionCaptureStore (migration 142). New captureDb option threaded through buildMlPlatformRuntime (returns captureDb) + MlPlatformRoutesOptions; mapping: score←output.score/probability/bare-numeric (skips if not finite 0..1, never violates the CHECK), subgroup←body.subgroup||'default', observed←body.observed, features←body.captureFeatures||plain-object body.input. try/catch + structural-only warn (no PHI) so capture never fails the prediction. Orchestrator passed captureDb in index.ts. Real-PG 3/3 (ml-platform-autocapture.integration.test.ts: capture scoped to caller tenant, isolation, captureDb-absent still works) + existing ml-platform-routes.test.ts + .integration.test.ts still 21/21. ADR-0127: @cernia/api typecheck=0, build=0, 0 NEW lint (agent fixed its own 2 no-unnecessary-type-assertion; 1 pre-existing require-await carry-forward verified vs HEAD). Committed this tick (feat+main)."
         },
         {
           "id": "ra-sbm-contacts",
           "track": "functionality-utilization/saas-billing-marketplace",
           "title": "Customer-contact store + resolver to activate RenewalAlertNotifier",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "PARALLEL BATCH 5 / Agent O (pool slot 3) — unblocks ra-sbm-10c. saas_subscriptions has no email column, so the RenewalAlertEmailNotifier can't be wired at boot. Adding migration 144 customer_contacts (per-tenant subscription→billing-contact email) + apps/api/src/customer-contact-store.ts (upsert/get) + a ResolveRenewalRecipient adapter the notifier consumes, with a real-PG test. NEW files only."
+          "status": "done",
+          "completionMode": "shipped-with-stub-followup",
+          "evidence": "SHIPPED (parallel batch 5) — migration 144_customer_contacts (per-tenant, PK (tenant_id, subscription_id), email NOT NULL CHECK '%@%', name, updated_at) + apps/api/src/customer-contact-store.ts: PostgresCustomerContactStore.upsert/get + enumerateCustomerContactTenants + makeRenewalRecipientResolver(db) returning the RenewalAlertEmailNotifier's exact ResolveRenewalRecipient type (resolves a StoredRenewalAlert→{email,name?} per tenant, null when absent → notifier throws → sweep keeps pending). Real-PG 4/4 (customer-contact-store.integration.test.ts: upsert/get round-trip + idempotent, null on unknown, tenant isolation, resolver resolves an alert). ADR-0127: @cernia/api typecheck=0, build=0, new file lint-clean. Committed this tick (feat+main). STUB-FOLLOWUP: construct RenewalAlertEmailNotifier at boot with makeRenewalRecipientResolver(db) + an env-gated @cernia/notifications SMTP/SES backend, and pass it as bootSaasNightlyBatches renewalAlertNotifier."
         },
         {
           "id": "ra-tel-1",
