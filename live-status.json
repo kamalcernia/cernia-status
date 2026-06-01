@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-01T22:32:17.514Z",
-    "lastUpdatedDisplay": "Jun 1, 2026 — 18:32 EDT",
+    "lastUpdatedIso": "2026-06-01T22:30:36.411Z",
+    "lastUpdatedDisplay": "Jun 1, 2026 — 18:30 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 3/8 in flight (ra-sbm-ar-routes ra-ui-ar ra-sbm-approver-dir) · last PR: #173 feat(admin): sensitive-data routes + UI swap (phas"
   },
   "summary": {
-    "currentMainCommit": "e5f63f39",
+    "currentMainCommit": "00e744b0",
     "currentTagOnMain": "audit-baseline-2026-05-29 🏁",
-    "agentsCompletedThisSession": 415,
+    "agentsCompletedThisSession": 413,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "415 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "413 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #173 feat(admin): sensitive-data routes + UI swap (phase-3-6 bull. (refreshed Jun 1, 2026 — 18:32 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #173 feat(admin): sensitive-data routes + UI swap (phase-3-6 bull. (refreshed Jun 1, 2026 — 18:31 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -4744,10 +4744,10 @@
     },
     "justLandedWaves": [],
     "nowWorkingOn": {
-      "wave": "STATUS",
-      "detail": "mark batch-8 orchestrator wirings done; note remaining work is deploy-config-gated",
-      "commit": "e5f63f39",
-      "freshSeconds": 36
+      "wave": "ADMIN",
+      "detail": "sidebar nav links for Invoices (A/R) + Discount Approvals",
+      "commit": "25c006b5",
+      "freshSeconds": 61
     }
   },
   "pool": {
@@ -4884,11 +4884,6 @@
   ],
   "recentCompletions": [
     {
-      "agent": "mark batch-8 orchestrator wirings done; note remaining work is depl...",
-      "commit": "e5f63f39",
-      "kind": "docs"
-    },
-    {
       "agent": "sidebar nav links for Invoices (A/R) + Discount Approvals",
       "commit": "25c006b5",
       "kind": "feat"
@@ -4956,6 +4951,11 @@
     {
       "agent": "wire x1a tax engine into enterprise-invoice create (ra-sbm-4)",
       "commit": "5bd9beaf",
+      "kind": "feat"
+    },
+    {
+      "agent": "consume AI-governance bias/approvals routes in apps/admin + handoff...",
+      "commit": "3a6204a1",
       "kind": "feat"
     }
   ],
@@ -12004,7 +12004,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 6,
-    "origin/feat/elevenlabs-tts-wiring@e5f63f39ca42": 0,
+    "origin/feat/elevenlabs-tts-wiring@00e744b00f1e": 0,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
@@ -12595,7 +12595,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 2,
-    "origin/feat/elevenlabs-tts-wiring@e5f63f39ca42": 0,
+    "origin/feat/elevenlabs-tts-wiring@00e744b00f1e": 0,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
@@ -13186,7 +13186,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
-    "origin/feat/elevenlabs-tts-wiring@e5f63f39ca42": true,
+    "origin/feat/elevenlabs-tts-wiring@00e744b00f1e": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
     "origin/feat/local-demo-patient-image@90299849c309": true,
