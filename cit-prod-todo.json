@@ -11,10 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": null,
-    "title": "ra-sbm-4 (x1a tax engine) shipped; selecting next billing-cluster follow-up (x1c metric snapshots)",
-    "startedAt": null,
-    "evidence": "ra-sbm-4 landed (feat+main): apps/api/src/tax-engine.ts + migration 138 + real-PG 4/4. Next: x1c saas_metric_snapshots persistence (production-readiness saas-billing-marketplace remaining bullet)."
+    "id": "ra-sbm-8",
+    "title": "Persist x1c metric snapshots to saas_metric_snapshots for the cernia-ops FinOps trend",
+    "startedAt": "2026-06-01T13:45:00Z",
+    "evidence": "Adding migration 139 saas_metric_snapshots + apps/api/src/metric-snapshot-store.ts (PostgresMetricSnapshotStore) + wiring runSaasMetricsSweep to upsert each tenant's computed MRR/ARR/churn snapshot, with a real-PG integration test."
   },
   "categories": [
     {
@@ -615,6 +615,14 @@
           "status": "done",
           "completionMode": "shipped",
           "evidence": "SHIPPED — real x3c discount-approval timeout sweep. migration 136 discount_approval_requests + apps/api/src/discount-approval-store.ts (PostgresDiscountApprovalStore: create/list/get/listExpirable/expire/recordApproval/recordDenial via @cernia/x3c-discount-approval engine) + runDiscountApprovalTimeoutSweep in saas-nightly-batches (Mode A). Real-PG 3/3 (discount-approval-store.integration.test.ts: chain classification, approve/deny, expire-only-past-pending + cross-tenant + idempotent). Committed this tick (feat+main)."
+        },
+        {
+          "id": "ra-sbm-8",
+          "track": "functionality-utilization/saas-billing-marketplace",
+          "title": "Persist x1c metric snapshots for the cernia-ops FinOps trend",
+          "status": "in-progress",
+          "completionMode": null,
+          "evidence": "The nightly x1c metrics sweep computes real per-tenant MRR/ARR/churn but only logs them — nothing persists the time series. Adding migration 139 saas_metric_snapshots + apps/api/src/metric-snapshot-store.ts (PostgresMetricSnapshotStore) + wiring runSaasMetricsSweep to upsert each tenant's snapshot, so the cernia-ops FinOps dashboard can read historical MRR/ARR trend. Real-PG integration test."
         },
         {
           "id": "ra-tel-1",
