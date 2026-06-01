@@ -956,9 +956,14 @@
             "summary": "DeepgramWsTransport production adapter shipped in apps/api/src/deepgram-ws-transport.ts. Uses ws npm package (already a dependency) with Authorization: Token header. Parses Results, SpeechStarted, UtteranceEnd, Error message types into DeepgramServerEvent. boot path wires DeepgramSttBackend when CERNIA_SPEECH_STT=deepgram + DEEPGRAM_API_KEY are set; falls back to stub STT with warn log otherwise. 13 new unit tests cover factory shape, JSON parsing (all event types), error resilience, and handler idempotency. api typecheck + full api test suite clean."
           },
           "remaining": [
-            "Commit real-Deepgram WAV+transcript fixtures + run the STT-accuracy goldens nightly against the production API (the scaffolding ships in @cernia/voice-agent-evals/stt; procurement-blocked on Deepgram production key + BAA)."
+            "Run the STT-accuracy goldens nightly against the production API + execute the Deepgram BAA for PHI traffic (legal/procurement — the code path is now live-verified; see 2026-06-01 history). The live μ-law round-trip smoke test (apps/api/src/deepgram-stt.live.test.ts) covers the integration contract."
           ],
           "history": [
+            {
+              "date": "2026-06-01",
+              "stage": "stt-backend",
+              "note": "Deepgram STT VALIDATED live against the operator's real key — AND fixed a real bug that meant STT produced ZERO output in production. (1) BUG FIXED (apps/api/src/deepgram-ws-transport.ts): the ws 'message' handler gated on `typeof data === 'string'`, but the `ws` library delivers Deepgram's JSON TEXT frames as a Node Buffer (isBinary=false), so EVERY transcript/VAD/error message was silently dropped — STT never emitted a single transcript. The unit test gave false confidence because it called onJsonMessage() directly with a string, bypassing the ws delivery path. Fix: new handleSocketMessage(data, isBinary) decodes any non-binary frame to UTF-8 (Buffer | Buffer[] | ArrayBuffer | string); binary frames ignored. (2) Live proof: new apps/api/src/deepgram-stt.live.test.ts — a TTS→STT round trip in the Twilio telephony format (ElevenLabs Sarah → ulaw_8000 → DeepgramSttBackend encoding=mulaw/8000 over the real WS) — Deepgram transcribed 'the quick brown fox jumps over the lazy dog' at 0.998 confidence. Diagnosed via direct WS probes that confirmed the full backend query (nova-2-medical + redact + no_retention, both finish modes) transcribes correctly, isolating the defect to the transport's frame-type guard. (3) Regression guard: 3 new unit tests exercise handleSocketMessage with a Buffer text frame / string / binary (the path the old test missed). Gated on ELEVENLABS_API_KEY + DEEPGRAM_API_KEY (skipIf). ADR-0127: @cernia/api typecheck=0, build=0, transport+live tests 18/18, changed-file lint clean (1 pre-existing close() require-await baseline). Inbound transcription now works end-to-end on the operator's free-tier Deepgram key."
+            },
             {
               "date": "2026-05-30",
               "stage": "stt-backend",
