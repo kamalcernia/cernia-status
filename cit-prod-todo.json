@@ -11,10 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "ra-sbm-4",
-    "title": "Wire x1a tax engine (Stripe Tax + Avalara fallback) into the enterprise-invoice creation path",
-    "startedAt": "2026-06-01T13:00:00Z",
-    "evidence": "Wiring @cernia/x1a-tax-compliance TaxProviderRouter (Stripe Tax preferred, Avalara fallback) into PostgresEnterpriseInvoiceStore.create so invoice tax is computed from the customer address + line-item subtotal instead of a caller-supplied magic number. New apps/api/src/tax-engine.ts + migration 138 (tax provenance columns) + real-PG integration test."
+    "id": null,
+    "title": "ra-sbm-4 (x1a tax engine) shipped; selecting next billing-cluster follow-up (x1c metric snapshots)",
+    "startedAt": null,
+    "evidence": "ra-sbm-4 landed (feat+main): apps/api/src/tax-engine.ts + migration 138 + real-PG 4/4. Next: x1c saas_metric_snapshots persistence (production-readiness saas-billing-marketplace remaining bullet)."
   },
   "categories": [
     {
@@ -588,9 +588,9 @@
           "id": "ra-sbm-4",
           "track": "functionality-utilization/saas-billing-marketplace",
           "title": "Wire x1a tax engine (Stripe Tax + Avalara fallback)",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "Wiring @cernia/x1a-tax-compliance into the enterprise-invoice creation path: apps/api/src/tax-engine.ts (TaxProviderRouter — Stripe Tax preferred, Avalara fallback) + PostgresEnterpriseInvoiceStore.create computing tax from customer address + subtotal + migration 138 tax-provenance columns + real-PG integration test. (Live external Stripe Tax/Avalara API calls remain procurement-gated; the router + provider abstraction + persistence + computation wiring are real and tested via the stub providers.)"
+          "status": "done",
+          "completionMode": "shipped-with-stub-followup",
+          "evidence": "SHIPPED — @cernia/x1a-tax-compliance wired into the enterprise-invoice creation path. NEW apps/api/src/tax-engine.ts (buildTaxRouter → TaxProviderRouter[StripeTaxStubProvider, AvalaraStubProvider]: Stripe Tax preferred, Avalara fallback; computeTax + memoized defaultTaxRouter). PostgresEnterpriseInvoiceStore.create now computes taxCents from customerAddress + line-item subtotal (folded into x2a createInvoice total) OR takes explicit taxCents; migration 138_enterprise_invoice_tax.sql persists tax_provider/tax_rate/tax_jurisdiction provenance. Real-PG 4/4 (tax-engine.integration.test.ts: US-CA stripe-tax 7.25%, BR Avalara 10% fallback, explicit tax-exempt NULL provenance, reject both/neither); existing enterprise-invoice-store.integration.test.ts now bootstraps 137+138, still 2/2. ADR-0127: @cernia/api typecheck=0, build=0, new files lint-clean. Committed this tick (feat+main). STUB-FOLLOWUP: live Stripe Tax / Avalara HTTP adapters are a drop-in TaxProvider impl but procurement-gated (Stripe Tax enablement + Avalara contract); router not yet wired into marketplace-checkout + patient-payments paths."
         },
         {
           "id": "ra-sbm-5",
