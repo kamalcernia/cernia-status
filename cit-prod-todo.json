@@ -11,10 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": null,
-    "title": "Parallel batch shipped (ra-sd-legalhold + ra-ext-archive + ra-fin-trend); next open: ra-sbm-10 renewal-alert emails",
-    "startedAt": null,
-    "evidence": "3-agent parallel batch landed in one integrated commit (feat+main): legal_holds store + plugin-archive ingest + FinOps trend route — 12/12 real-PG tests, @cernia/api typecheck=0/build=0. Next open: ra-sbm-10 (renewal-alert email dispatch) + ML adapters / CDS-dispatch / the apps/admin + apps/cernia-ops UI follow-ups."
+    "id": "ra-sbm-10",
+    "title": "PARALLEL BATCH 2 (3 agents): renewal-alert queue + plugin-upload route + sensitive-data→legal_holds wiring",
+    "startedAt": "2026-06-01T15:25:00Z",
+    "evidence": "Second 3-agent fan-out (HANDOFF §6, disjoint writable sets): ra-sbm-10 (migration 141 saas_renewal_alerts + renewal-alert-store.ts + scheduling), ra-ext-upload (plugin-upload HTTP route in extensions-routes.ts → ingestPluginArchive), ra-sd-wire (sensitive-data-routes.ts reads PostgresLegalHoldRegistry). Agents write+test+verify only; orchestrator owns index.ts + saas-nightly-batches.ts + status JSONs + commits. Chip pinned to ra-sbm-10; the other two rows show in-progress."
   },
   "categories": [
     {
