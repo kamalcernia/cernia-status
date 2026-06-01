@@ -11,10 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "ra-sbm-invgen",
-    "title": "PARALLEL BATCH 6 (4 agents, pool slots 1-4): invoice auto-gen + discount notifier + admin discount UI + cernia-ops FinOps trend chart",
-    "startedAt": "2026-06-01T17:20:00Z",
-    "evidence": "Sixth fan-out (cap raised to 5; running 4 disjoint). Pool slots: 1 ra-sbm-invgen (Agent P, backend), 2 ra-sbm-discount-notify (Agent Q, backend), 3 ra-ui-discount (Agent S, apps/admin), 4 ra-ui-finops-trend (Agent T, apps/cernia-ops). Disjoint writable sets; orchestrator owns index.ts + status JSONs + commits. Chip pinned to ra-sbm-invgen; all four rows in-progress + slots running while in flight."
+    "id": null,
+    "title": "Six parallel batches shipped this session (23 items); idle between batches. First batch spanning backend + both frontend apps.",
+    "startedAt": null,
+    "evidence": "Batch 6 landed (feat+main): ra-sbm-invgen + ra-sbm-discount-notify (backend, 12/12 real-PG+unit) + ra-ui-discount (apps/admin, typecheck=0) + ra-ui-finops-trend (apps/cernia-ops-portal, typecheck=0). Session total 23 items. Next open: nightly invoice-gen sweep wiring; discount-notifier + approver-directory wiring; admin sidebar nav link; voice-call-handler gateway swap (orchestrator); RenewalAlertNotifier at boot (env-gated SMTP); Python risk-classifier through the inference RequestRouter; marketplace storefront UI."
   },
   "categories": [
     {
@@ -772,33 +772,33 @@
           "id": "ra-sbm-invgen",
           "track": "functionality-utilization/saas-billing-marketplace",
           "title": "Auto-generate enterprise invoices from subscription billing periods",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "PARALLEL BATCH 6 / Agent P (pool slot 1). Enterprise invoices are created explicitly; nothing derives them from a subscription's billing period. Adding apps/api/src/invoice-generation.ts (pure buildInvoiceDraftFromSubscription mapping a StoredSubscription period+arrCents+plan → x2a createInvoice line items) + a generateInvoicesForDuePeriods sweep persisting via PostgresEnterpriseInvoiceStore, with a real-PG test. NEW files; orchestrator wires the nightly sweep."
+          "status": "done",
+          "completionMode": "shipped-with-stub-followup",
+          "evidence": "SHIPPED (parallel batch 6) — apps/api/src/invoice-generation.ts: pure buildInvoiceDraftFromSubscription (one line item from the period, unitPriceCents = round(arrCents * periodDays/365) — full ARR for a 365d period, ~1/4 for a quarter; throws on non-active/unbounded) + periodChargeCents + defaultInvoiceNumber (SUB-<id8>-<periodStart>, stable per period → store's unique invoice_number makes re-runs idempotent) + generateInvoiceForSubscription + generateInvoicesForTenant. Real-PG 5/5 (invoice-generation.integration.test.ts: proration, rejects, persist-from-period, tenant isolation). ADR-0127: @cernia/api typecheck=0, build=0, new files lint-clean. Committed this tick (feat+main). STUB-FOLLOWUP: wire a nightly generateInvoicesForTenant sweep into saas-nightly-batches.ts that only bills periods without an existing invoice (the per-period invoice number gives natural dedup)."
         },
         {
           "id": "ra-sbm-discount-notify",
           "track": "functionality-utilization/saas-billing-marketplace",
           "title": "Discount-approval approver notifications over @cernia/notifications",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "PARALLEL BATCH 6 / Agent Q (pool slot 2) — ra-sbm-11 followup. Discount requests compute an approver chain but nobody notifies the approvers. Adding apps/api/src/discount-approval-notifier.ts (over @cernia/notifications, injected approver-contact resolver; subject/body per pending request + chain role; assertPhiSafe; throws to allow retry), unit-tested against StubBackend. NEW files."
+          "status": "done",
+          "completionMode": "shipped-with-stub-followup",
+          "evidence": "SHIPPED (parallel batch 6) — apps/api/src/discount-approval-notifier.ts: DiscountApprovalNotifier({sender, fromAddress, resolveApproverContact}) + notifyPendingApprovers(req) emails the NEXT-needed roles (requiredApprovers minus approvedBy; pure nextNeededApproverRoles helper); no-PHI subject/body (discount %, quote line, justification), assertPhiSafe, idempotencyKey discount-approval:<id>:<role>; throws on send-failure (retry), skips+logs unresolved contacts (at-least-once per role), notifies nobody unless status==='pending'. Unit-tested 7/7 vs StubBackend. ADR-0127: @cernia/api typecheck=0, build=0, new files lint-clean. Committed this tick (feat+main). STUB-FOLLOWUP: inject a per-tenant approver-role→contact directory + call notifyPendingApprovers from the create/approve route path."
         },
         {
           "id": "ra-ui-discount",
           "track": "functionality-utilization/saas-billing-marketplace",
           "title": "apps/admin discount-approval UI (drives ra-sbm-11 routes)",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "PARALLEL BATCH 6 / Agent S (pool slot 3) — ra-sbm-11 followup. The discount-approval HTTP routes ship but apps/admin has no UI. Adding apps/admin/src/app/admin/discount-approvals/{discount-approvals-api.ts,page.tsx} (+ approve/deny actions) consuming GET/POST /admin/discount-approvals + :id/$approve|$deny, mirroring the ai-governance-api.ts client pattern. Frontend (verify via apps/admin typecheck/build)."
+          "status": "done",
+          "completionMode": "shipped-with-stub-followup",
+          "evidence": "SHIPPED (parallel batch 6) — apps/admin/src/app/admin/discount-approvals/{discount-approvals-api.ts, page.tsx}: typed fetch client (list/get/create/approve/deny mirroring ai-governance-api.ts conventions — apiBase/credentials/error parsing) + a client page (status-filter pills, per-request card with discount %/prices/expiry/quorum badges/justification/recorded approvals/denial banner, approve+deny action panel collecting userId+role+comment/reason, create form). Honest loading/empty/error states — no sample data. @cernia/admin typecheck=0, new files lint-clean. Committed this tick (feat+main). STUB-FOLLOWUP: add the sidebar nav link (shared apps/admin/src/components/sidebar.tsx) — page reachable at /admin/discount-approvals meanwhile."
         },
         {
           "id": "ra-ui-finops-trend",
           "track": "functionality-utilization/saas-billing-marketplace",
           "title": "apps/cernia-ops FinOps MRR/ARR trend chart (drives ra-fin-trend)",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "PARALLEL BATCH 6 / Agent T (pool slot 4) — ra-fin-trend followup. GET /cernia-ops/finops/metric-trend ships but nothing charts it. Adding a metric-trend chart component under apps/cernia-ops/src/components/finops + wiring it into the finops page, consuming the hashed-tenant trend series. Frontend (verify via apps/cernia-ops typecheck/build)."
+          "status": "done",
+          "completionMode": "shipped",
+          "evidence": "SHIPPED (parallel batch 6) — NEW apps/cernia-ops/src/components/finops/metric-trend-chart.tsx (pure-SVG multi-line MRR chart + ARR/MRR/tenant-count totals + per-tenantHash legend; client-fetches GET /cernia-ops/finops/metric-trend?limit=90 with credentials + 5s timeout; renders ONLY tenantHash — never a raw tenant id, honoring CLAUDE.md invariant 5; honest loading/error/empty/warning states) + finops/page.tsx renders it after the cost-by-tenant table. @cernia/cernia-ops-portal typecheck=0, new/modified files lint-clean. Committed this tick (feat+main). Closes the ra-fin-trend UI followup."
         },
         {
           "id": "ra-tel-1",
