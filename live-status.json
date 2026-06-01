@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-01T16:51:15.255Z",
-    "lastUpdatedDisplay": "Jun 1, 2026 — 12:51 EDT",
+    "lastUpdatedIso": "2026-06-01T16:52:14.560Z",
+    "lastUpdatedDisplay": "Jun 1, 2026 — 12:52 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #173 feat(admin): sensitive-data routes + UI swap (phas"
   },
   "summary": {
@@ -4636,7 +4636,7 @@
       "wave": "ADMIN",
       "detail": "consume AI-governance bias/approvals routes in apps/admin + handoff doc",
       "commit": "3a6204a1",
-      "freshSeconds": 372
+      "freshSeconds": 376
     }
   },
   "pool": {
