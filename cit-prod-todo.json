@@ -11,10 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "ra-sbm-8",
-    "title": "Persist x1c metric snapshots to saas_metric_snapshots for the cernia-ops FinOps trend",
-    "startedAt": "2026-06-01T13:45:00Z",
-    "evidence": "Adding migration 139 saas_metric_snapshots + apps/api/src/metric-snapshot-store.ts (PostgresMetricSnapshotStore) + wiring runSaasMetricsSweep to upsert each tenant's computed MRR/ARR/churn snapshot, with a real-PG integration test."
+    "id": null,
+    "title": "ra-sbm-8 (x1c metric-snapshot persistence) shipped; next: ra-sbm-9 x2b renewal alerts + expiry sweep",
+    "startedAt": null,
+    "evidence": "ra-sbm-8 landed (feat+main): migration 139 + apps/api/src/metric-snapshot-store.ts + runSaasMetricsSweep persistence, real-PG 3/3. Next: ra-sbm-9 (x2b renewal-alert schedule + expiry sweep for non-renewing subs)."
   },
   "categories": [
     {
@@ -620,9 +620,17 @@
           "id": "ra-sbm-8",
           "track": "functionality-utilization/saas-billing-marketplace",
           "title": "Persist x1c metric snapshots for the cernia-ops FinOps trend",
-          "status": "in-progress",
+          "status": "done",
+          "completionMode": "shipped-with-stub-followup",
+          "evidence": "SHIPPED — x1c metrics sweep now persists a per-tenant snapshot time series. migration 139_saas_metric_snapshots (unique (tenant_id, snapshot_at) idempotent upsert + trend index) + apps/api/src/metric-snapshot-store.ts (PostgresMetricSnapshotStore: record upsert / listTrend / latest / at + enumerateMetricSnapshotTenants) + runSaasMetricsSweep records each tenant's snapshot (snapshotsWritten on the result). Real-PG 3/3 (metric-snapshot-store.integration.test.ts: upsert idempotency, listTrend newest-first, full sweep persists A=3.6M/B=0.5M ARR + idempotent re-run); existing saas-subscription-store.integration.test.ts now bootstraps 135+139, still 4/4. ADR-0127: @cernia/api typecheck=0, build=0, new files lint-clean. Committed this tick (feat+main). STUB-FOLLOWUP: the cernia-ops FinOps dashboard route + UI that reads listTrend() is the next step (persistence + store read-API are done)."
+        },
+        {
+          "id": "ra-sbm-9",
+          "track": "functionality-utilization/saas-billing-marketplace",
+          "title": "x2b renewal-alert scheduling + expiry sweep for non-renewing subs",
+          "status": "todo",
           "completionMode": null,
-          "evidence": "The nightly x1c metrics sweep computes real per-tenant MRR/ARR/churn but only logs them — nothing persists the time series. Adding migration 139 saas_metric_snapshots + apps/api/src/metric-snapshot-store.ts (PostgresMetricSnapshotStore) + wiring runSaasMetricsSweep to upsert each tenant's snapshot, so the cernia-ops FinOps dashboard can read historical MRR/ARR trend. Real-PG integration test."
+          "evidence": "x2b auto-renewal sweep (ra-sbm-6) rolls active+auto_renew subs forward, but: (1) the T-120/T-90/T-30 customer renewal-alert schedule (@cernia/x2b scheduleAlerts) is never computed/persisted, and (2) subs with auto_renew=false whose period has ended are left in place rather than churned. Next: persist due renewal alerts + an expiry sweep that marks ended non-renewing subs churned, with a real-PG test."
         },
         {
           "id": "ra-tel-1",
