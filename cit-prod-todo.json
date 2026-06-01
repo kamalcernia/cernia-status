@@ -11,10 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": null,
-    "title": "Billing cluster tail shipped (ra-sbm-4/8/9/11); next open: ra-sbm-10 renewal-alert email dispatch",
-    "startedAt": null,
-    "evidence": "This session shipped ra-sbm-4 (x1a tax engine), ra-sbm-8 (x1c metric snapshots), ra-sbm-9 (x2b expiry sweep), ra-sbm-11 (x3c discount routes) — all feat+main, all real-PG tested. Next open billing item: ra-sbm-10 (x2b renewal-alert email dispatch via the email pipeline); then ML adapters / plugin-archive upload / CDS-dispatch per HANDOFF §5."
+    "id": "ra-sd-legalhold",
+    "title": "PARALLEL BATCH (3 agents): legal_holds store + plugin-archive ingest + FinOps trend route",
+    "startedAt": "2026-06-01T15:05:00Z",
+    "evidence": "Fanned out 3 in-tree subagents with DISJOINT writable sets (HANDOFF §6): ra-sd-legalhold (migration 140 + legal-hold-store.ts), ra-ext-archive (plugin-archive-ingest.ts), ra-fin-trend (cernia-ops-finops-routes.ts metric-trend route). Agents write+test+verify only; orchestrator owns all shared files (index.ts, status JSONs) + commits each serially. Chip pinned to the first row; the other two show in-progress in the punch list."
   },
   "categories": [
     {
