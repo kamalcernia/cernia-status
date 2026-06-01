@@ -1,7 +1,7 @@
 {
   "$schema": "Comprehensive Integration + Production Readiness master TODO list. Each row maps to a tracked gap in production-readiness.json, the wave-integration audit, or the deferred-items audit. Status pills are driven by docs/status/update-status.mjs derivations.",
   "version": "1.2.0",
-  "generatedAt": "2026-06-01T10:45:00Z",
+  "generatedAt": "2026-06-01T11:00:00Z",
   "_currentTaskRule": "When an agent (or human) is actively working a TODO, they set `currentTask` to the active item's id + a one-line description. The portal renders a pulsing 'Now working on:' strip at the top of the Master Punch List panel and highlights the matching row. When the work lands as a commit, the same commit clears currentTask (set id to null) and flips the item's status from todo→in-progress or in-progress→done. The cron + post-commit hook propagate within seconds. Set currentTask to null when idle.",
   "_honestyDisclaimer": "v1.2.0 — ROLLED BACK from the dishonest 100%-done state of v1.1.0. Items are NOW only marked `done` when (a) real code is shipped + verifiable, or (b) the underlying production-readiness.json stage genuinely has zero remaining bullets. WONTFIX is reserved for items with a genuine architectural rationale (e.g. Wave R is mobile-only by design, no apps/api surface needed). Items I previously closed with rolling-WONTFIX framing (admin UI sprint, scheduler stub→real conversion, vendor procurement) are restored to `todo` or `in-progress` so the Master Punch List agrees with the Wave Tree.",
   "_completionModes": {
@@ -11,10 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "billing-postgres-subscription-store",
-    "title": "NOW WORKING: PostgresSubscriptionStore — the persistent subscription/contract store the SaaS-billing nightly crons (x1c SaaS-metrics, x2b contract auto-renewal, x3c discount-approval sweep) need so they operate on REAL tenant subscriptions instead of the empty catalog-only stubs they run against today (apps/api/src/saas-nightly-batches.ts lines 56/68).",
-    "startedAt": "2026-06-01T10:45:00Z",
-    "evidence": "JUST SHIPPED the prior item: AI-governance BiasReport + ApprovalRequest HTTP routes wired into apps/api/src/ai-governance-routes.ts (POST/GET bias-reports, POST/GET approvals + POST :id/$decide quorum recompute), route-level real-PG integration test 5/5 (ai-governance-bias-approvals.integration.test.ts), mounted at boot. NEXT: design migration + PostgresSubscriptionStore (tenant-scoped subscriptions w/ plan/tier/status/period + contract terms), wire the three nightly batches to read it, real-PG integration test. Loop runs ~60s cadence; portal refreshed each tick."
+    "id": "billing-x2b-auto-renewal-wiring",
+    "title": "NOW WORKING: wire the x2b contract auto-renewal nightly sweep to real data. The PostgresSubscriptionStore + saas_subscriptions table (migration 135) just shipped with auto_renew + current_period_end + the renewal-due partial index, so the store-gating is resolved — feed renewals-due rows through @cernia/x2b-contract-auto-renewal and roll the billing period forward.",
+    "startedAt": "2026-06-01T11:00:00Z",
+    "evidence": "JUST SHIPPED: x1c SaaS-metrics nightly compute now runs a REAL per-tenant population sweep (migration 135 saas_subscriptions + apps/api/src/saas-subscription-store.ts PostgresSubscriptionStore.toContractSnapshots → snapshotMrrArr/churnReport in saas-nightly-batches runSaasMetricsSweep), real-PG integration test 4/4 (saas-subscription-store.integration.test.ts: deterministic 4.1M ARR / 341,667 MRR / 3 active / 1 churned across 2 tenants). NEXT: x2b renewal-engine wiring on the same store. Loop runs ~60s cadence; portal refreshed each tick."
   },
   "categories": [
     {
