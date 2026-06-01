@@ -11,10 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": null,
-    "title": "Five parallel batches shipped this session (19 items); idle between batches. Per-agent work mirrored in the pool slots each batch.",
-    "startedAt": null,
-    "evidence": "Batch 5 landed (feat+main, 40/40 integrated tests, typecheck=0/build=0): ra-sd-bg-hold + ra-ml-autocapture + ra-sbm-contacts. Session total 19 items. Next open: voice-call-handler gateway-adapter swap (orchestrator, per-call tenantId); construct RenewalAlertEmailNotifier at boot (resolver now exists; needs env-gated SMTP/SES backend); apps/admin discount UI; apps/cernia-ops FinOps trend UI; Python risk-classifier through the inference RequestRouter; scheduled NetSuite/QuickBooks revenue close job."
+    "id": "ra-sbm-invgen",
+    "title": "PARALLEL BATCH 6 (4 agents, pool slots 1-4): invoice auto-gen + discount notifier + admin discount UI + cernia-ops FinOps trend chart",
+    "startedAt": "2026-06-01T17:20:00Z",
+    "evidence": "Sixth fan-out (cap raised to 5; running 4 disjoint). Pool slots: 1 ra-sbm-invgen (Agent P, backend), 2 ra-sbm-discount-notify (Agent Q, backend), 3 ra-ui-discount (Agent S, apps/admin), 4 ra-ui-finops-trend (Agent T, apps/cernia-ops). Disjoint writable sets; orchestrator owns index.ts + status JSONs + commits. Chip pinned to ra-sbm-invgen; all four rows in-progress + slots running while in flight."
   },
   "categories": [
     {
@@ -767,6 +767,38 @@
           "status": "done",
           "completionMode": "shipped-with-stub-followup",
           "evidence": "SHIPPED (parallel batch 5) — migration 144_customer_contacts (per-tenant, PK (tenant_id, subscription_id), email NOT NULL CHECK '%@%', name, updated_at) + apps/api/src/customer-contact-store.ts: PostgresCustomerContactStore.upsert/get + enumerateCustomerContactTenants + makeRenewalRecipientResolver(db) returning the RenewalAlertEmailNotifier's exact ResolveRenewalRecipient type (resolves a StoredRenewalAlert→{email,name?} per tenant, null when absent → notifier throws → sweep keeps pending). Real-PG 4/4 (customer-contact-store.integration.test.ts: upsert/get round-trip + idempotent, null on unknown, tenant isolation, resolver resolves an alert). ADR-0127: @cernia/api typecheck=0, build=0, new file lint-clean. Committed this tick (feat+main). STUB-FOLLOWUP: construct RenewalAlertEmailNotifier at boot with makeRenewalRecipientResolver(db) + an env-gated @cernia/notifications SMTP/SES backend, and pass it as bootSaasNightlyBatches renewalAlertNotifier."
+        },
+        {
+          "id": "ra-sbm-invgen",
+          "track": "functionality-utilization/saas-billing-marketplace",
+          "title": "Auto-generate enterprise invoices from subscription billing periods",
+          "status": "in-progress",
+          "completionMode": null,
+          "evidence": "PARALLEL BATCH 6 / Agent P (pool slot 1). Enterprise invoices are created explicitly; nothing derives them from a subscription's billing period. Adding apps/api/src/invoice-generation.ts (pure buildInvoiceDraftFromSubscription mapping a StoredSubscription period+arrCents+plan → x2a createInvoice line items) + a generateInvoicesForDuePeriods sweep persisting via PostgresEnterpriseInvoiceStore, with a real-PG test. NEW files; orchestrator wires the nightly sweep."
+        },
+        {
+          "id": "ra-sbm-discount-notify",
+          "track": "functionality-utilization/saas-billing-marketplace",
+          "title": "Discount-approval approver notifications over @cernia/notifications",
+          "status": "in-progress",
+          "completionMode": null,
+          "evidence": "PARALLEL BATCH 6 / Agent Q (pool slot 2) — ra-sbm-11 followup. Discount requests compute an approver chain but nobody notifies the approvers. Adding apps/api/src/discount-approval-notifier.ts (over @cernia/notifications, injected approver-contact resolver; subject/body per pending request + chain role; assertPhiSafe; throws to allow retry), unit-tested against StubBackend. NEW files."
+        },
+        {
+          "id": "ra-ui-discount",
+          "track": "functionality-utilization/saas-billing-marketplace",
+          "title": "apps/admin discount-approval UI (drives ra-sbm-11 routes)",
+          "status": "in-progress",
+          "completionMode": null,
+          "evidence": "PARALLEL BATCH 6 / Agent S (pool slot 3) — ra-sbm-11 followup. The discount-approval HTTP routes ship but apps/admin has no UI. Adding apps/admin/src/app/admin/discount-approvals/{discount-approvals-api.ts,page.tsx} (+ approve/deny actions) consuming GET/POST /admin/discount-approvals + :id/$approve|$deny, mirroring the ai-governance-api.ts client pattern. Frontend (verify via apps/admin typecheck/build)."
+        },
+        {
+          "id": "ra-ui-finops-trend",
+          "track": "functionality-utilization/saas-billing-marketplace",
+          "title": "apps/cernia-ops FinOps MRR/ARR trend chart (drives ra-fin-trend)",
+          "status": "in-progress",
+          "completionMode": null,
+          "evidence": "PARALLEL BATCH 6 / Agent T (pool slot 4) — ra-fin-trend followup. GET /cernia-ops/finops/metric-trend ships but nothing charts it. Adding a metric-trend chart component under apps/cernia-ops/src/components/finops + wiring it into the finops page, consuming the hashed-tenant trend series. Frontend (verify via apps/cernia-ops typecheck/build)."
         },
         {
           "id": "ra-tel-1",
