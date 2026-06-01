@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-01T23:04:04.575Z",
-    "lastUpdatedDisplay": "Jun 1, 2026 — 19:04 EDT",
+    "lastUpdatedIso": "2026-06-01T22:54:13.681Z",
+    "lastUpdatedDisplay": "Jun 1, 2026 — 18:54 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 3/8 in flight (ra-sbm-ar-routes ra-ui-ar ra-sbm-approver-dir) · last PR: #173 feat(admin): sensitive-data routes + UI swap (phas"
   },
   "summary": {
-    "currentMainCommit": "efd0e958",
+    "currentMainCommit": "8b9561c7",
     "currentTagOnMain": "audit-baseline-2026-05-29 🏁",
-    "agentsCompletedThisSession": 418,
+    "agentsCompletedThisSession": 417,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "418 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "417 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #173 feat(admin): sensitive-data routes + UI swap (phase-3-6 bull. (refreshed Jun 1, 2026 — 19:04 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #173 feat(admin): sensitive-data routes + UI swap (phase-3-6 bull. (refreshed Jun 1, 2026 — 19:13 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -4692,8 +4692,8 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-05-31T05:59:17.413Z",
-      "backendRouteSymbolCount": 78,
+      "lastAuditAt": "2026-06-01T23:16:35.676Z",
+      "backendRouteSymbolCount": 82,
       "deferredItems": {
         "total": 749,
         "bySeverity": {
@@ -4752,7 +4752,7 @@
       "wave": "STATUS",
       "detail": "comprehensive-plan triage — complete cit-p1; add WHY-NOT-DONE notes to every open CIT item",
       "commit": "efd0e958",
-      "freshSeconds": 75
+      "freshSeconds": 571
     }
   },
   "pool": {
@@ -11705,11 +11705,11 @@
       },
       "integrationLadder": {
         "backend": "wired",
-        "admin": "shelf",
+        "admin": "wired-with-sample-data",
         "ops": "n/a",
         "patient": "n/a",
         "usesSampleData": true,
-        "overall": "shelf",
+        "overall": "wired",
         "packageCount": 8,
         "packages": [
           "erx-admin-ui",
@@ -11722,7 +11722,8 @@
           "surescripts"
         ],
         "rationale": [
-          "apps/admin: backend route(s) registered but no API path matching wave prefixes [\"erx\",\"e-prescrib\",\"ncpdp\",\"epcs\"] found in *-api.ts files"
+          "apps/admin imports sample-*/FAKE_/mock modules — swap to real *-api.ts calls",
+          "apps/admin uses API-path discovery (the architecturally correct three-app-boundary pattern)"
         ]
       },
       "deferredCount": 7
@@ -12009,7 +12010,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 6,
-    "origin/feat/elevenlabs-tts-wiring@efd0e9583c7e": 0,
+    "origin/feat/elevenlabs-tts-wiring@8b9561c7b330": 0,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
@@ -12600,7 +12601,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 2,
-    "origin/feat/elevenlabs-tts-wiring@efd0e9583c7e": 0,
+    "origin/feat/elevenlabs-tts-wiring@8b9561c7b330": 0,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
@@ -13191,7 +13192,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
-    "origin/feat/elevenlabs-tts-wiring@efd0e9583c7e": true,
+    "origin/feat/elevenlabs-tts-wiring@8b9561c7b330": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
     "origin/feat/local-demo-patient-image@90299849c309": true,
