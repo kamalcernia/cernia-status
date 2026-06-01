@@ -11,10 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": null,
-    "title": "LLM gateway WIRED AT BOOT (idle) — any provider activates from .env (OpenAI/Anthropic/Azure/Google/Bedrock); live-verified OpenAI gpt-4o-mini → 'pong'. Closed a real gap: the ra-ml-3 routes were built+tested but never registered in index.ts. Test-mode; BAA + production hardening tracked for later. Full external-service loop now live: Twilio + ElevenLabs TTS + Deepgram STT + LLM gateway.",
-    "startedAt": "2026-06-01T10:00:00Z",
-    "evidence": "apps/api/src/index.ts section 10f-llm now registers llmGatewayRoutes with gateway: buildLlmGatewayFromEnv() (was built + 14 unit tests but NEVER mounted — POST /admin/llm/$complete didn't exist at runtime). Activates purely from env keys, no per-provider code. Live test apps/api/src/llm-gateway.live.test.ts (gated on any provider key) ran gateway.complete({model:'gpt-4o-mini'}) → 'pong' (2/2). ROUTING gotcha surfaced + documented: default hipaa-strict routes ONLY to HIPAA-eligible Bedrock (MODEL_META.hipaaEligible) and refuses plain OpenAI/Anthropic/Google — non-BAA test use needs CERNIA_LLM_ROUTING=primary-fallback in .env (the test sets it). PHI redacted (CERNIA_LLM_REDACTION strict) pre-provider. ADR-0127: @cernia/api typecheck=0/build=0, @cernia/o1-llm-gateway build=0, live 2/2; index.ts additions add zero lint errors (53 pre-existing baseline, verified by line-mapping). production-readiness ml-platform history + remaining updated. Session arc: SAML e3b7686c; ElevenLabs gated 6854d038; ElevenLabs μ-law fix bb5df821; Deepgram dropped-frames fix db79222e; LLM gateway boot-wire (this)."
+    "id": "ai-gov-bias-approval-routes",
+    "title": "NOW WORKING: expose the AI-governance BiasReport + ApprovalRequest persistence (shipped 1523e7d5: migration 134 + stores + quorum, real-PG 4/4) via /admin/ai-governance HTTP routes + integration test. Closing the phase-3-6 BiasReport/ApprovalRequest gap end-to-end.",
+    "startedAt": "2026-06-01T10:25:00Z",
+    "evidence": "Wiring into apps/api/src/ai-governance-routes.ts: POST /admin/ai-governance/bias-reports (persist a provided BiasReport via PostgresBiasReportStore) + GET list + GET :id; POST /admin/ai-governance/approvals (create ModelApprovalRequest) + GET list + GET :id + POST :id/$decide (recordDecision → quorum recompute). Tenant via X-Cernia-Tenant. Route-level real-PG integration test (bootstraps migration 134). Persistence layer already verified 4/4 (ai-governance-store.integration.test.ts). Loop now runs at ~60s cadence per user request; portal refreshed each tick to show the active item."
   },
   "categories": [
     {
