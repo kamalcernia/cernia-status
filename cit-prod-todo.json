@@ -12,9 +12,9 @@
   },
   "currentTask": {
     "id": null,
-    "title": "Seven parallel batches shipped this session (27 items); idle between batches.",
+    "title": "Batch 8 in progress — orchestrator integration wirings. 28 items shipped; nightly invoice-gen sweep just landed.",
     "startedAt": null,
-    "evidence": "Batch 7 landed (feat+main): ra-sbm-ar-routes + ra-sbm-approver-dir (backend, 10/10 real-PG) + ra-ui-ar + ra-ui-aigov-decide (apps/admin, typecheck=0). A backend+frontend A/R pair shipped together against a shared route contract. Session total 27 items. Next open: nightly invoice-gen sweep wiring; discount-notifier call-site (approver-dir now exists); admin sidebar nav links (invoices + discount-approvals); voice-call-handler gateway swap; RenewalAlertNotifier at boot; Python risk-classifier through the inference RequestRouter; Stripe push of finalized invoices."
+    "evidence": "Batch 8 pivots to orchestrator-owned wirings (clean parallel NEW-file backlog thinning). ra-sbm-invsweep (nightly invoice-gen sweep) shipped feat+main (real-PG 1/1, idempotent). Continuing with: admin sidebar nav links (invoices + discount-approvals); discount-notifier call-site; RenewalAlertNotifier at boot; voice-call-handler gateway swap. Session total 28 items."
   },
   "categories": [
     {
@@ -774,7 +774,15 @@
           "title": "Auto-generate enterprise invoices from subscription billing periods",
           "status": "done",
           "completionMode": "shipped-with-stub-followup",
-          "evidence": "SHIPPED (parallel batch 6) — apps/api/src/invoice-generation.ts: pure buildInvoiceDraftFromSubscription (one line item from the period, unitPriceCents = round(arrCents * periodDays/365) — full ARR for a 365d period, ~1/4 for a quarter; throws on non-active/unbounded) + periodChargeCents + defaultInvoiceNumber (SUB-<id8>-<periodStart>, stable per period → store's unique invoice_number makes re-runs idempotent) + generateInvoiceForSubscription + generateInvoicesForTenant. Real-PG 5/5 (invoice-generation.integration.test.ts: proration, rejects, persist-from-period, tenant isolation). ADR-0127: @cernia/api typecheck=0, build=0, new files lint-clean. Committed this tick (feat+main). STUB-FOLLOWUP: wire a nightly generateInvoicesForTenant sweep into saas-nightly-batches.ts that only bills periods without an existing invoice (the per-period invoice number gives natural dedup)."
+          "evidence": "SHIPPED (parallel batch 6) — apps/api/src/invoice-generation.ts: pure buildInvoiceDraftFromSubscription (one line item from the period, unitPriceCents = round(arrCents * periodDays/365) — full ARR for a 365d period, ~1/4 for a quarter; throws on non-active/unbounded) + periodChargeCents + defaultInvoiceNumber (SUB-<id8>-<periodStart>, stable per period → store's unique invoice_number makes re-runs idempotent) + generateInvoiceForSubscription + generateInvoicesForTenant. Real-PG 5/5 (invoice-generation.integration.test.ts: proration, rejects, persist-from-period, tenant isolation). ADR-0127: @cernia/api typecheck=0, build=0, new files lint-clean. Committed this tick (feat+main). FOLLOWUP NOW DONE → see ra-sbm-invsweep (nightly sweep wired)."
+        },
+        {
+          "id": "ra-sbm-invsweep",
+          "track": "functionality-utilization/saas-billing-marketplace",
+          "title": "Nightly invoice-generation sweep wired into saas-nightly-batches",
+          "status": "done",
+          "completionMode": "shipped",
+          "evidence": "SHIPPED (batch 8, orchestrator) — runInvoiceGenerationSweep in saas-nightly-batches.ts: enumerates subscription tenants, reads each tenant's existing invoice numbers into a Set, generates one enterprise invoice per active bounded-period subscription whose per-period number isn't already present (IDEMPOTENT — never double-bills or trips the unique-invoice-number constraint); wired into tick() Mode A after the reconcile sweep. Result {tenants,scanned,generated,alreadyBilled,asOf}. Real-PG 1/1 (invoice-generation-sweep.integration.test.ts: 3 invoices across 2 tenants on run 1, alreadyBilled=3/generated=0 on run 2, trialing+unbounded skipped). ADR-0127: @cernia/api typecheck=0, build=0, lint-clean. Committed this tick (feat+main)."
         },
         {
           "id": "ra-sbm-discount-notify",
