@@ -11,10 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "ra-sbm-10",
-    "title": "PARALLEL BATCH 2 (3 agents): renewal-alert queue + plugin-upload route + sensitive-data→legal_holds wiring",
-    "startedAt": "2026-06-01T15:25:00Z",
-    "evidence": "Second 3-agent fan-out (HANDOFF §6, disjoint writable sets): ra-sbm-10 (migration 141 saas_renewal_alerts + renewal-alert-store.ts + scheduling), ra-ext-upload (plugin-upload HTTP route in extensions-routes.ts → ingestPluginArchive), ra-sd-wire (sensitive-data-routes.ts reads PostgresLegalHoldRegistry). Agents write+test+verify only; orchestrator owns index.ts + saas-nightly-batches.ts + status JSONs + commits. Chip pinned to ra-sbm-10; the other two rows show in-progress."
+    "id": "ra-sd-wire",
+    "title": "Reconciling ra-sd-wire — legacy sensitive-data tests pin the old meta-audit source; updating them to the dedicated legal_holds table",
+    "startedAt": "2026-06-01T15:35:00Z",
+    "evidence": "Batch 2: ra-sbm-10 + ra-ext-upload SHIPPED (feat+main, 18/18 integrated tests). ra-sd-wire's legal_holds rewire + new test (5/5) are correct but break 4 pre-existing tests that assert the OLD rbac_audit_events meta-audit source; orchestrator is updating those two test files to seed the dedicated legal_holds table (migration 140) before committing the rewire."
   },
   "categories": [
     {
@@ -636,9 +636,9 @@
           "id": "ra-sbm-10",
           "track": "functionality-utilization/saas-billing-marketplace",
           "title": "x2b renewal-alert queue + scheduling (T-120/T-90/T-30)",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "PARALLEL BATCH 2 / Agent D. @cernia/x2b scheduleAlerts computes CSM T-120 / customer-window-opens T-90 / customer-last-chance T-30 / expired-not-renewed alerts, but nothing persists them. Adding migration 141 saas_renewal_alerts + apps/api/src/renewal-alert-store.ts (schedule/listDue/markDispatched, idempotent upsert) + a pure scheduleAlertsForSubscriptions(subs, now) bridge, with a real-PG test. SMTP send stays a followup; orchestrator wires the nightly sweep into saas-nightly-batches.ts."
+          "status": "done",
+          "completionMode": "shipped-with-stub-followup",
+          "evidence": "SHIPPED (parallel batch 2) — migration 141_saas_renewal_alerts (per-tenant queue, UNIQUE (tenant_id, subscription_id, kind, fire_at) idempotent, pending|dispatched) + apps/api/src/renewal-alert-store.ts: pure pendingAlertsForSubscription(sub, now) maps a sub → x2b Contract → scheduleAlerts (T-120 csm / T-90 window-opens / T-30 last-chance / expired-not-renewed); PostgresRenewalAlertStore.schedule (ON CONFLICT DO NOTHING) / listDue(asOf) / markDispatched / list / get + enumerateRenewalAlertTenants. Real-PG 6/6 (renewal-alert-store.integration.test.ts). ADR-0127: @cernia/api typecheck=0, build=0, new files lint-clean. Committed this tick (feat+main). STUB-FOLLOWUP: wire the nightly schedule sweep into saas-nightly-batches.ts (enumerate→listUpcoming→schedule) + the SMTP drain (listDue→send→markDispatched) via the email pipeline."
         },
         {
           "id": "ra-sbm-11",
@@ -668,9 +668,9 @@
           "id": "ra-ext-upload",
           "track": "functionality-utilization/extensions",
           "title": "Plugin-upload HTTP route → ingestPluginArchive",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "PARALLEL BATCH 2 / Agent E — ra-ext-archive followup. apps/api/src/plugin-archive-ingest.ts (ingestPluginArchive) shipped but has no HTTP entry. Adding POST /admin/extensions/installations/$upload to apps/api/src/extensions-routes.ts (accepts a RawPackageContents JSON body → ingestPluginArchive with a configured SignatureVerifier; 201 on install, 4xx fail-closed on bad signature / forbidden import / bad manifest), with a real-PG route test. Already-registered plugin → no index.ts change."
+          "status": "done",
+          "completionMode": "shipped-with-stub-followup",
+          "evidence": "SHIPPED (parallel batch 2) — POST /admin/extensions/installations/$upload added to apps/api/src/extensions-routes.ts: accepts a RawPackageContents JSON body → ingestPluginArchive (configurable signatureVerifier option, defaults TrustAll in dev); 201 on install, 422 signature-rejected, 400 invalid-manifest/invalid-input — fails CLOSED (no row on rejection). Real-PG 7/7 (plugin-archive-upload-routes.integration.test.ts) + existing extensions-installations.integration.test.ts still 5/5. ADR-0127: @cernia/api typecheck=0, build=0, new files lint-clean. Committed this tick (feat+main). STUB-FOLLOWUP: multipart (file) upload form + wiring the real @cernia/marketplace package-signer verifier in prod."
         },
         {
           "id": "ra-sd-wire",
