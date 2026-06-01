@@ -11,10 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "ra-ml-voicegw",
-    "title": "PARALLEL BATCH 3: LlmGateway voice adapter + ML drift capture + revenue-event store (+ orchestrator: renewal sweep+SMTP)",
-    "startedAt": "2026-06-01T15:50:00Z",
-    "evidence": "Third fan-out (HANDOFF §6, disjoint writable sets): ra-ml-voicegw (LlmGateway→IClaudeClient adapter), ra-ml-driftcap (migration 142 prediction-capture store), ra-sbm-revstore (migration 143 contract+revenue-event store); orchestrator owns ra-sbm-10b (renewal sweep+SMTP in saas-nightly-batches.ts) + all shared files + commits. Chip pinned to ra-ml-voicegw; the others show in-progress."
+    "id": null,
+    "title": "Three parallel batches shipped this session (13 items); idle between batches",
+    "startedAt": null,
+    "evidence": "Batch 3 landed (feat+main, 19/19 integrated tests, typecheck=0/build=0/lint=0): ra-ml-voicegw + ra-ml-driftcap + ra-sbm-revstore + ra-sbm-10b. Session total 13 items. Next open (mostly wiring-into-host + UI followups): voice-call-handler gateway swap, ml-drift capture hook + read route, revenue-recognition routes read-from-store, production RenewalAlertNotifier, break-glass→legal_holds write-back, apps/admin discount UI, apps/cernia-ops FinOps trend UI, Python risk-classifier through the inference RequestRouter."
   },
   "categories": [
     {
