@@ -11,10 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "ra-sbm-ar-routes",
-    "title": "PARALLEL BATCH 7 (4 agents, pool slots 1-4): enterprise A/R routes + A/R UI + approver-contact dir + AI-gov $decide UI",
-    "startedAt": "2026-06-01T17:48:00Z",
-    "evidence": "Seventh fan-out. Pool slots: 1 ra-sbm-ar-routes (Agent U, backend), 2 ra-ui-ar (Agent Z, apps/admin — shares the A/R route contract with U), 3 ra-sbm-approver-dir (Agent V, backend + migration 145), 4 ra-ui-aigov-decide (Agent X, apps/admin ai-governance). Disjoint writable sets; orchestrator owns index.ts + status JSONs + commits + registers U's routes. Chip pinned to ra-sbm-ar-routes."
+    "id": null,
+    "title": "Seven parallel batches shipped this session (27 items); idle between batches.",
+    "startedAt": null,
+    "evidence": "Batch 7 landed (feat+main): ra-sbm-ar-routes + ra-sbm-approver-dir (backend, 10/10 real-PG) + ra-ui-ar + ra-ui-aigov-decide (apps/admin, typecheck=0). A backend+frontend A/R pair shipped together against a shared route contract. Session total 27 items. Next open: nightly invoice-gen sweep wiring; discount-notifier call-site (approver-dir now exists); admin sidebar nav links (invoices + discount-approvals); voice-call-handler gateway swap; RenewalAlertNotifier at boot; Python risk-classifier through the inference RequestRouter; Stripe push of finalized invoices."
   },
   "categories": [
     {
@@ -804,33 +804,33 @@
           "id": "ra-sbm-ar-routes",
           "track": "functionality-utilization/saas-billing-marketplace",
           "title": "Enterprise A/R HTTP routes (list/create/send/record-payment/void/aging)",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "PARALLEL BATCH 7 / Agent U (pool slot 1). The PostgresEnterpriseInvoiceStore lifecycle (create/markSent/applyPayment/voidInvoice/list/get) has no HTTP surface. Adding apps/api/src/enterprise-invoice-routes.ts: GET/POST /admin/enterprise-invoices, POST :id/$send|$record-payment|$void, GET /admin/enterprise-invoices/aging-report, with a real-PG route test. Orchestrator registers in index.ts. Contract shared with ra-ui-ar."
+          "status": "done",
+          "completionMode": "shipped",
+          "evidence": "SHIPPED (parallel batch 7) — apps/api/src/enterprise-invoice-routes.ts over PostgresEnterpriseInvoiceStore: GET/POST /admin/enterprise-invoices, GET /aging-report (5 buckets current/d1_30/d31_60/d61_90/d90_plus + totalOutstandingCents from open invoices' balance vs dueAt), GET/:id, POST :id/$send|$record-payment|$void; tenant-scoped, 201/404/400. Orchestrator registered db-gated in index.ts (10e-ar; { db: db as never } — required+specific Kysely type, cast is necessary not redundant). Real-PG 5/5 (enterprise-invoice-routes.integration.test.ts). ADR-0127: @cernia/api typecheck=0, build=0, new files lint-clean. Committed this tick (feat+main)."
         },
         {
           "id": "ra-ui-ar",
           "track": "functionality-utilization/saas-billing-marketplace",
           "title": "apps/admin enterprise A/R (invoices) UI",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "PARALLEL BATCH 7 / Agent Z (pool slot 2). apps/admin invoices page consuming the enterprise-invoice A/R routes (list + aging buckets + send/record-payment/void actions + create form), against the contract spec'd jointly with ra-sbm-ar-routes. Frontend (verify @cernia/admin typecheck)."
+          "status": "done",
+          "completionMode": "shipped-with-stub-followup",
+          "evidence": "SHIPPED (parallel batch 7) — apps/admin/src/app/admin/invoices/{invoices-api.ts, page.tsx}: typed client (7 fetchers mirroring ai-governance-api.ts) + page with 5 aging-bucket cards + total outstanding, invoices table (number/PO, status pill, issued/due, total, balance), per-invoice actions ($send draft, $record-payment open, $void unless paid/void), create form. Consumes the SAME A/R contract Agent U implemented. Honest empty/error states. @cernia/admin typecheck=0, new files lint-clean. Committed this tick (feat+main). STUB-FOLLOWUP: add the sidebar nav link under Billing (shared sidebar.tsx); page reachable at /admin/invoices."
         },
         {
           "id": "ra-sbm-approver-dir",
           "track": "functionality-utilization/saas-billing-marketplace",
           "title": "Approver-contact directory to activate the discount notifier",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "PARALLEL BATCH 7 / Agent V (pool slot 3) — ra-sbm-discount-notify followup. The DiscountApprovalNotifier needs a per-tenant approver-role→contact lookup. Adding migration 145 approver_contacts (per-tenant role→email) + apps/api/src/approver-contact-store.ts (upsert/get + makeApproverContactResolver returning the notifier's resolveApproverContact seam), with a real-PG test. NEW files."
+          "status": "done",
+          "completionMode": "shipped-with-stub-followup",
+          "evidence": "SHIPPED (parallel batch 7) — migration 145_approver_contacts (per-tenant, PK (tenant_id, role), role CHECK in csm/sales-manager/ceo/finance, email NOT NULL '%@%', name) + apps/api/src/approver-contact-store.ts: PostgresApproverContactStore.upsert/get/list + makeApproverContactResolver(db) returning DiscountApprovalNotifier's exact resolveApproverContact seam. Real-PG 5/5. ADR-0127: @cernia/api typecheck=0, build=0, new file lint-clean. Committed this tick (feat+main). STUB-FOLLOWUP: construct DiscountApprovalNotifier with makeApproverContactResolver(db) + a notifications backend and call notifyPendingApprovers from the discount create/approve route path."
         },
         {
           "id": "ra-ui-aigov-decide",
           "track": "functionality-utilization/phase-3-6-specialized",
           "title": "AI-governance approvals $decide write-back action in the UI",
-          "status": "in-progress",
-          "completionMode": null,
-          "evidence": "PARALLEL BATCH 7 / Agent X (pool slot 4) — phase-3-6 remaining. The ai-governance approvals page is read-only; the POST /admin/ai-governance/approvals/:id/$decide route exists but no UI drives it. Adding an approve/reject action (role + decision + comment) to apps/admin ai-governance approvals page + a $decide fetcher in ai-governance-api.ts. Frontend (verify @cernia/admin typecheck; keep existing pages green)."
+          "status": "done",
+          "completionMode": "shipped",
+          "evidence": "SHIPPED (parallel batch 7) — apps/admin ai-governance-api.ts gained decideApproval(id, {role, decision, approver, comment?}) POSTing the exact $decide body; approvals/page.tsx renders a DecisionPanel (role select from requiredApprovers, approve/reject, approver display, optional comment) on pending requests only, refreshing the list on success — existing list/filter/empty/loading untouched. @cernia/admin typecheck=0, changed files lint-clean. Committed this tick (feat+main). Closes the phase-3-6 approvals-write-surface followup."
         },
         {
           "id": "ra-tel-1",
