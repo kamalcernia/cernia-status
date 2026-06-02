@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-02T02:30:01.645Z",
-    "lastUpdatedDisplay": "Jun 1, 2026 — 22:30 EDT",
+    "lastUpdatedIso": "2026-06-02T02:19:37.181Z",
+    "lastUpdatedDisplay": "Jun 1, 2026 — 22:19 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 3/8 in flight (ra-sbm-ar-routes ra-ui-ar ra-sbm-approver-dir) · last PR: #173 feat(admin): sensitive-data routes + UI swap (phas"
   },
   "summary": {
@@ -4774,7 +4774,7 @@
       "wave": "ML-PLATFORM",
       "detail": "close Wave-P ML-model-registry E2E gate against the REAL stack",
       "commit": "5ac74ee4",
-      "freshSeconds": 4964
+      "freshSeconds": 4792
     }
   },
   "pool": {
