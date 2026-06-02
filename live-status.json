@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-02T01:06:46.148Z",
-    "lastUpdatedDisplay": "Jun 1, 2026 — 21:06 EDT",
+    "lastUpdatedIso": "2026-06-02T00:59:48.925Z",
+    "lastUpdatedDisplay": "Jun 1, 2026 — 20:59 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 3/8 in flight (ra-sbm-ar-routes ra-ui-ar ra-sbm-approver-dir) · last PR: #173 feat(admin): sensitive-data routes + UI swap (phas"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "421 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #173 feat(admin): sensitive-data routes + UI swap (phase-3-6 bull. (refreshed Jun 1, 2026 — 21:06 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #173 feat(admin): sensitive-data routes + UI swap (phase-3-6 bull. (refreshed Jun 1, 2026 — 21:05 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -4769,7 +4769,7 @@
       "wave": "ERX",
       "detail": "close Pass-1 ERX E2E gate against the REAL stack + fix 3 RBAC/storage bugs",
       "commit": "daa99a36",
-      "freshSeconds": 1427
+      "freshSeconds": 1300
     }
   },
   "pool": {
