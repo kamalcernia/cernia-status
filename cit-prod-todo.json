@@ -11,9 +11,9 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "cit-pass-6",
-    "title": "PARALLEL BATCH (3 agents) — more real-stack E2E gates via the proven pattern: [slot1] discount-approvals create→approve/deny (saas-billing, cit-pass-6), [slot2] cqm domains/measures (quality), [slot3] ig-profiles validation. Each agent owns its own apps/admin subdir + a new tests/e2e/specs spec; orchestrator owns the shared iam-route-guards.ts deriveOperation mappings + the serial E2E run + commits. All 3 route families have zero requirePermission (same lowercase-/admin RBAC catch-all as ERX/ML/allergy).",
-    "startedAt": "2026-06-01",
+    "id": null,
+    "title": "IDLE — PARALLEL BATCH landed: 3 more real-stack E2E gates closed via 3 concurrent agents (discount-approvals 4✓, cqm catalog 5✓, ig-profiles 4✓ = 13 tests). Sixth/seventh/eighth gates this session. Orchestrator owned the shared iam-route-guards deriveOperation mappings + the serial E2E run; agents owned disjoint admin subdirs + specs. Fixed: 3 more lowercase-/admin RBAC catch-alls, a CQM detail-page Next-15 use(params) crash, a discount row-locator, and applied migration 136 to the test DB.",
+    "startedAt": null,
     "evidence": "Three real-stack E2E gates closed this session, each fixing genuine bugs the real stack surfaced: cit-pass-1 (ERX, all 5 gates green/DONE), cit-pass-4 Wave-P (ML model registry promote/demote), cit-pass-5 Wave-S (allergy list+verify). Shared pattern: apps/admin (next dev :3210) → real apps/api → real Postgres (:5433 snapshot) → real JWT via POST /dev/login → real RBAC. Recurring class of bug fixed across all three: lowercase custom routes (/erx, /admin/ml, /allergies) had no deriveOperation mapping so the global RBAC hook denied them as */*; each now maps to a proper resourceType. Plus dev-login seeds a resolvable RoleBinding, the storage search-sql IAM generated-columns fix, and the allergy {items}→{allergies} client mapping. All feat+main, status-tracked. Remaining closure-pass work is procurement-gated (Stripe/LLM/vendor BAAs) or multi-day multi-wave admin UIs."
   },
   "categories": [
@@ -196,7 +196,7 @@
             "AA",
             "BB"
           ],
-          "evidence": "Backend gate ✓ (enterprise-account + saas-billing routes); Stripe production wiring blocked on procurement; storefront UI ✗.\n  WHY-NOT-DONE (2026-06-01 comprehensive-plan review): Backend ✓ (enterprise-account + saas-billing + A/R routes + admin A/R UI). Open: customer storefront UI + Stripe PRODUCTION wiring (needs Stripe prod keys/account — PROCUREMENT)."
+          "evidence": "Backend gate ✓ (enterprise-account + saas-billing routes); Stripe production wiring blocked on procurement; storefront UI ✗. Discount-approvals E2E gate ✓ as of 2026-06-01 — CLOSED AGAINST THE REAL STACK (parallel-agent batch, same pattern as cit-pass-1/4/5): tests/e2e/specs/discount-approvals-flow.spec.ts (4 tests, @wave-discount) drives apps/admin (next dev :3210) over HTTP against the REAL apps/api discount-approval routes (PostgresDiscountApprovalStore, migration 136) on real Postgres (:5433), real JWT from POST /dev/login. Run: 4 passed — list renders pending; a single CSM approval on a <10% discount flips status→approved; a denial flips→denied; tenant-B never sees tenant-A's requests. Fixed the same lowercase-/admin RBAC catch-all (deriveOperation now maps /admin/discount-approvals* → synthetic DiscountApproval resourceType, canonical verbs); discount-approvals-api.ts now sends Bearer + x-cernia-tenant (NO -id suffix for these routes); +data-testids. NOTE: requires migration 136 (discount_approval_requests) applied to the test DB — not in the 128-table snapshot, applied manually for the run; the schema snapshot should be regenerated to include 136+ for CI. typecheck clean (api/admin); touched files lint-clean.\n  WHY-NOT-DONE (still in-progress): Backend + discount-approvals admin E2E ✓. Open: customer storefront UI + Stripe PRODUCTION wiring (needs Stripe prod keys/account — PROCUREMENT)."
         },
         {
           "id": "cit-pass-7",
