@@ -11,9 +11,9 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": null,
-    "title": "IDLE — Wave-S allergy (S8) E2E gate just closed against the real stack (list + $verify via admin → real apps/api → real Postgres → real JWT/RBAC), narrowing cit-pass-5. Third real-stack E2E close this session (after cit-pass-1 ERX + Wave-P ML); fixed the lowercase-/allergies RBAC catch-all AND a {items}/{allergies} response-shape mismatch that crashed the list page. Remaining cit-pass-5 surface (K/N/R/U/V admin UIs, S5/S6/S7, ~49 Wave-T modules) is multi-day.",
-    "startedAt": null,
+    "id": "cit-pass-6",
+    "title": "PARALLEL BATCH (3 agents) — more real-stack E2E gates via the proven pattern: [slot1] discount-approvals create→approve/deny (saas-billing, cit-pass-6), [slot2] cqm domains/measures (quality), [slot3] ig-profiles validation. Each agent owns its own apps/admin subdir + a new tests/e2e/specs spec; orchestrator owns the shared iam-route-guards.ts deriveOperation mappings + the serial E2E run + commits. All 3 route families have zero requirePermission (same lowercase-/admin RBAC catch-all as ERX/ML/allergy).",
+    "startedAt": "2026-06-01",
     "evidence": "Three real-stack E2E gates closed this session, each fixing genuine bugs the real stack surfaced: cit-pass-1 (ERX, all 5 gates green/DONE), cit-pass-4 Wave-P (ML model registry promote/demote), cit-pass-5 Wave-S (allergy list+verify). Shared pattern: apps/admin (next dev :3210) → real apps/api → real Postgres (:5433 snapshot) → real JWT via POST /dev/login → real RBAC. Recurring class of bug fixed across all three: lowercase custom routes (/erx, /admin/ml, /allergies) had no deriveOperation mapping so the global RBAC hook denied them as */*; each now maps to a proper resourceType. Plus dev-login seeds a resolvable RoleBinding, the storage search-sql IAM generated-columns fix, and the allergy {items}→{allergies} client mapping. All feat+main, status-tracked. Remaining closure-pass work is procurement-gated (Stripe/LLM/vendor BAAs) or multi-day multi-wave admin UIs."
   },
   "categories": [
