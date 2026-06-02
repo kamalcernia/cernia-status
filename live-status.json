@@ -1,15 +1,15 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-02T16:01:40.372Z",
-    "lastUpdatedDisplay": "Jun 2, 2026 — 12:01 EDT",
+    "lastUpdatedIso": "2026-06-02T16:02:03.599Z",
+    "lastUpdatedDisplay": "Jun 2, 2026 — 12:02 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #178 chore(deps-dev)(deps-dev): Bump cross-env from 7.0"
   },
   "summary": {
-    "currentMainCommit": "55fa4406",
+    "currentMainCommit": "c43a6adb",
     "currentTagOnMain": "audit-baseline-2026-05-29 🏁",
-    "agentsCompletedThisSession": 438,
+    "agentsCompletedThisSession": 439,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "438 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "439 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
     "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #178 chore(deps-dev)(deps-dev): Bump cross-env from 7.0.3 to 10.1. (refreshed Jun 2, 2026 — 12:02 EDT)",
@@ -4834,7 +4834,7 @@
       "wave": "WORKFLOW",
       "detail": "Wave-J FULL visual editor + tenant workflow-draft persistence (cit-pass-2)",
       "commit": "c43a6adb",
-      "freshSeconds": 1467
+      "freshSeconds": 1475
     }
   },
   "pool": {
@@ -12076,7 +12076,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 6,
-    "origin/feat/elevenlabs-tts-wiring@55fa4406c812": 0,
+    "origin/feat/elevenlabs-tts-wiring@c43a6adb0cdf": 0,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
@@ -12667,7 +12667,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 2,
-    "origin/feat/elevenlabs-tts-wiring@55fa4406c812": 0,
+    "origin/feat/elevenlabs-tts-wiring@c43a6adb0cdf": 0,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
@@ -13258,7 +13258,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
-    "origin/feat/elevenlabs-tts-wiring@55fa4406c812": true,
+    "origin/feat/elevenlabs-tts-wiring@c43a6adb0cdf": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
     "origin/feat/local-demo-patient-image@90299849c309": true,
