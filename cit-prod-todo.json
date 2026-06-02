@@ -11,9 +11,9 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": null,
-    "title": "IDLE — cit-pass-2 multi-agent push: Wave-E voice-agent admin UI sample→real swap DONE + verified (voice-agent-admin-ui.spec.ts passed; 4 pages now fetch real /api/voice-agent/* routes). 5-agent scoping fan-out produced the SCOPE VERDICT (see cit-pass-2 evidence): pass 2 cannot reach all-gates-green this session — Wave I is a from-scratch multi-day build, Wave J is weeks + Stripe/LLM procurement-adjacent infra, and Wave W's email-resale core is HARD procurement-blocked (Google/MS/Zoho reseller agreements + BAAs, not dev-bypassable). Wave-E admin + F done; remainder is multi-session + partly procurement-hard. CIT closure passes remain 3/7.",
-    "startedAt": null,
+    "id": "cit-pass-2",
+    "title": "MULTI-AGENT — building Wave I (B2B Support Channel) end-to-end for cit-pass-2: NEW migration 146_support_tickets + PostgresSupportTicketStore + support-routes.ts (/support/tickets CRUD + comments) + index registration + iam-route-guards SupportTicket mapping (backend agent) + apps/admin/src/app/admin/support/** UI + support-api.ts (frontend agent), parallel against a locked route contract. Orchestrator applies migration 146 to e2e-pg + regenerates snapshot + restarts api + runs real-stack E2E (create→list→get→PATCH lifecycle→comment→tenant isolation) + UI E2E + commits.",
+    "startedAt": "2026-06-02",
     "evidence": "Three real-stack E2E gates closed this session, each fixing genuine bugs the real stack surfaced: cit-pass-1 (ERX, all 5 gates green/DONE), cit-pass-4 Wave-P (ML model registry promote/demote), cit-pass-5 Wave-S (allergy list+verify). Shared pattern: apps/admin (next dev :3210) → real apps/api → real Postgres (:5433 snapshot) → real JWT via POST /dev/login → real RBAC. Recurring class of bug fixed across all three: lowercase custom routes (/erx, /admin/ml, /allergies) had no deriveOperation mapping so the global RBAC hook denied them as */*; each now maps to a proper resourceType. Plus dev-login seeds a resolvable RoleBinding, the storage search-sql IAM generated-columns fix, and the allergy {items}→{allergies} client mapping. All feat+main, status-tracked. Remaining closure-pass work is procurement-gated (Stripe/LLM/vendor BAAs) or multi-day multi-wave admin UIs."
   },
   "categories": [
