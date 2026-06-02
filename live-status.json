@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-02T13:59:24.941Z",
-    "lastUpdatedDisplay": "Jun 2, 2026 — 09:59 EDT",
+    "lastUpdatedIso": "2026-06-02T14:00:17.414Z",
+    "lastUpdatedDisplay": "Jun 2, 2026 — 10:00 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #178 chore(deps-dev)(deps-dev): Bump cross-env from 7.0"
   },
   "summary": {
-    "currentMainCommit": "11fc1977",
+    "currentMainCommit": "63d657bf",
     "currentTagOnMain": "audit-baseline-2026-05-29 🏁",
-    "agentsCompletedThisSession": 435,
+    "agentsCompletedThisSession": 436,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "435 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "436 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #178 chore(deps-dev)(deps-dev): Bump cross-env from 7.0.3 to 10.1. (refreshed Jun 2, 2026 — 09:59 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #178 chore(deps-dev)(deps-dev): Bump cross-env from 7.0.3 to 10.1. (refreshed Jun 2, 2026 — 10:00 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -4830,7 +4830,7 @@
       "wave": "D6",
       "detail": "test(telephony): close the inbound Twilio webhook gate with REAL signature validation (cit-pass-2, Wave D6/E)",
       "commit": "63d657bf",
-      "freshSeconds": 7
+      "freshSeconds": 45
     }
   },
   "pool": {
@@ -4952,6 +4952,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "test(telephony): close the inbound Twilio webhook gate with REAL si...",
+      "commit": "63d657bf",
+      "kind": "other"
+    },
+    {
       "agent": "close the Wave-J non-procurement subset — catalog browse + instanti...",
       "commit": "11fc1977",
       "kind": "feat"
@@ -5019,11 +5024,6 @@
     {
       "agent": "close Wave-P ML-model-registry E2E gate against the REAL stack",
       "commit": "5ac74ee4",
-      "kind": "feat"
-    },
-    {
-      "agent": "close Pass-1 ERX E2E gate against the REAL stack + fix 3 RBAC/stora...",
-      "commit": "daa99a36",
       "kind": "feat"
     }
   ],
@@ -12072,7 +12072,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 6,
-    "origin/feat/elevenlabs-tts-wiring@11fc1977120a": 0,
+    "origin/feat/elevenlabs-tts-wiring@63d657bf0f28": 0,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
@@ -12663,7 +12663,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 2,
-    "origin/feat/elevenlabs-tts-wiring@11fc1977120a": 0,
+    "origin/feat/elevenlabs-tts-wiring@63d657bf0f28": 0,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
@@ -13254,7 +13254,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
-    "origin/feat/elevenlabs-tts-wiring@11fc1977120a": true,
+    "origin/feat/elevenlabs-tts-wiring@63d657bf0f28": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
     "origin/feat/local-demo-patient-image@90299849c309": true,
