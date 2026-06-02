@@ -1477,6 +1477,7 @@
         "wontfix-rolling":            { bg: "rgba(251,191,36,0.10)", fg: "#fbbf24", label: "wontfix-rolling",      tip: "Demoted to rolling closure per docs/decisions/wontfix-deferred-items-bulk-sweep.md" },
         "wontfix-admin-ui":           { bg: "rgba(167,139,250,0.10)",fg: "#a78bfa", label: "wontfix-admin-ui",     tip: "Backend wired; admin UI deferred to separate apps/admin sprint" },
         "wontfix-credentials":        { bg: "rgba(244,114,182,0.10)",fg: "#f472b6", label: "wontfix-credentials",  tip: "Code ready; blocked on procurement (Twilio/Stripe/Deepgram/ElevenLabs production keys + BAAs)" },
+        "procurement-blocked":        { bg: "rgba(248,113,113,0.10)",fg: "#f87171", label: "code-complete · procurement-blocked", tip: "Every code-testable gate is green; the only remaining gates require EXTERNAL procurement/account that cannot be closed by code — see the red Pending panel (Wave-W reseller agreements + BAAs; Wave-E live /voice media on an upgraded Twilio account + signed BAA)" },
         "wontfix-operational":        { bg: "rgba(251,146,60,0.10)", fg: "#fb923c", label: "wontfix-operational",  tip: "Code/workflow ships; requires operational artifact (signature, 7-day window)" },
       };
       const s = map[mode] || { bg: "rgba(255,255,255,0.06)", fg: "#9ca3af", label: mode, tip: "" };
