@@ -582,6 +582,18 @@
       <tbody></tbody>
     </table>
 
+    <!-- Pending / Blocked panel — populated from top-level `pendingBlockers`.
+         These are NOT code gaps: they're procurement / account / legal
+         blockers that cannot be closed by writing code. Rendered in red so
+         the human triages them as external action items. -->
+    <h2 id="pendingHeader" style="display:none;color:var(--danger)">⛔ Pending — blocked on procurement / account (not code) <span class="count" id="pendingCount" style="background:rgba(248,113,113,0.18);color:var(--danger);border:1px solid var(--danger)">0</span></h2>
+    <div id="pendingPanel" style="display:none;border:1px solid var(--danger);border-radius:8px;padding:4px 0 0 0;margin-bottom:8px;background:rgba(248,113,113,0.06)">
+      <table class="completed-table" id="pendingTable" style="margin:0">
+        <thead><tr><th style="color:var(--danger)">Item</th><th style="color:var(--danger)">Type</th><th style="color:var(--danger)">Why it's blocked (external action required)</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
     <h2>Wave Tree</h2>
     <div id="tree" class="tree"></div>
 
@@ -748,6 +760,34 @@
         ...activeRows,
         ...recoveredRows,
       ].join("");
+    }
+
+    // ── Pending / blocked (procurement + account, NOT code) ───────────
+    //
+    // Source: top-level `pendingBlockers` in live-status.json. Each entry
+    // is an external/legal blocker the engineering work cannot clear.
+    // Always rendered red so it reads as a standing action item.
+    function renderPendingBlockers(items) {
+      const list = (items || []).filter((b) => b && b.title);
+      if (list.length === 0) {
+        $("pendingHeader").style.display = "none";
+        $("pendingPanel").style.display = "none";
+        return;
+      }
+      $("pendingHeader").style.display = "flex";
+      $("pendingPanel").style.display = "";
+      $("pendingCount").textContent = list.length;
+      $("pendingTable").querySelector("tbody").innerHTML = list
+        .map((b) => {
+          const wave = b.wave ? `<span style='opacity:0.8'>[Wave ${escHtml(b.wave)}]</span> ` : "";
+          const blocks = b.blocks ? `<div style='font-size:11px;color:var(--fg-muted);margin-top:2px'>blocks: ${escHtml(b.blocks)}</div>` : "";
+          return `<tr>` +
+            `<td style='color:var(--danger);font-weight:600'>${wave}${escHtml(b.title)}${blocks}</td>` +
+            `<td style='color:var(--warn);white-space:nowrap'>${escHtml(b.type || "external")}</td>` +
+            `<td style='color:var(--fg)'>${escHtml(b.reason || "")}</td>` +
+          `</tr>`;
+        })
+        .join("");
     }
 
     // ── Production-readiness tracks ───────────────────────────────────
@@ -1218,6 +1258,7 @@
       renderPrActivity(data.recentPrActivity || []);
       renderCompleted(data.recentCompletions || []);
       renderFailures(data.failures || []);
+      renderPendingBlockers(data.pendingBlockers || []);
       $("tree").innerHTML = (data.waves || []).map(w => renderWave(w, 0)).join("");
       bindToggles();
 
