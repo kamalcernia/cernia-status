@@ -2360,20 +2360,22 @@
           },
           "current": {
             "status": "partial",
-            "asOf": "2026-05-26",
-            "summary": "Roadmap shipped; 7 multi-session passes remain. See docs/operations/runbooks/cit-closure-passes-roadmap.md."
+            "asOf": "2026-06-02",
+            "summary": "3 of 7 passes closed all-gates-green against the REAL stack (Pass 1 ERX, Pass 3 G caregiver-federation+SAML, Pass 7 foundation/white-label). 4 remain — Pass 2/4/6 are largely procurement-gated (vendor + LLM + Stripe BAAs), Pass 5 is the largest admin surface (~10-14 eng-days). See docs/operations/runbooks/cit-closure-passes-roadmap.md."
           },
           "evidence": [],
           "remaining": [
-            "Pass 1: ERX + UI",
-            "Pass 2: E + dependent F / I / J / W (voice-agent stack)",
-            "Pass 3: G (caregiver-federation, including SAML 2.0)",
-            "Pass 4: O + P + Q (AI / ML / telehealth-RPM)",
-            "Pass 5: K + L + M + N + R + S + T + U + V",
-            "Pass 6: X + Z + Y + DD + AA + BB",
-            "Pass 7: A + B + C + D + H + H-EXT + H-EXT-2 + CC (foundation + catalogs)"
+            "Pass 2: E + dependent F / I / J / W (voice-agent stack) — vendor-BAA + multi-day admin UIs",
+            "Pass 4: O + P + Q (AI / ML / telehealth-RPM) — P closed; O LLM-provider-BAA-gated",
+            "Pass 5: K + L + M + N + R + S + T + U + V — largest remaining admin surface",
+            "Pass 6: X + Z + Y + DD + AA + BB — Stripe-prod + storefront UI"
           ],
           "history": [
+            {
+              "date": "2026-06-02",
+              "stage": "closure-passes",
+              "note": "Pass 7 (A/B/C/D/H/H-EXT/H-EXT-2/CC) CLOSED all-gates-green. Two concrete gaps closed: (1) the slugResolver boot stub — NEW apps/api/src/tenant-slug-resolver.ts makeTenantSlugResolver(storage) resolves the canonical slug (FHIR Tenant.name) via the tenant-scoped StorageAdapter, wired at BOTH the tenantBrandRoutes (H1-A) + customDomainRoutes (H3-B) boot sites (replacing the resolver that REJECTED on every call → brand PUT 500'd, custom-domain 404'd); unknown tenant → NotFoundError → clean 404. 5 unit tests (tenant-slug-resolver.test.ts). (2) the 'minimal verification' E2E — NEW tests/e2e/specs/white-label-flow.spec.ts (5, @wave-H + @wave-H-EXT-2), Playwright 5 passed (2.2m) real-stack: H-EXT-2-C short-urls create→public /r/:slug 302→invalidate→410 + open-redirect allow-list guard (400) + per-tenant isolation (403); H1-A brand unprovisioned-tenant→404 (proves the real slugResolver is WIRED, was a 500 stub) + cross-tenant 403 + unauth 401. RBAC: deriveOperation now maps /tenants/:id/brand→TenantBrand + /tenants/:id/short-urls*→ShortUrl. Foundation/catalog waves A/B/C/D/CC are catalog-only by design. ADR-0127: @cernia/api typecheck=0, lint-clean, iam-route-guards(17)+tenant-brand(24)+slug-resolver(5) units green. Brand happy-path slug-materialisation through HTTP needs a superadmin-provisioned Tenant (POST /admin/tenants, not dev-login-mintable) so it's covered by the resolver unit test + tenant-brand-routes.test.ts rather than a dev-login browser E2E. CIT closure passes: 1/7 → 3/7 (Pass 1 + Pass 3 + Pass 7)."
+            },
             {
               "date": "2026-05-26",
               "stage": "closure-passes",
