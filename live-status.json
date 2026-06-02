@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-02T03:52:32.189Z",
-    "lastUpdatedDisplay": "Jun 1, 2026 — 23:52 EDT",
+    "lastUpdatedIso": "2026-06-02T03:49:48.726Z",
+    "lastUpdatedDisplay": "Jun 1, 2026 — 23:49 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 3/8 in flight (batch2 batch2 batch2) · last PR: #173 feat(admin): sensitive-data routes + UI swap (phas"
   },
   "summary": {
@@ -4787,7 +4787,7 @@
       "wave": "E2E",
       "detail": "close 3 more real-stack E2E gates via parallel agents (compliance/invoices/sensitive-data)",
       "commit": "025dfacf",
-      "freshSeconds": 513
+      "freshSeconds": 484
     }
   },
   "pool": {
