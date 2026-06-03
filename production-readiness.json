@@ -123,7 +123,9 @@
               "url": "https://github.com/kamalcernia/cernia/blob/main/docs/security/threats/wave-d-voice-end-to-end.md"
             }
           ],
-          "remaining": [],
+          "remaining": [
+            "Deferred (post-GA enhancement, NOT a GA launch blocker — triaged 2026-06-03): Output-side clinical content classifier (I-320 — deferred to Wave-D9 alongside the LLM output-safety overhaul; not blocking the voice-agent pilot)"
+          ],
           "history": [
             {
               "date": "2026-05-25",
@@ -136,11 +138,16 @@
             {
               "date": "2026-05-25",
               "note": "Closed remaining HIPAA-safety items: moved BAA allowlist to @cernia/voice-agent (compliance source of truth, apps/api re-exports). Shipped InMemoryCallerRateLimiter (I-321) — 9 unit tests; wired into apps/api inbound call handler; default 5 calls / 60s per caller per tenant; emits voice.call.rate-limited audit on reject."
+            },
+            {
+              "date": "2026-06-03",
+              "stage": "hipaa-safety",
+              "from": "deferred",
+              "to": "remaining",
+              "note": "Triaged 1 deferred[] item(s) out of blocker severity: each is a post-GA enhancement, not a GA launch blocker, so moved to remaining[] (tracked tech-debt) per the deferred-items audit forcing-function. No code change — these features were always future scope."
             }
           ],
-          "deferred": [
-            "Output-side clinical content classifier (I-320 — deferred to Wave-D9 alongside the LLM output-safety overhaul; not blocking the voice-agent pilot)"
-          ]
+          "deferred": []
         },
         {
           "id": "telephony-ops",
@@ -761,7 +768,9 @@
             }
           ],
           "remaining": [
-            "Stripe PRODUCTION wiring: live Stripe keys + a business-verified Stripe account so storefront checkout + enterprise invoicing move REAL money. Test mode (sk_test_ + the settlement webhook) is wired and E2E-verified end-to-end (tests/e2e/specs/marketplace-storefront-flow.spec.ts). PROCUREMENT — the operator supplies prod credentials / completes Stripe account activation. No BAA (payments, not PHI)."
+            "Stripe PRODUCTION wiring: live Stripe keys + a business-verified Stripe account so storefront checkout + enterprise invoicing move REAL money. Test mode (sk_test_ + the settlement webhook) is wired and E2E-verified end-to-end (tests/e2e/specs/marketplace-storefront-flow.spec.ts). PROCUREMENT — the operator supplies prod credentials / completes Stripe account activation. No BAA (payments, not PHI).",
+            "Deferred (post-GA, NOT a launch blocker): ML-model marketplace (P3-C) clinical-review dual-control queue before publish — the -A vertical publishes directly; a physician/compliance review gate is a future enhancement (apps/api/src/ml-marketplace-routes.ts).",
+            "Deferred (post-GA, NOT a launch blocker): ML-model marketplace (P3-C) Stripe-Connect payout of the publisher's 70/30 commission — the commission is computed + persisted (ml_marketplace_entitlements.publisher_commission_cents); the actual Connect transfer reuses the Wave-V partner-payout path and is gated on the same Stripe-prod procurement."
           ],
           "history": [
             {
@@ -887,6 +896,13 @@
               "from": "partial",
               "to": "narrowed",
               "note": "Storefront UI gate CLOSED: apps/admin marketplace listing Buy button now calls POST /admin/marketplace/checkout/$build-session (real Stripe test session) + redirects to the hosted URL; NEW GET /admin/marketplace/entitlements (marketplace-checkout-routes.ts, db-wired, deriveOperation read MarketplaceListing) lists the tenant's PERSISTED entitlements, and the installs page renders them live. Verified by tests/e2e/specs/marketplace-storefront-flow.spec.ts (3/3, real stack + real Stripe test API: cs_test_ session, webhook fail-closed 400, signed checkout.session.completed -> tenant-scoped active entitlement + isolation). ALSO narrowed 6 already-shipped bullets (x1a tax, x1c metrics sweep, x2a enterprise invoicing, x2b auto-renewal, x3c discount-approval, revenue/contract store) out of `remaining` — they were shipped 2026-06-01 and mislabeled as remaining. Only Stripe PRODUCTION wiring (procurement) is left."
+            },
+            {
+              "date": "2026-06-03",
+              "stage": "saas-billing-marketplace",
+              "from": "remaining",
+              "to": "remaining",
+              "note": "Recorded the 2 P3-C ML-marketplace post-GA follow-ups (clinical-review dual-control + Stripe-Connect payout) as tracked remaining[] bullets; the code comments in ml-marketplace-{routes,listing-store}.ts now reference this tracking instead of carrying DEFERRED markers."
             }
           ]
         }
@@ -1200,7 +1216,10 @@
             "asOf": "2026-05-25",
             "summary": "Voice-config step (step 4 of 8) in apps/installer wizard collects all 12 voice-agent config items (Twilio AccountSID+AuthToken to tenant-secret store, Deepgram + ElevenLabs API keys + voice ID, LLM provider, language allowlist, business hours, escalation phone, persona greeting). Each step wired to its server-side endpoint: tenant-secret-routes (credentials), persona PATCH (tone), tenant_phone_numbers register (E.164 routing). Voice-config wizard at apps/installer/src/app/wizard/[sessionId]/voice-config + server route at apps/installer/src/app/api/voice-config/[sessionId]. Outbound smoke-test and CSV/JSON white-glove import are operator-tooling extras tracked as deferred — not blocking pilot rollout."
           },
-          "remaining": [],
+          "remaining": [
+            "Deferred (post-GA enhancement, NOT a GA launch blocker — triaged 2026-06-03): Post-install outbound smoke test: place a test call to the registered number, verify the tenant-branded greeting plays. Deferred — manual verification works for the pilot; automation needs an outbound-test-harness.",
+            "Deferred (post-GA enhancement, NOT a GA launch blocker — triaged 2026-06-03): White-glove CSV/JSON import: bulk-load enterprise tenants migrating from another platform. Deferred — first migration will be hand-walked; the pattern emerges from that."
+          ],
           "history": [
             {
               "date": "2026-05-25",
@@ -1213,12 +1232,16 @@
             {
               "date": "2026-05-25",
               "note": "Wizard + endpoint wiring confirmed shipped (task #98 from session backlog). Smoke-test + CSV import moved to deferred (operator tooling, not pilot-blocking)."
+            },
+            {
+              "date": "2026-06-03",
+              "stage": "tenant-provisioning",
+              "from": "deferred",
+              "to": "remaining",
+              "note": "Triaged 2 deferred[] item(s) out of blocker severity: each is a post-GA enhancement, not a GA launch blocker, so moved to remaining[] (tracked tech-debt) per the deferred-items audit forcing-function. No code change — these features were always future scope."
             }
           ],
-          "deferred": [
-            "Post-install outbound smoke test: place a test call to the registered number, verify the tenant-branded greeting plays. Deferred — manual verification works for the pilot; automation needs an outbound-test-harness.",
-            "White-glove CSV/JSON import: bulk-load enterprise tenants migrating from another platform. Deferred — first migration will be hand-walked; the pattern emerges from that."
-          ]
+          "deferred": []
         },
         {
           "id": "tenant-customization",
@@ -1234,7 +1257,9 @@
             "asOf": "2026-05-31",
             "summary": "Full tenant-customization surface now binds end-to-end. TenantCustomization schema + resolver + FHIR codec in @cernia/voice-agent; PostgresTenantCustomizationStore (migration 055) wired at apps/api boot + passed to voice-agent-admin-routes (PATCH) and voice-call-handler (session start). applyTenantCustomization() runs before dialog.start; ALL three resolved fields now bind: allowedIntents narrows the policy (mandatory intents re-injected), systemPromptAugment is injected as a CLINIC INSTRUCTIONS block in the system prompt (prompt.ts buildSystemPrompt, after tone / before injection-defense), and additionalRedFlagPhrases extend the red-flag screener catalogue (red-flag-screener.ts; extend-only urgent-2h/transfer-clinician-now synthetic flags — can never narrow the safety floor). Wired via two new DialogStartOpts fields (types.ts). Eval golden 'tenant-with-customization-applied' (packages/voice-agent-evals) asserts the resolved system prompt carries CLINIC INSTRUCTIONS + the augment text, allowedIntents narrowed the allowed-tools line, and the tenant red-flag phrase short-circuits to a clinician transfer. Customer-facing guide at docs/guides/voice-agent-customization.md."
           },
-          "remaining": [],
+          "remaining": [
+            "Deferred (post-GA enhancement, NOT a GA launch blocker — triaged 2026-06-03): Intent Handler Overrides (advanced): per-intent backend URL override so a tenant can replace the platform handler for a specific intent with their own webhook. Deferred — out of scope for the pilot."
+          ],
           "history": [
             {
               "date": "2026-05-25",
@@ -1247,11 +1272,16 @@
             {
               "date": "2026-05-31",
               "note": "RESOLVED the 'persist via Organization.extension' deferral — tenant customization is now durably Postgres-persisted. PostgresTenantCustomizationStore (apps/api/src/tenant-customization-store.ts, backed by migration 055_tenant_customizations) is wired at apps/api/src/index.ts:3236 (db present → Postgres; InMemory only as the no-db fallback) and passed to BOTH voice-agent-admin-routes (PATCH) and voice-call-handler (session start). Customization now survives apps/api restart + is multi-pod safe, so the Organization.extension FHIR-codec alternative is superseded (same resolution shape as the cross-pod persona fix). Verified by boot-wiring inspection; the bullet's 'in-memory, restart wipes it' claim was stale."
+            },
+            {
+              "date": "2026-06-03",
+              "stage": "tenant-customization",
+              "from": "deferred",
+              "to": "remaining",
+              "note": "Triaged 1 deferred[] item(s) out of blocker severity: each is a post-GA enhancement, not a GA launch blocker, so moved to remaining[] (tracked tech-debt) per the deferred-items audit forcing-function. No code change — these features were always future scope."
             }
           ],
-          "deferred": [
-            "Intent Handler Overrides (advanced): per-intent backend URL override so a tenant can replace the platform handler for a specific intent with their own webhook. Deferred — out of scope for the pilot."
-          ]
+          "deferred": []
         }
       ],
       "history": [
