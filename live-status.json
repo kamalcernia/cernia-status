@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-03T10:05:41.547Z",
-    "lastUpdatedDisplay": "Jun 3, 2026 — 06:05 EDT",
+    "lastUpdatedIso": "2026-06-03T10:19:55.255Z",
+    "lastUpdatedDisplay": "Jun 3, 2026 — 06:19 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #178 chore(deps-dev)(deps-dev): Bump cross-env from 7.0"
   },
   "summary": {
@@ -12,7 +12,7 @@
     "hardeningTrackRecord": "464 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #178 chore(deps-dev)(deps-dev): Bump cross-env from 7.0.3 to 10.1. (refreshed Jun 3, 2026 — 06:19 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #178 chore(deps-dev)(deps-dev): Bump cross-env from 7.0.3 to 10.1. (refreshed Jun 3, 2026 — 06:21 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
