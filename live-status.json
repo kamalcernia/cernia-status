@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-03T16:39:19.795Z",
+    "lastUpdatedIso": "2026-06-03T16:39:35.770Z",
     "lastUpdatedDisplay": "Jun 3, 2026 — 12:39 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #178 chore(deps-dev)(deps-dev): Bump cross-env from 7.0"
   },
@@ -4853,7 +4853,7 @@
       "wave": "ML",
       "detail": "tenant ML-model marketplace listing + rent entitlement (Pass-4 P3-C)",
       "commit": "4d61ffd9",
-      "freshSeconds": 253
+      "freshSeconds": 267
     }
   },
   "pool": {
@@ -13888,6 +13888,22 @@
       "type": "procurement / account",
       "blocks": "cit-pass-6",
       "reason": "Test mode (sk_test_) is wired + E2E-verified end-to-end: real cs_test_ Checkout Session + a live checkout.stripe.com URL, signature-verified settlement webhook (fail-closed 400) -> persisted per-tenant entitlement (migration 147). PRODUCTION needs live Stripe keys + a business-verified Stripe account; SAME env-keyed code (no change). Drop prod STRIPE_SECRET_KEY / STRIPE_WEBHOOK_SECRET into apps/api/.env (or launch env). No BAA (payments, not PHI)."
+    },
+    {
+      "id": "llm-provider-baa",
+      "wave": "O / Pass-4",
+      "title": "LLM-provider signed BAA + production keys (LLM gateway, risk-classifier, PatientAgent narrative)",
+      "type": "procurement / legal / BAA",
+      "blocks": "cit-pass-4",
+      "reason": "PRODUCTION activation of the LLM gateway + ML risk-classifier + the citation-grounded PatientAgent narrative requires a signed BAA + prod API keys with an LLM provider before any real PHI is sent. Dev/test runs with dev keys (OPENAI_API_KEY) + SYNTHETIC data only; the BAA posture check hard-fails closed in NODE_ENV=production. Includes O3 LoRA fine-tuning compute/infra."
+    },
+    {
+      "id": "mobile-push-apns-fcm",
+      "wave": "Q3-A / Pass-4",
+      "title": "Native mobile push (Apple APNs + Firebase FCM)",
+      "type": "procurement / account / BAA",
+      "blocks": "cit-pass-4",
+      "reason": "Native iOS/Android push needs Apple APNs + Firebase FCM vendor credentials + a signed BAA. Self-hosted browser Web Push (Q3-B, VAPID) is DONE + E2E-verified; the native-mobile fallback is the procurement remainder."
     }
   ]
 }
