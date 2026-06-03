@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-03T18:29:11.476Z",
+    "lastUpdatedIso": "2026-06-03T18:29:19.538Z",
     "lastUpdatedDisplay": "Jun 3, 2026 — 14:29 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #178 chore(deps-dev)(deps-dev): Bump cross-env from 7.0"
   },
@@ -4882,7 +4882,7 @@
       "wave": "ADMIN/TENANTS+OPS",
       "detail": "wire pages to real API (drop sample data)",
       "commit": "425098d4",
-      "freshSeconds": 202
+      "freshSeconds": 211
     }
   },
   "pool": {
