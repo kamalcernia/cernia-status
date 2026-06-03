@@ -11,7 +11,7 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "cit-pass-6",
+    "id": null,
     "title": "IDLE — Pass-6 cross-tenant apps/cernia-ops batch COMPLETE & green on the real stack: platform-operator foundation + 6 cross-tenant operator views (Z3-A health, Z3-B CSM, DD2-A renewals, DD2-B expansion/NRR, DD1-B TtFV, DD1-A activation). 5 built by parallel agents cloning the Z3-A reference, integrated by the parent.",
     "startedAt": null,
     "evidence": "Migrations 193-198 applied + schema snapshot regenerated (193 tables). api + @cernia/cernia-ops-portal typecheck=0; new files lint-clean; iam-route-guards 21/21 + per-vertical deriveX unit tests. REAL-STACK E2E (7 specs, 20 tests) all green: cernia-ops-{operator-auth,health-score,csm-accounts,renewals,expansion,ttfv,activation}.spec.ts — each proves operator cross-tenant aggregate with HASHED tenant ids, tenant-admin→403, unauth→401, input guards→400; operator pass scoped to /cernia-ops/* (operator→/Patient 403). Integration fix: renewals emitted a bare YYYY-MM-DD which tripped the cernia-ops PHI DOB-heuristic (500); store now emits a full ISO instant on both create + list. Secrets only via gitignored .env / launch-time env, never committed."
