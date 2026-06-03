@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-03T05:29:28.726Z",
+    "lastUpdatedIso": "2026-06-03T05:29:21.953Z",
     "lastUpdatedDisplay": "Jun 3, 2026 — 01:29 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #178 chore(deps-dev)(deps-dev): Bump cross-env from 7.0"
   },
@@ -4852,7 +4852,7 @@
       "wave": "PASS-4+6",
       "detail": "6-gate parallel batch — AutoML/dual-control/device-integrations/BLE (P,Q) + survey-responses/legal-acceptan...",
       "commit": "3db45d07",
-      "freshSeconds": 4945
+      "freshSeconds": 4941
     }
   },
   "pool": {
