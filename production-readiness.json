@@ -1486,6 +1486,11 @@
             {
               "date": "2026-06-03",
               "stage": "phase-3-6-specialized",
+              "note": "IAM admin LIST pages de-sampled (roles/users/service-accounts/api-keys). Dropped SAMPLE_* + ?demo fallback so they render real data from apps/api (SDK useSearch / fhir-fetcher) — unblocked by the /fhir-prefix rewriteUrl fix. NEW real-stack UI E2E tests/e2e/specs/iam-admin-ui.spec.ts 4/4 (browser seeds + renders a fresh tenant-scoped resource per page). typecheck=0; IAM unit 95/95; next lint clean. Sample admin pages 31 -> 27."
+            },
+            {
+              "date": "2026-06-03",
+              "stage": "phase-3-6-specialized",
               "note": "IAM FHIR-SDK /fhir-prefix platform bug CLOSED (operator-approved topology fix). @cernia/server createServer now sets a Fastify rewriteUrl that strips a leading /fhir or /fhir/R4 path segment before routing, so root-mounted FHIR resources also answer at /fhir/<Type> + /fhir/R4/<Type> via the same handlers + deriveOperation RBAC. Unblocks the IAM admin pages (roles/users/service-accounts/api-keys) + every FHIR-SDK admin page to resolve real data in non-demo mode, with the external @cernia/sdk-typescript contract + admin client unit tests unchanged. Verified: @cernia/server 83/83 + admin 105/105 unit; live /Role + /fhir/Role + /fhir/R4/Role all 200, /fhirfoo still 403; REAL-STACK iam-admin.spec.ts 5/5 (incl. ApiKey-never-leaks-secret)."
             },
             {
