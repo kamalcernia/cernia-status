@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-04T00:09:20.730Z",
-    "lastUpdatedDisplay": "Jun 3, 2026 — 20:09 EDT",
+    "lastUpdatedIso": "2026-06-04T00:10:32.190Z",
+    "lastUpdatedDisplay": "Jun 3, 2026 — 20:10 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #178 chore(deps-dev)(deps-dev): Bump cross-env from 7.0"
   },
   "summary": {
-    "currentMainCommit": "7323ad6c",
+    "currentMainCommit": "ea4cd8df",
     "currentTagOnMain": "audit-baseline-2026-05-29 🏁",
-    "agentsCompletedThisSession": 498,
+    "agentsCompletedThisSession": 499,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "498 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "499 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #178 chore(deps-dev)(deps-dev): Bump cross-env from 7.0.3 to 10.1. (refreshed Jun 3, 2026 — 20:09 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #178 chore(deps-dev)(deps-dev): Bump cross-env from 7.0.3 to 10.1. (refreshed Jun 3, 2026 — 20:10 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -4882,13 +4882,7 @@
         }
       }
     },
-    "justLandedWaves": [],
-    "nowWorkingOn": {
-      "wave": "ADMIN",
-      "detail": "Pass-5 wave-5 — de-sample compliance/cqm/ig/ai-gov/voice-improvements against the REAL stack (8/8 E2E)",
-      "commit": "7323ad6c",
-      "freshSeconds": 2864
-    }
+    "justLandedWaves": []
   },
   "pool": {
     "size": 8,
@@ -5009,6 +5003,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "test(iam): add real-stack backend IAM E2E gate; document /fhir-pref...",
+      "commit": "ea4cd8df",
+      "kind": "other"
+    },
+    {
       "agent": "Pass-5 wave-5 — de-sample compliance/cqm/ig/ai-gov/voice-improvemen...",
       "commit": "7323ad6c",
       "kind": "feat"
@@ -5077,11 +5076,6 @@
       "agent": "definitive — unit suite has ZERO real failures (infra-only)",
       "commit": "ada980ec",
       "kind": "docs"
-    },
-    {
-      "agent": "normalize 3 hardcoded vitest paths; root-cause mg-repo-tests",
-      "commit": "eadd244d",
-      "kind": "fix"
     }
   ],
   "failures": [
@@ -12126,7 +12120,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 6,
-    "origin/feat/elevenlabs-tts-wiring@7323ad6ce1cc": 0,
+    "origin/feat/elevenlabs-tts-wiring@ea4cd8dfe847": 0,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
@@ -12717,7 +12711,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 2,
-    "origin/feat/elevenlabs-tts-wiring@7323ad6ce1cc": 0,
+    "origin/feat/elevenlabs-tts-wiring@ea4cd8dfe847": 0,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
@@ -13308,7 +13302,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
-    "origin/feat/elevenlabs-tts-wiring@7323ad6ce1cc": true,
+    "origin/feat/elevenlabs-tts-wiring@ea4cd8dfe847": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
     "origin/feat/local-demo-patient-image@90299849c309": true,
