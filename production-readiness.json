@@ -1486,6 +1486,11 @@
             {
               "date": "2026-06-03",
               "stage": "phase-3-6-specialized",
+              "note": "Admin top-header Phase-2.5 scaffold replaced with a real AppHeader (apps/admin/src/components/app-header.tsx): tenant brand name (useBrand), account menu from GET /api/auth/me (userId+roles) with token-clearing sign-out, next-themes toggle. Notifications omitted (no backend; ADR-0127). typecheck=0; lint clean; iam-admin-ui.spec.ts 9/9 (header test added)."
+            },
+            {
+              "date": "2026-06-03",
+              "stage": "phase-3-6-specialized",
               "note": "IAM admin surface fully de-sampled: create pages (roles/new, users/new, service-accounts/new) + roles/[id] detail + principal-picker now fetch real data via fhirClient (searchAll/read); the orphaned sample-iam fixture was deleted. typecheck=0; next lint clean; real-stack iam-admin-ui.spec.ts 8/8 (list pages render seeded resources; create/detail render or fetch real roles). Sample admin pages 27 -> 22."
             },
             {
