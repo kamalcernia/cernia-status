@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-07T23:42:11.579Z",
-    "lastUpdatedDisplay": "Jun 7, 2026 — 23:42 EDT",
+    "lastUpdatedIso": "2026-06-07T23:51:51.803Z",
+    "lastUpdatedDisplay": "Jun 7, 2026 — 23:51 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #178 chore(deps-dev)(deps-dev): Bump cross-env from 7.0"
   },
   "summary": {
-    "currentMainCommit": "ca16fc39",
+    "currentMainCommit": "a18af1b2",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1115,
+    "agentsCompletedThisSession": 1116,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1115 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1116 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #178 chore(deps-dev)(deps-dev): Bump cross-env from 7.0.3 to 10.1. (refreshed Jun 7, 2026 — 23:42 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #178 chore(deps-dev)(deps-dev): Bump cross-env from 7.0.3 to 10.1. (refreshed Jun 7, 2026 — 23:51 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -4877,7 +4877,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-07T23:42:10.548Z",
+      "lastAuditAt": "2026-06-07T23:51:50.879Z",
       "backendRouteSymbolCount": 163,
       "deferredItems": {
         "total": 870,
@@ -4933,7 +4933,13 @@
         }
       }
     },
-    "justLandedWaves": []
+    "justLandedWaves": [],
+    "nowWorkingOn": {
+      "wave": "STORAGE",
+      "detail": "copy src/migrations into dist during build (dev migration drift) (#180)",
+      "commit": "a18af1b2",
+      "freshSeconds": 31
+    }
   },
   "pool": {
     "size": 8,
@@ -5054,6 +5060,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "copy src/migrations into dist during build (dev migration drift) (#...",
+      "commit": "a18af1b2",
+      "kind": "fix"
+    },
+    {
       "agent": "Phase 1 SaaS deployment: design spec, plans + Phase-1A foundations ...",
       "commit": "ca16fc39",
       "kind": "other"
@@ -5121,11 +5132,6 @@
     {
       "agent": "tenant-scoped custom-resource-type + extension-definition registrie...",
       "commit": "3b62e2aa",
-      "kind": "feat"
-    },
-    {
-      "agent": "tenant-scoped reviews + payouts registries + wire admin pages",
-      "commit": "16858b90",
       "kind": "feat"
     }
   ],
