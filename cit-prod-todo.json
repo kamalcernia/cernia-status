@@ -12,9 +12,9 @@
   },
   "currentTask": {
     "id": null,
-    "title": "IDLE — Phase-1B COMPLETE (1B-1 external isolation + 1B-2 onboarding $complete), reviewed + e2e-validated (40 passed). PR #181 open to main (awaiting merge). Next: Phase 1C.",
+    "title": "IDLE — P1 (tenant physical-isolation guarantee) COMPLETE: 7 cards reviewed + e2e-validated. PR open to main (awaiting merge). Next: P2 (phone-number selection), P3 (voice selection), P4 (port-in).",
     "startedAt": null,
-    "evidence": "1B PR #181. e2e caught 3 real bugs: require→ESM in provisioner, tenant_secrets.tenant_id uuid→text (migration 246), e2e payloads. Onboarding $complete + 1A-3 entitlement 200-path proven green on the live stack."
+    "evidence": "P1: per-tenant isolationMode (247) + Deepgram project provisioning (248) + go-live gate + fail-closed routers + posture report + Stripe-Connect proof. e2e caught: require→ESM (1B), tenant_secrets uuid→text (1B), promote empty-body 400. Zero new regressions. Open remaining: Deepgram no-heal, STT warn dedup, cernia-ops audit hardening, P2-P4."
   },
   "categories": [
     {
