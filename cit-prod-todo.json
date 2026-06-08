@@ -12,9 +12,9 @@
   },
   "currentTask": {
     "id": null,
-    "title": "IDLE — P2 (phone-number selection) COMPLETE: 5 cards reviewed + e2e-validated (30 passed). PR open to main. Next: P3 (voice selection), P4 (port-in).",
+    "title": null,
     "startedAt": null,
-    "evidence": "P2: number search + selection + purchase-into-subaccount + inbound number→tenant mapping. e2e caught: tenant_phone_numbers.tenant_id uuid→text (migration 250), unique-number test-data. Zero new regressions. P3/P4 plans ready (docs/superpowers/plans/2026-06-08-p{3,4}-*.md)."
+    "evidence": "P3 voice-selection complete (Cards 1–6). All verify-gate checks pass. E2E 5/5 green. Status JSON updated 2026-06-08."
   },
   "categories": [
     {
