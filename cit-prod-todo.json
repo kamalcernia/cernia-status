@@ -12,9 +12,9 @@
   },
   "currentTask": {
     "id": null,
-    "title": "IDLE — admin top-header Phase-2.5 scaffold replaced with a real header (tenant name + account menu + theme toggle + sign-out). UI E2E 9/9.",
+    "title": "IDLE — Phase-1B COMPLETE (1B-1 external isolation + 1B-2 onboarding $complete), reviewed + e2e-validated (40 passed). PR #181 open to main (awaiting merge). Next: Phase 1C.",
     "startedAt": null,
-    "evidence": "apps/admin AppHeader renders real brand + GET /api/auth/me session; notifications omitted (no backend, ADR-0127); typecheck=0; lint clean; iam-admin-ui.spec.ts 9/9."
+    "evidence": "1B PR #181. e2e caught 3 real bugs: require→ESM in provisioner, tenant_secrets.tenant_id uuid→text (migration 246), e2e payloads. Onboarding $complete + 1A-3 entitlement 200-path proven green on the live stack."
   },
   "categories": [
     {
