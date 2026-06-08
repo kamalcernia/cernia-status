@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-08T16:50:30.051Z",
-    "lastUpdatedDisplay": "Jun 8, 2026 — 16:50 EDT",
+    "lastUpdatedIso": "2026-06-08T17:05:39.179Z",
+    "lastUpdatedDisplay": "Jun 8, 2026 — 17:05 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #184 P3: per-tenant voice selection (ElevenLabs catalog"
   },
   "summary": {
-    "currentMainCommit": "6f8b8de5",
+    "currentMainCommit": "1fc7e037",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1137,
+    "agentsCompletedThisSession": 1139,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1137 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1139 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #184 P3: per-tenant voice selection (ElevenLabs catalog + setting. (refreshed Jun 8, 2026 — 16:50 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #184 P3: per-tenant voice selection (ElevenLabs catalog + setting. (refreshed Jun 8, 2026 — 17:05 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 6 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-06-08T12:50:00-04:00",
+      "lastMergeIso": "2026-06-08T13:05:04-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 8,
       "openPrs": 7,
@@ -4995,7 +4995,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-08T16:50:29.085Z",
+      "lastAuditAt": "2026-06-08T17:05:38.405Z",
       "backendRouteSymbolCount": 167,
       "deferredItems": {
         "total": 883,
@@ -5172,6 +5172,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #186 from kamalcernia/chore/go-live-provisioning...",
+      "commit": "1fc7e037",
+      "kind": "other"
+    },
+    {
+      "agent": "go-live provisioning preflight + runbook",
+      "commit": "0f3a0f42",
+      "kind": "chore"
+    },
+    {
       "agent": "Merge pull request #185 from kamalcernia/feat/p4-number-port-in",
       "commit": "6f8b8de5",
       "kind": "other"
@@ -5234,16 +5244,6 @@
     {
       "agent": "harden setClonedVoiceId to UPDATE-only + tighten clone route tests ...",
       "commit": "8d88831a",
-      "kind": "feat"
-    },
-    {
-      "agent": "opt-in voice clone (IVC) with consent gate (P3-5)",
-      "commit": "51f6750e",
-      "kind": "feat"
-    },
-    {
-      "agent": "voice picker (live catalog + preview + settings) + strict voiceSett...",
-      "commit": "e87127f7",
       "kind": "feat"
     }
   ],
