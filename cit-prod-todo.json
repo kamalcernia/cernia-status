@@ -12,9 +12,9 @@
   },
   "currentTask": {
     "id": null,
-    "title": "IDLE — P1 (tenant physical-isolation guarantee) COMPLETE: 7 cards reviewed + e2e-validated. PR open to main (awaiting merge). Next: P2 (phone-number selection), P3 (voice selection), P4 (port-in).",
+    "title": "IDLE — P2 (phone-number selection) COMPLETE: 5 cards reviewed + e2e-validated (30 passed). PR open to main. Next: P3 (voice selection), P4 (port-in).",
     "startedAt": null,
-    "evidence": "P1: per-tenant isolationMode (247) + Deepgram project provisioning (248) + go-live gate + fail-closed routers + posture report + Stripe-Connect proof. e2e caught: require→ESM (1B), tenant_secrets uuid→text (1B), promote empty-body 400. Zero new regressions. Open remaining: Deepgram no-heal, STT warn dedup, cernia-ops audit hardening, P2-P4."
+    "evidence": "P2: number search + selection + purchase-into-subaccount + inbound number→tenant mapping. e2e caught: tenant_phone_numbers.tenant_id uuid→text (migration 250), unique-number test-data. Zero new regressions. P3/P4 plans ready (docs/superpowers/plans/2026-06-08-p{3,4}-*.md)."
   },
   "categories": [
     {
