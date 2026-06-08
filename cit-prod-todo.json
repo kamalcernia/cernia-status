@@ -14,7 +14,7 @@
     "id": null,
     "title": null,
     "startedAt": null,
-    "evidence": "P3 voice-selection complete (Cards 1–6). All verify-gate checks pass. E2E 5/5 green. Status JSON updated 2026-06-08."
+    "evidence": "P4 Card 6 COMPLETE 2026-06-08. All P4 cards (1-6) shipped and LIVE-STACK verified. e2e 4/4 passed. Status JSON updated. PR ready."
   },
   "categories": [
     {
