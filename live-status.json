@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-09T03:23:07.868Z",
-    "lastUpdatedDisplay": "Jun 9, 2026 — 03:23 EDT",
+    "lastUpdatedIso": "2026-06-09T03:24:16.469Z",
+    "lastUpdatedDisplay": "Jun 9, 2026 — 03:24 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #187 Document go-live vendor env vars (apps/api/.env.ex"
   },
   "summary": {
-    "currentMainCommit": "b6c0a656",
+    "currentMainCommit": "250f1224",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1154,
+    "agentsCompletedThisSession": 1157,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1154 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1157 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #187 Document go-live vendor env vars (apps/api/.env.example) + h. (refreshed Jun 9, 2026 — 03:23 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #187 Document go-live vendor env vars (apps/api/.env.example) + h. (refreshed Jun 9, 2026 — 03:24 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 6 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-06-08T23:22:38-04:00",
+      "lastMergeIso": "2026-06-08T23:23:48-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 10,
       "openPrs": 5,
@@ -5012,7 +5012,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-09T03:23:06.969Z",
+      "lastAuditAt": "2026-06-09T03:24:15.228Z",
       "backendRouteSymbolCount": 167,
       "deferredItems": {
         "total": 883,
@@ -5189,8 +5189,18 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #190 from kamalcernia/feat/configurable-llm-prov...",
+      "commit": "250f1224",
+      "kind": "other"
+    },
+    {
       "agent": "Merge pull request #189 from kamalcernia/feat/twilio-media-stream-b...",
       "commit": "b6c0a656",
+      "kind": "other"
+    },
+    {
+      "agent": "Merge branch 'main' into feat/configurable-llm-provider-baa",
+      "commit": "a4984e42",
       "kind": "other"
     },
     {
@@ -5249,19 +5259,9 @@
       "kind": "docs"
     },
     {
-      "agent": "test(api): live vendor smoke tests load apps/api/.env",
-      "commit": "0c2c4f9d",
-      "kind": "other"
-    },
-    {
-      "agent": "preflight auto-loads apps/api/.env (+ --env-file)",
-      "commit": "021a2123",
+      "agent": "config-driven voice-agent LLM provider + BAA allowlist (CERNIA_VOIC...",
+      "commit": "f5601562",
       "kind": "feat"
-    },
-    {
-      "agent": "document go-live vendor env vars in apps/api/.env.example",
-      "commit": "b111983f",
-      "kind": "chore"
     }
   ],
   "failures": [
@@ -12303,7 +12303,6 @@
   "fileCountCache": {
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
-    "origin/feat/configurable-llm-provider-baa@a4984e421ce1": 4,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 6,
     "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": 32,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
@@ -12323,7 +12322,6 @@
     "origin/feat/saas-conformance-cleanup@758cab946519": 8,
     "origin/feat/sensitive-data-routes@92780a57ad67": 12,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 4,
-    "origin/feat/twilio-media-stream-bridge@f7015f5332f3": 0,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": 17,
     "origin/feat/wave-a-integration@9f5d3e77833d": 0,
     "origin/feat/wave-a-real-fhir-calls@f2e18b9bbf2e": 0,
@@ -12900,7 +12898,6 @@
   "testFileCountCache": {
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
-    "origin/feat/configurable-llm-provider-baa@a4984e421ce1": 1,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 2,
     "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": 6,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
@@ -12920,7 +12917,6 @@
     "origin/feat/saas-conformance-cleanup@758cab946519": 0,
     "origin/feat/sensitive-data-routes@92780a57ad67": 2,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 1,
-    "origin/feat/twilio-media-stream-bridge@f7015f5332f3": 0,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": 2,
     "origin/feat/wave-a-integration@9f5d3e77833d": 0,
     "origin/feat/wave-a-real-fhir-calls@f2e18b9bbf2e": 0,
@@ -13497,7 +13493,6 @@
   "mergedIntoMainCache": {
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
-    "origin/feat/configurable-llm-provider-baa@a4984e421ce1": false,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
     "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": false,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
@@ -13517,7 +13512,6 @@
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
-    "origin/feat/twilio-media-stream-bridge@f7015f5332f3": true,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": false,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,
     "origin/feat/wave-a-real-fhir-calls@f2e18b9bbf2e": true,
