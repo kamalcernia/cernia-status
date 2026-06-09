@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-08T17:05:39.179Z",
-    "lastUpdatedDisplay": "Jun 8, 2026 — 17:05 EDT",
+    "lastUpdatedIso": "2026-06-09T03:10:08.100Z",
+    "lastUpdatedDisplay": "Jun 9, 2026 — 03:10 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #184 P3: per-tenant voice selection (ElevenLabs catalog"
   },
   "summary": {
-    "currentMainCommit": "1fc7e037",
+    "currentMainCommit": "1dde7d71",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1139,
+    "agentsCompletedThisSession": 1143,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1139 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1143 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #184 P3: per-tenant voice selection (ElevenLabs catalog + setting. (refreshed Jun 8, 2026 — 17:05 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #184 P3: per-tenant voice selection (ElevenLabs catalog + setting. (refreshed Jun 9, 2026 — 03:10 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -58,11 +58,11 @@
     },
     "velocity": {
       "landedLastHour": 0,
-      "landedLast24h": 6,
-      "label": "0 PRs opened in last hour · 6 in last 24h"
+      "landedLast24h": 3,
+      "label": "0 PRs opened in last hour · 3 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-06-08T13:05:04-04:00",
+      "lastMergeIso": "2026-06-08T23:09:37-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 8,
       "openPrs": 7,
@@ -4995,7 +4995,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-08T17:05:38.405Z",
+      "lastAuditAt": "2026-06-09T03:10:06.738Z",
       "backendRouteSymbolCount": 167,
       "deferredItems": {
         "total": 883,
@@ -5172,6 +5172,26 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #187 from kamalcernia/chore/go-live-env-template",
+      "commit": "1dde7d71",
+      "kind": "other"
+    },
+    {
+      "agent": "test(api): live vendor smoke tests load apps/api/.env",
+      "commit": "0c2c4f9d",
+      "kind": "other"
+    },
+    {
+      "agent": "preflight auto-loads apps/api/.env (+ --env-file)",
+      "commit": "021a2123",
+      "kind": "feat"
+    },
+    {
+      "agent": "document go-live vendor env vars in apps/api/.env.example",
+      "commit": "b111983f",
+      "kind": "chore"
+    },
+    {
       "agent": "Merge pull request #186 from kamalcernia/chore/go-live-provisioning...",
       "commit": "1fc7e037",
       "kind": "other"
@@ -5225,26 +5245,6 @@
       "agent": "validate monthlyCostCents on port-in branch when present (P4-1a)",
       "commit": "01450505",
       "kind": "fix"
-    },
-    {
-      "agent": "port-in option + port fields on phone-number step (P4-1)",
-      "commit": "851d4761",
-      "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #184 from kamalcernia/feat/p3-voice-selection",
-      "commit": "3ae6c886",
-      "kind": "other"
-    },
-    {
-      "agent": "test(e2e): voice-selection live-stack e2e (catalog + persona round-...",
-      "commit": "a6daf23a",
-      "kind": "other"
-    },
-    {
-      "agent": "harden setClonedVoiceId to UPDATE-only + tighten clone route tests ...",
-      "commit": "8d88831a",
-      "kind": "feat"
     }
   ],
   "failures": [
@@ -12305,6 +12305,7 @@
     "origin/feat/saas-conformance-cleanup@758cab946519": 8,
     "origin/feat/sensitive-data-routes@92780a57ad67": 12,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 4,
+    "origin/feat/twilio-media-stream-bridge@f7015f5332f3": 20,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": 17,
     "origin/feat/wave-a-integration@9f5d3e77833d": 0,
     "origin/feat/wave-a-real-fhir-calls@f2e18b9bbf2e": 0,
@@ -12900,6 +12901,7 @@
     "origin/feat/saas-conformance-cleanup@758cab946519": 0,
     "origin/feat/sensitive-data-routes@92780a57ad67": 2,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 1,
+    "origin/feat/twilio-media-stream-bridge@f7015f5332f3": 8,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": 2,
     "origin/feat/wave-a-integration@9f5d3e77833d": 0,
     "origin/feat/wave-a-real-fhir-calls@f2e18b9bbf2e": 0,
@@ -13495,6 +13497,7 @@
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
+    "origin/feat/twilio-media-stream-bridge@f7015f5332f3": false,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": false,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,
     "origin/feat/wave-a-real-fhir-calls@f2e18b9bbf2e": true,
