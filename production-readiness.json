@@ -160,8 +160,8 @@
           },
           "current": {
             "status": "complete",
-            "asOf": "2026-05-24",
-            "summary": "Unchanged."
+            "asOf": "2026-06-08",
+            "summary": "Media-stream bridge shipped (I-301/D6.1): TwilioMediaStream ICallStream over ws, /telephony/twilio/media WebSocket handler (isTwilioBackend-gated), decideInbound wired into /voice webhook, integration test (greeting egress + teardown). μ-law 8k end-to-end, no transcoding. Live-call gate (real PSTN call) deferred pending non-trial Twilio account."
           },
           "evidence": [
             {
@@ -171,6 +171,23 @@
             {
               "label": "apps/api/src/voice-call-handler.ts",
               "url": "https://github.com/kamalcernia/cernia/blob/main/apps/api/src/voice-call-handler.ts"
+            },
+            {
+              "label": "apps/api/src/twilio-media-ws.ts",
+              "url": "https://github.com/kamalcernia/cernia/blob/main/apps/api/src/twilio-media-ws.ts"
+            },
+            {
+              "label": "apps/api/src/twilio-media-ws.integration.test.ts",
+              "url": "https://github.com/kamalcernia/cernia/blob/main/apps/api/src/twilio-media-ws.integration.test.ts"
+            }
+          ],
+          "remaining": [
+            "Live-call gate (I-301-live): real PSTN call to +1 540 660 3831 — agent answers, greets, two-way audio, barge-in interrupts. Requires non-trial Twilio account + signed BAA. Parent agent gate."
+          ],
+          "history": [
+            {
+              "date": "2026-06-08",
+              "note": "Shipped I-301/D6.1 media-stream bridge (Cards 1-6): TwilioMediaStream (packages/telephony/src/backends/twilio-media-stream.ts), <Parameter> TwiML (twilio-backend.ts), decideInbound+runInboundDialog split (voice-call-handler.ts), /telephony/twilio/media WebSocket handler (apps/api/src/twilio-media-ws.ts), boot wiring isTwilioBackend-gated (apps/api/src/index.ts), integration test greeting+teardown (twilio-media-ws.integration.test.ts). μ-law 8k end-to-end, no transcoding. Hardening: duplicate-start guard, catch-path audit, isTwilioBackend gate on endpoint."
             }
           ]
         },

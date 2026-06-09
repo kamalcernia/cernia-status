@@ -11,10 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": null,
-    "title": null,
-    "startedAt": null,
-    "evidence": "P4 Card 6 COMPLETE 2026-06-08. All P4 cards (1-6) shipped and LIVE-STACK verified. e2e 4/4 passed. Status JSON updated. PR ready."
+    "id": "i301-media-stream-bridge",
+    "title": "Twilio Media Streams bridge (I-301) — live audio",
+    "startedAt": "2026-06-08",
+    "evidence": "feat/twilio-media-stream-bridge cards 1-6"
   },
   "categories": [
     {
