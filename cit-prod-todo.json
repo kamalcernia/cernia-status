@@ -11,10 +11,7 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": "i301-media-stream-bridge",
-    "title": "Twilio Media Streams bridge (I-301) — live audio",
-    "startedAt": "2026-06-08",
-    "evidence": "feat/twilio-media-stream-bridge cards 1-6"
+    "id": null
   },
   "categories": [
     {
@@ -1325,6 +1322,149 @@
           "status": "todo",
           "completionMode": null,
           "note": "Artifacts ship + committed; signature is operational not code.\n  WHY-NOT-DONE (2026-06-01 comprehensive-plan review): A human compliance-officer signature on PROD P1+P2 — operational, not code. The artifacts ship + are committed; the signature needs the USER / compliance officer."
+        }
+      ]
+    },
+    {
+      "id": "completion-master-plan",
+      "name": "Completion Master Plan (post-v3.5 audit gaps)",
+      "description": "The 17 workstreams from docs/superpowers/plans/2026-06-09-cernia-completion-master-plan.md — Tier-1 go-live blockers (A), Tier-2 differentiator+hardening (B), platform breadth (C), Phase-2 EHR (D). NOTE: not yet reconciled into rollup.honestTotals (curated narrative).",
+      "items": [
+        {
+          "id": "cmp-a1",
+          "phase": "Phase A",
+          "title": "A1 · Identity verification → real FHIR",
+          "status": "done",
+          "evidence": "SHIPPED 2026-06-09 (commits 5286776a/f2039ac1, merged to main). FhirStorageIdentityCheck replaces the deny-all stub: checkDob = single-exact-birthDate-match only (ambiguous→null), checkSecondFactor = constant-time compare (timingSafeEqual, all-candidates-evaluated) against MRN-typed identifiers + birthDate. Tenant-scoped per-call (ADR 0004), no PHI in logs. Wired into the voice dialog via DI of the boot PgStorageAdapter. 14 A1 tests green; merged-main typecheck clean. NOTE: for MRN-less patients the second factor degenerates to DOB (per plan §A1.1 birthDate-derived); NLU date-extraction is upstream/out-of-scope. §A1.",
+          "completionMode": "shipped"
+        },
+        {
+          "id": "cmp-a2",
+          "phase": "Phase A",
+          "title": "A2 · Provider directory → real FHIR",
+          "status": "done",
+          "evidence": "SHIPPED 2026-06-09 (commits 42ba7deb/5c58dc22). FhirProviderDirectoryClient (apps/api/src/fhir-provider-directory.ts) replaces empty InMemoryProviderDirectoryClient: searchPractitioners fetches active set + matches in-memory on full HumanName+specialty (Practitioner registers only family/given params), searchLocation uses the name param + is-primary-extension fallback; maps name/specialty/accepting/languages/address/hours/phone for TTS; tenant-scoped, null on adapter failure (no PHI). Wired at index.ts:~4385 (deps.storage ? Fhir : InMemory); deps.storage widened to IdentityCheckStorage&ProviderDirectoryStorage. 12 unit tests green; merged-main typecheck clean. INTEGRATOR NOTE: A2 agent socket-dropped mid-run with a polluted worktree (botched merge); I lifted the clean impl file, wrote the test, and did the index.ts wiring. §A2.",
+          "completionMode": "shipped"
+        },
+        {
+          "id": "cmp-a3",
+          "phase": "Phase A",
+          "title": "A3 · Intake + $match + provisional patient + Desk manual intake",
+          "status": "done",
+          "evidence": "SHIPPED 2026-06-09 (commits 12ace888/54c248e5/96851442/f00d2f21, merged to main). IntakeService.createProvisional/confirmProvisional (meta.tag patient-status=provisional); POST /Patient/$match over the existing MpiLinker (tenant-scoped candidate pool → auto-link|review|reject, phone-agent gated); voice intake_new_patient dialog tool→intent + IntakeDispatcher in voice-call-handler (PHI-safe: neutral caller copy on any match outcome, provisional excluded from self-match); Desk manual-intake page→$match. 25 tests green (15 api+4 voice+6 admin); tenant isolation tested. Merged-main typecheck clean after voice-agent dist rebuild. §A3.",
+          "completionMode": "shipped"
+        },
+        {
+          "id": "cmp-a4",
+          "phase": "Phase A",
+          "title": "A4 · Two-party recording consent + disclaimer + erasure",
+          "status": "done",
+          "evidence": "SHIPPED 2026-06-10 (commit 9f7133ec). Two-party recording consent: recordingConsentRequired/recordingDisclaimerScript on VoiceTenantConfig + voice_tenant_config (migration 255), resolver round-trip; consent-required tenants DEFER recording, play the spoken disclaimer (not captured), recording.start() opens the gate, then greeting — fail-closed on TTS failure (no un-consented capture); DSAR deleteByTenantAndCall + retention sweep on the uploader invoked from admin-tenant-erasure-routes (tenant-scoped). 66 voice-call-handler tests green. INTEGRATOR NOTE: recovered from a stalled agent (drafted all 3 cards, stalled pre-commit on a Monitor); fixed a fire-and-forget async-timing flake in the consent-gate test (poll vs fixed flush — assertions unchanged). §A4.",
+          "completionMode": "shipped"
+        },
+        {
+          "id": "cmp-a5",
+          "phase": "Phase A",
+          "title": "A5 · Comms event-trigger framework",
+          "status": "done",
+          "evidence": "SHIPPED 2026-06-09 (commits 622b0c54/8f8f5b5b/3368d56e/dc0ccb35, merged to main). Notification step now dispatches via NotificationService (executor); tenant-scoped EventBus.emit(tenantId,event,payload) + InMemoryEventTriggerRegistry resolve event-bound workflows → executeWorkflow; push channel added (sendPush on INotificationBackend + core channel union); 4 forkable base templates (appointment.booked→confirm, waitlist.slot-offered→offer, identity.otp-needed→OTP, clinical.red-flag→on-call); $book emits appointment.booked (idempotent), EventBusWaitlistNotifier bridges offers; boot wires it all (StubBackend dev profile). executor 210 + notifications 288 + api 10 tests green; boot-route-dedup confirms clean boot. KEYSTONE — unblocks B1+C2. FOLLOW-UPS: Task#22 (otp-needed/red-flag emit points in voice-call-handler/screener); storage-backed EventWorkflowResolver (currently in-memory seeded). §A5. ACTIVATED 2026-06-10 (commit dab3be19, merged): identity.otp-needed emitted at second-factor-pending (at-most-once, ICommsEventEmitter seam) + clinical.red-flag emitted from the screener emergency-transfer; commsEventBus threaded through the voice stack. All 4 comms base templates now fire. 888 voice-agent + 42 api tests.",
+          "completionMode": "shipped"
+        },
+        {
+          "id": "cmp-b1",
+          "phase": "Phase B",
+          "title": "B1 · Agent action-registry + workflow bridge",
+          "status": "done",
+          "evidence": "SHIPPED 2026-06-10 (commits 39a91eae/3ef34052/a47e5bb0/42a2bb0c, merged to main). IntentDispatchRegistry (apps/api/src/intent-dispatch-registry.ts): dispatchIntent now routes through the registry; default registry preserves the hardcoded handlers VERBATIM (59/59 voice-call-handler regression tests prove zero behavior change). Per-tenant ActionWorkflowBindingStore runs a tenant workflow via the executor when bound; NEVER-BOT-DIRECT enforced (assertWorkflowBindingTarget/DirectBotBindingError rejects any non-Workflow ref at bind+run time — tested with a Bot/ rejection). agent-action base templates + forkAgentActionTemplate. 84 api tests + 883 voice-agent + 88 bot-runtime green. THE Tier-2 differentiator — fixes the violated agent→workflow→(maybe)bot invariant. FOLLOW-UP (Task#24): InMemory store ships empty (dispatch byte-identical until a tenant binds); Postgres binding store + workflow resolver + authoring surface activate it. §B1. ACTIVATED 2026-06-10 (commit e1da22bd): PostgresActionWorkflowBindingStore (migration 256, tenant_id PK, assertWorkflowBindingTarget on every upsert) + TenantWorkflowResolver wired into the registry; admin agent-bindings authoring surface. Per-tenant action→workflow binding is now LIVE (47 api + 10 admin tests).",
+          "completionMode": "shipped"
+        },
+        {
+          "id": "cmp-b2",
+          "phase": "Phase B",
+          "title": "B2 · KMS/Vault-backed tenant-secret cipher",
+          "status": "done",
+          "evidence": "SHIPPED 2026-06-09 (commit da710053, merged 6a3c13ef). KmsSecretCipher + IKmsClient adapters (AWS/Vault/InMemory) in apps/api/src/kms-adapter.ts + kms-secret-cipher.ts; pickDefaultCipher now KMS-aware + async (tenant-secret-routes.ts). STRICTLY OPT-IN via KMS_PROVIDER (unset → unchanged AES-GCM/Noop, zero regression); production fails closed on misconfigured KMS. 27 tests green. FOLLOW-UP: KMS path needs preload-wrapped-DEK-at-boot wiring before it can decrypt secrets written under a prior boot (only relevant once KMS opt-in is enabled). §B2.",
+          "completionMode": "shipped"
+        },
+        {
+          "id": "cmp-b3",
+          "phase": "Phase B",
+          "title": "B3 · Provenance for agent actions",
+          "status": "done",
+          "evidence": "SHIPPED 2026-06-10 (commit b321aee1, merged to main). createAgentProvenanceWriter (apps/api/src/agent-provenance.ts) reuses the @cernia/audit-posture public buildProvenance/buildProvenanceForBatch; wired into voice-call-handler for booking (book-appointment success), identity-match (unverified→verified, once/call), and escalation (transfer-to-human); persisted tenant-scoped; writer never throws into the dispatch path (onError); PHI-safe logging. 12 new + 66 voice-call-handler regression tests green; unwired = no behavior change. Completes the 17-workstream master plan. §B3.",
+          "completionMode": "shipped"
+        },
+        {
+          "id": "cmp-b4",
+          "phase": "Phase B",
+          "title": "B4 · Stripe webhook hardening",
+          "status": "done",
+          "evidence": "SHIPPED 2026-06-09 (commit 91212b1b, merged to main). Stripe webhook now: timestamp-tolerance proven via valid-HMAC test (packages/billing/src/backends/stripe-backend.ts), invoice.paid→subscription active + payment_failed→past-due via the FSM (apps/api/src/billing-routes.ts, tenant-isolated, idempotent), and metered-usage→invoice push (packages/billing/src/invoicing/metering-invoice-push.ts). 12/12 api + 38 billing tests green. §B4.",
+          "completionMode": "shipped"
+        },
+        {
+          "id": "cmp-b5",
+          "phase": "Phase B",
+          "title": "B5 · Desk backend completion",
+          "status": "done",
+          "evidence": "SHIPPED 2026-06-09 (commit 57d16c41, merged 15d50270). Desk backend wired to real endpoints: GET/PATCH /api/desk/settings (admin+phone-agent gated, persisted in tenant_customizations under deskSettings key — no new table) in voice-agent-admin-routes.ts; schedule check-in/no-show buttons → FHIR Appointment status transitions; patient insurance page → real Coverage CRUD + POST /Coverage/$check-eligibility. Urgent-escalation line doubles as the voice-agent transfer target. 9 api + 13 admin tests green. Merge conflict with C4 (both extended voice-agent-admin-routes.ts) resolved preserving both endpoint sets; 22 combined route tests green post-merge. §B5.",
+          "completionMode": "shipped"
+        },
+        {
+          "id": "cmp-b6",
+          "phase": "Phase B",
+          "title": "B6 · Per-tenant agent metrics in Cernia Ops",
+          "status": "done",
+          "evidence": "SHIPPED 2026-06-09 (commit 57da9d41, merged 51be4713). Per-tenant success%/escalation%/avg-duration aggregated into cernia-ops (packages/cernia-ops metrics-aggregator + GET /cernia-ops/platform/voice-agents/performance, super-admin gated) + portal page. AGGREGATE-ONLY: PHI-blocker tests (detectPhi) at aggregator + route layers assert no patient identifier/transcript/narrative (ADR 0054, CLAUDE.md §5). §B6.",
+          "completionMode": "shipped"
+        },
+        {
+          "id": "cmp-c1",
+          "phase": "Phase C",
+          "title": "C1 · Digital Assistant text/chat channel (Product #2)",
+          "status": "done",
+          "evidence": "SHIPPED 2026-06-10 (commits 95d6be9d/32c3d19e/b91a8214/c9a521ce, merged to main). Digital Assistant TEXT channel (Product #2): TextCallStream satisfies ICallStream (audio no-op, collects agent text) reusing the channel-agnostic dialog engine; POST /text-dialog/start|:id/message|:id/close gated on digital-assistant entitlement (402 without); tenant-bound sessions (cross-tenant :id/message → 404, no existence leak); B1 action registry genuinely consulted (tenant-bound workflow short-circuits identically to voice — tested); pay-balance text-variant returns a JSON payment link. Patient chat surface wired (apps/patient .../messages/assistant). 16 api + 363 patient tests green. FOLLOW-UP: production TextPaymentLinkMinter not wired (pay-balance degrades to transfer until supplied — consistent with voice optional-dispatcher posture). §C1.",
+          "completionMode": "shipped"
+        },
+        {
+          "id": "cmp-c2",
+          "phase": "Phase C",
+          "title": "C2 · Complete the 5-trigger set + scheduler",
+          "status": "done",
+          "evidence": "SHIPPED 2026-06-09 (commit 17f0da08). Generalized A5 event executor to the full trigger set in packages/executor: SubscriptionTriggerBridge, WebhookDispatcher (per-tenant constant-time HMAC verify-before-fire — fires nothing on bad/missing sig), ManualDispatcher (authz-gated), WorkflowScheduler (ad-hoc tenant cron). All tenant-scoped. 240 executor tests green (A5 210 + 30 new); A5 event path unbroken. INTEGRATOR NOTE: C2 agent stalled on a backgrounded pnpm install pre-commit; I verified its draft (build/typecheck/240 tests green), reviewed the webhook HMAC + tenant-scoping, and committed. FOLLOW-UP (Task#23): apps/api boot wiring deferred to after B1 → webhook/manual/schedule inert until wired (event trigger live via A5). §C2. ACTIVATED 2026-06-10 (commits 20d8b790/e2e27872, merged): WorkflowScheduler booted (30s tick) + POST /triggers/webhook/:tenantId/* (per-tenant HMAC, verify-before-fire, fail-closed) + /triggers/manual/:workflowId/$execute (bearer + tenant-isolated) + subscription bridge. Webhook/manual/schedule triggers are now LIVE (executor 240 + 14 api tests). FOLLOW-UP (status remaining): storage-backed trigger registry + scheduler timezone/DST.",
+          "completionMode": "shipped"
+        },
+        {
+          "id": "cmp-c3",
+          "phase": "Phase C",
+          "title": "C3 · Workflow authoring UI (canvas/wizard)",
+          "status": "done",
+          "evidence": "SHIPPED 2026-06-09 (commit 747c2a10, merged to main). Authoring canvas/wizard already largely existed; the real gap was the non-functional Fork&modify action (canvas ignored templateId/mode → blank canvas + stub save). Now forkTemplateToDraft() (apps/admin/.../templates/templates-api.ts) GETs the platform template, seeds a copy, POSTs to the real tenant-scoped draft registry (server stamps tenantId from RBAC claim — ADR 0004, platform template never mutated), routes into the existing draft editor; sandbox/tier gate added (fork-authoring.ts, ADR 0035). 1052 admin tests green incl 12 new. NOTE: pre-existing admin production-build break (node:crypto in client bundle via @cernia/core) is unrelated + tracked separately. §C3.",
+          "completionMode": "shipped"
+        },
+        {
+          "id": "cmp-c4",
+          "phase": "Phase C",
+          "title": "C4 · Resilience call-forward-when-DOWN failover",
+          "status": "done",
+          "evidence": "SHIPPED 2026-06-09 (commits 293de5ec/1bcc721d/d9b27d0a, merged 64cffe40). Platform-INDEPENDENT failover: static Twilio TwiML Bin (handler.twilio.com, <Dial> tenant fallback # / <Say>+<Hangup>) set as VoiceFallbackUrl; migration 253 adds voice_fallback_{number,url,bin_sid}; isolation-posture promote gate blocks telephony go-live without failoverReady; vendor circuit breakers. FOLLOW-UP (tracked: Task#18/remaining): index.ts composition-root not yet wired, so VoiceFallbackUrl is not live-set until then (gate correctly blocks meanwhile). §C4. FOLLOW-UP CLOSED 2026-06-09 (commit ece0c2e9, merged): composition-root now wired (apps/api/src/voice-fallback-wiring.ts buildVoiceFallbackWiring → provision + admin routes; per-tenant Twilio creds via tenantSecretResolver). Failover is live; go-live gate now satisfiable. Note: numbers provisioned before this need a one-time backfill or a PATCH /api/voice-agent/fallback.",
+          "completionMode": "shipped"
+        },
+        {
+          "id": "cmp-d1",
+          "phase": "Phase D",
+          "title": "D1 · RecordGateway abstraction (Mode A)",
+          "status": "done",
+          "evidence": "SHIPPED 2026-06-09 (commits 2cfcf85b/cd10f4fa, merged to main). RecordGatewayRouter (apps/api/src/record-gateway.ts) wraps StorageAdapter, routes per-tenant by tenant_record_mode (migration 254): Mode A cernia=verbatim delegation (behavior-identical, the only impl), B/C ehr-passthrough/hybrid throw NotImplementedError until D2. Wired at index.ts:~661 (createServer storage:recordGateway); non-FHIR consumers keep concrete storage. TenantRecordModeStore defaults cernia. 31 tests green vs real Postgres. INTEGRATOR NOTE: D1 agent stalled before committing; I completed it — renumbered migration 253→254 (253 was taken by C4), fixed the test loader, committed, verified, merged. §D1. Unblocks D2.",
+          "completionMode": "shipped"
+        },
+        {
+          "id": "cmp-d2",
+          "phase": "Phase D",
+          "title": "D2 · EHR write + slot-availability adapters",
+          "status": "done",
+          "evidence": "SHIPPED 2026-06-09 (commits 43a6f145/fd018c35, merged to main). ConnectorAdapter slotSearch()+appointmentWrite() interface + mapping scheduling rungs (slot-search/appt-write); fhir-r4-client base impl + Epic overrides (POST /Appointment, GET /Slot); RecordGateway Mode-B routes create(Appointment)→appointmentWrite + search(Slot)→slotSearch via injectable EhrSchedulingResolver. Tests: mapping 169, connectors 736, connectors-epic 77, api record-gateway 34/34 (Mode-A regression intact). FOLLOW-UP (Task#21): EhrSchedulingResolver not yet wired at index.ts composition root → Mode-B inert until then (Phase-2, no tenant uses ehr-passthrough yet); other Mode-B/C ops still NotImplemented by design. §D2. ACTIVATED 2026-06-10 (commit d4725c43, merged): DefaultEhrSchedulingResolver wired into RecordGatewayRouter at index.ts ~719 — Mode B/C resolve the tenant OWN Epic Connection (tenant-scoped storage.search) + build a per-tenant EpicFhirR4ClientAdapter; Mode A behavior-identical (34 regression tests). 41 tests. FOLLOW-UP: Epic jwksPrivateKeyResolver not wired from boot (needed for a live Epic backend-services token mint) — Phase-2, no live ehr-passthrough tenant yet.",
+          "completionMode": "shipped"
         }
       ]
     }
