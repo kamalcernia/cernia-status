@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-10T20:54:36.657Z",
-    "lastUpdatedDisplay": "Jun 10, 2026 — 20:54 EDT",
+    "lastUpdatedIso": "2026-06-10T21:44:34.199Z",
+    "lastUpdatedDisplay": "Jun 10, 2026 — 21:44 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #190 Config-driven voice-agent LLM provider + BAA allow"
   },
   "summary": {
-    "currentMainCommit": "b69b4fd5",
+    "currentMainCommit": "a9b43a08",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1249,
+    "agentsCompletedThisSession": 1250,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1249 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1250 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #190 Config-driven voice-agent LLM provider + BAA allowlist. (refreshed Jun 10, 2026 — 20:54 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #190 Config-driven voice-agent LLM provider + BAA allowlist. (refreshed Jun 10, 2026 — 21:44 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5064,7 +5064,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-10T20:54:35.806Z",
+      "lastAuditAt": "2026-06-10T21:44:33.380Z",
       "backendRouteSymbolCount": 171,
       "deferredItems": {
         "total": 901,
@@ -5122,10 +5122,10 @@
     },
     "justLandedWaves": [],
     "nowWorkingOn": {
-      "wave": "API",
-      "detail": "point dev .env.example at the canonical fully-migrated DB (:5433/cernia)",
-      "commit": "b69b4fd5",
-      "freshSeconds": 37
+      "wave": "STORAGE",
+      "detail": "make migration replay BOM-tolerant + regenerate schema snapshot (Opt4 root)",
+      "commit": "a9b43a08",
+      "freshSeconds": 35
     }
   },
   "pool": {
@@ -5247,6 +5247,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "make migration replay BOM-tolerant + regenerate schema snapshot (Op...",
+      "commit": "a9b43a08",
+      "kind": "fix"
+    },
+    {
       "agent": "point dev .env.example at the canonical fully-migrated DB (:5433/ce...",
       "commit": "b69b4fd5",
       "kind": "fix"
@@ -5315,11 +5320,6 @@
       "agent": "Revert \"fix(voice-agent): PHI-gate book/cancel/reschedule behind ve...",
       "commit": "369426ec",
       "kind": "other"
-    },
-    {
-      "agent": "PHI-gate book/cancel/reschedule + VoiceFallbackUrl backfill script",
-      "commit": "0fdc6327",
-      "kind": "merge"
     }
   ],
   "failures": [
