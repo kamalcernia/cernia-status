@@ -479,10 +479,22 @@
             }
           ],
           "remaining": [
-            "C2 trigger activation uses an InMemoryTriggerRegistry seeded at boot — a storage-backed resolver that loads tenant-authored webhook/manual workflows from the Workflow registry is the follow-up (apps/api/src/index.ts §7b-triggers + apps/api/src/trigger-routes.ts). Mirrors the A5 comms event-registry follow-up.",
+            "Scheduler `schedule` triggers still resolve from the in-memory WorkflowScheduler registry (no storage-backed schedule resolver yet); the event/webhook/manual paths are now storage-backed (apps/api/src/postgres-trigger-workflow-resolver.ts). A schedule equivalent that loads tenant-authored cron Workflows at boot/tick is the remaining follow-up.",
             "Scheduler `schedule` triggers honour `timezone:'UTC'` only — per-trigger IANA offset / DST handling is deferred (packages/executor/src/scheduler.ts cronMatches)."
           ],
           "history": [
+            {
+              "date": "2026-06-10",
+              "stage": "bot-workflow-runtime",
+              "from": "remaining",
+              "to": "narrowed",
+              "note": "P2 — storage-backed trigger/event workflow resolution. A5 (event-bus.ts) booted an InMemoryEventTriggerRegistry seeded ONLY with the comms base templates, and C2 (trigger-dispatch.ts) used an InMemoryTriggerRegistry for webhook/manual bindings — so tenant-authored event/webhook/manual Workflow resources never actually resolved. NEW apps/api/src/postgres-trigger-workflow-resolver.ts (PostgresTriggerWorkflowResolver) implements BOTH executor PUBLIC interfaces (EventWorkflowResolver + TriggerWorkflowResolver) by querying the tenant's active Workflow resources via the StorageAdapter: resolve(event)/resolveWebhook search `(tenantId,'Workflow',status=active)` and filter the triggers array in-memory (mirrors subscription-bootstrap.ts), resolveManual reads by id (mirrors B1's tenant-workflow-resolver.ts). Only status:'active' fires; fail-soft on storage error (empty result + PHI-free onError); no PHI logged. Wired into apps/api/src/index.ts §7b-comms (event) + §7b-triggers (webhook/manual): composite resolvers UNION the storage-backed results with the retained in-memory seed (de-duped by id; storage wins) so the seeded comms base templates keep firing while tenant-authored workflows now resolve. packages/executor UNCHANGED (reused via public API). Tenant isolation (ADR 0004): every resolve is (tenantId,…)-scoped — an event/webhook/manual for tenant A can never resolve tenant B's workflow. Tests: NEW apps/api/src/postgres-trigger-workflow-resolver.test.ts (20 — event/webhook/manual resolve, active-only filtering, tenant isolation, fail-soft+onError, PLUS end-to-end through the REAL EventBus/WebhookDispatcher/ManualDispatcher: tenant-authored workflow resolves AND fires tenant-scoped, unbound→nothing, cross-tenant→nothing/denied). ADR-0127 verification: @cernia/api typecheck=0, build=0; resolver.ts eslint=0 errors; apps/api/src/index.ts eslint unchanged vs git-stash baseline (65 pre-existing carry-forward lines, identical with changes stashed); @cernia/executor test 240/240 (reused, not modified); the 20 new apps/api tests pass. Carry-forward: 104 apps/api integration-test failures are pre-existing DB schema-drift (e.g. voice_tenant_config missing recording_consent column) — verified identical on git-stash baseline, unrelated to this change.",
+              "files": [
+                "apps/api/src/postgres-trigger-workflow-resolver.ts",
+                "apps/api/src/postgres-trigger-workflow-resolver.test.ts",
+                "apps/api/src/index.ts"
+              ]
+            },
             {
               "date": "2026-06-10",
               "stage": "bot-workflow-runtime",
