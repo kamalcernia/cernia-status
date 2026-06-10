@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-10T16:54:22.562Z",
-    "lastUpdatedDisplay": "Jun 10, 2026 — 16:54 EDT",
+    "lastUpdatedIso": "2026-06-10T20:14:19.501Z",
+    "lastUpdatedDisplay": "Jun 10, 2026 — 20:14 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #190 Config-driven voice-agent LLM provider + BAA allow"
   },
   "summary": {
-    "currentMainCommit": "0bf3379e",
+    "currentMainCommit": "a6678604",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1245,
+    "agentsCompletedThisSession": 1246,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1245 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1246 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #190 Config-driven voice-agent LLM provider + BAA allowlist. (refreshed Jun 10, 2026 — 16:54 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #190 Config-driven voice-agent LLM provider + BAA allowlist. (refreshed Jun 10, 2026 — 20:14 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5064,7 +5064,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-10T16:54:21.483Z",
+      "lastAuditAt": "2026-06-10T20:14:18.133Z",
       "backendRouteSymbolCount": 171,
       "deferredItems": {
         "total": 901,
@@ -5120,13 +5120,7 @@
         }
       }
     },
-    "justLandedWaves": [],
-    "nowWorkingOn": {
-      "wave": "STATUS",
-      "detail": "booking-gate (#30) + test-fixture migration debt (#31) complete",
-      "commit": "0bf3379e",
-      "freshSeconds": 45
-    }
+    "justLandedWaves": []
   },
   "pool": {
     "size": 8,
@@ -5247,6 +5241,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "test(api): raise vitest test/hook timeouts for real-Postgres suites...",
+      "commit": "a6678604",
+      "kind": "other"
+    },
+    {
       "agent": "booking-gate (#30) + test-fixture migration debt (#31) complete",
       "commit": "0bf3379e",
       "kind": "docs"
@@ -5315,11 +5314,6 @@
       "agent": "test(api): apply migration 255 in persona-persistence fixture (A4 r...",
       "commit": "75b96355",
       "kind": "other"
-    },
-    {
-      "agent": "per-trigger timezone + DST-aware scheduling (P2)",
-      "commit": "1cde48a6",
-      "kind": "feat"
     }
   ],
   "failures": [
