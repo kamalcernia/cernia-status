@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-10T20:15:54.460Z",
-    "lastUpdatedDisplay": "Jun 10, 2026 — 20:15 EDT",
+    "lastUpdatedIso": "2026-06-10T20:28:42.798Z",
+    "lastUpdatedDisplay": "Jun 10, 2026 — 20:28 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #190 Config-driven voice-agent LLM provider + BAA allow"
   },
   "summary": {
-    "currentMainCommit": "d013ddce",
+    "currentMainCommit": "176afdc4",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1247,
+    "agentsCompletedThisSession": 1248,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1247 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1248 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #190 Config-driven voice-agent LLM provider + BAA allowlist. (refreshed Jun 10, 2026 — 20:15 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #190 Config-driven voice-agent LLM provider + BAA allowlist. (refreshed Jun 10, 2026 — 20:28 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5064,7 +5064,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-10T20:15:53.400Z",
+      "lastAuditAt": "2026-06-10T20:28:41.802Z",
       "backendRouteSymbolCount": 171,
       "deferredItems": {
         "total": 901,
@@ -5122,10 +5122,10 @@
     },
     "justLandedWaves": [],
     "nowWorkingOn": {
-      "wave": "STATUS",
-      "detail": "#32 concurrency config shipped; snapshot regen spun out to #33",
-      "commit": "d013ddce",
-      "freshSeconds": 42
+      "wave": "STORAGE",
+      "detail": "commit migration 250 — tenant_phone_numbers.tenant_id uuid->text",
+      "commit": "176afdc4",
+      "freshSeconds": 58
     }
   },
   "pool": {
@@ -5247,6 +5247,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "commit migration 250 — tenant_phone_numbers.tenant_id uuid->text",
+      "commit": "176afdc4",
+      "kind": "fix"
+    },
+    {
       "agent": "#32 concurrency config shipped; snapshot regen spun out to #33",
       "commit": "d013ddce",
       "kind": "docs"
@@ -5315,11 +5320,6 @@
       "agent": "per-trigger timezone + DST-aware scheduling",
       "commit": "32d6d8b5",
       "kind": "merge"
-    },
-    {
-      "agent": "map FailoverNotConfiguredError to 409 + complete-posture includes f...",
-      "commit": "f9906c9b",
-      "kind": "fix"
     }
   ],
   "failures": [
