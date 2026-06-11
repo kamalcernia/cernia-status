@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-11T21:24:27.249Z",
-    "lastUpdatedDisplay": "Jun 11, 2026 — 21:24 EDT",
+    "lastUpdatedIso": "2026-06-11T21:31:24.746Z",
+    "lastUpdatedDisplay": "Jun 11, 2026 — 21:31 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #191 feat: Cernia Store + Auth subsystem (storefronts,"
   },
   "summary": {
-    "currentMainCommit": "966c1b04",
+    "currentMainCommit": "72c6f09a",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1252,
+    "agentsCompletedThisSession": 1253,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1252 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1253 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #191 feat: Cernia Store + Auth subsystem (storefronts, Stripe che. (refreshed Jun 11, 2026 — 21:24 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #191 feat: Cernia Store + Auth subsystem (storefronts, Stripe che. (refreshed Jun 11, 2026 — 21:31 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5143,7 +5143,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-11T21:24:26.417Z",
+      "lastAuditAt": "2026-06-11T21:31:23.983Z",
       "backendRouteSymbolCount": 182,
       "deferredItems": {
         "total": 926,
@@ -5203,9 +5203,9 @@
     "justLandedWaves": [],
     "nowWorkingOn": {
       "wave": "PROCUREMENT",
-      "detail": "Stripe Price-ID sync + integration-readiness view + go-live runbook (#192)",
-      "commit": "966c1b04",
-      "freshSeconds": 38
+      "detail": "make stripe:sync-prices dry-run truly write-free (#193)",
+      "commit": "72c6f09a",
+      "freshSeconds": 36
     }
   },
   "pool": {
@@ -5327,6 +5327,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "make stripe:sync-prices dry-run truly write-free (#193)",
+      "commit": "72c6f09a",
+      "kind": "fix"
+    },
+    {
       "agent": "Stripe Price-ID sync + integration-readiness view + go-live runbook...",
       "commit": "966c1b04",
       "kind": "feat"
@@ -5395,11 +5400,6 @@
       "agent": "storage-backed trigger/event workflow resolver (composite with seed)",
       "commit": "4b99b5b4",
       "kind": "merge"
-    },
-    {
-      "agent": "wire storage-backed resolvers at boot (P2)",
-      "commit": "f043635e",
-      "kind": "feat"
     }
   ],
   "failures": [
@@ -12457,7 +12457,6 @@
     "origin/feat/p2-phone-numbers@61cc502884a1": 25,
     "origin/feat/p3-voice-selection@a6daf23a6694": 0,
     "origin/feat/phase-1b-provisioning@27440117dc24": 17,
-    "origin/feat/procurement-wiring@57eb6ee02218": 14,
     "origin/feat/saas-conformance-cleanup@758cab946519": 8,
     "origin/feat/sensitive-data-routes@92780a57ad67": 0,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 4,
@@ -13053,7 +13052,6 @@
     "origin/feat/p2-phone-numbers@61cc502884a1": 8,
     "origin/feat/p3-voice-selection@a6daf23a6694": 0,
     "origin/feat/phase-1b-provisioning@27440117dc24": 6,
-    "origin/feat/procurement-wiring@57eb6ee02218": 3,
     "origin/feat/saas-conformance-cleanup@758cab946519": 0,
     "origin/feat/sensitive-data-routes@92780a57ad67": 0,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 1,
@@ -13649,7 +13647,6 @@
     "origin/feat/p2-phone-numbers@61cc502884a1": false,
     "origin/feat/p3-voice-selection@a6daf23a6694": true,
     "origin/feat/phase-1b-provisioning@27440117dc24": true,
-    "origin/feat/procurement-wiring@57eb6ee02218": false,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
