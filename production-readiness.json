@@ -1065,6 +1065,13 @@
               "from": "remaining",
               "to": "narrowed",
               "note": "Integration-readiness view + go-live runbook: GET /cernia-ops/platform/integration-readiness (apps/api/src/cernia-ops-integration-readiness-routes.ts) -- super-admin gated, sendPhiSafe, returns configured-boolean+mode for each integration category (Stripe, OAuth, email/SMS/push, DNS redirect URIs, BAA vendors) -- never exposes secret values. apps/cernia-ops/src/app/cernia-ops/platform/integration-readiness/page.tsx + sidebar \"Go-live readiness\" entry. docs/runbooks/go-live-procurement.md: operator runbook for activating each external credential set. Operator can now see exactly which integrations are configured vs. pending without reading env vars directly. Files: apps/api/src/cernia-ops-integration-readiness-routes.ts, apps/cernia-ops/src/app/cernia-ops/platform/integration-readiness/page.tsx, docs/runbooks/go-live-procurement.md."
+            },
+            {
+              "date": "2026-06-11",
+              "stage": "saas-billing-marketplace",
+              "from": "regression",
+              "to": "fixed+verified",
+              "note": "Edge fleet admin surface verified end-to-end + a SECOND ESM require-in-module-type boot regression fixed (same class as the stripe-backend node:crypto fix in this stage's history). (1) apps/api/src/social-auth-routes.ts buildSocialProviders() used CommonJS require('@cernia/auth-providers') inside a type:module package -> 'ReferenceError: require is not defined' crashed the WHOLE apps/api at boot (index.ts:3159). Masked because buildSocialProviders only runs at boot and every unit test injects SocialAuthProviders directly, so the 31 social-auth tests stayed green. Fix: top-level import { OidcIdentityProvider, FetchOidcHttpClient }. Surfaced by actually booting the API to verify Edge. (2) Edge /admin/edge/* surface was ALREADY real-API-wired (all 4 tabs -> edge-api.ts, backend edge-fleet-routes.ts + offline-update-package-routes.ts registered, IAM guards mapped) but the real dev tenant cernia-health had no rows so every tab rendered an empty state that looked blank. Added apps/api/src/dev-seed-edge-fleet.ts + 'dev:seed-edge' script (idempotent, tenant-scoped, dev-guarded: 3 nodes + 3 sync runs + 1 update package). (3) Extended tests/e2e/specs/edge-fleet-flow.spec.ts from 3 to 5 tests to cover ALL four tabs (added Sync-runs + Updates) — 5/5 headed chromium green against real api+Postgres. typecheck + changed-file lint clean."
             }
           ]
         }
