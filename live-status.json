@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-11T21:31:24.746Z",
-    "lastUpdatedDisplay": "Jun 11, 2026 — 21:31 EDT",
+    "lastUpdatedIso": "2026-06-11T21:36:34.820Z",
+    "lastUpdatedDisplay": "Jun 11, 2026 — 21:36 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #191 feat: Cernia Store + Auth subsystem (storefronts,"
   },
   "summary": {
-    "currentMainCommit": "72c6f09a",
+    "currentMainCommit": "e2b498b1",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1253,
+    "agentsCompletedThisSession": 1254,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1253 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1254 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #191 feat: Cernia Store + Auth subsystem (storefronts, Stripe che. (refreshed Jun 11, 2026 — 21:31 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #191 feat: Cernia Store + Auth subsystem (storefronts, Stripe che. (refreshed Jun 11, 2026 — 21:36 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5143,7 +5143,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-11T21:31:23.983Z",
+      "lastAuditAt": "2026-06-11T21:36:33.801Z",
       "backendRouteSymbolCount": 182,
       "deferredItems": {
         "total": 926,
@@ -5203,9 +5203,9 @@
     "justLandedWaves": [],
     "nowWorkingOn": {
       "wave": "PROCUREMENT",
-      "detail": "make stripe:sync-prices dry-run truly write-free (#193)",
-      "commit": "72c6f09a",
-      "freshSeconds": 36
+      "detail": "sanitize Stripe lookup_key (drop colons) before live sync (#194)",
+      "commit": "e2b498b1",
+      "freshSeconds": 34
     }
   },
   "pool": {
@@ -5327,6 +5327,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "sanitize Stripe lookup_key (drop colons) before live sync (#194)",
+      "commit": "e2b498b1",
+      "kind": "fix"
+    },
+    {
       "agent": "make stripe:sync-prices dry-run truly write-free (#193)",
       "commit": "72c6f09a",
       "kind": "fix"
@@ -5395,11 +5400,6 @@
       "agent": "Phase-2 residuals complete (4 merged + booking-gate deferred #30)",
       "commit": "1bc64743",
       "kind": "docs"
-    },
-    {
-      "agent": "storage-backed trigger/event workflow resolver (composite with seed)",
-      "commit": "4b99b5b4",
-      "kind": "merge"
     }
   ],
   "failures": [
