@@ -812,8 +812,8 @@
           },
           "current": {
             "status": "partial",
-            "asOf": "2026-06-03",
-            "summary": "Storefront flow COMPLETE in test mode: browse (GET /marketplace/listings) -> Buy (POST /admin/marketplace/checkout/$build-session creates a REAL Stripe test Checkout Session, cs_test_…) -> settlement webhook (/webhook/stripe/marketplace, signature-verified) -> PERSISTED per-tenant entitlement (marketplace_entitlements, migration 147) -> tenant installs view (GET /admin/marketplace/entitlements). Backend (invoicing, tax, metrics sweep, revenue/contract store, auto-renewal, discount approvals) all shipped in prior passes. Only Stripe PRODUCTION credentials remain (procurement)."
+            "asOf": "2026-06-11",
+            "summary": "Storefront + billing code-side COMPLETE: browse -> unified Stripe checkout (tiers+products) -> signed webhook settlement -> persisted entitlements; enterprise invoicing, tax, metrics, auto-renewal, discount approvals, Stripe Price-ID sync CLI, integration-readiness operator view + go-live runbook all shipped. External remaining: live Stripe credentials (business-verified account + sk_live_ key) so checkout + invoicing move real money; OAuth app registrations for social login (Google/Microsoft client IDs); email/SMS provider sender verification; DNS redirect URIs. Operator uses /cernia-ops/platform/integration-readiness to track which integrations are configured vs. pending."
           },
           "evidence": [
             {
@@ -834,10 +834,10 @@
             }
           ],
           "remaining": [
-            "Stripe PRODUCTION wiring: live Stripe keys + a business-verified Stripe account so storefront checkout + enterprise invoicing move REAL money. Test mode (sk_test_ + the settlement webhook) is wired and E2E-verified end-to-end (tests/e2e/specs/marketplace-storefront-flow.spec.ts). PROCUREMENT — the operator supplies prod credentials / completes Stripe account activation. No BAA (payments, not PHI).",
+            "external: Stripe PRODUCTION credentials -- business-verified Stripe account + live STRIPE_SECRET_KEY / STRIPE_WEBHOOK_SECRET / STRIPE_PUBLISHABLE_KEY. Code-side done: Price-ID sync CLI (stripe:sync-prices) + StripeCatalogApi seam shipped (82a217c7); integration-readiness view shows configured status to operator (ecc9d7de). Operator runs stripe:sync-prices once with live key to populate catalog_prices.stripe_price_id, then sets live webhook secret. No BAA (payments, not PHI).",
             "Deferred (post-GA, NOT a launch blocker): ML-model marketplace (P3-C) clinical-review dual-control queue before publish — the -A vertical publishes directly; a physician/compliance review gate is a future enhancement (apps/api/src/ml-marketplace-routes.ts).",
             "Deferred (post-GA, NOT a launch blocker): ML-model marketplace (P3-C) Stripe-Connect payout of the publisher's 70/30 commission — the commission is computed + persisted (ml_marketplace_entitlements.publisher_commission_cents); the actual Connect transfer reuses the Wave-V partner-payout path and is gated on the same Stripe-prod procurement.",
-            "Cernia Store sub-project — remaining plans (storefront Plan 1 catalog+page shipped 2026-06-10, headed-E2E verified): Plan 2 unified Stripe checkout (tiers+products, one subscription mixed items) + webhook fan-out; Plan 3 marketplace listing->$build-session linking + catalog persistence + Publish backend (POST /admin/marketplace/listings) + wire Reviews approve/reject; Plan 4 cernia-ops /platform/store cross-tenant aggregate view. Spec: docs/superpowers/specs/2026-06-10-cernia-store-unified-storefront-design.md.",
+            "external: Cernia Store -- code complete (Plans 1-5 all shipped 2026-06-11): storefront catalog, unified checkout, cernia-ops store view, marketplace population, public-surface checkout. ONLY REMAINING: activate with live Stripe credentials (operator runs stripe:sync-prices + sets STRIPE_SECRET_KEY=sk_live_...) so checkout + subscription settlement move real money. Spec: docs/superpowers/specs/2026-06-10-cernia-store-unified-storefront-design.md.",
             "Auth Plans 3 + 4 — DEFERRED ITEMS only (core shipped 2026-06-11): social login cross-tenant chooser, JIT signup-via-social, Apple provider; adaptive/risk-based auth, trust-this-device + refresh tokens, password-reset UI, per-tenant MFA-policy enforcement UI, full auth-event audit pipeline. Real OAuth/email/SMS creds = procurement."
           ],
           "history": [
@@ -1051,6 +1051,20 @@
               "from": "remaining",
               "to": "narrowed",
               "note": "Auth Plan 4 — hardening: (1) step-up MFA (short-lived step-up JWT via x-cernia-step-up + requireFreshMfa) gating break-glass $impersonate; (2) cernia-ops /platform/auth-security cross-tenant view (MFA adoption + lockout aggregates, super-admin, sendPhiSafe, no PHI); (3) disposable-email blocking at signup (apps/api/src/disposable-email.ts + isDisposableEmail gate in apps/api/src/onboarding-routes.ts POST /onboarding/start → 400 disposable-email-not-allowed). Auth subsystem CORE COMPLETE: OTP/email-SMS MFA + email/phone verification (Plan 1), login API + real login UI (Plan 2), Google/Microsoft social login (Plan 3), step-up + ops-view + anti-abuse (Plan 4). Deferred: adaptive/risk auth, trust-this-device + refresh tokens, password-reset UI, per-tenant MFA-policy enforcement UI, full auth-event audit pipeline; real OAuth/email/SMS creds = procurement."
+            },
+            {
+              "date": "2026-06-11",
+              "stage": "saas-billing-marketplace",
+              "from": "remaining",
+              "to": "narrowed",
+              "note": "Stripe Price-ID sync (procurement code-side): apps/api/src/stripe-price-sync.ts StripeCatalogApi.ensureProduct (metadata.cernia_item lookup) + ensurePrice (lookup_key upsert) writes real stripe_price_id back to catalog_prices; apps/api/src/stripe-sync-prices.ts CLI + stripe:sync-prices script. All catalog_prices rows will carry live stripe_price_id after the operator runs this once with STRIPE_SECRET_KEY=sk_live_... External remaining: business-verified Stripe account + live keys (STRIPE_SECRET_KEY/STRIPE_WEBHOOK_SECRET) -- procurement / operator action. Files: apps/api/src/stripe-price-sync.ts, apps/api/src/stripe-sync-prices.ts."
+            },
+            {
+              "date": "2026-06-11",
+              "stage": "saas-billing-marketplace",
+              "from": "remaining",
+              "to": "narrowed",
+              "note": "Integration-readiness view + go-live runbook: GET /cernia-ops/platform/integration-readiness (apps/api/src/cernia-ops-integration-readiness-routes.ts) -- super-admin gated, sendPhiSafe, returns configured-boolean+mode for each integration category (Stripe, OAuth, email/SMS/push, DNS redirect URIs, BAA vendors) -- never exposes secret values. apps/cernia-ops/src/app/cernia-ops/platform/integration-readiness/page.tsx + sidebar \"Go-live readiness\" entry. docs/runbooks/go-live-procurement.md: operator runbook for activating each external credential set. Operator can now see exactly which integrations are configured vs. pending without reading env vars directly. Files: apps/api/src/cernia-ops-integration-readiness-routes.ts, apps/cernia-ops/src/app/cernia-ops/platform/integration-readiness/page.tsx, docs/runbooks/go-live-procurement.md."
             }
           ]
         }
