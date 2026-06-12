@@ -1740,6 +1740,13 @@
               "from": "remaining",
               "to": "narrowed",
               "note": "cernia-ops increment 4c: quotas view de-mocked. New GET /cernia-ops/platform/quotas (apps/api/src/cernia-ops-quotas-routes.ts) — super-admin + sendPhiSafe; per-tenant usage (usage_records sum over trailing 24h) vs tier ceiling (subscription_tiers.body->includedQuotas perMonth, joined via subscriptions.tier_name); status ok/warn/over/untracked. Page apps/cernia-ops/.../platform/quotas/page.tsx now fetches via OpsAsync (no SAMPLE_TENANTS / quotaForTier). dev-seed-ops-demo seeds subscription_tiers + subscriptions + usage_records. Guard allowlist down to 2 (incidents, $impersonate). Remaining: 4d incidents (derive+pin), 4e settings-internal + $impersonate."
+            },
+            {
+              "date": "2026-06-12",
+              "stage": "phase-3-2-core-saas",
+              "from": "remaining",
+              "to": "narrowed",
+              "note": "cernia-ops increment 4d: incidents view de-mocked (the heaviest). New cernia_ops_incidents table (migration 260) + apps/api/src/cernia-ops-incidents-routes.ts: GET merges derive-on-read signals (alerts row-presence + vendor_health_state status!=operational) with operator-PINNED records (a pinned row whose derived_key matches a derived signal suppresses the twin) + POST pin/create + PATCH annotate/resolve; super-admin + sendPhiSafe; response field operatorNote (note is a PHI forbidden-key). Page apps/cernia-ops/.../platform/incidents/page.tsx fetches the merged view via OpsAsync with Pin (derived) / Resolve (pinned) actions (ops-fetch extended for POST/PATCH). dev-seed-ops-demo seeds a degraded vendor + an alert + a pinned incident. Guard allowlist down to 1 ($impersonate). Remaining: 4e settings-internal + $impersonate, then sample-data.ts is deleted + the guard goes fully strict."
             }
           ]
         },
