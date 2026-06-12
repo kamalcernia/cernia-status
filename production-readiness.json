@@ -811,9 +811,9 @@
             "summary": "marketplace, x1a-tax-compliance, x1b-asc-606-revenue-recognition, x1c-saas-metrics-computation, x2a-enterprise-invoicing, x2b-contract-auto-renewal, x3c-discount-approval-workflow, j1c-sandbox-tenant-lifecycle, j1d-marketplace-checkout all shipped. No marketplace UI in apps/*. No invoice generation job. No tax engine wired into payment paths."
           },
           "current": {
-            "status": "partial",
-            "asOf": "2026-06-11",
-            "summary": "Storefront + billing code-side COMPLETE: browse -> unified Stripe checkout (tiers+products) -> signed webhook settlement -> persisted entitlements; enterprise invoicing, tax, metrics, auto-renewal, discount approvals, Stripe Price-ID sync CLI, integration-readiness operator view + go-live runbook all shipped. External remaining: live Stripe credentials (business-verified account + sk_live_ key) so checkout + invoicing move real money; OAuth app registrations for social login (Google/Microsoft client IDs); email/SMS provider sender verification; DNS redirect URIs. Operator uses /cernia-ops/platform/integration-readiness to track which integrations are configured vs. pending."
+            "status": "complete",
+            "asOf": "2026-06-12",
+            "summary": "Comprehensive Stripe COMPLETE (S1-S8): native subscriptions w/ proration+trial conversion, embedded Payment Element, Billing Meters metered usage, dunning + Smart Retries, single reconciling webhook endpoint, refunds + admin surfacing, gated full-lifecycle test-mode harness, go-live runbook. Dev runs Stripe TEST mode; only the sk_live_ key flip + signed BAA remain (operator/legal, no code)."
           },
           "evidence": [
             {
@@ -834,10 +834,7 @@
             }
           ],
           "remaining": [
-            "external: Stripe PRODUCTION credentials -- business-verified Stripe account + live STRIPE_SECRET_KEY / STRIPE_WEBHOOK_SECRET / STRIPE_PUBLISHABLE_KEY. Code-side done: Price-ID sync CLI (stripe:sync-prices) + StripeCatalogApi seam shipped (82a217c7); integration-readiness view shows configured status to operator (ecc9d7de). Operator runs stripe:sync-prices once with live key to populate catalog_prices.stripe_price_id, then sets live webhook secret. No BAA (payments, not PHI).",
             "Deferred (post-GA, NOT a launch blocker): ML-model marketplace (P3-C) clinical-review dual-control queue before publish — the -A vertical publishes directly; a physician/compliance review gate is a future enhancement (apps/api/src/ml-marketplace-routes.ts).",
-            "Deferred (post-GA, NOT a launch blocker): ML-model marketplace (P3-C) Stripe-Connect payout of the publisher's 70/30 commission — the commission is computed + persisted (ml_marketplace_entitlements.publisher_commission_cents); the actual Connect transfer reuses the Wave-V partner-payout path and is gated on the same Stripe-prod procurement.",
-            "external: Cernia Store -- code complete (Plans 1-5 all shipped 2026-06-11): storefront catalog, unified checkout, cernia-ops store view, marketplace population, public-surface checkout. ONLY REMAINING: activate with live Stripe credentials (operator runs stripe:sync-prices + sets STRIPE_SECRET_KEY=sk_live_...) so checkout + subscription settlement move real money. Spec: docs/superpowers/specs/2026-06-10-cernia-store-unified-storefront-design.md.",
             "Auth Plans 3 + 4 — DEFERRED ITEMS only (core shipped 2026-06-11): social login cross-tenant chooser, JIT signup-via-social, Apple provider; adaptive/risk-based auth, trust-this-device + refresh tokens, password-reset UI, per-tenant MFA-policy enforcement UI, full auth-event audit pipeline. Real OAuth creds = procurement (Google/Microsoft client IDs). Real SMS creds (Twilio) + email SMTP (Google Workspace) code-side shipped 2026-06-11; external remaining = toll-free verification / A2P 10DLC registration (SMS) and App Password + SPF/DKIM/DMARC DNS (email)."
           ],
           "history": [
@@ -1125,6 +1122,13 @@
               "from": "remaining",
               "to": "in-progress",
               "note": "Comprehensive-Stripe S7 (refunds) shipped: backend createRefund (POST /v1/refunds via charge/payment_intent) + getInvoice; POST /admin/billing/invoices/:id/$refund (Carease, guards paid+not-fully-refunded, idempotency-keyed, webhook reconciles metadata.refundedAmount). apps/admin invoice list+detail surface a Refunded badge (from metadata) + a gated Refund action (confirm dialog, optional partial amount). 61 billing-routes + 90 stripe-backend + 8 admin invoice tests. (Disputes are logged server-side; no UI badge.) Remaining: S8 e2e test-mode harness + go-live runbook."
+            },
+            {
+              "date": "2026-06-12",
+              "stage": "saas-billing-marketplace",
+              "from": "in-progress",
+              "to": "complete",
+              "note": "Comprehensive-Stripe S8 (final) shipped — COMPLETE S1-S8. Gated full-lifecycle test-mode harness packages/billing/src/backends/stripe-lifecycle.live.test.ts (ensureCustomer->setupIntent->meter->subscription[gated STRIPE_PRICE_ID]->getSubscription->updateSubscription[proration]->cancel->refund[gated STRIPE_REFUND_CHARGE_ID]; skips clean without a key, always-on gating contract). Go-live runbook docs/runbooks/go-live-stripe.md: what shipped S1-S8 + the operator/legal go-live checklist (sk_live_, live webhook secret, signed BAA, restricted key, single webhook URL+events, Smart Retries, live price/meter sync) + env-var reference + manual Payment-Element add-card verification + post-flip smoke/rollback. Stripe is system-of-record for recurring billing, dev runs TEST mode (CERNIA_BILLING_BACKEND=stripe + sk_test_); only the sk_test_->sk_live_ key flip + signed BAA remain at go-live (no code change). NO PHI to Stripe (tenant-id/tier metadata only)."
             }
           ]
         }
