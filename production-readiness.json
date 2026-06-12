@@ -1076,6 +1076,13 @@
             {
               "date": "2026-06-11",
               "note": "Auth-plane email+SMS deliverability (PHI-free — no BAA required): (1) SMTP provider (Google Workspace / any relay) shipped as packages/w1-transactional-email/src/providers-smtp.ts — SmtpProvider implements EmailProvider with optional auth (no-auth = Mailpit dev capture; auth + STARTTLS = Google Workspace); 9 TDD unit tests via injected mock transport; nodemailer@6.9+ dep. (2) SmtpProvider wired into buildEmailServiceFromEnv() (apps/api/src/otp-senders.ts) as lowest-priority branch (SMTP_HOST env var); (3) deriveEnvReadiness (apps/api/src/cernia-ops-integration-readiness-routes.ts) gains smtp mode before mailpit-dev in the priority chain; 3 pure unit tests pass. (4) Twilio Messaging Service SID support: buildSmsAdapterFromEnv now uses MessagingServiceSid form field when TWILIO_MESSAGING_SERVICE_SID is set (enables US A2P 10DLC / toll-free sender pools), falls back to From number when absent. (5) apps/api/.env.example: SMTP_* block (dev/prod comments, SPF/DKIM/DMARC DNS note) + TWILIO_PHONE_NUMBER + TWILIO_MESSAGING_SERVICE_SID (A2P/toll-free verification note). External remaining: Google App Password + DNS SPF/DKIM/DMARC for SMTP; Twilio toll-free verification or A2P 10DLC Brand+Campaign registration for SMS — all account-side/human tasks."
+            },
+            {
+              "date": "2026-06-12",
+              "stage": "saas-billing-marketplace",
+              "from": "remaining",
+              "to": "in-progress",
+              "note": "COMPREHENSIVE STRIPE sub-project STARTED (spec docs/superpowers/specs/2026-06-12-comprehensive-stripe-integration-design.md — 8 increments S1-S8; native Stripe Subscriptions as SoR, embedded Payment Element, Billing Meters; dev runs on Stripe TEST mode, only sk_test->sk_live flip remains at go-live). S1 (backend seam + test-mode foundation) SHIPPED: migration 261 (subscriptions.stripe_subscription_id + catalog_prices.stripe_meter_id + tenant_payment_methods non-PHI card cache); StripeBillingBackend extended with 11 methods (createSubscription/update/cancel, createSetupIntent, list/attach/detach/setDefault payment-method, createBillingMeter/reportMeterEvent, createBillingPortalSession) + noop fakes (56 billing tests); dev:stripe-bootstrap CLI (syncs prices + Billing Meters + a test customer/card) + .env.example (STRIPE_API_KEY_SECRET/WEBHOOK_SECRET/NEXT_PUBLIC_PUBLISHABLE_KEY) + CERNIA_BILLING_BACKEND=stripe test-mode select. FOLLOW-UP noted: reconcile STRIPE_SECRET_KEY (live server) vs STRIPE_API_KEY_SECRET (CLIs) to one var. Remaining: S2 lifecycle, S3 payment UI, S4 metered reporting, S5 dunning, S6 webhooks, S7 refunds, S8 e2e harness."
             }
           ]
         }

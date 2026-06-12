@@ -11,7 +11,10 @@
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
   "currentTask": {
-    "id": null
+    "id": "stripe-s1",
+    "title": "Stripe S1 — backend seam + test-mode foundation (comprehensive Stripe integration)",
+    "startedAt": "2026-06-12",
+    "evidence": "docs/superpowers/specs/2026-06-12-comprehensive-stripe-integration-design.md"
   },
   "categories": [
     {
