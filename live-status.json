@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-12T22:01:52.952Z",
-    "lastUpdatedDisplay": "Jun 12, 2026 — 22:01 EDT",
+    "lastUpdatedIso": "2026-06-12T22:11:15.670Z",
+    "lastUpdatedDisplay": "Jun 12, 2026 — 22:11 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #208 feat(billing): comprehensive Stripe S7 — refunds +"
   },
   "summary": {
-    "currentMainCommit": "806c5fdc",
+    "currentMainCommit": "f502c123",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1270,
+    "agentsCompletedThisSession": 1271,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1270 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1271 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #208 feat(billing): comprehensive Stripe S7 — refunds + admin inv. (refreshed Jun 12, 2026 — 22:01 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #208 feat(billing): comprehensive Stripe S7 — refunds + admin inv. (refreshed Jun 12, 2026 — 22:11 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -58,8 +58,8 @@
     },
     "velocity": {
       "landedLastHour": 0,
-      "landedLast24h": 14,
-      "label": "0 PRs opened in last hour · 14 in last 24h"
+      "landedLast24h": 13,
+      "label": "0 PRs opened in last hour · 13 in last 24h"
     },
     "integration": {
       "lastMergeIso": "2026-06-10T12:49:34-04:00",
@@ -5240,7 +5240,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-12T22:01:51.924Z",
+      "lastAuditAt": "2026-06-12T22:11:14.767Z",
       "backendRouteSymbolCount": 188,
       "deferredItems": {
         "total": 946,
@@ -5299,9 +5299,9 @@
     },
     "justLandedWaves": [],
     "nowWorkingOn": {
-      "wave": "DOMAIN+AUTH",
-      "detail": "cerniahealth.com everywhere + trust Sign-in to admin login (#210)",
-      "commit": "806c5fdc",
+      "wave": "BUILD",
+      "detail": "untrack committed .next output for trust + patient (poisoned RSC manifest) (#211)",
+      "commit": "f502c123",
       "freshSeconds": 34
     }
   },
@@ -5424,6 +5424,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "untrack committed .next output for trust + patient (poisoned RSC ma...",
+      "commit": "f502c123",
+      "kind": "fix"
+    },
+    {
       "agent": "cerniahealth.com everywhere + trust Sign-in to admin login (#210)",
       "commit": "806c5fdc",
       "kind": "feat"
@@ -5491,11 +5496,6 @@
     {
       "agent": "platform email (Google Workspace SMTP) + SMS (Twilio Messaging Serv...",
       "commit": "cefa6b2e",
-      "kind": "feat"
-    },
-    {
-      "agent": "de-mock increment 4a — honesty pass + regression guard (#196)",
-      "commit": "0900d81e",
       "kind": "feat"
     }
   ],
