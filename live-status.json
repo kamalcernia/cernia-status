@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-12T17:14:23.616Z",
-    "lastUpdatedDisplay": "Jun 12, 2026 — 17:14 EDT",
+    "lastUpdatedIso": "2026-06-12T17:55:37.755Z",
+    "lastUpdatedDisplay": "Jun 12, 2026 — 17:55 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #203 feat(billing): comprehensive Stripe S2 — subscript"
   },
   "summary": {
-    "currentMainCommit": "a471a419",
+    "currentMainCommit": "d3150a9a",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1265,
+    "agentsCompletedThisSession": 1266,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1265 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1266 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #203 feat(billing): comprehensive Stripe S2 — subscription lifecy. (refreshed Jun 12, 2026 — 17:14 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #203 feat(billing): comprehensive Stripe S2 — subscription lifecy. (refreshed Jun 12, 2026 — 17:55 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -1255,6 +1255,13 @@
                   "from": "remaining",
                   "to": "in-progress",
                   "note": "Comprehensive-Stripe S4 (metered via Billing Meters) shipped: stripe-price-sync now creates a Billing Meter + a metered Stripe Price (recurring.usage_type=metered + recurring.meter, billing_scheme=per_unit) per metered catalog row, writing stripe_meter_id (no longer skipped). meter-event-reporter.ts reportUsageToStripe (supportsNativeMeterEvents capability gate: Stripe path reports meter_events, noop keeps local invoice). flushMeteredUsage + POST /admin/billing/usage/$report-metered route + nightly metered-flush sweep INVOKE the reporter (the metered flush had never been wired before — now fires end-to-end). Remaining: S5 dunning, S6 webhooks(+consolidate /stripe-pm), S7 refunds, S8 e2e."
+                },
+                {
+                  "date": "2026-06-12",
+                  "stage": "saas-billing-marketplace",
+                  "from": "remaining",
+                  "to": "in-progress",
+                  "note": "Comprehensive-Stripe S5 (dunning / Smart Retries) shipped: invoice.payment_failed -> dunning email + past-due (enteredPastDueAt stamped); customer.subscription.trial_will_end -> trial-ending email; nightly sweepDunning suspends past-due subs past the DunningPolicy grace window (+ suspended email); local retry-now scheduling REMOVED — Stripe Smart Retries (charge_automatically, a Stripe-dashboard setting) owns payment retries. billingNotifications email seam wired in index.ts. 15 dunning + 42 billing-routes tests. Remaining: S6 webhooks(+consolidate /stripe-pm), S7 refunds, S8 e2e."
                 }
               ]
             }
@@ -5215,7 +5222,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-12T17:14:22.764Z",
+      "lastAuditAt": "2026-06-12T17:55:36.758Z",
       "backendRouteSymbolCount": 188,
       "deferredItems": {
         "total": 945,
@@ -5275,9 +5282,9 @@
     "justLandedWaves": [],
     "nowWorkingOn": {
       "wave": "BILLING",
-      "detail": "comprehensive Stripe S4 — metered usage via Billing Meters (#205)",
-      "commit": "a471a419",
-      "freshSeconds": 35
+      "detail": "comprehensive Stripe S5 — dunning + Smart Retries (#206)",
+      "commit": "d3150a9a",
+      "freshSeconds": 37
     }
   },
   "pool": {
@@ -5399,6 +5406,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "comprehensive Stripe S5 — dunning + Smart Retries (#206)",
+      "commit": "d3150a9a",
+      "kind": "feat"
+    },
+    {
       "agent": "comprehensive Stripe S4 — metered usage via Billing Meters (#205)",
       "commit": "a471a419",
       "kind": "feat"
@@ -5466,11 +5478,6 @@
     {
       "agent": "Stripe Price-ID sync + integration-readiness view + go-live runbook...",
       "commit": "966c1b04",
-      "kind": "feat"
-    },
-    {
-      "agent": "Cernia Store + Auth subsystem (storefronts, Stripe checkout, market...",
-      "commit": "80cad149",
       "kind": "feat"
     }
   ],
@@ -12531,7 +12538,7 @@
     "origin/feat/phase-1b-provisioning@27440117dc24": 17,
     "origin/feat/saas-conformance-cleanup@758cab946519": 8,
     "origin/feat/sensitive-data-routes@92780a57ad67": 0,
-    "origin/feat/stripe-s4@2231a56dbfc5": 17,
+    "origin/feat/stripe-s5@fb3405e34e0b": 11,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 4,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": 17,
     "origin/feat/wave-a-integration@9f5d3e77833d": 0,
@@ -13127,7 +13134,7 @@
     "origin/feat/phase-1b-provisioning@27440117dc24": 6,
     "origin/feat/saas-conformance-cleanup@758cab946519": 0,
     "origin/feat/sensitive-data-routes@92780a57ad67": 0,
-    "origin/feat/stripe-s4@2231a56dbfc5": 4,
+    "origin/feat/stripe-s5@fb3405e34e0b": 3,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 1,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": 2,
     "origin/feat/wave-a-integration@9f5d3e77833d": 0,
@@ -13723,7 +13730,7 @@
     "origin/feat/phase-1b-provisioning@27440117dc24": true,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
-    "origin/feat/stripe-s4@2231a56dbfc5": false,
+    "origin/feat/stripe-s5@fb3405e34e0b": false,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": false,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,
