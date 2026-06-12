@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-12T23:05:57.875Z",
-    "lastUpdatedDisplay": "Jun 12, 2026 — 23:05 EDT",
+    "lastUpdatedIso": "2026-06-12T23:13:06.720Z",
+    "lastUpdatedDisplay": "Jun 12, 2026 — 23:13 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #208 feat(billing): comprehensive Stripe S7 — refunds +"
   },
   "summary": {
-    "currentMainCommit": "55c42277",
+    "currentMainCommit": "24983ecd",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1274,
+    "agentsCompletedThisSession": 1275,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1274 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1275 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #208 feat(billing): comprehensive Stripe S7 — refunds + admin inv. (refreshed Jun 12, 2026 — 23:05 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #208 feat(billing): comprehensive Stripe S7 — refunds + admin inv. (refreshed Jun 12, 2026 — 23:13 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5240,7 +5240,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-12T23:05:57.018Z",
+      "lastAuditAt": "2026-06-12T23:13:05.695Z",
       "backendRouteSymbolCount": 188,
       "deferredItems": {
         "total": 946,
@@ -5300,9 +5300,9 @@
     "justLandedWaves": [],
     "nowWorkingOn": {
       "wave": "TRUST",
-      "detail": "add Support contact + remove Bug bounty + rebalance footer (#214)",
-      "commit": "55c42277",
-      "freshSeconds": 34
+      "detail": "footer keeps only Platform links (drop duplicate Trust nav column) (#215)",
+      "commit": "24983ecd",
+      "freshSeconds": 35
     }
   },
   "pool": {
@@ -5424,6 +5424,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "footer keeps only Platform links (drop duplicate Trust nav column) ...",
+      "commit": "24983ecd",
+      "kind": "fix"
+    },
+    {
       "agent": "add Support contact + remove Bug bounty + rebalance footer (#214)",
       "commit": "55c42277",
       "kind": "feat"
@@ -5491,11 +5496,6 @@
     {
       "agent": "de-mock increment 4e (finale) — settings-internal + impersonate; gu...",
       "commit": "616a88da",
-      "kind": "feat"
-    },
-    {
-      "agent": "de-mock increment 4d — incidents (derive + pin, migration 260) (#200)",
-      "commit": "987a150f",
       "kind": "feat"
     }
   ],
