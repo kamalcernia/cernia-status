@@ -1733,6 +1733,13 @@
               "from": "remaining",
               "to": "narrowed",
               "note": "cernia-ops increment 4b: escalations view de-mocked. New GET /cernia-ops/customers/escalations aggregate over support_tickets + sla_tier_assignments (apps/api/src/cernia-ops-escalations-routes.ts) — super-admin gated + sendPhiSafe; selects ONLY non-PHI columns (id/tenant/status/priority->severity/category/product_area/age/slaStatus), NEVER subject/description/requester_email/body (anti-leak test ESC06). Page apps/cernia-ops/.../customers/escalations/page.tsx now fetches via OpsAsync (no SAMPLE_ESCALATIONS); dev-seed-ops-demo seeds support_tickets + sla_tier_assignments. Removed from the no-sample-data-in-app guard allowlist (3 pages left: incidents/quotas/$impersonate). Remaining de-mock: 4c quotas, 4d incidents, 4e settings-internal + $impersonate."
+            },
+            {
+              "date": "2026-06-11",
+              "stage": "phase-3-2-core-saas",
+              "from": "remaining",
+              "to": "narrowed",
+              "note": "cernia-ops increment 4c: quotas view de-mocked. New GET /cernia-ops/platform/quotas (apps/api/src/cernia-ops-quotas-routes.ts) — super-admin + sendPhiSafe; per-tenant usage (usage_records sum over trailing 24h) vs tier ceiling (subscription_tiers.body->includedQuotas perMonth, joined via subscriptions.tier_name); status ok/warn/over/untracked. Page apps/cernia-ops/.../platform/quotas/page.tsx now fetches via OpsAsync (no SAMPLE_TENANTS / quotaForTier). dev-seed-ops-demo seeds subscription_tiers + subscriptions + usage_records. Guard allowlist down to 2 (incidents, $impersonate). Remaining: 4d incidents (derive+pin), 4e settings-internal + $impersonate."
             }
           ]
         },
