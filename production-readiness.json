@@ -1118,6 +1118,13 @@
               "from": "remaining",
               "to": "in-progress",
               "note": "Comprehensive-Stripe S6 (webhook completeness + reconcile) shipped: CONSOLIDATED the separate /billing/webhook/stripe-pm endpoint into the single /billing/webhook/stripe (one URL + one signing secret at go-live) — the main handler now applies paymentMethodSync to the tenant_payment_methods cache. Added charge.refunded (-> invoice metadata refundedAmount/At) + charge.dispute.created/closed (read-only logged). POST /admin/billing/$reconcile backfills the local mirror from Stripe (getSubscription + listPaymentMethods). stripe-backend 81 + billing-routes 52 + payment-methods 12 tests. The S3 /stripe-pm consolidation follow-up is CLOSED. Remaining: S7 refunds(initiation route + admin), S8 e2e harness + go-live runbook."
+            },
+            {
+              "date": "2026-06-12",
+              "stage": "saas-billing-marketplace",
+              "from": "remaining",
+              "to": "in-progress",
+              "note": "Comprehensive-Stripe S7 (refunds) shipped: backend createRefund (POST /v1/refunds via charge/payment_intent) + getInvoice; POST /admin/billing/invoices/:id/$refund (Carease, guards paid+not-fully-refunded, idempotency-keyed, webhook reconciles metadata.refundedAmount). apps/admin invoice list+detail surface a Refunded badge (from metadata) + a gated Refund action (confirm dialog, optional partial amount). 61 billing-routes + 90 stripe-backend + 8 admin invoice tests. (Disputes are logged server-side; no UI badge.) Remaining: S8 e2e test-mode harness + go-live runbook."
             }
           ]
         }

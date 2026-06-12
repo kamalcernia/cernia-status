@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-12T18:27:10.036Z",
-    "lastUpdatedDisplay": "Jun 12, 2026 — 18:27 EDT",
+    "lastUpdatedIso": "2026-06-12T19:07:14.019Z",
+    "lastUpdatedDisplay": "Jun 12, 2026 — 19:07 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #203 feat(billing): comprehensive Stripe S2 — subscript"
   },
   "summary": {
-    "currentMainCommit": "0591ae16",
+    "currentMainCommit": "1f16dffd",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1267,
+    "agentsCompletedThisSession": 1268,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1267 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1268 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #203 feat(billing): comprehensive Stripe S2 — subscription lifecy. (refreshed Jun 12, 2026 — 18:27 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #203 feat(billing): comprehensive Stripe S2 — subscription lifecy. (refreshed Jun 12, 2026 — 19:07 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -1269,6 +1269,13 @@
                   "from": "remaining",
                   "to": "in-progress",
                   "note": "Comprehensive-Stripe S6 (webhook completeness + reconcile) shipped: CONSOLIDATED the separate /billing/webhook/stripe-pm endpoint into the single /billing/webhook/stripe (one URL + one signing secret at go-live) — the main handler now applies paymentMethodSync to the tenant_payment_methods cache. Added charge.refunded (-> invoice metadata refundedAmount/At) + charge.dispute.created/closed (read-only logged). POST /admin/billing/$reconcile backfills the local mirror from Stripe (getSubscription + listPaymentMethods). stripe-backend 81 + billing-routes 52 + payment-methods 12 tests. The S3 /stripe-pm consolidation follow-up is CLOSED. Remaining: S7 refunds(initiation route + admin), S8 e2e harness + go-live runbook."
+                },
+                {
+                  "date": "2026-06-12",
+                  "stage": "saas-billing-marketplace",
+                  "from": "remaining",
+                  "to": "in-progress",
+                  "note": "Comprehensive-Stripe S7 (refunds) shipped: backend createRefund (POST /v1/refunds via charge/payment_intent) + getInvoice; POST /admin/billing/invoices/:id/$refund (Carease, guards paid+not-fully-refunded, idempotency-keyed, webhook reconciles metadata.refundedAmount). apps/admin invoice list+detail surface a Refunded badge (from metadata) + a gated Refund action (confirm dialog, optional partial amount). 61 billing-routes + 90 stripe-backend + 8 admin invoice tests. (Disputes are logged server-side; no UI badge.) Remaining: S8 e2e test-mode harness + go-live runbook."
                 }
               ]
             }
@@ -5229,7 +5236,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-12T18:27:08.983Z",
+      "lastAuditAt": "2026-06-12T19:07:12.959Z",
       "backendRouteSymbolCount": 188,
       "deferredItems": {
         "total": 947,
@@ -5289,9 +5296,9 @@
     "justLandedWaves": [],
     "nowWorkingOn": {
       "wave": "BILLING",
-      "detail": "comprehensive Stripe S6 — single webhook endpoint + charge/dispute events + reconcile (#207)",
-      "commit": "0591ae16",
-      "freshSeconds": 36
+      "detail": "comprehensive Stripe S7 — refunds + admin invoice surfacing (#208)",
+      "commit": "1f16dffd",
+      "freshSeconds": 34
     }
   },
   "pool": {
@@ -5413,6 +5420,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "comprehensive Stripe S7 — refunds + admin invoice surfacing (#208)",
+      "commit": "1f16dffd",
+      "kind": "feat"
+    },
+    {
       "agent": "comprehensive Stripe S6 — single webhook endpoint + charge/dispute ...",
       "commit": "0591ae16",
       "kind": "feat"
@@ -5480,11 +5492,6 @@
     {
       "agent": "sanitize Stripe lookup_key (drop colons) before live sync (#194)",
       "commit": "e2b498b1",
-      "kind": "fix"
-    },
-    {
-      "agent": "make stripe:sync-prices dry-run truly write-free (#193)",
-      "commit": "72c6f09a",
       "kind": "fix"
     }
   ],
@@ -12545,7 +12552,6 @@
     "origin/feat/phase-1b-provisioning@27440117dc24": 17,
     "origin/feat/saas-conformance-cleanup@758cab946519": 8,
     "origin/feat/sensitive-data-routes@92780a57ad67": 0,
-    "origin/feat/stripe-s6@8c64cb0b6864": 11,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 4,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": 17,
     "origin/feat/wave-a-integration@9f5d3e77833d": 0,
@@ -13141,7 +13147,6 @@
     "origin/feat/phase-1b-provisioning@27440117dc24": 6,
     "origin/feat/saas-conformance-cleanup@758cab946519": 0,
     "origin/feat/sensitive-data-routes@92780a57ad67": 0,
-    "origin/feat/stripe-s6@8c64cb0b6864": 3,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 1,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": 2,
     "origin/feat/wave-a-integration@9f5d3e77833d": 0,
@@ -13737,7 +13742,6 @@
     "origin/feat/phase-1b-provisioning@27440117dc24": true,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
-    "origin/feat/stripe-s6@8c64cb0b6864": false,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": false,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,
