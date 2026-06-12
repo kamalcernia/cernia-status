@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-12T17:55:37.755Z",
-    "lastUpdatedDisplay": "Jun 12, 2026 — 17:55 EDT",
+    "lastUpdatedIso": "2026-06-12T18:27:10.036Z",
+    "lastUpdatedDisplay": "Jun 12, 2026 — 18:27 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #203 feat(billing): comprehensive Stripe S2 — subscript"
   },
   "summary": {
-    "currentMainCommit": "d3150a9a",
+    "currentMainCommit": "0591ae16",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1266,
+    "agentsCompletedThisSession": 1267,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1266 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1267 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #203 feat(billing): comprehensive Stripe S2 — subscription lifecy. (refreshed Jun 12, 2026 — 17:55 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #203 feat(billing): comprehensive Stripe S2 — subscription lifecy. (refreshed Jun 12, 2026 — 18:27 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -1262,6 +1262,13 @@
                   "from": "remaining",
                   "to": "in-progress",
                   "note": "Comprehensive-Stripe S5 (dunning / Smart Retries) shipped: invoice.payment_failed -> dunning email + past-due (enteredPastDueAt stamped); customer.subscription.trial_will_end -> trial-ending email; nightly sweepDunning suspends past-due subs past the DunningPolicy grace window (+ suspended email); local retry-now scheduling REMOVED — Stripe Smart Retries (charge_automatically, a Stripe-dashboard setting) owns payment retries. billingNotifications email seam wired in index.ts. 15 dunning + 42 billing-routes tests. Remaining: S6 webhooks(+consolidate /stripe-pm), S7 refunds, S8 e2e."
+                },
+                {
+                  "date": "2026-06-12",
+                  "stage": "saas-billing-marketplace",
+                  "from": "remaining",
+                  "to": "in-progress",
+                  "note": "Comprehensive-Stripe S6 (webhook completeness + reconcile) shipped: CONSOLIDATED the separate /billing/webhook/stripe-pm endpoint into the single /billing/webhook/stripe (one URL + one signing secret at go-live) — the main handler now applies paymentMethodSync to the tenant_payment_methods cache. Added charge.refunded (-> invoice metadata refundedAmount/At) + charge.dispute.created/closed (read-only logged). POST /admin/billing/$reconcile backfills the local mirror from Stripe (getSubscription + listPaymentMethods). stripe-backend 81 + billing-routes 52 + payment-methods 12 tests. The S3 /stripe-pm consolidation follow-up is CLOSED. Remaining: S7 refunds(initiation route + admin), S8 e2e harness + go-live runbook."
                 }
               ]
             }
@@ -5222,19 +5229,19 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-12T17:55:36.758Z",
+      "lastAuditAt": "2026-06-12T18:27:08.983Z",
       "backendRouteSymbolCount": 188,
       "deferredItems": {
-        "total": 945,
+        "total": 947,
         "bySeverity": {
           "tech-debt": 249,
-          "review": 693,
+          "review": 695,
           "blocker": 3
         },
         "byKind": {
           "docstring-caveat": 236,
           "not-configured-fallback": 81,
-          "type-cheat-cast": 611,
+          "type-cheat-cast": 613,
           "type-cheat": 1,
           "todo-comment": 2,
           "skipped-test": 3,
@@ -5244,7 +5251,7 @@
           "UI": 37,
           "X": 36,
           "H": 14,
-          "Platform": 631,
+          "Platform": 633,
           "S": 1,
           "J": 12,
           "G": 27,
@@ -5282,9 +5289,9 @@
     "justLandedWaves": [],
     "nowWorkingOn": {
       "wave": "BILLING",
-      "detail": "comprehensive Stripe S5 — dunning + Smart Retries (#206)",
-      "commit": "d3150a9a",
-      "freshSeconds": 37
+      "detail": "comprehensive Stripe S6 — single webhook endpoint + charge/dispute events + reconcile (#207)",
+      "commit": "0591ae16",
+      "freshSeconds": 36
     }
   },
   "pool": {
@@ -5406,6 +5413,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "comprehensive Stripe S6 — single webhook endpoint + charge/dispute ...",
+      "commit": "0591ae16",
+      "kind": "feat"
+    },
+    {
       "agent": "comprehensive Stripe S5 — dunning + Smart Retries (#206)",
       "commit": "d3150a9a",
       "kind": "feat"
@@ -5474,11 +5486,6 @@
       "agent": "make stripe:sync-prices dry-run truly write-free (#193)",
       "commit": "72c6f09a",
       "kind": "fix"
-    },
-    {
-      "agent": "Stripe Price-ID sync + integration-readiness view + go-live runbook...",
-      "commit": "966c1b04",
-      "kind": "feat"
     }
   ],
   "failures": [
@@ -12538,7 +12545,7 @@
     "origin/feat/phase-1b-provisioning@27440117dc24": 17,
     "origin/feat/saas-conformance-cleanup@758cab946519": 8,
     "origin/feat/sensitive-data-routes@92780a57ad67": 0,
-    "origin/feat/stripe-s5@fb3405e34e0b": 11,
+    "origin/feat/stripe-s6@8c64cb0b6864": 11,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 4,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": 17,
     "origin/feat/wave-a-integration@9f5d3e77833d": 0,
@@ -13134,7 +13141,7 @@
     "origin/feat/phase-1b-provisioning@27440117dc24": 6,
     "origin/feat/saas-conformance-cleanup@758cab946519": 0,
     "origin/feat/sensitive-data-routes@92780a57ad67": 0,
-    "origin/feat/stripe-s5@fb3405e34e0b": 3,
+    "origin/feat/stripe-s6@8c64cb0b6864": 3,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 1,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": 2,
     "origin/feat/wave-a-integration@9f5d3e77833d": 0,
@@ -13730,7 +13737,7 @@
     "origin/feat/phase-1b-provisioning@27440117dc24": true,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
-    "origin/feat/stripe-s5@fb3405e34e0b": false,
+    "origin/feat/stripe-s6@8c64cb0b6864": false,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": false,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,

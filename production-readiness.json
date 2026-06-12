@@ -1111,6 +1111,13 @@
               "from": "remaining",
               "to": "in-progress",
               "note": "Comprehensive-Stripe S5 (dunning / Smart Retries) shipped: invoice.payment_failed -> dunning email + past-due (enteredPastDueAt stamped); customer.subscription.trial_will_end -> trial-ending email; nightly sweepDunning suspends past-due subs past the DunningPolicy grace window (+ suspended email); local retry-now scheduling REMOVED — Stripe Smart Retries (charge_automatically, a Stripe-dashboard setting) owns payment retries. billingNotifications email seam wired in index.ts. 15 dunning + 42 billing-routes tests. Remaining: S6 webhooks(+consolidate /stripe-pm), S7 refunds, S8 e2e."
+            },
+            {
+              "date": "2026-06-12",
+              "stage": "saas-billing-marketplace",
+              "from": "remaining",
+              "to": "in-progress",
+              "note": "Comprehensive-Stripe S6 (webhook completeness + reconcile) shipped: CONSOLIDATED the separate /billing/webhook/stripe-pm endpoint into the single /billing/webhook/stripe (one URL + one signing secret at go-live) — the main handler now applies paymentMethodSync to the tenant_payment_methods cache. Added charge.refunded (-> invoice metadata refundedAmount/At) + charge.dispute.created/closed (read-only logged). POST /admin/billing/$reconcile backfills the local mirror from Stripe (getSubscription + listPaymentMethods). stripe-backend 81 + billing-routes 52 + payment-methods 12 tests. The S3 /stripe-pm consolidation follow-up is CLOSED. Remaining: S7 refunds(initiation route + admin), S8 e2e harness + go-live runbook."
             }
           ]
         }
