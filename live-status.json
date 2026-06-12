@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-12T16:24:49.076Z",
-    "lastUpdatedDisplay": "Jun 12, 2026 — 16:24 EDT",
+    "lastUpdatedIso": "2026-06-12T17:14:23.616Z",
+    "lastUpdatedDisplay": "Jun 12, 2026 — 17:14 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #203 feat(billing): comprehensive Stripe S2 — subscript"
   },
   "summary": {
-    "currentMainCommit": "f8e93906",
+    "currentMainCommit": "a471a419",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1264,
+    "agentsCompletedThisSession": 1265,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1264 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1265 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #203 feat(billing): comprehensive Stripe S2 — subscription lifecy. (refreshed Jun 12, 2026 — 16:24 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #203 feat(billing): comprehensive Stripe S2 — subscription lifecy. (refreshed Jun 12, 2026 — 17:14 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -57,16 +57,16 @@
       "label": "581 test files landed · 0 active failures"
     },
     "velocity": {
-      "landedLastHour": 1,
+      "landedLastHour": 0,
       "landedLast24h": 13,
-      "label": "1 PR opened in last hour · 13 in last 24h"
+      "label": "0 PRs opened in last hour · 13 in last 24h"
     },
     "integration": {
       "lastMergeIso": "2026-06-10T12:49:34-04:00",
-      "daysSinceLastMerge": 1,
+      "daysSinceLastMerge": 2,
       "mergedPrs": 15,
       "openPrs": 0,
-      "label": "Last main merge: 1d ago · 0 PRs awaiting batch-merge"
+      "label": "Last main merge: 2d ago · 0 PRs awaiting batch-merge"
     },
     "mainState": {
       "waveCounts": {
@@ -1248,6 +1248,13 @@
                   "from": "remaining",
                   "to": "in-progress",
                   "note": "Comprehensive-Stripe S3 (payment methods) shipped: apps/api/src/billing-payment-methods-routes.ts ($setup-intent/list/$set-default/DELETE, tenant-admin gated, stripe customer from tenant_external_resources) + PostgresPaymentMethodStore over tenant_payment_methods (mig 261, brand/last4/exp only — NO PAN) + setup_intent.*/payment_method.* webhooks keep the cache fresh. apps/admin payment-method UI (Payment Element add-card via SetupIntent, list, set-default, remove — @stripe/react-stripe-js; never renders raw card inputs). 12 route + 73 backend + 18 admin tests. NOTE for S6: a separate /billing/webhook/stripe-pm endpoint was added — consolidate into the single /billing/webhook/stripe so go-live is one endpoint+secret. Remaining: S4 metered, S5 dunning, S6 webhooks(+consolidate), S7 refunds, S8 e2e."
+                },
+                {
+                  "date": "2026-06-12",
+                  "stage": "saas-billing-marketplace",
+                  "from": "remaining",
+                  "to": "in-progress",
+                  "note": "Comprehensive-Stripe S4 (metered via Billing Meters) shipped: stripe-price-sync now creates a Billing Meter + a metered Stripe Price (recurring.usage_type=metered + recurring.meter, billing_scheme=per_unit) per metered catalog row, writing stripe_meter_id (no longer skipped). meter-event-reporter.ts reportUsageToStripe (supportsNativeMeterEvents capability gate: Stripe path reports meter_events, noop keeps local invoice). flushMeteredUsage + POST /admin/billing/usage/$report-metered route + nightly metered-flush sweep INVOKE the reporter (the metered flush had never been wired before — now fires end-to-end). Remaining: S5 dunning, S6 webhooks(+consolidate /stripe-pm), S7 refunds, S8 e2e."
                 }
               ]
             }
@@ -5208,19 +5215,19 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-12T16:24:48.334Z",
-      "backendRouteSymbolCount": 187,
+      "lastAuditAt": "2026-06-12T17:14:22.764Z",
+      "backendRouteSymbolCount": 188,
       "deferredItems": {
-        "total": 940,
+        "total": 945,
         "bySeverity": {
           "tech-debt": 249,
-          "review": 688,
+          "review": 693,
           "blocker": 3
         },
         "byKind": {
           "docstring-caveat": 236,
           "not-configured-fallback": 81,
-          "type-cheat-cast": 606,
+          "type-cheat-cast": 611,
           "type-cheat": 1,
           "todo-comment": 2,
           "skipped-test": 3,
@@ -5228,9 +5235,9 @@
         },
         "byWave": {
           "UI": 37,
-          "X": 34,
+          "X": 36,
           "H": 14,
-          "Platform": 628,
+          "Platform": 631,
           "S": 1,
           "J": 12,
           "G": 27,
@@ -5252,11 +5259,11 @@
         "wontfixDemotions": []
       },
       "saasConformance": {
-        "totalViolations": 403,
-        "totalBlockers": 10,
+        "totalViolations": 404,
+        "totalBlockers": 11,
         "byCheck": {
           "migration-tenant-id": 3,
-          "query-tenant-filter": 6,
+          "query-tenant-filter": 7,
           "ops-phi-boundary": 1,
           "no-phi-in-logs": 0,
           "baa-enforcement": 0,
@@ -5268,9 +5275,9 @@
     "justLandedWaves": [],
     "nowWorkingOn": {
       "wave": "BILLING",
-      "detail": "comprehensive Stripe S3 — payment methods (API + Payment Element UI) (#204)",
-      "commit": "f8e93906",
-      "freshSeconds": 34
+      "detail": "comprehensive Stripe S4 — metered usage via Billing Meters (#205)",
+      "commit": "a471a419",
+      "freshSeconds": 35
     }
   },
   "pool": {
@@ -5392,6 +5399,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "comprehensive Stripe S4 — metered usage via Billing Meters (#205)",
+      "commit": "a471a419",
+      "kind": "feat"
+    },
+    {
       "agent": "comprehensive Stripe S3 — payment methods (API + Payment Element UI...",
       "commit": "f8e93906",
       "kind": "feat"
@@ -5460,11 +5472,6 @@
       "agent": "Cernia Store + Auth subsystem (storefronts, Stripe checkout, market...",
       "commit": "80cad149",
       "kind": "feat"
-    },
-    {
-      "agent": "make migration replay BOM-tolerant + regenerate schema snapshot (Op...",
-      "commit": "a9b43a08",
-      "kind": "fix"
     }
   ],
   "failures": [
@@ -10253,7 +10260,7 @@
           "apps/admin uses API-path discovery (the architecturally correct three-app-boundary pattern)"
         ]
       },
-      "deferredCount": 34
+      "deferredCount": 36
     },
     {
       "id": "BB",
@@ -12524,7 +12531,7 @@
     "origin/feat/phase-1b-provisioning@27440117dc24": 17,
     "origin/feat/saas-conformance-cleanup@758cab946519": 8,
     "origin/feat/sensitive-data-routes@92780a57ad67": 0,
-    "origin/feat/stripe-s3@69582c199e4b": 14,
+    "origin/feat/stripe-s4@2231a56dbfc5": 17,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 4,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": 17,
     "origin/feat/wave-a-integration@9f5d3e77833d": 0,
@@ -13120,7 +13127,7 @@
     "origin/feat/phase-1b-provisioning@27440117dc24": 6,
     "origin/feat/saas-conformance-cleanup@758cab946519": 0,
     "origin/feat/sensitive-data-routes@92780a57ad67": 0,
-    "origin/feat/stripe-s3@69582c199e4b": 3,
+    "origin/feat/stripe-s4@2231a56dbfc5": 4,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 1,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": 2,
     "origin/feat/wave-a-integration@9f5d3e77833d": 0,
@@ -13716,7 +13723,7 @@
     "origin/feat/phase-1b-provisioning@27440117dc24": true,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
-    "origin/feat/stripe-s3@69582c199e4b": false,
+    "origin/feat/stripe-s4@2231a56dbfc5": false,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": false,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,

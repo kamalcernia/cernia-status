@@ -1097,6 +1097,13 @@
               "from": "remaining",
               "to": "in-progress",
               "note": "Comprehensive-Stripe S3 (payment methods) shipped: apps/api/src/billing-payment-methods-routes.ts ($setup-intent/list/$set-default/DELETE, tenant-admin gated, stripe customer from tenant_external_resources) + PostgresPaymentMethodStore over tenant_payment_methods (mig 261, brand/last4/exp only — NO PAN) + setup_intent.*/payment_method.* webhooks keep the cache fresh. apps/admin payment-method UI (Payment Element add-card via SetupIntent, list, set-default, remove — @stripe/react-stripe-js; never renders raw card inputs). 12 route + 73 backend + 18 admin tests. NOTE for S6: a separate /billing/webhook/stripe-pm endpoint was added — consolidate into the single /billing/webhook/stripe so go-live is one endpoint+secret. Remaining: S4 metered, S5 dunning, S6 webhooks(+consolidate), S7 refunds, S8 e2e."
+            },
+            {
+              "date": "2026-06-12",
+              "stage": "saas-billing-marketplace",
+              "from": "remaining",
+              "to": "in-progress",
+              "note": "Comprehensive-Stripe S4 (metered via Billing Meters) shipped: stripe-price-sync now creates a Billing Meter + a metered Stripe Price (recurring.usage_type=metered + recurring.meter, billing_scheme=per_unit) per metered catalog row, writing stripe_meter_id (no longer skipped). meter-event-reporter.ts reportUsageToStripe (supportsNativeMeterEvents capability gate: Stripe path reports meter_events, noop keeps local invoice). flushMeteredUsage + POST /admin/billing/usage/$report-metered route + nightly metered-flush sweep INVOKE the reporter (the metered flush had never been wired before — now fires end-to-end). Remaining: S5 dunning, S6 webhooks(+consolidate /stripe-pm), S7 refunds, S8 e2e."
             }
           ]
         }
