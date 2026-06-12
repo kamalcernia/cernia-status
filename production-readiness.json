@@ -1726,6 +1726,13 @@
               "date": "2026-06-11",
               "stage": "phase-3-2-core-saas",
               "note": "cernia-ops increment 4a: overview/all-tenants/tenant-detail/platform-health/voice-agents views de-mocked — now fetch real /cernia-ops/* routes via shared ops-fetch (fetchOpsJson, credentials:include) + OpsAsync, render loading/error/empty/data, no SAMPLE_* fallback; dropped fabricated health sub-fields (redisHitRate string, fake P95 latency, fake service-dependencies); added dev:seed-ops-demo + anti-sample-import guard (apps/cernia-ops/src/lib/no-sample-data-in-app.test.ts, shrinking allowlist). E2E spec (tests/e2e/specs/cernia-ops.spec.ts) updated: removed assertions on SAMPLE_* content (Acme Health sentinel, tenant-acme route, hardcoded metric strings inside OpsAsync), replaced with: heading-always-visible assertions + settled-state assertions (ops-async-error or ops-async-loading or data table) + explicit SAMPLE_SENTINEL absence check. Browser operator-cookie auth not yet wired in E2E (needs context.addCookies after minting cernia-super-admin token + dev:seed-ops-demo call — documented in spec header). Remaining: incidents/quotas/escalations/$impersonate/settings-internal pages (increments 4b-4e, tracked in apps/cernia-ops/src/lib/no-sample-data-in-app.test.ts allowlist)."
+            },
+            {
+              "date": "2026-06-11",
+              "stage": "phase-3-2-core-saas",
+              "from": "remaining",
+              "to": "narrowed",
+              "note": "cernia-ops increment 4b: escalations view de-mocked. New GET /cernia-ops/customers/escalations aggregate over support_tickets + sla_tier_assignments (apps/api/src/cernia-ops-escalations-routes.ts) — super-admin gated + sendPhiSafe; selects ONLY non-PHI columns (id/tenant/status/priority->severity/category/product_area/age/slaStatus), NEVER subject/description/requester_email/body (anti-leak test ESC06). Page apps/cernia-ops/.../customers/escalations/page.tsx now fetches via OpsAsync (no SAMPLE_ESCALATIONS); dev-seed-ops-demo seeds support_tickets + sla_tier_assignments. Removed from the no-sample-data-in-app guard allowlist (3 pages left: incidents/quotas/$impersonate). Remaining de-mock: 4c quotas, 4d incidents, 4e settings-internal + $impersonate."
             }
           ]
         },
