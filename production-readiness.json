@@ -1713,8 +1713,8 @@
           },
           "current": {
             "status": "complete",
-            "asOf": "2026-05-28",
-            "summary": "Done. 3 sample files deleted, 27 admin pages swapped, 5 new backend CRUD routes added to admin-tenants-routes. IAM + billing leveraged existing FHIR generic CRUD (User/Role/RoleBinding/ServiceAccount/ApiKey/Subscription/Invoice/UsageEvent already registered). Also caught + fixed a pre-existing Next-14 use(params) bug across 7 dynamic routes that had been 500-ing on baseline. All 32 pages HTTP 200; typecheck + lint clean. Followup 2026-05-28: tenant detail overview tab now reads real userCount + monthlyApiCalls via GET /admin/tenants/:id/metrics (backed by tenant_summary migration 062) — retires the TODO(metrics) placeholder and the operator-visible 'reads 0 until the metrics endpoint ships' disclaimer."
+            "asOf": "2026-06-12",
+            "summary": "cernia-ops portal de-mock COMPLETE — every operator surface renders real, super-admin-gated, PHI-safe data; anti-sample-import guard fully strict; sample-data.ts is test-only."
           },
           "history": [
             {
@@ -1747,6 +1747,13 @@
               "from": "remaining",
               "to": "narrowed",
               "note": "cernia-ops increment 4d: incidents view de-mocked (the heaviest). New cernia_ops_incidents table (migration 260) + apps/api/src/cernia-ops-incidents-routes.ts: GET merges derive-on-read signals (alerts row-presence + vendor_health_state status!=operational) with operator-PINNED records (a pinned row whose derived_key matches a derived signal suppresses the twin) + POST pin/create + PATCH annotate/resolve; super-admin + sendPhiSafe; response field operatorNote (note is a PHI forbidden-key). Page apps/cernia-ops/.../platform/incidents/page.tsx fetches the merged view via OpsAsync with Pin (derived) / Resolve (pinned) actions (ops-fetch extended for POST/PATCH). dev-seed-ops-demo seeds a degraded vendor + an alert + a pinned incident. Guard allowlist down to 1 ($impersonate). Remaining: 4e settings-internal + $impersonate, then sample-data.ts is deleted + the guard goes fully strict."
+            },
+            {
+              "date": "2026-06-12",
+              "stage": "phase-3-2-core-saas",
+              "from": "remaining",
+              "to": "complete",
+              "note": "cernia-ops de-mock COMPLETE (increments 4a-4e). 4e: settings-internal wired to cernia_super_admins (GET /cernia-ops/settings/internal/super-admins, operatorEmail rename + phi-blocker ALLOWED_VALUE_KEYS hardened to a direct-string-only scope w/ 6 key-scoping tests); tenants/[id]/$impersonate page fetches the real tenant-detail route (reuses 4a fetchTenantDetail). The anti-sample-import guard (no-sample-data-in-app.test.ts) is now FULLY STRICT (empty allowlist) — NO app/** file imports sample-data; sample-data.ts retained for test fixtures only (sample-data.test.ts contract checks + voice-agents sentinel tests). All 10 cernia-ops surfaces now render real super-admin-gated PHI-safe data: overview/all-tenants/tenant-detail/platform-health/voice (4a), escalations (4b), quotas (4c), incidents derive+pin (4d), settings-internal + impersonate (4e)."
             }
           ]
         },
