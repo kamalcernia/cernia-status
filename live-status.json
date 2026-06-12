@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-12T22:11:15.670Z",
-    "lastUpdatedDisplay": "Jun 12, 2026 — 22:11 EDT",
+    "lastUpdatedIso": "2026-06-12T22:45:46.266Z",
+    "lastUpdatedDisplay": "Jun 12, 2026 — 22:45 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #208 feat(billing): comprehensive Stripe S7 — refunds +"
   },
   "summary": {
-    "currentMainCommit": "f502c123",
+    "currentMainCommit": "b26d927f",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1271,
+    "agentsCompletedThisSession": 1272,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1271 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1272 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #208 feat(billing): comprehensive Stripe S7 — refunds + admin inv. (refreshed Jun 12, 2026 — 22:11 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #208 feat(billing): comprehensive Stripe S7 — refunds + admin inv. (refreshed Jun 12, 2026 — 22:45 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5240,7 +5240,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-12T22:11:14.767Z",
+      "lastAuditAt": "2026-06-12T22:45:45.080Z",
       "backendRouteSymbolCount": 188,
       "deferredItems": {
         "total": 946,
@@ -5299,10 +5299,10 @@
     },
     "justLandedWaves": [],
     "nowWorkingOn": {
-      "wave": "BUILD",
-      "detail": "untrack committed .next output for trust + patient (poisoned RSC manifest) (#211)",
-      "commit": "f502c123",
-      "freshSeconds": 34
+      "wave": "TRUST",
+      "detail": "header/footer cleanup — drop Changelog + Trust&Security tagline, align chrome (#212)",
+      "commit": "b26d927f",
+      "freshSeconds": 41
     }
   },
   "pool": {
@@ -5424,6 +5424,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "header/footer cleanup — drop Changelog + Trust&Security tagline, al...",
+      "commit": "b26d927f",
+      "kind": "fix"
+    },
+    {
       "agent": "untrack committed .next output for trust + patient (poisoned RSC ma...",
       "commit": "f502c123",
       "kind": "fix"
@@ -5491,11 +5496,6 @@
     {
       "agent": "de-mock increment 4b — escalations (PHI-safe support_tickets aggreg...",
       "commit": "bb0d865c",
-      "kind": "feat"
-    },
-    {
-      "agent": "platform email (Google Workspace SMTP) + SMS (Twilio Messaging Serv...",
-      "commit": "cefa6b2e",
       "kind": "feat"
     }
   ],
