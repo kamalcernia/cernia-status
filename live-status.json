@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-12T19:19:20.823Z",
-    "lastUpdatedDisplay": "Jun 12, 2026 — 19:19 EDT",
+    "lastUpdatedIso": "2026-06-12T22:01:52.952Z",
+    "lastUpdatedDisplay": "Jun 12, 2026 — 22:01 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #208 feat(billing): comprehensive Stripe S7 — refunds +"
   },
   "summary": {
-    "currentMainCommit": "0d763a0d",
+    "currentMainCommit": "806c5fdc",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1269,
+    "agentsCompletedThisSession": 1270,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1269 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1270 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #208 feat(billing): comprehensive Stripe S7 — refunds + admin inv. (refreshed Jun 12, 2026 — 19:19 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #208 feat(billing): comprehensive Stripe S7 — refunds + admin inv. (refreshed Jun 12, 2026 — 22:01 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -57,9 +57,9 @@
       "label": "581 test files landed · 0 active failures"
     },
     "velocity": {
-      "landedLastHour": 2,
-      "landedLast24h": 15,
-      "label": "2 PRs opened in last hour · 15 in last 24h"
+      "landedLastHour": 0,
+      "landedLast24h": 14,
+      "label": "0 PRs opened in last hour · 14 in last 24h"
     },
     "integration": {
       "lastMergeIso": "2026-06-10T12:49:34-04:00",
@@ -5240,7 +5240,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-12T19:19:19.598Z",
+      "lastAuditAt": "2026-06-12T22:01:51.924Z",
       "backendRouteSymbolCount": 188,
       "deferredItems": {
         "total": 946,
@@ -5299,10 +5299,10 @@
     },
     "justLandedWaves": [],
     "nowWorkingOn": {
-      "wave": "BILLING",
-      "detail": "comprehensive Stripe S8 (final) — e2e test-mode harness + go-live runbook (#209)",
-      "commit": "0d763a0d",
-      "freshSeconds": 33
+      "wave": "DOMAIN+AUTH",
+      "detail": "cerniahealth.com everywhere + trust Sign-in to admin login (#210)",
+      "commit": "806c5fdc",
+      "freshSeconds": 34
     }
   },
   "pool": {
@@ -5424,6 +5424,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "cerniahealth.com everywhere + trust Sign-in to admin login (#210)",
+      "commit": "806c5fdc",
+      "kind": "feat"
+    },
+    {
       "agent": "comprehensive Stripe S8 (final) — e2e test-mode harness + go-live r...",
       "commit": "0d763a0d",
       "kind": "feat"
@@ -5492,11 +5497,6 @@
       "agent": "de-mock increment 4a — honesty pass + regression guard (#196)",
       "commit": "0900d81e",
       "kind": "feat"
-    },
-    {
-      "agent": "unbreak API boot (ESM require) + verify/seed Edge fleet surface (#195)",
-      "commit": "5197248c",
-      "kind": "fix"
     }
   ],
   "failures": [
