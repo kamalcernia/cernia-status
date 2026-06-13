@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-13T19:53:02.416Z",
-    "lastUpdatedDisplay": "Jun 13, 2026 — 19:53 EDT",
+    "lastUpdatedIso": "2026-06-13T20:03:52.292Z",
+    "lastUpdatedDisplay": "Jun 13, 2026 — 20:03 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #229 feat: close the 5 deferred items (voice-tier billi"
   },
   "summary": {
-    "currentMainCommit": "5bbebd27",
+    "currentMainCommit": "64764350",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1290,
+    "agentsCompletedThisSession": 1291,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1290 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1291 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #229 feat: close the 5 deferred items (voice-tier billing, EHR sy. (refreshed Jun 13, 2026 — 19:53 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #229 feat: close the 5 deferred items (voice-tier billing, EHR sy. (refreshed Jun 13, 2026 — 20:03 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5402,19 +5402,19 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-13T19:53:01.634Z",
+      "lastAuditAt": "2026-06-13T20:03:51.504Z",
       "backendRouteSymbolCount": 193,
       "deferredItems": {
-        "total": 961,
+        "total": 962,
         "bySeverity": {
           "tech-debt": 259,
-          "review": 699,
+          "review": 700,
           "blocker": 3
         },
         "byKind": {
           "docstring-caveat": 246,
           "not-configured-fallback": 81,
-          "type-cheat-cast": 617,
+          "type-cheat-cast": 618,
           "type-cheat": 1,
           "todo-comment": 2,
           "skipped-test": 3,
@@ -5424,7 +5424,7 @@
           "UI": 34,
           "X": 36,
           "H": 14,
-          "Platform": 647,
+          "Platform": 648,
           "S": 1,
           "J": 12,
           "G": 27,
@@ -5580,6 +5580,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "wip(billing): tenant-admin billing-write surface — RBAC grant + rou...",
+      "commit": "64764350",
+      "kind": "other"
+    },
+    {
       "agent": "unified front door — @cernia/trust→@cernia/web hub, deterministic p...",
       "commit": "5bbebd27",
       "kind": "feat"
@@ -5647,11 +5652,6 @@
     {
       "agent": "new cerniahealth.com landing at / ; move trust home to /trust-home ...",
       "commit": "796bf8b8",
-      "kind": "feat"
-    },
-    {
-      "agent": "Release 1 — Voice Revenue (tiering, dispatch, reminders, no-show, a...",
-      "commit": "db3ea5be",
       "kind": "feat"
     }
   ],
