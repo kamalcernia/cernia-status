@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-13T12:28:37.393Z",
-    "lastUpdatedDisplay": "Jun 13, 2026 — 12:28 EDT",
+    "lastUpdatedIso": "2026-06-13T12:39:11.864Z",
+    "lastUpdatedDisplay": "Jun 13, 2026 — 12:39 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #215 fix(trust): footer shows only Platform links (drop"
   },
   "summary": {
-    "currentMainCommit": "796bf8b8",
+    "currentMainCommit": "5753f006",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1277,
+    "agentsCompletedThisSession": 1278,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1277 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1278 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #215 fix(trust): footer shows only Platform links (drop duplicate. (refreshed Jun 13, 2026 — 12:28 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #215 fix(trust): footer shows only Platform links (drop duplicate. (refreshed Jun 13, 2026 — 12:39 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5286,7 +5286,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-13T12:28:36.438Z",
+      "lastAuditAt": "2026-06-13T12:39:11.076Z",
       "backendRouteSymbolCount": 188,
       "deferredItems": {
         "total": 946,
@@ -5346,9 +5346,9 @@
     "justLandedWaves": [],
     "nowWorkingOn": {
       "wave": "TRUST",
-      "detail": "new cerniahealth.com landing at / ; move trust home to /trust-home (#217)",
-      "commit": "796bf8b8",
-      "freshSeconds": 31
+      "detail": "home foundation cards in cert-card style + trim footer to copyright (#218)",
+      "commit": "5753f006",
+      "freshSeconds": 40
     }
   },
   "pool": {
@@ -5470,6 +5470,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "home foundation cards in cert-card style + trim footer to copyright...",
+      "commit": "5753f006",
+      "kind": "feat"
+    },
+    {
       "agent": "new cerniahealth.com landing at / ; move trust home to /trust-home ...",
       "commit": "796bf8b8",
       "kind": "feat"
@@ -5537,11 +5542,6 @@
     {
       "agent": "comprehensive Stripe S3 — payment methods (API + Payment Element UI...",
       "commit": "f8e93906",
-      "kind": "feat"
-    },
-    {
-      "agent": "comprehensive Stripe S2 — subscription lifecycle (create/proration/...",
-      "commit": "8de3fccc",
       "kind": "feat"
     }
   ],
