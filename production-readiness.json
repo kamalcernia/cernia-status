@@ -1656,11 +1656,36 @@
             {
               "date": "2026-06-13",
               "stage": "tenant-customization",
+              "note": "Deferred D1 (Release-1 B3-followup) CLOSED — billing now flips the voice tier. Release 1 shipped the voice-tier MECHANISM (voice_tier column, allowedActionsForTier, resolveAllowedActions override-ceiling) but NOTHING flipped voice_tier on an entitlement change, so a tenant who bought Pro stayed stuck on the Starter ceiling. Wired the missing write path: (1) NEW apps/api/src/postgres-voice-tenant-resolver.ts setVoiceTier(tenantId, tier) — upserts voice_tenant_config.voice_tier, materialising a minimal placeholder row (Unconfigured / +10000000000, satisfies the NOT-NULL + E.164 CHECK) when the tenant has no config yet, and ON CONFLICT touches ONLY voice_tier (never clobbers brand_name/escalation_phone). (2) NEW apps/api/src/voice-tier-sync.ts — single source-of-truth helper syncVoiceTierFromEntitlements(db, tenantId): re-derives the tier from the tenant's CURRENT entitlements (Pro product `digital-assistant` active → 'pro', else 'starter') and writes it, so it's correct regardless of which product changed. (3) Hooked at BOTH entitlement-change seams: the Stripe checkout product-grant fan-out (apps/api/src/index.ts productCatalog.grantProduct adapter, after grantProduct) and the onboarding provisioner (apps/api/src/onboarding-full-provisioner.ts, after its grant loop). Both call the same helper; sync failure is non-fatal (entitlement grant is authoritative, tier is a derived projection). (4) Exported resolveAllowedActions from @cernia/voice-agent index so the policy-build resolver is reusable. End-to-end integration test (apps/api/src/voice-tier-sync.test.ts, 6 tests, real Postgres :5433) proves the FULL chain entitlement → voice_tier → resolveAllowedActions: grant Pro → voice_tier='pro' AND resolved allowedActions gains pay-balance/verify-insurance/list-invoices; revoke → 'starter' AND those Pro intents drop; placeholder-row creation; existing-config preservation. Also fixed a baseline bug: apps/api/src/postgres-voice-tenant-resolver.test.ts didn't load migration 262 so its resolve() reads (which SELECT voice_tier) errored — 9 pre-existing failures now 11/11 green. ADR-0127: @cernia/api typecheck=0, @cernia/voice-agent typecheck=0 + build=0, voice-tier-sync.ts lint-clean (the lone line-66 lint error in postgres-voice-tenant-resolver.ts is pre-existing/carry-forward, verified via git-stash baseline), no require() in any changed file, API boots clean on :8090 (full module graph loads; only failed on port-bind because a live instance held :8090).",
+              "files": [
+                "apps/api/src/voice-tier-sync.ts",
+                "apps/api/src/voice-tier-sync.test.ts",
+                "apps/api/src/postgres-voice-tenant-resolver.ts",
+                "apps/api/src/index.ts",
+                "apps/api/src/onboarding-full-provisioner.ts",
+                "packages/voice-agent/src/index.ts"
+              ]
+            },
+            {
+              "date": "2026-06-13",
+              "stage": "tenant-customization",
               "note": "Release 2 (FHIR Console) — per-tenant EHR RECORD-MODE configuration surfaced end-to-end (tenant self-serve over the existing RecordGateway). (1) NEW HTTP route GET/PUT /admin/record-mode over the existing RecordGateway, with an RBAC deriveOperation mapping so a tenant-admin can read + set their own record mode (apps/api/src/tenant-record-mode-routes.ts, commit 860a7422). (2) Migration 264 adds conflict_strategy + per-resource sync_resources columns to the tenant_record_mode table, and a tenant-admin Integrations UI at /admin/settings/integrations lets the tenant configure them (packages/storage/src/migrations/264_record_mode_sync_config.sql + apps/admin/src/app/admin/settings/integrations/ — page.tsx + integrations-api.ts, commit 9f70c8cc). Triager note: recorded under tenant-customization (per-tenant config of an external integration) — the closest existing stage; this extends the per-tenant configurability surface to EHR sync settings. Does not touch the stage's lone remaining 'Intent Handler Overrides' deferral (unrelated voice-agent item).",
               "files": [
                 "apps/api/src/tenant-record-mode-routes.ts",
                 "packages/storage/src/migrations/264_record_mode_sync_config.sql",
                 "apps/admin/src/app/admin/settings/integrations/"
+              ]
+            },
+            {
+              "date": "2026-06-13",
+              "stage": "tenant-customization",
+              "note": "Deferred D2 (Release-2 record-mode) CLOSED at the ENGINE level — generalized, config-driven RecordGateway sync engine + conflict strategy. Release 2 shipped the record-mode CONFIG (migration 264: mode + conflict_strategy + per-resource sync_resources) and the admin UI, but the EXECUTION was partial: apps/api/src/record-gateway.ts (RecordGatewayRouter) only routed Appointment-create + Slot-search to the EHR and threw NotImplementedError for every other resource/op. Built the generalized engine: (1) RecordGatewayRouter now resolves the FULL config (new RecordConfigResolver.resolveConfig — same TenantRecordModeStore instance) and routes EACH FHIR op (read/readVersion/historyList/create/update/delete/search) per resource type via routeFor(): mode 'cernia' or a cernia-only / unconfigured type → local verbatim (UNCHANGED default — the vast majority of tenants); read-only → reads/searches pull from the EHR connector, writes stay local; bidirectional → reads serve local with EHR fallback, writes go local AND push to the EHR; ehr-passthrough → ops go to the EHR (Cernia keeps only audit). Appointment/Slot are now just the scheduling special-case preserved behind the existing ehrSchedulingResolver seam (not hardcoded mode branches). (2) Conflict strategy on divergent bidirectional writes is REAL + tested for all three: ehr-wins (EHR authoritative, local reconciled to match, EHR not overwritten), cernia-wins (local pushed over EHR), manual (new RecordConflictError thrown, NEITHER side overwritten). (3) NEW generic EhrConnector interface (read/search/create/update/delete by resourceType) — the widened, vendor-agnostic generalization of the scheduling-only appointmentWrite/slotSearch seam; resolved per-tenant via new EhrConnectorResolver (ADR 0004 single-point-of-selection). Tests use an in-memory fake EHR. (4) Wired configResolver: recordModeStore at apps/api/src/index.ts so per-resource routing is live in prod. Tests: apps/api/src/record-gateway-sync.test.ts (14 NEW: cernia-only/unconfigured stays local + EHR untouched; read-only pulls reads from fake EHR + write stays local; bidirectional writes both sides; each conflict_strategy on a divergent fake-EHR copy; ehr-passthrough goes to the EHR) + record-gateway.test.ts updated for the generalized contract (34) + ehr-scheduling-resolver.test.ts (7) = 55/55 green. @cernia/api typecheck=0; record-gateway.ts lint-clean + no require(); the lone tenant-record-mode-store.ts line-397 lint error is pre-existing/carry-forward (verified git-stash baseline). API boots clean on :8091 ('Cernia FHIR server is ready', no NotImplementedError at boot); cernia-mode (default) Patient search=200 + create=201 through the gateway — DEFAULT PATH UNAFFECTED. SCOPE BOUNDARY: the REAL Epic/Cerner SMART-on-FHIR adapter implementing EhrConnector against a live FHIR endpoint is the remaining production wiring and is intentionally NOT set (ehrConnectorResolver unset) — until it lands, any resource configured to route to the EHR raises NotImplementedError rather than silently using Cernia. The engine itself is adapter-agnostic + config-driven.",
+              "files": [
+                "apps/api/src/record-gateway.ts",
+                "apps/api/src/record-gateway-sync.test.ts",
+                "apps/api/src/record-gateway.test.ts",
+                "apps/api/src/tenant-record-mode-store.ts",
+                "apps/api/src/index.ts"
               ]
             },
             {
@@ -1867,6 +1892,11 @@
               "from": "remaining",
               "to": "complete",
               "note": "cernia-ops de-mock COMPLETE (increments 4a-4e). 4e: settings-internal wired to cernia_super_admins (GET /cernia-ops/settings/internal/super-admins, operatorEmail rename + phi-blocker ALLOWED_VALUE_KEYS hardened to a direct-string-only scope w/ 6 key-scoping tests); tenants/[id]/$impersonate page fetches the real tenant-detail route (reuses 4a fetchTenantDetail). The anti-sample-import guard (no-sample-data-in-app.test.ts) is now FULLY STRICT (empty allowlist) — NO app/** file imports sample-data; sample-data.ts retained for test fixtures only (sample-data.test.ts contract checks + voice-agents sentinel tests). All 10 cernia-ops surfaces now render real super-admin-gated PHI-safe data: overview/all-tenants/tenant-detail/platform-health/voice (4a), escalations (4b), quotas (4c), incidents derive+pin (4d), settings-internal + impersonate (4e)."
+            },
+            {
+              "date": "2026-06-13",
+              "stage": "phase-3-2-core-saas",
+              "note": "Deferred D3a (backend SSO mechanism) — the cernia-ops portal now has a PRODUCTION cookie session login, closing the 4a gap ('Browser operator-cookie auth not yet wired' — the API read tokens ONLY from Authorization: Bearer while cernia-ops pages call with credentials:'include'). (1) Cookie-token fallback: registered @fastify/cookie (apps/api/src/index.ts step 7.0b) and extended principalResolver (apps/api/src/iam-route-guards.ts) so that when NO Authorization: Bearer header is present it falls back to the HttpOnly cernia_ops_session cookie and verifies it via the SAME jwtIssuer — Bearer ALWAYS wins when present, so admin/patient/API auth is byte-unchanged (all 27 iam-route-guards tests stay green). (2) CSRF double-submit: alongside the HttpOnly session cookie a NON-HttpOnly cernia_ops_csrf cookie is set; the global RBAC hook now requires X-Cernia-Ops-CSRF === the cookie for COOKIE-authenticated POST/PUT/PATCH/DELETE (403 csrf-failed on mismatch); Bearer-auth requests carry no cookie and are exempt; GET/HEAD exempt. (3) Login/logout: apps/api/src/cernia-ops-session-routes.ts — POST /cernia-ops/auth/login reuses the EXISTING BuiltInIdentityProvider credential check (same provider as /api/auth/login) and REQUIRES the cernia-super-admin role (403 if authenticated-but-not-operator, 401 on bad creds), sets the HttpOnly session + CSRF cookies (SameSite=Strict, Path=/, Secure in prod, Max-Age = JWT lifetime) and returns {ok:true} (token NEVER in body); a CERNIA_DEV_LOGIN-gated dev path mints a super-admin session cookie for local/E2E; POST /cernia-ops/auth/logout clears both cookies. Both routes allow-listed in permitAllForUnauthenticatedRoutes (CSRF + auth exempt). Tests: 11 in cernia-ops-session-routes.test.ts + 5 cookie/CSRF cases added to iam-route-guards.test.ts (38 total green). Verified live on :8090: POST /cernia-ops/auth/login {dev:true} -> 200 + Set-Cookie: cernia_ops_session (HttpOnly); cookie-only GET /cernia-ops/platform/health -> 200; cookie POST without CSRF -> 403 csrf-failed, with matching header -> passes. @cernia/api typecheck=0, changed-source lint=0. PROD-PATH GAP: an operator whose account has MFA enabled cannot complete this single-step login (authenticate returns mfa-required -> 401); MFA operators need the step-up flow or non-interactive-MFA provisioning on this surface. Part 2 (D3b — cernia-ops login UI + Playwright) still pending. Files: apps/api/src/cernia-ops-session-routes.ts, apps/api/src/cernia-ops-session-routes.test.ts, apps/api/src/iam-route-guards.ts, apps/api/src/iam-route-guards.test.ts, apps/api/src/index.ts, apps/api/package.json."
             }
           ]
         },
@@ -2065,10 +2095,45 @@
             {
               "date": "2026-06-12",
               "stage": "phase-3-7-workapp-cleanup",
-              "note": "Release 1 (Voice Revenue) — The Desk workspace (the 6 office-admin tabs noted in this stage's current summary) was extracted from apps/admin into a standalone front-office surface apps/desk on port :3004, then removed from apps/admin (commits 78fdbcc9 + 7a83bba4). Note for the human triager: this is a UI-surface / app-architecture change (a new front-office persona app alongside apps/admin / apps/cernia-ops / apps/patient), not a sample-data-elimination item — recorded here because this is the only stage that tracks the Desk workspace. No production-readiness track currently owns the new apps/desk surface as a first-class persona app.",
+              "note": "Release 1 (Voice Revenue) — The Desk workspace (the 6 office-admin tabs noted in this stage's current summary) was extracted from apps/admin into a standalone front-office surface apps/desk on port :3004, then removed from apps/admin (commits 78fdbcc9 + 7a83bba4). This UI-surface / app-architecture change (a new front-office persona app alongside apps/admin / apps/cernia-ops / apps/patient) now has a first-class home: see the 'desk-app' stage in this track for the apps/desk surface as a tracked persona app (deferred item D5 closed 2026-06-13).",
               "files": [
                 "apps/desk",
                 "apps/admin"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "desk-app",
+          "name": "The Desk — standalone front-office persona app (apps/desk)",
+          "rationale": "The Desk is the front-office / office-admin daily-driver surface (schedule, calls, patients, intake, insurance, no-shows, waitlist, settings). In Release 1 it was extracted out of apps/admin into its own Next.js app on :3004, making it a first-class persona app alongside apps/admin (tenant admin/clinical), apps/cernia-ops (platform operators), and apps/patient (patient portal). This stage tracks apps/desk as that persona surface — previously the only record of the Desk lived under the work-app sample-data cleanup stage, which did not own it as an app.",
+          "baseline": {
+            "status": "absent",
+            "asOf": "2026-06-12",
+            "summary": "The Desk lived as an (office-admin) route group inside apps/admin; no standalone persona app."
+          },
+          "current": {
+            "status": "complete",
+            "asOf": "2026-06-13",
+            "summary": "apps/desk is a standalone Next.js app on :3004 (@cernia/desk), extracted from apps/admin and removed from it. All Desk tabs (dashboard, schedule, calls, patients + intake + per-patient insurance, no-shows, waitlist, settings) ported with their real backend wiring (FHIR fetcher + voice-calls-api against apps/api). Office-admin RBAC gate (office-admin-gate.ts, office-admin/tenant-admin only) and shared session hooks (use-current-roles.ts → /api/auth/me) carried over. Covered by @release-1-tagged Playwright E2E specs (desk live specs in the 9-spec Release-1 suite, passing headed against the live stack) plus per-client unit tests (intake, insurance, schedule actions, settings)."
+          },
+          "evidence": [],
+          "remaining": [
+            "apps/desk has no standalone auth/login surface of its own — it shares the localStorage Bearer-token pattern (apps/desk/src/lib/fhir-fetcher.ts reads TOKEN_KEY from window.localStorage) and resolves session/roles via apps/api GET /api/auth/me. A direct hit to :3004 with no token has no in-app sign-in flow; cross-app SSO/session handoff with apps/admin is unspecified.",
+            "No dedicated CI/deploy target for apps/desk — .github/workflows/deploy-canary.yml only deploys apps/admin; apps/desk is not in any canary/deploy pipeline (only incidental coverage via the Playwright browser-matrix E2E).",
+            "Production-readiness of the standalone surface not yet audited as a first-class app: accessibility (a11y) pass, error/empty/loading states across all tabs, and a not-authorized/expired-token UX (vs. the office-admin-gate banner) have not been reviewed for apps/desk on its own."
+          ],
+          "history": [
+            {
+              "date": "2026-06-13",
+              "stage": "desk-app",
+              "note": "Deferred item D5 — gave apps/desk a first-class home. The Desk was extracted from apps/admin into a standalone Next.js app (@cernia/desk) on port :3004 and removed from apps/admin; the extraction landed on main via PR #216 (commits 78fdbcc9 extract + 7a83bba4 remove-from-admin; the @release-1 desk E2E specs in 0832bd14). The prior triager note under phase-3-7-workapp-cleanup ('no production-readiness track currently owns apps/desk') was updated to point here. Surface lives at apps/desk/ (routes under apps/desk/src/app/desk/*).",
+              "files": [
+                "apps/desk",
+                "apps/desk/src/app/desk",
+                "apps/desk/src/lib/fhir-fetcher.ts",
+                "apps/desk/src/lib/office-admin-gate.ts",
+                "apps/desk/src/lib/use-current-roles.ts"
               ]
             }
           ]
