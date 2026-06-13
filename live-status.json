@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-13T12:53:11.934Z",
-    "lastUpdatedDisplay": "Jun 13, 2026 — 12:53 EDT",
+    "lastUpdatedIso": "2026-06-13T13:04:09.114Z",
+    "lastUpdatedDisplay": "Jun 13, 2026 — 13:04 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #215 fix(trust): footer shows only Platform links (drop"
   },
   "summary": {
-    "currentMainCommit": "8538b0c3",
+    "currentMainCommit": "fe0e125f",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1280,
+    "agentsCompletedThisSession": 1281,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1280 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1281 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #215 fix(trust): footer shows only Platform links (drop duplicate. (refreshed Jun 13, 2026 — 12:53 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #215 fix(trust): footer shows only Platform links (drop duplicate. (refreshed Jun 13, 2026 — 13:04 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5286,7 +5286,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-13T12:53:11.156Z",
+      "lastAuditAt": "2026-06-13T13:04:08.105Z",
       "backendRouteSymbolCount": 188,
       "deferredItems": {
         "total": 946,
@@ -5346,9 +5346,9 @@
     "justLandedWaves": [],
     "nowWorkingOn": {
       "wave": "TRUST",
-      "detail": "compact single-row footer + tighten content-to-footer gap (#220)",
-      "commit": "8538b0c3",
-      "freshSeconds": 35
+      "detail": "unify page frame to max-w-7xl (home + chrome) + restore fuller footer text (#221)",
+      "commit": "fe0e125f",
+      "freshSeconds": 36
     }
   },
   "pool": {
@@ -5470,6 +5470,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "unify page frame to max-w-7xl (home + chrome) + restore fuller foot...",
+      "commit": "fe0e125f",
+      "kind": "fix"
+    },
+    {
       "agent": "compact single-row footer + tighten content-to-footer gap (#220)",
       "commit": "8538b0c3",
       "kind": "fix"
@@ -5537,11 +5542,6 @@
     {
       "agent": "comprehensive Stripe S6 — single webhook endpoint + charge/dispute ...",
       "commit": "0591ae16",
-      "kind": "feat"
-    },
-    {
-      "agent": "comprehensive Stripe S5 — dunning + Smart Retries (#206)",
-      "commit": "d3150a9a",
       "kind": "feat"
     }
   ],
