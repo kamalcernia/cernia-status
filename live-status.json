@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-13T13:50:01.583Z",
-    "lastUpdatedDisplay": "Jun 13, 2026 — 13:50 EDT",
+    "lastUpdatedIso": "2026-06-13T14:15:36.595Z",
+    "lastUpdatedDisplay": "Jun 13, 2026 — 14:15 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #215 fix(trust): footer shows only Platform links (drop"
   },
   "summary": {
-    "currentMainCommit": "f8b70c87",
+    "currentMainCommit": "d22693a1",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1284,
+    "agentsCompletedThisSession": 1285,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1284 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1285 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #215 fix(trust): footer shows only Platform links (drop duplicate. (refreshed Jun 13, 2026 — 13:50 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #215 fix(trust): footer shows only Platform links (drop duplicate. (refreshed Jun 13, 2026 — 14:15 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5286,7 +5286,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-13T13:50:00.556Z",
+      "lastAuditAt": "2026-06-13T14:15:35.761Z",
       "backendRouteSymbolCount": 188,
       "deferredItems": {
         "total": 946,
@@ -5346,9 +5346,9 @@
     "justLandedWaves": [],
     "nowWorkingOn": {
       "wave": "ADMIN",
-      "detail": "surface trial→paid conversion (no card at signup, card after trial) (#224)",
-      "commit": "f8b70c87",
-      "freshSeconds": 31
+      "detail": "billing page no longer crashes for tiers missing overageRates (#225)",
+      "commit": "d22693a1",
+      "freshSeconds": 34
     }
   },
   "pool": {
@@ -5470,6 +5470,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "billing page no longer crashes for tiers missing overageRates (#225)",
+      "commit": "d22693a1",
+      "kind": "fix"
+    },
+    {
       "agent": "surface trial→paid conversion (no card at signup, card after trial)...",
       "commit": "f8b70c87",
       "kind": "feat"
@@ -5538,11 +5543,6 @@
       "agent": "untrack committed .next output for trust + patient (poisoned RSC ma...",
       "commit": "f502c123",
       "kind": "fix"
-    },
-    {
-      "agent": "cerniahealth.com everywhere + trust Sign-in to admin login (#210)",
-      "commit": "806c5fdc",
-      "kind": "feat"
     }
   ],
   "failures": [
