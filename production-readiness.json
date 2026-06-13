@@ -484,6 +484,23 @@
           ],
           "history": [
             {
+              "date": "2026-06-12",
+              "stage": "bot-workflow-runtime",
+              "note": "Release 1 (Voice Revenue) — tenant-admin action→workflow authoring/binding made fully reachable + exercised end-to-end. (1) RBAC fix (f19bc905): /admin/agent-actions/* now maps to the AgentActionBinding op in apps/api/src/iam-route-guards.ts — the binding-authoring API was 403 for every tenant-admin and is now reachable. (2) Dispatch proof (9a1c9d45): apps/api/src/intent-dispatch-registry.dispatch.test.ts proves a bound workflow actually invokes executeWorkflow (closes the gap where a binding existed but nothing confirmed it fired). (3) Authoring UI (e760a50f): tenant-admin action→workflow authoring surface shipped at apps/admin/src/app/admin/voice-agent/actions/page.tsx + apps/admin/src/lib/agent-actions-api.ts (replaces the prior deep-link-only path). (4) Seeded templates (14089007): Phone Agent + Digital Assistant voice workflow templates seeded via apps/api/src/phone-agent-workflow-templates.ts so a new tenant has authorable starting points. (5) Appointment automation: appointment.no-show event + emit + base comms template (29461069 — packages/executor/src/comms-base-templates.ts, apps/api/src/appointment-ops-routes.ts); real Postgres AppointmentReminderStore replacing the no-op (884778db — packages/notifications/src/scheduled-jobs/postgres-appointment-reminder-store.ts, packages/storage/src/migrations/263_appointment_reminder_sent.sql, boot in apps/api/src/index.ts).",
+              "files": [
+                "apps/api/src/iam-route-guards.ts",
+                "apps/api/src/intent-dispatch-registry.dispatch.test.ts",
+                "apps/admin/src/app/admin/voice-agent/actions/page.tsx",
+                "apps/admin/src/lib/agent-actions-api.ts",
+                "apps/api/src/phone-agent-workflow-templates.ts",
+                "packages/executor/src/comms-base-templates.ts",
+                "apps/api/src/appointment-ops-routes.ts",
+                "packages/notifications/src/scheduled-jobs/postgres-appointment-reminder-store.ts",
+                "packages/storage/src/migrations/263_appointment_reminder_sent.sql",
+                "apps/api/src/index.ts"
+              ]
+            },
+            {
               "date": "2026-06-10",
               "stage": "bot-workflow-runtime",
               "from": "remaining",
@@ -1614,6 +1631,16 @@
           ],
           "history": [
             {
+              "date": "2026-06-12",
+              "stage": "tenant-customization",
+              "note": "Release 1 (Voice Revenue) — tenant-customization allowedActions is now tier-ceilinged (ADR 0035 entitlement gate). New voice_tier column (packages/storage/src/migrations/262_voice_tier.sql) drives a hard paywall ceiling in packages/voice-agent/src/voice-tier.ts + tenant-customization.ts: a tenant's resolved allowedActions can never exceed its tier ceiling, so a Starter tenant cannot self-grant Pro-tier actions via the customization surface. Commits 2849251a, d758ef52, 2e91b5cc, 20c9b73e. This extends the existing per-tenant customization binding (allowedIntents/allowedActions) with a tier-enforced upper bound.",
+              "files": [
+                "packages/storage/src/migrations/262_voice_tier.sql",
+                "packages/voice-agent/src/voice-tier.ts",
+                "packages/voice-agent/src/tenant-customization.ts"
+              ]
+            },
+            {
               "date": "2026-05-25",
               "note": "Shipped InMemoryTenantCustomizationStore + wired single instance into voice-agent-admin-routes + voice-call-handler. applyTenantCustomization called at session start; allowedIntents override now reaches the dialog policy. Customer-facing customization guide authored."
             },
@@ -2000,7 +2027,18 @@
             "status": "complete",
             "asOf": "2026-05-25",
             "summary": "Done. 5 work-app sample files deleted (dashboards, desk, resources, tasks, worklists). Work-app pages /work/tasks/[id] + /forms/[taskId] swapped to fetchResource<Task> via generic FHIR CRUD. ZERO sample-*.ts files remain in apps/admin/src/app/_data/. ZERO orphan imports across apps/admin/src/. ADDITIONALLY: all 6 (office-admin) desk workspace tabs fully wired to real backends. Dashboard: 4 stat tiles from live /fhir/Appointment + /fhir/Patient?_summary=count + voiceAgentApi.getOverview('day'). Schedule: status-filter table from /fhir/Appointment with duration compute. Calls: paginated voiceAgentApi.listCalls() table with day/week/month window toggle. Patients: searchable /fhir/Patient?name= table with pagination. No-shows: /fhir/Appointment?status=noshow with last-7/30/90-day range filter. Settings: reminder policy + escalation threshold + no-show fee + urgent-line form (in-memory until desk-settings API ships). Typecheck clean post-rewrite."
-          }
+          },
+          "history": [
+            {
+              "date": "2026-06-12",
+              "stage": "phase-3-7-workapp-cleanup",
+              "note": "Release 1 (Voice Revenue) — The Desk workspace (the 6 office-admin tabs noted in this stage's current summary) was extracted from apps/admin into a standalone front-office surface apps/desk on port :3004, then removed from apps/admin (commits 78fdbcc9 + 7a83bba4). Note for the human triager: this is a UI-surface / app-architecture change (a new front-office persona app alongside apps/admin / apps/cernia-ops / apps/patient), not a sample-data-elimination item — recorded here because this is the only stage that tracks the Desk workspace. No production-readiness track currently owns the new apps/desk surface as a first-class persona app.",
+              "files": [
+                "apps/desk",
+                "apps/admin"
+              ]
+            }
+          ]
         }
       ],
       "history": [
@@ -2651,6 +2689,14 @@
           "evidence": [],
           "remaining": [],
           "history": [
+            {
+              "date": "2026-06-12",
+              "stage": "playwright-project",
+              "note": "Release 1 (Voice Revenue) — added 9 @release-1-tagged Playwright E2E specs covering the voice-revenue flow (action→workflow authoring/binding reachability, dispatch firing, voice-tier paywall ceiling, appointment reminders + no-show automation, and the extracted apps/desk surface). All 9 pass headed against the live stack. Commit 0832bd14.",
+              "files": [
+                "tests/e2e"
+              ]
+            },
             {
               "date": "2026-05-31",
               "stage": "playwright-project",
