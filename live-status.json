@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-13T19:07:40.960Z",
-    "lastUpdatedDisplay": "Jun 13, 2026 — 19:07 EDT",
-    "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #228 fix: cernia-ops dev-runnable (Windows standalone c"
+    "lastUpdatedIso": "2026-06-13T19:53:02.416Z",
+    "lastUpdatedDisplay": "Jun 13, 2026 — 19:53 EDT",
+    "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #229 feat: close the 5 deferred items (voice-tier billi"
   },
   "summary": {
-    "currentMainCommit": "ce8ae6c1",
+    "currentMainCommit": "5bbebd27",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1289,
+    "agentsCompletedThisSession": 1290,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1289 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1290 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #228 fix: cernia-ops dev-runnable (Windows standalone crash) + op. (refreshed Jun 13, 2026 — 19:07 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #229 feat: close the 5 deferred items (voice-tier billing, EHR sy. (refreshed Jun 13, 2026 — 19:53 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -57,9 +57,9 @@
       "label": "581 test files landed · 0 active failures"
     },
     "velocity": {
-      "landedLastHour": 0,
+      "landedLastHour": 1,
       "landedLast24h": 15,
-      "label": "0 PRs opened in last hour · 15 in last 24h"
+      "label": "1 PR opened in last hour · 15 in last 24h"
     },
     "integration": {
       "lastMergeIso": "2026-06-10T12:49:34-04:00",
@@ -1034,7 +1034,7 @@
                 {
                   "date": "2026-06-11",
                   "stage": "saas-billing-marketplace",
-                  "note": "Cernia Store Plan 5 — public-surface checkout: a prospect's storefront plan/product selection now carries through signup to provisioning. (1) apps/trust public-storefront CTAs pass ?tier=<id> / ?products=<id>; the installer start proxy forwards query->body; POST /onboarding/start accepts + validates {tier (sandbox/starter/growth/enterprise), products (subset of KNOWN_PRODUCTS)} and stores them on the session (selectedTier/selectedProducts). 30 onboarding-routes + 29 public-storefront tests. (2) OnboardingFullProvisioner consumes the selection: grant loop priority selectedProducts -> use-case.products -> ['phone-agent'] (filtered to KNOWN_PRODUCTS); startTrial plan = mapTierToTrialPlan(selectedTier) (sandbox/starter->starter, growth->business, enterprise->enterprise) ?? default; no-selection defaults unchanged; idempotent. 17 tests. provisionTenant already creates the Stripe CUSTOMER + tenant + admin user + Twilio subaccount (built). DEFERRED (procurement): live Stripe SUBSCRIPTION at signup (real keys + Price-ID sync); paid conversion stays the existing trial->paid path. api/trust/installer typecheck clean. Built at the stable C:\\dev clone.",
+                  "note": "Cernia Store Plan 5 — public-surface checkout: a prospect's storefront plan/product selection now carries through signup to provisioning. (1) apps/web public-storefront CTAs pass ?tier=<id> / ?products=<id>; the installer start proxy forwards query->body; POST /onboarding/start accepts + validates {tier (sandbox/starter/growth/enterprise), products (subset of KNOWN_PRODUCTS)} and stores them on the session (selectedTier/selectedProducts). 30 onboarding-routes + 29 public-storefront tests. (2) OnboardingFullProvisioner consumes the selection: grant loop priority selectedProducts -> use-case.products -> ['phone-agent'] (filtered to KNOWN_PRODUCTS); startTrial plan = mapTierToTrialPlan(selectedTier) (sandbox/starter->starter, growth->business, enterprise->enterprise) ?? default; no-selection defaults unchanged; idempotent. 17 tests. provisionTenant already creates the Stripe CUSTOMER + tenant + admin user + Twilio subaccount (built). DEFERRED (procurement): live Stripe SUBSCRIPTION at signup (real keys + Price-ID sync); paid conversion stays the existing trial->paid path. api/trust/installer typecheck clean. Built at the stable C:\\dev clone.",
                   "from": "remaining",
                   "to": "narrowed"
                 },
@@ -1060,7 +1060,7 @@
                 {
                   "date": "2026-06-11",
                   "stage": "saas-billing-marketplace",
-                  "note": "Cernia Store PUBLIC storefront (sub-project 3) — the prospect-facing first page, built in apps/trust (marketing chrome, NO admin sidebar; resolves 'why do I see the admin panel' — admin nav only appears post-auth in apps/admin). (1) PUBLIC no-auth GET /store/catalog (apps/api/src/public-store-catalog-routes.ts) reuses aggregateCatalog tenant-agnostically (currentTier='', products all 'available' = pricing-only); KNOWN_PRODUCTS exported to share with the authed route; '/store/catalog' added to permitAllForUnauthenticatedRoutes in iam-route-guards.ts. Verified live: /store/catalog 200 with NO token; /admin/store/catalog stays 401. (2) apps/trust/src/app/store + PublicStorefront component (catalog-types copied, store-api fetchPublicCatalog, prospect CTAs -> install.cernia.io + /contact, same Inter font + bg-card/text-foreground/text-primary tokens as admin, deployment-models band) + 'Products' nav link in TrustHeader. Tests: 23 component + 53 trust tests pass, typecheck clean, production build OK (/store route compiled). tests/e2e/specs/public-storefront.spec.ts added (headed, asserts no admin sidebar + prospect CTA; runs once the app is serveable). ENV BLOCKER (not code): recurring next-package corruption (repo under OneDrive\\Desktop -> OneDrive sync races pnpm's hardlinked store, drops next/dist/bin/next + entries.js) blocks serving trust for a live headed run; durable fix = move the repo off OneDrive."
+                  "note": "Cernia Store PUBLIC storefront (sub-project 3) — the prospect-facing first page, built in apps/web (marketing chrome, NO admin sidebar; resolves 'why do I see the admin panel' — admin nav only appears post-auth in apps/admin). (1) PUBLIC no-auth GET /store/catalog (apps/api/src/public-store-catalog-routes.ts) reuses aggregateCatalog tenant-agnostically (currentTier='', products all 'available' = pricing-only); KNOWN_PRODUCTS exported to share with the authed route; '/store/catalog' added to permitAllForUnauthenticatedRoutes in iam-route-guards.ts. Verified live: /store/catalog 200 with NO token; /admin/store/catalog stays 401. (2) apps/web/src/app/store + PublicStorefront component (catalog-types copied, store-api fetchPublicCatalog, prospect CTAs -> install.cernia.io + /contact, same Inter font + bg-card/text-foreground/text-primary tokens as admin, deployment-models band) + 'Products' nav link in TrustHeader. Tests: 23 component + 53 trust tests pass, typecheck clean, production build OK (/store route compiled). tests/e2e/specs/public-storefront.spec.ts added (headed, asserts no admin sidebar + prospect CTA; runs once the app is serveable). ENV BLOCKER (not code): recurring next-package corruption (repo under OneDrive\\Desktop -> OneDrive sync races pnpm's hardlinked store, drops next/dist/bin/next + entries.js) blocks serving trust for a live headed run; durable fix = move the repo off OneDrive."
                 },
                 {
                   "date": "2026-06-10",
@@ -4280,7 +4280,7 @@
                 {
                   "bullet": "Pricing/marketing page parity with installer",
                   "closedAt": "2026-05-27",
-                  "note": "PROD-P13 final: apps/trust/src/app/pricing/page.tsx imports TIER_FEATURES + TIER_QUOTA_CAPS + FEATURE_CATALOG directly from @cernia/billing (no hardcoded numbers) with @pricing-parity:source-of-truth marker; scripts/check-pricing-parity.mjs scans surfaces for marker + canonical import + hardcoded-number heuristic, emits snapshot to docs/compliance/pricing-parity-snapshots/, exits 1 in --strict on drift. Single canonical source for tier caps + features across trust + installer + admin per ADR 0023 §4."
+                  "note": "PROD-P13 final: apps/web/src/app/pricing/page.tsx imports TIER_FEATURES + TIER_QUOTA_CAPS + FEATURE_CATALOG directly from @cernia/billing (no hardcoded numbers) with @pricing-parity:source-of-truth marker; scripts/check-pricing-parity.mjs scans surfaces for marker + canonical import + hardcoded-number heuristic, emits snapshot to docs/compliance/pricing-parity-snapshots/, exits 1 in --strict on drift. Single canonical source for tier caps + features across trust + installer + admin per ADR 0023 §4."
                 }
               ],
               "history": [
@@ -4303,7 +4303,12 @@
                   "stage": "scope",
                   "from": "remaining",
                   "to": "closed",
-                  "note": "PROD-P13 final: apps/trust/src/app/pricing/page.tsx imports TIER_FEATURES + TIER_QUOTA_CAPS + FEATURE_CATALOG directly from @cernia/billing (no hardcoded numbers) with @pricing-parity:source-of-truth marker; scripts/check-pricing-parity.mjs scans surfaces for marker + canonical import + hardcoded-number heuristic, emits snapshot to docs/compliance/pricing-parity-snapshots/, exits 1 in --strict on drift. Single canonical source for tier caps + features across trust + installer + admin per ADR 0023 §4."
+                  "note": "PROD-P13 final: apps/web/src/app/pricing/page.tsx imports TIER_FEATURES + TIER_QUOTA_CAPS + FEATURE_CATALOG directly from @cernia/billing (no hardcoded numbers) with @pricing-parity:source-of-truth marker; scripts/check-pricing-parity.mjs scans surfaces for marker + canonical import + hardcoded-number heuristic, emits snapshot to docs/compliance/pricing-parity-snapshots/, exits 1 in --strict on drift. Single canonical source for tier caps + features across trust + installer + admin per ADR 0023 §4."
+                },
+                {
+                  "date": "2026-06-13",
+                  "stage": "scope",
+                  "note": "Unified front door: @cernia/trust→@cernia/web on :3000, deterministic dev ports, hub routing, logged-out admin/patient → web-hub auth guard (apps/web, apps/admin/src/components/app-shell.tsx, apps/patient/src/components/portal-auth-gate.tsx). Cross-app env vars documented (apps/web/.env.local.example NEXT_PUBLIC_ADMIN_URL/PATIENT_URL; apps/admin+patient/.env.local.example NEXT_PUBLIC_WEB_URL). CORS origins updated in apps/api/.env.example to include all three dev origins (:3000/:3001/:3002) for credentialed-request compatibility (PR #229)."
                 }
               ]
             }
@@ -5397,7 +5402,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-13T19:07:40.136Z",
+      "lastAuditAt": "2026-06-13T19:53:01.634Z",
       "backendRouteSymbolCount": 193,
       "deferredItems": {
         "total": 961,
@@ -5575,6 +5580,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "unified front door — @cernia/trust→@cernia/web hub, deterministic p...",
+      "commit": "5bbebd27",
+      "kind": "feat"
+    },
+    {
       "agent": "close the 5 deferred items (voice-tier billing, EHR sync engine, op...",
       "commit": "ce8ae6c1",
       "kind": "feat"
@@ -5643,11 +5653,6 @@
       "agent": "Release 1 — Voice Revenue (tiering, dispatch, reminders, no-show, a...",
       "commit": "db3ea5be",
       "kind": "feat"
-    },
-    {
-      "agent": "footer keeps only Platform links (drop duplicate Trust nav column) ...",
-      "commit": "24983ecd",
-      "kind": "fix"
     }
   ],
   "failures": [
@@ -12581,6 +12586,13 @@
   ],
   "recentPrActivity": [
     {
+      "number": 229,
+      "title": "feat: close the 5 deferred items (voice-tier billing, EHR sync engine, ops SSO, sandbox gate, desk track)",
+      "state": "MERGED",
+      "createdAt": "2026-06-13T19:06:54Z",
+      "mergedAt": "2026-06-13T19:07:05Z"
+    },
+    {
       "number": 228,
       "title": "fix: cernia-ops dev-runnable (Windows standalone crash) + ops-UI auth/role-binding",
       "state": "MERGED",
@@ -12677,13 +12689,6 @@
       "state": "MERGED",
       "createdAt": "2026-06-12T23:12:22Z",
       "mergedAt": "2026-06-12T23:12:33Z"
-    },
-    {
-      "number": 214,
-      "title": "feat(trust): contact Support section, remove Bug bounty, rebalance footer",
-      "state": "MERGED",
-      "createdAt": "2026-06-12T23:05:13Z",
-      "mergedAt": "2026-06-12T23:05:25Z"
     }
   ],
   "fileCountCache": {
@@ -13279,7 +13284,8 @@
     "origin/feat/wave-z-4-onboarding-milestones@6acf340689f0": 0,
     "origin/feat/wave-z-5-cs-task-scheduler@4201da2b0741": 0,
     "origin/feat/wave-z-6-in-app-nps-widget-state@4201da2b0741": 0,
-    "origin/feat/wave-z-7-churn-analytics-service@4201da2b0741": 0
+    "origin/feat/wave-z-7-churn-analytics-service@4201da2b0741": 0,
+    "origin/feat/web-front-door@acdcedb00cd2": 100
   },
   "testFileCountCache": {
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
@@ -13874,7 +13880,8 @@
     "origin/feat/wave-z-4-onboarding-milestones@6acf340689f0": 0,
     "origin/feat/wave-z-5-cs-task-scheduler@4201da2b0741": 0,
     "origin/feat/wave-z-6-in-app-nps-widget-state@4201da2b0741": 0,
-    "origin/feat/wave-z-7-churn-analytics-service@4201da2b0741": 0
+    "origin/feat/wave-z-7-churn-analytics-service@4201da2b0741": 0,
+    "origin/feat/web-front-door@acdcedb00cd2": 5
   },
   "mergedIntoMainCache": {
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
@@ -14469,7 +14476,8 @@
     "origin/feat/wave-z-4-onboarding-milestones@6acf340689f0": true,
     "origin/feat/wave-z-5-cs-task-scheduler@4201da2b0741": true,
     "origin/feat/wave-z-6-in-app-nps-widget-state@4201da2b0741": true,
-    "origin/feat/wave-z-7-churn-analytics-service@4201da2b0741": true
+    "origin/feat/wave-z-7-churn-analytics-service@4201da2b0741": true,
+    "origin/feat/web-front-door@acdcedb00cd2": false
   },
   "pendingBlockers": [
     {
