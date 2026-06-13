@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-13T13:04:09.114Z",
-    "lastUpdatedDisplay": "Jun 13, 2026 — 13:04 EDT",
+    "lastUpdatedIso": "2026-06-13T13:23:14.260Z",
+    "lastUpdatedDisplay": "Jun 13, 2026 — 13:23 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #215 fix(trust): footer shows only Platform links (drop"
   },
   "summary": {
-    "currentMainCommit": "fe0e125f",
+    "currentMainCommit": "40367ba8",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1281,
+    "agentsCompletedThisSession": 1282,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1281 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1282 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #215 fix(trust): footer shows only Platform links (drop duplicate. (refreshed Jun 13, 2026 — 13:04 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #215 fix(trust): footer shows only Platform links (drop duplicate. (refreshed Jun 13, 2026 — 13:23 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5286,7 +5286,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-13T13:04:08.105Z",
+      "lastAuditAt": "2026-06-13T13:23:13.224Z",
       "backendRouteSymbolCount": 188,
       "deferredItems": {
         "total": 946,
@@ -5345,9 +5345,9 @@
     },
     "justLandedWaves": [],
     "nowWorkingOn": {
-      "wave": "TRUST",
-      "detail": "unify page frame to max-w-7xl (home + chrome) + restore fuller footer text (#221)",
-      "commit": "fe0e125f",
+      "wave": "ADMIN",
+      "detail": "render /login (and pre-auth routes) without the app shell (#222)",
+      "commit": "40367ba8",
       "freshSeconds": 36
     }
   },
@@ -5470,6 +5470,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "render /login (and pre-auth routes) without the app shell (#222)",
+      "commit": "40367ba8",
+      "kind": "fix"
+    },
+    {
       "agent": "unify page frame to max-w-7xl (home + chrome) + restore fuller foot...",
       "commit": "fe0e125f",
       "kind": "fix"
@@ -5537,11 +5542,6 @@
     {
       "agent": "comprehensive Stripe S7 — refunds + admin invoice surfacing (#208)",
       "commit": "1f16dffd",
-      "kind": "feat"
-    },
-    {
-      "agent": "comprehensive Stripe S6 — single webhook endpoint + charge/dispute ...",
-      "commit": "0591ae16",
       "kind": "feat"
     }
   ],
