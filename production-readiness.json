@@ -484,6 +484,16 @@
           ],
           "history": [
             {
+              "date": "2026-06-13",
+              "stage": "bot-workflow-runtime",
+              "note": "Release 2 (FHIR Console) — the inline admin workflow-authoring canvas was EXTRACTED into a reusable shared package + given a second consumer on the Cernia-ops sandbox, so the builder is no longer a single-app surface. (1) NEW @cernia/workflow-builder-ui (packages/workflow-builder-ui/) — the workflow canvas pulled out of apps/admin into a reusable <WorkflowCanvas> component (commit 3b6885e6). (2) apps/admin re-wired to consume the shared builder via _components shims at apps/admin/src/app/admin/workflows/new/canvas/ (no behaviour change for the tenant-admin authoring surface), and a cernia-ops builder page added over the Cernia-owned sandbox tenant at apps/cernia-ops/src/app/cernia-ops/workshop/builder/ (commit 97a7f301). Triager note: this stage tracks the bot/workflow RUNTIME; the builder-UI extraction is recorded here because it is the authoring front-end for that runtime (the C3 'workflow authoring canvas' history entry below is the prior touch-point) — there is no dedicated workflow-builder-UI stage, and per CLAUDE.md a net-new shared package wired into BOTH apps/admin and apps/cernia-ops is exactly the multi-surface pattern this track exists to close.",
+              "files": [
+                "packages/workflow-builder-ui/",
+                "apps/admin/src/app/admin/workflows/new/canvas/",
+                "apps/cernia-ops/src/app/cernia-ops/workshop/builder/"
+              ]
+            },
+            {
               "date": "2026-06-12",
               "stage": "bot-workflow-runtime",
               "note": "Release 1 (Voice Revenue) — tenant-admin action→workflow authoring/binding made fully reachable + exercised end-to-end. (1) RBAC fix (f19bc905): /admin/agent-actions/* now maps to the AgentActionBinding op in apps/api/src/iam-route-guards.ts — the binding-authoring API was 403 for every tenant-admin and is now reachable. (2) Dispatch proof (9a1c9d45): apps/api/src/intent-dispatch-registry.dispatch.test.ts proves a bound workflow actually invokes executeWorkflow (closes the gap where a binding existed but nothing confirmed it fired). (3) Authoring UI (e760a50f): tenant-admin action→workflow authoring surface shipped at apps/admin/src/app/admin/voice-agent/actions/page.tsx + apps/admin/src/lib/agent-actions-api.ts (replaces the prior deep-link-only path). (4) Seeded templates (14089007): Phone Agent + Digital Assistant voice workflow templates seeded via apps/api/src/phone-agent-workflow-templates.ts so a new tenant has authorable starting points. (5) Appointment automation: appointment.no-show event + emit + base comms template (29461069 — packages/executor/src/comms-base-templates.ts, apps/api/src/appointment-ops-routes.ts); real Postgres AppointmentReminderStore replacing the no-op (884778db — packages/notifications/src/scheduled-jobs/postgres-appointment-reminder-store.ts, packages/storage/src/migrations/263_appointment_reminder_sent.sql, boot in apps/api/src/index.ts).",
@@ -856,6 +866,14 @@
           ],
           "history": [
             {
+              "date": "2026-06-13",
+              "stage": "saas-billing-marketplace",
+              "note": "Release 2 (FHIR Console) — cernia-ops marketplace PUBLISH route (the platform-operator companion to the tenant-scoped publish shipped in Cernia Store Plan 4). NEW apps/api/src/cernia-ops-marketplace-publish-routes.ts: super-admin-gated route that creates an 'in-review' listing with the publisher forced server-side to the Cernia PLATFORM publisher (never client-trusted), kind 'workflow'. Also reconciled the listing-kind union to the core 'workflow' kind so the ops-published and tenant-published listings share one type. Commit 383d4139. Extends the existing dual-lead review→published lifecycle; no remaining bullet changes (stage already complete).",
+              "files": [
+                "apps/api/src/cernia-ops-marketplace-publish-routes.ts"
+              ]
+            },
+            {
               "date": "2026-06-11",
               "stage": "saas-billing-marketplace",
               "note": "Auth subsystem Plan 1 (foundational) — Email/SMS OTP + verification core (tracked here because it gates onboarding; a dedicated auth/identity track can be split out later). (1) auth_verifications table (mig 258) + OtpService (@cernia/auth-providers: issueOtp/verifyOtp, 6-digit code SHA-256-hashed at rest + never logged, 10m TTL, attempt-cap, rate-limit, timing-safe compare, single-use) + PostgresOtpStore. 10 tests. (2) Email/SMS OTP bridged into the existing builtin-provider MFA half-session: password success with method email/sms issues+sends an OTP and stashes the verificationId on the half-session; mfa-challenge verifies it; TOTP/WebAuthn paths UNCHANGED; fail-closed without OtpService. 42 tests. (3) Verification routes apps/api/src/auth-verification-routes.ts: POST /api/auth/verify/email/start|confirm (pre-auth, allowlisted) + phone/start|confirm (authed), enumeration-safe, no code logging; confirm sets UserMfaState.emailVerifiedAt / mfaPhoneVerifiedAt (User JSONB, no migration). Concrete OtpEmailSender (W1 email) + OtpSmsSender (W5 Twilio) with dev log-only noop fallback; OtpService wired at boot. Onboarding $complete gates on email-verified (409 when unverified; active only when a real email sender is configured, so dev provisioning is unchanged). 40 tests. DEFERRED to later Auth plans: Google/Microsoft social login, the real login UI (replacing token paste-in), step-up MFA, anti-abuse, the cernia-ops auth-security view. Spec: docs/superpowers/specs/2026-06-10-auth-onboarding-verification-mfa-social-design.md. Built at the stable C:\\dev clone.",
@@ -1151,6 +1169,11 @@
         }
       ],
       "history": [
+        {
+          "date": "2026-06-13",
+          "stage": "(track-level — FHIR console)",
+          "note": "Release 2 (FHIR Console) — NEW @cernia/fhir-console shared resource-browser package built + wired into BOTH tenant + platform-operator surfaces, closing the multi-surface gap this track exists to track. (1) packages/fhir-console/ — scaffold + FHIR client (metadata/capability feed + search/read, 15 client tests) + a <FhirConsole> component (resource-type sidebar + results list + JSON inspector) (commits 765c8b41, 31ae0e8b, 790bda0a). (2) Embedded in apps/admin at /admin/fhir over the tenant's OWN data, read-only (apps/admin/src/app/admin/fhir/ — layout.tsx + page.tsx, commit 0a2d400b). (3) Embedded in apps/cernia-ops over a Cernia-owned SANDBOX tenant via a new super-admin-gated sandbox-token route that ignores any client-supplied tenantId (apps/api/src/cernia-ops-sandbox.ts + cernia-ops-sandbox-routes.ts, security-tested in cernia-ops-sandbox-routes.test.ts; UI at apps/cernia-ops/src/app/cernia-ops/workshop/console/, commit 855b39c8) — keeps the cross-tenant boundary intact (operators browse the sandbox, never a real tenant's PHI). Triager note: there is no dedicated FHIR-data-tooling stage in this track; the FHIR console is recorded at TRACK level (not folded into cds-hooks-quality / ml-platform, which it doesn't extend) because it is a net-new cross-package surface, and per CLAUDE.md the right move is to log it under the closest existing track with an explicit note rather than invent a new top-level track. If FHIR data-tooling grows further, promote this to its own stage."
+        },
         {
           "date": "2026-05-24",
           "stage": "(track-added)",
@@ -1630,6 +1653,16 @@
             "Deferred (post-GA enhancement, NOT a GA launch blocker — triaged 2026-06-03): Intent Handler Overrides (advanced): per-intent backend URL override so a tenant can replace the platform handler for a specific intent with their own webhook. Deferred — out of scope for the pilot."
           ],
           "history": [
+            {
+              "date": "2026-06-13",
+              "stage": "tenant-customization",
+              "note": "Release 2 (FHIR Console) — per-tenant EHR RECORD-MODE configuration surfaced end-to-end (tenant self-serve over the existing RecordGateway). (1) NEW HTTP route GET/PUT /admin/record-mode over the existing RecordGateway, with an RBAC deriveOperation mapping so a tenant-admin can read + set their own record mode (apps/api/src/tenant-record-mode-routes.ts, commit 860a7422). (2) Migration 264 adds conflict_strategy + per-resource sync_resources columns to the tenant_record_mode table, and a tenant-admin Integrations UI at /admin/settings/integrations lets the tenant configure them (packages/storage/src/migrations/264_record_mode_sync_config.sql + apps/admin/src/app/admin/settings/integrations/ — page.tsx + integrations-api.ts, commit 9f70c8cc). Triager note: recorded under tenant-customization (per-tenant config of an external integration) — the closest existing stage; this extends the per-tenant configurability surface to EHR sync settings. Does not touch the stage's lone remaining 'Intent Handler Overrides' deferral (unrelated voice-agent item).",
+              "files": [
+                "apps/api/src/tenant-record-mode-routes.ts",
+                "packages/storage/src/migrations/264_record_mode_sync_config.sql",
+                "apps/admin/src/app/admin/settings/integrations/"
+              ]
+            },
             {
               "date": "2026-06-12",
               "stage": "tenant-customization",
@@ -2689,6 +2722,19 @@
           "evidence": [],
           "remaining": [],
           "history": [
+            {
+              "date": "2026-06-13",
+              "stage": "playwright-project",
+              "note": "Release 2 (FHIR Console) — added @release-2-tagged Playwright E2E specs covering the Release 2 surfaces: FHIR console (admin), record-mode config persistence, workflow-builder render, and the cernia-ops sandbox security + publish paths. 5 new spec files under tests/e2e/specs/ (fhir-console-admin, record-mode-config, workflow-builder-admin, ops-sandbox-security, ops-publish) + a dedicated tests/e2e/release2.config.ts. Commit 12ae485a.",
+              "files": [
+                "tests/e2e/specs/fhir-console-admin.spec.ts",
+                "tests/e2e/specs/record-mode-config.spec.ts",
+                "tests/e2e/specs/workflow-builder-admin.spec.ts",
+                "tests/e2e/specs/ops-sandbox-security.spec.ts",
+                "tests/e2e/specs/ops-publish.spec.ts",
+                "tests/e2e/release2.config.ts"
+              ]
+            },
             {
               "date": "2026-06-12",
               "stage": "playwright-project",
