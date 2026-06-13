@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-13T13:23:14.260Z",
-    "lastUpdatedDisplay": "Jun 13, 2026 — 13:23 EDT",
+    "lastUpdatedIso": "2026-06-13T13:34:30.042Z",
+    "lastUpdatedDisplay": "Jun 13, 2026 — 13:34 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #215 fix(trust): footer shows only Platform links (drop"
   },
   "summary": {
-    "currentMainCommit": "40367ba8",
+    "currentMainCommit": "5f7e3122",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1282,
+    "agentsCompletedThisSession": 1283,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1282 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1283 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #215 fix(trust): footer shows only Platform links (drop duplicate. (refreshed Jun 13, 2026 — 13:23 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #215 fix(trust): footer shows only Platform links (drop duplicate. (refreshed Jun 13, 2026 — 13:34 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -58,8 +58,8 @@
     },
     "velocity": {
       "landedLastHour": 0,
-      "landedLast24h": 14,
-      "label": "0 PRs opened in last hour · 14 in last 24h"
+      "landedLast24h": 13,
+      "label": "0 PRs opened in last hour · 13 in last 24h"
     },
     "integration": {
       "lastMergeIso": "2026-06-10T12:49:34-04:00",
@@ -5286,7 +5286,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-13T13:23:13.224Z",
+      "lastAuditAt": "2026-06-13T13:34:29.263Z",
       "backendRouteSymbolCount": 188,
       "deferredItems": {
         "total": 946,
@@ -5345,10 +5345,10 @@
     },
     "justLandedWaves": [],
     "nowWorkingOn": {
-      "wave": "ADMIN",
-      "detail": "render /login (and pre-auth routes) without the app shell (#222)",
-      "commit": "40367ba8",
-      "freshSeconds": 36
+      "wave": "INSTALLER",
+      "detail": "carry the storefront tier/products selection into signup (b) (#223)",
+      "commit": "5f7e3122",
+      "freshSeconds": 30
     }
   },
   "pool": {
@@ -5470,6 +5470,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "carry the storefront tier/products selection into signup (b) (#223)",
+      "commit": "5f7e3122",
+      "kind": "feat"
+    },
+    {
       "agent": "render /login (and pre-auth routes) without the app shell (#222)",
       "commit": "40367ba8",
       "kind": "fix"
@@ -5537,11 +5542,6 @@
     {
       "agent": "comprehensive Stripe S8 (final) — e2e test-mode harness + go-live r...",
       "commit": "0d763a0d",
-      "kind": "feat"
-    },
-    {
-      "agent": "comprehensive Stripe S7 — refunds + admin invoice surfacing (#208)",
-      "commit": "1f16dffd",
       "kind": "feat"
     }
   ],
