@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-13T11:56:54.998Z",
-    "lastUpdatedDisplay": "Jun 13, 2026 — 11:56 EDT",
+    "lastUpdatedIso": "2026-06-13T12:28:37.393Z",
+    "lastUpdatedDisplay": "Jun 13, 2026 — 12:28 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #215 fix(trust): footer shows only Platform links (drop"
   },
   "summary": {
-    "currentMainCommit": "db3ea5be",
+    "currentMainCommit": "796bf8b8",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1276,
+    "agentsCompletedThisSession": 1277,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1276 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1277 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #215 fix(trust): footer shows only Platform links (drop duplicate. (refreshed Jun 13, 2026 — 11:56 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #215 fix(trust): footer shows only Platform links (drop duplicate. (refreshed Jun 13, 2026 — 12:28 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5286,7 +5286,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-13T11:56:54.218Z",
+      "lastAuditAt": "2026-06-13T12:28:36.438Z",
       "backendRouteSymbolCount": 188,
       "deferredItems": {
         "total": 946,
@@ -5343,7 +5343,13 @@
         }
       }
     },
-    "justLandedWaves": []
+    "justLandedWaves": [],
+    "nowWorkingOn": {
+      "wave": "TRUST",
+      "detail": "new cerniahealth.com landing at / ; move trust home to /trust-home (#217)",
+      "commit": "796bf8b8",
+      "freshSeconds": 31
+    }
   },
   "pool": {
     "size": 8,
@@ -5464,6 +5470,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "new cerniahealth.com landing at / ; move trust home to /trust-home ...",
+      "commit": "796bf8b8",
+      "kind": "feat"
+    },
+    {
       "agent": "Release 1 — Voice Revenue (tiering, dispatch, reminders, no-show, a...",
       "commit": "db3ea5be",
       "kind": "feat"
@@ -5531,11 +5542,6 @@
     {
       "agent": "comprehensive Stripe S2 — subscription lifecycle (create/proration/...",
       "commit": "8de3fccc",
-      "kind": "feat"
-    },
-    {
-      "agent": "comprehensive Stripe S1 — backend seam + test-mode foundation (#202)",
-      "commit": "b87002f5",
       "kind": "feat"
     }
   ],
