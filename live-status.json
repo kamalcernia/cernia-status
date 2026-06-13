@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-13T15:11:22.623Z",
-    "lastUpdatedDisplay": "Jun 13, 2026 — 15:11 EDT",
+    "lastUpdatedIso": "2026-06-13T17:08:16.769Z",
+    "lastUpdatedDisplay": "Jun 13, 2026 — 17:08 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #226 fix(rbac): tenant-admin can list payment methods ("
   },
   "summary": {
-    "currentMainCommit": "e2829aa1",
+    "currentMainCommit": "8d026daf",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1287,
+    "agentsCompletedThisSession": 1288,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1287 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1288 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #226 fix(rbac): tenant-admin can list payment methods (global hoo. (refreshed Jun 13, 2026 — 15:11 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #226 fix(rbac): tenant-admin can list payment methods (global hoo. (refreshed Jun 13, 2026 — 17:08 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -57,16 +57,16 @@
       "label": "581 test files landed · 0 active failures"
     },
     "velocity": {
-      "landedLastHour": 2,
+      "landedLastHour": 0,
       "landedLast24h": 15,
-      "label": "2 PRs opened in last hour · 15 in last 24h"
+      "label": "0 PRs opened in last hour · 15 in last 24h"
     },
     "integration": {
       "lastMergeIso": "2026-06-10T12:49:34-04:00",
-      "daysSinceLastMerge": 2,
+      "daysSinceLastMerge": 3,
       "mergedPrs": 15,
       "openPrs": 0,
-      "label": "Last main merge: 2d ago · 0 PRs awaiting batch-merge"
+      "label": "Last main merge: 3d ago · 0 PRs awaiting batch-merge"
     },
     "mainState": {
       "waveCounts": {
@@ -5332,7 +5332,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-13T15:11:21.801Z",
+      "lastAuditAt": "2026-06-13T17:08:15.857Z",
       "backendRouteSymbolCount": 191,
       "deferredItems": {
         "total": 948,
@@ -5510,6 +5510,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "cernia-ops dev-runnable (Windows standalone crash) + ops-UI auth/ro...",
+      "commit": "8d026daf",
+      "kind": "fix"
+    },
+    {
       "agent": "Release 2 — FHIR Console + Workflow Builder + EHR config (#227)",
       "commit": "e2829aa1",
       "kind": "feat"
@@ -5578,11 +5583,6 @@
       "agent": "add Support contact + remove Bug bounty + rebalance footer (#214)",
       "commit": "55c42277",
       "kind": "feat"
-    },
-    {
-      "agent": "remove header support-email + make header/footer alignment width-un...",
-      "commit": "ccd7bfcf",
-      "kind": "fix"
     }
   ],
   "failures": [
