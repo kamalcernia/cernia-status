@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-13T12:39:11.864Z",
-    "lastUpdatedDisplay": "Jun 13, 2026 — 12:39 EDT",
+    "lastUpdatedIso": "2026-06-13T12:48:45.002Z",
+    "lastUpdatedDisplay": "Jun 13, 2026 — 12:48 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #215 fix(trust): footer shows only Platform links (drop"
   },
   "summary": {
-    "currentMainCommit": "5753f006",
+    "currentMainCommit": "f877abe7",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1278,
+    "agentsCompletedThisSession": 1279,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1278 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1279 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #215 fix(trust): footer shows only Platform links (drop duplicate. (refreshed Jun 13, 2026 — 12:39 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #215 fix(trust): footer shows only Platform links (drop duplicate. (refreshed Jun 13, 2026 — 12:48 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5286,7 +5286,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-13T12:39:11.076Z",
+      "lastAuditAt": "2026-06-13T12:48:43.876Z",
       "backendRouteSymbolCount": 188,
       "deferredItems": {
         "total": 946,
@@ -5346,9 +5346,9 @@
     "justLandedWaves": [],
     "nowWorkingOn": {
       "wave": "TRUST",
-      "detail": "home foundation cards in cert-card style + trim footer to copyright (#218)",
-      "commit": "5753f006",
-      "freshSeconds": 40
+      "detail": "ready-workflow cards match page style; trim footer width + drop legal suffix (#219)",
+      "commit": "f877abe7",
+      "freshSeconds": 33
     }
   },
   "pool": {
@@ -5470,6 +5470,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "ready-workflow cards match page style; trim footer width + drop leg...",
+      "commit": "f877abe7",
+      "kind": "feat"
+    },
+    {
       "agent": "home foundation cards in cert-card style + trim footer to copyright...",
       "commit": "5753f006",
       "kind": "feat"
@@ -5537,11 +5542,6 @@
     {
       "agent": "comprehensive Stripe S4 — metered usage via Billing Meters (#205)",
       "commit": "a471a419",
-      "kind": "feat"
-    },
-    {
-      "agent": "comprehensive Stripe S3 — payment methods (API + Payment Element UI...",
-      "commit": "f8e93906",
       "kind": "feat"
     }
   ],
