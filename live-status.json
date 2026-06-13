@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-13T20:03:52.292Z",
-    "lastUpdatedDisplay": "Jun 13, 2026 — 20:03 EDT",
+    "lastUpdatedIso": "2026-06-13T23:42:35.597Z",
+    "lastUpdatedDisplay": "Jun 13, 2026 — 23:42 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #229 feat: close the 5 deferred items (voice-tier billi"
   },
   "summary": {
-    "currentMainCommit": "64764350",
+    "currentMainCommit": "3b68ebdf",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1291,
+    "agentsCompletedThisSession": 1297,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1291 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1297 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #229 feat: close the 5 deferred items (voice-tier billing, EHR sy. (refreshed Jun 13, 2026 — 20:03 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #229 feat: close the 5 deferred items (voice-tier billing, EHR sy. (refreshed Jun 13, 2026 — 23:42 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -57,9 +57,9 @@
       "label": "581 test files landed · 0 active failures"
     },
     "velocity": {
-      "landedLastHour": 1,
-      "landedLast24h": 15,
-      "label": "1 PR opened in last hour · 15 in last 24h"
+      "landedLastHour": 0,
+      "landedLast24h": 14,
+      "label": "0 PRs opened in last hour · 14 in last 24h"
     },
     "integration": {
       "lastMergeIso": "2026-06-10T12:49:34-04:00",
@@ -5402,7 +5402,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-13T20:03:51.504Z",
+      "lastAuditAt": "2026-06-13T23:42:34.771Z",
       "backendRouteSymbolCount": 193,
       "deferredItems": {
         "total": 962,
@@ -5459,7 +5459,13 @@
         }
       }
     },
-    "justLandedWaves": []
+    "justLandedWaves": [],
+    "nowWorkingOn": {
+      "wave": "PLAN",
+      "detail": "self-serve signup Plan 1 — foundations + front door (A dev-safety, D Google env, F installer URL + Get-star...",
+      "commit": "3b68ebdf",
+      "freshSeconds": 31
+    }
   },
   "pool": {
     "size": 8,
@@ -5580,6 +5586,36 @@
   ],
   "recentCompletions": [
     {
+      "agent": "self-serve signup Plan 1 — foundations + front door (A dev-safety, ...",
+      "commit": "3b68ebdf",
+      "kind": "docs"
+    },
+    {
+      "agent": "self-serve signup — verification, invitations, social, dev-safety",
+      "commit": "b8cdeaed",
+      "kind": "docs"
+    },
+    {
+      "agent": "full-height sticky-footer layout + shrink footer",
+      "commit": "f2ca7612",
+      "kind": "fix"
+    },
+    {
+      "agent": "port cerniahealth.com pages (Value, Solutions, Use Cases, Developer...",
+      "commit": "cb6ed95d",
+      "kind": "feat"
+    },
+    {
+      "agent": "move Contact to footer as \"Contact us\"; drop Patient portal from he...",
+      "commit": "bc09bc72",
+      "kind": "feat"
+    },
+    {
+      "agent": "move trust/compliance links to footer + single-row aligned layout",
+      "commit": "29c5e6a6",
+      "kind": "feat"
+    },
+    {
       "agent": "wip(billing): tenant-admin billing-write surface — RBAC grant + rou...",
       "commit": "64764350",
       "kind": "other"
@@ -5622,36 +5658,6 @@
     {
       "agent": "carry the storefront tier/products selection into signup (b) (#223)",
       "commit": "5f7e3122",
-      "kind": "feat"
-    },
-    {
-      "agent": "render /login (and pre-auth routes) without the app shell (#222)",
-      "commit": "40367ba8",
-      "kind": "fix"
-    },
-    {
-      "agent": "unify page frame to max-w-7xl (home + chrome) + restore fuller foot...",
-      "commit": "fe0e125f",
-      "kind": "fix"
-    },
-    {
-      "agent": "compact single-row footer + tighten content-to-footer gap (#220)",
-      "commit": "8538b0c3",
-      "kind": "fix"
-    },
-    {
-      "agent": "ready-workflow cards match page style; trim footer width + drop leg...",
-      "commit": "f877abe7",
-      "kind": "feat"
-    },
-    {
-      "agent": "home foundation cards in cert-card style + trim footer to copyright...",
-      "commit": "5753f006",
-      "kind": "feat"
-    },
-    {
-      "agent": "new cerniahealth.com landing at / ; move trust home to /trust-home ...",
-      "commit": "796bf8b8",
       "kind": "feat"
     }
   ],
@@ -13285,7 +13291,7 @@
     "origin/feat/wave-z-5-cs-task-scheduler@4201da2b0741": 0,
     "origin/feat/wave-z-6-in-app-nps-widget-state@4201da2b0741": 0,
     "origin/feat/wave-z-7-churn-analytics-service@4201da2b0741": 0,
-    "origin/feat/web-front-door@acdcedb00cd2": 100
+    "origin/feat/web-footer-trust-links@8c346117d33f": 8
   },
   "testFileCountCache": {
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
@@ -13881,7 +13887,7 @@
     "origin/feat/wave-z-5-cs-task-scheduler@4201da2b0741": 0,
     "origin/feat/wave-z-6-in-app-nps-widget-state@4201da2b0741": 0,
     "origin/feat/wave-z-7-churn-analytics-service@4201da2b0741": 0,
-    "origin/feat/web-front-door@acdcedb00cd2": 5
+    "origin/feat/web-footer-trust-links@8c346117d33f": 0
   },
   "mergedIntoMainCache": {
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
@@ -14477,7 +14483,7 @@
     "origin/feat/wave-z-5-cs-task-scheduler@4201da2b0741": true,
     "origin/feat/wave-z-6-in-app-nps-widget-state@4201da2b0741": true,
     "origin/feat/wave-z-7-churn-analytics-service@4201da2b0741": true,
-    "origin/feat/web-front-door@acdcedb00cd2": false
+    "origin/feat/web-footer-trust-links@8c346117d33f": true
   },
   "pendingBlockers": [
     {
