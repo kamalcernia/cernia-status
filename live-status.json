@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-13T23:42:35.597Z",
-    "lastUpdatedDisplay": "Jun 13, 2026 — 23:42 EDT",
+    "lastUpdatedIso": "2026-06-14T00:48:36.229Z",
+    "lastUpdatedDisplay": "Jun 14, 2026 — 00:48 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #229 feat: close the 5 deferred items (voice-tier billi"
   },
   "summary": {
-    "currentMainCommit": "3b68ebdf",
+    "currentMainCommit": "b9bf11a8",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1297,
+    "agentsCompletedThisSession": 1303,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1297 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1303 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #229 feat: close the 5 deferred items (voice-tier billing, EHR sy. (refreshed Jun 13, 2026 — 23:42 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #229 feat: close the 5 deferred items (voice-tier billing, EHR sy. (refreshed Jun 14, 2026 — 00:48 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -1651,9 +1651,18 @@
                 "per-tenant-stt-router.ts warnSharedDeepgram: fires on every request for a production tenant using the shared Deepgram key — needs dedup (e.g. per-tenant warn-once flag or rate-limit) to avoid log spam in production. apps/api/src/per-tenant-stt-router.ts.",
                 "POST /onboarding/:id/numbers/search has no rate-limit — an unauth caller with a valid session could drive Twilio AvailablePhoneNumbers API cost; add a per-session/per-IP token-bucket (Fastify rate-limit). apps/api/src/onboarding-routes.ts. (P2 core shipped — this is a P3/hardening follow-up item, not a GA blocker.)",
                 "P4 SHIPPED — number port-in DONE (Cards 1-6 complete 2026-06-08). DEFERRED remaining: admin multi-number management surface (list/deactivate/reassign via apps/admin), real Twilio pricing API call (monthlyCostCents is wizard-side input, not fetched from Twilio AvailablePhoneNumbers pricing). Integration points: apps/api/src/onboarding-routes.ts, apps/api/src/telephony-store.ts, apps/api/src/tenant-external-resources-store.ts.",
-                "C4 boot-wiring DONE (2026-06-09): apps/api/src/index.ts now constructs the failover dep bundle via the new apps/api/src/voice-fallback-wiring.ts (buildVoiceFallbackWiring → buildVoiceFallbackBinProvisioner() + per-tenant PostgresVoiceFallbackStore + buildNumberConfigClient()) and threads it into BOTH the provisionTenantExternalResources call (numberConfig + failover deps) AND the voiceAgentAdminRoutes registration (opts.failover). Wiring is gated to real-Twilio posture only (provision: isProd && TWILIO_ACCOUNT_SID && TWILIO_AUTH_TOKEN; admin: telephony.id==='twilio' && tenantSecretResolver present) so dev/stub posture leaves it unwired and the promote gate keeps blocking (safe default). Per-tenant Twilio creds reuse the existing tenant_secrets provider='twilio' resolver pattern (vendorAccountId=subaccount SID, plaintext=auth token); resolveTenantTelephony joins those creds with tenant_external_resources.twilio_phone_number_sid. A provisioned number now gets a real platform-independent VoiceFallbackUrl. REMAINING (deferred, NOT a wiring gap): existing tenants whose number was provisioned BEFORE this wiring landed have voice_fallback_url=null until they either re-run onboarding or PATCH /api/voice-agent/fallback — a one-time backfill/$reprovision-failover sweep would close them out. Integration points: apps/api/src/index.ts, apps/api/src/voice-fallback-wiring.ts."
+                "C4 boot-wiring DONE (2026-06-09): apps/api/src/index.ts now constructs the failover dep bundle via the new apps/api/src/voice-fallback-wiring.ts (buildVoiceFallbackWiring → buildVoiceFallbackBinProvisioner() + per-tenant PostgresVoiceFallbackStore + buildNumberConfigClient()) and threads it into BOTH the provisionTenantExternalResources call (numberConfig + failover deps) AND the voiceAgentAdminRoutes registration (opts.failover). Wiring is gated to real-Twilio posture only (provision: isProd && TWILIO_ACCOUNT_SID && TWILIO_AUTH_TOKEN; admin: telephony.id==='twilio' && tenantSecretResolver present) so dev/stub posture leaves it unwired and the promote gate keeps blocking (safe default). Per-tenant Twilio creds reuse the existing tenant_secrets provider='twilio' resolver pattern (vendorAccountId=subaccount SID, plaintext=auth token); resolveTenantTelephony joins those creds with tenant_external_resources.twilio_phone_number_sid. A provisioned number now gets a real platform-independent VoiceFallbackUrl. REMAINING (deferred, NOT a wiring gap): existing tenants whose number was provisioned BEFORE this wiring landed have voice_fallback_url=null until they either re-run onboarding or PATCH /api/voice-agent/fallback — a one-time backfill/$reprovision-failover sweep would close them out. Integration points: apps/api/src/index.ts, apps/api/src/voice-fallback-wiring.ts.",
+                "Self-serve signup Plan 2 — increment B (email + SMS verification UI in the installer wizard): the OtpService + POST /api/auth/verify/email|phone/start|confirm routes + the dev-safety allowlist (shipped 2026-06-13) exist, but the apps/installer wizard 'account' step does not yet wire a 'Send code → enter 6-digit code → confirm' sub-step, and the phone-verified gate (analogous to the existing isEmailVerified gate) is not enforced before $complete. Integration points: apps/installer wizard account step, apps/api/src/auth-verification-routes.ts, apps/api/src/onboarding-routes.ts.",
+                "Self-serve signup Plan 2 — increment C (invitation-accept page): the issue + accept API exists (POST /admin/tenants/:id/invitations, POST /auth/invitations/:token/accept in apps/api/src/admin-tenants-routes.ts) but there is NO UI page at /auth/invitations/:token to validate the token, render the tenant/role/email, collect a password, POST the accept, store the returned JWT, and redirect into the admin app (all token failures must render an identical generic 'invalid or expired' state — anti-enumeration).",
+                "Self-serve signup Plan 2 — increment E (Google pre-tenant signup): social login for EXISTING tenants is wired (social-auth-routes.ts requires a tenantId), but new-tenant signup-with-Google needs early provisional-slug allocation (reserve tenant id in 'provisioning' status before the IdP round-trip) so the callback can JIT-create the admin from the verified Google identity (IdP-asserted email = email-verified, skipping the email OTP step; phone OTP still applies). Integration points: apps/installer account step, apps/api/src/onboarding-routes.ts (slug reservation), apps/api/src/social-auth-routes.ts callback."
               ],
               "history": [
+                {
+                  "date": "2026-06-13",
+                  "stage": "tenant-provisioning",
+                  "note": "Self-serve signup Plan 1 (foundations + front door — increments A/D/F of docs/superpowers/specs/2026-06-13-self-serve-signup-design.md) landed LOCALLY (held per push-on-signal). (A) Dev-safety comms allowlist: apps/api/src/otp-senders.ts gateByAllowlist() wraps the real email + SMS OTP senders so in non-production a real Twilio/SMTP send reaches ONLY recipients in COMMS_DEV_ALLOWLIST (comma-separated emails / E.164 phones, case-insensitive); everyone else routes to the existing log-only stub. Default-safe: empty/absent allowlist = nothing real sent in dev. Production ignores the allowlist (all real). OTP code never inspected/logged in the gate. 4/4 unit tests apps/api/src/__tests__/otp-senders-allowlist.test.ts; @cernia/api typecheck=0. (D) Google social login surfacing: GOOGLE_CLIENT_ID/SECRET + COMMS_DEV_ALLOWLIST documented in apps/api/.env.example (redirect URI reuses existing CERNIA_PUBLIC_BASE_URL); the existing social-auth-routes.ts Google button auto-lights when GET /api/auth/social/providers reports google:true. Step-by-step ops runbook docs/operations/google-oauth-setup.md (consent screen External / openid email profile, Web client, dev+prod redirect URIs, tenantId requirement). No new backend — creds are an ops action. (F) Front door: NEW apps/web/src/lib/installer-url.ts resolveInstallerUrl() (NEXT_PUBLIC_INSTALLER_URL, dev default :3004, mirrors admin-url.ts/patient-url.ts) replaces the hardcoded https://install.cerniahealth.com in apps/web/src/components/store/public-storefront.tsx + apps/web/src/app/pricing/page.tsx; 'Get started' CTA added to the web header (apps/web/src/components/trust-shell.tsx, beside Sign in) + home hero (apps/web/src/app/page.tsx, primary CTA, 'Start a Pilot' demoted to secondary) routing to the installer. @cernia/web typecheck=0, lint=0, 29/29 storefront tests pass. Plan 2 (increments B/C/E — verification UI in the installer wizard, invitation-accept page, Google pre-tenant signup) tracked in remaining[] below.",
+                  "commit": "feat/signup-foundations (local, held)"
+                },
                 {
                   "date": "2026-06-09",
                   "stage": "tenant-provisioning",
@@ -5402,12 +5411,12 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-13T23:42:34.771Z",
+      "lastAuditAt": "2026-06-14T00:48:35.172Z",
       "backendRouteSymbolCount": 193,
       "deferredItems": {
-        "total": 962,
+        "total": 963,
         "bySeverity": {
-          "tech-debt": 259,
+          "tech-debt": 260,
           "review": 700,
           "blocker": 3
         },
@@ -5418,7 +5427,7 @@
           "type-cheat": 1,
           "todo-comment": 2,
           "skipped-test": 3,
-          "json-deferred": 11
+          "json-deferred": 12
         },
         "byWave": {
           "UI": 34,
@@ -5441,7 +5450,7 @@
           "W": 5,
           "O": 4,
           "R": 1,
-          "(unassigned)": 19
+          "(unassigned)": 20
         },
         "wontfixDemotions": []
       },
@@ -5461,10 +5470,10 @@
     },
     "justLandedWaves": [],
     "nowWorkingOn": {
-      "wave": "PLAN",
-      "detail": "self-serve signup Plan 1 — foundations + front door (A dev-safety, D Google env, F installer URL + Get-star...",
-      "commit": "3b68ebdf",
-      "freshSeconds": 31
+      "wave": "STATUS",
+      "detail": "tenant-provisioning — signup Plan 1 (A/D/F) landed + B/C/E tracked",
+      "commit": "b9bf11a8",
+      "freshSeconds": 34
     }
   },
   "pool": {
@@ -5586,6 +5595,36 @@
   ],
   "recentCompletions": [
     {
+      "agent": "tenant-provisioning — signup Plan 1 (A/D/F) landed + B/C/E tracked",
+      "commit": "b9bf11a8",
+      "kind": "docs"
+    },
+    {
+      "agent": "add Get started CTA (header + hero) routing to the signup installer",
+      "commit": "913fefda",
+      "kind": "feat"
+    },
+    {
+      "agent": "env-driven installer URL (NEXT_PUBLIC_INSTALLER_URL, dev :3004)",
+      "commit": "98c689bb",
+      "kind": "feat"
+    },
+    {
+      "agent": "Google OAuth (social login) setup runbook",
+      "commit": "db53b8e8",
+      "kind": "docs"
+    },
+    {
+      "agent": "document COMMS_DEV_ALLOWLIST + Google OAuth env keys in .env.example",
+      "commit": "cf81f9d1",
+      "kind": "docs"
+    },
+    {
+      "agent": "COMMS_DEV_ALLOWLIST gate — real OTP sends only to allowlisted recip...",
+      "commit": "a57bdd07",
+      "kind": "feat"
+    },
+    {
       "agent": "self-serve signup Plan 1 — foundations + front door (A dev-safety, ...",
       "commit": "3b68ebdf",
       "kind": "docs"
@@ -5628,36 +5667,6 @@
     {
       "agent": "close the 5 deferred items (voice-tier billing, EHR sync engine, op...",
       "commit": "ce8ae6c1",
-      "kind": "feat"
-    },
-    {
-      "agent": "cernia-ops dev-runnable (Windows standalone crash) + ops-UI auth/ro...",
-      "commit": "8d026daf",
-      "kind": "fix"
-    },
-    {
-      "agent": "Release 2 — FHIR Console + Workflow Builder + EHR config (#227)",
-      "commit": "e2829aa1",
-      "kind": "feat"
-    },
-    {
-      "agent": "map GET /admin/billing/payment-methods to a synthetic BillingAccoun...",
-      "commit": "a14e4dd7",
-      "kind": "fix"
-    },
-    {
-      "agent": "billing page no longer crashes for tiers missing overageRates (#225)",
-      "commit": "d22693a1",
-      "kind": "fix"
-    },
-    {
-      "agent": "surface trial→paid conversion (no card at signup, card after trial)...",
-      "commit": "f8b70c87",
-      "kind": "feat"
-    },
-    {
-      "agent": "carry the storefront tier/products selection into signup (b) (#223)",
-      "commit": "5f7e3122",
       "kind": "feat"
     }
   ],
@@ -12716,8 +12725,10 @@
     "origin/feat/p2-phone-numbers@61cc502884a1": 25,
     "origin/feat/p3-voice-selection@a6daf23a6694": 0,
     "origin/feat/phase-1b-provisioning@27440117dc24": 17,
+    "origin/feat/release-3-developer-portal@992a9d47bc9e": 60,
     "origin/feat/saas-conformance-cleanup@758cab946519": 8,
     "origin/feat/sensitive-data-routes@92780a57ad67": 0,
+    "origin/feat/signup-foundations@3575d7d1e530": 10,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 4,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": 17,
     "origin/feat/wave-a-integration@9f5d3e77833d": 0,
@@ -13290,8 +13301,7 @@
     "origin/feat/wave-z-4-onboarding-milestones@6acf340689f0": 0,
     "origin/feat/wave-z-5-cs-task-scheduler@4201da2b0741": 0,
     "origin/feat/wave-z-6-in-app-nps-widget-state@4201da2b0741": 0,
-    "origin/feat/wave-z-7-churn-analytics-service@4201da2b0741": 0,
-    "origin/feat/web-footer-trust-links@8c346117d33f": 8
+    "origin/feat/wave-z-7-churn-analytics-service@4201da2b0741": 0
   },
   "testFileCountCache": {
     "origin/feat/cleanup-a2-batch@653be40a6671": 0,
@@ -13312,8 +13322,10 @@
     "origin/feat/p2-phone-numbers@61cc502884a1": 8,
     "origin/feat/p3-voice-selection@a6daf23a6694": 0,
     "origin/feat/phase-1b-provisioning@27440117dc24": 6,
+    "origin/feat/release-3-developer-portal@992a9d47bc9e": 10,
     "origin/feat/saas-conformance-cleanup@758cab946519": 0,
     "origin/feat/sensitive-data-routes@92780a57ad67": 0,
+    "origin/feat/signup-foundations@3575d7d1e530": 2,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 1,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": 2,
     "origin/feat/wave-a-integration@9f5d3e77833d": 0,
@@ -13886,8 +13898,7 @@
     "origin/feat/wave-z-4-onboarding-milestones@6acf340689f0": 0,
     "origin/feat/wave-z-5-cs-task-scheduler@4201da2b0741": 0,
     "origin/feat/wave-z-6-in-app-nps-widget-state@4201da2b0741": 0,
-    "origin/feat/wave-z-7-churn-analytics-service@4201da2b0741": 0,
-    "origin/feat/web-footer-trust-links@8c346117d33f": 0
+    "origin/feat/wave-z-7-churn-analytics-service@4201da2b0741": 0
   },
   "mergedIntoMainCache": {
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
@@ -13908,8 +13919,10 @@
     "origin/feat/p2-phone-numbers@61cc502884a1": false,
     "origin/feat/p3-voice-selection@a6daf23a6694": true,
     "origin/feat/phase-1b-provisioning@27440117dc24": true,
+    "origin/feat/release-3-developer-portal@992a9d47bc9e": false,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
+    "origin/feat/signup-foundations@3575d7d1e530": true,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": false,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,
@@ -14482,8 +14495,7 @@
     "origin/feat/wave-z-4-onboarding-milestones@6acf340689f0": true,
     "origin/feat/wave-z-5-cs-task-scheduler@4201da2b0741": true,
     "origin/feat/wave-z-6-in-app-nps-widget-state@4201da2b0741": true,
-    "origin/feat/wave-z-7-churn-analytics-service@4201da2b0741": true,
-    "origin/feat/web-footer-trust-links@8c346117d33f": true
+    "origin/feat/wave-z-7-churn-analytics-service@4201da2b0741": true
   },
   "pendingBlockers": [
     {
