@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-14T00:48:36.229Z",
-    "lastUpdatedDisplay": "Jun 14, 2026 — 00:48 EDT",
+    "lastUpdatedIso": "2026-06-14T02:24:41.949Z",
+    "lastUpdatedDisplay": "Jun 14, 2026 — 02:24 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #229 feat: close the 5 deferred items (voice-tier billi"
   },
   "summary": {
-    "currentMainCommit": "b9bf11a8",
+    "currentMainCommit": "e0c42bba",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1303,
+    "agentsCompletedThisSession": 1304,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1303 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1304 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #229 feat: close the 5 deferred items (voice-tier billing, EHR sy. (refreshed Jun 14, 2026 — 00:48 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #229 feat: close the 5 deferred items (voice-tier billing, EHR sy. (refreshed Jun 14, 2026 — 02:24 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -1013,9 +1013,28 @@
               ],
               "remaining": [
                 "Deferred (post-GA, NOT a launch blocker): ML-model marketplace (P3-C) clinical-review dual-control queue before publish — the -A vertical publishes directly; a physician/compliance review gate is a future enhancement (apps/api/src/ml-marketplace-routes.ts).",
+                "Release 3 / T5 — publisher-verification VerifierBackends are a clearly-labelled DEV STUB (apps/api/src/index.ts buildDevStubVerifierBackends: any non-empty EIN/DUNS/domain passes; OAuth2 returns the first allow-listed issuer). Production must wire REAL clients: OAuth2 issuer probe, EIN match against the signed-MSA record, Dun & Bradstreet DUNS lookup, DNS-TXT domain-control check. The store/route/FSM/gate plumbing is complete + live-tested; only the four backend implementations remain.",
+                "Release 3 / T5 — no apps/* UI yet for publisher onboarding (POST/GET /admin/marketplace/publisher) or the ops $verify queue (cernia-ops). UI is the controller's follow-up; the backend surface is shipped.",
                 "Auth Plans 3 + 4 — DEFERRED ITEMS only (core shipped 2026-06-11): social login cross-tenant chooser, JIT signup-via-social, Apple provider; adaptive/risk-based auth, trust-this-device + refresh tokens, password-reset UI, per-tenant MFA-policy enforcement UI, full auth-event audit pipeline. Real OAuth creds = procurement (Google/Microsoft client IDs). Real SMS creds (Twilio) + email SMTP (Google Workspace) code-side shipped 2026-06-11; external remaining = toll-free verification / A2P 10DLC registration (SMS) and App Password + SPF/DKIM/DMARC DNS (email)."
               ],
               "history": [
+                {
+                  "date": "2026-06-13",
+                  "stage": "saas-billing-marketplace",
+                  "note": "Release 3 / T5 — third-party marketplace publishing: publisher verification + approval gate. NEW per-tenant PublisherVerification persistence (migration 265_publisher_verification.sql + apps/api/src/publisher-verification-store.ts, PK tenant_id, strictly tenant-scoped get/upsert). Tenant onboarding POST/GET /admin/marketplace/publisher (apps/api/src/marketplace-publisher-routes.ts) gated by the marketplace_access product (createRequireProduct). Ops adjudication POST /cernia-ops/marketplace/publishers/:tenantId/$verify (apps/api/src/cernia-ops-marketplace-publisher-routes.ts, cernia-super-admin) runs @cernia/marketplace PublisherVerifier with DEV-STUB backends (index.ts buildDevStubVerifierBackends — production wires real OAuth2/EIN/DUNS/domain). The admin listing-submit route (admin-marketplace-publish-routes.ts) now REQUIRES a verified publisher (403 publisher-not-verified) + marketplace_access; added optional bundleManifest with semver validation. Explicit 'approved' listing state added to core MarketplaceListingStatus + LEGAL_TRANSITIONS (in-review→approved→published / approved→in-review / approved→rejected, all additive — in-review→published kept); marketplace-review-routes now promotes a both-approved review through the FSM (in-review→approved→published) via ListingPublisher. deriveOperation mapped the new routes (synthetic MarketplacePublisher) in iam-route-guards.ts. Verified: @cernia/marketplace typecheck+test (293/293) + dist rebuilt; @cernia/api typecheck=0, build clean; live integration test marketplace-publisher-flow.integration.test.ts (real PG: unverified→submit-blocked→onboard→ops-verify→submit-allowed→review→approved→published + 402 no-marketplace_access + tenant isolation, 5/5) + publisher-verification-store.integration.test.ts (5/5) + listing-publisher (24/24) + marketplace-review (6/6) all green against test PG :5433. Running :8090 API needs a restart to serve the new routes (consumes @cernia/core + @cernia/marketplace dist, both rebuilt). Files: packages/core/src/types.ts, packages/marketplace/src/listings/listing-publisher.ts, packages/storage/src/migrations/265_publisher_verification.sql, apps/api/src/{publisher-verification-store,marketplace-publisher-routes,cernia-ops-marketplace-publisher-routes,admin-marketplace-publish-routes,marketplace-review-routes,iam-route-guards,index}.ts.",
+                  "files": [
+                    "packages/core/src/types.ts",
+                    "packages/marketplace/src/listings/listing-publisher.ts",
+                    "packages/storage/src/migrations/265_publisher_verification.sql",
+                    "apps/api/src/publisher-verification-store.ts",
+                    "apps/api/src/marketplace-publisher-routes.ts",
+                    "apps/api/src/cernia-ops-marketplace-publisher-routes.ts",
+                    "apps/api/src/admin-marketplace-publish-routes.ts",
+                    "apps/api/src/marketplace-review-routes.ts",
+                    "apps/api/src/iam-route-guards.ts",
+                    "apps/api/src/index.ts"
+                  ]
+                },
                 {
                   "date": "2026-06-13",
                   "stage": "saas-billing-marketplace",
@@ -2014,6 +2033,9 @@
                 "asOf": "2026-06-12",
                 "summary": "cernia-ops portal de-mock COMPLETE — every operator surface renders real, super-admin-gated, PHI-safe data; anti-sample-import guard fully strict; sample-data.ts is test-only."
               },
+              "remaining": [
+                "Webhook registration (POST /admin/webhooks) is now PRODUCT-gated behind the developer_portal entitlement via the wired createRequireProduct preHandler (Release 3 / T6). Remaining refinement: map the developer_portal product onto the saas-platform tier matrix (@cernia/saas-platform) so the entitlement is auto-granted by Growth+ tier rather than only via an explicit product grant; today entitlement is per-tenant product-grant driven."
+              ],
               "history": [
                 {
                   "date": "2026-05-28",
@@ -2057,6 +2079,28 @@
                   "date": "2026-06-13",
                   "stage": "phase-3-2-core-saas",
                   "note": "Deferred D3a (backend SSO mechanism) — the cernia-ops portal now has a PRODUCTION cookie session login, closing the 4a gap ('Browser operator-cookie auth not yet wired' — the API read tokens ONLY from Authorization: Bearer while cernia-ops pages call with credentials:'include'). (1) Cookie-token fallback: registered @fastify/cookie (apps/api/src/index.ts step 7.0b) and extended principalResolver (apps/api/src/iam-route-guards.ts) so that when NO Authorization: Bearer header is present it falls back to the HttpOnly cernia_ops_session cookie and verifies it via the SAME jwtIssuer — Bearer ALWAYS wins when present, so admin/patient/API auth is byte-unchanged (all 27 iam-route-guards tests stay green). (2) CSRF double-submit: alongside the HttpOnly session cookie a NON-HttpOnly cernia_ops_csrf cookie is set; the global RBAC hook now requires X-Cernia-Ops-CSRF === the cookie for COOKIE-authenticated POST/PUT/PATCH/DELETE (403 csrf-failed on mismatch); Bearer-auth requests carry no cookie and are exempt; GET/HEAD exempt. (3) Login/logout: apps/api/src/cernia-ops-session-routes.ts — POST /cernia-ops/auth/login reuses the EXISTING BuiltInIdentityProvider credential check (same provider as /api/auth/login) and REQUIRES the cernia-super-admin role (403 if authenticated-but-not-operator, 401 on bad creds), sets the HttpOnly session + CSRF cookies (SameSite=Strict, Path=/, Secure in prod, Max-Age = JWT lifetime) and returns {ok:true} (token NEVER in body); a CERNIA_DEV_LOGIN-gated dev path mints a super-admin session cookie for local/E2E; POST /cernia-ops/auth/logout clears both cookies. Both routes allow-listed in permitAllForUnauthenticatedRoutes (CSRF + auth exempt). Tests: 11 in cernia-ops-session-routes.test.ts + 5 cookie/CSRF cases added to iam-route-guards.test.ts (38 total green). Verified live on :8090: POST /cernia-ops/auth/login {dev:true} -> 200 + Set-Cookie: cernia_ops_session (HttpOnly); cookie-only GET /cernia-ops/platform/health -> 200; cookie POST without CSRF -> 403 csrf-failed, with matching header -> passes. @cernia/api typecheck=0, changed-source lint=0. PROD-PATH GAP: an operator whose account has MFA enabled cannot complete this single-step login (authenticate returns mfa-required -> 401); MFA operators need the step-up flow or non-interactive-MFA provisioning on this surface. Part 2 (D3b — cernia-ops login UI + Playwright) still pending. Files: apps/api/src/cernia-ops-session-routes.ts, apps/api/src/cernia-ops-session-routes.test.ts, apps/api/src/iam-route-guards.ts, apps/api/src/iam-route-guards.test.ts, apps/api/src/index.ts, apps/api/package.json."
+                },
+                {
+                  "date": "2026-06-13",
+                  "stage": "phase-3-2-core-saas",
+                  "note": "Release 3 / T2 — self-serve API-key auth WIRED into the request path (the complete-but-unwired ApiKey system is now live). (1) Token-format reconciliation: apps/api/src/admin-api-key-routes.ts buildSecret() now mints the issuer's cernia_pk_<12-char base32 prefix>_<32-char base32 secret> format (was the divergent cernia_pk_<64 hex>, no separator, whole-secret hash) and stores secretPrefix=cernia_pk_<prefix> + secretHash=hashPassword(inlineSecret only), so a $generate-secret key now ROUND-TRIPS through DefaultApiKeyVerifier (proven by admin-api-key-routes.test.ts test 2). (2) Cross-tenant lookup: NEW apps/api/src/api-key-lookup.ts PgApiKeyLookup.byPrefix() queries the live `resources` table on the STORED generated column apikey_secret_prefix with NO tenant filter (the token is the sole credential; tenant is derived AFTER the match) — safe because secretPrefix has 60 bits of entropy + a platform-wide uniqueness constraint and ApiKey is a credential resource, NOT PHI (CLAUDE.md invariant 5). recordUsage() writes lastUsedAt by id, best-effort/non-fatal. (3) principalResolver branch: apps/api/src/iam-route-guards.ts PrincipalResolverDeps gains an optional apiKeyVerifier; a Bearer/cookie token starting with cernia_pk_ is verified as an API key (cross-tenant prefix lookup + constant-time scrypt verifyPassword + status/expiry gates), the tenant is read from the key's urn:cernia:tenant meta.tag, and the principal is built via the SAME resolvePrincipalFromClaims so RBAC/RoleBindings apply identically (authVia='api-key'). A cernia_pk_ token NEVER falls through to the JWT verifier: null verify → 401, no verifier wired → 401. The JWT Bearer path is byte-unchanged (regression test A4). (4) $revoke + $rotate: apps/api/src/admin-api-key-routes.ts adds tenant-admin-gated POST /admin/api-keys/:id/$revoke (status=revoked + revokedBy/revokedAt, idempotent, cross-tenant id → 404) and POST /admin/api-keys/:id/$rotate (mints a new verifiable secret for the same principal/name, revokes the old with reason='rotated', returns the new secret once with no-store headers). Boot wiring: apps/api/src/index.ts constructs DefaultApiKeyVerifier(PgApiKeyLookup(db)) injected into registerRbacHook so EVERY authed route honors API keys, and passes the tenant-scoped storage to adminApiKeyRoutes for revoke/rotate. Tests: NEW api-key-lookup.test.ts (6, real Postgres :5433 via createMigratedDatabaseFixture — cross-tenant byPrefix, unknown/soft-deleted→null, recordUsage), NEW admin-api-key-routes.test.ts (8 — format-reconciliation round-trip, revoke idempotent + revoked-key-no-longer-verifies, rotate, non-admin 403 / cross-tenant 404), + 6 API-key-branch cases in iam-route-guards.test.ts (seeded-RoleBinding authenticates with right roles, revoked→401, expired→401, JWT regression, no-verifier→401, unknown-prefix→401). ADR-0127: @cernia/api typecheck=0; the 47 tests across the 3 files (33 iam + 8 admin + 6 lookup) all green; changed source files lint-clean (package-wide 314 pre-existing baseline lint errors in unrelated files are carry-forward, unchanged). FINDING: the dev `cernia` DB on :5433 holds 9 ApiKey rows all in the OLD cernia_pk_<8 hex> format (e.g. cernia_pk_9b42e3a9, no _ separator) — these dev artifacts stop authenticating under the reconciled verifier (their plaintext was never recoverable); no key migration needed on a pre-launch system. Files: apps/api/src/admin-api-key-routes.ts, apps/api/src/api-key-lookup.ts, apps/api/src/iam-route-guards.ts, apps/api/src/index.ts + the 3 colocated *.test.ts."
+                },
+                {
+                  "date": "2026-06-13",
+                  "stage": "phase-3-2-core-saas",
+                  "note": "Release 3 / T2 follow-up — three live-path bugs the T2 unit suite missed (it mocked RBAC + seeded the tenant tag) FIXED so self-serve API keys actually work end-to-end against the running stack. Bug A (RBAC fail-closed 403): deriveOperation (apps/api/src/iam-route-guards.ts) had NO mapping for /admin/api-keys/* custom-verb routes, so the global RBAC hook fell through to the {*,*} catch-all and 403'd a tenant-admin BEFORE the route's own isAdmin check ran. Added 4 mappings → write:ApiKey: $generate-secret, $issue, :id/$revoke, :id/$rotate. Bug B (UI-created keys never authenticate, 401): the admin UI creates ApiKeys by POSTing the resource, but storage scopes tenancy by COLUMN and does NOT stamp meta.tag urn:cernia:tenant, so the verifier failed closed ('API key is not tenant-scoped'). NEW server-side POST /admin/api-keys/$issue (apps/api/src/admin-api-key-routes.ts) issues via DefaultApiKeyIssuer, which stamps the tag from the AUTHED principal's tenantId (SERVER-AUTHORITATIVE — never client body); defaults the key principal to the caller so it inherits the caller's RoleBindings; tolerates empty/{} bodies; returns {secret, apiKey} once with no-store headers. Bug C (FHIR auth layer rejects api keys): T2 wired apiKeyVerifier into registerRbacHook ONLY, but @cernia/server's FHIR routes (GET /ApiKey, /Patient, …) have a SEPARATE auth preHandler (createAuthMiddleware → identityProvider.authenticate) that only knew JWTs — so an api key got 'Token malformed' (401) on any FHIR route even after passing the RBAC hook. FIXED by composing the FHIR-router identityProvider in apps/api/src/index.ts (step 6b): a cernia_pk_ bearer is verified as an api key (tenant from meta.tag, fail-closed if absent), any other token delegates UNCHANGED to the JWT provider; one shared DefaultApiKeyVerifier backs BOTH the FHIR layer and the RBAC hook. NEW apps/api/src/api-key-live-flow.test.ts: real createServer + real registerRbacHook + real PgStorageAdapter on :5433, asserts dev-login → $issue (200, tag stamped) → authenticate a REAL FHIR route (GET /ApiKey, 200) → $revoke (200) → same secret rejected (401), plus non-admin $issue → 403. Each of the three bugs was reproduced (test fails) then fixed (test passes). ADR-0127: @cernia/api typecheck=0; api-key-live-flow + iam-route-guards + admin-api-key-routes = 43 tests green; zero NEW lint errors (64 pre-existing carry-forward in unrelated files). PROVEN LIVE on a fresh isolated boot (:8097, same :5433 DB the running stack uses): POST /dev/login → POST /admin/api-keys/$issue (200, meta.tag=urn:cernia:tenant) → GET /ApiKey with the issued secret → auth-with-issued-key=200; after $revoke → 401. Files: apps/api/src/iam-route-guards.ts (deriveOperation only), apps/api/src/admin-api-key-routes.ts, apps/api/src/index.ts, apps/api/src/api-key-live-flow.test.ts."
+                },
+                {
+                  "date": "2026-06-13",
+                  "stage": "phase-3-2-core-saas",
+                  "note": "Release 3 / T3 — tenant self-serve WEBHOOKS shipped by EXTENDING the existing SubscriptionEngine rest-hook engine (no second delivery path). A tenant-admin registers an HMAC-SIGNED FhirSubscription rest-hook and receives POSTs when matching resources are written. (1) Signing (security): packages/subscription/src/{types.ts,dispatcher.ts} gained an OPTIONAL rest-hook channel field `signingSecret` (additive — existing Workflow/Connection callers unaffected); when set, dispatchRestHook adds `X-Cernia-Signature: sha256=<hex HMAC-SHA256(secret, rawBody)>` over the EXACT bytes POSTed (body serialized ONCE so the tenant can recompute). (2) Secret storage — approach (a), REUSE the encrypted tenant-secret store: apps/api/src/webhook-secret.ts stores each webhook's secret in tenant_secrets (migration 046) under synthetic provider key `webhook:<subscriptionId>` via TenantSecretResolver (AES-256-GCM in prod, Noop in test); encrypted at rest, tenant-isolated by the (tenant_id,provider) PK, generated server-side, returned ONCE at registration with Cache-Control:no-store, NEVER written to the FhirSubscription body (so it cannot leak via a FHIR read). get() accepts ONLY a tenant-sourced row (never the platform-env fallback — that would be a forgeable shared secret). Rejected (b) HMAC(masterKey,subId): one compromise forges every tenant + no per-hook rotation. (3) Bootstrap (apps/api/src/subscription-bootstrap.ts): startup scan now also materialises active rest-hook FhirSubscriptions (criteria derived from filterBy/topic — bare resourceType matches every write of that type, the SAME criteria format Workflow triggers use), AND the onWrite hook (re)materialises a FhirSubscription on create/update + tears its handle down on off/entered-in-error, keyed by tenant::subId so there is never a duplicate. LOOP-AVOIDANCE: a FhirSubscription write is treated as CONFIG (re-materialise) and is NEVER fanned out as a deliverable match. (4) Routes (apps/api/src/webhook-routes.ts, tenant-admin gated + deriveOperation→FhirSubscription in iam-route-guards.ts): POST /admin/webhooks (server-authoritative tenant; pre-assigns id, stores secret BEFORE create fires onWrite so the materialised handle is SIGNED; returns {subscription,secret} once, 201, no-store), GET /admin/webhooks (lists own; never a secret), POST /admin/webhooks/:id/$test (synthetic signed Parameters ping through the SAME dispatcher), POST /admin/webhooks/:id/$disable (status=off + unmaterialise + secret removed). Tenant isolation: register/list/test/disable all scoped to the authed principal's tenant; deliveries fire only for the subscription's tenant (engine is per-tenant via onResourceWrite(tenantId,…)). MANDATORY LIVE TEST (apps/api/src/webhook-live-flow.test.ts — the T2-lesson acceptance bar): real node http receiver + real createServer + real PgStorageAdapter on :5433 + real engine bootstrap → register a Patient webhook → write a Patient via a REAL FHIR route → receiver gets EXACTLY ONE POST whose body is the Patient and whose X-Cernia-Signature equals an INDEPENDENTLY-computed sha256 HMAC; the secret is NOT readable via GET /FhirSubscription/:id; a Patient in a DIFFERENT tenant does NOT reach the receiver. ADR-0127: @cernia/subscription typecheck=0 + 179 tests green (incl. 2 new dispatcher signing tests); @cernia/api typecheck=0; the live signed-delivery + webhook-routes (9) + subscription-bootstrap (16, incl. 5 new FhirSubscription cases) = 26 tests green vs :5433 with DB_PASSWORD=cernia; changed source files lint-clean (314 api + 1 subscription pre-existing baseline lint errors in unrelated files = carry-forward, verified identical via git-stash). TIER-GATE GAP (honest): the customWebhooks Growth+ entitlement (@cernia/saas-platform) is NOT yet enforced on POST /admin/webhooks — the route is tenant-admin RBAC-gated (the security boundary) but any tier can register; wiring the saas-platform tier resolver is a follow-up. Files: packages/subscription/src/{types.ts,dispatcher.ts,dispatcher.test.ts}, apps/api/src/{webhook-secret.ts,webhook-routes.ts,webhook-routes.test.ts,webhook-live-flow.test.ts,subscription-bootstrap.ts,subscription-bootstrap.test.ts,iam-route-guards.ts,index.ts}."
+                },
+                {
+                  "date": "2026-06-13",
+                  "stage": "phase-3-2-core-saas",
+                  "from": "remaining",
+                  "to": "narrowed",
+                  "note": "Release 3 / T6 — subscription/entitlement gates: closes the T3 customWebhooks gap. (1) Two new platform products developer_portal + marketplace_access added to PLATFORM_PRODUCTS (apps/api/src/product-catalog-store.ts), KNOWN_PRODUCTS (apps/api/src/entitlement-middleware.ts), the index.ts:3089 activeProducts knownProducts array, and the boot seed log line — seedProducts() now seeds all four idempotently at boot (verified live: boot log 'product-catalog: seeded phone-agent + digital-assistant + developer_portal + marketplace_access'). (2) POST /admin/webhooks (register only — $test/$disable/GET stay open so a lapsed tenant can still inspect/tear down) is gated behind developer_portal via the WIRED createRequireProduct('developer_portal', checker) preHandler, passed into webhookRoutes as registerPreHandler (mirrors the phone-agent voice-agent gate); un-entitled → 402 product-not-entitled, entitled → 201. The entitlement checker + boot seed were hoisted in index.ts to run BEFORE the webhook registration so one PostgresProductCatalogStore-backed checker backs the gate. (3) /dev/login now idempotently grants the dev tenant developer_portal+marketplace_access+phone-agent+digital-assistant (grantRef='dev-login') via a new grantProducts seam on devAuthRoutes — DEV-ONLY (guarded by the same isDevLoginEnabled() gate, skipped for platform-operator tokens) + best-effort (a grant failure is logged and never breaks login) — so the platform stays usable locally and the @release-3 specs stay green. (4) Developer portal UI (apps/developer/src/app/webhooks/page.tsx) renders a graceful 'Upgrade required' prompt (data-testid=wh-upgrade) on a 402 instead of a raw error. Tests: NEW apps/api/src/webhook-routes.entitlement.test.ts (3 — un-entitled→402 product-not-entitled + handler never runs, entitled→201 + secret once + no-store, cross-tenant isolation) via real webhookRoutes + real createRequireProduct + fastify.inject; +2 cases in entitlement-middleware.test.ts (KNOWN_PRODUCTS includes both new slugs; developer_portal 402→pass). ADR-0127: @cernia/api typecheck=0, @cernia/developer typecheck=0; the entitlement+webhook suite = 26 tests green vs :5433 (DB_PASSWORD=cernia, incl. the live-flow test); the 4 @release-3 specs (developer-api-keys, developer-webhooks, developer-sdk-sandbox x2) all PASS headed against API :8090 + portal :3006; zero NEW lint errors in changed files (also fixed 2 require-await stubs to non-async). LIVE PROOF on :8090 (fresh worktree boot): dev-login tenant → POST /admin/webhooks → 201 + whsec_ secret (grant worked); a tenant with developer_portal cancelled in product_entitlements → POST /admin/webhooks → 402 product-not-entitled. Files: apps/api/src/{product-catalog-store.ts,entitlement-middleware.ts,entitlement-middleware.test.ts,webhook-routes.ts,webhook-routes.entitlement.test.ts,dev-auth-routes.ts,index.ts}, apps/developer/src/app/webhooks/page.tsx."
                 }
               ]
             },
@@ -5411,19 +5455,19 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-14T00:48:35.172Z",
-      "backendRouteSymbolCount": 193,
+      "lastAuditAt": "2026-06-14T02:24:41.095Z",
+      "backendRouteSymbolCount": 197,
       "deferredItems": {
-        "total": 963,
+        "total": 973,
         "bySeverity": {
-          "tech-debt": 260,
-          "review": 700,
+          "tech-debt": 262,
+          "review": 708,
           "blocker": 3
         },
         "byKind": {
-          "docstring-caveat": 246,
-          "not-configured-fallback": 81,
-          "type-cheat-cast": 618,
+          "docstring-caveat": 248,
+          "not-configured-fallback": 84,
+          "type-cheat-cast": 623,
           "type-cheat": 1,
           "todo-comment": 2,
           "skipped-test": 3,
@@ -5433,7 +5477,7 @@
           "UI": 34,
           "X": 36,
           "H": 14,
-          "Platform": 648,
+          "Platform": 658,
           "S": 1,
           "J": 12,
           "G": 27,
@@ -5455,7 +5499,7 @@
         "wontfixDemotions": []
       },
       "saasConformance": {
-        "totalViolations": 409,
+        "totalViolations": 412,
         "totalBlockers": 11,
         "byCheck": {
           "migration-tenant-id": 3,
@@ -5464,17 +5508,11 @@
           "no-phi-in-logs": 0,
           "baa-enforcement": 0,
           "three-app-boundary": 0,
-          "no-in-process-stubs": 398
+          "no-in-process-stubs": 401
         }
       }
     },
-    "justLandedWaves": [],
-    "nowWorkingOn": {
-      "wave": "STATUS",
-      "detail": "tenant-provisioning — signup Plan 1 (A/D/F) landed + B/C/E tracked",
-      "commit": "b9bf11a8",
-      "freshSeconds": 34
-    }
+    "justLandedWaves": []
   },
   "pool": {
     "size": 8,
@@ -5595,6 +5633,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Release 3: Developer Portal + Marketplace Publishing + Subscription...",
+      "commit": "e0c42bba",
+      "kind": "other"
+    },
+    {
       "agent": "tenant-provisioning — signup Plan 1 (A/D/F) landed + B/C/E tracked",
       "commit": "b9bf11a8",
       "kind": "docs"
@@ -5662,11 +5705,6 @@
     {
       "agent": "unified front door — @cernia/trust→@cernia/web hub, deterministic p...",
       "commit": "5bbebd27",
-      "kind": "feat"
-    },
-    {
-      "agent": "close the 5 deferred items (voice-tier billing, EHR sync engine, op...",
-      "commit": "ce8ae6c1",
       "kind": "feat"
     }
   ],
@@ -12725,10 +12763,9 @@
     "origin/feat/p2-phone-numbers@61cc502884a1": 25,
     "origin/feat/p3-voice-selection@a6daf23a6694": 0,
     "origin/feat/phase-1b-provisioning@27440117dc24": 17,
-    "origin/feat/release-3-developer-portal@992a9d47bc9e": 60,
+    "origin/feat/release-3-developer-portal@060c10db29d4": 74,
     "origin/feat/saas-conformance-cleanup@758cab946519": 8,
     "origin/feat/sensitive-data-routes@92780a57ad67": 0,
-    "origin/feat/signup-foundations@3575d7d1e530": 10,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 4,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": 17,
     "origin/feat/wave-a-integration@9f5d3e77833d": 0,
@@ -13322,10 +13359,9 @@
     "origin/feat/p2-phone-numbers@61cc502884a1": 8,
     "origin/feat/p3-voice-selection@a6daf23a6694": 0,
     "origin/feat/phase-1b-provisioning@27440117dc24": 6,
-    "origin/feat/release-3-developer-portal@992a9d47bc9e": 10,
+    "origin/feat/release-3-developer-portal@060c10db29d4": 13,
     "origin/feat/saas-conformance-cleanup@758cab946519": 0,
     "origin/feat/sensitive-data-routes@92780a57ad67": 0,
-    "origin/feat/signup-foundations@3575d7d1e530": 2,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 1,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": 2,
     "origin/feat/wave-a-integration@9f5d3e77833d": 0,
@@ -13919,10 +13955,9 @@
     "origin/feat/p2-phone-numbers@61cc502884a1": false,
     "origin/feat/p3-voice-selection@a6daf23a6694": true,
     "origin/feat/phase-1b-provisioning@27440117dc24": true,
-    "origin/feat/release-3-developer-portal@992a9d47bc9e": false,
+    "origin/feat/release-3-developer-portal@060c10db29d4": false,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
-    "origin/feat/signup-foundations@3575d7d1e530": true,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": false,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,
