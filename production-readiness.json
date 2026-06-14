@@ -863,10 +863,22 @@
           "remaining": [
             "Deferred (post-GA, NOT a launch blocker): ML-model marketplace (P3-C) clinical-review dual-control queue before publish — the -A vertical publishes directly; a physician/compliance review gate is a future enhancement (apps/api/src/ml-marketplace-routes.ts).",
             "Release 3 / T5 — publisher-verification VerifierBackends are a clearly-labelled DEV STUB (apps/api/src/index.ts buildDevStubVerifierBackends: any non-empty EIN/DUNS/domain passes; OAuth2 returns the first allow-listed issuer). Production must wire REAL clients: OAuth2 issuer probe, EIN match against the signed-MSA record, Dun & Bradstreet DUNS lookup, DNS-TXT domain-control check. The store/route/FSM/gate plumbing is complete + live-tested; only the four backend implementations remain.",
-            "Release 3 / T5 — no apps/* UI yet for publisher onboarding (POST/GET /admin/marketplace/publisher) or the ops $verify queue (cernia-ops). UI is the controller's follow-up; the backend surface is shipped.",
+            "Release 3 / T5 — no apps/admin UI yet for tenant-side publisher onboarding (POST/GET /admin/marketplace/publisher). The cernia-ops review queue UI shipped 2026-06-13 (apps/cernia-ops/src/app/cernia-ops/platform/publishers/page.tsx — list + Verify + Reject). Tenant-side onboarding form remains.",
             "Auth Plans 3 + 4 — DEFERRED ITEMS only (core shipped 2026-06-11): social login cross-tenant chooser, JIT signup-via-social, Apple provider; adaptive/risk-based auth, trust-this-device + refresh tokens, password-reset UI, per-tenant MFA-policy enforcement UI, full auth-event audit pipeline. Real OAuth creds = procurement (Google/Microsoft client IDs). Real SMS creds (Twilio) + email SMTP (Google Workspace) code-side shipped 2026-06-11; external remaining = toll-free verification / A2P 10DLC registration (SMS) and App Password + SPF/DKIM/DMARC DNS (email)."
           ],
           "history": [
+            {
+              "date": "2026-06-13",
+              "stage": "saas-billing-marketplace",
+              "note": "Release 3 residual #4 — cernia-ops publisher-verification REVIEW UI. NEW PublisherVerificationStore.list() (cross-tenant SELECT, ordered by status then tenant_id; commercial legal-entity records, NOT PHI per ADR 0054) + GET /cernia-ops/marketplace/publishers (cernia-super-admin review queue) + POST /cernia-ops/marketplace/publishers/:tenantId/$reject {reason} (manual rejected verdict, sibling to the auto $verify — does NOT run the verifier). NEW apps/cernia-ops platform/publishers/page.tsx ('use client'): lists every publisher application with status badge + EIN/DUNS/domain + verifiedAt/rejectionReason; Verify + Reject (window.prompt reason) buttons on pending/unverified rows via fetchOpsJson (CSRF double-submit), refreshes after; testids ops-publishers-page / ops-publisher-row-<tenant> / verify-<tenant> / reject-<tenant> / ops-publishers-empty. Sidebar 'Publishers' nav added under Platform. Verified: @cernia/api typecheck=0 + 13/13 tests green (publisher-verification-store incl. new list() ordering test + marketplace-publisher-flow incl. new GET-list + $reject route tests, real PG :5433); @cernia/cernia-ops-portal typecheck=0. LIVE-verified on running :8090 (dev tsx-watch picked up routes): seed pending publisher (tenant-admin) → GET lists it pending-first → $verify → verified(200) → $reject 2nd tenant → rejected+reason(200) → tenant token on GET → 403. Files: apps/api/src/{publisher-verification-store,cernia-ops-marketplace-publisher-routes}.ts, apps/cernia-ops/src/{lib/publishers-api.ts,app/cernia-ops/platform/publishers/page.tsx,components/sidebar.tsx}.",
+              "files": [
+                "apps/api/src/publisher-verification-store.ts",
+                "apps/api/src/cernia-ops-marketplace-publisher-routes.ts",
+                "apps/cernia-ops/src/lib/publishers-api.ts",
+                "apps/cernia-ops/src/app/cernia-ops/platform/publishers/page.tsx",
+                "apps/cernia-ops/src/components/sidebar.tsx"
+              ]
+            },
             {
               "date": "2026-06-13",
               "stage": "saas-billing-marketplace",
@@ -1687,6 +1699,19 @@
             "Deferred (post-GA enhancement, NOT a GA launch blocker — triaged 2026-06-03): Intent Handler Overrides (advanced): per-intent backend URL override so a tenant can replace the platform handler for a specific intent with their own webhook. Deferred — out of scope for the pilot."
           ],
           "history": [
+            {
+              "date": "2026-06-14",
+              "stage": "tenant-customization",
+              "note": "Residual #1: the D2 SCOPE BOUNDARY CLOSED. A REAL, working FHIR-REST EHR connector is now wired as the RecordGateway's ehrConnectorResolver, so ehr-passthrough / hybrid-bidirectional tenants with a configured Connection sync LIVE (the engine was adapter-agnostic + config-driven since 2026-06-13 but had NO connector, so every EHR-routed op threw NotImplementedError). NEW apps/api/src/http-fhir-ehr-connector.ts: HttpFhirEhrConnector implements the generic EhrConnector with genuine HTTP fetches. read GET {base}/{type}/{id} (undefined on 404); search GET {base}/{type} with query string (unwraps the searchset Bundle); create POST; update PUT {base}/{type}/{id}; delete DELETE; Accept/Content-Type application/fhir+json; non-2xx (except read-404) throws a PHI-free EhrConnectorHttpError (status + verb + resourceType only, never id/body/token). Pluggable EhrAuth: none, bearer, or smart-backend-services (signed-JWT client-assertion via jose to a client_credentials POST, cached bearer until near expiry; token acquisition injectable for tests). NEW apps/api/src/connection-ehr-connector-resolver.ts: ConnectionEhrConnectorResolver builds it from the tenant's active outbound/bidirectional fhir-r4-client Connection (protocol.baseUrl + protocol.auth ConnectionAuth mapped to EhrAuth, secretRefs resolved via the SAME tenant_secrets/KMS TenantSecretResolver seam, scoped to the tenant per ADR 0004); no such Connection throws so the gateway emits NotImplementedError (preserves the T7.1 sync-inactive guardrail; never a silent Cernia fallback). Wired buildEhrConnectorResolver into RecordGatewayRouter at apps/api/src/index.ts (ehrConnectorResolver now SET; Mode A cernia default never consults it, DEFAULT PATH UNAFFECTED). Tests: http-fhir-ehr-connector.test.ts (16 cases) + connection-ehr-connector-resolver.test.ts (8 cases) = 24/24 green. LIVE round-trip http-fhir-ehr-connector.live.test.ts against the running Cernia API own FHIR server (http://localhost:8090/fhir, /dev/login tenant-admin bearer): create Patient 201 with id + versionId 1, read same, search by family 1 match, update gender versionId 2, delete, read-after-delete undefined(404). @cernia/api typecheck=0; new files lint-clean + no require( (boot landmine); ZERO new lint errors vs git-stash baseline (all carry-forward in untouched voice/webrtc files). API boots clean on :8091. PROD Epic/Cerner = a fhir-r4-client Connection pointed at their SMART base URL + client creds (CONFIG, NOT new code); Epic-specific quirks stay with the existing scheduling-only EpicFhirR4ClientAdapter.",
+              "files": [
+                "apps/api/src/http-fhir-ehr-connector.ts",
+                "apps/api/src/http-fhir-ehr-connector.test.ts",
+                "apps/api/src/http-fhir-ehr-connector.live.test.ts",
+                "apps/api/src/connection-ehr-connector-resolver.ts",
+                "apps/api/src/connection-ehr-connector-resolver.test.ts",
+                "apps/api/src/index.ts"
+              ]
+            },
             {
               "date": "2026-06-13",
               "stage": "tenant-customization",
