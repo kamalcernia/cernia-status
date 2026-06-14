@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-14T20:27:31.549Z",
-    "lastUpdatedDisplay": "Jun 14, 2026 — 20:27 EDT",
+    "lastUpdatedIso": "2026-06-14T20:41:44.159Z",
+    "lastUpdatedDisplay": "Jun 14, 2026 — 20:41 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #235 feat: self-serve signup Plan 2 — email verificatio"
   },
   "summary": {
-    "currentMainCommit": "09e15eef",
+    "currentMainCommit": "9581283a",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1335,
+    "agentsCompletedThisSession": 1336,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1335 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1336 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #235 feat: self-serve signup Plan 2 — email verification + invita. (refreshed Jun 14, 2026 — 20:27 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #235 feat: self-serve signup Plan 2 — email verification + invita. (refreshed Jun 14, 2026 — 20:41 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5486,7 +5486,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-14T20:27:30.391Z",
+      "lastAuditAt": "2026-06-14T20:41:43.010Z",
       "backendRouteSymbolCount": 197,
       "deferredItems": {
         "total": 859,
@@ -5545,10 +5545,10 @@
     },
     "justLandedWaves": [],
     "nowWorkingOn": {
-      "wave": "ADMIN",
-      "detail": "allow /auth/invitations as a pre-auth (bare) route",
-      "commit": "09e15eef",
-      "freshSeconds": 35
+      "wave": "INSTALLER",
+      "detail": "Continue-with-Google saves a throwaway password to pass account validation",
+      "commit": "9581283a",
+      "freshSeconds": 36
     }
   },
   "pool": {
@@ -5670,6 +5670,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Continue-with-Google saves a throwaway password to pass account val...",
+      "commit": "9581283a",
+      "kind": "fix"
+    },
+    {
       "agent": "allow /auth/invitations as a pre-auth (bare) route",
       "commit": "09e15eef",
       "kind": "fix"
@@ -5738,11 +5743,6 @@
       "agent": "migration 266 — add 'signup-phone' to auth_verifications.purpose CHECK",
       "commit": "d1e92334",
       "kind": "fix"
-    },
-    {
-      "agent": "optional admin-phone SMS verification sub-step in the account step",
-      "commit": "8c110eac",
-      "kind": "feat"
     }
   ],
   "failures": [
