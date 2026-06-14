@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-14T04:21:33.775Z",
-    "lastUpdatedDisplay": "Jun 14, 2026 — 04:21 EDT",
+    "lastUpdatedIso": "2026-06-14T20:18:26.906Z",
+    "lastUpdatedDisplay": "Jun 14, 2026 — 20:18 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #235 feat: self-serve signup Plan 2 — email verificatio"
   },
   "summary": {
-    "currentMainCommit": "d5606952",
+    "currentMainCommit": "e433fde4",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1316,
+    "agentsCompletedThisSession": 1334,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1316 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1334 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #235 feat: self-serve signup Plan 2 — email verification + invita. (refreshed Jun 14, 2026 — 04:21 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #235 feat: self-serve signup Plan 2 — email verification + invita. (refreshed Jun 14, 2026 — 20:18 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -58,15 +58,15 @@
     },
     "velocity": {
       "landedLastHour": 0,
-      "landedLast24h": 15,
-      "label": "0 PRs opened in last hour · 15 in last 24h"
+      "landedLast24h": 4,
+      "label": "0 PRs opened in last hour · 4 in last 24h"
     },
     "integration": {
       "lastMergeIso": "2026-06-10T12:49:34-04:00",
-      "daysSinceLastMerge": 3,
+      "daysSinceLastMerge": 4,
       "mergedPrs": 15,
       "openPrs": 0,
-      "label": "Last main merge: 3d ago · 0 PRs awaiting batch-merge"
+      "label": "Last main merge: 4d ago · 0 PRs awaiting batch-merge"
     },
     "mainState": {
       "waveCounts": {
@@ -1683,8 +1683,8 @@
                 "POST /onboarding/:id/numbers/search has no rate-limit — an unauth caller with a valid session could drive Twilio AvailablePhoneNumbers API cost; add a per-session/per-IP token-bucket (Fastify rate-limit). apps/api/src/onboarding-routes.ts. (P2 core shipped — this is a P3/hardening follow-up item, not a GA blocker.)",
                 "P4 SHIPPED — number port-in DONE (Cards 1-6 complete 2026-06-08). DEFERRED remaining: admin multi-number management surface (list/deactivate/reassign via apps/admin), real Twilio pricing API call (monthlyCostCents is wizard-side input, not fetched from Twilio AvailablePhoneNumbers pricing). Integration points: apps/api/src/onboarding-routes.ts, apps/api/src/telephony-store.ts, apps/api/src/tenant-external-resources-store.ts.",
                 "C4 boot-wiring DONE (2026-06-09): apps/api/src/index.ts now constructs the failover dep bundle via the new apps/api/src/voice-fallback-wiring.ts (buildVoiceFallbackWiring → buildVoiceFallbackBinProvisioner() + per-tenant PostgresVoiceFallbackStore + buildNumberConfigClient()) and threads it into BOTH the provisionTenantExternalResources call (numberConfig + failover deps) AND the voiceAgentAdminRoutes registration (opts.failover). Wiring is gated to real-Twilio posture only (provision: isProd && TWILIO_ACCOUNT_SID && TWILIO_AUTH_TOKEN; admin: telephony.id==='twilio' && tenantSecretResolver present) so dev/stub posture leaves it unwired and the promote gate keeps blocking (safe default). Per-tenant Twilio creds reuse the existing tenant_secrets provider='twilio' resolver pattern (vendorAccountId=subaccount SID, plaintext=auth token); resolveTenantTelephony joins those creds with tenant_external_resources.twilio_phone_number_sid. A provisioned number now gets a real platform-independent VoiceFallbackUrl. REMAINING (deferred, NOT a wiring gap): existing tenants whose number was provisioned BEFORE this wiring landed have voice_fallback_url=null until they either re-run onboarding or PATCH /api/voice-agent/fallback — a one-time backfill/$reprovision-failover sweep would close them out. Integration points: apps/api/src/index.ts, apps/api/src/voice-fallback-wiring.ts.",
-                "Self-serve signup Plan 2 increment E (Google new-tenant signup) residual — orphan provisional-tenant cleanup: reserve-on-Google-click creates the Tenant + an 'invited' (credential-less, unauthenticatable) admin before $complete; if the user changes the facility name between reserving and completing, the slug changes and the first reserved tenant is orphaned. Benign (inert rows, no auth/data exposure — security-reviewed 2026-06-13) but accumulates. Add a background sweep of 'invited'-only tenants with no social link and no $complete. Integration points: apps/api/src/onboarding-routes.ts (reserve-tenant), apps/api/src/fhir-storage-tenant-provisioner.ts.",
-                "apps/installer has no .eslintrc — `next lint` hangs on the interactive setup prompt, so the CLAUDE.md lint gate is unsatisfiable for the installer app (pre-existing, not introduced by the signup work; surfaced while shipping the Plan-2 installer UI). Add a `{\"extends\":\"next/core-web-vitals\"}` eslintrc mirroring apps/admin so installer lint runs in CI. apps/installer/.eslintrc.json (to create).",
+                "Self-serve signup Plan 2 increment E residual — orphan provisional-tenant cleanup SWEEP SHIPPED (2026-06-14): apps/api/src/orphan-tenant-cleanup.ts (findOrphanProvisionalTenants + cleanupOrphanProvisionalTenants, dry-run-default, injected seams) deletes tenants older than a TTL (default 7d) AND invited-admin-only (no active user) AND not social-linked — the inert rows left when a reserve-on-Google-click signup is abandoned or the facility name is changed mid-signup. CLI: `pnpm --filter @cernia/api cleanup:orphan-tenants` (dry-run; `-- --apply` to delete). 8/8 fast unit tests (orphan-tenant-cleanup.unit.test.ts) + real-PG integration test (orphan-tenant-cleanup.test.ts). REMAINING: schedule the sweep (cron / ops job) — currently run-on-demand.",
+                "installer .eslintrc SHIPPED (2026-06-14): apps/installer/.eslintrc.json ({\"extends\":\"next/core-web-vitals\"}, mirrors apps/admin) — `pnpm --filter @cernia/installer lint` now runs and is clean. Closes the unsatisfiable-lint-gate gap surfaced while shipping the Plan-2 installer UI.",
                 "SMS verification in signup is intentionally NOT a wizard gate (decided 2026-06-13): the phone-OTP routes are post-auth MFA and there is no phone gate on $complete, so signup verifies email only; phone is post-signup MFA enrollment (the account step's mfaMethod selector). A future pre-auth phone-verify path + a $complete phone gate would be needed to require SMS during signup. apps/api/src/auth-verification-routes.ts (phone routes), apps/api/src/onboarding-routes.ts ($complete gate)."
               ],
               "history": [
@@ -5486,44 +5486,44 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-14T04:21:32.134Z",
+      "lastAuditAt": "2026-06-14T20:18:26.041Z",
       "backendRouteSymbolCount": 197,
       "deferredItems": {
-        "total": 974,
+        "total": 859,
         "bySeverity": {
-          "tech-debt": 263,
-          "review": 708,
+          "tech-debt": 265,
+          "review": 591,
           "blocker": 3
         },
         "byKind": {
-          "docstring-caveat": 250,
+          "docstring-caveat": 252,
           "not-configured-fallback": 84,
-          "type-cheat-cast": 623,
+          "type-cheat-cast": 506,
           "type-cheat": 1,
           "todo-comment": 2,
           "skipped-test": 3,
           "json-deferred": 11
         },
         "byWave": {
-          "UI": 34,
+          "UI": 32,
           "X": 36,
           "H": 14,
-          "Platform": 659,
+          "Platform": 574,
           "S": 1,
-          "J": 12,
+          "J": 9,
           "G": 27,
-          "A": 4,
-          "ERX": 7,
-          "P": 13,
+          "A": 5,
+          "ERX": 6,
+          "P": 11,
           "Q": 13,
-          "E": 37,
+          "E": 33,
           "DD": 4,
-          "F": 27,
+          "F": 23,
           "I": 9,
-          "K": 11,
-          "M": 37,
+          "K": 10,
+          "M": 26,
           "W": 5,
-          "O": 4,
+          "O": 1,
           "R": 1,
           "(unassigned)": 19
         },
@@ -5664,78 +5664,78 @@
   ],
   "recentCompletions": [
     {
-      "agent": "R3 residuals: admin read-only fix, ops MFA, publisher-verify UI, re...",
-      "commit": "d5606952",
+      "agent": "style: repo-wide lint cleanup — fix all remaining eslint errors (no...",
+      "commit": "e433fde4",
       "kind": "other"
     },
     {
-      "agent": "tenant-provisioning — signup Plan 2 (B/C/E) landed + residuals tracked",
-      "commit": "32986821",
-      "kind": "docs"
-    },
-    {
-      "agent": "Continue with Google on signup (reserve tenant → social start → JIT...",
-      "commit": "7c481dfb",
-      "kind": "feat"
-    },
-    {
-      "agent": "JIT-promote reserved invited admin on verified Google signup (gated...",
-      "commit": "a641b6b0",
-      "kind": "feat"
-    },
-    {
-      "agent": "POST /onboarding/:sessionId/reserve-tenant — early provisional tena...",
-      "commit": "f8a87785",
-      "kind": "feat"
-    },
-    {
-      "agent": "invitation-accept page (/auth/invitations/:token) — set password, a...",
-      "commit": "da7ab7f7",
-      "kind": "feat"
-    },
-    {
-      "agent": "fetchInvitation + acceptInvitation client fns",
-      "commit": "a722e22e",
-      "kind": "feat"
-    },
-    {
-      "agent": "non-consuming GET /auth/invitations/:token validate (anti-enumeration)",
-      "commit": "f2863ac4",
-      "kind": "feat"
-    },
-    {
-      "agent": "require verified admin email before leaving the account step",
-      "commit": "6da4ba3f",
-      "kind": "feat"
-    },
-    {
-      "agent": "email-verify sub-step (send/confirm 6-digit OTP, enumeration-safe)",
-      "commit": "ebd2bea4",
-      "kind": "feat"
-    },
-    {
-      "agent": "proxy routes for email-OTP verify start/confirm",
-      "commit": "da9a02cc",
-      "kind": "feat"
-    },
-    {
-      "agent": "self-serve signup Plan 2 — email verify (B) + invitation accept (C)...",
-      "commit": "b6b35542",
-      "kind": "docs"
-    },
-    {
-      "agent": "Release 3: Developer Portal + Marketplace Publishing + Subscription...",
-      "commit": "e0c42bba",
+      "agent": "style(g-d6): drop unused BreakGlassId type import (no-unused-vars; ...",
+      "commit": "e542f221",
       "kind": "other"
     },
     {
-      "agent": "tenant-provisioning — signup Plan 1 (A/D/F) landed + B/C/E tracked",
-      "commit": "b9bf11a8",
-      "kind": "docs"
+      "agent": "restore load-bearing 'as ItemDecision' cast removed by lint --fix",
+      "commit": "b39bb657",
+      "kind": "fix"
     },
     {
-      "agent": "add Get started CTA (header + hero) routing to the signup installer",
-      "commit": "913fefda",
+      "agent": "style(g-d2,g-d4): drop unused type imports (no-unused-vars; no beha...",
+      "commit": "655864ce",
+      "kind": "other"
+    },
+    {
+      "agent": "style(core): scoped require-await disable for InMemoryTenantSecretS...",
+      "commit": "b463e0d7",
+      "kind": "other"
+    },
+    {
+      "agent": "restore load-bearing usage cast removed by lint --fix",
+      "commit": "22cad487",
+      "kind": "fix"
+    },
+    {
+      "agent": "style: repo-wide lint --fix (no-unnecessary-type-assertion + auto-f...",
+      "commit": "615ab91a",
+      "kind": "other"
+    },
+    {
+      "agent": "style(desk): fix lint (hoist hooks out of conditional return in use...",
+      "commit": "87dc98e2",
+      "kind": "other"
+    },
+    {
+      "agent": "style(admin): fix lint (escape JSX entities, hoist hooks out of con...",
+      "commit": "692b7b3f",
+      "kind": "other"
+    },
+    {
+      "agent": "style(api): fix lint (auto-fix type-assertions + scoped require-awa...",
+      "commit": "ad81de25",
+      "kind": "other"
+    },
+    {
+      "agent": "orphan provisional-tenant cleanup sweep (dry-run default) + CLI",
+      "commit": "1739cf64",
+      "kind": "feat"
+    },
+    {
+      "agent": "add .eslintrc (next/core-web-vitals) so installer lint runs in CI",
+      "commit": "acf2f6db",
+      "kind": "chore"
+    },
+    {
+      "agent": "migration 266 — add 'signup-phone' to auth_verifications.purpose CHECK",
+      "commit": "d1e92334",
+      "kind": "fix"
+    },
+    {
+      "agent": "optional admin-phone SMS verification sub-step in the account step",
+      "commit": "8c110eac",
+      "kind": "feat"
+    },
+    {
+      "agent": "pre-auth signup phone verify routes + flag-gated isPhoneVerified ga...",
+      "commit": "9eabe739",
       "kind": "feat"
     }
   ],
@@ -5863,7 +5863,7 @@
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
       },
-      "deferredCount": 4
+      "deferredCount": 5
     },
     {
       "id": "B",
@@ -6645,7 +6645,7 @@
           "apps/admin imports sample-*/FAKE_/mock modules — swap to real *-api.ts calls"
         ]
       },
-      "deferredCount": 37
+      "deferredCount": 33
     },
     {
       "id": "H",
@@ -7337,7 +7337,7 @@
           "apps/admin uses API-path discovery (the architecturally correct three-app-boundary pattern)"
         ]
       },
-      "deferredCount": 11
+      "deferredCount": 10
     },
     {
       "id": "M",
@@ -7510,7 +7510,7 @@
           "apps/admin uses API-path discovery (the architecturally correct three-app-boundary pattern)"
         ]
       },
-      "deferredCount": 37
+      "deferredCount": 26
     },
     {
       "id": "N",
@@ -7803,7 +7803,7 @@
           "apps/admin uses API-path discovery (the architecturally correct three-app-boundary pattern)"
         ]
       },
-      "deferredCount": 27
+      "deferredCount": 23
     },
     {
       "id": "G",
@@ -8281,7 +8281,7 @@
           "apps/admin uses API-path discovery (the architecturally correct three-app-boundary pattern)"
         ]
       },
-      "deferredCount": 12
+      "deferredCount": 9
     },
     {
       "id": "O",
@@ -8462,7 +8462,7 @@
           "apps/admin uses API-path discovery (the architecturally correct three-app-boundary pattern)"
         ]
       },
-      "deferredCount": 4
+      "deferredCount": 1
     },
     {
       "id": "P",
@@ -8644,7 +8644,7 @@
           "apps/admin uses API-path discovery (the architecturally correct three-app-boundary pattern)"
         ]
       },
-      "deferredCount": 13
+      "deferredCount": 11
     },
     {
       "id": "Q",
@@ -12495,7 +12495,7 @@
           "apps/admin uses API-path discovery (the architecturally correct three-app-boundary pattern)"
         ]
       },
-      "deferredCount": 7
+      "deferredCount": 6
     },
     {
       "id": "UI",
@@ -12565,7 +12565,7 @@
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
       },
-      "deferredCount": 34
+      "deferredCount": 32
     },
     {
       "id": "CIT",
