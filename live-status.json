@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-15T06:05:49.870Z",
-    "lastUpdatedDisplay": "Jun 15, 2026 — 06:05 EDT",
+    "lastUpdatedIso": "2026-06-15T06:08:22.874Z",
+    "lastUpdatedDisplay": "Jun 15, 2026 — 06:08 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #235 feat: self-serve signup Plan 2 — email verificatio"
   },
   "summary": {
-    "currentMainCommit": "535eb5ab",
+    "currentMainCommit": "56be787e",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1352,
+    "agentsCompletedThisSession": 1357,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1352 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1357 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #235 feat: self-serve signup Plan 2 — email verification + invita. (refreshed Jun 15, 2026 — 06:05 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #235 feat: self-serve signup Plan 2 — email verification + invita. (refreshed Jun 15, 2026 — 06:08 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5495,18 +5495,18 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-15T06:05:48.804Z",
+      "lastAuditAt": "2026-06-15T06:08:21.773Z",
       "backendRouteSymbolCount": 197,
       "deferredItems": {
-        "total": 859,
+        "total": 861,
         "bySeverity": {
           "tech-debt": 264,
-          "review": 592,
+          "review": 594,
           "blocker": 3
         },
         "byKind": {
           "docstring-caveat": 251,
-          "not-configured-fallback": 84,
+          "not-configured-fallback": 86,
           "type-cheat-cast": 507,
           "type-cheat": 1,
           "todo-comment": 2,
@@ -5521,7 +5521,7 @@
           "S": 1,
           "J": 9,
           "G": 27,
-          "A": 5,
+          "A": 7,
           "ERX": 6,
           "P": 11,
           "Q": 13,
@@ -5552,7 +5552,13 @@
         }
       }
     },
-    "justLandedWaves": []
+    "justLandedWaves": [],
+    "nowWorkingOn": {
+      "wave": "ONBOARDING",
+      "detail": "real TOTP enrollment with QR in the signup wizard",
+      "commit": "56be787e",
+      "freshSeconds": 40
+    }
   },
   "pool": {
     "size": 8,
@@ -5673,6 +5679,31 @@
   ],
   "recentCompletions": [
     {
+      "agent": "real TOTP enrollment with QR in the signup wizard",
+      "commit": "56be787e",
+      "kind": "feat"
+    },
+    {
+      "agent": "brand the 'Continue with Google' button (Google colors)",
+      "commit": "d70a9e08",
+      "kind": "feat"
+    },
+    {
+      "agent": "explain the email-verify gate + clearer verified badge",
+      "commit": "20941f4d",
+      "kind": "feat"
+    },
+    {
+      "agent": "send a resume-link email on signup start",
+      "commit": "86fb299b",
+      "kind": "feat"
+    },
+    {
+      "agent": "Resume jumps to first incomplete step (was always /account)",
+      "commit": "634c6e08",
+      "kind": "fix"
+    },
+    {
       "agent": "Merge pull request #241 from kamalcernia/claude/hungry-villani-25c89d",
       "commit": "535eb5ab",
       "kind": "other"
@@ -5721,31 +5752,6 @@
       "agent": "rebuild /pricing + new /products to faithfully match agreed strawmen",
       "commit": "1b4ad442",
       "kind": "feat"
-    },
-    {
-      "agent": "pricing cost calculator + product capabilities (agreed model)",
-      "commit": "312ec029",
-      "kind": "feat"
-    },
-    {
-      "agent": "allowlist /billing/webhook/stripe (purchases were charged-but-never...",
-      "commit": "86aa2041",
-      "kind": "fix"
-    },
-    {
-      "agent": "canonical LIST_PRICES + catalog seed + register portal/api-webhooks",
-      "commit": "766c8649",
-      "kind": "feat"
-    },
-    {
-      "agent": "pricing/products pages → agreed v1 model + drop vendor names",
-      "commit": "c8da1968",
-      "kind": "feat"
-    },
-    {
-      "agent": "Google self-serve signup JIT-promote verified live (Auth Plan 3)",
-      "commit": "24d4fdf8",
-      "kind": "docs"
     }
   ],
   "failures": [
@@ -5872,7 +5878,7 @@
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
       },
-      "deferredCount": 5
+      "deferredCount": 7
     },
     {
       "id": "B",
@@ -12807,6 +12813,7 @@
     "origin/feat/release-3-developer-portal@060c10db29d4": 74,
     "origin/feat/saas-conformance-cleanup@758cab946519": 8,
     "origin/feat/sensitive-data-routes@92780a57ad67": 0,
+    "origin/feat/signup-totp-installer-ux@2b131af30595": 20,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 4,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": 17,
     "origin/feat/wave-a-integration@9f5d3e77833d": 0,
@@ -13404,6 +13411,7 @@
     "origin/feat/release-3-developer-portal@060c10db29d4": 13,
     "origin/feat/saas-conformance-cleanup@758cab946519": 0,
     "origin/feat/sensitive-data-routes@92780a57ad67": 0,
+    "origin/feat/signup-totp-installer-ux@2b131af30595": 2,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 1,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": 2,
     "origin/feat/wave-a-integration@9f5d3e77833d": 0,
@@ -14001,6 +14009,7 @@
     "origin/feat/release-3-developer-portal@060c10db29d4": false,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
+    "origin/feat/signup-totp-installer-ux@2b131af30595": true,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": false,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,
