@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-15T13:40:12.625Z",
-    "lastUpdatedDisplay": "Jun 15, 2026 — 13:40 EDT",
+    "lastUpdatedIso": "2026-06-15T14:48:53.107Z",
+    "lastUpdatedDisplay": "Jun 15, 2026 — 14:48 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #235 feat: self-serve signup Plan 2 — email verificatio"
   },
   "summary": {
-    "currentMainCommit": "51a48dfe",
+    "currentMainCommit": "4b590761",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1362,
+    "agentsCompletedThisSession": 1368,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1362 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1368 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #235 feat: self-serve signup Plan 2 — email verification + invita. (refreshed Jun 15, 2026 — 13:40 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #235 feat: self-serve signup Plan 2 — email verification + invita. (refreshed Jun 15, 2026 — 14:48 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-06-15T09:39:28-04:00",
+      "lastMergeIso": "2026-06-15T10:48:08-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5495,7 +5495,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-15T13:40:11.602Z",
+      "lastAuditAt": "2026-06-15T14:48:52.101Z",
       "backendRouteSymbolCount": 197,
       "deferredItems": {
         "total": 861,
@@ -5673,6 +5673,36 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #245 from kamalcernia/claude/quota-enforcement-plan",
+      "commit": "4b590761",
+      "kind": "other"
+    },
+    {
+      "agent": "fold final completeness items into enforcement plan",
+      "commit": "b7057639",
+      "kind": "docs"
+    },
+    {
+      "agent": "quota plan — fold in design-review hardening (#1–#8)",
+      "commit": "fdf00e08",
+      "kind": "docs"
+    },
+    {
+      "agent": "quota plan FINALIZED — resolve §8.5–8.7",
+      "commit": "0ed6c25d",
+      "kind": "docs"
+    },
+    {
+      "agent": "quota plan v2 — configurable quotas + cernia-ops control + guided o...",
+      "commit": "afd36c50",
+      "kind": "docs"
+    },
+    {
+      "agent": "quota & entitlement enforcement design + plan",
+      "commit": "5470f9f0",
+      "kind": "docs"
+    },
+    {
       "agent": "Merge pull request #244 from kamalcernia/claude/pricing-d1-d3",
       "commit": "51a48dfe",
       "kind": "other"
@@ -5715,36 +5745,6 @@
     {
       "agent": "send a resume-link email on signup start",
       "commit": "86fb299b",
-      "kind": "feat"
-    },
-    {
-      "agent": "Resume jumps to first incomplete step (was always /account)",
-      "commit": "634c6e08",
-      "kind": "fix"
-    },
-    {
-      "agent": "Merge pull request #241 from kamalcernia/claude/hungry-villani-25c89d",
-      "commit": "535eb5ab",
-      "kind": "other"
-    },
-    {
-      "agent": "regenerate stale schema snapshot (through migration 266)",
-      "commit": "ce8ac54d",
-      "kind": "chore"
-    },
-    {
-      "agent": "map live usage rollup money shape + tier seed in whole dollars",
-      "commit": "a3bc9be0",
-      "kind": "fix"
-    },
-    {
-      "agent": "ESM-require landmine — usage endpoint 500'd at runtime",
-      "commit": "434a8f04",
-      "kind": "fix"
-    },
-    {
-      "agent": "wire tier-change wizard + live usage + seed SubscriptionTiers (#7)",
-      "commit": "04eecd6a",
       "kind": "feat"
     }
   ],
