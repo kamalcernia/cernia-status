@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-15T06:08:22.874Z",
-    "lastUpdatedDisplay": "Jun 15, 2026 — 06:08 EDT",
+    "lastUpdatedIso": "2026-06-15T06:19:06.652Z",
+    "lastUpdatedDisplay": "Jun 15, 2026 — 06:19 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #235 feat: self-serve signup Plan 2 — email verificatio"
   },
   "summary": {
-    "currentMainCommit": "56be787e",
+    "currentMainCommit": "fe914b9f",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1357,
+    "agentsCompletedThisSession": 1359,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1357 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1359 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #235 feat: self-serve signup Plan 2 — email verification + invita. (refreshed Jun 15, 2026 — 06:08 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #235 feat: self-serve signup Plan 2 — email verification + invita. (refreshed Jun 15, 2026 — 06:19 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5495,7 +5495,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-15T06:08:21.773Z",
+      "lastAuditAt": "2026-06-15T06:19:05.775Z",
       "backendRouteSymbolCount": 197,
       "deferredItems": {
         "total": 861,
@@ -5554,10 +5554,10 @@
     },
     "justLandedWaves": [],
     "nowWorkingOn": {
-      "wave": "ONBOARDING",
-      "detail": "real TOTP enrollment with QR in the signup wizard",
-      "commit": "56be787e",
-      "freshSeconds": 40
+      "wave": "ADMIN",
+      "detail": "correct the login Google-button comment (it's the real 4-color mark)",
+      "commit": "fe914b9f",
+      "freshSeconds": 35
     }
   },
   "pool": {
@@ -5679,6 +5679,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "correct the login Google-button comment (it's the real 4-color mark)",
+      "commit": "fe914b9f",
+      "kind": "docs"
+    },
+    {
+      "agent": "server-enforce TOTP enrollment at $complete",
+      "commit": "5f362fd4",
+      "kind": "feat"
+    },
+    {
       "agent": "real TOTP enrollment with QR in the signup wizard",
       "commit": "56be787e",
       "kind": "feat"
@@ -5741,16 +5751,6 @@
     {
       "agent": "tenant Cancel-subscription UI (cancel at period end)",
       "commit": "78c4aadc",
-      "kind": "feat"
-    },
-    {
-      "agent": "pure à-la-carte — strip patient-portal & voice-agent from tiers",
-      "commit": "075677e7",
-      "kind": "feat"
-    },
-    {
-      "agent": "rebuild /pricing + new /products to faithfully match agreed strawmen",
-      "commit": "1b4ad442",
       "kind": "feat"
     }
   ],
@@ -12815,6 +12815,7 @@
     "origin/feat/sensitive-data-routes@92780a57ad67": 0,
     "origin/feat/signup-totp-installer-ux@2b131af30595": 20,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 4,
+    "origin/feat/totp-gate-and-admin-google@372e3c7fb0a3": 3,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": 17,
     "origin/feat/wave-a-integration@9f5d3e77833d": 0,
     "origin/feat/wave-a-real-fhir-calls@f2e18b9bbf2e": 0,
@@ -13413,6 +13414,7 @@
     "origin/feat/sensitive-data-routes@92780a57ad67": 0,
     "origin/feat/signup-totp-installer-ux@2b131af30595": 2,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": 1,
+    "origin/feat/totp-gate-and-admin-google@372e3c7fb0a3": 1,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": 2,
     "origin/feat/wave-a-integration@9f5d3e77833d": 0,
     "origin/feat/wave-a-real-fhir-calls@f2e18b9bbf2e": 0,
@@ -14011,6 +14013,7 @@
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
     "origin/feat/signup-totp-installer-ux@2b131af30595": true,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
+    "origin/feat/totp-gate-and-admin-google@372e3c7fb0a3": true,
     "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": false,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,
     "origin/feat/wave-a-real-fhir-calls@f2e18b9bbf2e": true,
