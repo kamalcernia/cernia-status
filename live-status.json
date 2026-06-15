@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-14T21:36:49.235Z",
-    "lastUpdatedDisplay": "Jun 14, 2026 — 21:36 EDT",
+    "lastUpdatedIso": "2026-06-15T06:05:49.870Z",
+    "lastUpdatedDisplay": "Jun 15, 2026 — 06:05 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #235 feat: self-serve signup Plan 2 — email verificatio"
   },
   "summary": {
-    "currentMainCommit": "24d4fdf8",
+    "currentMainCommit": "535eb5ab",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1338,
+    "agentsCompletedThisSession": 1352,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1338 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1352 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #235 feat: self-serve signup Plan 2 — email verification + invita. (refreshed Jun 14, 2026 — 21:36 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #235 feat: self-serve signup Plan 2 — email verification + invita. (refreshed Jun 15, 2026 — 06:05 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -58,15 +58,15 @@
     },
     "velocity": {
       "landedLastHour": 0,
-      "landedLast24h": 4,
-      "label": "0 PRs opened in last hour · 4 in last 24h"
+      "landedLast24h": 0,
+      "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-06-10T12:49:34-04:00",
-      "daysSinceLastMerge": 4,
+      "lastMergeIso": "2026-06-15T02:05:13-04:00",
+      "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
-      "label": "Last main merge: 4d ago · 0 PRs awaiting batch-merge"
+      "label": "Last main merge: 0d ago · 0 PRs awaiting batch-merge"
     },
     "mainState": {
       "waveCounts": {
@@ -5495,19 +5495,19 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-14T21:36:48.215Z",
+      "lastAuditAt": "2026-06-15T06:05:48.804Z",
       "backendRouteSymbolCount": 197,
       "deferredItems": {
         "total": 859,
         "bySeverity": {
-          "tech-debt": 265,
-          "review": 591,
+          "tech-debt": 264,
+          "review": 592,
           "blocker": 3
         },
         "byKind": {
-          "docstring-caveat": 252,
+          "docstring-caveat": 251,
           "not-configured-fallback": 84,
-          "type-cheat-cast": 506,
+          "type-cheat-cast": 507,
           "type-cheat": 1,
           "todo-comment": 2,
           "skipped-test": 3,
@@ -5552,13 +5552,7 @@
         }
       }
     },
-    "justLandedWaves": [],
-    "nowWorkingOn": {
-      "wave": "STATUS",
-      "detail": "Google self-serve signup JIT-promote verified live (Auth Plan 3)",
-      "commit": "24d4fdf8",
-      "freshSeconds": 31
-    }
+    "justLandedWaves": []
   },
   "pool": {
     "size": 8,
@@ -5679,79 +5673,79 @@
   ],
   "recentCompletions": [
     {
-      "agent": "Google self-serve signup JIT-promote verified live (Auth Plan 3)",
-      "commit": "24d4fdf8",
+      "agent": "Merge pull request #241 from kamalcernia/claude/hungry-villani-25c89d",
+      "commit": "535eb5ab",
+      "kind": "other"
+    },
+    {
+      "agent": "regenerate stale schema snapshot (through migration 266)",
+      "commit": "ce8ac54d",
+      "kind": "chore"
+    },
+    {
+      "agent": "map live usage rollup money shape + tier seed in whole dollars",
+      "commit": "a3bc9be0",
+      "kind": "fix"
+    },
+    {
+      "agent": "ESM-require landmine — usage endpoint 500'd at runtime",
+      "commit": "434a8f04",
+      "kind": "fix"
+    },
+    {
+      "agent": "wire tier-change wizard + live usage + seed SubscriptionTiers (#7)",
+      "commit": "04eecd6a",
+      "kind": "feat"
+    },
+    {
+      "agent": "pricing v1 spec → implemented + verified, matches live pages",
+      "commit": "8956fb9b",
       "kind": "docs"
     },
     {
-      "agent": "pass actor as 4th arg in social JIT-promote update (was triggering ...",
-      "commit": "80c43967",
+      "agent": "ops store-fleet API base resolution + admin annual badge 10%",
+      "commit": "06a566bc",
       "kind": "fix"
     },
     {
-      "agent": "Continue-with-Google saves a throwaway password to pass account val...",
-      "commit": "9581283a",
-      "kind": "fix"
-    },
-    {
-      "agent": "allow /auth/invitations as a pre-auth (bare) route",
-      "commit": "09e15eef",
-      "kind": "fix"
-    },
-    {
-      "agent": "style: repo-wide lint cleanup — fix all remaining eslint errors (no...",
-      "commit": "e433fde4",
-      "kind": "other"
-    },
-    {
-      "agent": "style(g-d6): drop unused BreakGlassId type import (no-unused-vars; ...",
-      "commit": "e542f221",
-      "kind": "other"
-    },
-    {
-      "agent": "restore load-bearing 'as ItemDecision' cast removed by lint --fix",
-      "commit": "b39bb657",
-      "kind": "fix"
-    },
-    {
-      "agent": "style(g-d2,g-d4): drop unused type imports (no-unused-vars; no beha...",
-      "commit": "655864ce",
-      "kind": "other"
-    },
-    {
-      "agent": "style(core): scoped require-await disable for InMemoryTenantSecretS...",
-      "commit": "b463e0d7",
-      "kind": "other"
-    },
-    {
-      "agent": "restore load-bearing usage cast removed by lint --fix",
-      "commit": "22cad487",
-      "kind": "fix"
-    },
-    {
-      "agent": "style: repo-wide lint --fix (no-unnecessary-type-assertion + auto-f...",
-      "commit": "615ab91a",
-      "kind": "other"
-    },
-    {
-      "agent": "style(desk): fix lint (hoist hooks out of conditional return in use...",
-      "commit": "87dc98e2",
-      "kind": "other"
-    },
-    {
-      "agent": "style(admin): fix lint (escape JSX entities, hoist hooks out of con...",
-      "commit": "692b7b3f",
-      "kind": "other"
-    },
-    {
-      "agent": "style(api): fix lint (auto-fix type-assertions + scoped require-awa...",
-      "commit": "ad81de25",
-      "kind": "other"
-    },
-    {
-      "agent": "orphan provisional-tenant cleanup sweep (dry-run default) + CLI",
-      "commit": "1739cf64",
+      "agent": "tenant Cancel-subscription UI (cancel at period end)",
+      "commit": "78c4aadc",
       "kind": "feat"
+    },
+    {
+      "agent": "pure à-la-carte — strip patient-portal & voice-agent from tiers",
+      "commit": "075677e7",
+      "kind": "feat"
+    },
+    {
+      "agent": "rebuild /pricing + new /products to faithfully match agreed strawmen",
+      "commit": "1b4ad442",
+      "kind": "feat"
+    },
+    {
+      "agent": "pricing cost calculator + product capabilities (agreed model)",
+      "commit": "312ec029",
+      "kind": "feat"
+    },
+    {
+      "agent": "allowlist /billing/webhook/stripe (purchases were charged-but-never...",
+      "commit": "86aa2041",
+      "kind": "fix"
+    },
+    {
+      "agent": "canonical LIST_PRICES + catalog seed + register portal/api-webhooks",
+      "commit": "766c8649",
+      "kind": "feat"
+    },
+    {
+      "agent": "pricing/products pages → agreed v1 model + drop vendor names",
+      "commit": "c8da1968",
+      "kind": "feat"
+    },
+    {
+      "agent": "Google self-serve signup JIT-promote verified live (Auth Plan 3)",
+      "commit": "24d4fdf8",
+      "kind": "docs"
     }
   ],
   "failures": [
