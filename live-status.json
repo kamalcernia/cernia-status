@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-15T06:19:06.652Z",
-    "lastUpdatedDisplay": "Jun 15, 2026 — 06:19 EDT",
+    "lastUpdatedIso": "2026-06-15T13:40:12.625Z",
+    "lastUpdatedDisplay": "Jun 15, 2026 — 13:40 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #235 feat: self-serve signup Plan 2 — email verificatio"
   },
   "summary": {
-    "currentMainCommit": "fe914b9f",
+    "currentMainCommit": "51a48dfe",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1359,
+    "agentsCompletedThisSession": 1362,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1359 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1362 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #235 feat: self-serve signup Plan 2 — email verification + invita. (refreshed Jun 15, 2026 — 06:19 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #235 feat: self-serve signup Plan 2 — email verification + invita. (refreshed Jun 15, 2026 — 13:40 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-06-15T02:05:13-04:00",
+      "lastMergeIso": "2026-06-15T09:39:28-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5495,7 +5495,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-15T06:19:05.775Z",
+      "lastAuditAt": "2026-06-15T13:40:11.602Z",
       "backendRouteSymbolCount": 197,
       "deferredItems": {
         "total": 861,
@@ -5552,13 +5552,7 @@
         }
       }
     },
-    "justLandedWaves": [],
-    "nowWorkingOn": {
-      "wave": "ADMIN",
-      "detail": "correct the login Google-button comment (it's the real 4-color mark)",
-      "commit": "fe914b9f",
-      "freshSeconds": 35
-    }
+    "justLandedWaves": []
   },
   "pool": {
     "size": 8,
@@ -5679,6 +5673,21 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #244 from kamalcernia/claude/pricing-d1-d3",
+      "commit": "51a48dfe",
+      "kind": "other"
+    },
+    {
+      "agent": "D3 — forward operator session cookie to API in store-fleet SSR",
+      "commit": "d4a2b4b5",
+      "kind": "feat"
+    },
+    {
+      "agent": "D1 — seed dev-access tiers + metered overage rows",
+      "commit": "3c22ef70",
+      "kind": "feat"
+    },
+    {
       "agent": "correct the login Google-button comment (it's the real 4-color mark)",
       "commit": "fe914b9f",
       "kind": "docs"
@@ -5736,21 +5745,6 @@
     {
       "agent": "wire tier-change wizard + live usage + seed SubscriptionTiers (#7)",
       "commit": "04eecd6a",
-      "kind": "feat"
-    },
-    {
-      "agent": "pricing v1 spec → implemented + verified, matches live pages",
-      "commit": "8956fb9b",
-      "kind": "docs"
-    },
-    {
-      "agent": "ops store-fleet API base resolution + admin annual badge 10%",
-      "commit": "06a566bc",
-      "kind": "fix"
-    },
-    {
-      "agent": "tenant Cancel-subscription UI (cancel at period end)",
-      "commit": "78c4aadc",
       "kind": "feat"
     }
   ],
