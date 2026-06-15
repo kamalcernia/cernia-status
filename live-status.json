@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-15T14:48:53.107Z",
-    "lastUpdatedDisplay": "Jun 15, 2026 — 14:48 EDT",
+    "lastUpdatedIso": "2026-06-15T15:04:22.139Z",
+    "lastUpdatedDisplay": "Jun 15, 2026 — 15:04 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #235 feat: self-serve signup Plan 2 — email verificatio"
   },
   "summary": {
-    "currentMainCommit": "4b590761",
+    "currentMainCommit": "e0f32ed4",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1368,
+    "agentsCompletedThisSession": 1370,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1368 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1370 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #235 feat: self-serve signup Plan 2 — email verification + invita. (refreshed Jun 15, 2026 — 14:48 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #235 feat: self-serve signup Plan 2 — email verification + invita. (refreshed Jun 15, 2026 — 15:04 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5495,17 +5495,17 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-15T14:48:52.101Z",
+      "lastAuditAt": "2026-06-15T15:04:21.185Z",
       "backendRouteSymbolCount": 197,
       "deferredItems": {
-        "total": 861,
+        "total": 862,
         "bySeverity": {
-          "tech-debt": 264,
+          "tech-debt": 265,
           "review": 594,
           "blocker": 3
         },
         "byKind": {
-          "docstring-caveat": 251,
+          "docstring-caveat": 252,
           "not-configured-fallback": 86,
           "type-cheat-cast": 507,
           "type-cheat": 1,
@@ -5517,7 +5517,7 @@
           "UI": 32,
           "X": 36,
           "H": 14,
-          "Platform": 574,
+          "Platform": 575,
           "S": 1,
           "J": 9,
           "G": 27,
@@ -5552,7 +5552,13 @@
         }
       }
     },
-    "justLandedWaves": []
+    "justLandedWaves": [],
+    "nowWorkingOn": {
+      "wave": "ONBOARDING",
+      "detail": "email-less Google-first signup with secure binding token",
+      "commit": "e0f32ed4",
+      "freshSeconds": 40
+    }
   },
   "pool": {
     "size": 8,
@@ -5673,6 +5679,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "email-less Google-first signup with secure binding token",
+      "commit": "e0f32ed4",
+      "kind": "feat"
+    },
+    {
+      "agent": "show 'session expired' instead of a dead empty wizard form",
+      "commit": "53a1e11b",
+      "kind": "fix"
+    },
+    {
       "agent": "Merge pull request #245 from kamalcernia/claude/quota-enforcement-plan",
       "commit": "4b590761",
       "kind": "other"
@@ -5735,16 +5751,6 @@
     {
       "agent": "brand the 'Continue with Google' button (Google colors)",
       "commit": "d70a9e08",
-      "kind": "feat"
-    },
-    {
-      "agent": "explain the email-verify gate + clearer verified badge",
-      "commit": "20941f4d",
-      "kind": "feat"
-    },
-    {
-      "agent": "send a resume-link email on signup start",
-      "commit": "86fb299b",
       "kind": "feat"
     }
   ],
@@ -12789,6 +12795,7 @@
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 6,
     "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": 32,
+    "origin/feat/google-first-signup-and-session-guard@3cb0ee52c135": 16,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
@@ -13388,6 +13395,7 @@
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": 0,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": 2,
     "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": 6,
+    "origin/feat/google-first-signup-and-session-guard@3cb0ee52c135": 4,
     "origin/feat/local-demo-admin-image@742015f42fa3": 0,
     "origin/feat/local-demo-api-image@fd988a2d20f5": 0,
     "origin/feat/local-demo-patient-image@90299849c309": 0,
@@ -13987,6 +13995,7 @@
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
     "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": false,
+    "origin/feat/google-first-signup-and-session-guard@3cb0ee52c135": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
     "origin/feat/local-demo-patient-image@90299849c309": true,
