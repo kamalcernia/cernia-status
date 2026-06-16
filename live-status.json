@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-16T19:20:11.004Z",
-    "lastUpdatedDisplay": "Jun 16, 2026 — 19:20 EDT",
+    "lastUpdatedIso": "2026-06-16T20:26:54.985Z",
+    "lastUpdatedDisplay": "Jun 16, 2026 — 20:26 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #247 Self-serve signup hardening: dual-path + verified-"
   },
   "summary": {
-    "currentMainCommit": "64405895",
+    "currentMainCommit": "842f5280",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1448,
+    "agentsCompletedThisSession": 1536,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1448 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1536 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #247 Self-serve signup hardening: dual-path + verified-SMS gate +. (refreshed Jun 16, 2026 — 19:20 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #247 Self-serve signup hardening: dual-path + verified-SMS gate +. (refreshed Jun 16, 2026 — 20:26 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-06-16T15:19:27-04:00",
+      "lastMergeIso": "2026-06-16T16:26:14-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5562,19 +5562,19 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-16T19:20:10.020Z",
-      "backendRouteSymbolCount": 199,
+      "lastAuditAt": "2026-06-16T20:26:53.883Z",
+      "backendRouteSymbolCount": 202,
       "deferredItems": {
-        "total": 878,
+        "total": 888,
         "bySeverity": {
           "tech-debt": 270,
-          "review": 605,
+          "review": 615,
           "blocker": 3
         },
         "byKind": {
           "docstring-caveat": 255,
           "not-configured-fallback": 90,
-          "type-cheat-cast": 514,
+          "type-cheat-cast": 524,
           "type-cheat": 1,
           "todo-comment": 2,
           "skipped-test": 3,
@@ -5582,9 +5582,9 @@
         },
         "byWave": {
           "UI": 36,
-          "X": 36,
+          "X": 37,
           "H": 14,
-          "Platform": 584,
+          "Platform": 593,
           "S": 1,
           "J": 9,
           "G": 27,
@@ -5606,16 +5606,16 @@
         "wontfixDemotions": []
       },
       "saasConformance": {
-        "totalViolations": 422,
-        "totalBlockers": 12,
+        "totalViolations": 428,
+        "totalBlockers": 17,
         "byCheck": {
-          "migration-tenant-id": 4,
-          "query-tenant-filter": 7,
+          "migration-tenant-id": 6,
+          "query-tenant-filter": 10,
           "ops-phi-boundary": 1,
           "no-phi-in-logs": 0,
           "baa-enforcement": 0,
           "three-app-boundary": 0,
-          "no-in-process-stubs": 410
+          "no-in-process-stubs": 411
         }
       }
     },
@@ -5740,6 +5740,41 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #250 from kamalcernia/claude/quota-enforcement-impl",
+      "commit": "842f5280",
+      "kind": "other"
+    },
+    {
+      "agent": "Merge origin/main into claude/quota-enforcement-impl",
+      "commit": "73f38554",
+      "kind": "other"
+    },
+    {
+      "agent": "product-catalog seed test RESOLVED (no silent-drop bug; stale asser...",
+      "commit": "2e9baf0c",
+      "kind": "docs"
+    },
+    {
+      "agent": "update stale product-catalog seed assertion (pre-existing, non-quota)",
+      "commit": "c43e7b90",
+      "kind": "fix"
+    },
+    {
+      "agent": "re-status every open follow-up accurately + add when-completable",
+      "commit": "e564d7db",
+      "kind": "docs"
+    },
+    {
+      "agent": "close C DB column — product-entitlement registry real-PG covered",
+      "commit": "6538e311",
+      "kind": "docs"
+    },
+    {
+      "agent": "BR (browser) column green for all phases — fresh real-Chrome pass",
+      "commit": "01ad0739",
+      "kind": "docs"
+    },
+    {
       "agent": "Merge pull request #249 from kamalcernia/feat/onboarding-redesign",
       "commit": "64405895",
       "kind": "other"
@@ -5770,48 +5805,13 @@
       "kind": "chore"
     },
     {
-      "agent": "Stripe checkout+webhook VERIFIED LIVE; Twilio ready-via-flag; +dev-...",
-      "commit": "9eb3b9b2",
-      "kind": "chore"
+      "agent": "record live authed-200 for /audit/export via fresh hv-audit growth ...",
+      "commit": "e79038f8",
+      "kind": "docs"
     },
     {
-      "agent": "CERNIA_TWILIO_LIVE dev override — real Twilio provisioning in dev w...",
-      "commit": "e431cf82",
-      "kind": "feat"
-    },
-    {
-      "agent": "Google address validation VERIFIED LIVE (valid:true, ZIP+4 normalized)",
-      "commit": "33078645",
-      "kind": "chore"
-    },
-    {
-      "agent": "address validation now Google",
-      "commit": "bafb88af",
-      "kind": "chore"
-    },
-    {
-      "agent": "add Google Address Validation provider + ADDRESS_VALIDATION_PROVIDE...",
-      "commit": "bd26ae2c",
-      "kind": "feat"
-    },
-    {
-      "agent": "IdP secret-redaction RESOLVED (ac8141b5); USPS creds in hand (env v...",
-      "commit": "1ed8e696",
-      "kind": "chore"
-    },
-    {
-      "agent": "redact IdP secrets at the admin-route boundary (defense-in-depth)",
-      "commit": "ac8141b5",
-      "kind": "fix"
-    },
-    {
-      "agent": "marketplace carry-forward + SSO + team-invites COMMITTED (api typec...",
-      "commit": "410a6c07",
-      "kind": "chore"
-    },
-    {
-      "agent": "sidebar nav for Team invitations + Single Sign-On",
-      "commit": "fa2bc7d5",
+      "agent": "wire audit-export endpoint + durable usage-event store into apps/api",
+      "commit": "b2e3cdf6",
       "kind": "feat"
     }
   ],
@@ -10601,7 +10601,7 @@
           "apps/admin uses API-path discovery (the architecturally correct three-app-boundary pattern)"
         ]
       },
-      "deferredCount": 36
+      "deferredCount": 37
     },
     {
       "id": "BB",
