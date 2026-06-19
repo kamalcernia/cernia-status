@@ -18,6 +18,155 @@
   },
   "categories": [
     {
+      "id": "voice-g10",
+      "name": "Voice live bring-up (Group 10) — conversation quality, settings & billing",
+      "description": "Findings + features discovered during live-call bring-up of the phone agent (Deepgram STT/TTS + OpenAI gpt-4o, Twilio + cloudflared). Mirrors feature-plan.html Group 10 (ids 32-40); per-surface acceptance criteria + evidence live there. See docs/superpowers/plans/2026-06-17-voice-appointment-operations.md (Live bring-up addendum).",
+      "items": [
+        {
+          "id": "g10-proxy",
+          "title": "Proxy / on-behalf-of booking (caregiver authorization)",
+          "status": "todo",
+          "evidence": "new-patient proxy booking works (prompt routing 318d49f3); existing-patient PHI on-behalf needs Wave-G caregiver-proxy wiring (currently transfers, safe). Tracker #41"
+        },
+        {
+          "id": "g10-ollama",
+          "title": "Bring-your-own model: Ollama/Qwen self-hosted (.env-selectable voice LLM) — now the DEFAULT (no BAA)",
+          "status": "in-progress",
+          "evidence": "BUILT+VERIFIED: OllamaAdapter (OpenAI-compatible @ OLLAMA_BASE_URL/v1) + qwen ModelId/MODEL_META (hipaaEligible:true, $0) + buildLlmGatewayFromEnv(OLLAMA_BASE_URL/OLLAMA_MODEL); o1-llm-gateway typecheck+build clean, 112/112 tests; apps/api typecheck clean. Live check vs 192.168.1.164 qwen3-vl:8b-instruct under hipaa-strict: TEXT 'READY' + TOOL book_appointment, $0. qwen set as .env default (CERNIA_VOICE_AGENT_LLM_MODEL=qwen, CERNIA_LLM_ROUTING=hipaa-strict) — no BAA for the LLM hop. REMAINING: 📞 a live dial on qwen. Tracker #42"
+        },
+        {
+          "id": "g10-whisper-stt",
+          "title": "Self-host STT (OpenAI Whisper, CPU pilot) to drop the Deepgram BAA",
+          "status": "in-progress",
+          "evidence": "CODE COMPLETE (live-verify pending servers). New SelfHostedWhisperSttBackend (id whisper-selfhost, hasBaa:true) — HTTP-batch POST /v1/audio/transcriptions w/ energy-VAD endpointing; packages/speech/src/backends/selfhost-whisper-stt-backend.ts + audio-codec.ts (μ-law/resample/WAV). Wired: SttBackendId+BAA_REGISTRY (types.ts), factory.ts builder, index barrel, apps/api boot env (CERNIA_SPEECH_STT=whisper-selfhost + CERNIA_WHISPER_BASE_URL/MODEL/API_KEY). speech typecheck+build clean; 23 new unit tests + suite green (2 pre-existing barge-in failures are carry-forward, verified at HEAD). Default model Systran/faster-whisper-small (CPU real-time; large-v3 needs GPU). Stand-up: docs/deployment/self-hosted-voice-stack.md. LIVE-VERIFIED at integration level 2026-06-17: faster-whisper-server container @ localhost:8000; SelfHostedTtsBackend→mulaw-8k→SelfHostedWhisperSttBackend round-trip transcribed exactly (scripts/test-selfhost-speech.mts, 4/4 keywords); API boots stt=whisper-selfhost. REMAINING: 📞 a live phone call (harness #45 or human dial). Tracker #43"
+        },
+        {
+          "id": "g10-selfhost-tts",
+          "title": "Self-host TTS (Kokoro/Piper, CPU) to drop the Deepgram/ElevenLabs BAA",
+          "status": "in-progress",
+          "evidence": "CODE COMPLETE (live-verify pending servers). New SelfHostedTtsBackend (id selfhost, hasBaa:true) — OpenAI-compatible POST /v1/audio/speech, accumulates PCM then resamples + μ-law-encodes for telephony; packages/speech/src/backends/selfhost-tts-backend.ts. Wired: TtsBackendId+BAA_REGISTRY, factory.ts, index barrel, apps/api boot env (CERNIA_SPEECH_TTS=selfhost + CERNIA_TTS_BASE_URL/MODEL/VOICE/SAMPLE_RATE/API_KEY). typecheck+build clean; 6 unit tests green. Default Kokoro (Apache-2.0, CPU ~real-time) or Piper (max language coverage). Stand-up: docs/deployment/self-hosted-voice-stack.md. LIVE-VERIFIED at integration level 2026-06-17: Kokoro-FastAPI container @ localhost:8880 (voice af_heart, 24k PCM); synthesized booking sentence → mulaw-8k → transcribed back exactly; API boots tts=selfhost. REMAINING: 📞 a live phone call (harness #45 or human dial). Tracker #44"
+        },
+        {
+          "id": "g10-livecall-harness",
+          "title": "Automated live-call test harness (media-WS synthetic caller)",
+          "status": "in-progress",
+          "evidence": "BUILT apps/api/scripts/live-call-harness.mts — connects to the agent media WS as a synthetic Twilio caller (self-hosted Whisper+Kokoro), no PSTN/tunnel. Surfaced + fixed a CRITICAL silent-agent bug (commit 53c4a4a5): seeded persona's ElevenLabs voiceId+model made Kokoro 400 → 0 audio frames; SelfHostedTtsBackend now ignores foreign voice/model and uses configured defaults. Harness now hears the live greeting ('Hello, thank you for calling CERNIA Health...') transcribed by self-hosted Whisper. Remaining: harness sends only 500ms trailing silence vs the agent's 800ms endpointing → caller turn doesn't finalize (harness-tuning, NOT an agent bug; a real human pause >800ms works). Also a true Twilio PSTN dial set up (tunnel + number +15406603831 webhook). Original-2017 build note below: ARCHITECTURE — agent uses terminal <Connect><Stream> so a PSTN auto-caller can't bridge; media-WS harness is the automatable path. User-confirmed 2026-06-17 — build AFTER the self-hosted stack lands. Twilio REST originates an outbound call → agent answers via <Connect><Stream>; harness plays generated caller-turn audio into the media WS, captures agent audio, transcribes via self-hosted Whisper to drive turn-taking + assert confirmations, verifies the booking via FHIR API. Runnable on demand as regression for every 📞 row (book/reschedule/cancel/substitute). Honest grade: 'path proven, automated' (scripted/TTS audio, not human) — reserve one human call for final sign-off. Blocked by g10-whisper-stt + g10-selfhost-tts. Tracker #45"
+        },
+        {
+          "id": "g10-llm-routing",
+          "title": "Voice LLM routing → OpenAI gpt-4o (env-driven)",
+          "status": "done",
+          "completionMode": "shipped",
+          "evidence": "commit dd95b4f9 — pin CERNIA_VOICE_AGENT_LLM_MODEL=gpt-4o + CERNIA_LLM_ROUTING=primary-fallback; RoutingError no longer swallowed; gateway text+tool-use verified via apps/api/scripts/test-llm-gateway.mts"
+        },
+        {
+          "id": "g10-booking-routes",
+          "title": "Live booking routes reachable (RBAC reconcile + $reserve boot wiring)",
+          "status": "done",
+          "completionMode": "shipped",
+          "evidence": "commit b23f457c — dev-login reconciles stale roles; createReservationCreator wired at boot; live chain $find-slots/$reserve/$book 200/200/201; dev-auth+appointment-reserve+appointment-ops 38/38"
+        },
+        {
+          "id": "g10-turn-taking",
+          "title": "Greeting + turn-taking (half-duplex echo gate, barge-in grace, skip empty, UUID transcript id)",
+          "status": "done",
+          "completionMode": "shipped",
+          "evidence": "commit b2159fc7 — greeting plays fully + real transcripts on a live call; no self-talk"
+        },
+        {
+          "id": "g10-verification",
+          "title": "Human-like verification (gentle re-prompt, real factors, spoken handoff)",
+          "status": "done",
+          "evidence": "LIVE-VERIFIED 2026-06-18 (harness28): DOB→second-factor→verified deterministically with NO re-ask loop. Root-cause fix commit d2d04cca — maybeAdvanceVerification now CONSUMES a verification-answer turn and onUserUtterance skips the LLM on that turn (previously the LLM ran alongside the deterministic check and re-asked the DOB the caller just gave). Added verify-dob-retry safety phrase so a failed/unclear DOB is re-asked aloud instead of going silent. packages/voice-agent/src/{dialog.ts,safety-phrases.ts}; tests updated to the new turn model (961 logic tests green). Default shipped earlier 7bb30d3a. FOLLOWUP g10-fake-verify below."
+        },
+        {
+          "id": "g10-bargein",
+          "title": "Barge-in: caller talk-over without self-echo",
+          "status": "todo",
+          "evidence": "conflicts with the half-duplex gate; needs transcript-gated barge-in (echo→empty→ignored; real speech→interrupt)"
+        },
+        {
+          "id": "g10-latency",
+          "title": "Reduce turn latency / robotic pauses",
+          "status": "partial",
+          "evidence": "INSTRUMENTED + MEASURED (commit fc4b82b0): voice.call.turn-latency audit logs sttMs/responseMs/ttsFirstFrameMs per turn + TranscriptEvent.sttLatencyMs. Data showed STT was ~80% of the pause: large-v3-turbo on this CPU = 27-42s per turn. FIX: switched CERNIA_WHISPER_MODEL large-v3-turbo → Systran/faster-whisper-small (the code default) → STT 27-42s → ~7s (4x), whole booking call 520s → 242s (2.2x); LIVE-VERIFIED 2026-06-18 accuracy holds (DOB 'July 15 1990' + phone '4321' transcribed correctly → clean verification + booking, the keyterm/confidence/STT-drop layers cover the smaller model). Also: streaming TTS (c666f2cc) + tunable endpoint (e79bd4de) shipped earlier. REMAINING bottleneck now Kokoro TTS first-frame (~5-6s on CPU); sub-second SLO still needs GPU (or a smaller TTS) — CPU floor. Supersedes the memory note pinning large-v3-turbo for digits."
+        },
+        {
+          "id": "g10-config-verify",
+          "title": "Configurable verification factors per tenant + admin UI",
+          "status": "todo",
+          "evidence": "per-tenant verification policy (DOB + selectable phone-last4/MRN/postal/SSN-last4) replacing hardcoded default; admin 'Identity verification' settings"
+        },
+        {
+          "id": "g10-personas",
+          "title": "Voice personas: 1 male + 1 female free, 3rd+ paid add-on",
+          "status": "todo",
+          "evidence": "multi-persona NOT built (1/tenant today); voice-persona-addon recurring SKU via product_entitlements + Stripe checkout→grantProduct; 1M+1F free quota enforced server-side; voices from ElevenLabs curated catalog"
+        },
+        {
+          "id": "g10-transfer-dial",
+          "title": "Transfer-to-human dials the per-tenant escalation number",
+          "status": "todo",
+          "evidence": "voice_tenant_config.escalation_phone_e164 (+13029834679 for test tenant); verify it actually <Dial>s vs only logging a Communication"
+        },
+        {
+          "id": "g10-task-completion",
+          "title": "HEADLINE: validate the agent COMPLETES tasks by live call (book/reschedule/cancel/substitute/refill/eligibility/...)",
+          "status": "in-progress",
+          "evidence": "BOOK ✓ LIVE-VERIFIED 2026-06-18 (harness28, self-hosted Whisper+Kokoro+gpt-4o, no PSTN): greeting→intent→clean verification→deterministic slot offer→caller accepted ('the first available is fine')→reserve→book. PROOF: Appointment count ev-admin-001 7→8, new Appointment a58f2df8 status=booked 2026-06-18T19:30Z; api log POST /Appointment/$reserve→/Appointment/$book; audit voice.call.appointment-dispatched {ok:true,live:true}; harness bookingSuccess=true. Two root-cause fixes landed: resolveChoice spoken-time/provider parsing (commit 9135d32e) + verification no-LLM-on-answer-turn (commit d2d04cca). REMAINING: reschedule/cancel/substitute live runs; a REAL human-handset call (g10-task-completion → tracker #8); the LLM fake-verification followup (g10-fake-verify)."
+        },
+        {
+          "id": "g10-fake-verify",
+          "title": "LLM improvises a 'fake' verification before the deterministic gate engages",
+          "status": "done",
+          "evidence": "FIXED commit 5d6ad02c + LIVE-VERIFIED harness31 2026-06-18. Root cause was the system prompt TELLING the model to verify identity itself ('confirm date of birth, then ONE independent factor: phone/member ID/postal'). Rewrote prompt.ts verifLine so verification is the SYSTEM's job — the model must NOT ask for DOB/phone/MRN/postal/SSN or narrate verification; it just calls the tool and the deterministic PHI gate runs verification with its hardcoded ONE-question prompts. harness31: DOB asked once (deterministic gate), then the single-factor prompt 'the last four digits of the phone number we have on file' (NOT the old 3-option bundle), then offer→book. Whole call ~5.4min vs ~8min, bookingSuccess=true, Appointment 8→9. Also added 'do not interrogate / default to caller-themselves' so an unclear answer no longer re-asks 4x. Tracker #23."
+        }
+      ]
+    },
+    {
+      "id": "voice-g11",
+      "name": "Smart voice-agent — research-driven hybrid redesign (Group 11)",
+      "description": "Research synthesis (docs/superpowers/specs/2026-06-18-voice-agent-research.md) + gap analysis & 5-phase plan (...-smart-voice-agent-capabilities.md). Key finding: mature voice systems are HYBRID (deterministic dialog policy + LLM for NLU/NLG); our pure-LLM-per-turn design is the root cause of the re-ask/re-offer/single-intent behavior. Wave 1 building in parallel (workflow wf_b2742262-a83, worktree-isolated). Mirrors feature-plan.html Group 11 (ids 46-50).",
+      "items": [
+        {
+          "id": "g11-p1-callframe",
+          "title": "Phase 1 — deterministic booking policy (offer→select-on-acceptance→book), live-verified",
+          "status": "in-progress",
+          "evidence": "GOAL ACHIEVED via the existing BookingFlow/SlotOfferEngine path (NOT the parallel CallFrame): a live call now deterministically offers slots, resolves the caller's spoken acceptance, and lands a real Appointment. LIVE-VERIFIED 2026-06-18 (harness28): Appointment count 7→8, a58f2df8 status=booked, $reserve→$book, bookingSuccess=true. Fixes: (1) resolveChoice now parses 'p.m.'-with-periods + hour:MINUTE + practitioner-name tie-break — previously '6:30 p.m.' parsed as 6 AM → no match → endless re-offer (commit 9135d32e); (2) BookingFlow.setVerifiedPatient seeds the already-verified patient so selectSlot goes straight to reserve→book (no re-collect). CallFrame foundation (1bd90be4, call-frame.ts + booking-flow-frame.ts, 51 tests) remains a parallel UNWIRED refactor target. REMAINING: migrate the handler onto CallFrame (or retire it); reschedule/cancel live runs. Tracker #46"
+        },
+        {
+          "id": "g11-p2-resched-cancel",
+          "title": "Phase 2 — deterministic reschedule + cancel flows (true multi-intent)",
+          "status": "done",
+          "evidence": "Wired RescheduleFlow/CancelFlow like booking (commit ac639f5c): startVerified seeds the dialog-verified patient (skips re-identify) → listUpcoming → select → new-time/confirm, driven from handleFinalTranscript by flow.state; isAffirmative guards the destructive cancel-confirm. Surfaced + fixed FOUR real backend bugs the wiring exposed, each verified: (1) office-admin lacked `search` on Appointment (58fb7c7b); (2) listUpcoming sent comma-OR `status=booked,confirmed` which token-search exact-matched the literal → 0 rows (e05993a3); (3) Appointment search columns (appointment_patient etc.) unregistered in KNOWN_GENERATED_COLUMNS → patient ref fell to JSONB fallback that can't match participant.actor.reference → 0 rows (58f685d9); (4) $cancel/$reschedule ownership gate isAdmin didn't include office-admin → denied 'not-owner' (87b72df2). DECISIVE VERIFY 2026-06-18: GET /Appointment?patient=Patient/test-maria-garcia returns the booked appts (was 0); CANCEL — full LIVE call (harness43): for-you→verify→'You have a few upcoming appointments'→'the first one'→read-back 'Are you sure you want to cancel it?'→'yes'→'I've canceled that appointment', bookingSuccess=true, DB cancelled 2→3 / booked 3→2; also direct POST /$cancel → 200. RESCHEDULE — $find-slots→$reserve→$reschedule → HTTP 201, old appt cancelled + NEW appt created at the new slot. STT-DROP GUARD (commit 450763ae): a verification turn with no extractable factor (self-hosted Whisper dropped the trailing phone digits) now re-asks WITHOUT counting a failed attempt, so an STT glitch no longer locks out a legitimate caller (a present-but-wrong factor still counts — lockout intact). Live conversation flow proven (harness39: list→select→read-back→'yes cancel'). Flow logic unit-tested (startVerified happy-path + transfer). REMAINING: full goal-stack/per-subject(proxy) frames; live cancel/reschedule E2E is intermittently blocked by self-hosted-Whisper digit mis-STT on the verification step (environmental, not logic). Tracker #47"
+        },
+        {
+          "id": "g11-p2-agenda",
+          "title": "Phase 2 — multi-intent continuity + anything-else loop",
+          "status": "partial",
+          "evidence": "PARTIAL (continuity + anything-else loop done; full goal-stack/per-subject frames remain). Commit f687584d + 3866c9d0: the deterministic BookingFlow's offer/confirmation + directory-lookup answers are spoken by the orchestrator (emitSpeech) and were INVISIBLE to the LLM — so after a booking the model couldn't handle a follow-up. Added DialogSession.noteExternalAgentTurn / noteExternalCallerTurn; voice-call-handler feeds handler speech + deterministically-consumed caller turns into the dialog history. LIVE (harness32, HARNESS_MULTI_INTENT=1): booking landed (Appointment 9->10), agent asked 'Is there anything else I can help you with?', call stayed OPEN for a follow-up. Unit-proven: dialog.test 'multi-intent continuity'. REMAINING: explicit goal-stack + per-subject (proxy/family) frames. Tracker #47"
+        },
+        {
+          "id": "g11-p3-asr-confirm",
+          "title": "Phase 3 — Confidence-gated confirmation + ASR robustness (read-back, keyterm, DTMF)",
+          "status": "partial",
+          "evidence": "DONE: keyterm boosting + dtmf-fallback (01e0fee2); CONFIDENCE GATE (commit e2b38f8b) — SelfHostedWhisperSttBackend now requests verbose_json and derives a 0..1 confidence from segment avg_logprob/no_speech_prob; voice-call-handler re-asks ('I didn't quite catch that') instead of acting when below CERNIA_VOICE_MIN_CONFIDENCE (0.35), so the agent no longer acts on mumbled/noisy input (3-tier confidence: high→act, low→re-ask). LIVE-VERIFIED 2026-06-18 (harness45): verbose_json STT works with the real faster-whisper server (every turn transcribed, clean cancel booked→cancelled 3→4); no spurious re-asks on clean speech. NATO DIGIT READ-BACK (commit 63c550df) — DONE + live-verified (harness49, CERNIA_VOICE_READBACK=1): agent reads the second factor back char-by-char ('Let me read that back... Four, three, two, one. Is that correct?'), checks only after the caller confirms; 'no'→re-ask no penalty. read-back.ts (readBackToken NATO/digit + extractFactorToken) + dialog confirm sub-flow (handled before the STT-drop guard) + 11 tests. Default OFF (adds a turn; the latency win came from the small STT model) — enable per high-stakes deployment. Appointment read-back already present for cancel. Phase 3 now COMPLETE (keyterm + DTMF + confidence-gate + NATO read-back). Tracker #48"
+        },
+        {
+          "id": "g11-p4-turntaking",
+          "title": "Phase 4 — Turn-taking, barge-in & latency",
+          "status": "in-progress",
+          "evidence": "BUILT+COMMITTED 01e0fee2: endpointing.ts (EndpointDecider: 600ms + looks-unfinished 1500ms + 2400ms catch-all) + barge-in word-gate/backchannel-suppress/resume; 69 speech tests green; typecheck clean. REMAINING: wire into voice-call-handler audio path + live-tune; latency to ~1s needs streaming TTS+GPU. Tracker #49"
+        },
+        {
+          "id": "g11-p5-compliance-eval",
+          "title": "Phase 5 — Compliance, crisis safety & evaluation harness",
+          "status": "partial",
+          "evidence": "DONE: eval harness (apps/api/scripts/voice-eval/ 6 scenarios, 136568d4); recording disclaimer (DEFAULT_RECORDING_DISCLAIMER + consent gate); crisis/red-flag screener (red-flag-taxonomy cardiac/neuro/mental-health → 911/988 preempt + transfer) NOW CATEGORY-AWARE + STAYS-ENGAGED (commit 5b639b51): 911 flags advise 911 + stay on the line; self-harm/988 flags stay engaged ('you are not alone, I'm staying right here with you') + 988, never 'hang up' (crisis-911/crisis-988 phrases); AI DISCLOSURE (commit 49f1b87b) — greeting now prefixes 'you're speaking with an automated assistant' (ai-disclosure safety phrase, DialogStartWithPersonaOpts.aiDisclosure, CERNIA_VOICE_AI_DISCLOSURE default on), LIVE-VERIFIED 2026-06-18 (harness44 greeting). WARM-TRANSFER SUMMARY (commit 17887b4c): DialogSession.warmTransferSummary(reason) builds a concise PHI-scrubbed handoff (what the caller wanted + identity status + turn count + reason + redacted last-utterance); surfaced on the voice.call.transfer audit (detail.warmTransferSummary) + the live viewer so the escalation desk starts with context. REMAINING (low value for the appointments-only scope): risk-tiered verification (lighter bar for low-PHI vs high-PHI actions — today binary 2-factor for all PHI). Tracker #50"
+        }
+      ]
+    },
+    {
       "id": "cit",
       "name": "CIT — Comprehensive Integration & Testing",
       "description": "Phases 1-12 from the master plan. Closes 4 gates per wave: Build / Integration / Backend Tests / E2E + Conformance.",
