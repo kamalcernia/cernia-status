@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-06-19T14:55:42.650Z",
-    "lastUpdatedDisplay": "Jun 19, 2026 — 14:55 EDT",
+    "lastUpdatedIso": "2026-06-19T16:55:57.301Z",
+    "lastUpdatedDisplay": "Jun 19, 2026 — 16:55 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #250 feat: quota & entitlement enforcement subsystem"
   },
   "summary": {
-    "currentMainCommit": "61f4f540",
+    "currentMainCommit": "4864fb94",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 1638,
+    "agentsCompletedThisSession": 1641,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "1638 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "1641 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #250 feat: quota & entitlement enforcement subsystem. (refreshed Jun 19, 2026 — 14:55 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #250 feat: quota & entitlement enforcement subsystem. (refreshed Jun 19, 2026 — 16:55 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-06-19T10:55:13-04:00",
+      "lastMergeIso": "2026-06-19T12:55:26-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5562,7 +5562,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-06-19T14:55:41.819Z",
+      "lastAuditAt": "2026-06-19T16:55:56.353Z",
       "backendRouteSymbolCount": 205,
       "deferredItems": {
         "total": 902,
@@ -5740,6 +5740,21 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #253 from kamalcernia/claude/phone-agent-m0",
+      "commit": "4864fb94",
+      "kind": "other"
+    },
+    {
+      "agent": "ci(audit): pin pnpm 9.15.9 so ignoreGhsas is honored; triage 8 newl...",
+      "commit": "82d65790",
+      "kind": "other"
+    },
+    {
+      "agent": "ci: remediate pnpm-audit (overrides + triaged ignore) + graceful br...",
+      "commit": "d9bf4722",
+      "kind": "other"
+    },
+    {
       "agent": "Merge pull request #252 from kamalcernia/claude/phone-agent-m0",
       "commit": "61f4f540",
       "kind": "other"
@@ -5798,21 +5813,6 @@
       "agent": "Phase 3 — confidence-gated re-ask (don't act on mis-heard input)",
       "commit": "e2b38f8b",
       "kind": "feat"
-    },
-    {
-      "agent": "Phase 5 warm-transfer summary done (only risk-tiered verification r...",
-      "commit": "0053d3fa",
-      "kind": "docs"
-    },
-    {
-      "agent": "Phase 5 — warm-transfer summary for the receiving human",
-      "commit": "17887b4c",
-      "kind": "feat"
-    },
-    {
-      "agent": "Phase 5 crisis escalation now category-aware + stays-engaged (988)",
-      "commit": "749c237a",
-      "kind": "docs"
     }
   ],
   "failures": [
