@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-01T21:03:58.923Z",
-    "lastUpdatedDisplay": "Jul 1, 2026 — 21:03 EDT",
+    "lastUpdatedIso": "2026-07-01T21:15:51.193Z",
+    "lastUpdatedDisplay": "Jul 1, 2026 — 21:15 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "b8c158ce",
+    "currentMainCommit": "096480af",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2023,
+    "agentsCompletedThisSession": 2025,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2023 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2025 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 1, 2026 — 21:04 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 1, 2026 — 21:15 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-01T17:03:26-04:00",
+      "lastMergeIso": "2026-07-01T17:15:20-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5579,18 +5579,18 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-01T21:03:57.813Z",
+      "lastAuditAt": "2026-07-01T21:15:50.323Z",
       "backendRouteSymbolCount": 213,
       "deferredItems": {
-        "total": 930,
+        "total": 931,
         "bySeverity": {
           "tech-debt": 278,
-          "review": 649,
+          "review": 650,
           "blocker": 3
         },
         "byKind": {
           "docstring-caveat": 263,
-          "not-configured-fallback": 90,
+          "not-configured-fallback": 91,
           "type-cheat-cast": 558,
           "type-cheat": 1,
           "todo-comment": 2,
@@ -5601,7 +5601,7 @@
           "UI": 36,
           "X": 37,
           "H": 14,
-          "Platform": 617,
+          "Platform": 618,
           "E": 47,
           "S": 1,
           "J": 9,
@@ -5757,6 +5757,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #395 from kamalcernia/claude/phone-agent-m0",
+      "commit": "096480af",
+      "kind": "other"
+    },
+    {
+      "agent": "cross-tenant phone-number inventory (G10)",
+      "commit": "e0882b27",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #394 from kamalcernia/claude/phone-agent-m0",
       "commit": "b8c158ce",
       "kind": "other"
@@ -5820,16 +5830,6 @@
       "agent": "test(voice-pipecat): extend synthetic-caller harness + record parit...",
       "commit": "068e14cb",
       "kind": "other"
-    },
-    {
-      "agent": "Merge pull request #390 from kamalcernia/claude/phone-agent-m0",
-      "commit": "68921796",
-      "kind": "other"
-    },
-    {
-      "agent": "quota counter maintenance fails-open when a tenant has no active Su...",
-      "commit": "e44c4d97",
-      "kind": "fix"
     }
   ],
   "failures": [
