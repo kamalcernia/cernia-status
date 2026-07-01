@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-01T01:07:32.290Z",
-    "lastUpdatedDisplay": "Jul 1, 2026 — 01:07 EDT",
+    "lastUpdatedIso": "2026-07-01T01:20:20.615Z",
+    "lastUpdatedDisplay": "Jul 1, 2026 — 01:20 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "c19d8832",
+    "currentMainCommit": "9e546061",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2004,
+    "agentsCompletedThisSession": 2006,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2004 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2006 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 1, 2026 — 01:07 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 1, 2026 — 01:20 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-06-30T21:07:00-04:00",
+      "lastMergeIso": "2026-06-30T21:19:49-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5579,7 +5579,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-01T01:07:31.207Z",
+      "lastAuditAt": "2026-07-01T01:20:19.666Z",
       "backendRouteSymbolCount": 213,
       "deferredItems": {
         "total": 929,
@@ -5757,6 +5757,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #388 from kamalcernia/claude/phone-agent-m0",
+      "commit": "9e546061",
+      "kind": "other"
+    },
+    {
+      "agent": "turn-taking + noise controls (endpointing, half-duplex)",
+      "commit": "c029d2e0",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #387 from kamalcernia/claude/phone-agent-m0",
       "commit": "c19d8832",
       "kind": "other"
@@ -5820,16 +5830,6 @@
       "agent": "run_tts signature broke ALL agent speech + add synthetic-caller har...",
       "commit": "73decc87",
       "kind": "fix"
-    },
-    {
-      "agent": "Merge pull request #381 from kamalcernia/claude/phone-agent-m0",
-      "commit": "0c8846e0",
-      "kind": "other"
-    },
-    {
-      "agent": "record live ⚙️ evidence for 8-PR parity work; bump statuses",
-      "commit": "1c461ba2",
-      "kind": "docs"
     }
   ],
   "failures": [
