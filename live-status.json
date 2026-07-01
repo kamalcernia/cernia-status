@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-01T23:20:00.326Z",
-    "lastUpdatedDisplay": "Jul 1, 2026 — 23:20 EDT",
+    "lastUpdatedIso": "2026-07-01T23:35:52.190Z",
+    "lastUpdatedDisplay": "Jul 1, 2026 — 23:35 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "b04af99e",
+    "currentMainCommit": "9367d90e",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2036,
+    "agentsCompletedThisSession": 2039,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2036 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2039 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 1, 2026 — 23:20 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 1, 2026 — 23:35 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-01T19:19:29-04:00",
+      "lastMergeIso": "2026-07-01T19:35:20-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5579,7 +5579,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-01T23:19:59.407Z",
+      "lastAuditAt": "2026-07-01T23:35:51.135Z",
       "backendRouteSymbolCount": 213,
       "deferredItems": {
         "total": 931,
@@ -5757,6 +5757,21 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #401 from kamalcernia/claude/phone-agent-m0",
+      "commit": "9367d90e",
+      "kind": "other"
+    },
+    {
+      "agent": "G6 streaming variant — token-streaming through the gateway (low lat...",
+      "commit": "8c2b7808",
+      "kind": "feat"
+    },
+    {
+      "agent": "tenant greetingTemplate drives the opening greeting (G8 complete)",
+      "commit": "0328976b",
+      "kind": "fix"
+    },
+    {
       "agent": "Merge pull request #400 from kamalcernia/claude/phone-agent-m0",
       "commit": "b04af99e",
       "kind": "other"
@@ -5815,21 +5830,6 @@
       "agent": "Merge pull request #395 from kamalcernia/claude/phone-agent-m0",
       "commit": "096480af",
       "kind": "other"
-    },
-    {
-      "agent": "cross-tenant phone-number inventory (G10)",
-      "commit": "e0882b27",
-      "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #394 from kamalcernia/claude/phone-agent-m0",
-      "commit": "b8c158ce",
-      "kind": "other"
-    },
-    {
-      "agent": "G6 (LLM gateway) + G10 (recording/eRx/ops-inventory) deferred with ...",
-      "commit": "c2159959",
-      "kind": "docs"
     }
   ],
   "failures": [
