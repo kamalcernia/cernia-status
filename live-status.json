@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-01T09:10:40.190Z",
-    "lastUpdatedDisplay": "Jul 1, 2026 — 09:10 EDT",
+    "lastUpdatedIso": "2026-07-01T20:23:48.757Z",
+    "lastUpdatedDisplay": "Jul 1, 2026 — 20:23 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "23c488c4",
+    "currentMainCommit": "7e3bbfa9",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2012,
+    "agentsCompletedThisSession": 2014,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2012 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2014 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 1, 2026 — 09:10 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 1, 2026 — 20:23 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-01T05:10:07-04:00",
+      "lastMergeIso": "2026-07-01T16:23:14-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5579,7 +5579,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-01T09:10:39.187Z",
+      "lastAuditAt": "2026-07-01T20:23:47.658Z",
       "backendRouteSymbolCount": 213,
       "deferredItems": {
         "total": 929,
@@ -5757,6 +5757,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #392 from kamalcernia/claude/phone-agent-m0",
+      "commit": "7e3bbfa9",
+      "kind": "other"
+    },
+    {
+      "agent": "persist transcripts under the RESOLVED tenant, not hardcoded default",
+      "commit": "3fcb290f",
+      "kind": "fix"
+    },
+    {
       "agent": "Merge pull request #391 from kamalcernia/claude/phone-agent-m0",
       "commit": "23c488c4",
       "kind": "other"
@@ -5819,16 +5829,6 @@
     {
       "agent": "Merge pull request #385 from kamalcernia/claude/phone-agent-m0",
       "commit": "395cc8a5",
-      "kind": "other"
-    },
-    {
-      "agent": "#15 OTP second-factor - actually send + verify the code",
-      "commit": "b3fad13f",
-      "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #384 from kamalcernia/claude/phone-agent-m0",
-      "commit": "aabe674c",
       "kind": "other"
     }
   ],
