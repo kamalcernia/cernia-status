@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-01T21:54:14.970Z",
-    "lastUpdatedDisplay": "Jul 1, 2026 — 21:54 EDT",
+    "lastUpdatedIso": "2026-07-01T22:57:05.265Z",
+    "lastUpdatedDisplay": "Jul 1, 2026 — 22:57 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "419ded27",
+    "currentMainCommit": "7c8463fe",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2031,
+    "agentsCompletedThisSession": 2034,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2031 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2034 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 1, 2026 — 21:54 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 1, 2026 — 22:57 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-01T17:53:45-04:00",
+      "lastMergeIso": "2026-07-01T18:56:40-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5579,7 +5579,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-01T21:54:14.054Z",
+      "lastAuditAt": "2026-07-01T22:57:04.540Z",
       "backendRouteSymbolCount": 213,
       "deferredItems": {
         "total": 931,
@@ -5757,6 +5757,21 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #399 from kamalcernia/claude/phone-agent-m0",
+      "commit": "7c8463fe",
+      "kind": "other"
+    },
+    {
+      "agent": "BP3 smart-turn verified (loads + books); LLM-restored verification ...",
+      "commit": "24f093fb",
+      "kind": "docs"
+    },
+    {
+      "agent": "finish G6 GatewayLLMService — LLM routes through Wave-O gateway (ve...",
+      "commit": "cd775af7",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #398 from kamalcernia/claude/phone-agent-m0",
       "commit": "419ded27",
       "kind": "other"
@@ -5814,21 +5829,6 @@
     {
       "agent": "redFlagPhrases bridge + booking confirmation & pre-visit link (G9)",
       "commit": "4f93853b",
-      "kind": "feat"
-    },
-    {
-      "agent": "gate call-answer on phone-agent entitlement (G5)",
-      "commit": "ee94481f",
-      "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #393 from kamalcernia/claude/phone-agent-m0",
-      "commit": "2bc25663",
-      "kind": "other"
-    },
-    {
-      "agent": "agent Provenance (G2) + fail-closed tenant resolution (G3)",
-      "commit": "852be27b",
       "kind": "feat"
     }
   ],
