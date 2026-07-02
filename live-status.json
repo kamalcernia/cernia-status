@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-02T04:29:55.783Z",
-    "lastUpdatedDisplay": "Jul 2, 2026 — 04:29 EDT",
+    "lastUpdatedIso": "2026-07-02T05:09:57.932Z",
+    "lastUpdatedDisplay": "Jul 2, 2026 — 05:09 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "6d860eae",
+    "currentMainCommit": "d63b55a6",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2057,
+    "agentsCompletedThisSession": 2060,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2057 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2060 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 2, 2026 — 04:29 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 2, 2026 — 05:10 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-02T00:29:24-04:00",
+      "lastMergeIso": "2026-07-02T01:09:25-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5579,7 +5579,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-02T04:29:54.737Z",
+      "lastAuditAt": "2026-07-02T05:09:56.882Z",
       "backendRouteSymbolCount": 213,
       "deferredItems": {
         "total": 931,
@@ -5757,6 +5757,21 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #409 from kamalcernia/claude/phone-agent-m0",
+      "commit": "d63b55a6",
+      "kind": "other"
+    },
+    {
+      "agent": "#53 T3.4 progress note — idempotency shipped+verified, backchannel/...",
+      "commit": "1018b172",
+      "kind": "docs"
+    },
+    {
+      "agent": "#53 idempotency + backchannel suppression + barge-in",
+      "commit": "9eccb1cc",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #408 from kamalcernia/claude/phone-agent-m0",
       "commit": "6d860eae",
       "kind": "other"
@@ -5815,21 +5830,6 @@
       "agent": "Merge pull request #404 from kamalcernia/claude/phone-agent-m0",
       "commit": "0564e51b",
       "kind": "other"
-    },
-    {
-      "agent": "#31 intake, #39 personas, #49 turn-taking phase integrated (27/9)",
-      "commit": "652c6bf3",
-      "kind": "docs"
-    },
-    {
-      "agent": "Merge pull request #403 from kamalcernia/claude/phone-agent-m0",
-      "commit": "f1034c61",
-      "kind": "other"
-    },
-    {
-      "agent": "conversational repair (#52) + #37/#25/#27 integrated",
-      "commit": "f2793d4f",
-      "kind": "fix"
     }
   ],
   "failures": [
