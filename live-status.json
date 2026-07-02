@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-02T02:38:53.762Z",
-    "lastUpdatedDisplay": "Jul 2, 2026 — 02:38 EDT",
+    "lastUpdatedIso": "2026-07-02T03:20:36.536Z",
+    "lastUpdatedDisplay": "Jul 2, 2026 — 03:20 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "bf2675ed",
+    "currentMainCommit": "f33388f7",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2053,
+    "agentsCompletedThisSession": 2055,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2053 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2055 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 2, 2026 — 02:38 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 2, 2026 — 03:20 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-01T22:38:24-04:00",
+      "lastMergeIso": "2026-07-01T23:20:09-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5579,7 +5579,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-02T02:38:52.777Z",
+      "lastAuditAt": "2026-07-02T03:20:35.724Z",
       "backendRouteSymbolCount": 213,
       "deferredItems": {
         "total": 931,
@@ -5757,6 +5757,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #407 from kamalcernia/claude/phone-agent-m0",
+      "commit": "f33388f7",
+      "kind": "other"
+    },
+    {
+      "agent": "patient-app read-only Spanish availability (via /api/me/surface)",
+      "commit": "867d1b93",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #406 from kamalcernia/claude/phone-agent-m0",
       "commit": "bf2675ed",
       "kind": "other"
@@ -5820,16 +5830,6 @@
       "agent": "BP5 min-words barge-in + harness verify/repair scenarios (#19/#35/#...",
       "commit": "0e8de113",
       "kind": "feat"
-    },
-    {
-      "agent": "re-derive stale feature summary (17 integrated / 19 partial)",
-      "commit": "6fc1f80d",
-      "kind": "docs"
-    },
-    {
-      "agent": "Merge pull request #401 from kamalcernia/claude/phone-agent-m0",
-      "commit": "9367d90e",
-      "kind": "other"
     }
   ],
   "failures": [
