@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-02T00:21:09.769Z",
-    "lastUpdatedDisplay": "Jul 2, 2026 — 00:21 EDT",
+    "lastUpdatedIso": "2026-07-02T01:25:57.647Z",
+    "lastUpdatedDisplay": "Jul 2, 2026 — 01:25 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "0564e51b",
+    "currentMainCommit": "750741e6",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2046,
+    "agentsCompletedThisSession": 2051,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2046 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2051 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 2, 2026 — 00:21 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 2, 2026 — 01:25 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-01T20:20:36-04:00",
+      "lastMergeIso": "2026-07-01T21:25:29-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5579,7 +5579,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-02T00:21:08.691Z",
+      "lastAuditAt": "2026-07-02T01:25:56.768Z",
       "backendRouteSymbolCount": 213,
       "deferredItems": {
         "total": 931,
@@ -5757,6 +5757,31 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #405 from kamalcernia/claude/phone-agent-m0",
+      "commit": "750741e6",
+      "kind": "other"
+    },
+    {
+      "agent": "G11 Spanish — admin toggle done+verified; iOS honest assessment (ne...",
+      "commit": "84ca41a7",
+      "kind": "docs"
+    },
+    {
+      "agent": "Spanish language toggle on the voice persona page (paid add-on, 402...",
+      "commit": "ebb9b297",
+      "kind": "feat"
+    },
+    {
+      "agent": "Spanish language write-path + entitlement gate (paid add-on)",
+      "commit": "398ece79",
+      "kind": "feat"
+    },
+    {
+      "agent": "paid Spanish language path — STT/TTS/prompt + entitlement gate (bac...",
+      "commit": "71b6a5ee",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #404 from kamalcernia/claude/phone-agent-m0",
       "commit": "0564e51b",
       "kind": "other"
@@ -5805,31 +5830,6 @@
       "agent": "tenant greetingTemplate drives the opening greeting (G8 complete)",
       "commit": "0328976b",
       "kind": "fix"
-    },
-    {
-      "agent": "Merge pull request #400 from kamalcernia/claude/phone-agent-m0",
-      "commit": "b04af99e",
-      "kind": "other"
-    },
-    {
-      "agent": "apply tenant persona before the greeting node (G8) + step-3 verific...",
-      "commit": "07c24d46",
-      "kind": "fix"
-    },
-    {
-      "agent": "Merge pull request #399 from kamalcernia/claude/phone-agent-m0",
-      "commit": "7c8463fe",
-      "kind": "other"
-    },
-    {
-      "agent": "BP3 smart-turn verified (loads + books); LLM-restored verification ...",
-      "commit": "24f093fb",
-      "kind": "docs"
-    },
-    {
-      "agent": "finish G6 GatewayLLMService — LLM routes through Wave-O gateway (ve...",
-      "commit": "cd775af7",
-      "kind": "feat"
     }
   ],
   "failures": [
