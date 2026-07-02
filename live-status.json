@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-02T07:25:03.624Z",
-    "lastUpdatedDisplay": "Jul 2, 2026 — 07:25 EDT",
+    "lastUpdatedIso": "2026-07-02T08:37:56.023Z",
+    "lastUpdatedDisplay": "Jul 2, 2026 — 08:37 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "15a64255",
+    "currentMainCommit": "3ff50477",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2063,
+    "agentsCompletedThisSession": 2065,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2063 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2065 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 2, 2026 — 07:25 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 2, 2026 — 08:37 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-02T03:24:28-04:00",
+      "lastMergeIso": "2026-07-02T04:37:26-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5579,7 +5579,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-02T07:25:02.439Z",
+      "lastAuditAt": "2026-07-02T08:37:55.076Z",
       "backendRouteSymbolCount": 213,
       "deferredItems": {
         "total": 931,
@@ -5757,6 +5757,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #411 from kamalcernia/claude/phone-agent-m0",
+      "commit": "3ff50477",
+      "kind": "other"
+    },
+    {
+      "agent": "perf(llm-gateway): clause-level streaming flush — lower first-audio...",
+      "commit": "e4db27eb",
+      "kind": "other"
+    },
+    {
       "agent": "Merge pull request #410 from kamalcernia/claude/phone-agent-m0",
       "commit": "15a64255",
       "kind": "other"
@@ -5820,16 +5830,6 @@
       "agent": "Merge pull request #405 from kamalcernia/claude/phone-agent-m0",
       "commit": "750741e6",
       "kind": "other"
-    },
-    {
-      "agent": "G11 Spanish — admin toggle done+verified; iOS honest assessment (ne...",
-      "commit": "84ca41a7",
-      "kind": "docs"
-    },
-    {
-      "agent": "Spanish language toggle on the voice persona page (paid add-on, 402...",
-      "commit": "ebb9b297",
-      "kind": "feat"
     }
   ],
   "failures": [
