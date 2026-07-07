@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-07T12:54:43.024Z",
-    "lastUpdatedDisplay": "Jul 7, 2026 — 12:54 EDT",
+    "lastUpdatedIso": "2026-07-07T17:57:53.793Z",
+    "lastUpdatedDisplay": "Jul 7, 2026 — 17:57 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "12fbe098",
+    "currentMainCommit": "6f3acc0f",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2085,
+    "agentsCompletedThisSession": 2087,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2085 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2087 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 7, 2026 — 12:54 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 7, 2026 — 17:57 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-07T08:54:08-04:00",
+      "lastMergeIso": "2026-07-07T13:57:21-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5579,7 +5579,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-07T12:54:41.943Z",
+      "lastAuditAt": "2026-07-07T17:57:52.717Z",
       "backendRouteSymbolCount": 213,
       "deferredItems": {
         "total": 931,
@@ -5757,6 +5757,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #423 from kamalcernia/claude/v2-standalone-revision",
+      "commit": "6f3acc0f",
+      "kind": "other"
+    },
+    {
+      "agent": "standalone-repo revision — founder walkthrough round D5-D8",
+      "commit": "d93b16f8",
+      "kind": "docs"
+    },
+    {
       "agent": "Merge pull request #422 from kamalcernia/claude/deep-plan-v2-archit...",
       "commit": "12fbe098",
       "kind": "other"
@@ -5819,16 +5829,6 @@
     {
       "agent": "Merge pull request #416 from kamalcernia/claude/design-system-prd",
       "commit": "1f7704c0",
-      "kind": "other"
-    },
-    {
-      "agent": "design-system + UI deslop — evidence-grounded PRD and 18-unit imple...",
-      "commit": "06aa0ac1",
-      "kind": "docs"
-    },
-    {
-      "agent": "Merge pull request #415 from kamalcernia/claude/deep-plan-microserv...",
-      "commit": "cd6eea35",
       "kind": "other"
     }
   ],
