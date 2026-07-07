@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-07T19:23:24.997Z",
-    "lastUpdatedDisplay": "Jul 7, 2026 — 19:23 EDT",
+    "lastUpdatedIso": "2026-07-07T19:40:09.974Z",
+    "lastUpdatedDisplay": "Jul 7, 2026 — 19:40 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "4fc13027",
+    "currentMainCommit": "ccb19268",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2089,
+    "agentsCompletedThisSession": 2091,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2089 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2091 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 7, 2026 — 19:23 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 7, 2026 — 19:40 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-07T15:22:52-04:00",
+      "lastMergeIso": "2026-07-07T15:39:37-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5579,7 +5579,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-07T19:23:23.973Z",
+      "lastAuditAt": "2026-07-07T19:40:09.093Z",
       "backendRouteSymbolCount": 213,
       "deferredItems": {
         "total": 931,
@@ -5760,6 +5760,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #425 from kamalcernia/claude/v1-execution-roadmap",
+      "commit": "ccb19268",
+      "kind": "other"
+    },
+    {
+      "agent": "v1 execution roadmap — four merged plans, dependency graph, consoli...",
+      "commit": "bcfea656",
+      "kind": "docs"
+    },
+    {
       "agent": "Merge pull request #424 from kamalcernia/claude/v2-pointer-sync",
       "commit": "4fc13027",
       "kind": "other"
@@ -5822,16 +5832,6 @@
     {
       "agent": "Merge pull request #418 from kamalcernia/docs/ehr-feature-gap-backlog",
       "commit": "a11146ae",
-      "kind": "other"
-    },
-    {
-      "agent": "EHR feature-gap backlog — 20 gaps vs. commercial ambulatory EHRs",
-      "commit": "21fdd9c8",
-      "kind": "docs"
-    },
-    {
-      "agent": "Merge pull request #417 from kamalcernia/claude/consolidation-sibli...",
-      "commit": "08c1fa92",
       "kind": "other"
     }
   ],
