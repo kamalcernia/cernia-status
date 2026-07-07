@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-07T06:00:48.101Z",
-    "lastUpdatedDisplay": "Jul 7, 2026 — 06:00 EDT",
+    "lastUpdatedIso": "2026-07-07T07:04:24.370Z",
+    "lastUpdatedDisplay": "Jul 7, 2026 — 07:04 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "9df8cceb",
+    "currentMainCommit": "cd6eea35",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2069,
+    "agentsCompletedThisSession": 2071,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2069 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2071 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 7, 2026 — 06:00 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 7, 2026 — 07:04 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-07T02:00:15-04:00",
+      "lastMergeIso": "2026-07-07T03:03:54-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5579,7 +5579,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-07T06:00:47.010Z",
+      "lastAuditAt": "2026-07-07T07:04:23.427Z",
       "backendRouteSymbolCount": 213,
       "deferredItems": {
         "total": 931,
@@ -5757,6 +5757,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #415 from kamalcernia/claude/deep-plan-microserv...",
+      "commit": "cd6eea35",
+      "kind": "other"
+    },
+    {
+      "agent": "microservices decomposition — full-split target state, wave-1 voice...",
+      "commit": "723f05ac",
+      "kind": "docs"
+    },
+    {
       "agent": "Merge pull request #414 from kamalcernia/claude/consolidation-grill...",
       "commit": "9df8cceb",
       "kind": "other"
@@ -5819,16 +5829,6 @@
     {
       "agent": "Merge pull request #408 from kamalcernia/claude/phone-agent-m0",
       "commit": "6d860eae",
-      "kind": "other"
-    },
-    {
-      "agent": "test(harness): fix verify scenario (stuck-Yes + STT surname) + stam...",
-      "commit": "90c64701",
-      "kind": "other"
-    },
-    {
-      "agent": "Merge pull request #407 from kamalcernia/claude/phone-agent-m0",
-      "commit": "f33388f7",
       "kind": "other"
     }
   ],
