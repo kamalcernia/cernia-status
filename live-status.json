@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-07T10:47:58.101Z",
-    "lastUpdatedDisplay": "Jul 7, 2026 — 10:47 EDT",
+    "lastUpdatedIso": "2026-07-07T11:28:45.734Z",
+    "lastUpdatedDisplay": "Jul 7, 2026 — 11:28 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "81b6319d",
+    "currentMainCommit": "a57a2436",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2081,
+    "agentsCompletedThisSession": 2083,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2081 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2083 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 7, 2026 — 10:48 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 7, 2026 — 11:28 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-07T06:47:30-04:00",
+      "lastMergeIso": "2026-07-07T07:28:16-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5579,7 +5579,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-07T10:47:57.268Z",
+      "lastAuditAt": "2026-07-07T11:28:44.767Z",
       "backendRouteSymbolCount": 213,
       "deferredItems": {
         "total": 931,
@@ -5757,6 +5757,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #421 from kamalcernia/claude/grill-decisions",
+      "commit": "a57a2436",
+      "kind": "other"
+    },
+    {
+      "agent": "resolve all microservices-decomposition open forks — founder grill ...",
+      "commit": "32d1b54a",
+      "kind": "docs"
+    },
+    {
       "agent": "Merge pull request #420 from kamalcernia/docs/v1-plan-grill-decisions",
       "commit": "81b6319d",
       "kind": "other"
@@ -5819,16 +5829,6 @@
     {
       "agent": "Merge pull request #414 from kamalcernia/claude/consolidation-grill...",
       "commit": "9df8cceb",
-      "kind": "other"
-    },
-    {
-      "agent": "grill-session decisions — core+modules commercial model, packaging ...",
-      "commit": "5dc0e83b",
-      "kind": "docs"
-    },
-    {
-      "agent": "Merge pull request #413 from kamalcernia/claude/deep-plan-platform-...",
-      "commit": "69a87afe",
       "kind": "other"
     }
   ],
