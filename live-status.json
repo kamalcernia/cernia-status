@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-07T19:40:09.974Z",
-    "lastUpdatedDisplay": "Jul 7, 2026 — 19:40 EDT",
+    "lastUpdatedIso": "2026-07-08T21:37:45.166Z",
+    "lastUpdatedDisplay": "Jul 8, 2026 — 21:37 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "ccb19268",
+    "currentMainCommit": "7d2c6937",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2091,
+    "agentsCompletedThisSession": 2148,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2091 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2148 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 7, 2026 — 19:40 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 8, 2026 — 21:37 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-07T15:39:37-04:00",
+      "lastMergeIso": "2026-07-08T17:37:10-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5579,20 +5579,21 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-07T19:40:09.093Z",
-      "backendRouteSymbolCount": 213,
+      "lastAuditAt": "2026-07-08T21:37:44.040Z",
+      "backendRouteSymbolCount": 205,
       "deferredItems": {
-        "total": 931,
+        "total": 935,
         "bySeverity": {
           "tech-debt": 278,
-          "review": 650,
-          "blocker": 3
+          "review": 652,
+          "blocker": 5
         },
         "byKind": {
           "docstring-caveat": 263,
           "not-configured-fallback": 91,
-          "type-cheat-cast": 558,
+          "type-cheat-cast": 560,
           "type-cheat": 1,
+          "deferred-marker": 2,
           "todo-comment": 2,
           "skipped-test": 3,
           "json-deferred": 13
@@ -5601,8 +5602,8 @@
           "UI": 36,
           "X": 37,
           "H": 14,
-          "Platform": 618,
-          "E": 47,
+          "Platform": 620,
+          "E": 48,
           "S": 1,
           "J": 9,
           "G": 27,
@@ -5610,6 +5611,7 @@
           "ERX": 9,
           "P": 11,
           "Q": 13,
+          "(unassigned)": 22,
           "DD": 4,
           "F": 23,
           "I": 9,
@@ -5617,13 +5619,12 @@
           "M": 26,
           "W": 5,
           "O": 1,
-          "R": 1,
-          "(unassigned)": 21
+          "R": 1
         },
         "wontfixDemotions": []
       },
       "saasConformance": {
-        "totalViolations": 443,
+        "totalViolations": 446,
         "totalBlockers": 17,
         "byCheck": {
           "migration-tenant-id": 6,
@@ -5632,14 +5633,11 @@
           "no-phi-in-logs": 0,
           "baa-enforcement": 0,
           "three-app-boundary": 0,
-          "no-in-process-stubs": 426
+          "no-in-process-stubs": 429
         }
       }
     },
-    "justLandedWaves": [
-      "BUILD",
-      "PLAN"
-    ]
+    "justLandedWaves": []
   },
   "pool": {
     "size": 8,
@@ -5760,79 +5758,79 @@
   ],
   "recentCompletions": [
     {
-      "agent": "Merge pull request #425 from kamalcernia/claude/v1-execution-roadmap",
-      "commit": "ccb19268",
+      "agent": "Merge pull request #426 from kamalcernia/claude/v1-roadmap-exec",
+      "commit": "7d2c6937",
       "kind": "other"
     },
     {
-      "agent": "v1 execution roadmap — four merged plans, dependency graph, consoli...",
-      "commit": "bcfea656",
-      "kind": "docs"
+      "agent": "complete AI-native set — StreamingText + AIWorkingState (R14)",
+      "commit": "8bdf53a3",
+      "kind": "feat"
     },
     {
-      "agent": "Merge pull request #424 from kamalcernia/claude/v2-pointer-sync",
-      "commit": "4fc13027",
-      "kind": "other"
+      "agent": "shadcn HSL-component token emitter",
+      "commit": "c7b94325",
+      "kind": "feat"
     },
     {
-      "agent": "sync v2 founding docs after grill session (attach-first, D9-D15, wa...",
-      "commit": "83e9a322",
-      "kind": "docs"
+      "agent": "referral directory zero-PHI listing (KTD8)",
+      "commit": "0c81d38d",
+      "kind": "feat"
     },
     {
-      "agent": "Merge pull request #423 from kamalcernia/claude/v2-standalone-revision",
-      "commit": "6f3acc0f",
-      "kind": "other"
+      "agent": "scribe note templates as data (KTD6)",
+      "commit": "1b7ff863",
+      "kind": "feat"
     },
     {
-      "agent": "standalone-repo revision — founder walkthrough round D5-D8",
-      "commit": "d93b16f8",
-      "kind": "docs"
+      "agent": "scribe chunked-ingestion accounting (KTD2)",
+      "commit": "bb00fdbd",
+      "kind": "feat"
     },
     {
-      "agent": "Merge pull request #422 from kamalcernia/claude/deep-plan-v2-archit...",
-      "commit": "12fbe098",
-      "kind": "other"
+      "agent": "referral packet content model (KTD9)",
+      "commit": "209ebd92",
+      "kind": "feat"
     },
     {
-      "agent": "v2 platform architecture — greenfield rewrite to modular core + 3 s...",
-      "commit": "8983448c",
-      "kind": "docs"
+      "agent": "link new workspace packages (telehealth, audit-service, +) in lockfile",
+      "commit": "c91f9655",
+      "kind": "chore"
     },
     {
-      "agent": "Merge pull request #421 from kamalcernia/claude/grill-decisions",
-      "commit": "a57a2436",
-      "kind": "other"
+      "agent": "audit-service tamper-evident hash chain (U12)",
+      "commit": "3e119434",
+      "kind": "feat"
     },
     {
-      "agent": "resolve all microservices-decomposition open forks — founder grill ...",
-      "commit": "32d1b54a",
-      "kind": "docs"
+      "agent": "telehealth room-access policy (KTD14)",
+      "commit": "8e1a0055",
+      "kind": "feat"
     },
     {
-      "agent": "Merge pull request #420 from kamalcernia/docs/v1-plan-grill-decisions",
-      "commit": "81b6319d",
-      "kind": "other"
+      "agent": "scribe provider-selection preflight (KTD4)",
+      "commit": "dc555942",
+      "kind": "feat"
     },
     {
-      "agent": "fold grill-round decisions into v1 clinical-launch plan + PRD",
-      "commit": "2384efa1",
-      "kind": "docs"
+      "agent": "referral IFaxBackend seam + fax-number validation (KTD10/KTD8)",
+      "commit": "92a1a699",
+      "kind": "feat"
     },
     {
-      "agent": "Merge pull request #419 from kamalcernia/docs/v1-clinical-launch-prd",
-      "commit": "6a1efa20",
-      "kind": "other"
+      "agent": "packages/ui — Input, EmptyState, StatCard",
+      "commit": "79f87000",
+      "kind": "feat"
     },
     {
-      "agent": "v1 clinical launch — scribe, voice hardening, referral network, portal",
-      "commit": "4c2e145d",
-      "kind": "docs"
+      "agent": "portal auth goes real — in-memory token + httpOnly refresh (U1/KTD12)",
+      "commit": "e1874001",
+      "kind": "feat"
     },
     {
-      "agent": "Merge pull request #418 from kamalcernia/docs/ehr-feature-gap-backlog",
-      "commit": "a11146ae",
-      "kind": "other"
+      "agent": "voice hardening — LLM fallback chain + total-outage policy (KTD15)",
+      "commit": "e2d9dfb0",
+      "kind": "feat"
     }
   ],
   "failures": [
@@ -6730,18 +6728,19 @@
         "patient": "n/a",
         "usesSampleData": true,
         "overall": "wired",
-        "packageCount": 4,
+        "packageCount": 5,
         "packages": [
           "speech",
           "telephony",
           "voice-agent",
-          "voice-agent-evals"
+          "voice-agent-evals",
+          "voice-resilience"
         ],
         "rationale": [
           "apps/admin imports sample-*/FAKE_/mock modules — swap to real *-api.ts calls"
         ]
       },
-      "deferredCount": 47
+      "deferredCount": 48
     },
     {
       "id": "H",
