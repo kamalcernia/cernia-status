@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-09T09:49:16.156Z",
-    "lastUpdatedDisplay": "Jul 9, 2026 — 09:49 EDT",
+    "lastUpdatedIso": "2026-07-09T10:15:14.128Z",
+    "lastUpdatedDisplay": "Jul 9, 2026 — 10:15 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "c105d201",
+    "currentMainCommit": "7607ca12",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2195,
+    "agentsCompletedThisSession": 2198,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2195 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2198 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 9, 2026 — 09:49 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 9, 2026 — 10:15 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-09T05:48:44-04:00",
+      "lastMergeIso": "2026-07-09T06:14:46-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5579,19 +5579,19 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-09T09:49:15.172Z",
+      "lastAuditAt": "2026-07-09T10:15:13.291Z",
       "backendRouteSymbolCount": 214,
       "deferredItems": {
-        "total": 951,
+        "total": 952,
         "bySeverity": {
           "tech-debt": 279,
-          "review": 667,
+          "review": 668,
           "blocker": 5
         },
         "byKind": {
           "docstring-caveat": 263,
           "not-configured-fallback": 97,
-          "type-cheat-cast": 569,
+          "type-cheat-cast": 570,
           "todo-comment": 3,
           "type-cheat": 1,
           "deferred-marker": 2,
@@ -5599,7 +5599,7 @@
           "json-deferred": 13
         },
         "byWave": {
-          "UI": 41,
+          "UI": 42,
           "X": 37,
           "H": 14,
           "Platform": 631,
@@ -5758,6 +5758,21 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #438 from kamalcernia/claude/portal-form-refresh",
+      "commit": "7607ca12",
+      "kind": "other"
+    },
+    {
+      "agent": "dedupe concurrent silent-refresh — single-use token spent once (KTD12)",
+      "commit": "bd9021d2",
+      "kind": "fix"
+    },
+    {
+      "agent": "patient form submit writes a real QuestionnaireResponse (KTD12)",
+      "commit": "dbf95f94",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #437 from kamalcernia/claude/portal-compartment-...",
       "commit": "c105d201",
       "kind": "other"
@@ -5816,21 +5831,6 @@
       "agent": "email-verify exchange + fix wrong-patient lookup (KTD12)",
       "commit": "a5f3ce80",
       "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #432 from kamalcernia/claude/portal-patient-lookup",
-      "commit": "436e749b",
-      "kind": "other"
-    },
-    {
-      "agent": "storage-backed PatientLookup — registration/login can resolve a pat...",
-      "commit": "00ab9b39",
-      "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #431 from kamalcernia/claude/portal-forms-wiring",
-      "commit": "19105be6",
-      "kind": "other"
     }
   ],
   "failures": [
@@ -12662,7 +12662,7 @@
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
       },
-      "deferredCount": 41
+      "deferredCount": 42
     },
     {
       "id": "CIT",
