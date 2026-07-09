@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-09T01:23:12.004Z",
-    "lastUpdatedDisplay": "Jul 9, 2026 — 01:23 EDT",
+    "lastUpdatedIso": "2026-07-09T02:18:17.707Z",
+    "lastUpdatedDisplay": "Jul 9, 2026 — 02:18 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "338b07ea",
+    "currentMainCommit": "9e1d9f3a",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2172,
+    "agentsCompletedThisSession": 2177,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2172 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2177 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 9, 2026 — 01:23 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 9, 2026 — 02:18 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-08T21:22:41-04:00",
+      "lastMergeIso": "2026-07-08T22:17:49-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5579,7 +5579,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-09T01:23:11.175Z",
+      "lastAuditAt": "2026-07-09T02:18:16.883Z",
       "backendRouteSymbolCount": 213,
       "deferredItems": {
         "total": 950,
@@ -5758,6 +5758,31 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #430 from kamalcernia/claude/portal-pillar-wiring",
+      "commit": "9e1d9f3a",
+      "kind": "other"
+    },
+    {
+      "agent": "login sends tenantId; logout clears the refresh cookie (KTD12)",
+      "commit": "8eb90601",
+      "kind": "fix"
+    },
+    {
+      "agent": "PatientPortalClient — authed FHIR fetch + silent-refresh-on-401 (KT...",
+      "commit": "8134c9c7",
+      "kind": "feat"
+    },
+    {
+      "agent": "/patient-portal/refresh route + Authenticator.refresh rotation (KTD12)",
+      "commit": "976250fa",
+      "kind": "feat"
+    },
+    {
+      "agent": "patient refresh httpOnly cookie on login/mfa/logout (KTD12)",
+      "commit": "3d11093e",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #429 from kamalcernia/claude/scribe-admin-ui",
       "commit": "338b07ea",
       "kind": "other"
@@ -5806,31 +5831,6 @@
       "agent": "migration 291 — scribe tables (KTD1/4/6)",
       "commit": "5d3db504",
       "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #427 from kamalcernia/claude/referral-pillar-wiring",
-      "commit": "143fca80",
-      "kind": "other"
-    },
-    {
-      "agent": "admin exchange inbox/outbox tab (KTD11)",
-      "commit": "e384b7b7",
-      "kind": "feat"
-    },
-    {
-      "agent": "admin directory management tab (KTD8)",
-      "commit": "ac1b9bd0",
-      "kind": "feat"
-    },
-    {
-      "agent": "map roles:['admin'",
-      "commit": "46bd4d1c",
-      "kind": "fix"
-    },
-    {
-      "agent": "live-render fixes — RBAC ops, next.config .js resolution, tenant_id...",
-      "commit": "a920cd64",
-      "kind": "fix"
     }
   ],
   "failures": [
