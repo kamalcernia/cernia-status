@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-09T00:12:54.955Z",
-    "lastUpdatedDisplay": "Jul 9, 2026 — 00:12 EDT",
+    "lastUpdatedIso": "2026-07-09T01:04:11.893Z",
+    "lastUpdatedDisplay": "Jul 9, 2026 — 01:04 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "143fca80",
+    "currentMainCommit": "f421f778",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2162,
+    "agentsCompletedThisSession": 2170,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2162 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2170 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 9, 2026 — 00:12 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 9, 2026 — 01:04 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-08T20:12:26-04:00",
+      "lastMergeIso": "2026-07-08T21:03:39-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5579,19 +5579,19 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-09T00:12:54.129Z",
-      "backendRouteSymbolCount": 209,
+      "lastAuditAt": "2026-07-09T01:04:11.002Z",
+      "backendRouteSymbolCount": 213,
       "deferredItems": {
-        "total": 940,
+        "total": 946,
         "bySeverity": {
           "tech-debt": 278,
-          "review": 657,
+          "review": 663,
           "blocker": 5
         },
         "byKind": {
           "docstring-caveat": 263,
-          "not-configured-fallback": 91,
-          "type-cheat-cast": 565,
+          "not-configured-fallback": 93,
+          "type-cheat-cast": 569,
           "type-cheat": 1,
           "deferred-marker": 2,
           "todo-comment": 2,
@@ -5602,7 +5602,7 @@
           "UI": 36,
           "X": 37,
           "H": 14,
-          "Platform": 625,
+          "Platform": 631,
           "E": 48,
           "S": 1,
           "J": 9,
@@ -5624,7 +5624,7 @@
         "wontfixDemotions": []
       },
       "saasConformance": {
-        "totalViolations": 452,
+        "totalViolations": 453,
         "totalBlockers": 23,
         "byCheck": {
           "migration-tenant-id": 8,
@@ -5633,7 +5633,7 @@
           "no-phi-in-logs": 0,
           "baa-enforcement": 0,
           "three-app-boundary": 0,
-          "no-in-process-stubs": 429
+          "no-in-process-stubs": 430
         }
       }
     },
@@ -5758,6 +5758,46 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #428 from kamalcernia/claude/scribe-pillar-wiring",
+      "commit": "f421f778",
+      "kind": "other"
+    },
+    {
+      "agent": "capture chunk-upload routes (KTD2)",
+      "commit": "e8e236b7",
+      "kind": "feat"
+    },
+    {
+      "agent": "templated drafting — note templates + $draft (KTD6), closing draft→...",
+      "commit": "c6b8ff0a",
+      "kind": "feat"
+    },
+    {
+      "agent": "clinician sign route (KTD5)",
+      "commit": "d47cceb7",
+      "kind": "feat"
+    },
+    {
+      "agent": "sign gate at the storage write path (KTD5)",
+      "commit": "3efe7d1f",
+      "kind": "feat"
+    },
+    {
+      "agent": "scribe capture-session routes + KTD4 preflight (KTD1/4)",
+      "commit": "e16772b6",
+      "kind": "feat"
+    },
+    {
+      "agent": "ScribeSessionStore on migration 291 (KTD1/2/4)",
+      "commit": "4bc1b99c",
+      "kind": "feat"
+    },
+    {
+      "agent": "migration 291 — scribe tables (KTD1/4/6)",
+      "commit": "5d3db504",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #427 from kamalcernia/claude/referral-pillar-wiring",
       "commit": "143fca80",
       "kind": "other"
@@ -5791,46 +5831,6 @@
       "agent": "packet delivery — pdfmake-seam renderer + IFaxBackend send (KTD9/10)",
       "commit": "48925a7a",
       "kind": "feat"
-    },
-    {
-      "agent": "referral directory store + routes (KTD8)",
-      "commit": "194c5b48",
-      "kind": "feat"
-    },
-    {
-      "agent": "referral-pro entitlement gate on the exchange surface (KTD16)",
-      "commit": "8a85834f",
-      "kind": "feat"
-    },
-    {
-      "agent": "cross-tenant exchange HTTP routes + registration (KTD11)",
-      "commit": "8cd032b5",
-      "kind": "feat"
-    },
-    {
-      "agent": "cross-tenant exchange store — copy-then-purge (KTD11)",
-      "commit": "98abd693",
-      "kind": "feat"
-    },
-    {
-      "agent": "referral HTTP routes + index registration (KTD7)",
-      "commit": "477ec0b1",
-      "kind": "feat"
-    },
-    {
-      "agent": "ReferralTaskStore on migration 290 (KTD7)",
-      "commit": "6d98d598",
-      "kind": "feat"
-    },
-    {
-      "agent": "migration 290 — clinical referral tables (KTD7/8/11)",
-      "commit": "317ec9cd",
-      "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #426 from kamalcernia/claude/v1-roadmap-exec",
-      "commit": "7d2c6937",
-      "kind": "other"
     }
   ],
   "failures": [
