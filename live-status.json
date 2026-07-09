@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-08T21:37:45.166Z",
-    "lastUpdatedDisplay": "Jul 8, 2026 — 21:37 EDT",
+    "lastUpdatedIso": "2026-07-09T00:12:54.955Z",
+    "lastUpdatedDisplay": "Jul 9, 2026 — 00:12 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "7d2c6937",
+    "currentMainCommit": "143fca80",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2148,
+    "agentsCompletedThisSession": 2162,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2148 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2162 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 8, 2026 — 21:37 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 9, 2026 — 00:12 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-08T17:37:10-04:00",
+      "lastMergeIso": "2026-07-08T20:12:26-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5579,19 +5579,19 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-08T21:37:44.040Z",
-      "backendRouteSymbolCount": 205,
+      "lastAuditAt": "2026-07-09T00:12:54.129Z",
+      "backendRouteSymbolCount": 209,
       "deferredItems": {
-        "total": 935,
+        "total": 940,
         "bySeverity": {
           "tech-debt": 278,
-          "review": 652,
+          "review": 657,
           "blocker": 5
         },
         "byKind": {
           "docstring-caveat": 263,
           "not-configured-fallback": 91,
-          "type-cheat-cast": 560,
+          "type-cheat-cast": 565,
           "type-cheat": 1,
           "deferred-marker": 2,
           "todo-comment": 2,
@@ -5602,7 +5602,7 @@
           "UI": 36,
           "X": 37,
           "H": 14,
-          "Platform": 620,
+          "Platform": 625,
           "E": 48,
           "S": 1,
           "J": 9,
@@ -5624,11 +5624,11 @@
         "wontfixDemotions": []
       },
       "saasConformance": {
-        "totalViolations": 446,
-        "totalBlockers": 17,
+        "totalViolations": 452,
+        "totalBlockers": 23,
         "byCheck": {
-          "migration-tenant-id": 6,
-          "query-tenant-filter": 10,
+          "migration-tenant-id": 8,
+          "query-tenant-filter": 14,
           "ops-phi-boundary": 1,
           "no-phi-in-logs": 0,
           "baa-enforcement": 0,
@@ -5758,79 +5758,79 @@
   ],
   "recentCompletions": [
     {
-      "agent": "Merge pull request #426 from kamalcernia/claude/v1-roadmap-exec",
-      "commit": "7d2c6937",
+      "agent": "Merge pull request #427 from kamalcernia/claude/referral-pillar-wiring",
+      "commit": "143fca80",
       "kind": "other"
     },
     {
-      "agent": "complete AI-native set — StreamingText + AIWorkingState (R14)",
-      "commit": "8bdf53a3",
+      "agent": "admin exchange inbox/outbox tab (KTD11)",
+      "commit": "e384b7b7",
       "kind": "feat"
     },
     {
-      "agent": "shadcn HSL-component token emitter",
-      "commit": "c7b94325",
+      "agent": "admin directory management tab (KTD8)",
+      "commit": "ac1b9bd0",
       "kind": "feat"
     },
     {
-      "agent": "referral directory zero-PHI listing (KTD8)",
-      "commit": "0c81d38d",
+      "agent": "map roles:['admin'",
+      "commit": "46bd4d1c",
+      "kind": "fix"
+    },
+    {
+      "agent": "live-render fixes — RBAC ops, next.config .js resolution, tenant_id...",
+      "commit": "a920cd64",
+      "kind": "fix"
+    },
+    {
+      "agent": "admin referral queue UI (KTD7)",
+      "commit": "fb41a608",
       "kind": "feat"
     },
     {
-      "agent": "scribe note templates as data (KTD6)",
-      "commit": "1b7ff863",
+      "agent": "packet delivery — pdfmake-seam renderer + IFaxBackend send (KTD9/10)",
+      "commit": "48925a7a",
       "kind": "feat"
     },
     {
-      "agent": "scribe chunked-ingestion accounting (KTD2)",
-      "commit": "bb00fdbd",
+      "agent": "referral directory store + routes (KTD8)",
+      "commit": "194c5b48",
       "kind": "feat"
     },
     {
-      "agent": "referral packet content model (KTD9)",
-      "commit": "209ebd92",
+      "agent": "referral-pro entitlement gate on the exchange surface (KTD16)",
+      "commit": "8a85834f",
       "kind": "feat"
     },
     {
-      "agent": "link new workspace packages (telehealth, audit-service, +) in lockfile",
-      "commit": "c91f9655",
-      "kind": "chore"
-    },
-    {
-      "agent": "audit-service tamper-evident hash chain (U12)",
-      "commit": "3e119434",
+      "agent": "cross-tenant exchange HTTP routes + registration (KTD11)",
+      "commit": "8cd032b5",
       "kind": "feat"
     },
     {
-      "agent": "telehealth room-access policy (KTD14)",
-      "commit": "8e1a0055",
+      "agent": "cross-tenant exchange store — copy-then-purge (KTD11)",
+      "commit": "98abd693",
       "kind": "feat"
     },
     {
-      "agent": "scribe provider-selection preflight (KTD4)",
-      "commit": "dc555942",
+      "agent": "referral HTTP routes + index registration (KTD7)",
+      "commit": "477ec0b1",
       "kind": "feat"
     },
     {
-      "agent": "referral IFaxBackend seam + fax-number validation (KTD10/KTD8)",
-      "commit": "92a1a699",
+      "agent": "ReferralTaskStore on migration 290 (KTD7)",
+      "commit": "6d98d598",
       "kind": "feat"
     },
     {
-      "agent": "packages/ui — Input, EmptyState, StatCard",
-      "commit": "79f87000",
+      "agent": "migration 290 — clinical referral tables (KTD7/8/11)",
+      "commit": "317ec9cd",
       "kind": "feat"
     },
     {
-      "agent": "portal auth goes real — in-memory token + httpOnly refresh (U1/KTD12)",
-      "commit": "e1874001",
-      "kind": "feat"
-    },
-    {
-      "agent": "voice hardening — LLM fallback chain + total-outage policy (KTD15)",
-      "commit": "e2d9dfb0",
-      "kind": "feat"
+      "agent": "Merge pull request #426 from kamalcernia/claude/v1-roadmap-exec",
+      "commit": "7d2c6937",
+      "kind": "other"
     }
   ],
   "failures": [
