@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-09T08:24:29.686Z",
-    "lastUpdatedDisplay": "Jul 9, 2026 — 08:24 EDT",
+    "lastUpdatedIso": "2026-07-09T08:41:31.990Z",
+    "lastUpdatedDisplay": "Jul 9, 2026 — 08:41 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "f1ab8521",
+    "currentMainCommit": "495706d7",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2188,
+    "agentsCompletedThisSession": 2190,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2188 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2190 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 9, 2026 — 08:24 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 9, 2026 — 08:41 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-09T04:18:49-04:00",
+      "lastMergeIso": "2026-07-09T04:41:00-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5579,7 +5579,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-09T08:24:28.842Z",
+      "lastAuditAt": "2026-07-09T08:41:31.072Z",
       "backendRouteSymbolCount": 213,
       "deferredItems": {
         "total": 951,
@@ -5758,6 +5758,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #435 from kamalcernia/claude/portal-reads-real",
+      "commit": "495706d7",
+      "kind": "other"
+    },
+    {
+      "agent": "wire dashboard reads to the logged-in patient (KTD12, reads-go-real...",
+      "commit": "9d86882b",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #434 from kamalcernia/claude/portal-token-verifier",
       "commit": "f1ab8521",
       "kind": "other"
@@ -5821,16 +5831,6 @@
       "agent": "login sends tenantId; logout clears the refresh cookie (KTD12)",
       "commit": "8eb90601",
       "kind": "fix"
-    },
-    {
-      "agent": "PatientPortalClient — authed FHIR fetch + silent-refresh-on-401 (KT...",
-      "commit": "8134c9c7",
-      "kind": "feat"
-    },
-    {
-      "agent": "/patient-portal/refresh route + Authenticator.refresh rotation (KTD12)",
-      "commit": "976250fa",
-      "kind": "feat"
     }
   ],
   "failures": [
