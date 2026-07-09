@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-09T02:18:17.707Z",
-    "lastUpdatedDisplay": "Jul 9, 2026 — 02:18 EDT",
+    "lastUpdatedIso": "2026-07-09T07:32:44.194Z",
+    "lastUpdatedDisplay": "Jul 9, 2026 — 07:32 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "9e1d9f3a",
+    "currentMainCommit": "e5ae12a5",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2177,
+    "agentsCompletedThisSession": 2185,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2177 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2185 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 9, 2026 — 02:18 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 9, 2026 — 07:32 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-08T22:17:49-04:00",
+      "lastMergeIso": "2026-07-09T03:32:13-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5579,12 +5579,12 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-09T02:18:16.883Z",
+      "lastAuditAt": "2026-07-09T07:32:43.312Z",
       "backendRouteSymbolCount": 213,
       "deferredItems": {
-        "total": 950,
+        "total": 951,
         "bySeverity": {
-          "tech-debt": 278,
+          "tech-debt": 279,
           "review": 667,
           "blocker": 5
         },
@@ -5592,14 +5592,14 @@
           "docstring-caveat": 263,
           "not-configured-fallback": 97,
           "type-cheat-cast": 569,
+          "todo-comment": 3,
           "type-cheat": 1,
           "deferred-marker": 2,
-          "todo-comment": 2,
           "skipped-test": 3,
           "json-deferred": 13
         },
         "byWave": {
-          "UI": 40,
+          "UI": 41,
           "X": 37,
           "H": 14,
           "Platform": 631,
@@ -5758,6 +5758,46 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #433 from kamalcernia/claude/portal-verify-email",
+      "commit": "e5ae12a5",
+      "kind": "other"
+    },
+    {
+      "agent": "email-verify exchange + fix wrong-patient lookup (KTD12)",
+      "commit": "a5f3ce80",
+      "kind": "feat"
+    },
+    {
+      "agent": "Merge pull request #432 from kamalcernia/claude/portal-patient-lookup",
+      "commit": "436e749b",
+      "kind": "other"
+    },
+    {
+      "agent": "storage-backed PatientLookup — registration/login can resolve a pat...",
+      "commit": "00ab9b39",
+      "kind": "feat"
+    },
+    {
+      "agent": "Merge pull request #431 from kamalcernia/claude/portal-forms-wiring",
+      "commit": "19105be6",
+      "kind": "other"
+    },
+    {
+      "agent": "warn loudly when CORS origin is '*' with credentials — unblocks por...",
+      "commit": "240eb932",
+      "kind": "fix"
+    },
+    {
+      "agent": "extensionless sibling imports in patient-session (Next webpack)",
+      "commit": "7cc287ce",
+      "kind": "fix"
+    },
+    {
+      "agent": "wire the login form to real PatientAuthSession login (KTD12)",
+      "commit": "248c4bf1",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #430 from kamalcernia/claude/portal-pillar-wiring",
       "commit": "9e1d9f3a",
       "kind": "other"
@@ -5790,46 +5830,6 @@
     {
       "agent": "admin scribe sessions UI (KTD1)",
       "commit": "adbc83f6",
-      "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #428 from kamalcernia/claude/scribe-pillar-wiring",
-      "commit": "f421f778",
-      "kind": "other"
-    },
-    {
-      "agent": "capture chunk-upload routes (KTD2)",
-      "commit": "e8e236b7",
-      "kind": "feat"
-    },
-    {
-      "agent": "templated drafting — note templates + $draft (KTD6), closing draft→...",
-      "commit": "c6b8ff0a",
-      "kind": "feat"
-    },
-    {
-      "agent": "clinician sign route (KTD5)",
-      "commit": "d47cceb7",
-      "kind": "feat"
-    },
-    {
-      "agent": "sign gate at the storage write path (KTD5)",
-      "commit": "3efe7d1f",
-      "kind": "feat"
-    },
-    {
-      "agent": "scribe capture-session routes + KTD4 preflight (KTD1/4)",
-      "commit": "e16772b6",
-      "kind": "feat"
-    },
-    {
-      "agent": "ScribeSessionStore on migration 291 (KTD1/2/4)",
-      "commit": "4bc1b99c",
-      "kind": "feat"
-    },
-    {
-      "agent": "migration 291 — scribe tables (KTD1/4/6)",
-      "commit": "5d3db504",
       "kind": "feat"
     }
   ],
@@ -12662,7 +12662,7 @@
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
       },
-      "deferredCount": 40
+      "deferredCount": 41
     },
     {
       "id": "CIT",
