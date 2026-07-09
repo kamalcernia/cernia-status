@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-09T10:15:14.128Z",
-    "lastUpdatedDisplay": "Jul 9, 2026 — 10:15 EDT",
+    "lastUpdatedIso": "2026-07-09T11:34:24.346Z",
+    "lastUpdatedDisplay": "Jul 9, 2026 — 11:34 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "7607ca12",
+    "currentMainCommit": "771def72",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2198,
+    "agentsCompletedThisSession": 2201,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2198 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2201 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 9, 2026 — 10:15 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 9, 2026 — 11:34 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-09T06:14:46-04:00",
+      "lastMergeIso": "2026-07-09T07:33:52-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5579,7 +5579,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-09T10:15:13.291Z",
+      "lastAuditAt": "2026-07-09T11:34:23.440Z",
       "backendRouteSymbolCount": 214,
       "deferredItems": {
         "total": 952,
@@ -5758,6 +5758,21 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #439 from kamalcernia/claude/voice-llm-failover",
+      "commit": "771def72",
+      "kind": "other"
+    },
+    {
+      "agent": "wire LLM provider failover into the live dialog (R9/KTD15)",
+      "commit": "f2a30b62",
+      "kind": "feat"
+    },
+    {
+      "agent": "FallbackClient — drop-in LLM provider failover for the dialog (R9/K...",
+      "commit": "ddf3dae0",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #438 from kamalcernia/claude/portal-form-refresh",
       "commit": "7607ca12",
       "kind": "other"
@@ -5816,21 +5831,6 @@
       "agent": "browser login→dashboard works — fetch binding + in-memory auth gate...",
       "commit": "774ca81b",
       "kind": "fix"
-    },
-    {
-      "agent": "verify patient-portal tokens against the real issuer — full login w...",
-      "commit": "47526eb9",
-      "kind": "fix"
-    },
-    {
-      "agent": "Merge pull request #433 from kamalcernia/claude/portal-verify-email",
-      "commit": "e5ae12a5",
-      "kind": "other"
-    },
-    {
-      "agent": "email-verify exchange + fix wrong-patient lookup (KTD12)",
-      "commit": "a5f3ce80",
-      "kind": "feat"
     }
   ],
   "failures": [
