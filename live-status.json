@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-10T13:01:57.234Z",
-    "lastUpdatedDisplay": "Jul 10, 2026 — 13:01 EDT",
+    "lastUpdatedIso": "2026-07-10T13:27:37.632Z",
+    "lastUpdatedDisplay": "Jul 10, 2026 — 13:27 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "fd6f2541",
+    "currentMainCommit": "991e3ed7",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2226,
+    "agentsCompletedThisSession": 2228,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2226 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2228 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 10, 2026 — 13:02 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 10, 2026 — 13:27 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-10T09:01:20-04:00",
+      "lastMergeIso": "2026-07-10T09:27:06-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -879,6 +879,13 @@
               ],
               "remaining": [],
               "history": [
+                {
+                  "date": "2026-07-10",
+                  "stage": "telehealth-rpm",
+                  "from": "complete",
+                  "to": "complete",
+                  "note": "Local-media PRE-JOIN DEVICE CHECK added to the patient video room. apps/patient/src/lib/use-local-media.ts (useLocalMedia hook + pure partitionDevices helper): getUserMedia-only (no signaling/peer) local camera self-view, a live mic-level meter (AudioContext analyser → RMS), and camera/mic device enumeration + selection; stop() hands the stream off to the live call on join. apps/patient/.../telehealth/[appointmentId]/page.tsx now starts in a 'checking' state rendering a DeviceCheck panel ('Check your camera and microphone before you join') with the preview + meter + device pickers + a 'Join visit' button that is disabled until media is ready and, on click, runs the existing authorized join → WebRTC call. Verified: partitionDevices 3/3 unit tests; patient typecheck + lint clean; Playwright fake-device e2e (tests/e2e/specs/telehealth-device-check.spec.ts + telehealth-device-check.config.ts) — logs in as the demo patient, SPA-navigates to the room, and asserts the local camera preview has real frames (videoWidth>0) + the mic meter is visible + 'Join visit' is enabled; screenshot captured."
+                },
                 {
                   "date": "2026-07-10",
                   "stage": "telehealth-rpm",
@@ -5621,7 +5628,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-10T13:01:56.083Z",
+      "lastAuditAt": "2026-07-10T13:27:36.750Z",
       "backendRouteSymbolCount": 216,
       "deferredItems": {
         "total": 957,
@@ -5800,6 +5807,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #452 from kamalcernia/claude/telehealth-local-me...",
+      "commit": "991e3ed7",
+      "kind": "other"
+    },
+    {
+      "agent": "local-media pre-join device check (camera + mic) for the patient room",
+      "commit": "c3a8ddd0",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #451 from kamalcernia/claude/voice-r10-transfer-...",
       "commit": "fd6f2541",
       "kind": "other"
@@ -5863,16 +5880,6 @@
       "agent": "authenticate the WebRTC signaling channel + provider join (KTD14 me...",
       "commit": "4db9f047",
       "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #445 from kamalcernia/claude/portal-appointments...",
-      "commit": "05d4440d",
-      "kind": "other"
-    },
-    {
-      "agent": "wire appointments list to session patient + fix join empty-body 400",
-      "commit": "28b44e83",
-      "kind": "fix"
     }
   ],
   "failures": [
