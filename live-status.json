@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-10T05:51:13.279Z",
-    "lastUpdatedDisplay": "Jul 10, 2026 — 05:51 EDT",
+    "lastUpdatedIso": "2026-07-10T06:18:55.311Z",
+    "lastUpdatedDisplay": "Jul 10, 2026 — 06:18 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "77dc859a",
+    "currentMainCommit": "28a10367",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2209,
+    "agentsCompletedThisSession": 2211,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2209 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2211 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 10, 2026 — 05:51 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 10, 2026 — 06:18 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-10T01:50:45-04:00",
+      "lastMergeIso": "2026-07-10T02:18:16-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -845,9 +845,9 @@
                 "summary": "q-s1-webrtc-signaling, q-s2-rpm-device-ingestion, q-s3-telehealth-visit-audit, q-s4-rpm-careplan-generator, q-s5-visit-summary-generator, q-s6-rpm-adherence-tracker all shipped. No WebRTC signaling endpoint in apps/api, no device webhook routes, no care-plan generation cron, no visit-summary UI."
               },
               "current": {
-                "status": "complete",
-                "asOf": "2026-05-28",
-                "summary": "RPM compute endpoints live in apps/api: POST /rpm/readings/$evaluate, GET /rpm/care-plan-templates, POST /rpm/care-plans/$generate, POST /rpm/adherence/$compute. WebRTC signaling websocket (q-s1) registered at apps/api/src/index.ts:911. Stateful device webhook at apps/api/src/rpm-device-webhook-routes.ts feeds AlertEngine + persists alerts. Nightly batches sweep tenants for care-plan + adherence sweeps with real per-tenant fan-out. Telehealth visit endpoints (q-s3 quality + q-s5 summary) wired via apps/api/src/telehealth-visit-routes.ts. Clinic UI complete: apps/admin/src/app/admin/rpm/page.tsx (dashboard with per-patient activity + open-alert severity sort) + apps/admin/src/app/admin/rpm/[patientId]/page.tsx (care-plan editor + readings table + alerts ack) + apps/admin/src/app/admin/telehealth/visit-summary/page.tsx (q-s5 summary UI) + apps/admin/src/app/admin/telehealth/visit-quality/page.tsx (q-s3 quality dashboard)."
+                "status": "partial",
+                "asOf": "2026-07-10",
+                "summary": "CLINIC/ADMIN side complete. RPM compute endpoints live in apps/api: POST /rpm/readings/$evaluate, GET /rpm/care-plan-templates, POST /rpm/care-plans/$generate, POST /rpm/adherence/$compute. WebRTC signaling websocket (q-s1) registered at apps/api/src/index.ts:911. Stateful device webhook at apps/api/src/rpm-device-webhook-routes.ts feeds AlertEngine + persists alerts. Nightly batches sweep tenants for care-plan + adherence sweeps with real per-tenant fan-out. Telehealth visit endpoints (q-s3 quality + q-s5 summary) wired via apps/api/src/telehealth-visit-routes.ts. Clinic UI complete: apps/admin/src/app/admin/rpm/page.tsx + apps/admin/src/app/admin/rpm/[patientId]/page.tsx + apps/admin/src/app/admin/telehealth/visit-summary/page.tsx + apps/admin/src/app/admin/telehealth/visit-quality/page.tsx. PATIENT side now started (v1-clinical-launch KTD14): the patient can join their OWN video visit — POST /patient-portal/telehealth/:appointmentId/join (participant+tenant+window authorized, HMAC room token, curl-proven live) + patient room shell + 'Join video visit' button. REMAINING patient-side: the real WebRTC/LiveKit MEDIA track and surfacing the button from a session-scoped appointments list (see remaining[])."
               },
               "evidence": [
                 {
@@ -863,8 +863,18 @@
                   "url": "https://github.com/kamalcernia/cernia/blob/main/apps/api/src/telehealth-rpm-routes.ts"
                 }
               ],
-              "remaining": [],
+              "remaining": [
+                "Patient-side WebRTC/LiveKit MEDIA surface: apps/patient/src/app/(portal)/telehealth/[appointmentId]/page.tsx currently renders the authorized room shell ('You're connected' placeholder + Room id) but does not yet attach a real audio/video track — the join token from POST /patient-portal/telehealth/:id/join is HMAC (server secret), so no LiveKit client SDK is wired. Follow-up: LiveKit AccessToken minter slots into the existing mintRoomToken seam (apps/api/src/patient-telehealth-routes.ts) + a LiveKit React room component.",
+                "Appointments list hard-codes PATIENT_ID='pat-001' (apps/patient/src/app/(portal)/appointments/page.tsx:18, 'until I-203 lands') so the logged-in patient's own video appointments don't surface — the new 'Join video visit' button therefore can't be reached from that page for the real session patient. Wire the list to the session patient id so the Join button appears for the patient's actual video visits."
+              ],
               "history": [
+                {
+                  "date": "2026-07-10",
+                  "stage": "telehealth-rpm",
+                  "from": "complete",
+                  "to": "remaining-added",
+                  "note": "PATIENT-SIDE telehealth join shipped (v1-clinical-launch KTD14) — complements the existing clinic/admin telehealth (visit-quality/summary). BACKEND (already merged PR #443): apps/api/src/patient-telehealth-routes.ts mounts POST /patient-portal/telehealth/:appointmentId/join under the allow-listed patient-portal prefix; own-token auth via verifyForAudience(patient-portal); composes @cernia/telehealth authorizeRoomJoin (participant+tenant scoping) + canJoinNow (15-min-early through +60-min grace). A patient may join ONLY an Appointment they are the patient on (else 404, no enumeration); cross-tenant → 403; outside window → 403 outside-join-window{reason}. mintRoomToken is an injected seam — HMAC join token today (CERNIA_JWT_SECRET, no LiveKit creds needed), so the join is fully functional; absent minter → 503 telehealth-not-configured with the resolved room. 8 unit tests. LIVE-PROVEN via curl: kyle (Patient/654548ac) in-window → 200 {room,role:patient,token}; future appt → 403 outside-join-window; dave's appt → 404. FRONTEND (this slice): apps/patient/src/lib/telehealth-api.ts joinTelehealthVisit() maps the server outcomes to a typed JoinResult + JOIN_FAILURE_COPY (unit-tested 2/2); apps/patient/src/app/(portal)/telehealth/[appointmentId]/page.tsx drives a joining→joined→failed state machine off the live join (server-authorized); apps/patient/src/app/(portal)/appointments/page.tsx adds a video-only, non-cancelled 'Join video visit' Link→room. patient typecheck clean, vitest green. Room route compiles + serves HTTP 200 live (Next dev log). LIVE portal session verified this run: kyle login → dashboard → SPA-nav to /appointments, in-memory access token preserved across client-side transitions. The 'You're connected' happy-state PIXEL was not captured live, blocked by two PRE-EXISTING portal-dev gaps (now tracked in remaining[]): the appointments list hard-codes pat-001 so kyle's seeded video appt isn't listed, and a hard nav to the room loses the in-memory-only access token (R31) before the authorized join runs; both are unrelated to this slice. Also hit a recurring Next-14 SWC Jest-worker OOM crash on this Windows box that killed the patient dev server twice on route recompile."
+                },
                 {
                   "date": "2026-05-27",
                   "note": "ra-rpm-3 closed — apps/api/src/rpm-nightly-batches.ts upgraded from heartbeat-only to REAL population sweep. Exposes runCarePlanSweep + runAdherenceSweep helpers; bootRpmNightlyBatches accepts opts.db and runs them every tick. Per-tenant walk: SELECT DISTINCT rpm_care_plans.tenant_id → per-tenant PostgresCarePlanStore.list() → for each plan, PostgresRpmReadingsStore.query over the past 7 days → checkIns built from readings → computeAdherence + recommendIntervention from q-s6-rpm-adherence → buildInterventionQueue. Aggregate per-level counts logged. 5 real-Postgres integration tests prove it (apps/api/src/rpm-nightly-batches.test.ts): tenant enumeration; score-against-real-readings; tenant isolation (tenant-A patient never appears in tenant-B sweep); empty-readings patient → home-visit intervention (streak gate at 7 days); empty-goals plan skipped. apps/api/src/index.ts now passes db to the scheduler. Persisting InterventionRecommendation to a new rpm_interventions table is the next followup so the care-coordinator worklist can drain them."
@@ -5579,24 +5589,24 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-10T05:51:12.432Z",
+      "lastAuditAt": "2026-07-10T06:18:54.229Z",
       "backendRouteSymbolCount": 215,
       "deferredItems": {
-        "total": 956,
+        "total": 958,
         "bySeverity": {
-          "tech-debt": 279,
-          "review": 672,
+          "tech-debt": 280,
+          "review": 673,
           "blocker": 5
         },
         "byKind": {
           "docstring-caveat": 263,
-          "not-configured-fallback": 100,
+          "not-configured-fallback": 101,
           "type-cheat-cast": 571,
           "todo-comment": 3,
           "type-cheat": 1,
           "deferred-marker": 2,
           "skipped-test": 3,
-          "json-deferred": 13
+          "json-deferred": 14
         },
         "byWave": {
           "UI": 43,
@@ -5610,8 +5620,8 @@
           "A": 9,
           "ERX": 9,
           "P": 11,
-          "Q": 16,
-          "(unassigned)": 22,
+          "Q": 17,
+          "(unassigned)": 23,
           "DD": 4,
           "F": 23,
           "I": 9,
@@ -5758,6 +5768,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #444 from kamalcernia/claude/portal-telehealth-b...",
+      "commit": "28a10367",
+      "kind": "other"
+    },
+    {
+      "agent": "telehealth \"Join video visit\" button + patient room shell",
+      "commit": "6a4c653e",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #443 from kamalcernia/claude/portal-telehealth-join",
       "commit": "77dc859a",
       "kind": "other"
@@ -5821,16 +5841,6 @@
       "agent": "dedupe concurrent silent-refresh — single-use token spent once (KTD12)",
       "commit": "bd9021d2",
       "kind": "fix"
-    },
-    {
-      "agent": "patient form submit writes a real QuestionnaireResponse (KTD12)",
-      "commit": "dbf95f94",
-      "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #437 from kamalcernia/claude/portal-compartment-...",
-      "commit": "c105d201",
-      "kind": "other"
     }
   ],
   "failures": [
@@ -8875,8 +8885,8 @@
         "backend": "wired",
         "admin": "wired",
         "ops": "n/a",
-        "patient": "n/a",
-        "usesSampleData": false,
+        "patient": "wired-with-sample-data",
+        "usesSampleData": true,
         "overall": "wired",
         "packageCount": 6,
         "packages": [
@@ -8891,7 +8901,7 @@
           "apps/admin uses API-path discovery (the architecturally correct three-app-boundary pattern)"
         ]
       },
-      "deferredCount": 16
+      "deferredCount": 17
     },
     {
       "id": "T",
