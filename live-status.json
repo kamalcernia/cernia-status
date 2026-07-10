@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-10T09:30:11.642Z",
-    "lastUpdatedDisplay": "Jul 10, 2026 — 09:30 EDT",
+    "lastUpdatedIso": "2026-07-10T13:01:57.234Z",
+    "lastUpdatedDisplay": "Jul 10, 2026 — 13:01 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "f1eb7e3c",
+    "currentMainCommit": "fd6f2541",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2224,
+    "agentsCompletedThisSession": 2226,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2224 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2226 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 10, 2026 — 09:30 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 10, 2026 — 13:02 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-10T05:29:32-04:00",
+      "lastMergeIso": "2026-07-10T09:01:20-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -359,6 +359,10 @@
                 "Real SMS send (#15/#22): set TWILIO_PHONE_NUMBER + A2P 10DLC campaign approved (in progress) → backend flips stub→twilio (runbook Gate B)."
               ],
               "history": [
+                {
+                  "date": "2026-07-10",
+                  "note": "R10 hardening — a FAILED transfer never drops the caller silently. The transfer-to-human path attempted the live carrier redirect (telephony.redirectToHuman) but, when a live-redirect backend was configured yet the caller was NOT bridged (escalation number missing, or the redirect threw), it fell through to terminate()+stream.close() — dead air. Added apps/api/src/voice-call-handler.ts fallbackToCallbackAfterFailedTransfer(): captures a callback Task via appointmentManager.requestCallback for a verified caller (reason 'general-question'), speaks an acknowledgment either way (the line is never dead), waits (bounded) for it to play, and logs a visible voice.call.transfer phase:'callback-fallback' audit row {ok, taskId?}. Gated on `canLiveRedirect && !bridgedToHuman` so tests / legacy deploys without a live-redirect backend keep the existing close-and-drop (finalResponse still drives a TwiML transfer at the webhook) — zero behaviour change there. Test (reliable single-turn emergency path): apps/api/src/voice-call-handler.test.ts 'R10: transfer bridge failure falls back to callback capture with visible logging' patches redirectToHuman to throw and asserts the bridge-failed + callback-fallback audit rows fire (ok:false for the unverified emergency caller). apps/api typecheck + lint clean; the voice-call-handler + comms suites show IDENTICAL pre-existing failure counts to baseline (2 carry-forward — the tracked multi-turn harness flake) + the new R10 test passing. REMAINING R10: admin-side escalation-number validation (a transfer-enabled tenant must have a validated escalation number) in voice-agent-admin-routes.ts."
+                },
                 {
                   "date": "2026-06-08",
                   "note": "Shipped I-301/D6.1 media-stream bridge (Cards 1-6): TwilioMediaStream (packages/telephony/src/backends/twilio-media-stream.ts), <Parameter> TwiML (twilio-backend.ts), decideInbound+runInboundDialog split (voice-call-handler.ts), /telephony/twilio/media WebSocket handler (apps/api/src/twilio-media-ws.ts), boot wiring isTwilioBackend-gated (apps/api/src/index.ts), integration test greeting+teardown (twilio-media-ws.integration.test.ts). μ-law 8k end-to-end, no transcoding. Hardening: duplicate-start guard, catch-path audit, isTwilioBackend gate on endpoint."
@@ -5617,7 +5621,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-10T09:30:10.506Z",
+      "lastAuditAt": "2026-07-10T13:01:56.083Z",
       "backendRouteSymbolCount": 216,
       "deferredItems": {
         "total": 957,
@@ -5796,6 +5800,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #451 from kamalcernia/claude/voice-r10-transfer-...",
+      "commit": "fd6f2541",
+      "kind": "other"
+    },
+    {
+      "agent": "R10 — a failed transfer never drops the caller silently (callback f...",
+      "commit": "a2672336",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #450 from kamalcernia/claude/voice-triage-handle...",
       "commit": "f1eb7e3c",
       "kind": "other"
@@ -5859,16 +5873,6 @@
       "agent": "wire appointments list to session patient + fix join empty-body 400",
       "commit": "28b44e83",
       "kind": "fix"
-    },
-    {
-      "agent": "Merge pull request #444 from kamalcernia/claude/portal-telehealth-b...",
-      "commit": "28a10367",
-      "kind": "other"
-    },
-    {
-      "agent": "telehealth \"Join video visit\" button + patient room shell",
-      "commit": "6a4c653e",
-      "kind": "feat"
     }
   ],
   "failures": [
