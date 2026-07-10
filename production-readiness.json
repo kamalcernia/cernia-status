@@ -744,9 +744,16 @@
             }
           ],
           "remaining": [
-            "U4 portal refills — REMAINING sub-slices: (a) PUSH notification to the patient on clinician approve/deny (F5 closing step) via the appointment-notify rails — today the patient sees the decision by PULLING GET /patient-portal/refills (denied status + reason surface), not a push; (b) the U4 DOCUMENT VIEWER half (DocumentReference list + streamed content endpoint) is untouched; (c) frontend medication page still uses hard-coded PATIENT_ID (session wiring is I-203) + a queue-driven status chip on each row from listRefills() is not yet rendered."
+            "U4 — REMAINING sub-slices: (a) PUSH notification to the patient on clinician refill approve/deny (F5 closing step) via the appointment-notify rails — today the patient sees the decision by PULLING GET /patient-portal/refills (denied status + reason surface), not a push; (b) frontend medication page still uses hard-coded PATIENT_ID (session wiring is I-203) + a queue-driven refill status chip on each row from listRefills() is not yet rendered; (c) the document DETAIL page still pulls METADATA from SAMPLE data (findDocument) — the real content stream is wired (openDocument), but the surrounding title/summary/date are sample until the detail page is rewired to the compartment DocumentReference read (list already goes real)."
           ],
           "history": [
+            {
+              "date": "2026-07-10",
+              "stage": "telehealth-rpm",
+              "from": "complete",
+              "to": "complete",
+              "note": "U4 DOCUMENT-VIEWER half — a patient can now OPEN a document, not just see its metadata. NEW apps/api/src/patient-portal-document-routes.ts: GET /patient-portal/documents/:id/content streams the bytes of a DocumentReference the patient OWNS (authed via the SHARED authenticatePatient; belongsToPatientCompartment → 404 for anyone else's, no existence disclosure). Content resolves from the first attachment: inline base64 `data`, or a `Binary/{id}` url READ IN-TENANT — an external http(s) url is NOT proxied (SSRF guard) → 415 {error:'external-content', url} so the client links out under the user's own session. Correct content-type + Content-Disposition (inline for pdf/html/image, attachment otherwise or on ?download=1) + cache-control private,no-store. Exported the pure resolveAttachment + parseBinaryRef for unit coverage. Frontend: NEW apps/patient/src/lib/portal-documents.ts (openDocument → blob objectURL + revoke, maps 404/401/415-external/415-no-content) + rewired the documents DETAIL page's placeholder viewer to a functional DocumentViewer (inline <iframe> for renderable types, a real Download that triggers ?download=1, an 'Open externally' link for external content, clear messages for not-found/no-content). VERIFIED: api route 14/14 (incl. cross-patient 404, missing 404, no-content 415, external-url 415-not-proxied, inline-vs-attachment disposition, Binary resolution) + patient client 6/6; api+patient typecheck clean, patient lint clean (touched files), existing documents tests 5/5 still green, api builds (ESM-safe). LIVE (real req/resp on :8086 against real Postgres): GET /patient-portal/documents/:id/content no-token → 401 (registered + auth-gated), unknown route → 404. See remaining[] for the metadata-still-sample detail-page rewire + the refill push-notification/status-chip sub-slices."
+            },
             {
               "date": "2026-07-10",
               "stage": "telehealth-rpm",
