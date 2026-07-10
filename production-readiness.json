@@ -744,9 +744,16 @@
             }
           ],
           "remaining": [
-            "U4 — REMAINING sub-slices: (a) frontend medication page still uses hard-coded PATIENT_ID (session wiring is I-203) + a queue-driven refill status chip on each row from listRefills() is not yet rendered; (b) the document DETAIL page still pulls METADATA from SAMPLE data (findDocument) — the real content stream is wired (openDocument), but the surrounding title/summary/date are sample until the detail page is rewired to the compartment DocumentReference read (list already goes real); (c) the refill-decision notification is wired end-to-end (refill.decided emit + comms-base-refill-decided template → email/sms) but a LIVE inbox delivery has not been captured (SMTP-dependent — verified at the emit + base-template-resolution + boot-registration level, not a real inbox)."
+            "U4 — REMAINING sub-slices: (a) the medication page still uses a hard-coded PATIENT_ID for the MedicationRequest search (session wiring is I-203) — note the refill status chip + listRefills already key off the session TOKEN server-side, so they're patient-correct regardless; (b) the document DETAIL page still pulls METADATA from SAMPLE data (findDocument) — the real content stream is wired (openDocument), but the surrounding title/summary/date are sample until the detail page is rewired to the compartment DocumentReference read (list already goes real); (c) the refill-decision notification is wired end-to-end (refill.decided emit + comms-base-refill-decided template → email/sms) but a LIVE inbox delivery has not been captured (SMTP-dependent — verified at the emit + base-template-resolution + boot-registration level, not a real inbox)."
           ],
           "history": [
+            {
+              "date": "2026-07-10",
+              "stage": "telehealth-rpm",
+              "from": "complete",
+              "to": "complete",
+              "note": "U4 REFILL STATUS CHIP — the medications page now surfaces each active med's live refill status (persists across reload), closing the patient-visible refill loop. NEW pure helper refillStatusForMedication(medicationName, refills) in apps/patient/src/lib/portal-refills.ts: matches a med to its refill by name (case-insensitive/trimmed — the SAME join the server duplicate-guard uses) and returns the MOST-RECENT matching request. The medications page loads listRefills() once on mount (skipped in demo; failure → no chips) and threads the match into each active MedicationCard/RefillButton: an existing refill renders a status Badge instead of the button — approved→'Refill approved' (success), denied→'Refill declined' (destructive), pending→'Refill requested' (warning), info-requested→'More info needed'; cancelled falls through so the patient can re-request. Both the chip + listRefills key off the session TOKEN server-side, so they are patient-correct regardless of the page's still-hard-coded PATIENT_ID (I-203). VERIFIED: portal-refills 8/8 (incl. 3 new refillStatusForMedication cases — null-on-no-match, case-insensitive, most-recent-wins), medications page tests 36/36 green; patient typecheck + lint clean. Frontend-only, additive (no route/removal). See remaining[] for the metadata-still-sample doc detail-page + the SMTP-inbox capture."
+            },
             {
               "date": "2026-07-10",
               "stage": "telehealth-rpm",
