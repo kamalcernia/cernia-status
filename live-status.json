@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-10T09:08:46.613Z",
-    "lastUpdatedDisplay": "Jul 10, 2026 — 09:08 EDT",
+    "lastUpdatedIso": "2026-07-10T09:30:11.642Z",
+    "lastUpdatedDisplay": "Jul 10, 2026 — 09:30 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "6e3391a7",
+    "currentMainCommit": "f1eb7e3c",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2222,
+    "agentsCompletedThisSession": 2224,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2222 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2224 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 10, 2026 — 09:08 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 10, 2026 — 09:30 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-10T05:08:14-04:00",
+      "lastMergeIso": "2026-07-10T05:29:32-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -197,7 +197,7 @@
                 }
               ],
               "remaining": [
-                "Pre-existing voice-call-handler test breakage (discovered 2026-07-10, NOT introduced by the dispatch-serialization change): the handler suites have carry-forward failures on main — src/voice-call-handler.test.ts 1/27 (happy-path 'caller verifies + books' — the verified caller's book never reaches appointments.dispatch in the harness), src/voice-call-handler-comms.test.ts 1/5 (OTP-gated identity.otp-needed), src/voice-call-handler-e6.test.ts 6/8. The verification→dispatch scaffold appears stale vs the current dialog flow; needs a dedicated triage to confirm test-only staleness vs a real book-dispatch regression."
+                "Pre-existing voice-call-handler test breakage (8 across 3 files: voice-call-handler.test.ts 1/27, -comms 1/5, -e6 6/8). TRIAGED 2026-07-10 — CONFIRMED TEST-HARNESS-ONLY, NOT a prod regression (phone booking works live). Root cause: all 8 are MULTI-TURN verification tests (turn1 PHI-intent→DOB prompt, turn2 DOB, turn3 2FA, turn4 re-ask). The harness fires 4 STT frames with only flushMicrotasks/flush(6) between them, and the DOB/2FA/re-ask finals COLLAPSE into one merged heldTurnText blob (traced live: 'My date of birth is 1985-03-14 4242 Now please go ahead') via the held-turn / single-turn-lock path in voice-call-handler.ts (flushHeldTurn / heldTurnText merge) — so verification never advances cleanly and the final intent stays PHI-gated (never dispatched). CONFIRMED not the endpoint-hold timer: env-zeroing (apps/api/vitest.setup.ts CERNIA_VOICE_ENDPOINT_*_MS=0) IS working (traced holdMs=0). FIX (dedicated test-repair session): make each per-turn driver AWAIT turn completion (turnInFlight settles) before the next simulateInboundFrame instead of a fixed flush(N), so consecutive frames don't merge — spans driveVerifiedTurn (e6) + the happy-path loop + comms. Not a code/prod change."
               ],
               "history": [
                 {
@@ -5617,7 +5617,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-10T09:08:45.624Z",
+      "lastAuditAt": "2026-07-10T09:30:10.506Z",
       "backendRouteSymbolCount": 216,
       "deferredItems": {
         "total": 957,
@@ -5796,6 +5796,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #450 from kamalcernia/claude/voice-triage-handle...",
+      "commit": "f1eb7e3c",
+      "kind": "other"
+    },
+    {
+      "agent": "triage the 8 pre-existing voice-call-handler test failures — test-h...",
+      "commit": "f34b404d",
+      "kind": "docs"
+    },
+    {
       "agent": "Merge pull request #449 from kamalcernia/claude/voice-serialize-int...",
       "commit": "6e3391a7",
       "kind": "other"
@@ -5858,16 +5868,6 @@
     {
       "agent": "telehealth \"Join video visit\" button + patient room shell",
       "commit": "6a4c653e",
-      "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #443 from kamalcernia/claude/portal-telehealth-join",
-      "commit": "77dc859a",
-      "kind": "other"
-    },
-    {
-      "agent": "patient telehealth join endpoint — fully functional (KTD14)",
-      "commit": "4fb21994",
       "kind": "feat"
     }
   ],
