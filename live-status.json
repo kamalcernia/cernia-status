@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-09T12:03:43.489Z",
-    "lastUpdatedDisplay": "Jul 9, 2026 — 12:03 EDT",
+    "lastUpdatedIso": "2026-07-10T05:32:48.978Z",
+    "lastUpdatedDisplay": "Jul 10, 2026 — 05:32 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "2b94b32a",
+    "currentMainCommit": "1238a8d0",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2203,
+    "agentsCompletedThisSession": 2205,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2203 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2205 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 9, 2026 — 12:03 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 10, 2026 — 05:32 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-09T07:58:10-04:00",
+      "lastMergeIso": "2026-07-10T01:32:18-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5579,7 +5579,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-09T12:03:42.604Z",
+      "lastAuditAt": "2026-07-10T05:32:47.994Z",
       "backendRouteSymbolCount": 214,
       "deferredItems": {
         "total": 952,
@@ -5758,6 +5758,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #441 from kamalcernia/claude/portal-documents",
+      "commit": "1238a8d0",
+      "kind": "other"
+    },
+    {
+      "agent": "all fhir-fetcher reads go real via the compartment surface — docume...",
+      "commit": "a24fe639",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #440 from kamalcernia/claude/voice-total-outage",
       "commit": "2b94b32a",
       "kind": "other"
@@ -5820,16 +5830,6 @@
     {
       "agent": "compartment-scoped patient FHIR reads — reads go real, isolation-pr...",
       "commit": "1cdf84be",
-      "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #435 from kamalcernia/claude/portal-reads-real",
-      "commit": "495706d7",
-      "kind": "other"
-    },
-    {
-      "agent": "wire dashboard reads to the logged-in patient (KTD12, reads-go-real...",
-      "commit": "9d86882b",
       "kind": "feat"
     }
   ],
