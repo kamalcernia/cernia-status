@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-10T05:35:45.115Z",
-    "lastUpdatedDisplay": "Jul 10, 2026 — 05:35 EDT",
+    "lastUpdatedIso": "2026-07-10T05:51:13.279Z",
+    "lastUpdatedDisplay": "Jul 10, 2026 — 05:51 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "e505c08e",
+    "currentMainCommit": "77dc859a",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2207,
+    "agentsCompletedThisSession": 2209,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2207 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2209 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 10, 2026 — 05:35 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 10, 2026 — 05:51 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-10T01:35:11-04:00",
+      "lastMergeIso": "2026-07-10T01:50:45-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5579,18 +5579,18 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-10T05:35:43.980Z",
-      "backendRouteSymbolCount": 214,
+      "lastAuditAt": "2026-07-10T05:51:12.432Z",
+      "backendRouteSymbolCount": 215,
       "deferredItems": {
-        "total": 953,
+        "total": 956,
         "bySeverity": {
           "tech-debt": 279,
-          "review": 669,
+          "review": 672,
           "blocker": 5
         },
         "byKind": {
           "docstring-caveat": 263,
-          "not-configured-fallback": 97,
+          "not-configured-fallback": 100,
           "type-cheat-cast": 571,
           "todo-comment": 3,
           "type-cheat": 1,
@@ -5610,7 +5610,7 @@
           "A": 9,
           "ERX": 9,
           "P": 11,
-          "Q": 13,
+          "Q": 16,
           "(unassigned)": 22,
           "DD": 4,
           "F": 23,
@@ -5758,6 +5758,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #443 from kamalcernia/claude/portal-telehealth-join",
+      "commit": "77dc859a",
+      "kind": "other"
+    },
+    {
+      "agent": "patient telehealth join endpoint — fully functional (KTD14)",
+      "commit": "4fb21994",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #442 from kamalcernia/claude/portal-refills",
       "commit": "e505c08e",
       "kind": "other"
@@ -5820,16 +5830,6 @@
     {
       "agent": "Merge pull request #437 from kamalcernia/claude/portal-compartment-...",
       "commit": "c105d201",
-      "kind": "other"
-    },
-    {
-      "agent": "compartment-forced patient FHIR writes — writes go real (KTD12)",
-      "commit": "ac0308e0",
-      "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #436 from kamalcernia/claude/portal-compartment-...",
-      "commit": "604a0d80",
       "kind": "other"
     }
   ],
@@ -8891,7 +8891,7 @@
           "apps/admin uses API-path discovery (the architecturally correct three-app-boundary pattern)"
         ]
       },
-      "deferredCount": 13
+      "deferredCount": 16
     },
     {
       "id": "T",
