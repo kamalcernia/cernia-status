@@ -713,10 +713,16 @@
             }
           ],
           "remaining": [
-            "Patient-side WebRTC/LiveKit MEDIA surface: apps/patient/src/app/(portal)/telehealth/[appointmentId]/page.tsx currently renders the authorized room shell ('You're connected' placeholder + Room id) but does not yet attach a real audio/video track — the join token from POST /patient-portal/telehealth/:id/join is HMAC (server secret), so no LiveKit client SDK is wired. Follow-up: LiveKit AccessToken minter slots into the existing mintRoomToken seam (apps/api/src/patient-telehealth-routes.ts) + a LiveKit React room component.",
-            "Appointments list hard-codes PATIENT_ID='pat-001' (apps/patient/src/app/(portal)/appointments/page.tsx:18, 'until I-203 lands') so the logged-in patient's own video appointments don't surface — the new 'Join video visit' button therefore can't be reached from that page for the real session patient. Wire the list to the session patient id so the Join button appears for the patient's actual video visits."
+            "Patient-side WebRTC/LiveKit MEDIA surface: apps/patient/src/app/(portal)/telehealth/[appointmentId]/page.tsx renders the authorized room shell ('You're connected' placeholder + Room id, live-proven) but does not yet attach a real audio/video track — the join token from POST /patient-portal/telehealth/:id/join is HMAC (server secret), so no LiveKit client SDK is wired. Follow-up: LiveKit AccessToken minter slots into the existing mintRoomToken seam (apps/api/src/patient-telehealth-routes.ts) + a LiveKit React room component."
           ],
           "history": [
+            {
+              "date": "2026-07-10",
+              "stage": "telehealth-rpm",
+              "from": "remaining",
+              "to": "closed",
+              "note": "Appointments list wired to the SESSION patient + telehealth join happy-path LIVE-PROVEN end-to-end. (1) apps/patient/src/app/(portal)/appointments/page.tsx no longer hard-codes PATIENT_ID='pat-001' — it resolves getPatientSession().getPatientId() in live mode (demo keeps a canned ref), matching the dashboard/documents pattern; the compartment surface already scoped reads to the token, so this makes the code honest and future-proofs it against a tightened compartment search. (2) Found + fixed a real bug the wiring surfaced: joinTelehealthVisit() sent content-type:application/json with NO body, which Fastify 400s ('Body cannot be empty') — the browser would have shown 'Something went wrong' on every join. Fixed apps/patient/src/lib/telehealth-api.ts to send body:'{}' (curl-confirmed: json+empty-body → 400, json+'{}' → 200); telehealth-api.test.ts asserts the empty body (2/2). LIVE happy-path captured (real user actions, acceptance-by-intent UI channel): kyle login → dashboard → Appointments (SPA) → 'Join video visit' button now renders on the video appointment (appointmentType=video, in-window) → client-side Link to /telehealth/:id preserves the in-memory access token → the authorized join returns a room token → room renders 'Video visit' + 'You're connected. Your provider will appear here.' + 'Room: cernia-appt-65637b81…'. patient typecheck clean, vitest green. Only the WebRTC media track remains (bullet kept)."
+            },
             {
               "date": "2026-07-10",
               "stage": "telehealth-rpm",

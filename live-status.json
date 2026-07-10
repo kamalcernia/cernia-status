@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-10T06:18:55.311Z",
-    "lastUpdatedDisplay": "Jul 10, 2026 — 06:18 EDT",
+    "lastUpdatedIso": "2026-07-10T06:43:29.457Z",
+    "lastUpdatedDisplay": "Jul 10, 2026 — 06:43 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "28a10367",
+    "currentMainCommit": "05d4440d",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2211,
+    "agentsCompletedThisSession": 2213,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2211 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2213 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 10, 2026 — 06:18 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 10, 2026 — 06:43 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-10T02:18:16-04:00",
+      "lastMergeIso": "2026-07-10T02:42:58-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -864,10 +864,16 @@
                 }
               ],
               "remaining": [
-                "Patient-side WebRTC/LiveKit MEDIA surface: apps/patient/src/app/(portal)/telehealth/[appointmentId]/page.tsx currently renders the authorized room shell ('You're connected' placeholder + Room id) but does not yet attach a real audio/video track — the join token from POST /patient-portal/telehealth/:id/join is HMAC (server secret), so no LiveKit client SDK is wired. Follow-up: LiveKit AccessToken minter slots into the existing mintRoomToken seam (apps/api/src/patient-telehealth-routes.ts) + a LiveKit React room component.",
-                "Appointments list hard-codes PATIENT_ID='pat-001' (apps/patient/src/app/(portal)/appointments/page.tsx:18, 'until I-203 lands') so the logged-in patient's own video appointments don't surface — the new 'Join video visit' button therefore can't be reached from that page for the real session patient. Wire the list to the session patient id so the Join button appears for the patient's actual video visits."
+                "Patient-side WebRTC/LiveKit MEDIA surface: apps/patient/src/app/(portal)/telehealth/[appointmentId]/page.tsx renders the authorized room shell ('You're connected' placeholder + Room id, live-proven) but does not yet attach a real audio/video track — the join token from POST /patient-portal/telehealth/:id/join is HMAC (server secret), so no LiveKit client SDK is wired. Follow-up: LiveKit AccessToken minter slots into the existing mintRoomToken seam (apps/api/src/patient-telehealth-routes.ts) + a LiveKit React room component."
               ],
               "history": [
+                {
+                  "date": "2026-07-10",
+                  "stage": "telehealth-rpm",
+                  "from": "remaining",
+                  "to": "closed",
+                  "note": "Appointments list wired to the SESSION patient + telehealth join happy-path LIVE-PROVEN end-to-end. (1) apps/patient/src/app/(portal)/appointments/page.tsx no longer hard-codes PATIENT_ID='pat-001' — it resolves getPatientSession().getPatientId() in live mode (demo keeps a canned ref), matching the dashboard/documents pattern; the compartment surface already scoped reads to the token, so this makes the code honest and future-proofs it against a tightened compartment search. (2) Found + fixed a real bug the wiring surfaced: joinTelehealthVisit() sent content-type:application/json with NO body, which Fastify 400s ('Body cannot be empty') — the browser would have shown 'Something went wrong' on every join. Fixed apps/patient/src/lib/telehealth-api.ts to send body:'{}' (curl-confirmed: json+empty-body → 400, json+'{}' → 200); telehealth-api.test.ts asserts the empty body (2/2). LIVE happy-path captured (real user actions, acceptance-by-intent UI channel): kyle login → dashboard → Appointments (SPA) → 'Join video visit' button now renders on the video appointment (appointmentType=video, in-window) → client-side Link to /telehealth/:id preserves the in-memory access token → the authorized join returns a room token → room renders 'Video visit' + 'You're connected. Your provider will appear here.' + 'Room: cernia-appt-65637b81…'. patient typecheck clean, vitest green. Only the WebRTC media track remains (bullet kept)."
+                },
                 {
                   "date": "2026-07-10",
                   "stage": "telehealth-rpm",
@@ -5589,7 +5595,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-10T06:18:54.229Z",
+      "lastAuditAt": "2026-07-10T06:43:28.619Z",
       "backendRouteSymbolCount": 215,
       "deferredItems": {
         "total": 958,
@@ -5768,6 +5774,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #445 from kamalcernia/claude/portal-appointments...",
+      "commit": "05d4440d",
+      "kind": "other"
+    },
+    {
+      "agent": "wire appointments list to session patient + fix join empty-body 400",
+      "commit": "28b44e83",
+      "kind": "fix"
+    },
+    {
       "agent": "Merge pull request #444 from kamalcernia/claude/portal-telehealth-b...",
       "commit": "28a10367",
       "kind": "other"
@@ -5831,16 +5847,6 @@
       "agent": "FallbackClient — drop-in LLM provider failover for the dialog (R9/K...",
       "commit": "ddf3dae0",
       "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #438 from kamalcernia/claude/portal-form-refresh",
-      "commit": "7607ca12",
-      "kind": "other"
-    },
-    {
-      "agent": "dedupe concurrent silent-refresh — single-use token spent once (KTD12)",
-      "commit": "bd9021d2",
-      "kind": "fix"
     }
   ],
   "failures": [
