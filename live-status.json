@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-10T07:34:15.527Z",
-    "lastUpdatedDisplay": "Jul 10, 2026 — 07:34 EDT",
+    "lastUpdatedIso": "2026-07-10T07:37:24.503Z",
+    "lastUpdatedDisplay": "Jul 10, 2026 — 07:37 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "c94ef894",
+    "currentMainCommit": "4f8769a9",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2216,
+    "agentsCompletedThisSession": 2218,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2216 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2218 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 10, 2026 — 07:34 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 10, 2026 — 07:37 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-10T03:33:46-04:00",
+      "lastMergeIso": "2026-07-10T03:36:45-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -845,9 +845,9 @@
                 "summary": "q-s1-webrtc-signaling, q-s2-rpm-device-ingestion, q-s3-telehealth-visit-audit, q-s4-rpm-careplan-generator, q-s5-visit-summary-generator, q-s6-rpm-adherence-tracker all shipped. No WebRTC signaling endpoint in apps/api, no device webhook routes, no care-plan generation cron, no visit-summary UI."
               },
               "current": {
-                "status": "partial",
+                "status": "complete",
                 "asOf": "2026-07-10",
-                "summary": "CLINIC/ADMIN side complete. RPM compute endpoints live in apps/api: POST /rpm/readings/$evaluate, GET /rpm/care-plan-templates, POST /rpm/care-plans/$generate, POST /rpm/adherence/$compute. WebRTC signaling websocket (q-s1) registered at apps/api/src/index.ts:911. Stateful device webhook at apps/api/src/rpm-device-webhook-routes.ts feeds AlertEngine + persists alerts. Nightly batches sweep tenants for care-plan + adherence sweeps with real per-tenant fan-out. Telehealth visit endpoints (q-s3 quality + q-s5 summary) wired via apps/api/src/telehealth-visit-routes.ts. Clinic UI complete: apps/admin/src/app/admin/rpm/page.tsx + apps/admin/src/app/admin/rpm/[patientId]/page.tsx + apps/admin/src/app/admin/telehealth/visit-summary/page.tsx + apps/admin/src/app/admin/telehealth/visit-quality/page.tsx. PATIENT side now started (v1-clinical-launch KTD14): the patient can join their OWN video visit — POST /patient-portal/telehealth/:appointmentId/join (participant+tenant+window authorized, HMAC room token, curl-proven live) + patient room shell + 'Join video visit' button. REMAINING patient-side: the real WebRTC/LiveKit MEDIA track and surfacing the button from a session-scoped appointments list (see remaining[])."
+                "summary": "CLINIC + PATIENT telehealth complete, self-hosted (no LiveKit/BAA). RPM compute endpoints live in apps/api. Clinic UI: apps/admin/src/app/admin/rpm + telehealth/visit-summary + visit-quality. PATIENT video visit (KTD14): POST /patient-portal/telehealth/:id/join (participant+tenant+window authorized) + 'Join video visit' button + room. FULL 2-WAY WebRTC MEDIA now lands: the q-s1 signaling WebSocket (apps/api/src/webrtc-signaling-routes.ts) authenticates every peer against a verifiable signed room ticket (apps/api/src/telehealth-room-ticket.ts) — room+participant+role bound to the ticket, cross-tenant/spoof closed; clinician counterpart POST /telehealth/provider/:id/join. Shared browser call client packages/telehealth-webrtc-client (RTCPeerConnection + perfect negotiation) drives both apps/patient/.../telehealth/[appointmentId]/page.tsx and apps/admin/.../telehealth/room/[appointmentId]/page.tsx (local + remote <video>). PROVEN: a Playwright fake-device 2-peer e2e (tests/e2e/specs/telehealth-webrtc.spec.ts) connects two authenticated peers through the real signaling server with real browser WebRTC and asserts media frames flow BOTH ways."
               },
               "evidence": [
                 {
@@ -863,10 +863,15 @@
                   "url": "https://github.com/kamalcernia/cernia/blob/main/apps/api/src/telehealth-rpm-routes.ts"
                 }
               ],
-              "remaining": [
-                "Patient-side WebRTC/LiveKit MEDIA surface: apps/patient/src/app/(portal)/telehealth/[appointmentId]/page.tsx renders the authorized room shell ('You're connected' placeholder + Room id, live-proven) but does not yet attach a real audio/video track — the join token from POST /patient-portal/telehealth/:id/join is HMAC (server secret), so no LiveKit client SDK is wired. Follow-up: LiveKit AccessToken minter slots into the existing mintRoomToken seam (apps/api/src/patient-telehealth-routes.ts) + a LiveKit React room component."
-              ],
+              "remaining": [],
               "history": [
+                {
+                  "date": "2026-07-10",
+                  "stage": "telehealth-rpm",
+                  "from": "partial",
+                  "to": "complete",
+                  "note": "FULL 2-WAY WebRTC media track shipped, self-hosted (no LiveKit, no third-party BAA), closing the last patient-telehealth bullet. SERVER (PR #446): the q-s1 signaling WebSocket now AUTHENTICATES every peer — apps/api/src/telehealth-room-ticket.ts mints/verifies a signed self-describing ticket (v1.<payload>.<hmac> over {room,identity,role,tenantId,exp}); apps/api/src/webrtc-signaling-routes.ts verifies the ?token= ticket at the upgrade handshake and binds room+participantId+role to it (never the query string) + binds the message envelope `from` to the authenticated participant, closing the cross-tenant media-leak + in-room spoof gaps the file header flagged; caps a room at 2 peers. apps/api/src/provider-telehealth-routes.ts adds the clinician POST /telehealth/provider/:id/join (own bearer auth, allow-listed like $execute, tenant-scoped read -> cross-tenant 404, clinical-role + window gated). Both joins return a verifiable ticket + identity. 10 unit/integration tests (ticket 6, signaling auth/relay/from-binding 4). CLIENT (PR this): packages/telehealth-webrtc-client TelehealthCall (RTCPeerConnection + q-s1 protocol + perfect negotiation, 4 tests) shared by apps/patient/.../telehealth/[appointmentId]/page.tsx and NEW apps/admin/.../telehealth/room/[appointmentId]/page.tsx (local + remote <video>). PROVEN LIVE: provider join returns a v1 ticket+identity (curl); Playwright fake-device 2-peer e2e (tests/e2e/specs/telehealth-webrtc.spec.ts, telehealth-webrtc.config.ts) connects two authenticated peers through the REAL signaling server with REAL browser WebRTC + fake media and asserts remote video FRAMES flow both ways (patientConnected+providerConnected+patientRemoteFrames+providerRemoteFrames all true). apps/api boot-verified. Stage flips partial -> complete."
+                },
                 {
                   "date": "2026-07-10",
                   "stage": "telehealth-rpm",
@@ -5595,12 +5600,12 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-10T07:34:14.494Z",
+      "lastAuditAt": "2026-07-10T07:37:23.453Z",
       "backendRouteSymbolCount": 216,
       "deferredItems": {
-        "total": 958,
+        "total": 957,
         "bySeverity": {
-          "tech-debt": 280,
+          "tech-debt": 279,
           "review": 673,
           "blocker": 5
         },
@@ -5612,7 +5617,7 @@
           "type-cheat": 1,
           "deferred-marker": 2,
           "skipped-test": 3,
-          "json-deferred": 14
+          "json-deferred": 13
         },
         "byWave": {
           "UI": 43,
@@ -5627,7 +5632,7 @@
           "ERX": 9,
           "P": 11,
           "Q": 17,
-          "(unassigned)": 23,
+          "(unassigned)": 22,
           "DD": 4,
           "F": 23,
           "I": 9,
@@ -5774,6 +5779,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #447 from kamalcernia/claude/telehealth-webrtc-c...",
+      "commit": "4f8769a9",
+      "kind": "other"
+    },
+    {
+      "agent": "full 2-way WebRTC video call — patient + provider (KTD14 media track)",
+      "commit": "2790c18b",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #446 from kamalcernia/claude/telehealth-webrtc-s...",
       "commit": "c94ef894",
       "kind": "other"
@@ -5836,16 +5851,6 @@
     {
       "agent": "all fhir-fetcher reads go real via the compartment surface — docume...",
       "commit": "a24fe639",
-      "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #440 from kamalcernia/claude/voice-total-outage",
-      "commit": "2b94b32a",
-      "kind": "other"
-    },
-    {
-      "agent": "total-LLM-outage graceful degradation in the dialog — never dead ai...",
-      "commit": "59b984e6",
       "kind": "feat"
     }
   ],
@@ -8889,7 +8894,7 @@
       },
       "integrationLadder": {
         "backend": "wired",
-        "admin": "wired",
+        "admin": "wired-with-sample-data",
         "ops": "n/a",
         "patient": "wired-with-sample-data",
         "usesSampleData": true,
@@ -8904,6 +8909,7 @@
           "q-s6-rpm-adherence"
         ],
         "rationale": [
+          "apps/admin imports sample-*/FAKE_/mock modules — swap to real *-api.ts calls",
           "apps/admin uses API-path discovery (the architecturally correct three-app-boundary pattern)"
         ]
       },
