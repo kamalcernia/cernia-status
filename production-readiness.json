@@ -743,8 +743,17 @@
               "url": "https://github.com/kamalcernia/cernia/blob/main/apps/api/src/telehealth-rpm-routes.ts"
             }
           ],
-          "remaining": [],
+          "remaining": [
+            "U4 portal refills — REMAINING sub-slices: (a) PUSH notification to the patient on clinician approve/deny (F5 closing step) via the appointment-notify rails — today the patient sees the decision by PULLING GET /patient-portal/refills (denied status + reason surface), not a push; (b) the U4 DOCUMENT VIEWER half (DocumentReference list + streamed content endpoint) is untouched; (c) frontend medication page still uses hard-coded PATIENT_ID (session wiring is I-203) + a queue-driven status chip on each row from listRefills() is not yet rendered."
+          ],
           "history": [
+            {
+              "date": "2026-07-10",
+              "stage": "telehealth-rpm",
+              "from": "complete",
+              "to": "complete",
+              "note": "U4 patient-portal REFILLS (enqueue half) — the 'Request refill' button now feeds the REAL clinician eRx queue instead of a dead-end Communication. NEW apps/api/src/patient-portal-refill-routes.ts: POST/GET /patient-portal/refills, authed with the SHARED authenticatePatient (now exported from patient-portal-fhir-routes.ts — one audited definition of 'who is this patient'); a refill may be requested ONLY for a MedicationRequest in the CALLER'S OWN compartment (belongsToPatientCompartment → 404, no existence disclosure, so no cross-patient refill); duplicate-while-pending → 409; enqueues into the SAME PostgresRefillQueueStore/RefillQueueApi the voice agent + clinician triage surface (erx-routes.ts) use, source:'portal'. NEW erx-service helpers RefillQueueApi.listForPatient (compartment isolation) + hasPendingForMedication (case-insensitive dup guard) with 3 unit tests. Frontend: NEW apps/patient/src/lib/portal-refills.ts (requestRefill/listRefills over the authed route, in-memory token) + swapped the medications-page RefillButton to it (adds an 'Already requested' 409 state); 5 client unit tests. VERIFIED: erx-service 148/148, api route 9/9 (incl. cross-patient 404, GET isolation, duplicate 409, denied-status-reflects-to-patient), patient 5/5; api+patient+erx-service typecheck clean, patient lint clean, api builds (ESM-safe — full boot registration, no require() crash). LIVE (real API req/resp on :8085 against real Postgres): POST + GET /patient-portal/refills no-token → 401 (registered + auth-gated), unknown route → 404 (proves the 401s are genuine registration). See remaining[] for the push-notification, document-viewer, and status-chip sub-slices."
+            },
             {
               "date": "2026-07-10",
               "stage": "telehealth-rpm",
