@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-10T08:22:56.362Z",
-    "lastUpdatedDisplay": "Jul 10, 2026 — 08:22 EDT",
+    "lastUpdatedIso": "2026-07-10T09:08:46.613Z",
+    "lastUpdatedDisplay": "Jul 10, 2026 — 09:08 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen)"
   },
   "summary": {
-    "currentMainCommit": "f0349ad6",
+    "currentMainCommit": "6e3391a7",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2220,
+    "agentsCompletedThisSession": 2222,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2220 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2222 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 10, 2026 — 08:22 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #334 feat(voice-eval): Ollama caller-persona LLM (qwen) — no Open. (refreshed Jul 10, 2026 — 09:08 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-10T04:22:24-04:00",
+      "lastMergeIso": "2026-07-10T05:08:14-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -194,6 +194,16 @@
                 {
                   "label": "STRIDE threat model",
                   "url": "https://github.com/kamalcernia/cernia/blob/main/docs/security/threats/wave-d-voice-end-to-end.md"
+                }
+              ],
+              "remaining": [
+                "Pre-existing voice-call-handler test breakage (discovered 2026-07-10, NOT introduced by the dispatch-serialization change): the handler suites have carry-forward failures on main — src/voice-call-handler.test.ts 1/27 (happy-path 'caller verifies + books' — the verified caller's book never reaches appointments.dispatch in the harness), src/voice-call-handler-comms.test.ts 1/5 (OTP-gated identity.otp-needed), src/voice-call-handler-e6.test.ts 6/8. The verification→dispatch scaffold appears stale vs the current dialog flow; needs a dedicated triage to confirm test-only staleness vs a real book-dispatch regression."
+              ],
+              "history": [
+                {
+                  "date": "2026-07-10",
+                  "stage": "capability",
+                  "note": "Voice hardening — SERIALIZED intent dispatch (concurrent-flow race). The handler's onIntent fired `void registry.handle(...)` per intent, so two flow-opening intents emitted in ONE turn (LLM emits book+reschedule together, or both auto-resume after verification) dispatched CONCURRENTLY and both passed the existing `deferredFlowIntents` `flowActive()` guard before either set `activeBookingFlow` (startBookingFlow only assigns it AFTER an await) — starting two deterministic flows at once and double-prompting the caller. Extracted a pure FIFO serializer apps/api/src/serial-dispatch.ts (createSerialRunner: runs each intent one-at-a-time, in order, next never starts until the previous settles; rejection-isolated) + apps/api/src/serial-dispatch.test.ts (3 tests: serial+in-order, rejection isolation, max-concurrency=1). apps/api/src/voice-call-handler.ts now dispatches intents through it, so the first flow registers before the second is handled and the goal-stack defers it correctly. apps/api typecheck clean, lint clean, serial-dispatch 3/3; the voice-call-handler suites show IDENTICAL failure counts to baseline (8 pre-existing carry-forward across 3 files, git-stash-verified — zero new regressions)."
                 }
               ]
             },
@@ -5607,7 +5617,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-10T08:22:55.497Z",
+      "lastAuditAt": "2026-07-10T09:08:45.624Z",
       "backendRouteSymbolCount": 216,
       "deferredItems": {
         "total": 957,
@@ -5786,6 +5796,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #449 from kamalcernia/claude/voice-serialize-int...",
+      "commit": "6e3391a7",
+      "kind": "other"
+    },
+    {
+      "agent": "serialize intent dispatch — stop the concurrent-flow race (hardening)",
+      "commit": "6e03c001",
+      "kind": "fix"
+    },
+    {
       "agent": "Merge pull request #448 from kamalcernia/claude/telehealth-webrtc-l...",
       "commit": "f0349ad6",
       "kind": "other"
@@ -5848,16 +5868,6 @@
     {
       "agent": "patient telehealth join endpoint — fully functional (KTD14)",
       "commit": "4fb21994",
-      "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #442 from kamalcernia/claude/portal-refills",
-      "commit": "e505c08e",
-      "kind": "other"
-    },
-    {
-      "agent": "prescription refill requests — patient writes a Communication to th...",
-      "commit": "d09bc113",
       "kind": "feat"
     }
   ],

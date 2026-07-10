@@ -44,6 +44,16 @@
               "label": "STRIDE threat model",
               "url": "https://github.com/kamalcernia/cernia/blob/main/docs/security/threats/wave-d-voice-end-to-end.md"
             }
+          ],
+          "remaining": [
+            "Pre-existing voice-call-handler test breakage (discovered 2026-07-10, NOT introduced by the dispatch-serialization change): the handler suites have carry-forward failures on main — src/voice-call-handler.test.ts 1/27 (happy-path 'caller verifies + books' — the verified caller's book never reaches appointments.dispatch in the harness), src/voice-call-handler-comms.test.ts 1/5 (OTP-gated identity.otp-needed), src/voice-call-handler-e6.test.ts 6/8. The verification→dispatch scaffold appears stale vs the current dialog flow; needs a dedicated triage to confirm test-only staleness vs a real book-dispatch regression."
+          ],
+          "history": [
+            {
+              "date": "2026-07-10",
+              "stage": "capability",
+              "note": "Voice hardening — SERIALIZED intent dispatch (concurrent-flow race). The handler's onIntent fired `void registry.handle(...)` per intent, so two flow-opening intents emitted in ONE turn (LLM emits book+reschedule together, or both auto-resume after verification) dispatched CONCURRENTLY and both passed the existing `deferredFlowIntents` `flowActive()` guard before either set `activeBookingFlow` (startBookingFlow only assigns it AFTER an await) — starting two deterministic flows at once and double-prompting the caller. Extracted a pure FIFO serializer apps/api/src/serial-dispatch.ts (createSerialRunner: runs each intent one-at-a-time, in order, next never starts until the previous settles; rejection-isolated) + apps/api/src/serial-dispatch.test.ts (3 tests: serial+in-order, rejection isolation, max-concurrency=1). apps/api/src/voice-call-handler.ts now dispatches intents through it, so the first flow registers before the second is handled and the goal-stack defers it correctly. apps/api typecheck clean, lint clean, serial-dispatch 3/3; the voice-call-handler suites show IDENTICAL failure counts to baseline (8 pre-existing carry-forward across 3 files, git-stash-verified — zero new regressions)."
+            }
           ]
         },
         {
