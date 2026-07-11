@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T22:41:17.917Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 22:41 EDT",
+    "lastUpdatedIso": "2026-07-11T22:47:35.722Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 22:47 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "501906b2",
+    "currentMainCommit": "64f6fb8b",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2365,
+    "agentsCompletedThisSession": 2367,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2365 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2367 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 22:41 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 22:47 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 9 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-11T18:40:46-04:00",
+      "lastMergeIso": "2026-07-11T18:47:02-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5794,7 +5794,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T22:41:16.973Z",
+      "lastAuditAt": "2026-07-11T22:47:34.340Z",
       "backendRouteSymbolCount": 219,
       "deferredItems": {
         "total": 984,
@@ -5973,6 +5973,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #497 from kamalcernia/claude/phone-agent-m0",
+      "commit": "64f6fb8b",
+      "kind": "other"
+    },
+    {
+      "agent": "unify flattenContent + fix bedrock tool-content drop",
+      "commit": "f1e6ff50",
+      "kind": "refactor"
+    },
+    {
       "agent": "Merge pull request #496 from kamalcernia/claude/phone-agent-m0",
       "commit": "501906b2",
       "kind": "other"
@@ -6036,16 +6046,6 @@
       "agent": "provider-aware PHI redaction — skip for self-hosted-only",
       "commit": "795798bf",
       "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #490 from kamalcernia/claude/phone-agent-m0",
-      "commit": "7d047d76",
-      "kind": "other"
-    },
-    {
-      "agent": "push policy → push branch freely, merge to main waits for user",
-      "commit": "a63287f3",
-      "kind": "docs"
     }
   ],
   "failures": [
