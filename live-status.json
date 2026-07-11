@@ -1,15 +1,15 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T13:05:08.140Z",
+    "lastUpdatedIso": "2026-07-11T13:05:56.662Z",
     "lastUpdatedDisplay": "Jul 11, 2026 — 13:05 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "4c779849",
+    "currentMainCommit": "a9f7835b",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2328,
+    "agentsCompletedThisSession": 2331,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2328 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2331 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
     "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 13:05 EDT)",
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 14 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-11T09:04:39-04:00",
+      "lastMergeIso": "2026-07-11T09:05:26-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5776,7 +5776,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T13:05:07.237Z",
+      "lastAuditAt": "2026-07-11T13:05:55.805Z",
       "backendRouteSymbolCount": 219,
       "deferredItems": {
         "total": 975,
@@ -5955,6 +5955,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #485 from kamalcernia/claude/audit-admin-ui",
+      "commit": "a9f7835b",
+      "kind": "other"
+    },
+    {
       "agent": "Merge pull request #486 from kamalcernia/claude/audit-read-backend",
       "commit": "4c779849",
       "kind": "other"
@@ -5972,6 +5977,16 @@
     {
       "agent": "enrich access-audit events with source IP + resource id",
       "commit": "d772523b",
+      "kind": "feat"
+    },
+    {
+      "agent": "audit page reads real /admin/audit (drop SAMPLE)",
+      "commit": "2683011c",
+      "kind": "feat"
+    },
+    {
+      "agent": "audit-api client + wire->display mapper",
+      "commit": "4cab6a30",
       "kind": "feat"
     },
     {
@@ -6013,21 +6028,6 @@
       "agent": "PHI audit-log write pipeline (Phase 1) implementation plan",
       "commit": "9fc7dbc9",
       "kind": "docs"
-    },
-    {
-      "agent": "PHI access audit-log design (non-blocking write pipeline + tenant-s...",
-      "commit": "f188e02a",
-      "kind": "docs"
-    },
-    {
-      "agent": "Merge pull request #483 from kamalcernia/claude/invite-consume-befo...",
-      "commit": "a4e5f5cd",
-      "kind": "other"
-    },
-    {
-      "agent": "don't burn a portal invite when the email is already registered",
-      "commit": "5fe4ebd4",
-      "kind": "fix"
     }
   ],
   "failures": [
