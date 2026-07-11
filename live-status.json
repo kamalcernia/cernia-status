@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T12:34:31.926Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 12:34 EDT",
+    "lastUpdatedIso": "2026-07-11T13:05:08.140Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 13:05 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "81749b5f",
+    "currentMainCommit": "4c779849",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2324,
+    "agentsCompletedThisSession": 2328,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2324 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2328 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 12:34 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 13:05 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -58,11 +58,11 @@
     },
     "velocity": {
       "landedLastHour": 0,
-      "landedLast24h": 15,
-      "label": "0 PRs opened in last hour · 15 in last 24h"
+      "landedLast24h": 14,
+      "label": "0 PRs opened in last hour · 14 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-11T08:24:03-04:00",
+      "lastMergeIso": "2026-07-11T09:04:39-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5776,8 +5776,8 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T12:34:31.090Z",
-      "backendRouteSymbolCount": 218,
+      "lastAuditAt": "2026-07-11T13:05:07.237Z",
+      "backendRouteSymbolCount": 219,
       "deferredItems": {
         "total": 975,
         "bySeverity": {
@@ -5821,7 +5821,7 @@
         "wontfixDemotions": []
       },
       "saasConformance": {
-        "totalViolations": 455,
+        "totalViolations": 457,
         "totalBlockers": 23,
         "byCheck": {
           "migration-tenant-id": 8,
@@ -5830,17 +5830,11 @@
           "no-phi-in-logs": 0,
           "baa-enforcement": 0,
           "three-app-boundary": 0,
-          "no-in-process-stubs": 432
+          "no-in-process-stubs": 434
         }
       }
     },
-    "justLandedWaves": [],
-    "nowWorkingOn": {
-      "wave": "PLAN",
-      "detail": "PHI audit-log read route + admin UI + enrichment (Phase 2)",
-      "commit": "81749b5f",
-      "freshSeconds": 38
-    }
+    "justLandedWaves": []
   },
   "pool": {
     "size": 8,
@@ -5961,6 +5955,26 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #486 from kamalcernia/claude/audit-read-backend",
+      "commit": "4c779849",
+      "kind": "other"
+    },
+    {
+      "agent": "GET /admin/audit tenant-scoped search over the audit chain",
+      "commit": "2a08d5aa",
+      "kind": "feat"
+    },
+    {
+      "agent": "resourceType/operation filters on AuditQuery",
+      "commit": "a94e1be0",
+      "kind": "feat"
+    },
+    {
+      "agent": "enrich access-audit events with source IP + resource id",
+      "commit": "d772523b",
+      "kind": "feat"
+    },
+    {
       "agent": "PHI audit-log read route + admin UI + enrichment (Phase 2)",
       "commit": "81749b5f",
       "kind": "docs"
@@ -6014,26 +6028,6 @@
       "agent": "don't burn a portal invite when the email is already registered",
       "commit": "5fe4ebd4",
       "kind": "fix"
-    },
-    {
-      "agent": "record patient-portal invite live acceptance (all channels proven) ...",
-      "commit": "c9ad480a",
-      "kind": "docs"
-    },
-    {
-      "agent": "record PRs #481/#482 — portal invite UI (Phase 2b), feature code-co...",
-      "commit": "7b576fdb",
-      "kind": "docs"
-    },
-    {
-      "agent": "Merge pull request #482 from kamalcernia/claude/portal-admin-invite...",
-      "commit": "a57983cf",
-      "kind": "other"
-    },
-    {
-      "agent": "wire portal invite issue/revoke/reissue + real patient picker (Phas...",
-      "commit": "d764d2d2",
-      "kind": "feat"
     }
   ],
   "failures": [
