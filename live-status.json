@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T10:42:37.221Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 10:42 EDT",
+    "lastUpdatedIso": "2026-07-11T11:47:32.674Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 11:47 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "a4e5f5cd",
+    "currentMainCommit": "f188e02a",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2315,
+    "agentsCompletedThisSession": 2316,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2315 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2316 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 10:42 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 11:47 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5761,7 +5761,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T10:42:36.404Z",
+      "lastAuditAt": "2026-07-11T11:47:31.829Z",
       "backendRouteSymbolCount": 218,
       "deferredItems": {
         "total": 974,
@@ -5819,7 +5819,13 @@
         }
       }
     },
-    "justLandedWaves": []
+    "justLandedWaves": [],
+    "nowWorkingOn": {
+      "wave": "SPEC",
+      "detail": "PHI access audit-log design (non-blocking write pipeline + tenant-scoped read + admin page)",
+      "commit": "f188e02a",
+      "freshSeconds": 36
+    }
   },
   "pool": {
     "size": 8,
@@ -5940,6 +5946,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "PHI access audit-log design (non-blocking write pipeline + tenant-s...",
+      "commit": "f188e02a",
+      "kind": "docs"
+    },
+    {
       "agent": "Merge pull request #483 from kamalcernia/claude/invite-consume-befo...",
       "commit": "a4e5f5cd",
       "kind": "other"
@@ -6007,11 +6018,6 @@
     {
       "agent": "admin patient-portal invite issue/revoke/reissue routes",
       "commit": "7368c3af",
-      "kind": "feat"
-    },
-    {
-      "agent": "RBAC deriveOperation for patient-portal invite routes",
-      "commit": "a92f15e2",
       "kind": "feat"
     }
   ],
