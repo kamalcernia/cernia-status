@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T03:35:13.106Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 03:35 EDT",
+    "lastUpdatedIso": "2026-07-11T03:42:23.221Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 03:42 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "d027b116",
+    "currentMainCommit": "5f5a9e10",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2267,
+    "agentsCompletedThisSession": 2269,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2267 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2269 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 03:35 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 03:42 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 15 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-10T23:34:43-04:00",
+      "lastMergeIso": "2026-07-10T23:41:50-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5692,7 +5692,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T03:35:12.307Z",
+      "lastAuditAt": "2026-07-11T03:42:22.252Z",
       "backendRouteSymbolCount": 218,
       "deferredItems": {
         "total": 957,
@@ -5871,6 +5871,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #471 from kamalcernia/claude/catalog-expose-prices",
+      "commit": "5f5a9e10",
+      "kind": "other"
+    },
+    {
+      "agent": "store catalog exposes developer tiers + metered rates",
+      "commit": "fdb16e2f",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #470 from kamalcernia/claude/portal-name-chip-real",
       "commit": "d027b116",
       "kind": "other"
@@ -5933,16 +5943,6 @@
     {
       "agent": "secret-guarded /api/revalidate-pricing route",
       "commit": "28dbaafe",
-      "kind": "feat"
-    },
-    {
-      "agent": "/pricing renders operator-set catalog prices (ISR + fallback)",
-      "commit": "f5fa601f",
-      "kind": "feat"
-    },
-    {
-      "agent": "pricing-source resolver — live catalog prices + fallback",
-      "commit": "3c1413c3",
       "kind": "feat"
     }
   ],
