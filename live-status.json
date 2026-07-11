@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T05:00:41.454Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 05:00 EDT",
+    "lastUpdatedIso": "2026-07-11T05:04:28.556Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 05:04 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "13d4c787",
+    "currentMainCommit": "6f08139e",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2281,
+    "agentsCompletedThisSession": 2282,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2281 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2282 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 05:00 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 05:04 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -895,9 +895,16 @@
                 }
               ],
               "remaining": [
-                "U4 — REMAINING sub-slices: (a) I-203 session-id wiring is now done for the bills/forms/messages pages (PR #472) AND all 7 records pages (allergies/medications/labs/vitals/problems/immunizations + records index, PR #474) via the shared resolvePortalPatientId helper — this bullet is now scoped to the remaining WRITE-bearing pages only (settings/notifications, settings/insurance, appointments/new, appointments/waitlist), which need the same swap but touch $update/POST bodies so warrant a careful pass; note the refill status chip + listRefills already key off the session TOKEN server-side, so they're patient-correct regardless; (b) the document DETAIL page still pulls METADATA from SAMPLE data (findDocument) — the real content stream is wired (openDocument), but the surrounding title/summary/date are sample until the detail page is rewired to the compartment DocumentReference read (list already goes real); (c) the refill-decision notification is wired end-to-end (refill.decided emit + comms-base-refill-decided template → email/sms) but a LIVE inbox delivery has not been captured (SMTP-dependent — verified at the emit + base-template-resolution + boot-registration level, not a real inbox)."
+                "U4 — REMAINING sub-slices: (a) I-203 session-id wiring is now done for bills/forms/messages (PR #472), all 7 records pages (PR #474), AND the write-bearing settings/notifications + settings/insurance + appointments/new + appointments/waitlist pages (PR #476, with empty-id write guards) via the shared resolvePortalPatientId helper — only TWO stragglers remain: apps/patient/src/app/(portal)/settings/privacy/page.tsx (DSAR submission still uses SAMPLE_PATIENT.ref for the WRITE) and messages/[id]/page.tsx (thread READ still hard-codes pat-001); note the refill status chip + listRefills already key off the session TOKEN server-side, so they're patient-correct regardless; (b) the document DETAIL page still pulls METADATA from SAMPLE data (findDocument) — the real content stream is wired (openDocument), but the surrounding title/summary/date are sample until the detail page is rewired to the compartment DocumentReference read (list already goes real); (c) the refill-decision notification is wired end-to-end (refill.decided emit + comms-base-refill-decided template → email/sms) but a LIVE inbox delivery has not been captured (SMTP-dependent — verified at the emit + base-template-resolution + boot-registration level, not a real inbox)."
               ],
               "history": [
+                {
+                  "date": "2026-07-11",
+                  "stage": "telehealth-rpm",
+                  "from": "complete",
+                  "to": "complete",
+                  "note": "U4 / I-203 (write-bearing pages) — the four remaining WRITE-bearing patient-portal pages now resolve the real session patient id (PR #476): settings/notifications, settings/insurance, appointments/new, appointments/waitlist. Each drops the module-scope PATIENT_ID='pat-001' for a render/mount-resolved `resolvePortalPatientId(demo, getPatientSession().getPatientId())`, and — critically for write correctness — GUARDS every write against an empty resolved id: saveNotificationPrefs/saveReminderPrefs/saveInsuranceCard and the booking reserveSlot/confirmBooking + waitlist accept/decline/leave all short-circuit to the page's existing error surface (never POST under an unresolved identity) when !demo && patientId===''. appointments/new keeps its existing useState+useEffect demo-gate (avoids the SSR/window mismatch) and threads patientId as a prop through TypeStep/ProviderStep/SlotStep; waitlist's debug id span now shows `{patientId || '(not signed in)'}`. VERIFIED: settings+appointments vitest 63/63 (7 files), patient lint clean, @cernia/patient typecheck exits 0 on the canonical tree (fresh-worktree TS2307 on unbuilt @cernia/* dists was an env artifact, none in the 4 edited files). This closes the I-203 theme except two stragglers (settings/privacy DSAR write + messages/[id] read — see remaining[]). Files: apps/patient/src/app/(portal)/{settings/notifications,settings/insurance,appointments/new,appointments/waitlist}/page.tsx."
+                },
                 {
                   "date": "2026-07-11",
                   "stage": "telehealth-rpm",
@@ -5716,7 +5723,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T05:00:40.592Z",
+      "lastAuditAt": "2026-07-11T05:04:27.523Z",
       "backendRouteSymbolCount": 218,
       "deferredItems": {
         "total": 957,
@@ -5774,7 +5781,13 @@
         }
       }
     },
-    "justLandedWaves": []
+    "justLandedWaves": [],
+    "nowWorkingOn": {
+      "wave": "STATUS",
+      "detail": "record PR #476 (write-bearing pages I-203 session id + empty-id write guards)",
+      "commit": "6f08139e",
+      "freshSeconds": 184
+    }
   },
   "pool": {
     "size": 8,
@@ -5895,6 +5908,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "record PR #476 (write-bearing pages I-203 session id + empty-id wri...",
+      "commit": "6f08139e",
+      "kind": "docs"
+    },
+    {
       "agent": "Merge pull request #476 from kamalcernia/claude/writes-session-pati...",
       "commit": "13d4c787",
       "kind": "other"
@@ -5963,11 +5981,6 @@
       "agent": "store catalog exposes developer tiers + metered rates",
       "commit": "fdb16e2f",
       "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #470 from kamalcernia/claude/portal-name-chip-real",
-      "commit": "d027b116",
-      "kind": "other"
     }
   ],
   "failures": [
