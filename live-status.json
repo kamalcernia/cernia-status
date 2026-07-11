@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T05:19:36.113Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 05:19 EDT",
+    "lastUpdatedIso": "2026-07-11T06:16:05.987Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 06:16 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "bc443e5d",
+    "currentMainCommit": "e8d5833c",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2287,
+    "agentsCompletedThisSession": 2288,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2287 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2288 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 05:19 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 06:16 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5736,7 +5736,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T05:19:34.998Z",
+      "lastAuditAt": "2026-07-11T06:16:04.964Z",
       "backendRouteSymbolCount": 218,
       "deferredItems": {
         "total": 957,
@@ -5796,10 +5796,10 @@
     },
     "justLandedWaves": [],
     "nowWorkingOn": {
-      "wave": "STATUS",
-      "detail": "record PRs #477 (portal-links real) + #478 (voice-budget dashboard real)",
-      "commit": "bc443e5d",
-      "freshSeconds": 36
+      "wave": "SPEC",
+      "detail": "patient-portal invite-link issuance design (durable persistence + admin issue/revoke/reissue + patient set-...",
+      "commit": "e8d5833c",
+      "freshSeconds": 35
     }
   },
   "pool": {
@@ -5921,6 +5921,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "patient-portal invite-link issuance design (durable persistence + a...",
+      "commit": "e8d5833c",
+      "kind": "docs"
+    },
+    {
       "agent": "record PRs #477 (portal-links real) + #478 (voice-budget dashboard ...",
       "commit": "bc443e5d",
       "kind": "docs"
@@ -5989,11 +5994,6 @@
       "agent": "record PRs #472 (portal I-203 session id) + #473 (pricing dev-tiers...",
       "commit": "5e53762e",
       "kind": "docs"
-    },
-    {
-      "agent": "Merge pull request #473 from kamalcernia/claude/pricing-dev-metered",
-      "commit": "7679f221",
-      "kind": "other"
     }
   ],
   "failures": [
