@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T11:47:32.674Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 11:47 EDT",
+    "lastUpdatedIso": "2026-07-11T11:51:01.289Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 11:51 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "f188e02a",
+    "currentMainCommit": "9fc7dbc9",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2316,
+    "agentsCompletedThisSession": 2317,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2316 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2317 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 11:47 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 11:51 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5761,7 +5761,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T11:47:31.829Z",
+      "lastAuditAt": "2026-07-11T11:51:00.371Z",
       "backendRouteSymbolCount": 218,
       "deferredItems": {
         "total": 974,
@@ -5821,10 +5821,10 @@
     },
     "justLandedWaves": [],
     "nowWorkingOn": {
-      "wave": "SPEC",
-      "detail": "PHI access audit-log design (non-blocking write pipeline + tenant-scoped read + admin page)",
-      "commit": "f188e02a",
-      "freshSeconds": 36
+      "wave": "PLAN",
+      "detail": "PHI audit-log write pipeline (Phase 1) implementation plan",
+      "commit": "9fc7dbc9",
+      "freshSeconds": 37
     }
   },
   "pool": {
@@ -5946,6 +5946,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "PHI audit-log write pipeline (Phase 1) implementation plan",
+      "commit": "9fc7dbc9",
+      "kind": "docs"
+    },
+    {
       "agent": "PHI access audit-log design (non-blocking write pipeline + tenant-s...",
       "commit": "f188e02a",
       "kind": "docs"
@@ -6013,11 +6018,6 @@
     {
       "agent": "wire portal invite issuer/writer/comms + activate-invite route",
       "commit": "963aac27",
-      "kind": "feat"
-    },
-    {
-      "agent": "admin patient-portal invite issue/revoke/reissue routes",
-      "commit": "7368c3af",
       "kind": "feat"
     }
   ],
