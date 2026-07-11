@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T13:54:43.551Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 13:54 EDT",
+    "lastUpdatedIso": "2026-07-11T13:55:55.922Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 13:55 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "a26ab663",
+    "currentMainCommit": "90c7f058",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2336,
+    "agentsCompletedThisSession": 2337,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2336 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2337 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 13:54 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 13:55 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -2374,10 +2374,13 @@
                 "asOf": "2026-07-11",
                 "summary": "Admin UI de-sampling done (2026-05-25). PHI access-audit log COMPLETE end-to-end 2026-07-11 (spec docs/superpowers/specs/2026-07-11-phi-access-audit-log-design.md): Phase 1 (write pipeline — non-blocking emitter→buffer→tamper-evident chain, PR #484) + Phase 2 (GET /admin/audit tenant-scoped read route + audit-event enrichment PR #486, and the admin audit page rewired off SAMPLE onto the real endpoint PR #485). Every authorized/denied read/write of a patient-compartment resource is recorded to the hash-chained rbac_audit_events store and browsable by tenant-admins with actor + patient + operation + result + source IP. END-TO-END BROWSER LIVE-ACCEPTED 2026-07-11: booted apps/api+apps/admin+real :5433, generated real accesses (Patient create/read/write granted + an RBAC-denied write), and the real /admin/audit admin page rendered '9 of 9 events' (NOT sample — verified no SAMPLE literal) with each row's principal / operation (read/write) / resource (Patient/<specific id> from the URL-parse enrichment) / tenant / result (success vs the 'denied' row) / traceId + source_ip=127.0.0.1; GET /admin/audit?result=denied isolated the denial; live tenant-isolation confirmed (tenant B saw only its own rows). Only open item: the search() in-memory-scan perf follow-up (see remaining)."
               },
-              "remaining": [
-                "PHI access-audit perf follow-up (not shipped): DefaultAuditQuerier.search loads the whole tenant chain into memory then filters in matches() (packages/k4-rbac-audit-log/src/{query-engine.ts,postgres-append-store.ts}) — fine at low volume, but a growing audit log needs a WHERE/cursor push-down at the Postgres layer. Tracked, out of scope of Phase 2."
-              ],
+              "remaining": [],
               "history": [
+                {
+                  "date": "2026-07-11",
+                  "stage": "phase-3-3-admin-infra",
+                  "note": "PHI access-audit perf follow-up SHIPPED (PR #487) — the last open audit item. DefaultAuditQuerier.search previously loaded the whole tenant chain into memory + filtered in JS + parsed every JSONB snapshot. Now AppendOnlyStore gains searchPage(query): the PostgresAppendOnlyStore pushes filtering + pagination + count into real SQL (Kysely, fully parameterized — parameterized WHERE per provided filter actorUserId/targetId/actions-IN/resourceType/operation/inclusive-timeRange, a separate COUNT(*) for total, sequence_num ASC + limit+1 to detect nextCursor, and it OMITS before_state/after_state from the SELECT when includeSnapshots===false — a real bandwidth win, not post-filtering). DefaultAuditQuerier.search just validates + clamps + delegates to store.searchPage, so the observable contract is unchanged. The InMemoryAppendOnlyStore.searchPage moved the querier's old filter/cursor/slice logic in verbatim. VERIFIED no behavior drift: @cernia/k4-rbac-audit-log 159/159 — the pre-existing query-engine.test.ts (32/32) + append-store.test.ts (34/34) pass UNCHANGED, plus 10 new real-:5433 searchPage tests including a byte-for-byte EQUIVALENCE test (Postgres searchPage vs an in-memory store loaded with the same events → identical items/nextCursor/total across 7 queries incl. a cursor-continuation page); @cernia/api admin-audit-routes 20/20 (incl. the 4 real-Postgres integration cases) prove the querier contract held end-to-end through HTTP. Files: packages/k4-rbac-audit-log/src/{append-store.ts,postgres-append-store.ts(+test),query-engine.ts}."
+                },
                 {
                   "date": "2026-07-11",
                   "stage": "phase-3-3-admin-infra",
@@ -5781,12 +5784,12 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T13:54:42.515Z",
+      "lastAuditAt": "2026-07-11T13:55:54.813Z",
       "backendRouteSymbolCount": 219,
       "deferredItems": {
-        "total": 976,
+        "total": 975,
         "bySeverity": {
-          "tech-debt": 280,
+          "tech-debt": 279,
           "review": 691,
           "blocker": 5
         },
@@ -5798,7 +5801,7 @@
           "type-cheat": 1,
           "deferred-marker": 2,
           "skipped-test": 3,
-          "json-deferred": 14
+          "json-deferred": 13
         },
         "byWave": {
           "UI": 53,
@@ -5813,7 +5816,7 @@
           "ERX": 9,
           "P": 11,
           "Q": 17,
-          "(unassigned)": 23,
+          "(unassigned)": 22,
           "DD": 4,
           "F": 23,
           "I": 9,
@@ -5839,7 +5842,13 @@
         }
       }
     },
-    "justLandedWaves": []
+    "justLandedWaves": [],
+    "nowWorkingOn": {
+      "wave": "STATUS",
+      "detail": "audit search SQL push-down shipped (PR #487) — audit item fully closed",
+      "commit": "90c7f058",
+      "freshSeconds": 39
+    }
   },
   "pool": {
     "size": 8,
@@ -5960,6 +5969,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "audit search SQL push-down shipped (PR #487) — audit item fully closed",
+      "commit": "90c7f058",
+      "kind": "docs"
+    },
+    {
       "agent": "Merge pull request #487 from kamalcernia/claude/audit-search-pushdown",
       "commit": "a26ab663",
       "kind": "other"
@@ -6028,11 +6042,6 @@
       "agent": "Merge pull request #484 from kamalcernia/claude/phi-audit-write-pip...",
       "commit": "a3a0edc8",
       "kind": "other"
-    },
-    {
-      "agent": "wire non-blocking PHI access-audit write pipeline + integration proof",
-      "commit": "783bab93",
-      "kind": "feat"
     }
   ],
   "failures": [
