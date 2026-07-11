@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T07:29:30.016Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 07:29 EDT",
+    "lastUpdatedIso": "2026-07-11T07:46:01.100Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 07:46 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "74805bf6",
+    "currentMainCommit": "f49cde15",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2296,
+    "agentsCompletedThisSession": 2297,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2296 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2297 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 07:29 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 07:46 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5741,7 +5741,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T07:29:29.076Z",
+      "lastAuditAt": "2026-07-11T07:46:00.187Z",
       "backendRouteSymbolCount": 218,
       "deferredItems": {
         "total": 965,
@@ -5799,7 +5799,13 @@
         }
       }
     },
-    "justLandedWaves": []
+    "justLandedWaves": [],
+    "nowWorkingOn": {
+      "wave": "PLAN",
+      "detail": "patient-portal invite backend (Phase 2a) implementation plan",
+      "commit": "f49cde15",
+      "freshSeconds": 32
+    }
   },
   "pool": {
     "size": 8,
@@ -5920,6 +5926,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "patient-portal invite backend (Phase 2a) implementation plan",
+      "commit": "f49cde15",
+      "kind": "docs"
+    },
+    {
       "agent": "Merge pull request #479 from kamalcernia/claude/portal-durable-pers...",
       "commit": "74805bf6",
       "kind": "other"
@@ -5988,11 +5999,6 @@
       "agent": "patient-portal links page reads the real endpoint",
       "commit": "56b633c0",
       "kind": "feat"
-    },
-    {
-      "agent": "record PR #476 (write-bearing pages I-203 session id + empty-id wri...",
-      "commit": "6f08139e",
-      "kind": "docs"
     }
   ],
   "failures": [
