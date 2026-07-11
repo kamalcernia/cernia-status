@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T12:24:34.654Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 12:24 EDT",
+    "lastUpdatedIso": "2026-07-11T12:34:31.926Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 12:34 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "a3a0edc8",
+    "currentMainCommit": "81749b5f",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2323,
+    "agentsCompletedThisSession": 2324,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2323 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2324 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 12:24 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 12:34 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5776,7 +5776,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T12:24:33.590Z",
+      "lastAuditAt": "2026-07-11T12:34:31.090Z",
       "backendRouteSymbolCount": 218,
       "deferredItems": {
         "total": 975,
@@ -5834,7 +5834,13 @@
         }
       }
     },
-    "justLandedWaves": []
+    "justLandedWaves": [],
+    "nowWorkingOn": {
+      "wave": "PLAN",
+      "detail": "PHI audit-log read route + admin UI + enrichment (Phase 2)",
+      "commit": "81749b5f",
+      "freshSeconds": 38
+    }
   },
   "pool": {
     "size": 8,
@@ -5955,6 +5961,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "PHI audit-log read route + admin UI + enrichment (Phase 2)",
+      "commit": "81749b5f",
+      "kind": "docs"
+    },
+    {
       "agent": "Merge pull request #484 from kamalcernia/claude/phi-audit-write-pip...",
       "commit": "a3a0edc8",
       "kind": "other"
@@ -6023,11 +6034,6 @@
       "agent": "wire portal invite issue/revoke/reissue + real patient picker (Phas...",
       "commit": "d764d2d2",
       "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #481 from kamalcernia/claude/portal-activate-page",
-      "commit": "5772c457",
-      "kind": "other"
     }
   ],
   "failures": [
