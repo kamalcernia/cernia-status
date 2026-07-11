@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T22:01:35.611Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 22:01 EDT",
+    "lastUpdatedIso": "2026-07-11T22:03:13.376Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 22:03 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "e72d67b4",
+    "currentMainCommit": "f580f822",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2357,
+    "agentsCompletedThisSession": 2359,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2357 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2359 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 22:01 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 22:03 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 9 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-11T18:01:07-04:00",
+      "lastMergeIso": "2026-07-11T18:02:42-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5794,7 +5794,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T22:01:34.773Z",
+      "lastAuditAt": "2026-07-11T22:03:12.241Z",
       "backendRouteSymbolCount": 219,
       "deferredItems": {
         "total": 984,
@@ -5973,6 +5973,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #493 from kamalcernia/claude/phone-agent-m0",
+      "commit": "f580f822",
+      "kind": "other"
+    },
+    {
+      "agent": "push policy → commit+push+merge automatically, do not ask",
+      "commit": "aee4daaf",
+      "kind": "docs"
+    },
+    {
       "agent": "Merge pull request #492 from kamalcernia/claude/phone-agent-m0",
       "commit": "e72d67b4",
       "kind": "other"
@@ -6035,16 +6045,6 @@
     {
       "agent": "wire the portal accounts \"Revoke sessions\" button to the real endpoint",
       "commit": "2da1a5a5",
-      "kind": "feat"
-    },
-    {
-      "agent": "real hasActiveSessions + POST .../$revoke-sessions on the portal ac...",
-      "commit": "e5f91395",
-      "kind": "feat"
-    },
-    {
-      "agent": "add countActiveForPrincipal to PatientAuthSessionStore",
-      "commit": "1d387363",
       "kind": "feat"
     }
   ],
