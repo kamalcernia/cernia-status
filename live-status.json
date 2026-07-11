@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T05:04:28.556Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 05:04 EDT",
+    "lastUpdatedIso": "2026-07-11T05:16:47.309Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 05:16 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "6f08139e",
+    "currentMainCommit": "0694882a",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2282,
+    "agentsCompletedThisSession": 2284,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2282 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2284 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 05:04 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 05:16 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 15 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-11T01:00:11-04:00",
+      "lastMergeIso": "2026-07-11T01:16:16-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5723,7 +5723,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T05:04:27.523Z",
+      "lastAuditAt": "2026-07-11T05:16:46.501Z",
       "backendRouteSymbolCount": 218,
       "deferredItems": {
         "total": 957,
@@ -5781,13 +5781,7 @@
         }
       }
     },
-    "justLandedWaves": [],
-    "nowWorkingOn": {
-      "wave": "STATUS",
-      "detail": "record PR #476 (write-bearing pages I-203 session id + empty-id write guards)",
-      "commit": "6f08139e",
-      "freshSeconds": 184
-    }
+    "justLandedWaves": []
   },
   "pool": {
     "size": 8,
@@ -5908,6 +5902,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #477 from kamalcernia/claude/admin-portal-links-...",
+      "commit": "0694882a",
+      "kind": "other"
+    },
+    {
+      "agent": "patient-portal links page reads the real endpoint",
+      "commit": "56b633c0",
+      "kind": "feat"
+    },
+    {
       "agent": "record PR #476 (write-bearing pages I-203 session id + empty-id wri...",
       "commit": "6f08139e",
       "kind": "docs"
@@ -5971,16 +5975,6 @@
       "agent": "resolve portal bills/forms/messages patient id from session (I-203)",
       "commit": "cfe079a5",
       "kind": "fix"
-    },
-    {
-      "agent": "Merge pull request #471 from kamalcernia/claude/catalog-expose-prices",
-      "commit": "5f5a9e10",
-      "kind": "other"
-    },
-    {
-      "agent": "store catalog exposes developer tiers + metered rates",
-      "commit": "fdb16e2f",
-      "kind": "feat"
     }
   ],
   "failures": [
