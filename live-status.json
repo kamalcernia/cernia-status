@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T19:39:28.470Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 19:39 EDT",
+    "lastUpdatedIso": "2026-07-11T19:40:48.892Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 19:40 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "d1a6e51a",
+    "currentMainCommit": "e24979fd",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2346,
+    "agentsCompletedThisSession": 2347,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2346 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2347 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 19:39 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 19:40 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -2423,6 +2423,11 @@
                   "date": "2026-07-11",
                   "stage": "phase-3-4-healthcare-domains",
                   "note": "Patient-portal invite-link feature — END-TO-END LIVE ACCEPTANCE (all channels proven; feature done). Booted the full stack (apps/api :8080 + apps/admin :3001 + apps/patient :3002) against real Postgres :5433 + real Google Workspace SMTP (smtp.gmail.com, kamal@cerniahealth.com), seeded a tenant + admin (custom Role with admin:patient-portal-links:{write,revoke} verbs) + Patient(s) with telecom email + patient-portal entitlement + a tenant-forked comms template. PROVEN, real evidence: (⚙️) POST /admin/patient-portal/invites → 201 pending row; POST /patient-portal/activate-invite → 200 + credential 'active' + link row flips 'active'; POST /patient-portal/login → authenticated; GET /admin/patient-portal/links shows active. (📧) real SMTP send — notification_delivery_log row backend=smtp, outcome=allow, real provider_message_id (NOT a stub). (🔒) revoke kill-switch live — $revoke → activate-invite with the still-valid token → 410 invite-revoked (no credential created). (UI, real Chrome browser) the patient /activate?token= set-password page: rendered with live password-policy checklist, set a password, submitted → real activation → redirected to /login → the newly-created credential authenticates (verified: same login was 401-no-account before the browser activation, 200-authenticated after); the admin Portal-Links page renders live with real GET data + status-appropriate Revoke/Re-issue row actions (the just-activated patient 0999fbbc shows Active — the loop closing visibly), and the Invite page renders the real FHIR /Patient name-search picker + Email/SMS delivery-channel checkboxes. CORS + admin bearer-token inject (via /dev/login on the bare /login route) both work. ROBUSTNESS FINDING (Phase-2a follow-up) — FIXED 2026-07-11, see history: activateInvite consumed the single-use token BEFORE credentialStore.create — so any create failure (the UNIQUE(tenant_id,email) violation hit when two demo Patients shared a contact email; a real practice can hit this if two Patient records share an email) burned the invite AND returned an untyped 500 that the UI shows as a generic error. The temporary NODE_ENV-gated debug-log line used to capture the activation token for the browser flow was reverted after — no source change committed from the live run."
+                },
+                {
+                  "date": "2026-07-11",
+                  "stage": "phase-3-4-healthcare-domains",
+                  "note": "Admin patient-portal accounts SESSION ACTIONS made real (PR #489), closing the two follow-ups from the #488 de-sample. (1) NEW PatientAuthSessionStore.countActiveForPrincipal(principal, now) — Postgres COUNT WHERE principal AND consumed_at IS NULL AND revoked_at IS NULL AND expires_at > now (+ in-memory) — so the accounts route's hasActiveSessions is now a REAL per-account active-session count, not the status==='active' proxy (defaults false when no session store is wired — a fail-safe, not a fake answer). (2) NEW POST /admin/patient-portal/accounts/:patientRef/$revoke-sessions → sessionStore.revokeAllForPrincipal, wired to the accounts page's 'Revoke sessions' button (real call + refresh, replacing the optimistic-only flip). Reuses the existing admin:patient-portal-links:revoke verb (+ deriveOperation regex branch) — no new verb. LOAD-BEARING cross-tenant guard (revokeAllForPrincipal is by globally-unique principal): the route first findByPatientRef + checks cred.tenantId === caller tenant, else 404 account-not-found — proven by a named integration test (tenant-A admin $revoke-sessions on a tenant-B patient → 404, and the tenant-B session is re-read from real Postgres and confirmed still active + countActive still 1). VERIFIED: @cernia/patient-auth 290/290 (real :5433) + typecheck 0; @cernia/api patient-portal-admin+iam 83/83 (unit + real-:5433 integration) + typecheck 0; @cernia/admin patient-portal 131/131, accounts files typecheck+lint clean. Design note: index.ts builds a 2nd PostgresPatientAuthSessionStore handle over the same patient_auth_sessions table (mirrors the credential-store handle) since buildPatientPortalBootstrap was out of the writable set. force-MFA remains the one deferred accounts action. Files: packages/patient-auth/src/{types.ts, sessions/{session-store.ts, postgres-session-store.ts}}, apps/api/src/{patient-portal-admin-routes.ts, iam-route-guards.ts, index.ts, patient-portal-admin-accounts.integration.test.ts}, apps/admin/src/app/admin/patient-portal/{patient-portal-api.ts, accounts/page.tsx}."
                 },
                 {
                   "date": "2026-07-11",
@@ -5789,7 +5794,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T19:39:27.555Z",
+      "lastAuditAt": "2026-07-11T19:40:47.901Z",
       "backendRouteSymbolCount": 219,
       "deferredItems": {
         "total": 984,
@@ -5847,7 +5852,13 @@
         }
       }
     },
-    "justLandedWaves": []
+    "justLandedWaves": [],
+    "nowWorkingOn": {
+      "wave": "STATUS",
+      "detail": "portal accounts session actions made real (PR #489)",
+      "commit": "e24979fd",
+      "freshSeconds": 33
+    }
   },
   "pool": {
     "size": 8,
@@ -5968,6 +5979,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "portal accounts session actions made real (PR #489)",
+      "commit": "e24979fd",
+      "kind": "docs"
+    },
+    {
       "agent": "Merge pull request #489 from kamalcernia/claude/admin-accounts-sess...",
       "commit": "d1a6e51a",
       "kind": "other"
@@ -6035,11 +6051,6 @@
     {
       "agent": "PHI access-audit log end-to-end browser live-accepted",
       "commit": "566b148e",
-      "kind": "docs"
-    },
-    {
-      "agent": "PHI access-audit log Phase 2 (read+UI) shipped — feature code-complete",
-      "commit": "57ad6f21",
       "kind": "docs"
     }
   ],
