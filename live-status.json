@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T13:26:54.422Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 13:26 EDT",
+    "lastUpdatedIso": "2026-07-11T13:54:43.551Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 13:54 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "566b148e",
+    "currentMainCommit": "a26ab663",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2333,
+    "agentsCompletedThisSession": 2336,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2333 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2336 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 13:26 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 13:54 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -58,11 +58,11 @@
     },
     "velocity": {
       "landedLastHour": 0,
-      "landedLast24h": 13,
-      "label": "0 PRs opened in last hour · 13 in last 24h"
+      "landedLast24h": 12,
+      "label": "0 PRs opened in last hour · 12 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-11T09:05:26-04:00",
+      "lastMergeIso": "2026-07-11T09:54:11-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5781,7 +5781,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T13:26:53.483Z",
+      "lastAuditAt": "2026-07-11T13:54:42.515Z",
       "backendRouteSymbolCount": 219,
       "deferredItems": {
         "total": 976,
@@ -5826,7 +5826,7 @@
         "wontfixDemotions": []
       },
       "saasConformance": {
-        "totalViolations": 457,
+        "totalViolations": 458,
         "totalBlockers": 23,
         "byCheck": {
           "migration-tenant-id": 8,
@@ -5835,17 +5835,11 @@
           "no-phi-in-logs": 0,
           "baa-enforcement": 0,
           "three-app-boundary": 0,
-          "no-in-process-stubs": 434
+          "no-in-process-stubs": 435
         }
       }
     },
-    "justLandedWaves": [],
-    "nowWorkingOn": {
-      "wave": "STATUS",
-      "detail": "PHI access-audit log end-to-end browser live-accepted",
-      "commit": "566b148e",
-      "freshSeconds": 33
-    }
+    "justLandedWaves": []
   },
   "pool": {
     "size": 8,
@@ -5966,6 +5960,21 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #487 from kamalcernia/claude/audit-search-pushdown",
+      "commit": "a26ab663",
+      "kind": "other"
+    },
+    {
+      "agent": "test(k4-rbac-audit-log): real-Postgres searchPage coverage + in-mem...",
+      "commit": "c33e655a",
+      "kind": "other"
+    },
+    {
+      "agent": "perf(k4-rbac-audit-log): push audit search filtering/pagination dow...",
+      "commit": "3dc82a3d",
+      "kind": "other"
+    },
+    {
       "agent": "PHI access-audit log end-to-end browser live-accepted",
       "commit": "566b148e",
       "kind": "docs"
@@ -6023,21 +6032,6 @@
     {
       "agent": "wire non-blocking PHI access-audit write pipeline + integration proof",
       "commit": "783bab93",
-      "kind": "feat"
-    },
-    {
-      "agent": "RbacAuditEmitter maps request access -> buffered audit event",
-      "commit": "a2e97414",
-      "kind": "feat"
-    },
-    {
-      "agent": "PHI audit scope allowlist + non-blocking write buffer",
-      "commit": "410ee8c9",
-      "kind": "feat"
-    },
-    {
-      "agent": "optional resourceType/operation on audit events",
-      "commit": "e89bc797",
       "kind": "feat"
     }
   ],
