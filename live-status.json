@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T02:54:28.324Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 02:54 EDT",
+    "lastUpdatedIso": "2026-07-11T03:35:13.106Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 03:35 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "e9a94584",
+    "currentMainCommit": "d027b116",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2265,
+    "agentsCompletedThisSession": 2267,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2265 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2267 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 02:54 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 03:35 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -57,12 +57,12 @@
       "label": "581 test files landed · 0 active failures"
     },
     "velocity": {
-      "landedLastHour": 2,
+      "landedLastHour": 0,
       "landedLast24h": 15,
-      "label": "2 PRs opened in last hour · 15 in last 24h"
+      "label": "0 PRs opened in last hour · 15 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-10T22:53:57-04:00",
+      "lastMergeIso": "2026-07-10T23:34:43-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5692,7 +5692,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T02:54:27.386Z",
+      "lastAuditAt": "2026-07-11T03:35:12.307Z",
       "backendRouteSymbolCount": 218,
       "deferredItems": {
         "total": 957,
@@ -5871,6 +5871,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #470 from kamalcernia/claude/portal-name-chip-real",
+      "commit": "d027b116",
+      "kind": "other"
+    },
+    {
+      "agent": "name chip shows the real patient name (U4)",
+      "commit": "f0284a29",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #469 from kamalcernia/claude/admin-referral-typefix",
       "commit": "e9a94584",
       "kind": "other"
@@ -5934,16 +5944,6 @@
       "agent": "pricing-source resolver — live catalog prices + fallback",
       "commit": "3c1413c3",
       "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #464 from kamalcernia/claude/pricing-display-plan",
-      "commit": "ced17160",
-      "kind": "other"
-    },
-    {
-      "agent": "operator-driven pricing display — implementation plan",
-      "commit": "fa3b4f72",
-      "kind": "docs"
     }
   ],
   "failures": [
