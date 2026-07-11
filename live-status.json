@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T11:51:01.289Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 11:51 EDT",
+    "lastUpdatedIso": "2026-07-11T12:24:34.654Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 12:24 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "9fc7dbc9",
+    "currentMainCommit": "a3a0edc8",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2317,
+    "agentsCompletedThisSession": 2323,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2317 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2323 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 11:51 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 12:24 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 15 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-11T06:42:08-04:00",
+      "lastMergeIso": "2026-07-11T08:24:03-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -2370,10 +2370,25 @@
                 "summary": "Sample-backed."
               },
               "current": {
-                "status": "complete",
-                "asOf": "2026-05-25",
-                "summary": "Done. 3 sample files deleted, 9 admin pages swapped. AuditEvent + Report use FHIR generic CRUD. Communications moved to static lib/communications.ts (legitimate inline UI copy — no server endpoint). Added AuditEvent types to @cernia/core barrel. All 9 pages HTTP 200; typecheck + lint clean."
-              }
+                "status": "partial",
+                "asOf": "2026-07-11",
+                "summary": "Admin UI de-sampling done (2026-05-25, see below). 2026-07-11: the PHI access-audit WRITE pipeline (Phase 1 of docs/superpowers/specs/2026-07-11-phi-access-audit-log-design.md) now persists tamper-evident data-plane access — every authorized (or denied) read/write of a patient-compartment resource is recorded into the existing hash-chained rbac_audit_events store, non-blocking on the request path. Read route + admin UI surfacing this data-plane trail are Phase 2 (remaining[0]) — status moved back to 'partial' to reflect that visibility gap even though the original UI de-sampling scope (AuditEvent/Report/Communications pages) is complete."
+              },
+              "remaining": [
+                "Phase 2 of the PHI access-audit log (docs/superpowers/specs/2026-07-11-phi-access-audit-log-design.md): a tenant-scoped READ route over the data-plane rbac_audit_events rows (resource_type/operation, migration 294) + an admin UI page surfacing them. The write pipeline itself (Phase 1) is done — see history 2026-07-11."
+              ],
+              "history": [
+                {
+                  "date": "2026-05-25",
+                  "stage": "phase-3-3-admin-infra",
+                  "note": "Done. 3 sample files deleted, 9 admin pages swapped. AuditEvent + Report use FHIR generic CRUD. Communications moved to static lib/communications.ts (legitimate inline UI copy — no server endpoint). Added AuditEvent types to @cernia/core barrel. All 9 pages HTTP 200; typecheck + lint clean."
+                },
+                {
+                  "date": "2026-07-11",
+                  "stage": "phase-3-3-admin-infra",
+                  "note": "PHI access-audit write pipeline (Phase 1, non-blocking) shipped end-to-end. Migration 294_audit_data_plane_fields.sql (packages/storage/src/migrations/294_audit_data_plane_fields.sql) adds nullable resource_type/operation columns + a (tenant_id, resource_type, timestamp) index to rbac_audit_events, additive only. @cernia/k4-rbac-audit-log (packages/k4-rbac-audit-log/src/{types.ts,postgres-append-store.ts}) grew optional resourceType/operation on RbacAuditEventInput/RbacAuditEvent — folded into the existing hash-chain payload (new events are tamper-evident over the extra context; old-shape events, which never had the keys, hash unchanged — proven by a mixed old/new-shape chain-verify test). New apps/api modules: phi-audit-scope.ts (PHI_AUDIT_RESOURCE_TYPES allowlist of 21 patient-compartment/clinical types + shouldAuditAccess() — denials always audited, allows only for PHI types), audit-write-buffer.ts (createAuditWriteBuffer — bounded sync FIFO, enqueue() never throws, drops-newest + counts past capacity, default cap 10k), rbac-audit-emitter.ts (createRbacAuditEmitter — the real IamAuditEmitter implementation for registerRbacHook's `audit?` seam in iam-route-guards.ts, previously wired as `undefined`; maps allow/deny decisions to RbacAuditEventInput, whole body try/catch-swallowed). Wired in apps/api/src/index.ts (section 7f, right before registerRbacHook): buffer + emitter constructed unconditionally (zero-cost when nothing consumes them); a `db`-gated background flusher (mirrors the existing `if (db)` PostgresAppendOnlyStore/exporter gate) drains the buffer on an unref'd 500ms interval and appends serially into the SAME tamper-evident table the audit-export route reads, with a one-shot append retry + count-only overflow/failure logging (no PHI in logs) and a best-effort onClose final flush. LOAD-BEARING PROPERTY VERIFIED: audit never blocks/slows/fails the request — enqueue is synchronous, does zero I/O, and cannot throw; all Postgres I/O happens only in the background flusher. Proven live: booted apps/api against real Postgres :5433 (CERNIA_DEV_LOGIN=1), POST + GET /Patient through the real RBAC hook, then `psql SELECT` on rbac_audit_events showed 2 real rows (access-granted/write and access-granted/read, resource_type=Patient) within ~1s, and DefaultChainVerifier.verify() against those live rows returned {allValid:true, totalEvents:2}. Real-Postgres integration test (apps/api/src/phi-audit-pipeline.integration.test.ts) proves all 5 required properties by name: (a) an allowed Patient read produces a tamper-evident row the chain verifier accepts, (b) overflow drops-and-counts without throwing, (c) a denied access (any resource type) logs access-denied, (d) an allowed non-PHI access logs nothing, (e) tenant isolation (each row's tenant_id, cross-tenant chains independent). VERIFIED: @cernia/k4-rbac-audit-log typecheck=0 + test 146/146 (24 in postgres-append-store.test.ts, real :5433); @cernia/api typecheck=0 (after building the transitive @cernia/* dep graph in the fresh worktree — pre-existing carry-forward, not a regression); the 4 new/targeted suites (phi-audit-scope, audit-write-buffer, rbac-audit-emitter, phi-audit-pipeline.integration) = 27/27 real-:5433 tests; zero NEW eslint errors (index.ts's 5 baseline errors unchanged, new files clean). REMAINING: Phase 2 — a tenant-scoped read route + admin UI page over this data-plane trail (see remaining[0]); currently the events are captured but only visible via the existing signed-export route or direct DB access. Files: packages/storage/src/migrations/294_audit_data_plane_fields.sql, packages/k4-rbac-audit-log/src/{types.ts,postgres-append-store.ts(+test)}, apps/api/src/{phi-audit-scope.ts(+test),audit-write-buffer.ts(+test),rbac-audit-emitter.ts(+test),phi-audit-pipeline.integration.test.ts,index.ts}."
+                }
+              ]
             },
             {
               "id": "phase-3-4-healthcare-domains",
@@ -5761,19 +5776,19 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T11:51:00.371Z",
+      "lastAuditAt": "2026-07-11T12:24:33.590Z",
       "backendRouteSymbolCount": 218,
       "deferredItems": {
-        "total": 974,
+        "total": 975,
         "bySeverity": {
           "tech-debt": 279,
-          "review": 690,
+          "review": 691,
           "blocker": 5
         },
         "byKind": {
           "docstring-caveat": 263,
           "not-configured-fallback": 109,
-          "type-cheat-cast": 580,
+          "type-cheat-cast": 581,
           "todo-comment": 3,
           "type-cheat": 1,
           "deferred-marker": 2,
@@ -5784,7 +5799,7 @@
           "UI": 53,
           "X": 37,
           "H": 14,
-          "Platform": 638,
+          "Platform": 639,
           "E": 48,
           "S": 1,
           "J": 9,
@@ -5819,13 +5834,7 @@
         }
       }
     },
-    "justLandedWaves": [],
-    "nowWorkingOn": {
-      "wave": "PLAN",
-      "detail": "PHI audit-log write pipeline (Phase 1) implementation plan",
-      "commit": "9fc7dbc9",
-      "freshSeconds": 37
-    }
+    "justLandedWaves": []
   },
   "pool": {
     "size": 8,
@@ -5946,6 +5955,36 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #484 from kamalcernia/claude/phi-audit-write-pip...",
+      "commit": "a3a0edc8",
+      "kind": "other"
+    },
+    {
+      "agent": "wire non-blocking PHI access-audit write pipeline + integration proof",
+      "commit": "783bab93",
+      "kind": "feat"
+    },
+    {
+      "agent": "RbacAuditEmitter maps request access -> buffered audit event",
+      "commit": "a2e97414",
+      "kind": "feat"
+    },
+    {
+      "agent": "PHI audit scope allowlist + non-blocking write buffer",
+      "commit": "410ee8c9",
+      "kind": "feat"
+    },
+    {
+      "agent": "optional resourceType/operation on audit events",
+      "commit": "e89bc797",
+      "kind": "feat"
+    },
+    {
+      "agent": "rbac_audit_events data-plane columns (resource_type, operation)",
+      "commit": "df9d27da",
+      "kind": "feat"
+    },
+    {
       "agent": "PHI audit-log write pipeline (Phase 1) implementation plan",
       "commit": "9fc7dbc9",
       "kind": "docs"
@@ -5989,36 +6028,6 @@
       "agent": "Merge pull request #481 from kamalcernia/claude/portal-activate-page",
       "commit": "5772c457",
       "kind": "other"
-    },
-    {
-      "agent": "/activate set-password page for portal invites (Phase 2b)",
-      "commit": "3c12b6fb",
-      "kind": "feat"
-    },
-    {
-      "agent": "patient-portal invite UI (Phase 2b) — activate page + admin actions",
-      "commit": "65671ce9",
-      "kind": "docs"
-    },
-    {
-      "agent": "Merge pull request #480 from kamalcernia/claude/portal-invite-backend",
-      "commit": "95f75409",
-      "kind": "other"
-    },
-    {
-      "agent": "test(api): patient-portal invite backend integration + live proof",
-      "commit": "f53cd3cc",
-      "kind": "other"
-    },
-    {
-      "agent": "flip the portal-link row to 'active' on successful activation",
-      "commit": "ae4921f1",
-      "kind": "fix"
-    },
-    {
-      "agent": "wire portal invite issuer/writer/comms + activate-invite route",
-      "commit": "963aac27",
-      "kind": "feat"
     }
   ],
   "failures": [
