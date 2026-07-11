@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T13:08:08.715Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 13:08 EDT",
+    "lastUpdatedIso": "2026-07-11T13:26:54.422Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 13:26 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "57ad6f21",
+    "currentMainCommit": "566b148e",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2332,
+    "agentsCompletedThisSession": 2333,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2332 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2333 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 13:08 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 13:26 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -58,8 +58,8 @@
     },
     "velocity": {
       "landedLastHour": 0,
-      "landedLast24h": 14,
-      "label": "0 PRs opened in last hour · 14 in last 24h"
+      "landedLast24h": 13,
+      "label": "0 PRs opened in last hour · 13 in last 24h"
     },
     "integration": {
       "lastMergeIso": "2026-07-11T09:05:26-04:00",
@@ -2372,11 +2372,10 @@
               "current": {
                 "status": "complete",
                 "asOf": "2026-07-11",
-                "summary": "Admin UI de-sampling done (2026-05-25). PHI access-audit log COMPLETE end-to-end 2026-07-11 (spec docs/superpowers/specs/2026-07-11-phi-access-audit-log-design.md): Phase 1 (write pipeline — non-blocking emitter→buffer→tamper-evident chain, PR #484) + Phase 2 (GET /admin/audit tenant-scoped read route + audit-event enrichment PR #486, and the admin audit page rewired off SAMPLE onto the real endpoint PR #485). Every authorized/denied read/write of a patient-compartment resource is recorded to the hash-chained rbac_audit_events store and browsable by tenant-admins with actor + patient + operation + result + source IP. Remaining is code-verified (Phase 1 live chain-verify + Phase 2 real-:5433 integration incl. tenant isolation); the end-to-end browser live-acceptance + the search() in-memory-scan perf follow-up are the only open items (see remaining)."
+                "summary": "Admin UI de-sampling done (2026-05-25). PHI access-audit log COMPLETE end-to-end 2026-07-11 (spec docs/superpowers/specs/2026-07-11-phi-access-audit-log-design.md): Phase 1 (write pipeline — non-blocking emitter→buffer→tamper-evident chain, PR #484) + Phase 2 (GET /admin/audit tenant-scoped read route + audit-event enrichment PR #486, and the admin audit page rewired off SAMPLE onto the real endpoint PR #485). Every authorized/denied read/write of a patient-compartment resource is recorded to the hash-chained rbac_audit_events store and browsable by tenant-admins with actor + patient + operation + result + source IP. END-TO-END BROWSER LIVE-ACCEPTED 2026-07-11: booted apps/api+apps/admin+real :5433, generated real accesses (Patient create/read/write granted + an RBAC-denied write), and the real /admin/audit admin page rendered '9 of 9 events' (NOT sample — verified no SAMPLE literal) with each row's principal / operation (read/write) / resource (Patient/<specific id> from the URL-parse enrichment) / tenant / result (success vs the 'denied' row) / traceId + source_ip=127.0.0.1; GET /admin/audit?result=denied isolated the denial; live tenant-isolation confirmed (tenant B saw only its own rows). Only open item: the search() in-memory-scan perf follow-up (see remaining)."
               },
               "remaining": [
-                "PHI access-audit perf follow-up (not shipped): DefaultAuditQuerier.search loads the whole tenant chain into memory then filters in matches() (packages/k4-rbac-audit-log/src/{query-engine.ts,postgres-append-store.ts}) — fine at low volume, but a growing audit log needs a WHERE/cursor push-down at the Postgres layer. Tracked, out of scope of Phase 2.",
-                "PHI access-audit end-to-end BROWSER live-acceptance: make a real authorized PHI read against a booted stack + real Postgres, then confirm it appears in the real /admin/audit page with actor/patient/operation/result/source-IP (the ⚙️+UI channel). Phase 1 write is already live-proven (chain-verify) and Phase 2 read is real-:5433 integration-proven; this is the final browser screenshot."
+                "PHI access-audit perf follow-up (not shipped): DefaultAuditQuerier.search loads the whole tenant chain into memory then filters in matches() (packages/k4-rbac-audit-log/src/{query-engine.ts,postgres-append-store.ts}) — fine at low volume, but a growing audit log needs a WHERE/cursor push-down at the Postgres layer. Tracked, out of scope of Phase 2."
               ],
               "history": [
                 {
@@ -5782,7 +5781,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T13:08:07.878Z",
+      "lastAuditAt": "2026-07-11T13:26:53.483Z",
       "backendRouteSymbolCount": 219,
       "deferredItems": {
         "total": 976,
@@ -5843,9 +5842,9 @@
     "justLandedWaves": [],
     "nowWorkingOn": {
       "wave": "STATUS",
-      "detail": "PHI access-audit log Phase 2 (read+UI) shipped — feature code-complete",
-      "commit": "57ad6f21",
-      "freshSeconds": 37
+      "detail": "PHI access-audit log end-to-end browser live-accepted",
+      "commit": "566b148e",
+      "freshSeconds": 33
     }
   },
   "pool": {
@@ -5967,6 +5966,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "PHI access-audit log end-to-end browser live-accepted",
+      "commit": "566b148e",
+      "kind": "docs"
+    },
+    {
       "agent": "PHI access-audit log Phase 2 (read+UI) shipped — feature code-complete",
       "commit": "57ad6f21",
       "kind": "docs"
@@ -6034,11 +6038,6 @@
     {
       "agent": "optional resourceType/operation on audit events",
       "commit": "e89bc797",
-      "kind": "feat"
-    },
-    {
-      "agent": "rbac_audit_events data-plane columns (resource_type, operation)",
-      "commit": "df9d27da",
       "kind": "feat"
     }
   ],
