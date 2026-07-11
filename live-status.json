@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T04:14:38.525Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 04:14 EDT",
+    "lastUpdatedIso": "2026-07-11T04:33:44.003Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 04:33 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "5e53762e",
+    "currentMainCommit": "49df1d54",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2274,
+    "agentsCompletedThisSession": 2276,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2274 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2276 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 04:14 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 04:33 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 15 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-11T00:10:47-04:00",
+      "lastMergeIso": "2026-07-11T00:33:11-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5704,7 +5704,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T04:14:37.708Z",
+      "lastAuditAt": "2026-07-11T04:33:42.934Z",
       "backendRouteSymbolCount": 218,
       "deferredItems": {
         "total": 957,
@@ -5762,13 +5762,7 @@
         }
       }
     },
-    "justLandedWaves": [],
-    "nowWorkingOn": {
-      "wave": "STATUS",
-      "detail": "record PRs #472 (portal I-203 session id) + #473 (pricing dev-tiers/metered)",
-      "commit": "5e53762e",
-      "freshSeconds": 107
-    }
+    "justLandedWaves": []
   },
   "pool": {
     "size": 8,
@@ -5889,6 +5883,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #474 from kamalcernia/claude/records-session-pat...",
+      "commit": "49df1d54",
+      "kind": "other"
+    },
+    {
+      "agent": "records pages resolve the session patient id (I-203)",
+      "commit": "e1ef30c3",
+      "kind": "fix"
+    },
+    {
       "agent": "record PRs #472 (portal I-203 session id) + #473 (pricing dev-tiers...",
       "commit": "5e53762e",
       "kind": "docs"
@@ -5951,16 +5955,6 @@
     {
       "agent": "document detail reads the real DocumentReference (U4)",
       "commit": "82eea852",
-      "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #467 from kamalcernia/claude/pricing-calculator-...",
-      "commit": "7d35bc88",
-      "kind": "other"
-    },
-    {
-      "agent": "cost calculator uses live catalog prices",
-      "commit": "1a0e8fde",
       "kind": "feat"
     }
   ],
