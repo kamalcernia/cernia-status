@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T04:43:17.957Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 04:43 EDT",
+    "lastUpdatedIso": "2026-07-11T05:00:41.454Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 05:00 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "c7ae878d",
+    "currentMainCommit": "13d4c787",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2279,
+    "agentsCompletedThisSession": 2281,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2279 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2281 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 04:43 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 05:00 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 15 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-11T00:40:29-04:00",
+      "lastMergeIso": "2026-07-11T01:00:11-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5716,7 +5716,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T04:43:16.466Z",
+      "lastAuditAt": "2026-07-11T05:00:40.592Z",
       "backendRouteSymbolCount": 218,
       "deferredItems": {
         "total": 957,
@@ -5774,13 +5774,7 @@
         }
       }
     },
-    "justLandedWaves": [],
-    "nowWorkingOn": {
-      "wave": "STATUS",
-      "detail": "record PRs #474 (records I-203 session id) + #475 (api-webhooks $49 pricing cell)",
-      "commit": "c7ae878d",
-      "freshSeconds": 102
-    }
+    "justLandedWaves": []
   },
   "pool": {
     "size": 8,
@@ -5901,6 +5895,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #476 from kamalcernia/claude/writes-session-pati...",
+      "commit": "13d4c787",
+      "kind": "other"
+    },
+    {
+      "agent": "settings + appointments pages resolve session patient id, guard emp...",
+      "commit": "832bc6bc",
+      "kind": "fix"
+    },
+    {
       "agent": "record PRs #474 (records I-203 session id) + #475 (api-webhooks $49...",
       "commit": "c7ae878d",
       "kind": "docs"
@@ -5963,16 +5967,6 @@
     {
       "agent": "Merge pull request #470 from kamalcernia/claude/portal-name-chip-real",
       "commit": "d027b116",
-      "kind": "other"
-    },
-    {
-      "agent": "name chip shows the real patient name (U4)",
-      "commit": "f0284a29",
-      "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #469 from kamalcernia/claude/admin-referral-typefix",
-      "commit": "e9a94584",
       "kind": "other"
     }
   ],
