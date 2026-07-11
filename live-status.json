@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T04:10:38.470Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 04:10 EDT",
+    "lastUpdatedIso": "2026-07-11T04:11:16.672Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 04:11 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "d19d09a3",
+    "currentMainCommit": "7679f221",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2271,
+    "agentsCompletedThisSession": 2273,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2271 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2273 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 04:10 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 04:11 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 15 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-11T00:10:07-04:00",
+      "lastMergeIso": "2026-07-11T00:10:47-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5692,7 +5692,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T04:10:37.471Z",
+      "lastAuditAt": "2026-07-11T04:11:15.599Z",
       "backendRouteSymbolCount": 218,
       "deferredItems": {
         "total": 957,
@@ -5871,9 +5871,19 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #473 from kamalcernia/claude/pricing-dev-metered",
+      "commit": "7679f221",
+      "kind": "other"
+    },
+    {
       "agent": "Merge pull request #472 from kamalcernia/claude/portal-session-pati...",
       "commit": "d19d09a3",
       "kind": "other"
+    },
+    {
+      "agent": "pricing page resolves developer tiers + metered voice rate from liv...",
+      "commit": "9650d919",
+      "kind": "feat"
     },
     {
       "agent": "resolve portal bills/forms/messages patient id from session (I-203)",
@@ -5933,16 +5943,6 @@
     {
       "agent": "Merge pull request #466 from kamalcernia/claude/pricing-status-update",
       "commit": "56b1f6ea",
-      "kind": "other"
-    },
-    {
-      "agent": "operator-driven /pricing loop closed (PR #465)",
-      "commit": "d91b1227",
-      "kind": "docs"
-    },
-    {
-      "agent": "Merge pull request #465 from kamalcernia/claude/pricing-display-impl",
-      "commit": "fd4792e4",
       "kind": "other"
     }
   ],
