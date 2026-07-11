@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T07:46:01.100Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 07:46 EDT",
+    "lastUpdatedIso": "2026-07-11T09:02:14.164Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 09:02 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "f49cde15",
+    "currentMainCommit": "95f75409",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2297,
+    "agentsCompletedThisSession": 2306,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2297 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2306 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 07:46 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 09:02 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 15 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-11T03:29:01-04:00",
+      "lastMergeIso": "2026-07-11T05:01:40-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -2387,7 +2387,7 @@
               "current": {
                 "status": "complete",
                 "asOf": "2026-07-11",
-                "summary": "Done. 4 sample files deleted (cds, integrations, patient-portal, voice-agent), 17 admin pages swapped. CDS uses /cds-services + /CdsService FHIR CRUD. Integrations uses /Connection generic CRUD with client-side protocol filter. Patient-portal uses /admin/patient-portal/* + /Patient. voice-agent-api.ts rewritten to drop mock mode. All 17 pages HTTP 200; typecheck + lint clean. 2026-07-11 de-sampling follow-ups (see history): the patient-portal LINKS sub-page (PR #477, still sample-backed despite the May sweep) + the billing voice-budget DASHBOARD (PR #478) now read their real endpoints. STILL-UNBUILT endpoints (rendered as empty-state cards / removed non-functional actions — need apps/api routes, NOT a UI swap): CDS invocations, integration transaction logs, and portal LINK-ISSUE ACTIONS (issue/revoke/re-issue one-time invite links — the /admin/patient-portal/links GET only lists persistent credential bindings; there is no invite-link issuance route). 2026-07-11: the invite-link feature's Phase-1 PREREQUISITE now ships — patient-portal credentials + one-time-link auth-sessions are durable in Postgres (were in-memory, vanished on restart); the issue/revoke/re-issue admin routes themselves are still not built (see history). The voice-budget anomaly-ACK PATCH exists but its button is still a stub.",
+                "summary": "Done. 4 sample files deleted (cds, integrations, patient-portal, voice-agent), 17 admin pages swapped. CDS uses /cds-services + /CdsService FHIR CRUD. Integrations uses /Connection generic CRUD with client-side protocol filter. Patient-portal uses /admin/patient-portal/* + /Patient. voice-agent-api.ts rewritten to drop mock mode. All 17 pages HTTP 200; typecheck + lint clean. 2026-07-11 de-sampling follow-ups (see history): the patient-portal LINKS sub-page (PR #477, still sample-backed despite the May sweep) + the billing voice-budget DASHBOARD (PR #478) now read their real endpoints. STILL-UNBUILT endpoints (rendered as empty-state cards / removed non-functional actions — need apps/api routes, NOT a UI swap): CDS invocations and integration transaction logs. 2026-07-11: the invite-link feature's Phase-1 PREREQUISITE shipped (durable Postgres credential/session stores) and Phase 2a (this change) now ships the backend itself — POST /admin/patient-portal/invites (+ $revoke/$reissue) and POST /patient-portal/activate-invite are real, RBAC-gated, real-Postgres-backed routes (see history). REMAINING for the invite-link feature: the admin UI (issue/revoke/re-issue buttons on the LINKS page, currently removed per PR #477) + the patient-facing /activate page are Phase 2b — the backend is a prerequisite these UI surfaces now have something real to call. The voice-budget anomaly-ACK PATCH exists but its button is still a stub.",
                 "nowWorkingOn": "admin real-stack de-sampling (links + voice-budget dashboards wired to real reads)"
               },
               "history": [
@@ -2405,6 +2405,11 @@
                   "date": "2026-07-11",
                   "stage": "phase-3-4-healthcare-domains",
                   "note": "Patient-portal invite-link feature — Phase 1 (durable persistence prerequisite). Patient-portal credentials + one-time-link auth-sessions were in-memory (InMemoryCredentialStore / InMemorySessionStore) and vanished on every apps/api restart; this shipped the Postgres-backed replacements behind the SAME PatientCredentialStore / PatientAuthSessionStore interfaces (packages/patient-auth/src/types.ts) — no route or behaviour change. NEW migrations 292_patient_credentials.sql (tenant_id-first, unique (tenant_id,email) index) + 293_patient_auth_sessions.sql (unique token_hash index, tenant_id+principal index). NEW packages/patient-auth/src/persistent-account/postgres-credential-store.ts + sessions/postgres-session-store.ts (raw pg Pool, parameterised SQL — this package had no prior Postgres dependency) implementing the interfaces byte-for-byte, incl. the atomic single-use consume() (UPDATE...WHERE consumed_at IS NULL AND revoked_at IS NULL AND expires_at>now RETURNING *) and idempotent revoke(). PatientCredential gained optional tenantId+email fields (the interface previously had neither — a gap the plan didn't anticipate; both are additive/optional so existing callers/tests are unaffected) populated by the registrar at creation. apps/api/src/middleware/patient-portal-bootstrap.ts gained an optional dbPool — apps/api/src/index.ts now passes its existing pg Pool, selecting the durable stores at boot; omitting dbPool keeps the in-memory stores (tests / offline dev unaffected). TENANT ISOLATION (ADR-0004) PROVEN: findByEmail(otherTenant, email) === null contract test. VERIFIED: @cernia/patient-auth typecheck/lint/test all clean (256/256, incl. 18 new Postgres contract tests against real :5433 — 10 credential-store + 8 session-store, no mocked pg); @cernia/api typecheck introduces zero new errors (pre-existing carry-forward from unbuilt sibling packages in this worktree, resolved by building the transitive dep graph). LIVE DURABILITY PROOF (acceptance-by-intent, real running stack on :8091 against the real :5433 dev DB after applying the two new migrations): POST /patient-portal/register → psql SELECT confirms a real patient_credentials row (status=pending-email-verification) + patient_auth_sessions row → verify-email activates it → login succeeds (JWT issued) → API PROCESS KILLED AND RESTARTED (fresh ephemeral JWT signing key, so old tokens don't verify — expected/unrelated) → a FRESH POST /patient-portal/login with the same email+password still returns outcome=authenticated and stamps last_login in Postgres, proving the credential survived the restart. Test tenant/rows cleaned up after the proof. Files: packages/storage/src/migrations/{292,293}_*.sql, packages/patient-auth/src/{types.ts, persistent-account/{registrar.ts, registrar.test.ts, postgres-credential-store.ts(+test)}, sessions/postgres-session-store.ts(+test), index.ts, package.json}, apps/api/src/{index.ts, middleware/patient-portal-bootstrap.ts(+test)}. REMAINING: the admin issue/revoke/re-issue one-time invite-link ROUTES + UI are NOT part of this change — this was durability-only, no new behaviour."
+                },
+                {
+                  "date": "2026-07-11",
+                  "stage": "phase-3-4-healthcare-domains",
+                  "note": "Patient-portal invite-link feature — Phase 2a (backend: issue/revoke/reissue/activate), built on the Phase-1 durable stores above. NEW @cernia/patient-auth: OneTimeLinkIssuer.issueInvite (kind='portal-invite', scope='portal:activate', distinct from the task-scoped issueLink), Registrar.activateInvite (validates the password via checkPasswordRules BEFORE consuming the single-use token, so a weak password can't burn the invite) + Registrar.peekInvite (verify-only decode, no consume — lets the route check revocation status before activateInvite touches the session store). NEW comms: 'portal.invite-issued' base template (packages/executor/src/comms-base-templates.ts) + apps/api/src/patient-portal-invite-payload.ts (PHI-safe payload — activation URL/brand/expiry/contact only, no patient name, no clinical content). NEW admin routes POST /admin/patient-portal/invites (+ $revoke, $reissue) in patient-portal-admin-routes.ts, RBAC-gated via new custom verbs admin:patient-portal-links:{write,revoke} (iam-route-guards.ts deriveOperation). NEW patient route POST /patient-portal/activate-invite in patient-portal-routes.ts. LOAD-BEARING INVARIANT (proven by a named integration test '2. revoke blocks activation'): a revoked invite cannot activate even though its JWT is still valid and its session row unconsumed — the route peek-decodes the token, reads the durable patient_portal_links row (the revocation authority, not the session store), and 410s BEFORE calling activateInvite if the row isn't 'pending'. Tenant isolation (ADR-0004) proven by '4. cross-tenant patientRef -> 404' — resolveContact distinguishes null (no such Patient in the caller's own tenant -> 404 patient-not-found) from {} (Patient exists, no telecom -> 422 no-email-for-account), so a cross-tenant id never resolves. On successful activation the durable link row also flips pending->active (best-effort) so GET /admin/patient-portal/links stays accurate. VERIFIED: @cernia/patient-auth typecheck/test clean (79 new tests across issuer/registrar); @cernia/executor typecheck/test clean; @cernia/api typecheck clean, lint clean on all touched files (5 pre-existing unrelated errors in index.ts confirmed via diff against origin/main, not introduced here); 129 patient-portal-prefixed apps/api tests pass, including a new 7-test patient-portal-invite-routes.integration.test.ts against REAL Postgres :5433 (issue->activate->login e2e, revoke-blocks-activation, reissue, cross-tenant 404, RBAC 403, already-active 409, PHI-safety of the captured comms payload) plus a manual boot+curl session (real HTTP: create Patient -> issue 201 -> revoke 200 -> activate-invalid-token 400) confirming no ESM/wiring regressions at real boot. REMAINING for the invite-link feature: the admin UI (issue/revoke/re-issue buttons + the LINKS page) and the patient-facing /activate page are Phase 2b — not part of this change. Files: packages/patient-auth/src/{types.ts, one-time-link/issuer.ts(+test), persistent-account/registrar.ts(+test), index.ts}, packages/executor/src/comms-base-templates.ts(+test), apps/api/src/{patient-portal-invite-payload.ts(+test), patient-portal-admin-routes.ts(+test), patient-portal-routes.ts(+test), iam-route-guards.ts(+test), index.ts, patient-portal-invite-routes.integration.test.ts}."
                 }
               ]
             },
@@ -5741,19 +5746,19 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T07:46:00.187Z",
+      "lastAuditAt": "2026-07-11T09:02:12.700Z",
       "backendRouteSymbolCount": 218,
       "deferredItems": {
-        "total": 965,
+        "total": 974,
         "bySeverity": {
           "tech-debt": 279,
-          "review": 681,
+          "review": 690,
           "blocker": 5
         },
         "byKind": {
           "docstring-caveat": 263,
-          "not-configured-fallback": 101,
-          "type-cheat-cast": 579,
+          "not-configured-fallback": 109,
+          "type-cheat-cast": 580,
           "todo-comment": 3,
           "type-cheat": 1,
           "deferred-marker": 2,
@@ -5761,10 +5766,10 @@
           "json-deferred": 13
         },
         "byWave": {
-          "UI": 45,
+          "UI": 53,
           "X": 37,
           "H": 14,
-          "Platform": 637,
+          "Platform": 638,
           "E": 48,
           "S": 1,
           "J": 9,
@@ -5799,13 +5804,7 @@
         }
       }
     },
-    "justLandedWaves": [],
-    "nowWorkingOn": {
-      "wave": "PLAN",
-      "detail": "patient-portal invite backend (Phase 2a) implementation plan",
-      "commit": "f49cde15",
-      "freshSeconds": 32
-    }
+    "justLandedWaves": []
   },
   "pool": {
     "size": 8,
@@ -5926,6 +5925,51 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #480 from kamalcernia/claude/portal-invite-backend",
+      "commit": "95f75409",
+      "kind": "other"
+    },
+    {
+      "agent": "test(api): patient-portal invite backend integration + live proof",
+      "commit": "f53cd3cc",
+      "kind": "other"
+    },
+    {
+      "agent": "flip the portal-link row to 'active' on successful activation",
+      "commit": "ae4921f1",
+      "kind": "fix"
+    },
+    {
+      "agent": "wire portal invite issuer/writer/comms + activate-invite route",
+      "commit": "963aac27",
+      "kind": "feat"
+    },
+    {
+      "agent": "admin patient-portal invite issue/revoke/reissue routes",
+      "commit": "7368c3af",
+      "kind": "feat"
+    },
+    {
+      "agent": "RBAC deriveOperation for patient-portal invite routes",
+      "commit": "a92f15e2",
+      "kind": "feat"
+    },
+    {
+      "agent": "portal.invite-issued event + PHI-safe payload",
+      "commit": "c9b77380",
+      "kind": "feat"
+    },
+    {
+      "agent": "Registrar.activateInvite (set password, create active credential)",
+      "commit": "73116747",
+      "kind": "feat"
+    },
+    {
+      "agent": "OneTimeLinkIssuer.issueInvite (portal-invite token)",
+      "commit": "a2fbbba1",
+      "kind": "feat"
+    },
+    {
       "agent": "patient-portal invite backend (Phase 2a) implementation plan",
       "commit": "f49cde15",
       "kind": "docs"
@@ -5953,51 +5997,6 @@
     {
       "agent": "durable PostgresPatientAuthSessionStore + 293 migration",
       "commit": "fcfa7211",
-      "kind": "feat"
-    },
-    {
-      "agent": "durable PostgresPatientCredentialStore + 292 migration",
-      "commit": "e7ad8974",
-      "kind": "feat"
-    },
-    {
-      "agent": "credentials carry owning tenantId (durable-store prerequisite)",
-      "commit": "ae02631c",
-      "kind": "feat"
-    },
-    {
-      "agent": "patient-portal durable persistence (Phase 1) implementation plan",
-      "commit": "4baa3446",
-      "kind": "docs"
-    },
-    {
-      "agent": "patient-portal invite-link issuance design (durable persistence + a...",
-      "commit": "e8d5833c",
-      "kind": "docs"
-    },
-    {
-      "agent": "record PRs #477 (portal-links real) + #478 (voice-budget dashboard ...",
-      "commit": "bc443e5d",
-      "kind": "docs"
-    },
-    {
-      "agent": "Merge pull request #478 from kamalcernia/claude/admin-voice-budget-...",
-      "commit": "0ce3b319",
-      "kind": "other"
-    },
-    {
-      "agent": "Merge pull request #477 from kamalcernia/claude/admin-portal-links-...",
-      "commit": "0694882a",
-      "kind": "other"
-    },
-    {
-      "agent": "wire voice-budget dashboard to real /tenant/:id/voice-budget reads",
-      "commit": "a70ed110",
-      "kind": "feat"
-    },
-    {
-      "agent": "patient-portal links page reads the real endpoint",
-      "commit": "56b633c0",
       "kind": "feat"
     }
   ],
@@ -12831,7 +12830,7 @@
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
       },
-      "deferredCount": 45
+      "deferredCount": 53
     },
     {
       "id": "CIT",
