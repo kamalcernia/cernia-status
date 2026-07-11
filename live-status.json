@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T21:28:31.587Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 21:28 EDT",
+    "lastUpdatedIso": "2026-07-11T21:47:49.419Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 21:47 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "7d047d76",
+    "currentMainCommit": "eb962458",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2352,
+    "agentsCompletedThisSession": 2355,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2352 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2355 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 21:28 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 21:47 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 9 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-11T17:28:00-04:00",
+      "lastMergeIso": "2026-07-11T17:47:18-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5794,7 +5794,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T21:28:30.791Z",
+      "lastAuditAt": "2026-07-11T21:47:48.605Z",
       "backendRouteSymbolCount": 219,
       "deferredItems": {
         "total": 984,
@@ -5973,6 +5973,21 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #491 from kamalcernia/claude/phone-agent-m0",
+      "commit": "eb962458",
+      "kind": "other"
+    },
+    {
+      "agent": "mark provider-aware PHI redaction follow-up DONE (795798bf)",
+      "commit": "52355204",
+      "kind": "docs"
+    },
+    {
+      "agent": "provider-aware PHI redaction — skip for self-hosted-only",
+      "commit": "795798bf",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #490 from kamalcernia/claude/phone-agent-m0",
       "commit": "7d047d76",
       "kind": "other"
@@ -6031,21 +6046,6 @@
       "agent": "Merge pull request #488 from kamalcernia/claude/admin-portal-accoun...",
       "commit": "9b999c98",
       "kind": "other"
-    },
-    {
-      "agent": "patient-portal accounts page reads real credentials (de-sample)",
-      "commit": "aa8b63f6",
-      "kind": "feat"
-    },
-    {
-      "agent": "GET /admin/patient-portal/accounts — real credential-backed list",
-      "commit": "40c2383e",
-      "kind": "feat"
-    },
-    {
-      "agent": "add PatientCredentialStore.listByTenant",
-      "commit": "19c91596",
-      "kind": "feat"
     }
   ],
   "failures": [
