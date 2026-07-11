@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T13:55:55.922Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 13:55 EDT",
+    "lastUpdatedIso": "2026-07-11T14:31:18.503Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 14:31 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "90c7f058",
+    "currentMainCommit": "9b999c98",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2337,
+    "agentsCompletedThisSession": 2341,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2337 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2341 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 13:55 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 14:31 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -58,11 +58,11 @@
     },
     "velocity": {
       "landedLastHour": 0,
-      "landedLast24h": 12,
-      "label": "0 PRs opened in last hour · 12 in last 24h"
+      "landedLast24h": 11,
+      "label": "0 PRs opened in last hour · 11 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-11T09:54:11-04:00",
+      "lastMergeIso": "2026-07-11T10:30:47-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5784,18 +5784,18 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T13:55:54.813Z",
+      "lastAuditAt": "2026-07-11T14:31:17.662Z",
       "backendRouteSymbolCount": 219,
       "deferredItems": {
-        "total": 975,
+        "total": 979,
         "bySeverity": {
           "tech-debt": 279,
-          "review": 691,
+          "review": 695,
           "blocker": 5
         },
         "byKind": {
           "docstring-caveat": 263,
-          "not-configured-fallback": 109,
+          "not-configured-fallback": 113,
           "type-cheat-cast": 581,
           "todo-comment": 3,
           "type-cheat": 1,
@@ -5804,7 +5804,7 @@
           "json-deferred": 13
         },
         "byWave": {
-          "UI": 53,
+          "UI": 57,
           "X": 37,
           "H": 14,
           "Platform": 639,
@@ -5829,7 +5829,7 @@
         "wontfixDemotions": []
       },
       "saasConformance": {
-        "totalViolations": 458,
+        "totalViolations": 459,
         "totalBlockers": 23,
         "byCheck": {
           "migration-tenant-id": 8,
@@ -5838,17 +5838,11 @@
           "no-phi-in-logs": 0,
           "baa-enforcement": 0,
           "three-app-boundary": 0,
-          "no-in-process-stubs": 435
+          "no-in-process-stubs": 436
         }
       }
     },
-    "justLandedWaves": [],
-    "nowWorkingOn": {
-      "wave": "STATUS",
-      "detail": "audit search SQL push-down shipped (PR #487) — audit item fully closed",
-      "commit": "90c7f058",
-      "freshSeconds": 39
-    }
+    "justLandedWaves": []
   },
   "pool": {
     "size": 8,
@@ -5969,6 +5963,26 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #488 from kamalcernia/claude/admin-portal-accoun...",
+      "commit": "9b999c98",
+      "kind": "other"
+    },
+    {
+      "agent": "patient-portal accounts page reads real credentials (de-sample)",
+      "commit": "aa8b63f6",
+      "kind": "feat"
+    },
+    {
+      "agent": "GET /admin/patient-portal/accounts — real credential-backed list",
+      "commit": "40c2383e",
+      "kind": "feat"
+    },
+    {
+      "agent": "add PatientCredentialStore.listByTenant",
+      "commit": "19c91596",
+      "kind": "feat"
+    },
+    {
       "agent": "audit search SQL push-down shipped (PR #487) — audit item fully closed",
       "commit": "90c7f058",
       "kind": "docs"
@@ -6022,26 +6036,6 @@
       "agent": "enrich access-audit events with source IP + resource id",
       "commit": "d772523b",
       "kind": "feat"
-    },
-    {
-      "agent": "audit page reads real /admin/audit (drop SAMPLE)",
-      "commit": "2683011c",
-      "kind": "feat"
-    },
-    {
-      "agent": "audit-api client + wire->display mapper",
-      "commit": "4cab6a30",
-      "kind": "feat"
-    },
-    {
-      "agent": "PHI audit-log read route + admin UI + enrichment (Phase 2)",
-      "commit": "81749b5f",
-      "kind": "docs"
-    },
-    {
-      "agent": "Merge pull request #484 from kamalcernia/claude/phi-audit-write-pip...",
-      "commit": "a3a0edc8",
-      "kind": "other"
     }
   ],
   "failures": [
@@ -12874,7 +12868,7 @@
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
       },
-      "deferredCount": 53
+      "deferredCount": 57
     },
     {
       "id": "CIT",
