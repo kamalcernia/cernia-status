@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T22:47:35.722Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 22:47 EDT",
+    "lastUpdatedIso": "2026-07-11T23:08:09.391Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 23:08 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "64f6fb8b",
+    "currentMainCommit": "07015b28",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2367,
+    "agentsCompletedThisSession": 2369,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2367 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2369 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 22:47 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 23:08 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -58,11 +58,11 @@
     },
     "velocity": {
       "landedLastHour": 0,
-      "landedLast24h": 9,
-      "label": "0 PRs opened in last hour · 9 in last 24h"
+      "landedLast24h": 8,
+      "label": "0 PRs opened in last hour · 8 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-11T18:47:02-04:00",
+      "lastMergeIso": "2026-07-11T19:07:34-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5794,19 +5794,19 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T22:47:34.340Z",
+      "lastAuditAt": "2026-07-11T23:08:07.845Z",
       "backendRouteSymbolCount": 219,
       "deferredItems": {
-        "total": 984,
+        "total": 988,
         "bySeverity": {
           "tech-debt": 279,
-          "review": 700,
+          "review": 704,
           "blocker": 5
         },
         "byKind": {
           "docstring-caveat": 263,
           "not-configured-fallback": 116,
-          "type-cheat-cast": 583,
+          "type-cheat-cast": 587,
           "todo-comment": 3,
           "type-cheat": 1,
           "deferred-marker": 2,
@@ -5817,7 +5817,7 @@
           "UI": 60,
           "X": 37,
           "H": 14,
-          "Platform": 641,
+          "Platform": 645,
           "E": 48,
           "S": 1,
           "J": 9,
@@ -5839,7 +5839,7 @@
         "wontfixDemotions": []
       },
       "saasConformance": {
-        "totalViolations": 459,
+        "totalViolations": 460,
         "totalBlockers": 23,
         "byCheck": {
           "migration-tenant-id": 8,
@@ -5848,7 +5848,7 @@
           "no-phi-in-logs": 0,
           "baa-enforcement": 0,
           "three-app-boundary": 0,
-          "no-in-process-stubs": 436
+          "no-in-process-stubs": 437
         }
       }
     },
@@ -5973,6 +5973,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #498 from kamalcernia/claude/phone-agent-m0",
+      "commit": "07015b28",
+      "kind": "other"
+    },
+    {
+      "agent": "storage-backed WorkflowScheduler + registration surface (#23)",
+      "commit": "dc4bad4d",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #497 from kamalcernia/claude/phone-agent-m0",
       "commit": "64f6fb8b",
       "kind": "other"
@@ -6036,16 +6046,6 @@
       "agent": "Merge pull request #491 from kamalcernia/claude/phone-agent-m0",
       "commit": "eb962458",
       "kind": "other"
-    },
-    {
-      "agent": "mark provider-aware PHI redaction follow-up DONE (795798bf)",
-      "commit": "52355204",
-      "kind": "docs"
-    },
-    {
-      "agent": "provider-aware PHI redaction — skip for self-hosted-only",
-      "commit": "795798bf",
-      "kind": "feat"
     }
   ],
   "failures": [
