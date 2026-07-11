@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T14:34:14.367Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 14:34 EDT",
+    "lastUpdatedIso": "2026-07-11T19:39:28.470Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 19:39 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "344e25c7",
+    "currentMainCommit": "d1a6e51a",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2342,
+    "agentsCompletedThisSession": 2346,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2342 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2346 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 14:34 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 19:39 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -58,11 +58,11 @@
     },
     "velocity": {
       "landedLastHour": 0,
-      "landedLast24h": 11,
-      "label": "0 PRs opened in last hour · 11 in last 24h"
+      "landedLast24h": 9,
+      "label": "0 PRs opened in last hour · 9 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-11T10:30:47-04:00",
+      "lastMergeIso": "2026-07-11T15:38:54-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5789,19 +5789,19 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T14:34:13.529Z",
+      "lastAuditAt": "2026-07-11T19:39:27.555Z",
       "backendRouteSymbolCount": 219,
       "deferredItems": {
-        "total": 979,
+        "total": 984,
         "bySeverity": {
           "tech-debt": 279,
-          "review": 695,
+          "review": 700,
           "blocker": 5
         },
         "byKind": {
           "docstring-caveat": 263,
-          "not-configured-fallback": 113,
-          "type-cheat-cast": 581,
+          "not-configured-fallback": 116,
+          "type-cheat-cast": 583,
           "todo-comment": 3,
           "type-cheat": 1,
           "deferred-marker": 2,
@@ -5809,10 +5809,10 @@
           "json-deferred": 13
         },
         "byWave": {
-          "UI": 57,
+          "UI": 60,
           "X": 37,
           "H": 14,
-          "Platform": 639,
+          "Platform": 641,
           "E": 48,
           "S": 1,
           "J": 9,
@@ -5847,13 +5847,7 @@
         }
       }
     },
-    "justLandedWaves": [],
-    "nowWorkingOn": {
-      "wave": "STATUS",
-      "detail": "admin patient-portal accounts page de-sampled (PR #488)",
-      "commit": "344e25c7",
-      "freshSeconds": 36
-    }
+    "justLandedWaves": []
   },
   "pool": {
     "size": 8,
@@ -5974,6 +5968,26 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #489 from kamalcernia/claude/admin-accounts-sess...",
+      "commit": "d1a6e51a",
+      "kind": "other"
+    },
+    {
+      "agent": "wire the portal accounts \"Revoke sessions\" button to the real endpoint",
+      "commit": "2da1a5a5",
+      "kind": "feat"
+    },
+    {
+      "agent": "real hasActiveSessions + POST .../$revoke-sessions on the portal ac...",
+      "commit": "e5f91395",
+      "kind": "feat"
+    },
+    {
+      "agent": "add countActiveForPrincipal to PatientAuthSessionStore",
+      "commit": "1d387363",
+      "kind": "feat"
+    },
+    {
       "agent": "admin patient-portal accounts page de-sampled (PR #488)",
       "commit": "344e25c7",
       "kind": "docs"
@@ -6027,26 +6041,6 @@
       "agent": "PHI access-audit log Phase 2 (read+UI) shipped — feature code-complete",
       "commit": "57ad6f21",
       "kind": "docs"
-    },
-    {
-      "agent": "Merge pull request #485 from kamalcernia/claude/audit-admin-ui",
-      "commit": "a9f7835b",
-      "kind": "other"
-    },
-    {
-      "agent": "Merge pull request #486 from kamalcernia/claude/audit-read-backend",
-      "commit": "4c779849",
-      "kind": "other"
-    },
-    {
-      "agent": "GET /admin/audit tenant-scoped search over the audit chain",
-      "commit": "2a08d5aa",
-      "kind": "feat"
-    },
-    {
-      "agent": "resourceType/operation filters on AuditQuery",
-      "commit": "a94e1be0",
-      "kind": "feat"
     }
   ],
   "failures": [
@@ -12879,7 +12873,7 @@
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
       },
-      "deferredCount": 57
+      "deferredCount": 60
     },
     {
       "id": "CIT",
