@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T22:31:47.626Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 22:31 EDT",
+    "lastUpdatedIso": "2026-07-11T22:41:17.917Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 22:41 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "a3252084",
+    "currentMainCommit": "501906b2",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2363,
+    "agentsCompletedThisSession": 2365,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2363 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2365 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 22:31 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 22:41 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 9 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-11T18:31:17-04:00",
+      "lastMergeIso": "2026-07-11T18:40:46-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5794,7 +5794,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T22:31:46.748Z",
+      "lastAuditAt": "2026-07-11T22:41:16.973Z",
       "backendRouteSymbolCount": 219,
       "deferredItems": {
         "total": 984,
@@ -5973,6 +5973,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #496 from kamalcernia/claude/phone-agent-m0",
+      "commit": "501906b2",
+      "kind": "other"
+    },
+    {
+      "agent": "persist refill eRx-fulfillment fields (#10) + real-PG smoke",
+      "commit": "ab1ef926",
+      "kind": "fix"
+    },
+    {
       "agent": "Merge pull request #495 from kamalcernia/claude/phone-agent-m0",
       "commit": "a3252084",
       "kind": "other"
@@ -6036,16 +6046,6 @@
       "agent": "push policy → push branch freely, merge to main waits for user",
       "commit": "a63287f3",
       "kind": "docs"
-    },
-    {
-      "agent": "2026-07-11 handoff — Pipecat live-call bring-up + T3.1/seed commits",
-      "commit": "38baf2ce",
-      "kind": "docs"
-    },
-    {
-      "agent": "cerniahealth tenant seed scripts (admin login + clinical data)",
-      "commit": "a8411079",
-      "kind": "chore"
     }
   ],
   "failures": [
