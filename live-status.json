@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T22:03:13.376Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 22:03 EDT",
+    "lastUpdatedIso": "2026-07-11T22:24:09.251Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 22:24 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "f580f822",
+    "currentMainCommit": "b5563a44",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2359,
+    "agentsCompletedThisSession": 2361,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2359 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2361 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 22:03 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 22:24 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 9 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-11T18:02:42-04:00",
+      "lastMergeIso": "2026-07-11T18:23:38-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5794,7 +5794,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T22:03:12.241Z",
+      "lastAuditAt": "2026-07-11T22:24:08.437Z",
       "backendRouteSymbolCount": 219,
       "deferredItems": {
         "total": 984,
@@ -5973,6 +5973,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #494 from kamalcernia/claude/phone-agent-m0",
+      "commit": "b5563a44",
+      "kind": "other"
+    },
+    {
+      "agent": "wire approved refills to real eRx transmission (#10)",
+      "commit": "138a1a5e",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #493 from kamalcernia/claude/phone-agent-m0",
       "commit": "f580f822",
       "kind": "other"
@@ -6036,16 +6046,6 @@
       "agent": "portal accounts session actions made real (PR #489)",
       "commit": "e24979fd",
       "kind": "docs"
-    },
-    {
-      "agent": "Merge pull request #489 from kamalcernia/claude/admin-accounts-sess...",
-      "commit": "d1a6e51a",
-      "kind": "other"
-    },
-    {
-      "agent": "wire the portal accounts \"Revoke sessions\" button to the real endpoint",
-      "commit": "2da1a5a5",
-      "kind": "feat"
     }
   ],
   "failures": [
