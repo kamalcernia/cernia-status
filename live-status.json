@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T02:41:35.091Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 02:41 EDT",
+    "lastUpdatedIso": "2026-07-11T02:54:28.324Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 02:54 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "b586f06f",
+    "currentMainCommit": "e9a94584",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2263,
+    "agentsCompletedThisSession": 2265,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2263 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2265 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 02:41 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 02:54 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -57,12 +57,12 @@
       "label": "581 test files landed · 0 active failures"
     },
     "velocity": {
-      "landedLastHour": 3,
+      "landedLastHour": 2,
       "landedLast24h": 15,
-      "label": "3 PRs opened in last hour · 15 in last 24h"
+      "label": "2 PRs opened in last hour · 15 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-10T22:41:05-04:00",
+      "lastMergeIso": "2026-07-10T22:53:57-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5692,7 +5692,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T02:41:34.103Z",
+      "lastAuditAt": "2026-07-11T02:54:27.386Z",
       "backendRouteSymbolCount": 218,
       "deferredItems": {
         "total": 957,
@@ -5871,6 +5871,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #469 from kamalcernia/claude/admin-referral-typefix",
+      "commit": "e9a94584",
+      "kind": "other"
+    },
+    {
+      "agent": "resolve referral-api.test.ts typecheck error (rejects.toMatchObject)",
+      "commit": "3a5e3f1e",
+      "kind": "fix"
+    },
+    {
       "agent": "Merge pull request #468 from kamalcernia/claude/u4-doc-real-metadata",
       "commit": "b586f06f",
       "kind": "other"
@@ -5933,16 +5943,6 @@
     {
       "agent": "operator-driven pricing display — implementation plan",
       "commit": "fa3b4f72",
-      "kind": "docs"
-    },
-    {
-      "agent": "Merge pull request #463 from kamalcernia/claude/pricing-display-spec",
-      "commit": "bf978ad4",
-      "kind": "other"
-    },
-    {
-      "agent": "operator-driven pricing on the marketing page (design)",
-      "commit": "f96182fd",
       "kind": "docs"
     }
   ],
