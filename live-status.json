@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T13:05:56.662Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 13:05 EDT",
+    "lastUpdatedIso": "2026-07-11T13:08:08.715Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 13:08 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "a9f7835b",
+    "currentMainCommit": "57ad6f21",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2331,
+    "agentsCompletedThisSession": 2332,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2331 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2332 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 13:05 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 13:08 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -2370,14 +2370,20 @@
                 "summary": "Sample-backed."
               },
               "current": {
-                "status": "partial",
+                "status": "complete",
                 "asOf": "2026-07-11",
-                "summary": "Admin UI de-sampling done (2026-05-25, see below). 2026-07-11: the PHI access-audit WRITE pipeline (Phase 1 of docs/superpowers/specs/2026-07-11-phi-access-audit-log-design.md) now persists tamper-evident data-plane access — every authorized (or denied) read/write of a patient-compartment resource is recorded into the existing hash-chained rbac_audit_events store, non-blocking on the request path. Read route + admin UI surfacing this data-plane trail are Phase 2 (remaining[0]) — status moved back to 'partial' to reflect that visibility gap even though the original UI de-sampling scope (AuditEvent/Report/Communications pages) is complete."
+                "summary": "Admin UI de-sampling done (2026-05-25). PHI access-audit log COMPLETE end-to-end 2026-07-11 (spec docs/superpowers/specs/2026-07-11-phi-access-audit-log-design.md): Phase 1 (write pipeline — non-blocking emitter→buffer→tamper-evident chain, PR #484) + Phase 2 (GET /admin/audit tenant-scoped read route + audit-event enrichment PR #486, and the admin audit page rewired off SAMPLE onto the real endpoint PR #485). Every authorized/denied read/write of a patient-compartment resource is recorded to the hash-chained rbac_audit_events store and browsable by tenant-admins with actor + patient + operation + result + source IP. Remaining is code-verified (Phase 1 live chain-verify + Phase 2 real-:5433 integration incl. tenant isolation); the end-to-end browser live-acceptance + the search() in-memory-scan perf follow-up are the only open items (see remaining)."
               },
               "remaining": [
-                "Phase 2 of the PHI access-audit log (docs/superpowers/specs/2026-07-11-phi-access-audit-log-design.md): a tenant-scoped READ route over the data-plane rbac_audit_events rows (resource_type/operation, migration 294) + an admin UI page surfacing them. The write pipeline itself (Phase 1) is done — see history 2026-07-11."
+                "PHI access-audit perf follow-up (not shipped): DefaultAuditQuerier.search loads the whole tenant chain into memory then filters in matches() (packages/k4-rbac-audit-log/src/{query-engine.ts,postgres-append-store.ts}) — fine at low volume, but a growing audit log needs a WHERE/cursor push-down at the Postgres layer. Tracked, out of scope of Phase 2.",
+                "PHI access-audit end-to-end BROWSER live-acceptance: make a real authorized PHI read against a booted stack + real Postgres, then confirm it appears in the real /admin/audit page with actor/patient/operation/result/source-IP (the ⚙️+UI channel). Phase 1 write is already live-proven (chain-verify) and Phase 2 read is real-:5433 integration-proven; this is the final browser screenshot."
               ],
               "history": [
+                {
+                  "date": "2026-07-11",
+                  "stage": "phase-3-3-admin-infra",
+                  "note": "PHI access-audit log Phase 2 (read route + admin UI + enrichment) shipped — the data-plane trail is now browsable. Two disjoint parallel tracks. BACKEND (PR #486): (B1) enriched the audit emit — widened IamAuditEmitter.emit with sourceIp/userAgent/requestId (passed req.ip/req.headers/req.id at all 3 emitAuditSafely sites) and the emitter parses the specific resource id from the request URL when the RBAC operation lacks it, so rows record 'read Patient/123' + source IP, not just 'read Patient' with 'unknown' network context; (B2) added resourceType/operation filters to AuditQuery + matches() (also fixed InMemoryAppendOnlyStore.append silently dropping the fields — the Postgres store was always correct); (B3) NEW apps/api/src/admin-audit-routes.ts — GET /admin/audit, requirePermission({search,AuditEvent}) (tenant-admin's *:admin reaches it, no new verb), tenant server-authoritative from req.rbacClaims.tenantId (ADR-0004), maps range/principal/type/op/result/cursor/limit → AuditQuery, DefaultAuditQuerier over the existing PostgresAppendOnlyStore, response {items,nextCursor,total}; + a deriveOperation branch (iam-route-guards.ts). FRONTEND (PR #485): NEW apps/admin/.../audit/audit-api.ts (billing-api transport + toDisplayAuditEvent mapper — action→result, resourceType→resourceType_, requestId→traceId, wire→payload so source IP shows in the modal) + rewired audit/page.tsx off SAMPLE_AUDIT_EVENTS to listAuditEvents(filter) with loading/error/empty + cursor 'Load more'; the previously-hardcoded chain-verify MOCK was removed (button disabled 'coming soon' — no fake success). VERIFIED: @cernia/k4-rbac-audit-log 149/149; @cernia/api 74/74 incl. admin-audit-routes.integration.test.ts 4/4 real-:5433 (load-bearing 'tenant A never sees tenant B rows' through a real Fastify app + real JWT + per-tenant RBAC binding; + result/type filters + enriched fields round-trip); @cernia/admin audit 35/35, touched files typecheck+lint clean. FOLLOW-UPS tracked in remaining[]: the search() in-memory-scan perf push-down + the end-to-end browser live-acceptance. Files: apps/api/src/{admin-audit-routes.ts(+test,+integration.test), iam-route-guards.ts, rbac-audit-emitter.ts, index.ts}, packages/k4-rbac-audit-log/src/{types.ts,query-engine.ts,append-store.ts}, apps/admin/src/app/admin/audit/{audit-api.ts,page.tsx}."
+                },
                 {
                   "date": "2026-05-25",
                   "stage": "phase-3-3-admin-infra",
@@ -5776,12 +5782,12 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T13:05:55.805Z",
+      "lastAuditAt": "2026-07-11T13:08:07.878Z",
       "backendRouteSymbolCount": 219,
       "deferredItems": {
-        "total": 975,
+        "total": 976,
         "bySeverity": {
-          "tech-debt": 279,
+          "tech-debt": 280,
           "review": 691,
           "blocker": 5
         },
@@ -5793,7 +5799,7 @@
           "type-cheat": 1,
           "deferred-marker": 2,
           "skipped-test": 3,
-          "json-deferred": 13
+          "json-deferred": 14
         },
         "byWave": {
           "UI": 53,
@@ -5808,7 +5814,7 @@
           "ERX": 9,
           "P": 11,
           "Q": 17,
-          "(unassigned)": 22,
+          "(unassigned)": 23,
           "DD": 4,
           "F": 23,
           "I": 9,
@@ -5834,7 +5840,13 @@
         }
       }
     },
-    "justLandedWaves": []
+    "justLandedWaves": [],
+    "nowWorkingOn": {
+      "wave": "STATUS",
+      "detail": "PHI access-audit log Phase 2 (read+UI) shipped — feature code-complete",
+      "commit": "57ad6f21",
+      "freshSeconds": 37
+    }
   },
   "pool": {
     "size": 8,
@@ -5955,6 +5967,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "PHI access-audit log Phase 2 (read+UI) shipped — feature code-complete",
+      "commit": "57ad6f21",
+      "kind": "docs"
+    },
+    {
       "agent": "Merge pull request #485 from kamalcernia/claude/audit-admin-ui",
       "commit": "a9f7835b",
       "kind": "other"
@@ -6023,11 +6040,6 @@
       "agent": "rbac_audit_events data-plane columns (resource_type, operation)",
       "commit": "df9d27da",
       "kind": "feat"
-    },
-    {
-      "agent": "PHI audit-log write pipeline (Phase 1) implementation plan",
-      "commit": "9fc7dbc9",
-      "kind": "docs"
     }
   ],
   "failures": [
