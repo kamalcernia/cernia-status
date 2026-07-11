@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T03:42:23.221Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 03:42 EDT",
+    "lastUpdatedIso": "2026-07-11T04:10:38.470Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 04:10 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "5f5a9e10",
+    "currentMainCommit": "d19d09a3",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2269,
+    "agentsCompletedThisSession": 2271,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2269 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2271 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 03:42 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 04:10 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 15 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-10T23:41:50-04:00",
+      "lastMergeIso": "2026-07-11T00:10:07-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5692,7 +5692,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T03:42:22.252Z",
+      "lastAuditAt": "2026-07-11T04:10:37.471Z",
       "backendRouteSymbolCount": 218,
       "deferredItems": {
         "total": 957,
@@ -5871,6 +5871,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #472 from kamalcernia/claude/portal-session-pati...",
+      "commit": "d19d09a3",
+      "kind": "other"
+    },
+    {
+      "agent": "resolve portal bills/forms/messages patient id from session (I-203)",
+      "commit": "cfe079a5",
+      "kind": "fix"
+    },
+    {
       "agent": "Merge pull request #471 from kamalcernia/claude/catalog-expose-prices",
       "commit": "5f5a9e10",
       "kind": "other"
@@ -5934,16 +5944,6 @@
       "agent": "Merge pull request #465 from kamalcernia/claude/pricing-display-impl",
       "commit": "fd4792e4",
       "kind": "other"
-    },
-    {
-      "agent": "fire best-effort /pricing revalidate after an operator price save",
-      "commit": "af010bc4",
-      "kind": "feat"
-    },
-    {
-      "agent": "secret-guarded /api/revalidate-pricing route",
-      "commit": "28dbaafe",
-      "kind": "feat"
     }
   ],
   "failures": [
