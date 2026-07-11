@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T19:40:48.892Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 19:40 EDT",
+    "lastUpdatedIso": "2026-07-11T21:28:31.587Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 21:28 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "e24979fd",
+    "currentMainCommit": "7d047d76",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2347,
+    "agentsCompletedThisSession": 2352,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2347 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2352 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 19:40 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 21:28 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 9 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-11T15:38:54-04:00",
+      "lastMergeIso": "2026-07-11T17:28:00-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5794,7 +5794,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T19:40:47.901Z",
+      "lastAuditAt": "2026-07-11T21:28:30.791Z",
       "backendRouteSymbolCount": 219,
       "deferredItems": {
         "total": 984,
@@ -5852,13 +5852,7 @@
         }
       }
     },
-    "justLandedWaves": [],
-    "nowWorkingOn": {
-      "wave": "STATUS",
-      "detail": "portal accounts session actions made real (PR #489)",
-      "commit": "e24979fd",
-      "freshSeconds": 33
-    }
+    "justLandedWaves": []
   },
   "pool": {
     "size": 8,
@@ -5979,6 +5973,31 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #490 from kamalcernia/claude/phone-agent-m0",
+      "commit": "7d047d76",
+      "kind": "other"
+    },
+    {
+      "agent": "push policy → push branch freely, merge to main waits for user",
+      "commit": "a63287f3",
+      "kind": "docs"
+    },
+    {
+      "agent": "2026-07-11 handoff — Pipecat live-call bring-up + T3.1/seed commits",
+      "commit": "38baf2ce",
+      "kind": "docs"
+    },
+    {
+      "agent": "cerniahealth tenant seed scripts (admin login + clinical data)",
+      "commit": "a8411079",
+      "kind": "chore"
+    },
+    {
+      "agent": "#53 T3.1 — filler phrases during slow BFF lookups",
+      "commit": "34e84550",
+      "kind": "feat"
+    },
+    {
       "agent": "portal accounts session actions made real (PR #489)",
       "commit": "e24979fd",
       "kind": "docs"
@@ -6027,31 +6046,6 @@
       "agent": "add PatientCredentialStore.listByTenant",
       "commit": "19c91596",
       "kind": "feat"
-    },
-    {
-      "agent": "audit search SQL push-down shipped (PR #487) — audit item fully closed",
-      "commit": "90c7f058",
-      "kind": "docs"
-    },
-    {
-      "agent": "Merge pull request #487 from kamalcernia/claude/audit-search-pushdown",
-      "commit": "a26ab663",
-      "kind": "other"
-    },
-    {
-      "agent": "test(k4-rbac-audit-log): real-Postgres searchPage coverage + in-mem...",
-      "commit": "c33e655a",
-      "kind": "other"
-    },
-    {
-      "agent": "perf(k4-rbac-audit-log): push audit search filtering/pagination dow...",
-      "commit": "3dc82a3d",
-      "kind": "other"
-    },
-    {
-      "agent": "PHI access-audit log end-to-end browser live-accepted",
-      "commit": "566b148e",
-      "kind": "docs"
     }
   ],
   "failures": [
