@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T01:31:41.174Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 01:31 EDT",
+    "lastUpdatedIso": "2026-07-11T01:49:39.133Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 01:49 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #461 fix(security): close cross-org leaks in l2 (idn/fa"
   },
   "summary": {
-    "currentMainCommit": "9a5dee32",
+    "currentMainCommit": "bf978ad4",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2248,
+    "agentsCompletedThisSession": 2250,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2248 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2250 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #461 fix(security): close cross-org leaks in l2 (idn/facility) + . (refreshed Jul 11, 2026 — 01:31 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #461 fix(security): close cross-org leaks in l2 (idn/facility) + . (refreshed Jul 11, 2026 — 01:49 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "1 PR opened in last hour · 15 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-10T21:31:09-04:00",
+      "lastMergeIso": "2026-07-10T21:49:10-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5687,7 +5687,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T01:31:40.129Z",
+      "lastAuditAt": "2026-07-11T01:49:38.204Z",
       "backendRouteSymbolCount": 218,
       "deferredItems": {
         "total": 957,
@@ -5866,6 +5866,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #463 from kamalcernia/claude/pricing-display-spec",
+      "commit": "bf978ad4",
+      "kind": "other"
+    },
+    {
+      "agent": "operator-driven pricing on the marketing page (design)",
+      "commit": "f96182fd",
+      "kind": "docs"
+    },
+    {
       "agent": "Merge pull request #462 from kamalcernia/claude/u7-impersonation-to...",
       "commit": "9a5dee32",
       "kind": "other"
@@ -5928,16 +5938,6 @@
     {
       "agent": "Merge pull request #456 from kamalcernia/claude/voice-call-handler-...",
       "commit": "d06b3b5f",
-      "kind": "other"
-    },
-    {
-      "agent": "test(voice): repair the voice-call-handler suite — 83/83 green (pro...",
-      "commit": "11cf79eb",
-      "kind": "other"
-    },
-    {
-      "agent": "Merge pull request #455 from kamalcernia/claude/voice-eval-goldens-...",
-      "commit": "fea506bd",
       "kind": "other"
     }
   ],
