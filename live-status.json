@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T21:47:49.419Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 21:47 EDT",
+    "lastUpdatedIso": "2026-07-11T22:01:35.611Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 22:01 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "eb962458",
+    "currentMainCommit": "e72d67b4",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2355,
+    "agentsCompletedThisSession": 2357,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2355 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2357 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 21:47 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 22:01 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 9 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-11T17:47:18-04:00",
+      "lastMergeIso": "2026-07-11T18:01:07-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5794,7 +5794,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T21:47:48.605Z",
+      "lastAuditAt": "2026-07-11T22:01:34.773Z",
       "backendRouteSymbolCount": 219,
       "deferredItems": {
         "total": 984,
@@ -5973,6 +5973,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #492 from kamalcernia/claude/phone-agent-m0",
+      "commit": "e72d67b4",
+      "kind": "other"
+    },
+    {
+      "agent": "stop surname leak in strict name redaction",
+      "commit": "59119da2",
+      "kind": "fix"
+    },
+    {
       "agent": "Merge pull request #491 from kamalcernia/claude/phone-agent-m0",
       "commit": "eb962458",
       "kind": "other"
@@ -6036,16 +6046,6 @@
       "agent": "add countActiveForPrincipal to PatientAuthSessionStore",
       "commit": "1d387363",
       "kind": "feat"
-    },
-    {
-      "agent": "admin patient-portal accounts page de-sampled (PR #488)",
-      "commit": "344e25c7",
-      "kind": "docs"
-    },
-    {
-      "agent": "Merge pull request #488 from kamalcernia/claude/admin-portal-accoun...",
-      "commit": "9b999c98",
-      "kind": "other"
     }
   ],
   "failures": [
