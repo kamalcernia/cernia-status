@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T01:57:09.429Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 01:57 EDT",
+    "lastUpdatedIso": "2026-07-11T02:20:46.022Z",
+    "lastUpdatedDisplay": "Jul 11, 2026 — 02:20 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #461 fix(security): close cross-org leaks in l2 (idn/fa"
   },
   "summary": {
-    "currentMainCommit": "ced17160",
+    "currentMainCommit": "fd4792e4",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2252,
+    "agentsCompletedThisSession": 2257,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2252 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2257 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #461 fix(security): close cross-org leaks in l2 (idn/facility) + . (refreshed Jul 11, 2026 — 01:57 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #461 fix(security): close cross-org leaks in l2 (idn/facility) + . (refreshed Jul 11, 2026 — 02:20 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "1 PR opened in last hour · 15 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-10T21:56:37-04:00",
+      "lastMergeIso": "2026-07-10T22:20:14-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5687,7 +5687,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T01:57:08.288Z",
+      "lastAuditAt": "2026-07-11T02:20:45.081Z",
       "backendRouteSymbolCount": 218,
       "deferredItems": {
         "total": 957,
@@ -5866,6 +5866,31 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #465 from kamalcernia/claude/pricing-display-impl",
+      "commit": "fd4792e4",
+      "kind": "other"
+    },
+    {
+      "agent": "fire best-effort /pricing revalidate after an operator price save",
+      "commit": "af010bc4",
+      "kind": "feat"
+    },
+    {
+      "agent": "secret-guarded /api/revalidate-pricing route",
+      "commit": "28dbaafe",
+      "kind": "feat"
+    },
+    {
+      "agent": "/pricing renders operator-set catalog prices (ISR + fallback)",
+      "commit": "f5fa601f",
+      "kind": "feat"
+    },
+    {
+      "agent": "pricing-source resolver — live catalog prices + fallback",
+      "commit": "3c1413c3",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #464 from kamalcernia/claude/pricing-display-plan",
       "commit": "ced17160",
       "kind": "other"
@@ -5914,31 +5939,6 @@
       "agent": "U4 refill status chip on the medications page",
       "commit": "71314abe",
       "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #459 from kamalcernia/claude/refill-decision-notify",
-      "commit": "e5e24d48",
-      "kind": "other"
-    },
-    {
-      "agent": "U4/F5 — notify the patient when a clinician decides their refill",
-      "commit": "cd45fd9d",
-      "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #458 from kamalcernia/claude/portal-documents-u4",
-      "commit": "38a0c6de",
-      "kind": "other"
-    },
-    {
-      "agent": "U4 document viewer — stream a patient's own document content",
-      "commit": "df965205",
-      "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #457 from kamalcernia/claude/portal-refills-u4",
-      "commit": "be4ab9f8",
-      "kind": "other"
     }
   ],
   "failures": [
