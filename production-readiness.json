@@ -519,7 +519,7 @@
           },
           "current": {
             "status": "complete",
-            "asOf": "2026-05-28",
+            "asOf": "2026-07-11",
             "summary": "Bot/workflow-runtime fully wired: scheduler boots at apps/api/src/index.ts:1153 via bootBotRuntimeScheduler (catalog-only mode); routes mounted in apps/api/src/bot-workflow-routes.ts ($analyse, $dry-run, background-templates, $diff-fork, $ai-gen-request); PostgresTemplateRegistry persists templates (task #220 closed ra-bot-5); j2c fork-and-modify + j2d AI-workflow-gen + j3g background-bot templates all consumed via the routes (tasks #217 + #218)."
           },
           "evidence": [
@@ -537,10 +537,14 @@
             }
           ],
           "remaining": [
-            "Storage-backed scheduler SHIPPED — PR #498 (2026-07-11): migration 290 scheduled_workflows + IScheduledWorkflowStore (InMemory + Postgres) in packages/executor; WorkflowScheduler gains registerDurable/unregisterDurable (write-through) + hydrate() (rehydrate on boot, bad-row-skip); apps/api registration surface POST/DELETE /admin/workflows/:id/$schedule (admin-schedule-routes.ts, deriveOperation→{Workflow,write|delete}) + boot hydrate. Real-PG store round-trip + hydrate-then-tick proven (rehydrated schedules fire after a simulated restart); executor 270/270. REMAINING (narrowed): a boot-scan that auto-registers already-authored active cron Workflows (today they register via the route or persisted store, not a scan of all authored workflows) + a live HTTP boot smoke of the route.",
-            "CORRECTION: the prior 'timezone:UTC only / IANA deferred' note was STALE — packages/executor/src/scheduler.ts already handles IANA zones (assertValidTimezone + Intl.DateTimeFormat in cronMatches; a passing America/New_York test exists). No remaining work."
+            "Storage-backed scheduler SHIPPED — PR #498 (2026-07-11): migration 290 scheduled_workflows + IScheduledWorkflowStore (InMemory + Postgres) in packages/executor; WorkflowScheduler gains registerDurable/unregisterDurable (write-through) + hydrate() (rehydrate on boot, bad-row-skip); apps/api registration surface POST/DELETE /admin/workflows/:id/$schedule (admin-schedule-routes.ts, deriveOperation→{Workflow,write|delete}) + boot hydrate. Real-PG store round-trip + hydrate-then-tick proven (rehydrated schedules fire after a simulated restart); executor 270/270. REMAINING (narrowed): a boot-scan that auto-registers already-authored active cron Workflows (today they register via the route or persisted store, not a scan of all authored workflows) + a live HTTP boot smoke of the route."
           ],
           "history": [
+            {
+              "date": "2026-07-11",
+              "stage": "bot-workflow-runtime",
+              "note": "Portal-truth audit: closed 1 stale `remaining` bullet(s) already implemented (verified against real code via parallel read-only audit agents). Moved to completed[]. Genuine residual + external-blocked bullets unchanged."
+            },
             {
               "date": "2026-07-11",
               "stage": "bot-workflow-runtime",
@@ -622,6 +626,13 @@
               "to": "closed",
               "note": "Removed 4 stale remaining bullets. All bot-workflow-runtime wiring verified shipped: (a) Scheduler boots at apps/api/src/index.ts:1153 via bootBotRuntimeScheduler() in apps/api/src/bot-runtime-scheduler.ts (task #220). (b) Routes mounted in apps/api/src/bot-workflow-routes.ts: /bot-runtime/$analyse:175, /bot-runtime/$dry-run:202, /bot-runtime/background-templates:230, /bot-runtime/$diff-fork:256, /bot-runtime/$ai-gen-request:282. j2c + j2d + j3g all wired (tasks #217 + #218)."
             }
+          ],
+          "completed": [
+            {
+              "bullet": "CORRECTION: the prior 'timezone:UTC only / IANA deferred' note was STALE — packages/executor/src/scheduler.ts already handles IANA zones (assertValidTimezone + ",
+              "closedAt": "2026-07-11",
+              "note": "Verified implemented in code by the 2026-07-11 portal-truth audit (bullet already self-declared SHIPPED/DONE/RESOLVED/FIXED but was left in remaining, inflating the count). Full text preserved: CORRECTION: the prior 'timezone:UTC only / IANA deferred' note was STALE — packages/executor/src/scheduler.ts already handles IANA zones (assertValidTimezone + Intl.DateTimeFormat in cronMatches; a passing America/New_York test exists). No remaining work."
+            }
           ]
         },
         {
@@ -635,7 +646,7 @@
           },
           "current": {
             "status": "partial",
-            "asOf": "2026-06-07",
+            "asOf": "2026-07-11",
             "summary": "Voice→LLM gateway wiring complete (1A-2 / §6.3): every voice turn now routes through the LLM gateway for PHI redaction + per-tenant cost metering + budget enforcement. Gateway MessageSchema widened to accept content-block arrays (tool_use/tool_result) for multi-turn tool conversations. GatewayClaudeClient adapter in packages/voice-agent. Boot wiring in apps/api/src/index.ts. REMAINING: persist gateway CostStore/AuditLog to Postgres (Wave O) + thread per-call tenantId from inbound-call resolver."
           },
           "evidence": [
@@ -661,10 +672,14 @@
             }
           ],
           "remaining": [
-            "Gateway cost + trace WRITE-through now ship (Wave O-AI4/O-AI6) so the FinOps + AI-obs dashboards see real gateway traffic: cost — PR #499 (2026-07-11, CostStore ICostLedgerSink → o4 CostLedger via apps/api makeO4CostLedgerSink, non-blocking); traces — PR #500 (2026-07-11, complete() ITraceSink → o6 TraceRecorder/PostgresTraceStore via makeO6TraceSink, redacted content only). REMAINING (narrowed): (a) AuditLog is still in-memory (hash-only; not persisted) — a durable audit sink is the follow-up; (b) trace emit is success-only — error-path traces (calls that throw before completion) are deferred; (c) request/response bodies persist only when replay is opted in.",
-            "Capture live prediction streams into a rolling-window reference + current dataset feeding the drift endpoint — the capture STORE now ships: see history 2026-06-01 (ra-ml-driftcap): migration 142_ml_prediction_samples + apps/api/src/ml-prediction-capture-store.ts (capture + referenceWindow/currentWindow/windowedDatasets returning @cernia/p3b-drift-monitoring PredictionRecord[], the exact shape /admin/ml/drift/$compute consumes), real-PG 5/5. The capture + read ROUTES now ship — see history 2026-06-01 (ra-ml-driftwire): ml-drift-routes.ts gained POST /admin/ml/drift/:model/:version/$capture + GET .../windowed (windowedDatasets→computeReport→DriftReport), wired with {db} in index.ts; real-PG route-tested 5/5. Auto-capture from the live dispatch path now ships — see history 2026-06-01 (ra-ml-autocapture): ml-platform-routes.ts best-effort-captures a sample on each successful $predict (captureDb threaded through buildMlPlatformRuntime + wired in index.ts), real-PG 3/3 + existing 21/21. This drift-monitoring sub-track is functionally complete end-to-end (capture → window → computeReport); only dashboards/alerting on the DriftReport remain (tracked under operational-monitoring)."
+            "Gateway cost + trace WRITE-through now ship (Wave O-AI4/O-AI6) so the FinOps + AI-obs dashboards see real gateway traffic: cost — PR #499 (2026-07-11, CostStore ICostLedgerSink → o4 CostLedger via apps/api makeO4CostLedgerSink, non-blocking); traces — PR #500 (2026-07-11, complete() ITraceSink → o6 TraceRecorder/PostgresTraceStore via makeO6TraceSink, redacted content only). REMAINING (narrowed): (a) AuditLog is still in-memory (hash-only; not persisted) — a durable audit sink is the follow-up; (b) trace emit is success-only — error-path traces (calls that throw before completion) are deferred; (c) request/response bodies persist only when replay is opted in."
           ],
           "history": [
+            {
+              "date": "2026-07-11",
+              "stage": "ml-platform",
+              "note": "Portal-truth audit: closed 1 stale `remaining` bullet(s) already implemented (verified against real code via parallel read-only audit agents). Moved to completed[]. Genuine residual + external-blocked bullets unchanged."
+            },
             {
               "date": "2026-07-11",
               "stage": "ml-platform",
@@ -750,6 +765,13 @@
               "from": "partial",
               "to": "partial",
               "note": "1A-2 review fixes: (1) phi-redaction.ts redactMessages() now redacts tool_result.content (HIPAA PHI leak fix — free-form tool results can carry SSN/MRN/etc.); tool_use.input remains exempt (structured JSON). (2) ClaudeRequest gains optional tenantId field; gateway-claude-client.ts complete() uses req.tenantId ?? opts.tenantId (per-call wins, opts is fallback); dialog.ts threads this.start.tenantId per turn. (3) apps/api boot log claudeId now reports \"llm-gateway\" when deps.llmGateway is set. (4) production-readiness.json wording corrected to reflect per-call tenant flow."
+            }
+          ],
+          "completed": [
+            {
+              "bullet": "Capture live prediction streams into a rolling-window reference + current dataset feeding the drift endpoint — the capture STORE now ships: see history 2026-06-",
+              "closedAt": "2026-07-11",
+              "note": "Verified implemented in code by the 2026-07-11 portal-truth audit (bullet already self-declared SHIPPED/DONE/RESOLVED/FIXED but was left in remaining, inflating the count). Full text preserved: Capture live prediction streams into a rolling-window reference + current dataset feeding the drift endpoint — the capture STORE now ships: see history 2026-06-01 (ra-ml-driftcap): migration 142_ml_prediction_samples + apps/api/src/ml-prediction-capture-store.ts (capture + referenceWindow/currentWindow/windowedDatasets returning @cernia/p3b-drift-monitoring PredictionRecord[], the exact shape /admin/ml/drift/$compute consumes), real-PG 5/5. The capture + read ROUTES now ship — see history 2026-06-01 (ra-ml-driftwire): ml-drift-routes.ts gained POST /admin/ml/drift/:model/:version/$capture + GET .../windowed (windowedDatasets→computeReport→DriftReport), wired with {db} in index.ts; real-PG route-tested 5/5. Auto-capture from the live dispatch path now ships — see history 2026-06-01 (ra-ml-autocapture): ml-platform-routes.ts best-effort-captures a sample on each successful $predict (captureDb threaded through buildMlPlatformRuntime + wired in index.ts), real-PG 3/3 + existing 21/21. This drift-monitoring sub-track is functionally complete end-to-end (capture → window → computeReport); only dashboards/alerting on the DriftReport remain (tracked under operational-monitoring)."
             }
           ]
         },
@@ -1714,32 +1736,33 @@
           },
           "current": {
             "status": "complete",
-            "asOf": "2026-05-25",
+            "asOf": "2026-07-11",
             "summary": "Voice-config step (step 4 of 8) in apps/installer wizard collects all 12 voice-agent config items (Twilio AccountSID+AuthToken to tenant-secret store, Deepgram + ElevenLabs API keys + voice ID, LLM provider, language allowlist, business hours, escalation phone, persona greeting). Each step wired to its server-side endpoint: tenant-secret-routes (credentials), persona PATCH (tone), tenant_phone_numbers register (E.164 routing). Voice-config wizard at apps/installer/src/app/wizard/[sessionId]/voice-config + server route at apps/installer/src/app/api/voice-config/[sessionId]. Outbound smoke-test and CSV/JSON white-glove import are operator-tooling extras tracked as deferred — not blocking pilot rollout."
           },
           "remaining": [
             "Deferred (post-GA enhancement, NOT a GA launch blocker — triaged 2026-06-03): Post-install outbound smoke test: place a test call to the registered number, verify the tenant-branded greeting plays. Deferred — manual verification works for the pilot; automation needs an outbound-test-harness.",
             "Deferred (post-GA enhancement, NOT a GA launch blocker — triaged 2026-06-03): White-glove CSV/JSON import: bulk-load enterprise tenants migrating from another platform. Deferred — first migration will be hand-walked; the pattern emerges from that.",
             "OnboardingFullProvisioner retry/partial-failure: FIXED in 1B-2 review — conflict caught, resolveExisting wired at boot (storage.search by email). resolveExisting returns null if tenant row or admin User not found (rethrows). Residual: if first attempt failed before startTrial AND resolveExisting returns null (e.g. storage down), conflict is rethrown — session stays retryable but requires manual intervention. (apps/api/src/onboarding-full-provisioner.ts, apps/api/src/index.ts)",
-            "SHIPPED (onboarding-redesign, local-held, commits 5c03bbde + 03fdf0a7) — PostgresOnboardingStore replaces InMemoryOnboardingStore: wizard session state persisted as jsonb (migration 281 onboarding_sessions_v2), lossless round-trip, idempotent UPSERT, multi-replica safe; survives API restart. The same shared instance also makes Phase 4 checkout/paid state (checkoutStatus/paidAt) durable. 5 real-PG tests. apps/api/src/postgres-onboarding-store.ts, apps/api/src/index.ts.",
             "Deepgram no-heal: a tenant whose deepgram_project_id exists but whose tenant_secrets.deepgram is missing cannot self-heal (Deepgram has no key-retrieval endpoint) — needs a $reprovision-deepgram flow (clear deepgram_project_id to force a fresh project) before Card 5 fail-closed turns this into a hard failure for production tenants. See apps/api/src/deepgram-project-provisioner.ts ensureProject() JSDoc for the remediation procedure. Integration point: apps/api/src/tenant-external-resources-store.ts, packages/storage/src/migrations/248_tenant_external_resources_deepgram.sql.",
             "cernia-ops isolation-posture-summary RBAC audit hardening: the global RBAC hook logs allow for a tenant-admin (tenant *:admin covers read:IsolationPostureSummary) before the handler-level isSuperAdmin check returns 403. Audit trail is misleading (allow event then 403 from handler). Harden by: (a) mapping /cernia-ops/* to a platform-only resource type not covered by tenant *:admin RoleBindings, OR (b) emitting a deny audit event from the handler before the 403 reply. See apps/api/src/isolation-posture-routes.ts handler + apps/api/src/iam-route-guards.ts deriveOperation(). Test 12 in isolation-posture-routes.test.ts proves the handler gate blocks correctly (P1-6 follow-up).",
             "per-tenant-stt-router.ts warnSharedDeepgram: fires on every request for a production tenant using the shared Deepgram key — needs dedup (e.g. per-tenant warn-once flag or rate-limit) to avoid log spam in production. apps/api/src/per-tenant-stt-router.ts.",
-            "SHIPPED (onboarding-redesign, local-held, commit f26086f3) — POST /onboarding/:id/numbers/search now rate-limited: per-session (10/60s) + per-IP (30/60s) in-memory sliding window → 429 generic body (no enumeration); CERNIA_ONBOARDING_SEARCH_* overrides. Stops an unauth caller with a valid session id from driving Twilio AvailablePhoneNumbers API cost. 7 + 4 tests. apps/api/src/onboarding-search-rate-limit.ts, apps/api/src/onboarding-routes.ts.",
             "P4 SHIPPED — number port-in DONE (Cards 1-6 complete 2026-06-08). Admin multi-number management surface SHIPPED 2026-06-15 (onboarding-redesign Phase 6): apps/api/src/admin-numbers-routes.ts (GET/POST $search/POST/DELETE /admin/numbers, RBAC billing.manage, tenant-scoped, CUSTOMER pricing local $10/toll-free $15, Twilio wholesale never surfaced) + apps/admin /admin/numbers page + sidebar nav. DEFERRED remaining: real Twilio pricing API call (monthlyCostCents is our customer-facing allowance price, intentionally NOT fetched from Twilio wholesale pricing); number reassign-between-tenants. Integration points: apps/api/src/admin-numbers-routes.ts, apps/api/src/telephony-store.ts.",
             "C4 boot-wiring DONE (2026-06-09): apps/api/src/index.ts now constructs the failover dep bundle via the new apps/api/src/voice-fallback-wiring.ts (buildVoiceFallbackWiring → buildVoiceFallbackBinProvisioner() + per-tenant PostgresVoiceFallbackStore + buildNumberConfigClient()) and threads it into BOTH the provisionTenantExternalResources call (numberConfig + failover deps) AND the voiceAgentAdminRoutes registration (opts.failover). Wiring is gated to real-Twilio posture only (provision: isProd && TWILIO_ACCOUNT_SID && TWILIO_AUTH_TOKEN; admin: telephony.id==='twilio' && tenantSecretResolver present) so dev/stub posture leaves it unwired and the promote gate keeps blocking (safe default). Per-tenant Twilio creds reuse the existing tenant_secrets provider='twilio' resolver pattern (vendorAccountId=subaccount SID, plaintext=auth token); resolveTenantTelephony joins those creds with tenant_external_resources.twilio_phone_number_sid. A provisioned number now gets a real platform-independent VoiceFallbackUrl. REMAINING (deferred, NOT a wiring gap): existing tenants whose number was provisioned BEFORE this wiring landed have voice_fallback_url=null until they either re-run onboarding or PATCH /api/voice-agent/fallback — a one-time backfill/$reprovision-failover sweep would close them out. Integration points: apps/api/src/index.ts, apps/api/src/voice-fallback-wiring.ts.",
             "Self-serve signup Plan 2 increment E residual — orphan provisional-tenant cleanup SWEEP SHIPPED (2026-06-14): apps/api/src/orphan-tenant-cleanup.ts (findOrphanProvisionalTenants + cleanupOrphanProvisionalTenants, dry-run-default, injected seams) deletes tenants older than a TTL (default 7d) AND invited-admin-only (no active user) AND not social-linked — the inert rows left when a reserve-on-Google-click signup is abandoned or the facility name is changed mid-signup. CLI: `pnpm --filter @cernia/api cleanup:orphan-tenants` (dry-run; `-- --apply` to delete). 8/8 fast unit tests (orphan-tenant-cleanup.unit.test.ts) + real-PG integration test (orphan-tenant-cleanup.test.ts). REMAINING: schedule the sweep (cron / ops job) — currently run-on-demand.",
-            "installer .eslintrc SHIPPED (2026-06-14): apps/installer/.eslintrc.json ({\"extends\":\"next/core-web-vitals\"}, mirrors apps/admin) — `pnpm --filter @cernia/installer lint` now runs and is clean. Closes the unsatisfiable-lint-gate gap surfaced while shipping the Plan-2 installer UI.",
             "Verified-SMS hard gate is BUILT end-to-end and flag-gated by CERNIA_SIGNUP_REQUIRE_PHONE (2026-06-15). One switch drives BOTH server and UI so they can't drift: server email path = $complete 409 (apps/api/src/onboarding-routes.ts), server Google path = reserve-tenant 409 (same file — the Google path provisions there, before the OAuth redirect, so $complete never sees it), and the installer UI reads GET /onboarding/config → requirePhone and blocks both 'Save & continue' and 'Continue with Google' until the admin phone is SMS-verified (apps/installer/.../account/page.tsx + phone-verify.tsx). Admin phone is also a REQUIRED field in both paths (validateAccount E.164) and is stamped onto User.mfa.mfaPhone by the provisioner. REMAINING: the flag is OFF by default because Twilio SMS isn't universally deliverable until A2P 10DLC registration is live (a prod tenant whose number can't receive SMS would otherwise be stranded) — flip CERNIA_SIGNUP_REQUIRE_PHONE=1 per-environment once SMS is reliably deliverable (in dev: tester's number in COMMS_DEV_ALLOWLIST). See apps/api/.env.example.",
             "SHIPPED (onboarding-redesign, local-held, commits 596d6d03 + 03fdf0a7) — A2P-status reconciliation closes the 10DLC go-live BLOCKER: apps/api/src/a2p-status-reconciler.ts (reconcileA2pRegistrations + scheduleA2pReconciler) runs once at boot + every A2P_RECONCILE_INTERVAL_MS (default 15m), reads pending tenant_messaging_registration rows, queries Twilio per-tenant with that tenant's subaccount creds (a2p-registrar.queryStatus: campaign->brand for 10DLC, /v1/Tollfree/Verifications for toll-free), maps APPROVED/VERIFIED->approved + FAILED/REJECTED/BLOCKED->rejected, UPDATEs changed rows, and calls smsComplianceGate.refresh() when any approve. Per-tenant error isolation; fail-safe (leaves rows pending on Twilio outage). 20 + 17 tests. REMAINING for prod: real Twilio subaccount creds (no real status without them), then flip CERNIA_ENFORCE_10DLC=1. Integration points: apps/api/src/a2p-status-reconciler.ts, apps/api/src/a2p-registrar.ts, apps/api/src/index.ts.",
             "SHIPPED (onboarding-redesign, local-held) — checkout-first payment: gate-on-payment design keyed to the onboarding session (no tenant exists at checkout). POST /onboarding/:id/checkout builds a Stripe Checkout Session (metadata cernia_onboarding_session + cernia_cart); checkout.session.completed marks the session paid (idempotent, no tenant grant — grants stay at $complete); $complete + reserve-tenant return 402 until isPaid; 'checkout' is the first wizard step (required iff a paid product); sandbox stays trial. 149 API + 139 onboarding + 27 installer tests. Integration points: apps/api/src/onboarding-routes.ts, apps/api/src/billing-routes.ts, apps/api/src/index.ts, apps/installer wizard checkout step. REMAINING for prod: live STRIPE_* keys + webhook secret (dev uses a checkout.stripe.test noop URL).",
             "SHIPPED (onboarding-redesign, local-held) — tenant-number SMS 10DLC gate is now enforceable: apps/api/src/sms-compliance-gate-boot.ts instantiates + feeds the TenDlcRegistry from approved tenant_messaging_registration rows and is consulted via an optional NotificationService smsPreSendHook (the chokepoint where appointment confirm/reminder SMS go FROM the tenant number; OTP/Twilio-Verify bypasses NotificationService and is exempt). Additive + FLAG-GATED (CERNIA_ENFORCE_10DLC, default OFF=advisory log), fail-OPEN on read errors. 15 + 4 tests. REMAINING for prod: flip CERNIA_ENFORCE_10DLC=1 per-env, but ONLY AFTER the A2P-status reconciliation above can mark rows 'approved' (else every tenant SMS blocks). Integration points: apps/api/src/sms-compliance-gate-boot.ts, packages/notifications/src/notification-service.ts, apps/api/src/index.ts.",
             "SHIPPED (onboarding-redesign, local-held) — facility profile persisted + E911/A2P on every number: tenant_facility_profile (migration 280) + apps/api/src/tenant-facility-store.ts persist the validated address + business identity at provision time; POST /admin/numbers now registers E911 (always) + submits A2P (when the tenant holds an SMS product) best-effort from that profile, so a number bought AFTER onboarding is no longer compliance-orphaned. 7 + 3 + 4 tests. REMAINING for prod: real Twilio subaccount creds (E911/A2P are Noop without them). Integration points: apps/api/src/tenant-facility-store.ts, apps/api/src/onboarding-full-provisioner.ts, apps/api/src/admin-numbers-routes.ts, apps/api/src/index.ts.",
-            "SHIPPED (onboarding-redesign, local-held, commit f26086f3) — facility address is now HARD-required at submit, product-driven: a structurally-valid facilityAddress is required whenever the product mix needs a number (aggregateRequirements.voice||.sms — phone-agent/digital-assistant/patient-portal), optional for api-webhooks/sandbox. Enforced in orchestrator validateAccount (addressRequiredForSession), a $complete + reserve-tenant 422 gate, and the installer account page (which also had a bug fixed: the Google path dropped the address). onboarding 153 + API 86 + installer 30. Integration points: packages/onboarding/src/wizard-orchestrator.ts, apps/api/src/onboarding-routes.ts, apps/installer account step.",
             "DEFERRED (onboarding-redesign) — in-app voice/SMS purchase parity: the billing grantProduct seam re-derives voice_tier on every in-app product grant (index.ts:1912-1936, DONE), but it does NOT auto-create a number-provisioning + A2P task. Needs a first-run-checklist / setup-task store (does not exist). Until then the admin self-serves a number via the new /admin/numbers surface. A guided admin first-run checklist UI (SSO/migration as professional-services tasks, port-in, team invites, EHR connect) is also deferred — voice-config + voice-policy persistence (migration 272) already shipped.",
             "DEFERRED (onboarding-redesign) — installer design-system polish: the installer adopted the shadcn token contract + Inter + applicability-aware WizardShell, but full shadcn primitive vendoring (Button/Input/Card/Select/Label/Separator) + a BrandProvider/FacilityWordmark frame is incremental and added per-page where new steps need it, rather than a wholesale migration. apps/installer/src/components/ui/*."
           ],
           "history": [
+            {
+              "date": "2026-07-11",
+              "stage": "tenant-provisioning",
+              "note": "Portal-truth audit: closed 4 stale `remaining` bullet(s) already implemented (verified against real code via parallel read-only audit agents). Moved to completed[]. Genuine residual + external-blocked bullets unchanged."
+            },
             {
               "date": "2026-06-15",
               "stage": "tenant-provisioning",
@@ -1942,7 +1965,29 @@
               "commit": "feat/p4-number-port-in (P4-6b)"
             }
           ],
-          "deferred": []
+          "deferred": [],
+          "completed": [
+            {
+              "bullet": "SHIPPED (onboarding-redesign, local-held, commits 5c03bbde + 03fdf0a7) — PostgresOnboardingStore replaces InMemoryOnboardingStore: wizard session state persiste",
+              "closedAt": "2026-07-11",
+              "note": "Verified implemented in code by the 2026-07-11 portal-truth audit (bullet already self-declared SHIPPED/DONE/RESOLVED/FIXED but was left in remaining, inflating the count). Full text preserved: SHIPPED (onboarding-redesign, local-held, commits 5c03bbde + 03fdf0a7) — PostgresOnboardingStore replaces InMemoryOnboardingStore: wizard session state persisted as jsonb (migration 281 onboarding_sessions_v2), lossless round-trip, idempotent UPSERT, multi-replica safe; survives API restart. The same shared instance also makes Phase 4 checkout/paid state (checkoutStatus/paidAt) durable. 5 real-PG tests. apps/api/src/postgres-onboarding-store.ts, apps/api/src/index.ts."
+            },
+            {
+              "bullet": "SHIPPED (onboarding-redesign, local-held, commit f26086f3) — POST /onboarding/:id/numbers/search now rate-limited: per-session (10/60s) + per-IP (30/60s) in-mem",
+              "closedAt": "2026-07-11",
+              "note": "Verified implemented in code by the 2026-07-11 portal-truth audit (bullet already self-declared SHIPPED/DONE/RESOLVED/FIXED but was left in remaining, inflating the count). Full text preserved: SHIPPED (onboarding-redesign, local-held, commit f26086f3) — POST /onboarding/:id/numbers/search now rate-limited: per-session (10/60s) + per-IP (30/60s) in-memory sliding window → 429 generic body (no enumeration); CERNIA_ONBOARDING_SEARCH_* overrides. Stops an unauth caller with a valid session id from driving Twilio AvailablePhoneNumbers API cost. 7 + 4 tests. apps/api/src/onboarding-search-rate-limit.ts, apps/api/src/onboarding-routes.ts."
+            },
+            {
+              "bullet": "installer .eslintrc SHIPPED (2026-06-14): apps/installer/.eslintrc.json ({\"extends\":\"next/core-web-vitals\"}, mirrors apps/admin) — `pnpm --filter @cernia/instal",
+              "closedAt": "2026-07-11",
+              "note": "Verified implemented in code by the 2026-07-11 portal-truth audit (bullet already self-declared SHIPPED/DONE/RESOLVED/FIXED but was left in remaining, inflating the count). Full text preserved: installer .eslintrc SHIPPED (2026-06-14): apps/installer/.eslintrc.json ({\"extends\":\"next/core-web-vitals\"}, mirrors apps/admin) — `pnpm --filter @cernia/installer lint` now runs and is clean. Closes the unsatisfiable-lint-gate gap surfaced while shipping the Plan-2 installer UI."
+            },
+            {
+              "bullet": "SHIPPED (onboarding-redesign, local-held, commit f26086f3) — facility address is now HARD-required at submit, product-driven: a structurally-valid facilityAddre",
+              "closedAt": "2026-07-11",
+              "note": "Verified implemented in code by the 2026-07-11 portal-truth audit (bullet already self-declared SHIPPED/DONE/RESOLVED/FIXED but was left in remaining, inflating the count). Full text preserved: SHIPPED (onboarding-redesign, local-held, commit f26086f3) — facility address is now HARD-required at submit, product-driven: a structurally-valid facilityAddress is required whenever the product mix needs a number (aggregateRequirements.voice||.sms — phone-agent/digital-assistant/patient-portal), optional for api-webhooks/sandbox. Enforced in orchestrator validateAccount (addressRequiredForSession), a $complete + reserve-tenant 422 gate, and the installer account page (which also had a bug fixed: the Google path dropped the address). onboarding 153 + API 86 + installer 30. Integration points: packages/onboarding/src/wizard-orchestrator.ts, apps/api/src/onboarding-routes.ts, apps/installer account step."
+            }
+          ]
         },
         {
           "id": "tenant-customization",
@@ -2374,15 +2419,19 @@
           },
           "current": {
             "status": "partial",
-            "asOf": "2026-06-03",
+            "asOf": "2026-07-11",
             "summary": "Real backends shipped + admin surfaces increasingly E2E-verified against the REAL stack (no fabricated data anywhere). Live + real-stack-E2E-gated: compliance (evidence + auditor-access registries), ai-governance model-cards, cqm execution-runs, ig-profiles validation-results, voice-improvements review surface, migration-jobs, edge-fleet, extensions, sensitive-data, posture. Deferred with rationale (ADR-0127): billing voice-budget (needs path-vs-JWT tenant guard before exposure) + billing/usage page (needs a Subscription fixture for its E2E); ai-governance bias-reports/approvals routes still ungated (remaining[0]). 31 sample admin pages remain."
           },
           "remaining": [
             "BiasReport + ApprovalRequest: PERSISTENCE SHIPPED 2026-06-01 (migration 134 + ai-governance-store.ts) and HTTP ROUTE SURFACE SHIPPED 2026-06-01 — apps/api/src/ai-governance-routes.ts now exposes POST/GET /admin/ai-governance/bias-reports (+ /:id), POST/GET /admin/ai-governance/approvals (+ /:id), POST /admin/ai-governance/approvals/:id/$decide (quorum recompute), all tenant-scoped + mounted at boot (index.ts 10f-ai-gov), route-level real-PG tested 5/5 (ai-governance-bias-approvals.integration.test.ts). ADMIN UI SHIPPED 2026-06-01: apps/admin/src/app/admin/ai-governance/{ai-governance-api.ts,bias/page.tsx,approvals/page.tsx} now consume the routes (typed client listBiasReports/listApprovalRequests + getters; the bias + approvals pages fetch-on-load → render the tenant's records read-only with clean empty-states + error banners, mirroring the model-cards page). @cernia/admin typecheck=0, lint=0. The $decide write surface now ships — see history 2026-06-01 (ra-ui-aigov-decide): ai-governance-api.ts decideApproval + a DecisionPanel (role/decision/approver/comment) on pending requests in approvals/page.tsx, @cernia/admin typecheck=0. REMAINING for this stage: none blocking (approver notifications are tracked under the discount/notifications work). || UPDATE 2026-06-03: the model-cards sub-surface is NOW CLOSED (deriveOperation ModelCard mapping added + cqm-ig-gov.spec.ts AI-governance test green); this bullet now tracks ONLY the bias-reports + approvals routes, which still lack a deriveOperation mapping (403 under the global hook) and have no admin-UI E2E gate.",
-            "Sensitive-data follow-up: the dedicated `legal_holds` Postgres table + store now ship — see history 2026-06-01 (ra-sd-legalhold): migration 140_legal_holds.sql + apps/api/src/legal-hold-store.ts (PostgresLegalHoldRegistry implementing the @cernia/k4-rbac-audit-log LegalHoldRegistry interface — place/release/getById/listActive/isEventOnHold, with placedBy/releasedBy reviewer write-back), real-PG tested 5/5. Full paginated list endpoints SHIPPED 2026-05-30 (GET .../break-glass-events/list, .../legal-holds/list, .../proxy-grants/list). apps/api/src/sensitive-data-routes.ts now READS the dedicated legal_holds table — see history 2026-06-01 (ra-sd-wire): both legal-holds endpoints use PostgresLegalHoldRegistry.listActive() instead of the rbac_audit_events meta-audit scan, real-PG tested + the legacy tests reconciled to the new source. Break-glass→hold write-back now ships — see history 2026-06-01 (ra-sd-bg-hold): a successful POST /access/break-glass/$invoke auto-place()s a legal hold scoped to {tenant, invoker, patient} (best-effort/non-fatal so it never blocks emergency access), wired via buildCaregiverFederationRuntime in index.ts, real-PG 4/4 + caregiver-federation regression 8/8. This sensitive-data legal-holds sub-track is now functionally complete (dedicated table + store + read endpoints + break-glass write-back).",
             "Plugin UPLOAD flow (.cernia-plugin archive ingest via @cernia/extension-runtime package-loader + signature verification) — the ingest SERVICE now ships: see history 2026-06-01 (ra-ext-archive): apps/api/src/plugin-archive-ingest.ts (ingestPluginArchive → loadPluginPackage verifies manifest + signature + rejects forbidden imports, then records the install via PostgresPluginInstallationStore; fails CLOSED on bad signature / forbidden import — no row written), real-PG tested 4/4. The manifest-based per-tenant install record shipped 2026-05-30 (tenant_plugin_installations, migration 132). The HTTP upload route now ships — see history 2026-06-01 (ra-ext-upload): POST /admin/extensions/installations/$upload in apps/api/src/extensions-routes.ts accepts a RawPackageContents JSON body → ingestPluginArchive (configurable signatureVerifier option, TrustAll default in dev); 201 install / 422 signature-rejected / 400 invalid-manifest, fails CLOSED; real-PG route-tested 7/7 + the existing extensions tests still 5/5. REMAINING: a multipart (binary .cernia-plugin file) upload form variant + wiring the real @cernia/marketplace package-signer verifier in production (tests inject TrustAll/TrustNone)."
           ],
           "history": [
+            {
+              "date": "2026-07-11",
+              "stage": "phase-3-6-specialized",
+              "note": "Portal-truth audit: closed 1 stale `remaining` bullet(s) already implemented (verified against real code via parallel read-only audit agents). Moved to completed[]. Genuine residual + external-blocked bullets unchanged."
+            },
             {
               "date": "2026-06-03",
               "stage": "phase-3-6-specialized",
@@ -2492,6 +2541,13 @@
               "date": "2026-05-27",
               "stage": "phase-3-6-specialized",
               "note": "ra-sde-2 closed — /admin/ai-governance routes + dashboard. apps/api/src/ai-governance-routes.ts mounts 3 routes: GET /admin/ai-governance/samd-class/:level/approvals (approval-role requirements per IMDRF class), POST /admin/ai-governance/samd-class/$classify (input → SaMD class + approval requirements), POST /admin/ai-governance/model-cards/$generate (Model Card with limitation auto-inference + markdown rendering). All wrap @cernia/p4a-samd-classifier pure functions. 12 in-process unit tests pass covering approval shapes (class-i/iii/iv/invalid), the IMDRF risk matrix (5 corners + invalid + empty), and Model Card generation (happy / missing-fields / AUC-below-threshold-adds-limitation). apps/admin/ai-governance: typed client + dashboard swap (4 entry-point tiles + full IMDRF matrix table) + live SaMD wizard (radio-form posts to $classify, renders class + dual-control roles or all-clear). Persistence of SamdAssessment / BiasReport / ApprovalRequest FHIR resources is the next followup; bias + approvals sub-pages retained as honest empty-states. apps/api typecheck clean; apps/admin typecheck clean."
+            }
+          ],
+          "completed": [
+            {
+              "bullet": "Sensitive-data follow-up: the dedicated `legal_holds` Postgres table + store now ship — see history 2026-06-01 (ra-sd-legalhold): migration 140_legal_holds.sql ",
+              "closedAt": "2026-07-11",
+              "note": "Verified implemented in code by the 2026-07-11 portal-truth audit (bullet already self-declared SHIPPED/DONE/RESOLVED/FIXED but was left in remaining, inflating the count). Full text preserved: Sensitive-data follow-up: the dedicated `legal_holds` Postgres table + store now ship — see history 2026-06-01 (ra-sd-legalhold): migration 140_legal_holds.sql + apps/api/src/legal-hold-store.ts (PostgresLegalHoldRegistry implementing the @cernia/k4-rbac-audit-log LegalHoldRegistry interface — place/release/getById/listActive/isEventOnHold, with placedBy/releasedBy reviewer write-back), real-PG tested 5/5. Full paginated list endpoints SHIPPED 2026-05-30 (GET .../break-glass-events/list, .../legal-holds/list, .../proxy-grants/list). apps/api/src/sensitive-data-routes.ts now READS the dedicated legal_holds table — see history 2026-06-01 (ra-sd-wire): both legal-holds endpoints use PostgresLegalHoldRegistry.listActive() instead of the rbac_audit_events meta-audit scan, real-PG tested + the legacy tests reconciled to the new source. Break-glass→hold write-back now ships — see history 2026-06-01 (ra-sd-bg-hold): a successful POST /access/break-glass/$invoke auto-place()s a legal hold scoped to {tenant, invoker, patient} (best-effort/non-fatal so it never blocks emergency access), wired via buildCaregiverFederationRuntime in index.ts, real-PG 4/4 + caregiver-federation regression 8/8. This sensitive-data legal-holds sub-track is now functionally complete (dedicated table + store + read endpoints + break-glass write-back)."
             }
           ]
         },
@@ -2817,18 +2873,19 @@
           },
           "current": {
             "status": "complete",
-            "asOf": "2026-05-29",
+            "asOf": "2026-07-11",
             "summary": "packages/testing-real-services shipped: per-test Postgres schema (createPostgresFixture) + Redis prefix + MinIO bucket + NATS namespace + Mailpit. The full-schema path is now FAST via createMigratedDatabaseFixture() — a CREATE DATABASE TEMPLATE clone (~60ms/test) of a once-built template, replacing the slow per-test migration run. ra-cit-harness-1 resolved (was never a hang — fsync-bound table rewrites; see iter-110/111 history)."
           },
           "evidence": [],
           "remaining": [
-            "RESOLVED 2026-05-30 — migration-chain break FIXED + full chain verified end-to-end. The chain previously HALTED on a fresh deploy at 080_stripe_invoices.sql because `invoices` was created by TWO incompatible migrations (024 @cernia/billing + 080 @cernia/m3-stripe-invoice). Fix (commit 2e5fa624): renamed 080's table+indexes+comments `invoices`→`stripe_invoices` and its sole consumer (m3-stripe-invoice store + test); @cernia/billing keeps 024's `invoices`. VERIFICATION: a clean fresh-apply replay of ALL 115 source migrations into a throwaway DB now applies 115/115 → 128 tables (previously died at 080 with only 52). No further hard collisions; the comprehensive duplicate-CREATE-TABLE scan confirmed `invoices` was the only one. m3 typecheck=0; m3 real-PG 20/22 (2 pre-existing baseline-confirmed failures, see next bullet).",
-            "FIXED 2026-05-30 — PostgresInvoiceStore.recordPaymentFailure() now populates invoice_failures.tenant_id (NOT NULL, denormalised from the invoice per ADR 0004) by resolving the owning invoice's tenant_id from stripe_invoices and including it in the insert; throws if the invoice doesn't exist (a failure can't be recorded for a non-existent invoice). No InvoiceStore signature / migration change — realizes migration 080's documented intent. The 2 previously-failing m3 tests now seed the invoice first; m3 real-PG suite is 22/22 green, full m3 suite 176/176, typecheck=0, build clean.",
-            "Cleanup (benign, found 2026-05-30): caregiver_proxy_relationships is re-declared by BOTH 049_caregiver_proxy_relationships.sql AND 072_caregiver_proxy.sql — identical column set (049 adds a revoked_by CHECK; 072 a state DEFAULT 'active'). 072's CREATE TABLE IF NOT EXISTS silently no-ops; no runtime break (both consumers read the same columns), but 072 should drop its redundant CREATE TABLE so the migration set has exactly one creator per table. Bundle into the migration-collision remediation.",
-            "DONE 2026-05-30 — REGENERATED cernia-schema-snapshot.sql (was stale at 52 tables → now 128, all migration end-state DDL). Hardened scripts/generate-schema-snapshot.mjs with a COMPLETENESS GUARD that aborts if the source DB has materially fewer tables than the migrations define (this is what would have caught the silent 52-table staleness) + an offline mode + schema_migrations seeding. Verified: the new snapshot replays cleanly into a fresh DB (psql ON_ERROR_STOP=1, exit 0 → 128 tables) and the drift-guard test (snapshot ⊆ migrations) stays green. Reverse-guard (migrations ⊆ snapshot, fail-on-new-migration-without-regen) intentionally NOT added — it would force a ~16-min regen on every migration PR; the completeness guard + drift-guard cover the real failure modes.",
-            "DONE 2026-05-30 — the regenerated snapshot now SEEDS schema_migrations (115 INSERT rows, schema-qualified for pg_dump's empty search_path) so a createMigratedDatabaseFixture clone reports as fully-migrated (verified: 115 schema_migrations rows after replay)."
+            "Cleanup (benign, found 2026-05-30): caregiver_proxy_relationships is re-declared by BOTH 049_caregiver_proxy_relationships.sql AND 072_caregiver_proxy.sql — identical column set (049 adds a revoked_by CHECK; 072 a state DEFAULT 'active'). 072's CREATE TABLE IF NOT EXISTS silently no-ops; no runtime break (both consumers read the same columns), but 072 should drop its redundant CREATE TABLE so the migration set has exactly one creator per table. Bundle into the migration-collision remediation."
           ],
           "history": [
+            {
+              "date": "2026-07-11",
+              "stage": "harness",
+              "note": "Portal-truth audit: closed 4 stale `remaining` bullet(s) already implemented (verified against real code via parallel read-only audit agents). Moved to completed[]. Genuine residual + external-blocked bullets unchanged."
+            },
             {
               "date": "2026-05-30",
               "stage": "harness",
@@ -2897,6 +2954,26 @@
               "bullet": "Redis / MinIO / NATS / Mailpit per-test namespacing + cleanup",
               "closedAt": "2026-05-27",
               "note": "CIT harness: packages/testing-real-services/src/{mailpit,nats}-fixture.ts shipped (Mailpit via HTTP API with X-Cernia-Test-Id stamp + waitForCount + drain on cleanup; NATS namespace-only fixture with subject/stream prefixes — consumer owns the client lifecycle). createIsolatedTestEnv() now spins all 5 services (pg, redis, s3, nats, mailpit) in parallel and tears them down via Promise.allSettled. 18 new tests cover the fixture contract."
+            },
+            {
+              "bullet": "RESOLVED 2026-05-30 — migration-chain break FIXED + full chain verified end-to-end. The chain previously HALTED on a fresh deploy at 080_stripe_invoices.sql bec",
+              "closedAt": "2026-07-11",
+              "note": "Verified implemented in code by the 2026-07-11 portal-truth audit (bullet already self-declared SHIPPED/DONE/RESOLVED/FIXED but was left in remaining, inflating the count). Full text preserved: RESOLVED 2026-05-30 — migration-chain break FIXED + full chain verified end-to-end. The chain previously HALTED on a fresh deploy at 080_stripe_invoices.sql because `invoices` was created by TWO incompatible migrations (024 @cernia/billing + 080 @cernia/m3-stripe-invoice). Fix (commit 2e5fa624): renamed 080's table+indexes+comments `invoices`→`stripe_invoices` and its sole consumer (m3-stripe-invoice store + test); @cernia/billing keeps 024's `invoices`. VERIFICATION: a clean fresh-apply replay of ALL 115 source migrations into a throwaway DB now applies 115/115 → 128 tables (previously died at 080 with only 52). No further hard collisions; the comprehensive duplicate-CREATE-TABLE scan confirmed `invoices` was the only one. m3 typecheck=0; m3 real-PG 20/22 (2 pre-existing baseline-confirmed failures, see next bullet)."
+            },
+            {
+              "bullet": "FIXED 2026-05-30 — PostgresInvoiceStore.recordPaymentFailure() now populates invoice_failures.tenant_id (NOT NULL, denormalised from the invoice per ADR 0004) b",
+              "closedAt": "2026-07-11",
+              "note": "Verified implemented in code by the 2026-07-11 portal-truth audit (bullet already self-declared SHIPPED/DONE/RESOLVED/FIXED but was left in remaining, inflating the count). Full text preserved: FIXED 2026-05-30 — PostgresInvoiceStore.recordPaymentFailure() now populates invoice_failures.tenant_id (NOT NULL, denormalised from the invoice per ADR 0004) by resolving the owning invoice's tenant_id from stripe_invoices and including it in the insert; throws if the invoice doesn't exist (a failure can't be recorded for a non-existent invoice). No InvoiceStore signature / migration change — realizes migration 080's documented intent. The 2 previously-failing m3 tests now seed the invoice first; m3 real-PG suite is 22/22 green, full m3 suite 176/176, typecheck=0, build clean."
+            },
+            {
+              "bullet": "DONE 2026-05-30 — REGENERATED cernia-schema-snapshot.sql (was stale at 52 tables → now 128, all migration end-state DDL). Hardened scripts/generate-schema-snaps",
+              "closedAt": "2026-07-11",
+              "note": "Verified implemented in code by the 2026-07-11 portal-truth audit (bullet already self-declared SHIPPED/DONE/RESOLVED/FIXED but was left in remaining, inflating the count). Full text preserved: DONE 2026-05-30 — REGENERATED cernia-schema-snapshot.sql (was stale at 52 tables → now 128, all migration end-state DDL). Hardened scripts/generate-schema-snapshot.mjs with a COMPLETENESS GUARD that aborts if the source DB has materially fewer tables than the migrations define (this is what would have caught the silent 52-table staleness) + an offline mode + schema_migrations seeding. Verified: the new snapshot replays cleanly into a fresh DB (psql ON_ERROR_STOP=1, exit 0 → 128 tables) and the drift-guard test (snapshot ⊆ migrations) stays green. Reverse-guard (migrations ⊆ snapshot, fail-on-new-migration-without-regen) intentionally NOT added — it would force a ~16-min regen on every migration PR; the completeness guard + drift-guard cover the real failure modes."
+            },
+            {
+              "bullet": "DONE 2026-05-30 — the regenerated snapshot now SEEDS schema_migrations (115 INSERT rows, schema-qualified for pg_dump's empty search_path) so a createMigratedDa",
+              "closedAt": "2026-07-11",
+              "note": "Verified implemented in code by the 2026-07-11 portal-truth audit (bullet already self-declared SHIPPED/DONE/RESOLVED/FIXED but was left in remaining, inflating the count). Full text preserved: DONE 2026-05-30 — the regenerated snapshot now SEEDS schema_migrations (115 INSERT rows, schema-qualified for pg_dump's empty search_path) so a createMigratedDatabaseFixture clone reports as fully-migrated (verified: 115 schema_migrations rows after replay)."
             }
           ]
         },
@@ -2911,15 +2988,19 @@
           },
           "current": {
             "status": "partial",
-            "asOf": "2026-05-31",
+            "asOf": "2026-07-11",
             "summary": "pg-mem is FULLY ELIMINATED (verified 2026-05-31: absent from every package.json, zero createPgMemKysely() callers across packages+apps, pgmem-polyfills.ts deleted). The remaining stub class is InMemory* only — saas-conformance.mjs no-in-process-stubs counts 360 (down from 384), ALL tech-debt severity, 0 blocker. Those split into: (a) apps/api no-db FALLBACK adapters — boot wires the Postgres store when a db is present, the InMemory one runs only db-less (local/test); abolishing them = dropping db-less boot support (architecture decision); (b) @cernia/auth-providers default stores whose abolition is gated on the Redis-vs-Postgres OIDC-state decision; (c) package test-fixtures to relocate to /testing subpaths (cosmetic). None are dead code."
           },
           "evidence": [],
           "remaining": [
-            "DONE 2026-05-31 — pg-mem fully eliminated: not a dependency in any package.json, zero createPgMemKysely() callers, and packages/storage/src/testing/pgmem-polyfills.ts is deleted. (The earlier 'migrate ~hundreds of pg-mem tests' + 'delete pgmem-polyfills.ts' bullets are closed — pg-mem has no remaining footprint; the real-services migration happened incrementally across the closure passes.)",
             "InMemory* abolition (DECISION-GATED — all tech-debt / 0 blocker): the 18 apps/api InMemory* classes are the db-less boot FALLBACK (Postgres wired when a db is present), so removing them is an architecture decision (drop db-less boot?). The multi-pod auth-store decision is now RESOLVED via the Redis-gated-with-in-memory-fallback pattern: OidcStateStore (RedisOidcStateStore), MFA-challenge (RedisMfaChallengeStore, PR #506), and TOTP-enrollment (RedisTotpEnrollmentStore, PR #507) all resolve to Redis at boot when getRedisClient() returns a client, in-memory only db-less/single-pod. Remaining in this family: InMemoryRefreshTokenStore has no Redis twin — CONFIRMED NOT a live multi-pod gap (2026-07-11): the @cernia/auth-providers StandardRefreshFlow is not wired live (admin-tenants-routes.ts:1400 explicitly defers it), and the @cernia/smart-on-fhir InMemoryRefreshTokenStore at smart-bootstrap.ts:235 is part of the whole SMART-bootstrap dev-wiring deferral tracked under ADR-0017 §6 (client registry + auth codes + refresh tokens + launch contexts all move to FHIR-storage together, not a single-store swap). Building a Redis refresh-token store now would be speculative — no live refresh flow to harden. Remaining package test-fixture InMemory* classes should move to /testing subpaths (cosmetic). None are dead code; each needs a product/architecture call, not a mechanical sweep."
           ],
           "history": [
+            {
+              "date": "2026-07-11",
+              "stage": "stubs-abolished",
+              "note": "Portal-truth audit: closed 1 stale `remaining` bullet(s) already implemented (verified against real code via parallel read-only audit agents). Moved to completed[]. Genuine residual + external-blocked bullets unchanged."
+            },
             {
               "date": "2026-07-11",
               "stage": "stubs-abolished",
@@ -3149,6 +3230,11 @@
               "bullet": "FhirStorageTenantProvisioner ready (apps/api/src/fhir-storage-tenant-provisioner.ts) — onboarding-wizard $complete persists real Tenant+User via storageWriter (DONE 2026-05-26)",
               "closedAt": "2026-05-26",
               "note": "10/10 tests incl. SECURITY plaintext-absent probe"
+            },
+            {
+              "bullet": "DONE 2026-05-31 — pg-mem fully eliminated: not a dependency in any package.json, zero createPgMemKysely() callers, and packages/storage/src/testing/pgmem-polyfi",
+              "closedAt": "2026-07-11",
+              "note": "Verified implemented in code by the 2026-07-11 portal-truth audit (bullet already self-declared SHIPPED/DONE/RESOLVED/FIXED but was left in remaining, inflating the count). Full text preserved: DONE 2026-05-31 — pg-mem fully eliminated: not a dependency in any package.json, zero createPgMemKysely() callers, and packages/storage/src/testing/pgmem-polyfills.ts is deleted. (The earlier 'migrate ~hundreds of pg-mem tests' + 'delete pgmem-polyfills.ts' bullets are closed — pg-mem has no remaining footprint; the real-services migration happened incrementally across the closure passes.)"
             }
           ]
         },
