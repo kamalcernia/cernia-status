@@ -527,10 +527,25 @@
             }
           ],
           "remaining": [
-            "Scheduler `schedule` triggers still resolve from the in-memory WorkflowScheduler registry (no storage-backed schedule resolver yet); the event/webhook/manual paths are now storage-backed (apps/api/src/postgres-trigger-workflow-resolver.ts). A schedule equivalent that loads tenant-authored cron Workflows at boot/tick is the remaining follow-up.",
-            "Scheduler `schedule` triggers honour `timezone:'UTC'` only — per-trigger IANA offset / DST handling is deferred (packages/executor/src/scheduler.ts cronMatches)."
+            "Storage-backed scheduler SHIPPED — PR #498 (2026-07-11): migration 290 scheduled_workflows + IScheduledWorkflowStore (InMemory + Postgres) in packages/executor; WorkflowScheduler gains registerDurable/unregisterDurable (write-through) + hydrate() (rehydrate on boot, bad-row-skip); apps/api registration surface POST/DELETE /admin/workflows/:id/$schedule (admin-schedule-routes.ts, deriveOperation→{Workflow,write|delete}) + boot hydrate. Real-PG store round-trip + hydrate-then-tick proven (rehydrated schedules fire after a simulated restart); executor 270/270. REMAINING (narrowed): a boot-scan that auto-registers already-authored active cron Workflows (today they register via the route or persisted store, not a scan of all authored workflows) + a live HTTP boot smoke of the route.",
+            "CORRECTION: the prior 'timezone:UTC only / IANA deferred' note was STALE — packages/executor/src/scheduler.ts already handles IANA zones (assertValidTimezone + Intl.DateTimeFormat in cronMatches; a passing America/New_York test exists). No remaining work."
           ],
           "history": [
+            {
+              "date": "2026-07-11",
+              "stage": "bot-workflow-runtime",
+              "from": "remaining",
+              "to": "narrowed",
+              "note": "Storage-backed WorkflowScheduler + registration surface shipped (PR #498). The scheduler previously booted, ticked an EMPTY map, and had no registration path — so ad-hoc tenant crons never survived a restart (or ran). Now: migration 290 scheduled_workflows + IScheduledWorkflowStore (InMemory + PostgresScheduledWorkflowStore) in packages/executor; WorkflowScheduler gains registerDurable/unregisterDurable (write-through) + hydrate() (rehydrate on boot; a bad row is logged + skipped, never fails boot) with the sync register/unregister unchanged; apps/api POST/DELETE /admin/workflows/:id/$schedule (admin-schedule-routes.ts) with a deriveOperation branch → {Workflow, write|delete} (tenant-admin authorises; unmatched /admin/* fail-closes), tenant from rbacClaims (ADR-0004); index.ts constructs the Postgres store + hydrates BEFORE the first tick. Verified: executor 270/270 incl. a real-Postgres store round-trip and a hydrate-then-tick test proving rehydrated schedules fire after a simulated restart; typecheck clean; ESM-only. Also corrected a STALE bullet: IANA/DST timezones were already implemented.",
+              "files": [
+                "packages/storage/src/migrations/290_scheduled_workflows.sql",
+                "packages/executor/src/scheduled-workflow-store.ts",
+                "packages/executor/src/scheduler.ts",
+                "apps/api/src/admin-schedule-routes.ts",
+                "apps/api/src/iam-route-guards.ts",
+                "apps/api/src/index.ts"
+              ]
+            },
             {
               "date": "2026-06-13",
               "stage": "bot-workflow-runtime",
@@ -636,11 +651,24 @@
             }
           ],
           "remaining": [
-            "Persist gateway CostStore + AuditLog into PostgresCostLedgerStore + PostgresTraceStore (Wave O-AI4/O-AI6) so the FinOps + AI-obs dashboards see real gateway traffic from voice-agent turns. Boot wiring complete (see 2026-06-07 history entry); per-call tenantId now flows from each dialog turn into the gateway (ClaudeRequest.tenantId → gateway complete() call — 1A-2 review, 2026-06-07). The boot-time CERNIA_DEFAULT_TENANT_ID ?? \"platform\" is only the fallback for turns that carry no tenantId.",
-            "Capture live prediction streams into a rolling-window reference + current dataset feeding the drift endpoint — the capture STORE now ships: see history 2026-06-01 (ra-ml-driftcap): migration 142_ml_prediction_samples + apps/api/src/ml-prediction-capture-store.ts (capture + referenceWindow/currentWindow/windowedDatasets returning @cernia/p3b-drift-monitoring PredictionRecord[], the exact shape /admin/ml/drift/$compute consumes), real-PG 5/5. The capture + read ROUTES now ship — see history 2026-06-01 (ra-ml-driftwire): ml-drift-routes.ts gained POST /admin/ml/drift/:model/:version/$capture + GET .../windowed (windowedDatasets→computeReport→DriftReport), wired with {db} in index.ts; real-PG route-tested 5/5. Auto-capture from the live dispatch path now ships — see history 2026-06-01 (ra-ml-autocapture): ml-platform-routes.ts best-effort-captures a sample on each successful $predict (captureDb threaded through buildMlPlatformRuntime + wired in index.ts), real-PG 3/3 + existing 21/21. This drift-monitoring sub-track is functionally complete end-to-end (capture → window → computeReport); only dashboards/alerting on the DriftReport remain (tracked under operational-monitoring).",
-            "Tech-debt follow-up: duplicated flattenContent helper across providers-openai / providers-google / providers-bedrock should be extracted to a shared util in a later pass."
+            "Gateway cost + trace WRITE-through now ship (Wave O-AI4/O-AI6) so the FinOps + AI-obs dashboards see real gateway traffic: cost — PR #499 (2026-07-11, CostStore ICostLedgerSink → o4 CostLedger via apps/api makeO4CostLedgerSink, non-blocking); traces — PR #500 (2026-07-11, complete() ITraceSink → o6 TraceRecorder/PostgresTraceStore via makeO6TraceSink, redacted content only). REMAINING (narrowed): (a) AuditLog is still in-memory (hash-only; not persisted) — a durable audit sink is the follow-up; (b) trace emit is success-only — error-path traces (calls that throw before completion) are deferred; (c) request/response bodies persist only when replay is opted in.",
+            "Capture live prediction streams into a rolling-window reference + current dataset feeding the drift endpoint — the capture STORE now ships: see history 2026-06-01 (ra-ml-driftcap): migration 142_ml_prediction_samples + apps/api/src/ml-prediction-capture-store.ts (capture + referenceWindow/currentWindow/windowedDatasets returning @cernia/p3b-drift-monitoring PredictionRecord[], the exact shape /admin/ml/drift/$compute consumes), real-PG 5/5. The capture + read ROUTES now ship — see history 2026-06-01 (ra-ml-driftwire): ml-drift-routes.ts gained POST /admin/ml/drift/:model/:version/$capture + GET .../windowed (windowedDatasets→computeReport→DriftReport), wired with {db} in index.ts; real-PG route-tested 5/5. Auto-capture from the live dispatch path now ships — see history 2026-06-01 (ra-ml-autocapture): ml-platform-routes.ts best-effort-captures a sample on each successful $predict (captureDb threaded through buildMlPlatformRuntime + wired in index.ts), real-PG 3/3 + existing 21/21. This drift-monitoring sub-track is functionally complete end-to-end (capture → window → computeReport); only dashboards/alerting on the DriftReport remain (tracked under operational-monitoring)."
           ],
           "history": [
+            {
+              "date": "2026-07-11",
+              "stage": "ml-platform",
+              "from": "remaining",
+              "to": "narrowed",
+              "note": "Gateway cost + trace WRITE-through shipped (Wave O-AI4/O-AI6) — the dashboards read durable stores that the gateway never wrote to. (1) PR #499 (merge on main): CostStore gains a non-blocking ICostLedgerSink seam (packages/o1-llm-gateway/src/cost-tracking.ts); apps/api makeO4CostLedgerSink (llm-gateway-routes.ts) adapts it onto the EXISTING o4 CostLedger (o4_llm_cost_ledger, mig 075) — CostRecord→CostEntryInput, USD→integer cents; wired at boot via buildLlmGatewayFromEnv. A duplicate llm_cost_ledger table was drafted then removed pre-commit when the o4 ledger was found. gateway 136/136 + adapter 2/2. (2) PR #500 (merge on main): complete() emits ONE completed-call trace per request via a non-blocking ITraceSink (packages/o1-llm-gateway/src/trace-sink.ts) — REDACTED prompt + PRE-rehydration (redacted) output, tokens, finishReason, latency, ok/error from safety risk; apps/api makeO6TraceSink adapts it onto the existing o6 TraceRecorder/PostgresTraceStore (mig 091); wired at boot. gateway 138/138 + adapter 2/2. Also PR #497: the duplicated flattenContent helper was unified into content-flatten.ts (fixing a bedrock tool_result/tool_use drop) — that remaining bullet is now removed. REMAINING (narrowed in bullet): durable AuditLog sink (hash-only, still in-memory) + error-path traces.",
+              "files": [
+                "packages/o1-llm-gateway/src/cost-tracking.ts",
+                "packages/o1-llm-gateway/src/trace-sink.ts",
+                "packages/o1-llm-gateway/src/content-flatten.ts",
+                "apps/api/src/llm-gateway-routes.ts",
+                "apps/api/src/index.ts"
+              ]
+            },
             {
               "date": "2026-06-07",
               "stage": "ml-platform",
