@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-12T01:06:32.525Z",
-    "lastUpdatedDisplay": "Jul 12, 2026 — 01:06 EDT",
+    "lastUpdatedIso": "2026-07-12T01:15:00.650Z",
+    "lastUpdatedDisplay": "Jul 12, 2026 — 01:15 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #501 docs(status): reconcile production-readiness (O-AI"
   },
   "summary": {
-    "currentMainCommit": "4c6bf7f7",
+    "currentMainCommit": "76a222ef",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2380,
+    "agentsCompletedThisSession": 2382,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2380 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2382 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #501 docs(status): reconcile production-readiness (O-AI4/O-AI6 co. (refreshed Jul 12, 2026 — 01:06 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #501 docs(status): reconcile production-readiness (O-AI4/O-AI6 co. (refreshed Jul 12, 2026 — 01:15 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "1 PR opened in last hour · 15 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-11T21:06:02-04:00",
+      "lastMergeIso": "2026-07-11T21:14:29-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 14,
       "openPrs": 1,
@@ -5822,19 +5822,19 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-12T01:06:31.667Z",
+      "lastAuditAt": "2026-07-12T01:14:59.695Z",
       "backendRouteSymbolCount": 219,
       "deferredItems": {
-        "total": 993,
+        "total": 994,
         "bySeverity": {
           "tech-debt": 280,
-          "review": 708,
+          "review": 709,
           "blocker": 5
         },
         "byKind": {
           "docstring-caveat": 263,
           "not-configured-fallback": 116,
-          "type-cheat-cast": 591,
+          "type-cheat-cast": 592,
           "todo-comment": 3,
           "type-cheat": 1,
           "deferred-marker": 2,
@@ -5845,7 +5845,7 @@
           "UI": 60,
           "X": 37,
           "H": 14,
-          "Platform": 649,
+          "Platform": 650,
           "E": 48,
           "S": 1,
           "J": 9,
@@ -6001,6 +6001,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #504 from kamalcernia/claude/phone-agent-m0",
+      "commit": "76a222ef",
+      "kind": "other"
+    },
+    {
+      "agent": "GET /api/o6/audit — read surface for the durable LLM audit trail",
+      "commit": "416056c5",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #503 from kamalcernia/claude/phone-agent-m0",
       "commit": "4c6bf7f7",
       "kind": "other"
@@ -6064,16 +6074,6 @@
       "agent": "storage-backed WorkflowScheduler + registration surface (#23)",
       "commit": "dc4bad4d",
       "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #497 from kamalcernia/claude/phone-agent-m0",
-      "commit": "64f6fb8b",
-      "kind": "other"
-    },
-    {
-      "agent": "unify flattenContent + fix bedrock tool-content drop",
-      "commit": "f1e6ff50",
-      "kind": "refactor"
     }
   ],
   "failures": [
