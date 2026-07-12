@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-12T01:15:00.650Z",
-    "lastUpdatedDisplay": "Jul 12, 2026 — 01:15 EDT",
+    "lastUpdatedIso": "2026-07-12T01:25:31.867Z",
+    "lastUpdatedDisplay": "Jul 12, 2026 — 01:25 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #501 docs(status): reconcile production-readiness (O-AI"
   },
   "summary": {
-    "currentMainCommit": "76a222ef",
+    "currentMainCommit": "a6bc2326",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2382,
+    "agentsCompletedThisSession": 2384,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2382 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2384 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #501 docs(status): reconcile production-readiness (O-AI4/O-AI6 co. (refreshed Jul 12, 2026 — 01:15 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #501 docs(status): reconcile production-readiness (O-AI4/O-AI6 co. (refreshed Jul 12, 2026 — 01:25 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -57,12 +57,12 @@
       "label": "581 test files landed · 0 active failures"
     },
     "velocity": {
-      "landedLastHour": 1,
+      "landedLastHour": 0,
       "landedLast24h": 15,
-      "label": "1 PR opened in last hour · 15 in last 24h"
+      "label": "0 PRs opened in last hour · 15 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-11T21:14:29-04:00",
+      "lastMergeIso": "2026-07-11T21:25:00-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 14,
       "openPrs": 1,
@@ -5822,7 +5822,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-12T01:14:59.695Z",
+      "lastAuditAt": "2026-07-12T01:25:31.013Z",
       "backendRouteSymbolCount": 219,
       "deferredItems": {
         "total": 994,
@@ -6001,6 +6001,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #505 from kamalcernia/claude/phone-agent-m0",
+      "commit": "a6bc2326",
+      "kind": "other"
+    },
+    {
+      "agent": "perf(voice-pipecat): tighten pre-answer/health BFF timeouts (#11 la...",
+      "commit": "4220b1be",
+      "kind": "other"
+    },
+    {
       "agent": "Merge pull request #504 from kamalcernia/claude/phone-agent-m0",
       "commit": "76a222ef",
       "kind": "other"
@@ -6063,16 +6073,6 @@
     {
       "agent": "write-through per-call cost to the durable o4 ledger (O-AI4)",
       "commit": "4e238c5d",
-      "kind": "feat"
-    },
-    {
-      "agent": "Merge pull request #498 from kamalcernia/claude/phone-agent-m0",
-      "commit": "07015b28",
-      "kind": "other"
-    },
-    {
-      "agent": "storage-backed WorkflowScheduler + registration surface (#23)",
-      "commit": "dc4bad4d",
       "kind": "feat"
     }
   ],
