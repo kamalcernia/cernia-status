@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-12T00:28:00.333Z",
-    "lastUpdatedDisplay": "Jul 12, 2026 — 00:28 EDT",
+    "lastUpdatedIso": "2026-07-12T00:50:15.332Z",
+    "lastUpdatedDisplay": "Jul 12, 2026 — 00:50 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #501 docs(status): reconcile production-readiness (O-AI"
   },
   "summary": {
-    "currentMainCommit": "a15ee7a7",
+    "currentMainCommit": "170eefe3",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2376,
+    "agentsCompletedThisSession": 2378,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2376 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2378 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #501 docs(status): reconcile production-readiness (O-AI4/O-AI6 co. (refreshed Jul 12, 2026 — 00:28 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #501 docs(status): reconcile production-readiness (O-AI4/O-AI6 co. (refreshed Jul 12, 2026 — 00:50 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -57,12 +57,12 @@
       "label": "581 test files landed · 0 active failures"
     },
     "velocity": {
-      "landedLastHour": 3,
+      "landedLastHour": 2,
       "landedLast24h": 15,
-      "label": "3 PRs opened in last hour · 15 in last 24h"
+      "label": "2 PRs opened in last hour · 15 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-11T20:27:32-04:00",
+      "lastMergeIso": "2026-07-11T20:49:47-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 14,
       "openPrs": 1,
@@ -5822,7 +5822,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-12T00:27:59.440Z",
+      "lastAuditAt": "2026-07-12T00:50:14.398Z",
       "backendRouteSymbolCount": 219,
       "deferredItems": {
         "total": 991,
@@ -6001,6 +6001,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #502 from kamalcernia/claude/phone-agent-m0",
+      "commit": "170eefe3",
+      "kind": "other"
+    },
+    {
+      "agent": "error-path traces for the LLM gateway (O-AI6 follow-up)",
+      "commit": "a807c7be",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #501 from kamalcernia/claude/phone-agent-m0",
       "commit": "a15ee7a7",
       "kind": "other"
@@ -6064,16 +6074,6 @@
       "agent": "persist refill eRx-fulfillment fields (#10) + real-PG smoke",
       "commit": "ab1ef926",
       "kind": "fix"
-    },
-    {
-      "agent": "Merge pull request #495 from kamalcernia/claude/phone-agent-m0",
-      "commit": "a3252084",
-      "kind": "other"
-    },
-    {
-      "agent": "wire approved refills → eRx transmission in the decide route (#10)",
-      "commit": "b29ee9de",
-      "kind": "feat"
     }
   ],
   "failures": [
