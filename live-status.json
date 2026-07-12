@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-07-11T23:34:43.604Z",
-    "lastUpdatedDisplay": "Jul 11, 2026 — 23:34 EDT",
+    "lastUpdatedIso": "2026-07-12T00:04:35.418Z",
+    "lastUpdatedDisplay": "Jul 12, 2026 — 00:04 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #465 feat(pricing): operator-set prices on the marketin"
   },
   "summary": {
-    "currentMainCommit": "aa28cfd9",
+    "currentMainCommit": "2e264d5f",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2371,
+    "agentsCompletedThisSession": 2373,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2371 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2373 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 11, 2026 — 23:34 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #465 feat(pricing): operator-set prices on the marketing page (pl. (refreshed Jul 12, 2026 — 00:04 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -58,11 +58,11 @@
     },
     "velocity": {
       "landedLastHour": 0,
-      "landedLast24h": 7,
-      "label": "0 PRs opened in last hour · 7 in last 24h"
+      "landedLast24h": 5,
+      "label": "0 PRs opened in last hour · 5 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-07-11T19:34:10-04:00",
+      "lastMergeIso": "2026-07-11T20:04:04-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -5794,19 +5794,19 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-07-11T23:34:42.177Z",
+      "lastAuditAt": "2026-07-12T00:04:34.512Z",
       "backendRouteSymbolCount": 219,
       "deferredItems": {
-        "total": 989,
+        "total": 990,
         "bySeverity": {
           "tech-debt": 279,
-          "review": 705,
+          "review": 706,
           "blocker": 5
         },
         "byKind": {
           "docstring-caveat": 263,
           "not-configured-fallback": 116,
-          "type-cheat-cast": 588,
+          "type-cheat-cast": 589,
           "todo-comment": 3,
           "type-cheat": 1,
           "deferred-marker": 2,
@@ -5817,7 +5817,7 @@
           "UI": 60,
           "X": 37,
           "H": 14,
-          "Platform": 646,
+          "Platform": 647,
           "E": 48,
           "S": 1,
           "J": 9,
@@ -5839,7 +5839,7 @@
         "wontfixDemotions": []
       },
       "saasConformance": {
-        "totalViolations": 461,
+        "totalViolations": 462,
         "totalBlockers": 23,
         "byCheck": {
           "migration-tenant-id": 8,
@@ -5848,7 +5848,7 @@
           "no-phi-in-logs": 0,
           "baa-enforcement": 0,
           "three-app-boundary": 0,
-          "no-in-process-stubs": 438
+          "no-in-process-stubs": 439
         }
       }
     },
@@ -5973,6 +5973,16 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #500 from kamalcernia/claude/phone-agent-m0",
+      "commit": "2e264d5f",
+      "kind": "other"
+    },
+    {
+      "agent": "emit per-call traces to the o6 trace store (O-AI6)",
+      "commit": "cf7aa8dc",
+      "kind": "feat"
+    },
+    {
       "agent": "Merge pull request #499 from kamalcernia/claude/phone-agent-m0",
       "commit": "aa28cfd9",
       "kind": "other"
@@ -6035,16 +6045,6 @@
     {
       "agent": "Merge pull request #493 from kamalcernia/claude/phone-agent-m0",
       "commit": "f580f822",
-      "kind": "other"
-    },
-    {
-      "agent": "push policy → commit+push+merge automatically, do not ask",
-      "commit": "aee4daaf",
-      "kind": "docs"
-    },
-    {
-      "agent": "Merge pull request #492 from kamalcernia/claude/phone-agent-m0",
-      "commit": "e72d67b4",
       "kind": "other"
     }
   ],
