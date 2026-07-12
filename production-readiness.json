@@ -786,7 +786,7 @@
           },
           "current": {
             "status": "complete",
-            "asOf": "2026-07-10",
+            "asOf": "2026-07-12",
             "summary": "CLINIC + PATIENT telehealth complete, self-hosted (no LiveKit/BAA). RPM compute endpoints live in apps/api. Clinic UI: apps/admin/src/app/admin/rpm + telehealth/visit-summary + visit-quality. PATIENT video visit (KTD14): POST /patient-portal/telehealth/:id/join (participant+tenant+window authorized) + 'Join video visit' button + room. FULL 2-WAY WebRTC MEDIA now lands: the q-s1 signaling WebSocket (apps/api/src/webrtc-signaling-routes.ts) authenticates every peer against a verifiable signed room ticket (apps/api/src/telehealth-room-ticket.ts) — room+participant+role bound to the ticket, cross-tenant/spoof closed; clinician counterpart POST /telehealth/provider/:id/join. Shared browser call client packages/telehealth-webrtc-client (RTCPeerConnection + perfect negotiation) drives both apps/patient/.../telehealth/[appointmentId]/page.tsx and apps/admin/.../telehealth/room/[appointmentId]/page.tsx (local + remote <video>). PROVEN: a Playwright fake-device 2-peer e2e (tests/e2e/specs/telehealth-webrtc.spec.ts) connects two authenticated peers through the real signaling server with real browser WebRTC and asserts media frames flow BOTH ways."
           },
           "evidence": [
@@ -804,9 +804,14 @@
             }
           ],
           "remaining": [
-            "U4 — REMAINING sub-slices: (a) I-203 session-id wiring is now done for bills/forms/messages (PR #472), all 7 records pages (PR #474), AND the write-bearing settings/notifications + settings/insurance + appointments/new + appointments/waitlist pages (PR #476, with empty-id write guards) via the shared resolvePortalPatientId helper — only TWO stragglers remain: apps/patient/src/app/(portal)/settings/privacy/page.tsx (DSAR submission still uses SAMPLE_PATIENT.ref for the WRITE) and messages/[id]/page.tsx (thread READ still hard-codes pat-001); note the refill status chip + listRefills already key off the session TOKEN server-side, so they're patient-correct regardless; (b) the document DETAIL page still pulls METADATA from SAMPLE data (findDocument) — the real content stream is wired (openDocument), but the surrounding title/summary/date are sample until the detail page is rewired to the compartment DocumentReference read (list already goes real); (c) the refill-decision notification is wired end-to-end (refill.decided emit + comms-base-refill-decided template → email/sms) but a LIVE inbox delivery has not been captured (SMTP-dependent — verified at the emit + base-template-resolution + boot-registration level, not a real inbox)."
+            "U4 — REMAINING (narrowed 2026-07-12): the ONLY residual is (c) the refill-decision notification LIVE inbox capture — refill.decided emit + comms-base-refill-decided template → email/sms is wired + verified at the emit + base-template-resolution + boot-registration level, but a real inbox delivery has NOT been captured (SMTP-dependent, needs the real SMTP backend — no Mailpit). Sub-slices (a) session-id wiring and (b) document-detail metadata are now DONE: (a) the last two SAMPLE_PATIENT stragglers (settings/privacy DSAR write + messages/[id] thread read) were wired to the session patient via resolvePortalPatientId 2026-07-12; (b) documents/[id] pulls metadata from the real compartment DocumentReference read (fetchDocumentMeta, landed 2026-07-10)."
           ],
           "history": [
+            {
+              "date": "2026-07-12",
+              "stage": "telehealth-rpm",
+              "note": "Closed the U4 session-id stragglers (sub-slice a): apps/patient/src/app/(portal)/settings/privacy/page.tsx (DSAR write) and messages/[id]/page.tsx (thread read) no longer hard-code SAMPLE_PATIENT.ref / pat-001 — both now resolve the logged-in patient via resolvePortalPatientId(getDemoFlag(), getPatientSession().getPatientId()) with a not-authed guard (demo keeps the sample; real mode requires auth), matching the messages LIST + documents pages. Zero new typecheck/lint errors (baseline carry-forward only). Sub-slice (b) doc-detail metadata was already done (fetchDocumentMeta, 2026-07-10). Narrowed the remaining bullet to just (c) the SMTP live-inbox capture."
+            },
             {
               "date": "2026-07-11",
               "stage": "telehealth-rpm",
