@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-08-03T14:59:51.817Z",
-    "lastUpdatedDisplay": "Aug 3, 2026 — 14:59 EDT",
+    "lastUpdatedIso": "2026-08-03T15:07:52.475Z",
+    "lastUpdatedDisplay": "Aug 3, 2026 — 15:07 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fix"
   },
   "summary": {
-    "currentMainCommit": "68a38569",
+    "currentMainCommit": "b5eebd51",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2950,
+    "agentsCompletedThisSession": 2951,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2950 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2951 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 3, 2026 — 15:00 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 3, 2026 — 15:08 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -833,7 +833,7 @@
                 "Sub-cent LLM cost precision now covers BOTH writers of o4_llm_cost_ledger (apps/api via storage migration 331; apps/ml-ai-service via its own additive migration 003_mlai_o4_cost_ledger_subcent_precision.sql - the carve gave that service its OWN physical copy of the table, so 331 never reached it). REMAINING: (a) pre-migration rows under-report and are NOT backfillable by design - the LLM-cost dashboards still do not surface SpendSummary.widenedEntryCount / CostEntry.precisionSource, so the gap is silent to a human reading a spend figure; wire it into the apps/admin + cernia-ops cost views. (b) apps/ml-ai-service has no aggregate/summarize path of its own (PostgresCostLedgerStore there exposes list/getById/count only), so nothing in that service rounds-once-after-summing yet - add it when an AI-plane spend view is built, and reuse the o4 aggregateEntries() shape rather than re-deriving it. ALSO NOW: migration 342 adds pricing_status/rate_source/unpriced_reason so 'cost 0' and 'cost unknown' are distinguishable, and aggregateEntries reports unpricedEntryCount + complete. STILL NOT SURFACED IN UI: neither widenedEntryCount/precisionSource NOR the new unpricedEntryCount/pricingStatus are rendered by the apps/admin LLM-observability view or the apps/cernia-ops finops view, so a human reading a spend figure THERE still cannot see how much of it is unverifiable. The new scribe cost routes DO surface both.",
                 "LLM gateway BUDGETS are still in-memory and per-pod: packages/o1-llm-gateway/src/cost-tracking.ts holds 'private budgets: Map<string, StoredBudget>', so a tenant over budget on pod A is under budget on pod B and every cap resets on process restart - while the ledger itself is durable. checkBudget() is on the hot path (per LLM call, buffered + streaming: api.ts:211 and api.ts:353). FIXED since this bullet was written: (i) the sub-cent no-op - BudgetManager.checkAndConsume() now takes { usdMicroCents } and baselines on summary.totalUsdMicroCents; (ii) resetMonthlySpend() having no caller - the monthly boundary is now a lazy UTC period rollover inside CostStore, so it cannot silently not-exist; (iii) float drift in the accumulator - it is integer micro-cents now. STILL SIZED, NOT FIXED (durable per-tenant enforcement): wiring BudgetManager/PostgresBudgetStore into apps/api. Two blockers documented in the budget-manager.ts header - (1) checkAndConsume is O(tenant's period call volume) PER CALL because PostgresCostLedgerStore.summarize() defers to list() (unbounded SELECT *, summed in JS) instead of a SQL SUM()+GROUP BY, so hot-path latency grows monotonically through the billing period incl. live voice; (2) autoPauseOnOverrun defaults TRUE (migration 090), turning 'reject this call' into a whole-period breaker. Prerequisites in order: rewrite summarize() as a SQL aggregate; move the check off the request path (or cache it); set the overrun policy explicitly per tier (soft cap for voice). Related, smaller, same class: GET /admin/llm/$report reads the in-memory records[] so it returns per-pod since-restart numbers despite durable data existing; and rateLimitWindows is per-pod too (wants Redis, cf. RedisCallerRateLimiter).",
                 "LLM AUDIT cannot identify WHICH self-hosted model produced a completion. llm_audit_events.model stores the logical gateway ModelId only (every Ollama call records 'qwen' - packages/o1-llm-gateway/src/types.ts:122, providers-openai.ts:237), while the concrete tag lives in ProviderConfig.deploymentName (OLLAMA_MODEL, apps/api/src/llm-gateway-routes.ts:386-390) and is NEVER persisted. Given a signed ambient-scribe note you cannot answer 'which model drafted this?' from the audit log - a clinical traceability gap, and the reason the 2026-07-29 scribe model A/B needed an external wire proxy to attribute its runs (docs/status/evidence/2026-07-29-scribe-model-ab.md). FIX: persist deploymentName (e.g. an llm_audit_events.deployment_name column, or fold it into model) so the audit row names the served model. Note llm_audit_events.provider is also unreliable - the table already holds a 'claude-sonnet-4'/'ollama' row from a prior session.",
-                "STT COST IS UNPRICED FOR EVERY NOTE, and it is plausibly the LARGER line (~$0.065 for a 15-min visit vs ~$0.006 of LLM). The rate and the arithmetic are wired (attributeSttCost in apps/api/src/scribe-cost-per-note.ts, proven by unit test against a real-shaped usage record), but the billable QUANTITY is never persisted: packages/speech/src/backends/deepgram-batch-transcriber.ts produces BatchTranscriptResult.durationSec and apps/api/src/scribe-draft-routes.ts BatchTranscriberTranscriptSource.get() discards it; no column stores it. Close by threading durationSec through ScribeTranscriptSource and persisting it (scribe_sessions or scribe_transcripts). NOTE ALSO that a visit is sent to Deepgram TWICE (per-chunk live transcription + whole-file at $draft), so billable minutes are ~2x audio length - do not assume a single pass when pricing.",
+                "STT IS NOW PRICED (migration 344): scribe_sessions.stt_billable_sec / stt_audio_sec / stt_passes / stt_passes_unmetered are written at the vendor call by MeteredBatchTranscriber (apps/api/src/scribe-stt-metering.ts) and read by attributeSttCost, so a note reports a real STT figure instead of 'unpriced' forever. The DOUBLE-SEND is also closed: the per-chunk live-preview pass no longer runs unasked on a per-audio-minute backend (IBatchTranscriber.meteredPerAudioMinute + CERNIA_SCRIBE_LIVE_TRANSCRIPT opt-in), so a visit is submitted ONCE. REMAINING: (a) the $0.0043/audio-min Deepgram rate is a PUBLISHED LIST price, never reconciled against a Deepgram invoice, so every STT figure is an estimate; (b) no live vendor measurement exists - the pass count and the metered quantity are proven structurally (recording double at the vendor boundary, real HTTP + real Postgres in apps/api/src/scribe-stt-double-send.integration.test.ts) and on a stack whose CERNIA_SCRIBE_STT is unset (backend = stub); (c) pre-344 sessions carry NULL usage and stay unpriced by design - not backfillable, the quantity was never recorded; (d) tenants who opt the preview back IN still pay ~2x, which is now RECORDED and surfaced as a duplication factor in the STT component detail rather than hidden.",
                 "NO RATE IS INVOICE-RECONCILED. Every entry in packages/o1-llm-gateway/src/pricing.ts MODEL_RATES is 'published-list' (or 'proxy-unverified' for claude-bedrock, which borrows the first-party Sonnet rate because Bedrock's partner rate was never looked up). Until a rate is matched against a bill actually paid, every cost figure the platform reports is an ESTIMATE and must be labelled one - which matters because per-note price is being set as max(floor, cost x (1+margin)) off these numbers. Reconcile against a real Anthropic invoice and flip source to 'invoice-reconciled'; the pricing.test.ts gate asserting nothing is reconciled will then fail loudly, which is the reminder to re-word the estimate caveats at every surface.",
                 "COMPUTE AND STORAGE ARE NOT ATTRIBUTED PER NOTE AT ALL, so every note is unpriced overall even once STT lands. @cernia/finops ComputeProbe + PostgresStorageProbe exist but have ZERO runtime callers and no scheduler. Self-hosted LLM inference is blocked on the same gap: resolveModelRate('qwen') returns unpriced with reason 'self-hosted-compute-not-metered' precisely because GPU-seconds are not metered. Metering compute is the single change that would let a self-hosted note be priced at all.",
                 "@cernia/finops IS DEAD CODE ON THE LIVE PATH, and this is a trap for the next reader. Its seven attribution adapters, pricing-table.ts getRate() (which THROWS on unknown keys) and PostgresCostTracker.record/recordBatch have ZERO runtime callers, so cost_ledger (migration 067) is permanently empty and GET /cernia-ops/finops/rollup reads zeros. Worse, PostgresCostTracker REJECTS the wildcard tenantId '*' that the rollup route passes and there is no listTenantIdsInWindow, so /by-tenant and /margin-per-tier always return empty with NO error at all. Decide explicitly: either wire the adapters onto the live gateway path, or delete the package and fold its remaining value (the multi-vendor rate-table shape) into o1-llm-gateway/pricing.ts. Note the finops adapters ALSO carry the per-entry Math.round-to-whole-cents defect that migration 331 fixed in o4.",
@@ -966,6 +966,27 @@
                 {
                   "date": "2026-07-31",
                   "note": "COST-PER-NOTE: THE PLATFORM CAN NOW PRICE ITS OWN SCRIBE TRAFFIC, AND SAYS SO WHEN IT CANNOT. Migration 331 fixed the PRECISION half of cost recording; this closes the RATE half plus the per-note read model. THREE DEFECTS, all measured on the 156-note corpus (7 DBs on test PG :5433 - 963 LLM calls, 153 notes with a Composition). (1) RATE 4x LOW: MODEL_META priced `claude-haiku-4` at $0.25/$1.25 per MTok - the ORIGINAL claude-3-haiku rate - while providers-anthropic.ts ANTHROPIC_MODEL_MAP maps that id to the WIRE model `claude-haiku-4-5`, published at $1/$5 per MTok. Every note was under-costed by exactly 4x, in the direction that flatters margin. Re-derived from the platform's own recorded token counts: $0.001517/note at the old rate vs $0.006067/note corrected (avg 3635 prompt + 486 completion tokens/note), the corrected figure reproducing the founder's independent $0.006 estimate to 3 significant figures. (2) UNPRICED INDISTINGUISHABLE FROM FREE: costPer1kPromptUSD is a bare number, so self-hosted `qwen` (hard-coded 0, commented 'Cost 0 (own hardware)') booked every self-hosted note at exactly $0.00 in the `exact` precision class. A self-hosted note is not free - it costs GPU-seconds. (3) tags={} ON EVERY ROW: makeO4CostLedgerSink dropped purposeOfUse, so a note's drafting pass was indistinguishable from its coding pass, follow-up pass, or a re-draft. CORRECTION TO A LONG-STANDING PREMISE: the @cernia/finops attribution adapters + pricing-table getRate() (which THROWS on an unknown key) were assumed to be the live cost path. They are NOT - cost_ledger (migration 067) has ZERO runtime writers repo-wide, so the throw was never exercised and the FinOps dashboard reads an always-empty table. The live path is o1-llm-gateway -> makeO4CostLedgerSink -> o4_llm_cost_ledger. THE FIX, in the migration-338 / PR-#742 idiom (separate the claim from the outcome; let the outcome be an absence): NEW packages/o1-llm-gateway/src/pricing.ts - MODEL_RATES keyed on the WIRE model with source (published-list | invoice-reconciled | proxy-unverified) + verifiedAt, and resolveModelRate() returning a DISCRIMINATED UNION so 'unpriced' is a value the type system forces callers to handle rather than a magic zero. computeCostUSD() returns null, never 0. `qwen` is DELIBERATELY ABSENT (a 0 row would reintroduce the bug); the design call is that self-hosted inference attributes COMPUTE, not tokens, and GPU-seconds are not metered, so the honest per-token answer is 'unknown'. MODEL_META's per-1k fields are now DERIVED from MODEL_RATES at module load so two hand-maintained rate tables can never drift again - exactly how the haiku rate went stale. One shared priceUsage() replaces FOUR byte-identical private computeCost() copies (anthropic/openai/google/bedrock). NEW migration 342_o4_cost_ledger_pricing_status.sql adds pricing_status/rate_source/unpriced_reason (additive + nullable so the apps/ml-ai-service twin writer keeps working), CHECK constraints on both enums, and a DB-level 'unpriced => usd_micro_cents IS NULL' invariant so no future writer can book an unknown cost at zero. NULL usd_micro_cents keeps its 331 meaning ('no sub-cent precision captured') and is disambiguated by pricing_status rather than overloaded. aggregateEntries() now EXCLUDES unpriced entries and reports unpricedEntryCount + complete. NEW apps/api/src/scribe-cost-per-note.ts DERIVES a note's cost - no note_cost table, because a stored copy would rot on a rate correction, a superseded re-draft, or an erasure - via Composition id -> llm_audit_events.resource_id OR reserved_resource_id (migration 338, matching EITHER column) -> request_id -> o4_llm_cost_ledger. THE LOAD-BEARING RULE: a PARTIAL total is UNPRICED, not a smaller number. If LLM priced and STT did not, totalUsdMicroCents is NULL and the priced portion surfaces only as an explicitly-named pricedLowerBoundUsdMicroCents. This is commercially load-bearing: per-note price is max(floor, cost x (1+margin)), and a floor ABSORBS a zero, so a broken rate table would otherwise produce a plausible invoice with no signal anywhere. BOTH SURFACES (CLAUDE.md - shipping one alone is half-shipping): tenant-scoped GET /scribe/cost/notes + GET /scribe/cost/note/:compositionId (apps/api/src/scribe-cost-routes.ts; entitlement -> tenant-admin role -> global RBAC, deriveOperation mapped, tenant ALWAYS from rbacClaims) for apps/admin; and cross-tenant GET /cernia-ops/finops/scribe-note-cost with sha256-hex(16) tenantHash (CLAUDE.md invariant 5) for apps/cernia-ops. STT: attributeSttCost() is wired and priced (Deepgram nova-2 pre-recorded, published list $0.0043/audio-min, NEVER reconciled against a Deepgram invoice - this stack has no DEEPGRAM_API_KEY and has never been billed by Deepgram), but reports UNPRICED live because the billable duration is never persisted: the Deepgram adapter DOES produce BatchTranscriptResult.durationSec and BatchTranscriberTranscriptSource.get() in scribe-draft-routes.ts DROPS it. STT is plausibly the LARGER line (~$0.065 for a 15-min visit, an order of magnitude above the LLM), so reporting it as 0 would understate a note by ~90%. ALSO FIXED: cernia-ops-finops-routes.ts carried hand-copied 'local type mirrors' with a note to swap them 'when the dependency lands' - @cernia/finops was ALREADY in apps/api/package.json and already imported in index.ts, so they were duplicate definitions free to drift silently. Now real imports. LIVE PROOF (intent channel, over the wire, RED first): RED = 454/454 journey_a ledger rows read usd_cents=0 and no pricing_status column exists. GREEN = real apps/api (tsx, PID 39636) on :8123 against real Postgres cpn_live (:5433, schema snapshot + migration 342). PORT OWNERSHIP PROVEN BEFORE TRUSTING ANY RESPONSE: sentinel Composition CPNCOMPA exists only in cpn_live (decoy cpn_decoy has no scribe_sessions table at all), and inserting one more ledger row directly into cpn_live moved the API's pricedLowerBound 955200 -> 1105200 micro-cents by exactly the inserted amount and surfaced a new scribe-followup pass. GET /scribe/cost/note/CPNCOMPA -> 200 {status:'unpriced', totalUsdMicroCents:NULL, pricedLowerBound:1105200, blockedBy:[stt,compute,storage], llmByPass separating scribe-draft/scribe-coding/scribe-followup}. Self-hosted CPNCOMPB -> lowerBound 0 AND status 'unpriced' (the exact distinction that did not previously exist). Period summary -> meanPricedNoteUsdMicroCents:NULL plus an explicit interpretation string. Cross-tenant: a second, equally entitled tenant gets 404 for CPNCOMPA. No token -> 401. Tenant-admin on the cernia-ops route -> 403 (CLAUDE.md invariant 6). Operator -> 200 with tenantHash only and pricedFraction:0. The DB CHECK was proven by a direct INSERT of an unpriced row carrying an amount -> 'violates check constraint o4_llm_cost_ledger_unpriced_has_no_amount_chk'. ADR-0127: @cernia/o1-llm-gateway typecheck=0 lint=0 build=0 test 207/207 (+13 new pricing gates); @cernia/o4-cost-tracking-budgets typecheck=0 lint=0 build=0 test 223/223 (baseline 218, +5 real-Postgres gates); @cernia/api typecheck=0 build=0, lint 63 errors = the LOW END of the documented 63-68 carry-forward baseline with ZERO in touched files, targeted tests 49/49 including iam-route-guards.repo-coverage (which asserts every RBAC-governed route is mapped, validating the new /scribe/cost/* mapping). One PRE-EXISTING load-sensitive flake observed and NOT caused here: o4 'hourlyBuckets accumulate sub-cent entries at full precision' times out at the 5000ms default under parallel load and passes in isolation at 3.2s. NO PRICE IS SET: publishing a per-note rate is the founder's decision and is explicitly deferred until this reports real numbers. Nothing in MODEL_RATES is invoice-reconciled, so EVERY figure the chain produces today is an estimate against a published list price, and is labelled as such at every surface."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "ml-platform",
+                  "from": "remaining",
+                  "to": "narrowed",
+                  "note": "STT DOUBLE-SEND CLOSED + STT COST BECOMES A REAL NUMBER. Two defects, both surfaced by the PR #757 cost chain and both re-derived before being fixed. (1) THE DOUBLE-SEND. A visit was submitted to the speech vendor TWICE: once per ~30 s capture chunk (scribeLiveTranscribe in apps/api/src/index.ts, feeding the recorder's live-preview panel via scribe_live_transcripts) and once again as the whole assembled recording at $draft (BatchTranscriberTranscriptSource in apps/api/src/scribe-draft-routes.ts). Both passes read the SAME scribeBatchTranscriber instance, so a 15-minute visit bought 30 audio-minutes on a per-audio-minute backend - a 100% duplicate of what is, by an order of magnitude, the largest cost line on an ambient-scribe note (~$0.065 STT vs ~$0.006 LLM). The preview was ON BY DEFAULT ((env ?? '1') !== '0'), so every deployment paid it without choosing it, and nothing recorded that it had happened. (2) durationSec DROPPED. Every batch backend produces BatchTranscriptResult.durationSec (Deepgram from metadata.duration, self-hosted Whisper from duration, the stub from the byte count) and BatchTranscriberTranscriptSource.get() returned only {text, words, vocabulary} - so the one quantity needed to price the note's largest line was produced and thrown away, which is why attributeSttCost reported 'unpriced' on every note. WHY BOTH PASSES SURVIVE (the reason is written into apps/api/src/scribe-stt-metering.ts so nobody re-tries the obvious fix): the whole-file pass CANNOT be replaced by concatenating chunk transcripts, because speaker diarization indices are assigned PER REQUEST (Speaker 1 in chunk 3 is unrelated to Speaker 1 in chunk 9 - stitching produces confident, wrong who-said-what attribution in a clinical note) and word timings are ABSOLUTE seconds into the submitted audio, which the click-to-verify evidence spans (migration 323) index against the assembled recording. And the live pass cannot simply be deleted either: apps/admin scribe-recorder-view.tsx polls it every 12 s and renders it. THE FIX, in two parts. (a) A CAPABILITY, NOT A GUESS: IBatchTranscriber.meteredPerAudioMinute is now REQUIRED, exactly like supportsKeyterms (D25) - deepgram-prerecorded true, stub + whisper-selfhost false ('not metered' is deliberately NOT the same claim as 'free'; self-hosted burns GPU-seconds nobody meters). The live preview now runs unasked only where a second pass buys no vendor invoice; on a metered backend it requires an explicit CERNIA_SCRIBE_LIVE_TRANSCRIPT=1, and the API logs at boot that the feature is off and which variable turns it on. Nothing is taken away where nothing was being paid. (b) EVERY SUBMISSION IS METERED: MeteredBatchTranscriber decorates the transcriber on BOTH passes rather than calling a meter at each call site - the call sites are precisely what forgot, so 'a vendor call happened' and 'the meter fired' are now the same event and a future third call site is metered by construction. Migration 344 adds scribe_sessions.stt_billable_sec / stt_audio_sec / stt_passes / stt_passes_unmetered plus scribe_live_transcripts.duration_sec. THE HONESTY RULES CARRIED DOWN A LEVEL, both load-bearing because per-note price is max(floor, cost x (1+margin)) and a floor absorbs a zero: every column is NULLABLE WITH NO DEFAULT so 'never metered' can never read as 'metered, and free'; and a pass whose duration the backend did not report increments stt_passes_unmetered and makes the WHOLE component unpriced rather than summing the passes we happen to know about - a partial quantity is not a smaller quantity. A DB CHECK forbids negative quantities and an unmetered count without a pass count. The meter ACCUMULATES rather than upserts, because a re-uploaded chunk that is transcribed again is a second invoice line even though only one snippet is kept. MEASURED BEFORE/AFTER on one 15-minute visit (900 audio-seconds): BEFORE 31 vendor submissions / 1800 billable audio-seconds / $0.129 STT at the published list rate; AFTER 1 submission / 900 seconds / $0.0645. STT cost per note halves, and the note's cost stops being unknown. Against the PR #757 measured LLM figure of ~$0.006067/note, a 15-minute note goes from ~$0.135 (had STT been priceable) to ~$0.0706. PROVEN LIVE vs STRUCTURALLY - stated explicitly because there is no Deepgram measurement here. LIVE: the real apps/api booted (tsx, PID 6064) on :8123 with CERNIA_SCRIBE_STT=deepgram-prerecorded against Postgres :5433, answered /health 200 as the sole listener on that port, and logged the gate firing verbatim ('scribe live-transcript preview is OFF: the configured STT backend bills per audio-minute and the preview re-transcribes the whole visit (~2x STT spend). Set CERNIA_SCRIBE_LIVE_TRANSCRIPT=1 ...'). LIVE: apps/api/src/scribe-stt-double-send.integration.test.ts drives a whole capture->finalize->draft visit over REAL HTTP against a real Fastify listening socket and a real per-test Postgres schema, proving port/schema identity first (a row written THROUGH the API is read back FROM the schema under test and is absent from the public-schema decoy) - RED 31 calls / 1800 s, GREEN 1 call / 900 s, both read straight off the new columns. STRUCTURAL: the vendor itself is a recording double. This stack's CERNIA_SCRIBE_STT is unset (backend = stub), so although a DEEPGRAM_API_KEY exists in apps/api/.env the scribe batch path has NOT been billing Deepgram here; the doubling is a property of the code that fires on whatever backend a deployment configures. NO live Deepgram invoice was observed and none is claimed. ADR-0127: @cernia/speech typecheck=0 build=0, lint 6 = carry-forward baseline with ZERO in touched code, test 321 (318 pass / 3 pre-existing streaming failures in factory/round-trip/deepgram-stt-backend, all barge-in + streaming, none reachable from the batch path). @cernia/api typecheck=0 build=0, lint 63 = the documented carry-forward baseline exactly, with ZERO errors in code added here. Targeted tests 155/155: scribe-stt-metering 12, scribe-cost-per-note 13, scribe-stt-double-send 6, plus the full affected regression set (scribe-draft-routes 67, scribe-silent-degradation 21, scribe-chunk-routes 6, scribe-live-transcript 5, scribe-live-transcript-store 5, scribe-session-store 10, scribe-word-timings 5, scribe-draft-llm-correlation 3, scribe-chunk-limits 12, scribe-test-migrations 5).",
+                  "files": [
+                    "packages/storage/src/migrations/344_scribe_stt_usage_metering.sql",
+                    "apps/api/src/scribe-stt-metering.ts",
+                    "apps/api/src/scribe-stt-metering.test.ts",
+                    "apps/api/src/scribe-stt-double-send.integration.test.ts",
+                    "apps/api/src/scribe-cost-per-note.ts",
+                    "apps/api/src/scribe-session-store.ts",
+                    "apps/api/src/scribe-live-transcript-store.ts",
+                    "apps/api/src/scribe-draft-routes.ts",
+                    "apps/api/src/index.ts",
+                    "packages/speech/src/batch-transcriber.ts",
+                    "packages/speech/src/backends/deepgram-batch-transcriber.ts",
+                    "packages/speech/src/backends/selfhost-whisper-batch-transcriber.ts"
+                  ]
                 }
               ],
               "completed": [
@@ -8719,20 +8740,20 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-08-03T14:59:49.926Z",
+      "lastAuditAt": "2026-08-03T15:07:51.401Z",
       "backendRouteSymbolCount": 250,
       "deferredItems": {
-        "total": 1322,
+        "total": 1323,
         "bySeverity": {
           "tech-debt": 380,
-          "review": 937,
+          "review": 938,
           "blocker": 5
         },
         "byKind": {
           "docstring-caveat": 346,
           "not-configured-fallback": 168,
           "type-cheat": 5,
-          "type-cheat-cast": 764,
+          "type-cheat-cast": 765,
           "deferred-marker": 2,
           "todo-comment": 5,
           "skipped-test": 3,
@@ -8742,7 +8763,7 @@
           "UI": 73,
           "X": 57,
           "H": 14,
-          "Platform": 847,
+          "Platform": 848,
           "E": 56,
           "S": 1,
           "J": 9,
@@ -8765,7 +8786,7 @@
         "wontfixDemotions": []
       },
       "saasConformance": {
-        "totalViolations": 571,
+        "totalViolations": 572,
         "totalBlockers": 46,
         "byCheck": {
           "migration-tenant-id": 11,
@@ -8774,16 +8795,16 @@
           "no-phi-in-logs": 0,
           "baa-enforcement": 0,
           "three-app-boundary": 0,
-          "no-in-process-stubs": 525
+          "no-in-process-stubs": 526
         }
       }
     },
     "justLandedWaves": [],
     "nowWorkingOn": {
-      "wave": "O6,FINOPS",
-      "detail": "two operator surfaces that held the right data and answered nobody (#763)",
-      "commit": "68a38569",
-      "freshSeconds": 51
+      "wave": "SCRIBE,FINOPS",
+      "detail": "a visit was sent to the speech vendor twice, and the cost of sending it was thrown away (#764)",
+      "commit": "b5eebd51",
+      "freshSeconds": 54
     }
   },
   "pool": {
@@ -8905,6 +8926,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "a visit was sent to the speech vendor twice, and the cost of sendin...",
+      "commit": "b5eebd51",
+      "kind": "fix"
+    },
+    {
       "agent": "two operator surfaces that held the right data and answered nobody ...",
       "commit": "68a38569",
       "kind": "fix"
@@ -8972,11 +8998,6 @@
     {
       "agent": "the refresher still fetched the dead mirror, so it refreshed nothin...",
       "commit": "15991da8",
-      "kind": "fix"
-    },
-    {
-      "agent": "default the real-service fixtures to 127.0.0.1, not localhost (#748)",
-      "commit": "92e12c87",
       "kind": "fix"
     }
   ],
@@ -17275,7 +17296,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
-    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "68a38569",
+    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "b5eebd51",
     "origin/feat/google-first-signup-and-session-guard@3cb0ee52c135": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
@@ -17286,42 +17307,42 @@
     "origin/feat/mb-dunning-stores@f81d00eae3df": true,
     "origin/feat/mb-platform-stores@d03c00909a1c": true,
     "origin/feat/mb2-integration-tests@2b933361fb12": true,
-    "origin/feat/mb3-e2e-coverage@723df77a25eb": "68a38569",
+    "origin/feat/mb3-e2e-coverage@723df77a25eb": "b5eebd51",
     "origin/feat/onboarding-redesign@187fc6ddaa15": true,
-    "origin/feat/p1-isolation-guarantee@776f90b85603": "68a38569",
-    "origin/feat/p2-phone-numbers@61cc502884a1": "68a38569",
+    "origin/feat/p1-isolation-guarantee@776f90b85603": "b5eebd51",
+    "origin/feat/p2-phone-numbers@61cc502884a1": "b5eebd51",
     "origin/feat/p3-voice-selection@a6daf23a6694": true,
     "origin/feat/phase-1b-provisioning@27440117dc24": true,
     "origin/feat/r16-fleet-audit@3c1808b66c51": true,
     "origin/feat/r3-residuals@ee2c4cc78b22": true,
-    "origin/feat/release-3-developer-portal@060c10db29d4": "68a38569",
+    "origin/feat/release-3-developer-portal@060c10db29d4": "b5eebd51",
     "origin/feat/relevance-flag-toggle@18c5b5497767": true,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
-    "origin/feat/scribe-audio-citations@f818a947b472": "68a38569",
+    "origin/feat/scribe-audio-citations@f818a947b472": "b5eebd51",
     "origin/feat/scribe-capture-enablers@61fccfcfdac4": true,
     "origin/feat/scribe-coaching-telemetry-sink@d8bf1e52063b": true,
     "origin/feat/scribe-fake-audio-harness@2d30a191b6ab": true,
-    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "68a38569",
-    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "68a38569",
-    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "68a38569",
+    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "b5eebd51",
+    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "b5eebd51",
+    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "b5eebd51",
     "origin/feat/scribe-template-lifecycle-coaching@790aa20a7c2d": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
     "origin/feat/signup-totp-installer-ux@2b131af30595": true,
     "origin/feat/specialty-taxonomy-package@0e2b3b99f12a": true,
-    "origin/feat/store-ambient-scribe@d820b553eadb": "68a38569",
-    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "68a38569",
-    "origin/feat/t3-4-outbound-pacing@716782906aa3": "68a38569",
+    "origin/feat/store-ambient-scribe@d820b553eadb": "b5eebd51",
+    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "b5eebd51",
+    "origin/feat/t3-4-outbound-pacing@716782906aa3": "b5eebd51",
     "origin/feat/taxonomy-s1b@bf9cdb4d39a5": true,
-    "origin/feat/taxonomy-s3@e05572b75315": "68a38569",
-    "origin/feat/taxonomy-s4@9a1a1852514f": "68a38569",
+    "origin/feat/taxonomy-s3@e05572b75315": "b5eebd51",
+    "origin/feat/taxonomy-s4@9a1a1852514f": "b5eebd51",
     "origin/feat/taxonomy-s5@d8b50a675ab3": true,
-    "origin/feat/taxonomy-tax-a@17d6137bdb89": "68a38569",
+    "origin/feat/taxonomy-tax-a@17d6137bdb89": "b5eebd51",
     "origin/feat/taxonomy-tax-b@eb6d9883e95c": true,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
     "origin/feat/totp-gate-and-admin-google@372e3c7fb0a3": true,
-    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "68a38569",
-    "origin/feat/w1@21667a886023": "68a38569",
-    "origin/feat/w2@247ead3f02af": "68a38569",
+    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "b5eebd51",
+    "origin/feat/w1@21667a886023": "b5eebd51",
+    "origin/feat/w2@247ead3f02af": "b5eebd51",
     "origin/feat/w3@4cf46bdbb6ca": true,
     "origin/feat/w4@c2dec1309090": true,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,
@@ -17552,7 +17573,7 @@
     "origin/feat/wave-e-e9-voice-payments@aaf8f1bece55": true,
     "origin/feat/wave-e-en2-spanish@08bd4faa06b9": true,
     "origin/feat/wave-e-en3-voice-persona@72f305a280c8": true,
-    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "68a38569",
+    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "b5eebd51",
     "origin/feat/wave-e-en5-waitlist@b3ed576c7cfa": true,
     "origin/feat/wave-e-en6-triage@b7956b5356e3": true,
     "origin/feat/wave-e-en7-reminder-cadence@19bdff3d699c": true,
