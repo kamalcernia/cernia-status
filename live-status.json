@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-08-03T21:59:55.707Z",
-    "lastUpdatedDisplay": "Aug 3, 2026 — 21:59 EDT",
+    "lastUpdatedIso": "2026-08-03T22:13:02.366Z",
+    "lastUpdatedDisplay": "Aug 3, 2026 — 22:13 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fix"
   },
   "summary": {
-    "currentMainCommit": "164f21b5",
+    "currentMainCommit": "38d16e75",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2957,
+    "agentsCompletedThisSession": 2958,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2957 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2958 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 3, 2026 — 22:00 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 3, 2026 — 22:13 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -1260,7 +1260,7 @@
               },
               "current": {
                 "status": "complete",
-                "asOf": "2026-07-31",
+                "asOf": "2026-08-03",
                 "summary": "Comprehensive Stripe COMPLETE (S1-S8): native subscriptions w/ proration+trial conversion, embedded Payment Element, Billing Meters metered usage, dunning + Smart Retries, single reconciling webhook endpoint, refunds + admin surfacing, gated full-lifecycle test-mode harness, go-live runbook. Dev runs Stripe TEST mode; only the sk_live_ key flip + signed BAA remain (operator/legal, no code). v1-clinical-launch U17 (2026-07-14): closed an audited security gap — ambient-scribe and telehealth-visits (KTD16) now have product rows + createRequireProduct()/checker-backed route gates, closing the window where any tenant on any tier could reach those paid routes unentitled. 2026-07-29: closed a latent ~15.5x metered over-report — the nightly flush and the on-demand $report-metered route sent the cumulative month-to-date total to a SUMMING Stripe meter under a month-constant idempotency key, which only dedupes for 24h. Both now send the increment since a durable per-(tenant, period, metric) watermark (migration 332). Latent, never live: no production tenants at the time. 2026-07-31: the ambient scribe became PURCHASABLE — storefront entry + an operator-configured price (migration 341 gives catalog_prices the fixed-fee/allowance/overage triple plus a tenant_id for negotiated rates), an enforced ADR-0035 tier floor, and both the apps/admin and apps/cernia-ops surfaces. Live RED-then-GREEN 23/23 with settlement through the real Stripe-webhook cascade. NOTE the price triple is DISPLAY-ONLY: nothing meters scribe usage yet, so the store states terms the billing chain does not enforce (tracked in remaining). 2026-07-31 (later): the scribe got its REAL price and the ops editor stopped looking broken. $29.99 per CLINICIAN per month (catalog-seed.ts LIST_PRICES + PRODUCT_TERMS quantityUnit), annual on the platform-wide 10%-off ladder = $323.89/yr, and NO included allowance and NO per-note rate — every note is billed individually and the founder has not set that rate yet. The ops price route now writes BOTH cadence rows from one call (explicit annualPriceCents, else annualFromMonthly), which closes the gap where an operator published a price and the annual-by-default storefront answered \"price not configured\". Also shipped: the per-unit billing POLICY as operator configuration (migration 343 product_usage_pricing) plus the resolver for max(floor, cost x (1 + margin)) that reports WHY the floor applied — separating \"cost measured and genuinely below floor\" (healthy) from \"cost could not be priced at all\" (a defect), so a floor cannot silently rescue a blind cost chain. Both numbers ship UNSET; unset resolves to unbillable, never to zero. Proven live over the wire RED-then-GREEN across all four cadence x scope combinations with a cross-tenant isolation control (docs/status/evidence/scribe-pricing/)."
               },
               "evidence": [
@@ -1289,8 +1289,9 @@
                 "Entitlement lifecycle — residual gaps after the 2026-07-29 cancellation fix (apps/api/src/billing-routes.ts customer.subscription.deleted → PostgresProductCatalogStore.scheduleExpiryForPerpetualGrants): (a) a cancellation event carrying current_period_end=null writes NO expiry (deliberate — we never fall back to immediate revocation) and only warns, so it needs an operator to finish via POST /cernia-ops/platform/entitlements/expire; there is no alerting on that warn yet. (b) NOTHING re-syncs the derived voice_tier column after an entitlement lapses by expires_at — access itself is correctly cut (hasActive is read-time), but voice_tier on voice_tenant_config can sit stale at “pro” until the next syncVoiceTierFromEntitlements() call (apps/api/src/voice-tier-sync.ts). (c) no apps/cernia-ops UI for the new expire route — operators must call it directly. (d) subscription downgrade (customer.subscription.updated to a cheaper plan) still does not narrow purchased product entitlements; only full cancellation does.",
                 "packages/billing/src/invoicing/flush-metered-usage.ts still sends the CUMULATIVE count.total under a period-constant idempotency key — the same shape fixed in the two live paths on 2026-07-29 (migration 332). It is exported from @cernia/billing but called by nothing, so it is not a live defect; it is a loaded gun for whoever wires it. Either delete it or give it a MeterReportWatermarkStore and have it send claim.delta under claim.idempotencyKey. Currently carries a NOT-WIRED warning in its header only.",
                 "Metered flush has no alerting on a wedged watermark: if reportMeterEvent keeps failing, billing_meter_report_watermarks.inflight_total stays pinned and that tenant's usage silently stops reaching Stripe (under-report). Migration 332 ships the partial index idx_billing_meter_watermarks_inflight for the query; nothing reads it yet. Add a cernia-ops surface or a nightly check for rows with inflight_total IS NOT NULL and a stale updated_at.",
-                "Metered-flush enumeration — residual after the 2026-07-29 store-tenant leak fix (apps/api/src/saas-subscription-store.ts `enumerateBillableTenants`, consumed by runMeteredFlushSweep in apps/api/src/saas-nightly-batches.ts): (a) the sweep now REACHES store-purchase tenants, but PRD R6/R7 (docs/prds/metering-pricing-cost-chain.md) — actually EMITTING a usage event per delivered ambient-scribe draft, success-only — is NOT implemented, so those tenants still flush an empty rollup; apps/api/src/scribe-draft-routes.ts records no usage. (b) `runPricingReconcileSweep` (saas-nightly-batches.ts :1292) still enumerates subscription-only; harmless today because it immediately no-ops on tenants with no billing subscription, but it is the same enumeration shape and should be revisited if store purchases ever gain reconcilable pricing. (c) no backfill: usage already recorded for store-purchase tenants in past calendar months is still unflushed — the sweep only ever flushes the CURRENT calendar month (calendarMonthPeriod), so recovering that revenue needs a one-off operator replay.",
-                "Store pricing — the priced-per-unit half of the chain is CONFIGURABLE but not yet CONNECTED. 2026-07-31 added the operator-set policy (migration 343 product_usage_pricing: floor_price_cents + margin_ppm, platform default + per-tenant override, PATCH/GET /cernia-ops/platform/store/usage-pricing) and the pure resolver that applies max(floor, cost x (1 + margin)) with a basis + costConfidence verdict (apps/api/src/per-unit-price-resolver.ts). NOTHING CALLS IT YET: there is still no scribe usage producer (nothing emits on $draft, PRD R6/R7), no measured cost is fed in, and the invoice generator still applies allowance+overage per TIER rather than per product (packages/billing/src/invoicing/invoice-generator.ts, PRD R1b). The founder has deliberately left floor + margin UNSET pending a measured cost per note, and an unset policy resolves to `unresolvable` rather than to zero — so nothing can bill a note today, which is the intended state, not a bug. Closing this means wiring the cost producer to resolvePerUnitCharge and surfacing basis=\"cost-unpriced\" where an operator will see it.",
+                "Metered-flush enumeration — residual after the 2026-07-29 store-tenant leak fix (apps/api/src/saas-subscription-store.ts `enumerateBillableTenants`, consumed by runMeteredFlushSweep in apps/api/src/saas-nightly-batches.ts): (a) CLOSED 2026-08-03 for the ambient scribe: PRD R6/R7 (docs/prds/metering-pricing-cost-chain.md) is implemented — apps/api/src/scribe-draft-routes.ts now records ONE `feature-use` usage event per successfully drafted note via apps/api/src/scribe-note-pricer.ts, idempotent on the SESSION id (a redraft is not a second sale) and fail-soft (a metering fault never costs a clinician a finished note). Store-purchase tenants therefore flush a non-empty rollup. STILL OPEN for every other metered product — nothing emits for voice-minute / sms / email. (b) `runPricingReconcileSweep` (saas-nightly-batches.ts :1292) still enumerates subscription-only; harmless today because it immediately no-ops on tenants with no billing subscription, but it is the same enumeration shape and should be revisited if store purchases ever gain reconcilable pricing. (c) no backfill: usage already recorded for store-purchase tenants in past calendar months is still unflushed — the sweep only ever flushes the CURRENT calendar month (calendarMonthPeriod), so recovering that revenue needs a one-off operator replay.",
+                "Store pricing — CONNECTED for the ambient scribe (2026-08-03), still open for every other metered product. The scribe now has a seeded per-note policy (migration 346: floor 10c, margin 40%, provenance='seeded-default') and the FIRST production caller of resolvePerUnitCharge (apps/api/src/scribe-note-pricer.ts, invoked fail-soft from POST /scribe/sessions/:id/$draft), so a drafted note produces a real billing_usage_events line. REMAINING: (a) the invoice generator still applies allowance+overage per TIER rather than per product (packages/billing/src/invoicing/invoice-generator.ts, PRD R1b) — the pricer writes centsPerUnit/basis/policyProvenance into the usage event's metadata, but no invoice line reads them yet, so the resolved per-note price does not reach a customer invoice; (b) NO OTHER product has a usage producer or a seeded policy — voice-minute / sms / email overage still resolve `unresolvable`, i.e. unbillable; (c) EVERY note today reports basis='cost-unpriced' and healthy=false, because `compute` and `storage` are never attributed per note (ComputeProbe / PostgresStorageProbe in @cernia/finops have no runtime caller), so assembleNoteCost marks every note unpriced and the floor is charged 100% of the time. That is the honest state and NOT a defect in the pricer — it clears by itself when those two probes get a runtime caller, with no edit to scribe-note-pricer.ts. Until then the `cost-unpriced` signal is universal and therefore carries no per-note information; an operator dashboard surfacing it should say so rather than alarm on every note.",
+                "Seeded per-unit price is PROVISIONAL and must be replaced by the operator. Migration 346 seeded the scribe's floor (10c) and margin (40%) purely so the product could be sold before the founder settled the numbers; `provenance='seeded-default'` marks every such row, the ops price editor renders a warning banner from it, and the value rides onto each billing_usage_events line as `policyProvenance`. The numbers derive from a measured cost of $0.0706/note (PRs #757/#764) against vendor rates that are PUBLISHED LIST and have never been reconciled against an invoice we paid — no deployment has yet sent live traffic to Deepgram, which is ~91% of that cost. Closing this means the founder setting a real floor + margin in apps/cernia-ops (Platform -> Store -> ambient-scribe -> terms panel), which stamps provenance='operator-set' and drops the banner. Until then any revenue figure derived from the per-note price is an estimate on top of an estimate.",
                 "Store pricing — an annual ALLOWANCE is derived as monthly x 12 by the ops price route (apps/api/src/cernia-ops-store-routes.ts writeRow), because an allowance is a per-billing-period quantity and copying the monthly number onto the annual row would sell a year for a month of usage. There is no way for an operator to state an annual allowance that is NOT 12x the monthly one, which a negotiated annual contract might want. The FEE has that escape hatch (annualPriceCents); the ALLOWANCE does not. Add annualIncludedQuantity to the route body if a real contract needs it.",
                 "Store pricing — the ops price-editor save confirmation renders for 6s inside the fleet table row and was not capturable in a screenshot at 2026-07-31 (verified present via a live DOM wait on the exact string \"saved — $29.99/mo · $323.89/yr (10% off)\", apps/cernia-ops/src/app/cernia-ops/platform/store/price-editor.tsx). Either it is clipped by the row or the timeout is simply shorter than a screenshot round-trip. Worth a look the next time that screen is touched — an operator on a slow connection may never see the confirmation either.",
                 "Store pricing — apps/cernia-ops next build fails on src/app/cernia-ops/platform/retention/page.tsx (a page module exporting a non-Next symbol, `validateOverride`, which Next 14 type-checking rejects). PRE-EXISTING on github/main and unrelated to pricing; confirmed 2026-07-31 by building the same commit with the pricing files reverted. It blocks every cernia-ops production build, so it is not only a pricing-adjacent nuisance."
@@ -1679,6 +1680,13 @@
                   "from": "complete",
                   "to": "complete",
                   "note": "THE OPS PRICE EDITOR LOOKED BROKEN, AND THE SCRIBE GOT ITS REAL PRICE. THE DEFECT (this stage's own remaining bullet, and reproduced on the wire against github/main before the fix — docs/status/evidence/scribe-pricing/cadence-red.json): PATCH /cernia-ops/platform/store/price wrote one row, `product:<id>:monthly`. The storefront opens on ANNUAL (apps/admin/src/app/admin/store/page.tsx useState('annual')) and store-catalog-aggregator.ts looks a price up by EXACT cadence, so an operator published $29.99 and a tenant admin opening the store was told \"Pricing for this product has not been published yet\" until they toggled to Monthly. The RED run measured it: two catalog_prices rows, both monthly; C2 and C4 (annual, platform and negotiated) came back unavailable.reason=\"price-not-configured\" with HTTP 200. Nothing caught it because the prior journey (store-scribe-journey.mts) reads ?cadence=monthly on every call and every unit test in apps/cernia-ops/src/lib/store-api.test.ts injects a fake fetch. THE FIX: one call now writes BOTH cadences — an explicit annualPriceCents when the operator states a negotiated annual rate, annualFromMonthly(monthly) (the platform-wide 10%-off ladder in catalog-seed.ts) when they leave it blank, so a blank field can no longer produce a MISSING annual price. Row ids carry both the tenant and the cadence, so a negotiated rate cannot overwrite the list price and the annual row cannot overwrite the monthly one. THE PRICE (founder decision, 2026-07-31): ambient-scribe is $29.99 PER CLINICIAN per month — 2_999 in catalog-seed.ts LIST_PRICES with quantityUnit 'clinician' in the new PRODUCT_TERMS map, so the card reads \"$29.99/mo / clinician\" and not a flat practice-wide fee — annual $323.89, and NO included allowance and NO overage rate, because every note is billed individually and the per-note rate is cost-plus-margin off a number the founder has deliberately not set yet. The \"$149/provider/mo\" comment in product-registry.ts was a demo placeholder that had already been quoted as authoritative in docs/prds/metering-pricing-cost-chain.md D2; it is corrected in place. THE PER-UNIT POLICY (same founder decision): a note must never be billed at zero, so per_unit_price = max(floor_price, measured_cost x (1 + margin)). Both inputs are OPERATOR CONFIGURATION, not constants — migration 343 product_usage_pricing (one row per tenant+product+unit, tenant_id '' = the platform default, the same keying catalog_prices uses so a negotiated policy cannot overwrite the default), PATCH/GET /cernia-ops/platform/store/usage-pricing (super-admin — a practice that could reach it would set its own floor to zero), and two more fields in the ops price editor. Both ship UNSET, and unset resolves to `unresolvable`, never to zero. THE PART THAT MATTERS MOST: a floor silently rescues a broken cost chain. If the cost pipeline reports $0.00 because it cannot price a model — which is the live condition today, o4_llm_cost_ledger.usd_cents is 0 on all 454 rows in journey_a because the pricing table does not know claude-haiku-4 — the floor kicks in, the invoice looks right, and nobody learns the platform is blind to its own costs. So apps/api/src/per-unit-price-resolver.ts returns TWO independent verdicts per charge: `basis` (cost-plus-margin | cost-below-floor | cost-unpriced) and `costConfidence` (measured | zero-indeterminate | unpriced). Same money, different diagnosis, and they never collapse. A priced zero is billable but never called healthy, because free self-hosted inference and a blind cost chain are the same integer from there — the producer is the only thing that can tell them apart, and that seam is left explicitly for the cost-chain work. ALSO FIXED IN PASSING: the price route conflicted on the surrogate `id` rather than migration 341's real unique key (tenant_id, item_type, item_id, cadence). A row for the same tuple created under a different id — by an older seed, by dev:stripe-bootstrap, by a fixture — missed the id target, hit the unique index anyway, and answered the operator with a 500 instead of a price update. Surfaced by test S11, which prices a product whose seeded row is keyed `cp-pa-monthly`. PROOF: over the wire against real Postgres, RED then GREEN, all four cadence x scope combinations — platform x monthly $29.99, platform x annual $323.89, negotiated x monthly $19.99, negotiated x annual $215.89 — plus an ADR-0004 control (a second growth practice reads the LIST price in both cadences and never the negotiated one) and a check that no card states a per-note rate. Port/DB pairing proven by a write THROUGH the port found in scribe_price and absent from the decoy. Screens driven in a real browser: the ops editor writing the price with a live operator cookie + CSRF, and the tenant storefront rendering $323.89/yr / clinician on its default cadence and $29.99/mo / clinician on the toggle, with ambient-scribe-pro still honestly unpriced. Artifacts: docs/status/evidence/scribe-pricing/ (cadence-red.json, cadence-green.json, ops-price-editor-saved.png, store-card-annual.png, store-card-monthly.png); runner apps/api/scripts/store-price-cadence-journey.mts."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "saas-billing-marketplace",
+                  "from": "complete",
+                  "to": "complete",
+                  "note": "THE AMBIENT SCRIBE BECAME PURCHASABLE ON A USAGE BASIS, AND 'TEMPORARY' BECAME A COLUMN INSTEAD OF A COMMENT. Founder instruction: 'We can set it later in ops portal. Just use temporary floor price. Even the margin % can be set later.' Two things were missing: migration 343's floor_price_cents + margin_ppm shipped UNSET (so resolvePerUnitCharge answered `unresolvable` for every note), and NOTHING CALLED THE RESOLVER — PR #758 shipped it explicitly as an empty seam. Both are now closed.  (1) THE SEED, AND WHY IT IS NOT A CONSTANT. NEW migration 346_usage_pricing_provenance_scribe_seed.sql seeds the platform default at floor 10c / margin 400000ppm (40%) for (tenant_id='', ambient-scribe, note). There is NO number in TypeScript anywhere — the resolver still reads only the database, so an operator write beats the seed by construction rather than by convention. The seed is `ON CONFLICT ON CONSTRAINT product_usage_pricing_tenant_product_unit_key DO NOTHING` on migration 343's REAL unique key (not the surrogate `id` — that is the #758 bug one table over), which makes seeding FIRST-write-wins: a redeploy, a restore or a manual re-apply cannot walk an operator's number back. Every statement in the file is guarded, so the whole migration is re-runnable.  (2) PROVENANCE, so a placeholder can never be read as a decision. NEW column product_usage_pricing.provenance ('seeded-default' | 'operator-set', CHECK-constrained). Its DEFAULT is the CAUTIOUS direction — 'seeded-default' — so a future writer that forgets to set it produces a row labelled provisional (a badge an operator clears by re-saving) rather than one that presents a machine-written number as a human decision; rows that existed before the migration are backfilled to 'operator-set' because the ops PATCH route was their only ever writer. PostgresUsagePricingStore.upsert now stamps 'operator-set' UNCONDITIONALLY (not a parameter), so a caller can neither save a number and leave it labelled a seed nor pass itself off as one. The value travels: GET /cernia-ops/platform/store/usage-pricing returns provenance + a server-authored `caveat` string, the ops price editor prefills the stored policy and renders a 'Seeded default' warning from it, and resolvePerUnitCharge carries `policyProvenance` onto the charge so a BILL LINE priced off the seed says so. THE THREE VERDICTS ARE DELIBERATELY NOT COLLAPSED: `basis` (which arm of the max won), `costConfidence` (was the cost input believable), `policyProvenance` (did a human choose the policy) — a seeded policy over a measured cost and an operator policy over a blind cost chain are different problems with different fixes, and both produce a plausible number.  (3) THE RESOLVER GOT ITS FIRST PRODUCTION CALLER. NEW apps/api/src/scribe-note-pricer.ts: session -> ScribeCostPerNoteStore.bySession (NEW method; the session is the note's durable identity and exists at draft time, whereas composition_ref does not) -> measuredCostFromNoteCost -> PostgresUsagePricingStore.resolveForTenant -> resolvePerUnitCharge -> UsageMeter.record, wired into POST /scribe/sessions/:id/$draft fail-soft (the Composition is already persisted; an unmetered note is recoverable revenue, a lost note is not) and idempotent on the SESSION id (a redraft is not a second sale, so the price is a snapshot taken at first draft). It reuses the SAME @cernia/billing recorder as the voice-persona meter, so the invoicing flush rolls it into a tenant bill line with no second pipeline. THE JUDGEMENT IT REFUSES TO FUDGE: `compute` and `storage` are `not-attributed-per-note` on every note, so assembleNoteCost marks EVERY note unpriced and every note therefore bills the floor with basis='cost-unpriced', healthy=false. Summing pricedLowerBound and calling it the cost would have produced a confident number that is too small in the direction that flatters margin AND flipped basis to 'cost-below-floor' — i.e. the platform asserting it can see its own costs at the exact moment it cannot. Not done; the honest reading rides on the bill line and clears itself when the probes get a runtime caller.  (4) TWO LATENT DEFECTS FOUND AND FIXED ON THE WAY. (a) PARTIAL UPDATE: the PATCH route's contract said 'omitting a field leaves whatever is stored alone' but the SQL assigned both columns unconditionally, so saving only a floor NULLed the margin — and a half-set policy is `unresolvable`, so the product went un-billable the moment anyone tried to price it. Harmless while both shipped unset; a live un-sale once they are seeded. Now three-state (number sets / null clears / undefined leaves alone) and the response READS THE ROW BACK rather than echoing the request. (b) WRITE-ONLY EDITOR: the ops price panel never read the stored policy, so the floor/margin boxes rendered blank whatever was stored — an operator could not see the seeded numbers they were being asked to replace, and could 'save' believing they had confirmed a price they had never seen. It now prefills on open. (c) A note with NO cost components at all was reported `priced` with total 0 by assembleNoteCost (nothing blocked completeness because there was nothing to block it), i.e. 'measured, and free'; the producer now refuses it.  LIVE PROOF (intent channel, real apps/api on :8123 against real Postgres scribe_seed on :5433). PORT IDENTITY PROVEN BEFORE TRUSTING ANY RESPONSE: a marker policy written THROUGH the API (product 'port-identity-probe-8123', floor 4242) was read back FROM scribe_seed and is ABSENT from the decoy scribe_price (count 0). PURCHASE TO PRICED NOTE: GET /admin/store/catalog renders the scribe card at $29.99/clinician/mo state='available' (after the tenant is moved to growth — the ADR-0035 starter floor is enforced); entitlement granted and visible on GET /admin/entitlements + product_entitlements; POST /scribe/sessions -> /consent -> POST /scribe/sessions/:id/$draft -> 201 with a real Composition AND a `usage` block reporting centsPerUnit=10, basis='cost-unpriced', costConfidence='unpriced', healthy=false, policySource='platform', policyProvenance='seeded-default'; the durable charge landed in billing_usage_events as kind='feature-use', featureId='ambient-scribe', idempotency_key='scribe-note:<sessionId>', with basis/healthy/blockedBy/policyProvenance/centsPerUnit in the body metadata.  THREE CONTROLS, ALL LIVE: (i) OVERRIDE BEATS SEED — PATCH 18c/55% through the ops route moved the row to 18/550000/'operator-set' and the GET's `caveat` went null; (ii) RE-SEED DOES NOT CLOBBER — re-running migration 346 verbatim against the live DB printed `INSERT 0 0`, left 18/550000/'operator-set' intact and produced no duplicate platform row; (iii) UNPRICED STILL SAYS UNPRICED — the note charged the floor and reported basis='cost-unpriced', never 'cost-below-floor'. A SECOND note drafted after the override billed 18c stamped 'operator-set' while the first stayed at 10c 'seeded-default', and a REDRAFT of the first added no second line (one row per idempotency key).  NOT PROVEN LIVE, stated plainly: no LLM provider on this stack is usable (OPENAI_API_KEY returns 429 billing_not_active, no ANTHROPIC_API_KEY, no Ollama), so the drafting call was served by a local OpenAI-compatible STUB behind the gateway's supported self-hosted `ollama` provider. That substitutes the MODEL ONLY — HTTP $draft, the Composition write, llm_audit_events, o4_llm_cost_ledger, the pricer and billing_usage_events are all the real path — and the note text is not clinically meaningful and is not claimed to be. STT did not run either (a persisted transcript was reused, which is the normal U6 path), so no Deepgram invoice was incurred or observed. POST /admin/store/checkout could not create a session ('missing-price: no price id for product:ambient-scribe:monthly') because stripe:sync-prices has never run here — an external Stripe gate; settlement was driven through POST /dev/checkout-grant, the documented stand-in, which writes the same product_entitlements row via the same PostgresProductCatalogStore.grantProduct.  ADR-0127: @cernia/api typecheck=0, build=0, lint 63 errors = the documented carry-forward baseline EXACTLY with ZERO in any touched file; @cernia/cernia-ops-portal typecheck=0, lint clean (1 pre-existing autofocus warning on the login page). Targeted tests 66/66 across five files: NEW scribe-note-pricer.test.ts (13, incl. both floor arms proven distinguishable at identical money, and the fact that at the seeded numbers 7.06c x 1.40 rounds to exactly the 10c floor so basis is 'cost-plus-margin' — the floor is a backstop, not the price), NEW usage-pricing-store.test.ts (8, REAL Postgres, covering all three controls plus the real-unique-key conflict target), per-unit-price-resolver 13, cernia-ops-store-routes 19 (U01 REVERSED from 'ships with NO policy' to 'ships with a SEEDED policy, labelled as one'; U03 split into omit-preserves + explicit-null-clears; its bootstrap now loads migration 346), scribe-cost-per-note 13. ADR-0140 gate: OK, 276 tenant-scoped tables all classified; migration 346 declares `product_usage_pricing = ERASE`, agreeing with ADR_0140_CASCADE.  WHERE THE FOUNDER CHANGES THESE TWO NUMBERS: apps/cernia-ops -> Platform -> Store -> the ambient-scribe row -> expand the terms disclosure -> '$ floor / unit' and 'margin %'. Takes effect immediately, no deploy, and stamps provenance='operator-set' which removes the provisional banner."
                 }
               ]
             }
@@ -8778,30 +8786,30 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-08-03T21:59:54.674Z",
+      "lastAuditAt": "2026-08-03T22:13:01.358Z",
       "backendRouteSymbolCount": 250,
       "deferredItems": {
-        "total": 1324,
+        "total": 1327,
         "bySeverity": {
           "tech-debt": 380,
-          "review": 939,
+          "review": 942,
           "blocker": 5
         },
         "byKind": {
-          "docstring-caveat": 346,
-          "not-configured-fallback": 168,
+          "docstring-caveat": 347,
+          "not-configured-fallback": 170,
           "type-cheat": 5,
-          "type-cheat-cast": 766,
+          "type-cheat-cast": 767,
           "deferred-marker": 2,
           "todo-comment": 5,
           "skipped-test": 3,
-          "json-deferred": 29
+          "json-deferred": 28
         },
         "byWave": {
           "UI": 73,
           "X": 57,
           "H": 14,
-          "Platform": 849,
+          "Platform": 853,
           "E": 56,
           "S": 1,
           "J": 9,
@@ -8810,7 +8818,7 @@
           "ERX": 20,
           "P": 25,
           "Q": 28,
-          "(unassigned)": 72,
+          "(unassigned)": 71,
           "DD": 4,
           "F": 23,
           "I": 9,
@@ -8837,7 +8845,13 @@
         }
       }
     },
-    "justLandedWaves": []
+    "justLandedWaves": [],
+    "nowWorkingOn": {
+      "wave": "STORE",
+      "detail": "the scribe gets a sellable per-note price, and \"temporary\" becomes a column (#769)",
+      "commit": "38d16e75",
+      "freshSeconds": 51
+    }
   },
   "pool": {
     "size": 8,
@@ -8958,6 +8972,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "the scribe gets a sellable per-note price, and \"temporary\" becomes ...",
+      "commit": "38d16e75",
+      "kind": "feat"
+    },
+    {
       "agent": "ci(e2e): put the timeout back at 30 — the suite is red, not slow (#...",
       "commit": "164f21b5",
       "kind": "other"
@@ -9025,11 +9044,6 @@
     {
       "agent": "test(scribe): run 3 of J04/J05/J06 — all three GREEN (6/11 to 16/16...",
       "commit": "991873a2",
-      "kind": "other"
-    },
-    {
-      "agent": "test(scribe): run 3 of J10/J11/J12 — all three pass, and the audit ...",
-      "commit": "6dcdbe42",
       "kind": "other"
     }
   ],
@@ -17328,7 +17342,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
-    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "164f21b5",
+    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "38d16e75",
     "origin/feat/google-first-signup-and-session-guard@3cb0ee52c135": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
@@ -17339,42 +17353,42 @@
     "origin/feat/mb-dunning-stores@f81d00eae3df": true,
     "origin/feat/mb-platform-stores@d03c00909a1c": true,
     "origin/feat/mb2-integration-tests@2b933361fb12": true,
-    "origin/feat/mb3-e2e-coverage@723df77a25eb": "164f21b5",
+    "origin/feat/mb3-e2e-coverage@723df77a25eb": "38d16e75",
     "origin/feat/onboarding-redesign@187fc6ddaa15": true,
-    "origin/feat/p1-isolation-guarantee@776f90b85603": "164f21b5",
-    "origin/feat/p2-phone-numbers@61cc502884a1": "164f21b5",
+    "origin/feat/p1-isolation-guarantee@776f90b85603": "38d16e75",
+    "origin/feat/p2-phone-numbers@61cc502884a1": "38d16e75",
     "origin/feat/p3-voice-selection@a6daf23a6694": true,
     "origin/feat/phase-1b-provisioning@27440117dc24": true,
     "origin/feat/r16-fleet-audit@3c1808b66c51": true,
     "origin/feat/r3-residuals@ee2c4cc78b22": true,
-    "origin/feat/release-3-developer-portal@060c10db29d4": "164f21b5",
+    "origin/feat/release-3-developer-portal@060c10db29d4": "38d16e75",
     "origin/feat/relevance-flag-toggle@18c5b5497767": true,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
-    "origin/feat/scribe-audio-citations@f818a947b472": "164f21b5",
+    "origin/feat/scribe-audio-citations@f818a947b472": "38d16e75",
     "origin/feat/scribe-capture-enablers@61fccfcfdac4": true,
     "origin/feat/scribe-coaching-telemetry-sink@d8bf1e52063b": true,
     "origin/feat/scribe-fake-audio-harness@2d30a191b6ab": true,
-    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "164f21b5",
-    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "164f21b5",
-    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "164f21b5",
+    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "38d16e75",
+    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "38d16e75",
+    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "38d16e75",
     "origin/feat/scribe-template-lifecycle-coaching@790aa20a7c2d": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
     "origin/feat/signup-totp-installer-ux@2b131af30595": true,
     "origin/feat/specialty-taxonomy-package@0e2b3b99f12a": true,
-    "origin/feat/store-ambient-scribe@d820b553eadb": "164f21b5",
-    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "164f21b5",
-    "origin/feat/t3-4-outbound-pacing@716782906aa3": "164f21b5",
+    "origin/feat/store-ambient-scribe@d820b553eadb": "38d16e75",
+    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "38d16e75",
+    "origin/feat/t3-4-outbound-pacing@716782906aa3": "38d16e75",
     "origin/feat/taxonomy-s1b@bf9cdb4d39a5": true,
-    "origin/feat/taxonomy-s3@e05572b75315": "164f21b5",
-    "origin/feat/taxonomy-s4@9a1a1852514f": "164f21b5",
+    "origin/feat/taxonomy-s3@e05572b75315": "38d16e75",
+    "origin/feat/taxonomy-s4@9a1a1852514f": "38d16e75",
     "origin/feat/taxonomy-s5@d8b50a675ab3": true,
-    "origin/feat/taxonomy-tax-a@17d6137bdb89": "164f21b5",
+    "origin/feat/taxonomy-tax-a@17d6137bdb89": "38d16e75",
     "origin/feat/taxonomy-tax-b@eb6d9883e95c": true,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
     "origin/feat/totp-gate-and-admin-google@372e3c7fb0a3": true,
-    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "164f21b5",
-    "origin/feat/w1@21667a886023": "164f21b5",
-    "origin/feat/w2@247ead3f02af": "164f21b5",
+    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "38d16e75",
+    "origin/feat/w1@21667a886023": "38d16e75",
+    "origin/feat/w2@247ead3f02af": "38d16e75",
     "origin/feat/w3@4cf46bdbb6ca": true,
     "origin/feat/w4@c2dec1309090": true,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,
@@ -17605,7 +17619,7 @@
     "origin/feat/wave-e-e9-voice-payments@aaf8f1bece55": true,
     "origin/feat/wave-e-en2-spanish@08bd4faa06b9": true,
     "origin/feat/wave-e-en3-voice-persona@72f305a280c8": true,
-    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "164f21b5",
+    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "38d16e75",
     "origin/feat/wave-e-en5-waitlist@b3ed576c7cfa": true,
     "origin/feat/wave-e-en6-triage@b7956b5356e3": true,
     "origin/feat/wave-e-en7-reminder-cadence@19bdff3d699c": true,
