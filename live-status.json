@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-08-03T16:39:02.510Z",
-    "lastUpdatedDisplay": "Aug 3, 2026 — 16:39 EDT",
+    "lastUpdatedIso": "2026-08-03T17:09:21.212Z",
+    "lastUpdatedDisplay": "Aug 3, 2026 — 17:09 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fix"
   },
   "summary": {
-    "currentMainCommit": "c8d3247d",
+    "currentMainCommit": "df0047bc",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2953,
+    "agentsCompletedThisSession": 2954,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2953 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2954 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 3, 2026 — 16:39 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 3, 2026 — 17:09 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -3915,8 +3915,8 @@
               },
               "current": {
                 "status": "partial",
-                "asOf": "2026-07-31",
-                "summary": "3 of 7 passes closed all-gates-green against the REAL stack (Pass 1 ERX, Pass 3 G caregiver-federation+SAML, Pass 7 foundation/white-label). 4 remain — Pass 2/4/6 are largely procurement-gated (vendor + LLM + Stripe BAAs), Pass 5 is the largest admin surface (~10-14 eng-days). See docs/operations/runbooks/cit-closure-passes-roadmap.md. Journeys run 3 (J10/J11/J12) closed with no regression — 6/6, 10/10, 7/7 — and surfaced three new gaps now tracked below: the #742 audit outcome is unreachable through the product (J11-F3), the signup wizard 500s on an unreachable Redis whose documented fallback never fires (J10-F2), and #746's acceptance script cannot run on a stack with an email sender (J10-F3)."
+                "asOf": "2026-08-03",
+                "summary": "3 of 7 passes closed all-gates-green against the REAL stack (Pass 1 ERX, Pass 3 G caregiver-federation+SAML, Pass 7 foundation/white-label). 4 remain — Pass 2/4/6 are largely procurement-gated (vendor + LLM + Stripe BAAs), Pass 5 is the largest admin surface (~10-14 eng-days). See docs/operations/runbooks/cit-closure-passes-roadmap.md. Journeys run 3 (J10/J11/J12) closed with no regression — 6/6, 10/10, 7/7 — and surfaced three new gaps now tracked below: the #742 audit outcome is unreachable through the product (J11-F3), the signup wizard 500s on an unreachable Redis whose documented fallback never fires (J10-F2), and #746's acceptance script cannot run on a stack with an email sender (J10-F3). Run 3’s 🖥️ addendum (2026-08-03) then closed the campaign’s last unproven claim: J04 19/19 and J06 18/18 with both review screens photographed against falsifying controls — J06 green as shipped, J04 red on main (a Promise.all race let #741’s fix be bypassed on 4 of 8 loads) and fixed in the same PR."
               },
               "evidence": [],
               "remaining": [
@@ -3925,12 +3925,13 @@
                 "Pass 5: K + L + M + N + R + S + T + U + V — largest remaining admin surface",
                 "Pass 6: X + Z + Y + DD + AA + BB — dev-testable surface COMPLETE (cross-tenant cernia-ops CSM/health/renewal/expansion/TtFV/activation + storefront browse→buy→entitlement, all real-stack E2E). Only Stripe PRODUCTION credentials remain (procurement).",
                 "Ambient scribe: 20 registered defects still open (docs/testing/scribe-e2e-test-plan.md, §0.1). Loudest is D21 (P0) — LLM-gateway failover writes the wrong vendor into the HIPAA audit AND never checks BAA eligibility before switching provider. D16/D26/D29/D31 are the silent-degradation family from the F17-05 census.",
-                "Ambient scribe: F18 (UI surfaces) is the one unexecuted family, and D20 is filed with its screenshot proof owed — the API was cleared by measurement (F10-06) and the defect narrowed to the admin template editor by code read, which the plan does not accept for a UI surface.",
+                "Ambient scribe: F18 (UI surfaces) is the one unexecuted family, and D20 is filed with its screenshot proof owed — the API was cleared by measurement (F10-06) and the defect narrowed to the admin template editor by code read, which the plan does not accept for a UI surface. NARROWED 2026-08-03: the review screen’s consent-refusal message (J04) and its coding-pass degradation banner (J06, all three of indeterminate/failed/skipped-not-entitled) ARE now measured in a real browser with falsifying controls — see docs/status/evidence/scribe-journeys/run4-j04-j06-screens-report.md. D20’s template-editor screenshot and the rest of F18 are still owed.",
                 "Ambient scribe: there is no per-patient erasure. Every cascade entry is WHERE tenant_id (F14-02), so a single patient's right-to-erasure request can only be satisfied today by erasing their whole practice.",
                 "Ambient scribe / J06 backfill residual: a tenant whose ambient-scribe-pro row is removed by anything OTHER than the tenant-erasure cascade reads as 'never granted', so a genuinely failed coding pass under it is stamped quiet and frozen (measured once, on the row the J06-6 control DELETEd by hand; no product statement does this today - apps/api/src/product-catalog-store.ts has no single-row delete). Also unrecoverable: 'unavailable' (a draft on a deployment with no coding client wired) is folded into 'failed' by migration 337, inert until coding is wired. Both are documented in docs/status/evidence/scribe-journeys/j06-backfill-report.md §7.",
                 "Ambient scribe / J11-F3 (run 3): the audit outcome PR #742 derives cannot be read through the product. GET /api/o6/audit — the route that PR names as \"the consumer that was being misled\" and rewires onto queryResolved — answers 401 tokenless and 403 `RBAC denied * on *` to a tenant-admin, a clinician and a `cernia-super-admin` platform-operator token alike, because apps/api/src/iam-route-guards.ts deriveOperation has no branch for /api/o6/*. queryResolved has exactly one non-test caller (that route) and no UI in apps/admin or apps/cernia-ops fetches it, so `resource_outcome` is reachable only by hand-written SQL. The un-mapping is deliberate (mapping /api/o6/* onto a canonical verb would hand a tenant admin a cross-tenant capability through *:admin) — the gap is the MISSING OPERATOR PATH. apps/api/src/llm-observability-audit.integration.test.ts cannot see it: it registers the plugin on a bare Fastify() with no RBAC preHandler.",
                 "Ambient scribe / J10-F2 (run 3): the self-serve signup wizard answers 500 \"An unexpected error occurred\" at POST /onboarding/:sessionId/mfa/totp/begin when Redis is configured but unreachable. apps/api/.env sets REDIS_HOST=localhost, which resolves ::1 first on Windows while the container is IPv4-only — the same defect PR #748 fixed for DB_HOST and left for Redis. apps/api/src/redis-client.ts catches only client CONSTRUCTION and its handler promises \"Falling back to in-memory adapters\", but `new ioredis({host})` does not throw for an unreachable host, so the fallback never fires and InMemoryTotpEnrollmentStore is never reached. Intermittent, therefore worse than a hard failure. Scope covers every adapter behind getRedisClient(): OIDC login state, MFA challenges, caller rate limiting. Two-arm control in docs/status/evidence/scribe-journeys/run3-p1-redis-control.json.",
-                "Ambient scribe / J10-F3 (run 3): apps/api/scripts/acceptance-clinician-role.mjs cannot pass on any stack that has an email sender configured — POST /onboarding/:id/$complete answers 409 email-not-verified, because index.ts arms the email-verified gate whenever buildEmailServiceFromEnv() returns a sender and the gate requires a CONSUMED signup-email OTP. apps/api/.env carries live Google SMTP credentials, so that is this repo's default dev posture and #746's GREEN evidence was necessarily produced without it. The script does not state which posture it needs; a header line or a boot recipe beside it closes this. (apps/api/scripts/run3-boot-smoke.sh now carries CERNIA_DISARM_EMAIL_GATE=1 for this.)"
+                "Ambient scribe / J10-F3 (run 3): apps/api/scripts/acceptance-clinician-role.mjs cannot pass on any stack that has an email sender configured — POST /onboarding/:id/$complete answers 409 email-not-verified, because index.ts arms the email-verified gate whenever buildEmailServiceFromEnv() returns a sender and the gate requires a CONSUMED signup-email OTP. apps/api/.env carries live Google SMTP credentials, so that is this repo's default dev posture and #746's GREEN evidence was necessarily produced without it. The script does not state which posture it needs; a header line or a boot recipe beside it closes this. (apps/api/scripts/run3-boot-smoke.sh now carries CERNIA_DISARM_EMAIL_GATE=1 for this.)",
+                "Ambient scribe / 🖥️ channel coverage (surfaced 2026-08-03 by J04-F1): the review screen loads session, draft and transcript with a single Promise.all, so ANY per-route error-code flattening in apps/admin/src/lib/scribe-api.ts can win the race and replace a specific message with a bare HTTP status, non-deterministically. getTranscript was fixed here; the other loaders on that screen (and the equivalent races on the record and session-list screens) have not been swept for the same shape. A wire-only test cannot see this class — both routes were correct on the wire the whole time — and a single screenshot is right ~half the time, so any sweep must load each screen repeatedly."
               ],
               "history": [
                 {
@@ -4259,6 +4260,10 @@
                   "date": "2026-07-31",
                   "stage": "closure-passes",
                   "note": "Ambient scribe / RUN 3 of the live product journeys J10 (the locum), J11 (the audit) and J12 (the self-hosted practice): 6/6, 10/10, 7/7 — no regression against run 2 in any of the three, re-measured against the seven PRs that had landed since (#742 #744 #745 #746 #747 #748 #750). Two of the three sat on rewritten substrate and both were re-instrumented rather than re-run blind: J11 now matches EITHER correlation column because #742 split `resource_id` (existed) from `reserved_resource_id` (intent), and run 2's predicate is measured returning ZERO for a fresh note; J10 gained step 6, which drives the `clinician` Role #746 created entirely on PRODUCT CREDENTIALS (self-serve onboarding -> invite -> accept -> second login) with no /dev/login in the proof. Migration 338's one-time correction was measured on run 2's REAL rows (run3_d is a TEMPLATE copy of run2_d): 88 rows, 18 pointers relocated, 8 dangling -> 0, nothing lost. Runner + evidence: apps/api/scripts/run3-journeys-*.mts, docs/status/evidence/scribe-journeys/run3-j10-j12-results.{json,md}, run3-migration338-existing-rows.json, run3-p1-redis-control.json. Verdicts in docs/status/journeys.json (79 findings; run 1 and run 2 preserved on every row)."
+                },
+                {
+                  "date": "2026-08-03",
+                  "note": "Journeys run 3 🖥️ ADDENDUM — the campaign’s last unproven claim closed. Run 3 recorded J04 16/16 and J06 14/14 but said plainly that #741’s review-screen reason and #747’s `indeterminate` banner were proved on the wire and in the client source ONLY, because apps/admin would not start in its worktree. Root cause was a half-materialised pnpm store (next/ an EMPTY directory — passes typecheck, crashes at runtime), NOT the application; repaired by one clean root `pnpm install`. Both screens then measured live in Chromium against a booted API (:8531) + real Postgres (run4_screens, a TEMPLATE clone of run3_b at migration 345) + real MinIO, port↔DB pairing proven with a write in both directions. J06 PASSES AS SHIPPED — the `indeterminate` banner renders alert/role=\"alert\"/red/AlertTriangle with copy that names the uncertainty and asserts no cause, against two definite controls (one quiet, one also-alert). J04 WAS RED ON MAIN and is closed here: apps/admin/src/lib/scribe-api.ts `getTranscript` flattened 403 `consent-required` to `forbidden`, and since the review screen’s runLoad() races it against getDraft in Promise.all, 4 of 8 loads of a refused visit rendered \"Failed to load transcript (403)\" — J04’s failing clause verbatim, invisible to three runs of wire evidence. Fix + RED-proved regression case in apps/admin/src/lib/scribe-consent-client.test.ts; 12/12 after. Runners: apps/api/scripts/run-run4-screens-setup.mts + run-run4-screens-browser.mts (+ run4-screens-env.sh, boot-run4-screens.sh). Evidence: docs/status/evidence/scribe-journeys/run4-j04-j06-screens-report.md, run4-screens-browser-RED.json / -GREEN.json, screens/run4-j04-*.png + screens/run4-j06-b{1,2,3,4}-*.png."
                 }
               ]
             }
@@ -8755,20 +8760,20 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-08-03T16:39:01.462Z",
+      "lastAuditAt": "2026-08-03T17:09:20.175Z",
       "backendRouteSymbolCount": 250,
       "deferredItems": {
-        "total": 1323,
+        "total": 1324,
         "bySeverity": {
           "tech-debt": 380,
-          "review": 938,
+          "review": 939,
           "blocker": 5
         },
         "byKind": {
           "docstring-caveat": 346,
           "not-configured-fallback": 168,
           "type-cheat": 5,
-          "type-cheat-cast": 765,
+          "type-cheat-cast": 766,
           "deferred-marker": 2,
           "todo-comment": 5,
           "skipped-test": 3,
@@ -8778,7 +8783,7 @@
           "UI": 73,
           "X": 57,
           "H": 14,
-          "Platform": 848,
+          "Platform": 849,
           "E": 56,
           "S": 1,
           "J": 9,
@@ -8816,10 +8821,10 @@
     },
     "justLandedWaves": [],
     "nowWorkingOn": {
-      "wave": "ERASURE",
-      "detail": "make ADR-0140's release-blocker actually block (#766)",
-      "commit": "c8d3247d",
-      "freshSeconds": 60
+      "wave": "SCRIBE,ADMIN",
+      "detail": "a refused visit explained itself only half the time (J04/J06 screen arm) (#767)",
+      "commit": "df0047bc",
+      "freshSeconds": 54
     }
   },
   "pool": {
@@ -8941,6 +8946,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "a refused visit explained itself only half the time (J04/J06 screen...",
+      "commit": "df0047bc",
+      "kind": "fix"
+    },
+    {
       "agent": "make ADR-0140's release-blocker actually block (#766)",
       "commit": "c8d3247d",
       "kind": "feat"
@@ -9008,11 +9018,6 @@
     {
       "agent": "test(scribe): run 3 of J01/J02/J03 — J01's red is closed (PASS 10/1...",
       "commit": "ae1762d8",
-      "kind": "other"
-    },
-    {
-      "agent": "test(journeys): open run 3, keeping BOTH prior runs on every row (#...",
-      "commit": "e4fb3720",
       "kind": "other"
     }
   ],
@@ -17311,7 +17316,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
-    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "c8d3247d",
+    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "df0047bc",
     "origin/feat/google-first-signup-and-session-guard@3cb0ee52c135": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
@@ -17322,42 +17327,42 @@
     "origin/feat/mb-dunning-stores@f81d00eae3df": true,
     "origin/feat/mb-platform-stores@d03c00909a1c": true,
     "origin/feat/mb2-integration-tests@2b933361fb12": true,
-    "origin/feat/mb3-e2e-coverage@723df77a25eb": "c8d3247d",
+    "origin/feat/mb3-e2e-coverage@723df77a25eb": "df0047bc",
     "origin/feat/onboarding-redesign@187fc6ddaa15": true,
-    "origin/feat/p1-isolation-guarantee@776f90b85603": "c8d3247d",
-    "origin/feat/p2-phone-numbers@61cc502884a1": "c8d3247d",
+    "origin/feat/p1-isolation-guarantee@776f90b85603": "df0047bc",
+    "origin/feat/p2-phone-numbers@61cc502884a1": "df0047bc",
     "origin/feat/p3-voice-selection@a6daf23a6694": true,
     "origin/feat/phase-1b-provisioning@27440117dc24": true,
     "origin/feat/r16-fleet-audit@3c1808b66c51": true,
     "origin/feat/r3-residuals@ee2c4cc78b22": true,
-    "origin/feat/release-3-developer-portal@060c10db29d4": "c8d3247d",
+    "origin/feat/release-3-developer-portal@060c10db29d4": "df0047bc",
     "origin/feat/relevance-flag-toggle@18c5b5497767": true,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
-    "origin/feat/scribe-audio-citations@f818a947b472": "c8d3247d",
+    "origin/feat/scribe-audio-citations@f818a947b472": "df0047bc",
     "origin/feat/scribe-capture-enablers@61fccfcfdac4": true,
     "origin/feat/scribe-coaching-telemetry-sink@d8bf1e52063b": true,
     "origin/feat/scribe-fake-audio-harness@2d30a191b6ab": true,
-    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "c8d3247d",
-    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "c8d3247d",
-    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "c8d3247d",
+    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "df0047bc",
+    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "df0047bc",
+    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "df0047bc",
     "origin/feat/scribe-template-lifecycle-coaching@790aa20a7c2d": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
     "origin/feat/signup-totp-installer-ux@2b131af30595": true,
     "origin/feat/specialty-taxonomy-package@0e2b3b99f12a": true,
-    "origin/feat/store-ambient-scribe@d820b553eadb": "c8d3247d",
-    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "c8d3247d",
-    "origin/feat/t3-4-outbound-pacing@716782906aa3": "c8d3247d",
+    "origin/feat/store-ambient-scribe@d820b553eadb": "df0047bc",
+    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "df0047bc",
+    "origin/feat/t3-4-outbound-pacing@716782906aa3": "df0047bc",
     "origin/feat/taxonomy-s1b@bf9cdb4d39a5": true,
-    "origin/feat/taxonomy-s3@e05572b75315": "c8d3247d",
-    "origin/feat/taxonomy-s4@9a1a1852514f": "c8d3247d",
+    "origin/feat/taxonomy-s3@e05572b75315": "df0047bc",
+    "origin/feat/taxonomy-s4@9a1a1852514f": "df0047bc",
     "origin/feat/taxonomy-s5@d8b50a675ab3": true,
-    "origin/feat/taxonomy-tax-a@17d6137bdb89": "c8d3247d",
+    "origin/feat/taxonomy-tax-a@17d6137bdb89": "df0047bc",
     "origin/feat/taxonomy-tax-b@eb6d9883e95c": true,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
     "origin/feat/totp-gate-and-admin-google@372e3c7fb0a3": true,
-    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "c8d3247d",
-    "origin/feat/w1@21667a886023": "c8d3247d",
-    "origin/feat/w2@247ead3f02af": "c8d3247d",
+    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "df0047bc",
+    "origin/feat/w1@21667a886023": "df0047bc",
+    "origin/feat/w2@247ead3f02af": "df0047bc",
     "origin/feat/w3@4cf46bdbb6ca": true,
     "origin/feat/w4@c2dec1309090": true,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,
@@ -17588,7 +17593,7 @@
     "origin/feat/wave-e-e9-voice-payments@aaf8f1bece55": true,
     "origin/feat/wave-e-en2-spanish@08bd4faa06b9": true,
     "origin/feat/wave-e-en3-voice-persona@72f305a280c8": true,
-    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "c8d3247d",
+    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "df0047bc",
     "origin/feat/wave-e-en5-waitlist@b3ed576c7cfa": true,
     "origin/feat/wave-e-en6-triage@b7956b5356e3": true,
     "origin/feat/wave-e-en7-reminder-cadence@19bdff3d699c": true,
