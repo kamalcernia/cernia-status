@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-08-03T14:58:09.474Z",
-    "lastUpdatedDisplay": "Aug 3, 2026 — 14:58 EDT",
+    "lastUpdatedIso": "2026-08-03T14:59:51.817Z",
+    "lastUpdatedDisplay": "Aug 3, 2026 — 14:59 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fix"
   },
   "summary": {
-    "currentMainCommit": "57bb2672",
+    "currentMainCommit": "68a38569",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2949,
+    "agentsCompletedThisSession": 2950,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2949 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2950 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 3, 2026 — 14:58 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 3, 2026 — 15:00 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -4948,11 +4948,13 @@
               },
               "current": {
                 "status": "complete",
-                "asOf": "2026-05-26",
-                "summary": "All bullets shipped this session — 5 completed entries with closedAt references."
+                "asOf": "2026-08-03",
+                "summary": "Cross-tenant aggregation now actually runs. The 4-route dashboard was marked complete in 2026-05, but its three PLATFORM routes reported zero against a ledger with rows in it until 2026-08-03; fixed and live-verified end-to-end (2,570 cents reconciling across all three)."
               },
               "evidence": [],
-              "remaining": [],
+              "remaining": [
+                "FOUND-WHILE-FIXING (operator-contract decision, deliberately NOT changed as a side effect of a defect fix): apps/api/src/cernia-ops-finops-routes.ts is internally inconsistent about tenant ids crossing the platform boundary. /metric-trend and /scribe-note-cost HASH them citing CLAUDE.md invariant 5; /by-tenant emits them RAW, and the file header's justification — \"tenant IDs are opaque UUIDs\" — is false in practice: live ids are practice-naming slugs (t-lakeshore-j11new-r1, t-cedar). Nothing has leaked to date only because /by-tenant returned nothing at all until now. Hashing it breaks the /tenant/:tenantId drill-down, so pick one: hash and teach drill-down to accept the hash, or ratify raw tenant ids for this surface and correct the comment. No patient identifier is involved either way. The false claim in the header has been corrected in place; the behaviour has not."
+              ],
               "history": [
                 {
                   "date": "2026-05-26",
@@ -4960,6 +4962,13 @@
                   "from": "remaining",
                   "to": "closed",
                   "note": "PROD-P11: @cernia/finops PostgresCostTracker + migration 067_finops_cost_ledger. PK (tenant_id, occurred_at, ledger_id BIGSERIAL); CHECK on provider + category + non-neg quantity/cost. PHI tripwire blocks MRN/DOB-shaped values + forbidden keys (patientId, mrn, dob). 16/16 tests green against real Postgres including cross-tenant rollup isolation. Commit 99fdddd2."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "scope",
+                  "from": "closed",
+                  "to": "closed",
+                  "note": "CORRECTION to the 2026-05-26 \"complete\". /cernia-ops/finops/{rollup,by-tenant,margin-per-tier} returned EMPTY WITH NO ERROR. PostgresCostTracker never implemented the cross-tenant capabilities the routes assumed — and, contrary to the reading in both the route comment and the bug report, it did NOT reject the wildcard: \"*\" is a non-empty string, so it satisfied the `tenantId is required` guard and was bound as a literal WHERE tenant_id = '*', matching no row and returning a well-formed ZERO rollup. Because nothing threw, the route's own cost-tracker-wildcard-not-supported fallback never fired — the failure was quieter than documented. /by-tenant and /margin-per-tier separately probed for listTenantIdsInWindow, did not find it, and substituted an empty tenant list. Measured live on a 2,570-cent / 2-tenant ledger: all three answered HTTP 200 with zeros and no warning field at all. FIX: packages/finops/src/cost-tracker.ts gains platformRollup() and listTenantIdsInWindow(), both sharing ONE private aggregate() with rollup() so the platform figure cannot drift from the per-tenant rows it is supposed to be the sum of; rollup() now REJECTS PLATFORM_WIDE_TENANT_SENTINEL by name, so a wildcard can never again be silently read as a tenant. apps/api/src/cernia-ops-finops-routes.ts returns 501 cost-aggregation-unsupported naming the missing capability instead of degrading to zeros / items:[] / all-tier-zero. An empty 200 from these routes now means the ledger really was empty. LIVE AFTER: rollup totalCents 2570; by-tenant t-cedar 1030 + t-lakeshore 1540 = 2570; margin-per-tier tenantCount 2 / totalCostCents 2570. WHY IT WAS GREEN THE WHOLE TIME: cernia-ops-finops-routes.test.ts injected a hand-written TestCostTracker that implemented BOTH capabilities production lacked — it honoured the \"*\" wildcard and had listTenantIdsInWindow — so every case passed against a double strictly more capable than the shipping class. Same failure as the bare-Fastify harness on /api/o6/audit, in the dependency direction instead of the middleware one. That double is deleted; the suite now injects the REAL PostgresCostTracker, with one deliberately-incapable double retained solely to prove the 501. Tests: @cernia/finops 136/136, cernia-ops-finops-routes 11/11 (R08-R11 new, pinning refused-vs-empty in both directions)."
                 }
               ],
               "completed": [
@@ -4987,6 +4996,11 @@
                   "bullet": "Margin per tier (sandbox / growth / enterprise) computed monthly",
                   "closedAt": "2026-05-26",
                   "note": "PROD-P11 final: buildMonthlyMarginPerTier() + InMemoryTierResolver + monthBoundaries() helper in packages/finops/src/margin/. 6/6 real-Postgres tests covering tier ordering, unresolved-tenant bucket, period-boundary exclusion. Operator runbook docs/operations/finops/margin-per-tier-monthly.md."
+                },
+                {
+                  "bullet": "Cross-tenant platform aggregation actually implemented (the routes only assumed it)",
+                  "closedAt": "2026-08-03",
+                  "note": "PostgresCostTracker.platformRollup() + listTenantIdsInWindow() sharing one aggregate() with rollup(); wildcard rejected by name; routes 501 rather than answer zero. Live: 2,570 cents reconciles across rollup, by-tenant and margin-per-tier."
                 }
               ]
             }
@@ -6236,7 +6250,9 @@
               ],
               "remaining": [
                 "CARRY-FORWARD (MU23): the durable multi-pod LLM-streaming host runs against injected provider fakes; the live streamed completion is inert until the provider-key/BAA gate clears.",
-                "EXTERNAL GATE (MU19/MU23/MU9): the 6 LLM-provider keys (Anthropic/OpenAI/Azure/Google/Bedrock/Ollama) + a BAA per provider for live streaming; broker-resolved (MU9); KMS custody sign-off for any held key."
+                "EXTERNAL GATE (MU19/MU23/MU9): the 6 LLM-provider keys (Anthropic/OpenAI/Azure/Google/Bedrock/Ollama) + a BAA per provider for live streaming; broker-resolved (MU9); KMS custody sign-off for any held key.",
+                "FOLLOW-UP (surfaced while fixing GET /api/o6/audit): the REST of the /api/o4/* + /api/o6/traces* family in apps/api/src/llm-observability-routes.ts is still reachable by nobody, ON PURPOSE. Each resolves its tenant from a caller-supplied ?tenantId= via tenantOf(), so \"unmapped\" is the only thing preventing any authenticated caller from reading another tenant's LLM spend. Each needs the same two-part fix /api/o6/audit just got — server-authoritative tenant FIRST, then a deriveOperation mapping (or an operator-scoped route) — never the mapping alone. Pinned in iam-route-guards.repo-coverage.test.ts.",
+                "FOLLOW-UP (role-catalog scope; spans every search-mapped route, NOT specific to o6): tenant-member — the CLINICAL role — carries a wildcard {resourceType:\"*\", verb:\"search\"} grant in packages/saas-platform/src/lifecycle/default-roles.ts. It therefore reaches search:AuditEvent, which is GET /admin/audit — the tamper-evident PHI-ACCESS chain recording which patient records each user opened — as well as the LLM audit trail. That may be intended, but today it is implicit and was discovered by measurement rather than by design. Decide it explicitly at the catalog level and write it down; do not settle it per-route by picking unusual verbs, which would lock the auditor role out of audit trails."
               ],
               "history": [
                 {
@@ -6245,6 +6261,13 @@
                   "from": "absent",
                   "to": "partial",
                   "note": "MU19-MU23 merged (commit 0ceedeb8 P3+P4). o1-llm-gateway STAYS in-process on the AI plane (complete() is a lib import, no network hop) + extracted ONLY the mgmt surface (cost/audit/budget over a shared store, monolith /llm-gateway kept green); lifted pure AI libs (o3/o5/j2d); BUILT durable Postgres stores for the two Map-backed registries (PromptRegistry seeds-from-store + survives restart; KbStore) under FORCE RLS; carved o6/o4/audit (091/075/090/295) onto the 3 PK-fixed tables (tenant-agnostic collision rejected); NET-NEW durable multi-pod LLM-streaming host (fan-out + inline guardrails + failover + session survives restart) external-gated (provider keys+BAAs), faked in e2e. apps/ml-ai-service/src/ai/*."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "ai-plane",
+                  "from": "remaining",
+                  "to": "closed",
+                  "note": "GET /api/o6/audit — the LLM-audit compliance surface PR #742 named as \"the consumer that was being misled\" — was reachable by NO principal: tokenless 401, tenant-admin 403, clinician 403, cernia-super-admin 403, every one of them \"RBAC denied * on *\", because deriveOperation had no /api/o6/* branch and the platform-operator pass is scoped to /cernia-ops/*. Pasted red on a booted API against real Postgres before any change. FIX, both halves in one change because either alone is a defect: mapped to {search, AuditEvent} in apps/api/src/iam-route-guards.ts (the SAME operation as GET /admin/audit, so the two audit surfaces cannot drift into different reachability), AND the tenant made server-authoritative from req.rbacClaims.tenantId — a mismatched ?tenantId= is now 403 cross-tenant-read-refused rather than honoured. That second half is the trap iam-route-guards.repo-coverage.test.ts explicitly warned \"is primed to fire on the obvious fix\"; the route left that pinned catch-all list only because it was defused. apps/api/src/llm-observability-routes.ts now takes a REQUIRED rbac dep plus an in-route requirePermission preHandler, so no future test can stand it up ungated — a bare Fastify() with no RBAC preHandler is exactly what hid this through 47 closures and two journey runs. WHO READS IT: the tenant, over its own data (tenant-admin + tenant-member from buildDefaultRoles, auditor from buildConfigurableRoles — measured against both shipped catalogs, not assumed). NOT the platform operator: a row carries user_id=Practitioner/<name>, a scribe session_id and a Composition id, none of which may cross the tenant boundary (CLAUDE.md invariant 5 / ADR 0026 §3), so cernia-super-admin is deliberately still 403 here. The operator half shipped alongside as a NEW cross-tenant surface, apps/api/src/cernia-ops-ai-observability-routes.ts (GET /cernia-ops/ai-observability/audit): tenant ids sha256-hashed, every row-level identifier reduced to a count, prompt/response hashes dropped, sendPhiSafe on the way out, and producedFraction as the fleet generalisation of the 42.1%-dangling metric PR #742 fixed. LIVE-PROVEN with real tokens on a booted API: tenant-admin 200 with its own 10 rows, tenant-member 200 own-tenant, a DIFFERENT tenant's admin 200 with only its own row and no trace of the first, ?tenantId= widening 403, operator 403 on the tenant route and 200 on the fleet view whose payload contains zero occurrences of any seeded tenant id, clinician name, session id or note id. Tests: llm-observability-audit.rbac.test.ts 13/13 (real global hook, real signed JWTs, real RoleBindings, real Postgres), cernia-ops-ai-observability-routes.test.ts 8/8."
                 }
               ]
             },
@@ -8696,20 +8719,20 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-08-03T14:58:08.094Z",
-      "backendRouteSymbolCount": 249,
+      "lastAuditAt": "2026-08-03T14:59:49.926Z",
+      "backendRouteSymbolCount": 250,
       "deferredItems": {
-        "total": 1321,
+        "total": 1322,
         "bySeverity": {
           "tech-debt": 380,
-          "review": 936,
+          "review": 937,
           "blocker": 5
         },
         "byKind": {
           "docstring-caveat": 346,
           "not-configured-fallback": 168,
           "type-cheat": 5,
-          "type-cheat-cast": 763,
+          "type-cheat-cast": 764,
           "deferred-marker": 2,
           "todo-comment": 5,
           "skipped-test": 3,
@@ -8719,7 +8742,7 @@
           "UI": 73,
           "X": 57,
           "H": 14,
-          "Platform": 846,
+          "Platform": 847,
           "E": 56,
           "S": 1,
           "J": 9,
@@ -8742,7 +8765,7 @@
         "wontfixDemotions": []
       },
       "saasConformance": {
-        "totalViolations": 570,
+        "totalViolations": 571,
         "totalBlockers": 46,
         "byCheck": {
           "migration-tenant-id": 11,
@@ -8751,16 +8774,16 @@
           "no-phi-in-logs": 0,
           "baa-enforcement": 0,
           "three-app-boundary": 0,
-          "no-in-process-stubs": 524
+          "no-in-process-stubs": 525
         }
       }
     },
     "justLandedWaves": [],
     "nowWorkingOn": {
-      "wave": "ERASURE",
-      "detail": "the ADR-0140 cascade was leaving a departed tenant's data on disk (#762)",
-      "commit": "57bb2672",
-      "freshSeconds": 61
+      "wave": "O6,FINOPS",
+      "detail": "two operator surfaces that held the right data and answered nobody (#763)",
+      "commit": "68a38569",
+      "freshSeconds": 51
     }
   },
   "pool": {
@@ -8882,6 +8905,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "two operator surfaces that held the right data and answered nobody ...",
+      "commit": "68a38569",
+      "kind": "fix"
+    },
+    {
       "agent": "the ADR-0140 cascade was leaving a departed tenant's data on disk (...",
       "commit": "57bb2672",
       "kind": "fix"
@@ -8949,11 +8977,6 @@
     {
       "agent": "default the real-service fixtures to 127.0.0.1, not localhost (#748)",
       "commit": "92e12c87",
-      "kind": "fix"
-    },
-    {
-      "agent": "stop answering \"was this tenant entitled at time T\" by reading the ...",
-      "commit": "d0ca3813",
       "kind": "fix"
     }
   ],
@@ -17252,7 +17275,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
-    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "57bb2672",
+    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "68a38569",
     "origin/feat/google-first-signup-and-session-guard@3cb0ee52c135": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
@@ -17263,42 +17286,42 @@
     "origin/feat/mb-dunning-stores@f81d00eae3df": true,
     "origin/feat/mb-platform-stores@d03c00909a1c": true,
     "origin/feat/mb2-integration-tests@2b933361fb12": true,
-    "origin/feat/mb3-e2e-coverage@723df77a25eb": "57bb2672",
+    "origin/feat/mb3-e2e-coverage@723df77a25eb": "68a38569",
     "origin/feat/onboarding-redesign@187fc6ddaa15": true,
-    "origin/feat/p1-isolation-guarantee@776f90b85603": "57bb2672",
-    "origin/feat/p2-phone-numbers@61cc502884a1": "57bb2672",
+    "origin/feat/p1-isolation-guarantee@776f90b85603": "68a38569",
+    "origin/feat/p2-phone-numbers@61cc502884a1": "68a38569",
     "origin/feat/p3-voice-selection@a6daf23a6694": true,
     "origin/feat/phase-1b-provisioning@27440117dc24": true,
     "origin/feat/r16-fleet-audit@3c1808b66c51": true,
     "origin/feat/r3-residuals@ee2c4cc78b22": true,
-    "origin/feat/release-3-developer-portal@060c10db29d4": "57bb2672",
+    "origin/feat/release-3-developer-portal@060c10db29d4": "68a38569",
     "origin/feat/relevance-flag-toggle@18c5b5497767": true,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
-    "origin/feat/scribe-audio-citations@f818a947b472": "57bb2672",
+    "origin/feat/scribe-audio-citations@f818a947b472": "68a38569",
     "origin/feat/scribe-capture-enablers@61fccfcfdac4": true,
     "origin/feat/scribe-coaching-telemetry-sink@d8bf1e52063b": true,
     "origin/feat/scribe-fake-audio-harness@2d30a191b6ab": true,
-    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "57bb2672",
-    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "57bb2672",
-    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "57bb2672",
+    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "68a38569",
+    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "68a38569",
+    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "68a38569",
     "origin/feat/scribe-template-lifecycle-coaching@790aa20a7c2d": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
     "origin/feat/signup-totp-installer-ux@2b131af30595": true,
     "origin/feat/specialty-taxonomy-package@0e2b3b99f12a": true,
-    "origin/feat/store-ambient-scribe@d820b553eadb": "57bb2672",
-    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "57bb2672",
-    "origin/feat/t3-4-outbound-pacing@716782906aa3": "57bb2672",
+    "origin/feat/store-ambient-scribe@d820b553eadb": "68a38569",
+    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "68a38569",
+    "origin/feat/t3-4-outbound-pacing@716782906aa3": "68a38569",
     "origin/feat/taxonomy-s1b@bf9cdb4d39a5": true,
-    "origin/feat/taxonomy-s3@e05572b75315": "57bb2672",
-    "origin/feat/taxonomy-s4@9a1a1852514f": "57bb2672",
+    "origin/feat/taxonomy-s3@e05572b75315": "68a38569",
+    "origin/feat/taxonomy-s4@9a1a1852514f": "68a38569",
     "origin/feat/taxonomy-s5@d8b50a675ab3": true,
-    "origin/feat/taxonomy-tax-a@17d6137bdb89": "57bb2672",
+    "origin/feat/taxonomy-tax-a@17d6137bdb89": "68a38569",
     "origin/feat/taxonomy-tax-b@eb6d9883e95c": true,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
     "origin/feat/totp-gate-and-admin-google@372e3c7fb0a3": true,
-    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "57bb2672",
-    "origin/feat/w1@21667a886023": "57bb2672",
-    "origin/feat/w2@247ead3f02af": "57bb2672",
+    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "68a38569",
+    "origin/feat/w1@21667a886023": "68a38569",
+    "origin/feat/w2@247ead3f02af": "68a38569",
     "origin/feat/w3@4cf46bdbb6ca": true,
     "origin/feat/w4@c2dec1309090": true,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,
@@ -17529,7 +17552,7 @@
     "origin/feat/wave-e-e9-voice-payments@aaf8f1bece55": true,
     "origin/feat/wave-e-en2-spanish@08bd4faa06b9": true,
     "origin/feat/wave-e-en3-voice-persona@72f305a280c8": true,
-    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "57bb2672",
+    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "68a38569",
     "origin/feat/wave-e-en5-waitlist@b3ed576c7cfa": true,
     "origin/feat/wave-e-en6-triage@b7956b5356e3": true,
     "origin/feat/wave-e-en7-reminder-cadence@19bdff3d699c": true,

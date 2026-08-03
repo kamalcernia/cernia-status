@@ -4797,11 +4797,13 @@
           },
           "current": {
             "status": "complete",
-            "asOf": "2026-05-26",
-            "summary": "All bullets shipped this session — 5 completed entries with closedAt references."
+            "asOf": "2026-08-03",
+            "summary": "Cross-tenant aggregation now actually runs. The 4-route dashboard was marked complete in 2026-05, but its three PLATFORM routes reported zero against a ledger with rows in it until 2026-08-03; fixed and live-verified end-to-end (2,570 cents reconciling across all three)."
           },
           "evidence": [],
-          "remaining": [],
+          "remaining": [
+            "FOUND-WHILE-FIXING (operator-contract decision, deliberately NOT changed as a side effect of a defect fix): apps/api/src/cernia-ops-finops-routes.ts is internally inconsistent about tenant ids crossing the platform boundary. /metric-trend and /scribe-note-cost HASH them citing CLAUDE.md invariant 5; /by-tenant emits them RAW, and the file header's justification — \"tenant IDs are opaque UUIDs\" — is false in practice: live ids are practice-naming slugs (t-lakeshore-j11new-r1, t-cedar). Nothing has leaked to date only because /by-tenant returned nothing at all until now. Hashing it breaks the /tenant/:tenantId drill-down, so pick one: hash and teach drill-down to accept the hash, or ratify raw tenant ids for this surface and correct the comment. No patient identifier is involved either way. The false claim in the header has been corrected in place; the behaviour has not."
+          ],
           "history": [
             {
               "date": "2026-05-26",
@@ -4809,6 +4811,13 @@
               "from": "remaining",
               "to": "closed",
               "note": "PROD-P11: @cernia/finops PostgresCostTracker + migration 067_finops_cost_ledger. PK (tenant_id, occurred_at, ledger_id BIGSERIAL); CHECK on provider + category + non-neg quantity/cost. PHI tripwire blocks MRN/DOB-shaped values + forbidden keys (patientId, mrn, dob). 16/16 tests green against real Postgres including cross-tenant rollup isolation. Commit 99fdddd2."
+            },
+            {
+              "date": "2026-08-03",
+              "stage": "scope",
+              "from": "closed",
+              "to": "closed",
+              "note": "CORRECTION to the 2026-05-26 \"complete\". /cernia-ops/finops/{rollup,by-tenant,margin-per-tier} returned EMPTY WITH NO ERROR. PostgresCostTracker never implemented the cross-tenant capabilities the routes assumed — and, contrary to the reading in both the route comment and the bug report, it did NOT reject the wildcard: \"*\" is a non-empty string, so it satisfied the `tenantId is required` guard and was bound as a literal WHERE tenant_id = '*', matching no row and returning a well-formed ZERO rollup. Because nothing threw, the route's own cost-tracker-wildcard-not-supported fallback never fired — the failure was quieter than documented. /by-tenant and /margin-per-tier separately probed for listTenantIdsInWindow, did not find it, and substituted an empty tenant list. Measured live on a 2,570-cent / 2-tenant ledger: all three answered HTTP 200 with zeros and no warning field at all. FIX: packages/finops/src/cost-tracker.ts gains platformRollup() and listTenantIdsInWindow(), both sharing ONE private aggregate() with rollup() so the platform figure cannot drift from the per-tenant rows it is supposed to be the sum of; rollup() now REJECTS PLATFORM_WIDE_TENANT_SENTINEL by name, so a wildcard can never again be silently read as a tenant. apps/api/src/cernia-ops-finops-routes.ts returns 501 cost-aggregation-unsupported naming the missing capability instead of degrading to zeros / items:[] / all-tier-zero. An empty 200 from these routes now means the ledger really was empty. LIVE AFTER: rollup totalCents 2570; by-tenant t-cedar 1030 + t-lakeshore 1540 = 2570; margin-per-tier tenantCount 2 / totalCostCents 2570. WHY IT WAS GREEN THE WHOLE TIME: cernia-ops-finops-routes.test.ts injected a hand-written TestCostTracker that implemented BOTH capabilities production lacked — it honoured the \"*\" wildcard and had listTenantIdsInWindow — so every case passed against a double strictly more capable than the shipping class. Same failure as the bare-Fastify harness on /api/o6/audit, in the dependency direction instead of the middleware one. That double is deleted; the suite now injects the REAL PostgresCostTracker, with one deliberately-incapable double retained solely to prove the 501. Tests: @cernia/finops 136/136, cernia-ops-finops-routes 11/11 (R08-R11 new, pinning refused-vs-empty in both directions)."
             }
           ],
           "completed": [
@@ -4836,6 +4845,11 @@
               "bullet": "Margin per tier (sandbox / growth / enterprise) computed monthly",
               "closedAt": "2026-05-26",
               "note": "PROD-P11 final: buildMonthlyMarginPerTier() + InMemoryTierResolver + monthBoundaries() helper in packages/finops/src/margin/. 6/6 real-Postgres tests covering tier ordering, unresolved-tenant bucket, period-boundary exclusion. Operator runbook docs/operations/finops/margin-per-tier-monthly.md."
+            },
+            {
+              "bullet": "Cross-tenant platform aggregation actually implemented (the routes only assumed it)",
+              "closedAt": "2026-08-03",
+              "note": "PostgresCostTracker.platformRollup() + listTenantIdsInWindow() sharing one aggregate() with rollup(); wildcard rejected by name; routes 501 rather than answer zero. Live: 2,570 cents reconciles across rollup, by-tenant and margin-per-tier."
             }
           ]
         }
@@ -6085,7 +6099,9 @@
           ],
           "remaining": [
             "CARRY-FORWARD (MU23): the durable multi-pod LLM-streaming host runs against injected provider fakes; the live streamed completion is inert until the provider-key/BAA gate clears.",
-            "EXTERNAL GATE (MU19/MU23/MU9): the 6 LLM-provider keys (Anthropic/OpenAI/Azure/Google/Bedrock/Ollama) + a BAA per provider for live streaming; broker-resolved (MU9); KMS custody sign-off for any held key."
+            "EXTERNAL GATE (MU19/MU23/MU9): the 6 LLM-provider keys (Anthropic/OpenAI/Azure/Google/Bedrock/Ollama) + a BAA per provider for live streaming; broker-resolved (MU9); KMS custody sign-off for any held key.",
+            "FOLLOW-UP (surfaced while fixing GET /api/o6/audit): the REST of the /api/o4/* + /api/o6/traces* family in apps/api/src/llm-observability-routes.ts is still reachable by nobody, ON PURPOSE. Each resolves its tenant from a caller-supplied ?tenantId= via tenantOf(), so \"unmapped\" is the only thing preventing any authenticated caller from reading another tenant's LLM spend. Each needs the same two-part fix /api/o6/audit just got — server-authoritative tenant FIRST, then a deriveOperation mapping (or an operator-scoped route) — never the mapping alone. Pinned in iam-route-guards.repo-coverage.test.ts.",
+            "FOLLOW-UP (role-catalog scope; spans every search-mapped route, NOT specific to o6): tenant-member — the CLINICAL role — carries a wildcard {resourceType:\"*\", verb:\"search\"} grant in packages/saas-platform/src/lifecycle/default-roles.ts. It therefore reaches search:AuditEvent, which is GET /admin/audit — the tamper-evident PHI-ACCESS chain recording which patient records each user opened — as well as the LLM audit trail. That may be intended, but today it is implicit and was discovered by measurement rather than by design. Decide it explicitly at the catalog level and write it down; do not settle it per-route by picking unusual verbs, which would lock the auditor role out of audit trails."
           ],
           "history": [
             {
@@ -6094,6 +6110,13 @@
               "from": "absent",
               "to": "partial",
               "note": "MU19-MU23 merged (commit 0ceedeb8 P3+P4). o1-llm-gateway STAYS in-process on the AI plane (complete() is a lib import, no network hop) + extracted ONLY the mgmt surface (cost/audit/budget over a shared store, monolith /llm-gateway kept green); lifted pure AI libs (o3/o5/j2d); BUILT durable Postgres stores for the two Map-backed registries (PromptRegistry seeds-from-store + survives restart; KbStore) under FORCE RLS; carved o6/o4/audit (091/075/090/295) onto the 3 PK-fixed tables (tenant-agnostic collision rejected); NET-NEW durable multi-pod LLM-streaming host (fan-out + inline guardrails + failover + session survives restart) external-gated (provider keys+BAAs), faked in e2e. apps/ml-ai-service/src/ai/*."
+            },
+            {
+              "date": "2026-08-03",
+              "stage": "ai-plane",
+              "from": "remaining",
+              "to": "closed",
+              "note": "GET /api/o6/audit — the LLM-audit compliance surface PR #742 named as \"the consumer that was being misled\" — was reachable by NO principal: tokenless 401, tenant-admin 403, clinician 403, cernia-super-admin 403, every one of them \"RBAC denied * on *\", because deriveOperation had no /api/o6/* branch and the platform-operator pass is scoped to /cernia-ops/*. Pasted red on a booted API against real Postgres before any change. FIX, both halves in one change because either alone is a defect: mapped to {search, AuditEvent} in apps/api/src/iam-route-guards.ts (the SAME operation as GET /admin/audit, so the two audit surfaces cannot drift into different reachability), AND the tenant made server-authoritative from req.rbacClaims.tenantId — a mismatched ?tenantId= is now 403 cross-tenant-read-refused rather than honoured. That second half is the trap iam-route-guards.repo-coverage.test.ts explicitly warned \"is primed to fire on the obvious fix\"; the route left that pinned catch-all list only because it was defused. apps/api/src/llm-observability-routes.ts now takes a REQUIRED rbac dep plus an in-route requirePermission preHandler, so no future test can stand it up ungated — a bare Fastify() with no RBAC preHandler is exactly what hid this through 47 closures and two journey runs. WHO READS IT: the tenant, over its own data (tenant-admin + tenant-member from buildDefaultRoles, auditor from buildConfigurableRoles — measured against both shipped catalogs, not assumed). NOT the platform operator: a row carries user_id=Practitioner/<name>, a scribe session_id and a Composition id, none of which may cross the tenant boundary (CLAUDE.md invariant 5 / ADR 0026 §3), so cernia-super-admin is deliberately still 403 here. The operator half shipped alongside as a NEW cross-tenant surface, apps/api/src/cernia-ops-ai-observability-routes.ts (GET /cernia-ops/ai-observability/audit): tenant ids sha256-hashed, every row-level identifier reduced to a count, prompt/response hashes dropped, sendPhiSafe on the way out, and producedFraction as the fleet generalisation of the 42.1%-dangling metric PR #742 fixed. LIVE-PROVEN with real tokens on a booted API: tenant-admin 200 with its own 10 rows, tenant-member 200 own-tenant, a DIFFERENT tenant's admin 200 with only its own row and no trace of the first, ?tenantId= widening 403, operator 403 on the tenant route and 200 on the fleet view whose payload contains zero occurrences of any seeded tenant id, clinician name, session id or note id. Tests: llm-observability-audit.rbac.test.ts 13/13 (real global hook, real signed JWTs, real RoleBindings, real Postgres), cernia-ops-ai-observability-routes.test.ts 8/8."
             }
           ]
         },
