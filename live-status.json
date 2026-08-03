@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-08-03T18:04:59.822Z",
-    "lastUpdatedDisplay": "Aug 3, 2026 — 18:04 EDT",
+    "lastUpdatedIso": "2026-08-03T20:51:18.450Z",
+    "lastUpdatedDisplay": "Aug 3, 2026 — 20:51 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fix"
   },
   "summary": {
-    "currentMainCommit": "37c194b4",
+    "currentMainCommit": "003d06c2",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2955,
+    "agentsCompletedThisSession": 2956,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2955 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2956 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 3, 2026 — 18:05 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 3, 2026 — 20:51 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -3779,14 +3779,17 @@
               },
               "current": {
                 "status": "partial",
-                "asOf": "2026-07-29",
-                "summary": "REOPENED 2026-07-29 — the prior 'complete' summary was inaccurate. comprehensive-tests.yml runs the 3 audit scripts, two package smoke suites, Playwright and a scoped typecheck, but has never run any app's unit suite. That let the ADR-0140 erasure forcing function rot to RED on main with PHI-bearing tables unclassified. A fast `gates` job now enforces the three forcing functions (`pnpm --filter @cernia/api test:gates`, self-defending via gate-registration.test.ts). Running the FULL apps/api suite in CI remains open — see remaining[]."
+                "asOf": "2026-08-03",
+                "summary": "REOPENED 2026-07-29 — the prior 'complete' summary was inaccurate. comprehensive-tests.yml runs the 3 audit scripts, two package smoke suites, Playwright and a scoped typecheck, but has never run any app's unit suite. That let the ADR-0140 erasure forcing function rot to RED on main with PHI-bearing tables unclassified. A `gates` job now enforces the forcing functions (`pnpm --filter @cernia/api test:gates`, self-defending via gate-registration.test.ts). 2026-08-03: the workflow's build steps were fixed — pnpm's `...` ellipsis was written backwards in ten steps across seven workflows, so NO job ever built a dependency closure, and 5 of the 10 gate files were dying on unresolved `@cernia/*` imports rather than running. Running the FULL apps/api suite in CI remains open — see remaining[]."
               },
               "evidence": [],
               "remaining": [
-                "CI does not run the full `pnpm --filter @cernia/api test` suite (~570 files under apps/api/src). The 2026-07-29 `gates` job in .github/workflows/comprehensive-tests.yml covers only the five forcing-function files listed in apps/api/package.json `test:gates`; every other apps/api unit and integration test is still enforced by no CI check. Blocked on two prerequisites, both real: (1) a Postgres service reachable on the port the fixtures use (apps/api suites target :5433 locally while the workflow's service container publishes :5432, so the fixture port resolution has to be settled first, see apps/api/vitest.config.ts and packages/testing-real-services), and (2) a known-green baseline — the suite has never been run in CI, so its true red count is unmeasured and a job added blind would fail on day one and be disabled. Next step is to run it once in a workflow_dispatch job, record the baseline, then gate.",
+                "CI does not run the full `pnpm --filter @cernia/api test` suite (~570 files under apps/api/src). The `gates` job in .github/workflows/comprehensive-tests.yml covers only the eleven forcing-function files listed in apps/api/package.json `test:gates`; every other apps/api unit and integration test is still enforced by no CI check. Blocked on two prerequisites, both real: (1) a Postgres service reachable on the port the fixtures use (apps/api suites target :5433 locally while the workflow's service container publishes :5432, so the fixture port resolution has to be settled first, see apps/api/vitest.config.ts and packages/testing-real-services), and (2) a known-green baseline — the suite has never been run in CI, so its true red count is unmeasured and a job added blind would fail on day one and be disabled. Next step is to run it once in a workflow_dispatch job, record the baseline, then gate.",
                 "The same blind spot applies to every OTHER app: apps/*/src holds ~1026 test files in total and no CI job runs any of them. apps/api is the one addressed on 2026-07-29 (it holds the compliance gates); apps/admin, apps/patient, apps/cernia-ops and the extracted services (voice/audit/identity/interop/erx/telehealth/ml-ai/engagement/marketplace/billing) are unaudited for the same class of rotted forcing function. Audit each for gate-shaped tests before assuming apps/api was the only one.",
-                "comprehensive-tests.yml still has its push-to-main trigger disabled (commented out 2026-05-28 after the workflow failed on every push and spammed email). Gates therefore run on pull_request and workflow_dispatch only — a direct push to main bypasses them entirely. Re-enabling the push trigger depends on the workflow being reliably green, which the two bullets above gate."
+                "comprehensive-tests.yml still has its push-to-main trigger disabled (commented out 2026-05-28 after the workflow failed on every push and spammed email). Gates therefore run on pull_request and workflow_dispatch only — a direct push to main bypasses them entirely. Re-enabling the push trigger depends on the workflow being reliably green, which the two bullets above gate.",
+                "SURFACED 2026-08-03 by PR #770, which fixed the build so openapi-diff could reach its gate for the first time in days: docs/api-contracts/openapi-baseline.json has drifted badly from the live API surface. The gate reports 25 additive routes never recorded (GET /admin/organizations, GET /scribe/cost/notes, GET /cernia-ops/platform/erx-fleet, POST /dev/checkout-grant and 21 more) plus ONE UNWAIVED BREAKING removal, GET /scribe/templates. Until 2026-08-03 the openapi-diff job died in `Build apps/api` with TS2307 before it ever computed a diff, so every one of those changes merged past a gate that could not run. Closing this needs a deliberate decision per docs/api-contracts/README.md — regenerate the baseline AND file a docs/api-changelog/ entry for the removed route (or restore it). It is NOT a mechanical baseline refresh: a breaking removal is exactly what the gate exists to stop.",
+                "SURFACED 2026-08-03: CI runs the test suite of exactly two packages (@cernia/testing-real-services and @cernia/external-fakes) out of 305. Demonstration that this matters, found while verifying PR #770: `pnpm --filter @cernia/storage test` is RED on main — src/migrate.test.ts \"migration files sort in the correct numeric order\" fails with \"File 289_provisioning_runs.sql is out of order after 289_erx_refill_fulfillment.sql (curr=289, prev=289)\", i.e. TWO migrations share number 289 (there is a second collision at 338: 338_llm_audit_reserved_resource.sql and 338_scribe_consent_decision.sql). 324 of 325 storage tests pass, so this is one duplicate-numbering gate nobody is watching — but it is the storage package, and the ordering it guards is the order migrations apply in. Same class of rot as the ADR-0140 finding: a forcing function exists and nothing executes it.",
+                "SURFACED 2026-08-03: .github/workflows/owasp-zap-dast.yml fails on EVERY pull request — verified across runs 30842719808 (PR #770), 30841506979, 30839357982, 30832395334 — in `Initialize containers` with \"Failed to initialize container minio/minio:latest / One or more containers failed to start\", ~30s in, before any repo code executes. It is a required status check, so the ZAP baseline scan has been providing zero security signal while still blocking. Infrastructure, not code; fix the service-container definition or drop the MinIO dependency from that job."
               ],
               "completed": [
                 {
@@ -3819,6 +3822,13 @@
                   "from": "closed",
                   "to": "remaining",
                   "note": "CI BLIND SPOT FOUND AND HALF-CLOSED — this stage's own summary was false. It claimed comprehensive-tests.yml \"runs unit + integration + Playwright + 3 audit scripts\"; it never ran the unit suite of any app. The workflow's only test steps were `pnpm --filter @cernia/testing-real-services test` and `pnpm --filter @cernia/external-fakes test`. NO job ran `pnpm test` (= `pnpm -r test`) or `pnpm --filter @cernia/api test`, so ~570 test files under apps/api/src — INCLUDING THREE SECURITY/COMPLIANCE FORCING FUNCTIONS — were enforced by nothing. PROVEN CONSEQUENCE, not a theoretical one: apps/api/src/erasure-cascade.completeness.test.ts (the ADR-0140 forcing function, whose whole purpose is to block a release when a tenant-scoped table is unclassified) was sitting RED ON MAIN at commit 442931e9 with FOURTEEN unclassified tables, among them scribe_transcripts — a table whose own DDL comment (migration 311) reads \"The full visit transcript. PHI — server-side system of record only.\" PHI survived tenant erasure and the gate that existed to catch exactly that had never been executed by CI. The other two unenforced gates were iam-route-guards.repo-coverage.test.ts and iam-route-guards.scribe-coverage.test.ts. CORRECTION TO THE OBVIOUS DIAGNOSIS (recorded so the next agent does not 'fix' the wrong file): root vitest.config.ts:24 omits `apps/*/src/**` from its `include`, which LOOKS like the cause and is NOT. That config only governs a bare `vitest` run at the repo root, which no script and no workflow invokes — the root `test` script is `pnpm -r test`, which recurses and runs apps/api under ITS OWN vitest.config.ts, and that one does include `src/**/*.test.ts`. Widening the root include would have enforced nothing new while re-running 1000+ app tests under a config lacking apps/api's setupFiles (./vitest.setup.ts) and its 30s/60s timeouts — i.e. it would convert an unused command into a mass-failing one. The include is now commented in place explaining why it stays as it is. FIX SHIPPED (option c — make the gates real today rather than block on a green full suite): new `test:gates` script in apps/api/package.json + new `gates` job \"Forcing-function gates (@cernia/api)\" in .github/workflows/comprehensive-tests.yml running `pnpm --filter @cernia/api test:gates`. The gates are pure static analysis over migration DDL / route declarations / the cascade constants — NO Postgres, NO build, 4.9s for all five files — so they get a fast standalone job instead of waiting on service containers. THE GATE LIST DEFENDS ITSELF: an explicit file list in a package script has the same rot mode as what it replaced (write a new gate, forget to register it, it runs nowhere, we are back here). So apps/api/src/gate-registration.test.ts enumerates gate-shaped files on disk (`*.completeness.test.ts` / `*-coverage.test.ts`, plus a GATE_EXTRAS list for pre-convention names) and fails naming any file missing from `test:gates`; it also fails on a stale entry naming a file that no longer exists, and it is itself in the list so it runs in the same job. FALSIFIED: dropping an unregistered zz-probe.completeness.test.ts into apps/api/src turned it red with \"expected [ 'zz-probe.completeness.test.ts' ] to deeply equal []\", then green on removal. VERIFICATION: `pnpm --filter @cernia/api test:gates` → 5 files / 32 tests passed in 4.86s."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "testcontainers-ci",
+                  "from": "remaining",
+                  "to": "remaining",
+                  "note": "CI NEVER BUILT A DEPENDENCY CLOSURE — every step that claimed to was selecting the opposite set. GitHub Actions returned from a multi-day spending-limit pause and four jobs in .github/workflows/comprehensive-tests.yml went red on every PR with TS2307: Cannot find module '@cernia/audit-posture' (also '@cernia/mapping', '@cernia/design-tokens', '@cernia/branding'). ROOT CAUSE 1 — pnpm's `...` is DIRECTIONAL and was written backwards in ten steps across seven workflows. '...pkg' = pkg + its DEPENDENTS; 'pkg...' = pkg + its DEPENDENCIES; '...^pkg' = dependents excluding pkg; 'pkg^...' = dependencies excluding pkg. MEASURED, not assumed: `pnpm --filter '...^@cernia/storage' exec pwd` lists apps/admin, apps/api, apps/cernia-ops and 50+ others, all of which depend ON storage; `pnpm --filter '@cernia/storage^...' exec pwd` lists audit-posture, config, core. So `--filter '...@cernia/api' build` selected Scope: 2 of 331 projects and built NONE of the 116 packages apps/api needs, and `--filter '...^@cernia/testing-real-services' build` selected Scope: 72 of 331 dependents while omitting @cernia/audit-posture, which packages/storage/src/adapter.ts imports in PRODUCTION source. Fixed in comprehensive-tests.yml (4 steps), openapi-diff.yml, owasp-zap-dast.yml, perf-regression.yml, playwright-browser-matrix.yml (2), voice-agent-evals.yml, voice-agent-eval-live.yml. ROOT CAUSE 2, only visible once the filter was right — six packages' tsconfig `references` disagreed with their own package.json dependencies, so a dependent that referenced them compiled THEIR sources with nothing to resolve against: packages/storage was still missing ../audit-posture (so @cernia/connectors, which references ../storage, failed even under the corrected filter — audit-posture was unordered and built in parallel with it), packages/connectors missing ../mapping, packages/server missing ../audit-posture + ../connectors, packages/finops and packages/notifications missing ../storage, packages/voice-agent missing ../speech. apps/* still have reference gaps but are build leaves — nothing references them and pnpm's topological order supplies their deps' dist — so they are flagged, not changed. ROOT CAUSE 3 — the `gates` job added 2026-07-29 had NO build step, and every @cernia/* resolves through dist/, so on a fresh checkout 5 of its 10 gate files never ran at all: vitest died with \"Failed to resolve entry for package\" on @cernia/rbac, @cernia/server (x2), @cernia/core and @cernia/scribe, taking BOTH ADR-0140 iam-route-guards coverage gates with them, and the job reported that as a single red step rather than as gates that never executed. It now runs `pnpm --filter '@cernia/api^...' build` first; timeout-minutes 10 to 25. REGRESSION GUARD: apps/api/src/ci-build-closure.completeness.test.ts scans .github/workflows and fails naming file+line if the leading-ellipsis form returns; registered in apps/api/package.json `test:gates` so gate-registration.test.ts keeps it there. VERIFICATION from a genuinely clean checkout — RED `pnpm --filter '...^@cernia/testing-real-services' build` reproduced byte-identically to the CI log including \"Scope: 72 of 331\"; GREEN `pnpm --filter '@cernia/testing-real-services^...' build` = Scope 5 of 331, all Done, then both CIT typechecks clean; GREEN `pnpm --filter '@cernia/api...' build` = 117 projects, apps/api build: Done, exit 0. TRAP RECORDED: *.tsbuildinfo lives NEXT TO tsconfig.json, not under dist/, so `rm -rf dist` alone leaves tsc --build reporting \"Done\" while emitting nothing — a false green that cost one repro cycle here. PR #770."
                 }
               ]
             },
@@ -8767,7 +8777,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-08-03T18:04:58.179Z",
+      "lastAuditAt": "2026-08-03T20:51:17.304Z",
       "backendRouteSymbolCount": 250,
       "deferredItems": {
         "total": 1324,
@@ -8828,10 +8838,10 @@
     },
     "justLandedWaves": [],
     "nowWorkingOn": {
-      "wave": "RBAC,ROLES",
-      "detail": "the clinical role could read who-looked-at-whom (#768)",
-      "commit": "37c194b4",
-      "freshSeconds": 52
+      "wave": "CI",
+      "detail": "CI built the wrong half of the dependency graph — pnpm's ellipsis was backwards in every closure step (#770)",
+      "commit": "003d06c2",
+      "freshSeconds": 57
     }
   },
   "pool": {
@@ -8953,6 +8963,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "CI built the wrong half of the dependency graph — pnpm's ellipsis w...",
+      "commit": "003d06c2",
+      "kind": "fix"
+    },
+    {
       "agent": "the clinical role could read who-looked-at-whom (#768)",
       "commit": "37c194b4",
       "kind": "fix"
@@ -9021,11 +9036,6 @@
       "agent": "an unreachable Redis returned a live-looking client, so signup 500'...",
       "commit": "f0665c3d",
       "kind": "fix"
-    },
-    {
-      "agent": "test(scribe): run 3 of J07/J08/J09 — all three still pass, and the ...",
-      "commit": "131ff0fd",
-      "kind": "other"
     }
   ],
   "failures": [
@@ -17323,7 +17333,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
-    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "37c194b4",
+    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "003d06c2",
     "origin/feat/google-first-signup-and-session-guard@3cb0ee52c135": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
@@ -17334,42 +17344,42 @@
     "origin/feat/mb-dunning-stores@f81d00eae3df": true,
     "origin/feat/mb-platform-stores@d03c00909a1c": true,
     "origin/feat/mb2-integration-tests@2b933361fb12": true,
-    "origin/feat/mb3-e2e-coverage@723df77a25eb": "37c194b4",
+    "origin/feat/mb3-e2e-coverage@723df77a25eb": "003d06c2",
     "origin/feat/onboarding-redesign@187fc6ddaa15": true,
-    "origin/feat/p1-isolation-guarantee@776f90b85603": "37c194b4",
-    "origin/feat/p2-phone-numbers@61cc502884a1": "37c194b4",
+    "origin/feat/p1-isolation-guarantee@776f90b85603": "003d06c2",
+    "origin/feat/p2-phone-numbers@61cc502884a1": "003d06c2",
     "origin/feat/p3-voice-selection@a6daf23a6694": true,
     "origin/feat/phase-1b-provisioning@27440117dc24": true,
     "origin/feat/r16-fleet-audit@3c1808b66c51": true,
     "origin/feat/r3-residuals@ee2c4cc78b22": true,
-    "origin/feat/release-3-developer-portal@060c10db29d4": "37c194b4",
+    "origin/feat/release-3-developer-portal@060c10db29d4": "003d06c2",
     "origin/feat/relevance-flag-toggle@18c5b5497767": true,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
-    "origin/feat/scribe-audio-citations@f818a947b472": "37c194b4",
+    "origin/feat/scribe-audio-citations@f818a947b472": "003d06c2",
     "origin/feat/scribe-capture-enablers@61fccfcfdac4": true,
     "origin/feat/scribe-coaching-telemetry-sink@d8bf1e52063b": true,
     "origin/feat/scribe-fake-audio-harness@2d30a191b6ab": true,
-    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "37c194b4",
-    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "37c194b4",
-    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "37c194b4",
+    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "003d06c2",
+    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "003d06c2",
+    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "003d06c2",
     "origin/feat/scribe-template-lifecycle-coaching@790aa20a7c2d": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
     "origin/feat/signup-totp-installer-ux@2b131af30595": true,
     "origin/feat/specialty-taxonomy-package@0e2b3b99f12a": true,
-    "origin/feat/store-ambient-scribe@d820b553eadb": "37c194b4",
-    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "37c194b4",
-    "origin/feat/t3-4-outbound-pacing@716782906aa3": "37c194b4",
+    "origin/feat/store-ambient-scribe@d820b553eadb": "003d06c2",
+    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "003d06c2",
+    "origin/feat/t3-4-outbound-pacing@716782906aa3": "003d06c2",
     "origin/feat/taxonomy-s1b@bf9cdb4d39a5": true,
-    "origin/feat/taxonomy-s3@e05572b75315": "37c194b4",
-    "origin/feat/taxonomy-s4@9a1a1852514f": "37c194b4",
+    "origin/feat/taxonomy-s3@e05572b75315": "003d06c2",
+    "origin/feat/taxonomy-s4@9a1a1852514f": "003d06c2",
     "origin/feat/taxonomy-s5@d8b50a675ab3": true,
-    "origin/feat/taxonomy-tax-a@17d6137bdb89": "37c194b4",
+    "origin/feat/taxonomy-tax-a@17d6137bdb89": "003d06c2",
     "origin/feat/taxonomy-tax-b@eb6d9883e95c": true,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
     "origin/feat/totp-gate-and-admin-google@372e3c7fb0a3": true,
-    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "37c194b4",
-    "origin/feat/w1@21667a886023": "37c194b4",
-    "origin/feat/w2@247ead3f02af": "37c194b4",
+    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "003d06c2",
+    "origin/feat/w1@21667a886023": "003d06c2",
+    "origin/feat/w2@247ead3f02af": "003d06c2",
     "origin/feat/w3@4cf46bdbb6ca": true,
     "origin/feat/w4@c2dec1309090": true,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,
@@ -17600,7 +17610,7 @@
     "origin/feat/wave-e-e9-voice-payments@aaf8f1bece55": true,
     "origin/feat/wave-e-en2-spanish@08bd4faa06b9": true,
     "origin/feat/wave-e-en3-voice-persona@72f305a280c8": true,
-    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "37c194b4",
+    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "003d06c2",
     "origin/feat/wave-e-en5-waitlist@b3ed576c7cfa": true,
     "origin/feat/wave-e-en6-triage@b7956b5356e3": true,
     "origin/feat/wave-e-en7-reminder-cadence@19bdff3d699c": true,
