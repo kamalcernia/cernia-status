@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-08-03T20:51:18.450Z",
-    "lastUpdatedDisplay": "Aug 3, 2026 — 20:51 EDT",
+    "lastUpdatedIso": "2026-08-03T21:59:55.707Z",
+    "lastUpdatedDisplay": "Aug 3, 2026 — 21:59 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fix"
   },
   "summary": {
-    "currentMainCommit": "003d06c2",
+    "currentMainCommit": "164f21b5",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2956,
+    "agentsCompletedThisSession": 2957,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2956 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2957 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 3, 2026 — 20:51 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 3, 2026 — 22:00 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -3788,6 +3788,7 @@
                 "The same blind spot applies to every OTHER app: apps/*/src holds ~1026 test files in total and no CI job runs any of them. apps/api is the one addressed on 2026-07-29 (it holds the compliance gates); apps/admin, apps/patient, apps/cernia-ops and the extracted services (voice/audit/identity/interop/erx/telehealth/ml-ai/engagement/marketplace/billing) are unaudited for the same class of rotted forcing function. Audit each for gate-shaped tests before assuming apps/api was the only one.",
                 "comprehensive-tests.yml still has its push-to-main trigger disabled (commented out 2026-05-28 after the workflow failed on every push and spammed email). Gates therefore run on pull_request and workflow_dispatch only — a direct push to main bypasses them entirely. Re-enabling the push trigger depends on the workflow being reliably green, which the two bullets above gate.",
                 "SURFACED 2026-08-03 by PR #770, which fixed the build so openapi-diff could reach its gate for the first time in days: docs/api-contracts/openapi-baseline.json has drifted badly from the live API surface. The gate reports 25 additive routes never recorded (GET /admin/organizations, GET /scribe/cost/notes, GET /cernia-ops/platform/erx-fleet, POST /dev/checkout-grant and 21 more) plus ONE UNWAIVED BREAKING removal, GET /scribe/templates. Until 2026-08-03 the openapi-diff job died in `Build apps/api` with TS2307 before it ever computed a diff, so every one of those changes merged past a gate that could not run. Closing this needs a deliberate decision per docs/api-contracts/README.md — regenerate the baseline AND file a docs/api-changelog/ entry for the removed route (or restore it). It is NOT a mechanical baseline refresh: a breaking removal is exactly what the gate exists to stop.",
+                "SURFACED 2026-08-03 by PR #770 — THE PLAYWRIGHT E2E SUITE IS RED AT SCALE AND HAS NEVER RUN IN CI. The `e2e` job in .github/workflows/comprehensive-tests.yml declares `needs: [backend-integration]`, and backend-integration had been failing in its build step, so e2e was SKIPPED on every pull request and had never once executed a spec. With the build fixed it ran twice, and was cancelled mid-suite both times: 30m17s under its original 30-minute budget, then 60m16s under a 60-minute one. The budget is not the problem. Playwright reports \"Running 3046 tests using 1 worker\" (tests/e2e/playwright.config.ts sets workers: CI ? '50%' : 1 and the GitHub runner has 2 cores) and the progress line is dense with F and T markers from roughly 14 minutes in — the suite is RED, not merely slow. timeout-minutes was left at 30 deliberately: raising it only buys a longer wait for the same red, at an hour of runner time per PR. Next step is a workflow_dispatch run with sharding or a raised worker count to MEASURE the red set, exactly as the apps/api-suite bullet above describes; only then can it gate. Note the number is unrelated to the 147 files in tests/e2e/specs — 3046 is the expanded test count across projects.",
                 "SURFACED 2026-08-03: CI runs the test suite of exactly two packages (@cernia/testing-real-services and @cernia/external-fakes) out of 305. Demonstration that this matters, found while verifying PR #770: `pnpm --filter @cernia/storage test` is RED on main — src/migrate.test.ts \"migration files sort in the correct numeric order\" fails with \"File 289_provisioning_runs.sql is out of order after 289_erx_refill_fulfillment.sql (curr=289, prev=289)\", i.e. TWO migrations share number 289 (there is a second collision at 338: 338_llm_audit_reserved_resource.sql and 338_scribe_consent_decision.sql). 324 of 325 storage tests pass, so this is one duplicate-numbering gate nobody is watching — but it is the storage package, and the ordering it guards is the order migrations apply in. Same class of rot as the ADR-0140 finding: a forcing function exists and nothing executes it.",
                 "SURFACED 2026-08-03: .github/workflows/owasp-zap-dast.yml fails on EVERY pull request — verified across runs 30842719808 (PR #770), 30841506979, 30839357982, 30832395334 — in `Initialize containers` with \"Failed to initialize container minio/minio:latest / One or more containers failed to start\", ~30s in, before any repo code executes. It is a required status check, so the ZAP baseline scan has been providing zero security signal while still blocking. Infrastructure, not code; fix the service-container definition or drop the MinIO dependency from that job."
               ],
@@ -8777,7 +8778,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-08-03T20:51:17.304Z",
+      "lastAuditAt": "2026-08-03T21:59:54.674Z",
       "backendRouteSymbolCount": 250,
       "deferredItems": {
         "total": 1324,
@@ -8836,13 +8837,7 @@
         }
       }
     },
-    "justLandedWaves": [],
-    "nowWorkingOn": {
-      "wave": "CI",
-      "detail": "CI built the wrong half of the dependency graph — pnpm's ellipsis was backwards in every closure step (#770)",
-      "commit": "003d06c2",
-      "freshSeconds": 57
-    }
+    "justLandedWaves": []
   },
   "pool": {
     "size": 8,
@@ -8963,6 +8958,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "ci(e2e): put the timeout back at 30 — the suite is red, not slow (#...",
+      "commit": "164f21b5",
+      "kind": "other"
+    },
+    {
       "agent": "CI built the wrong half of the dependency graph — pnpm's ellipsis w...",
       "commit": "003d06c2",
       "kind": "fix"
@@ -9031,11 +9031,6 @@
       "agent": "test(scribe): run 3 of J10/J11/J12 — all three pass, and the audit ...",
       "commit": "6dcdbe42",
       "kind": "other"
-    },
-    {
-      "agent": "an unreachable Redis returned a live-looking client, so signup 500'...",
-      "commit": "f0665c3d",
-      "kind": "fix"
     }
   ],
   "failures": [
@@ -17333,7 +17328,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
-    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "003d06c2",
+    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "164f21b5",
     "origin/feat/google-first-signup-and-session-guard@3cb0ee52c135": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
@@ -17344,42 +17339,42 @@
     "origin/feat/mb-dunning-stores@f81d00eae3df": true,
     "origin/feat/mb-platform-stores@d03c00909a1c": true,
     "origin/feat/mb2-integration-tests@2b933361fb12": true,
-    "origin/feat/mb3-e2e-coverage@723df77a25eb": "003d06c2",
+    "origin/feat/mb3-e2e-coverage@723df77a25eb": "164f21b5",
     "origin/feat/onboarding-redesign@187fc6ddaa15": true,
-    "origin/feat/p1-isolation-guarantee@776f90b85603": "003d06c2",
-    "origin/feat/p2-phone-numbers@61cc502884a1": "003d06c2",
+    "origin/feat/p1-isolation-guarantee@776f90b85603": "164f21b5",
+    "origin/feat/p2-phone-numbers@61cc502884a1": "164f21b5",
     "origin/feat/p3-voice-selection@a6daf23a6694": true,
     "origin/feat/phase-1b-provisioning@27440117dc24": true,
     "origin/feat/r16-fleet-audit@3c1808b66c51": true,
     "origin/feat/r3-residuals@ee2c4cc78b22": true,
-    "origin/feat/release-3-developer-portal@060c10db29d4": "003d06c2",
+    "origin/feat/release-3-developer-portal@060c10db29d4": "164f21b5",
     "origin/feat/relevance-flag-toggle@18c5b5497767": true,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
-    "origin/feat/scribe-audio-citations@f818a947b472": "003d06c2",
+    "origin/feat/scribe-audio-citations@f818a947b472": "164f21b5",
     "origin/feat/scribe-capture-enablers@61fccfcfdac4": true,
     "origin/feat/scribe-coaching-telemetry-sink@d8bf1e52063b": true,
     "origin/feat/scribe-fake-audio-harness@2d30a191b6ab": true,
-    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "003d06c2",
-    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "003d06c2",
-    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "003d06c2",
+    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "164f21b5",
+    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "164f21b5",
+    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "164f21b5",
     "origin/feat/scribe-template-lifecycle-coaching@790aa20a7c2d": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
     "origin/feat/signup-totp-installer-ux@2b131af30595": true,
     "origin/feat/specialty-taxonomy-package@0e2b3b99f12a": true,
-    "origin/feat/store-ambient-scribe@d820b553eadb": "003d06c2",
-    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "003d06c2",
-    "origin/feat/t3-4-outbound-pacing@716782906aa3": "003d06c2",
+    "origin/feat/store-ambient-scribe@d820b553eadb": "164f21b5",
+    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "164f21b5",
+    "origin/feat/t3-4-outbound-pacing@716782906aa3": "164f21b5",
     "origin/feat/taxonomy-s1b@bf9cdb4d39a5": true,
-    "origin/feat/taxonomy-s3@e05572b75315": "003d06c2",
-    "origin/feat/taxonomy-s4@9a1a1852514f": "003d06c2",
+    "origin/feat/taxonomy-s3@e05572b75315": "164f21b5",
+    "origin/feat/taxonomy-s4@9a1a1852514f": "164f21b5",
     "origin/feat/taxonomy-s5@d8b50a675ab3": true,
-    "origin/feat/taxonomy-tax-a@17d6137bdb89": "003d06c2",
+    "origin/feat/taxonomy-tax-a@17d6137bdb89": "164f21b5",
     "origin/feat/taxonomy-tax-b@eb6d9883e95c": true,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
     "origin/feat/totp-gate-and-admin-google@372e3c7fb0a3": true,
-    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "003d06c2",
-    "origin/feat/w1@21667a886023": "003d06c2",
-    "origin/feat/w2@247ead3f02af": "003d06c2",
+    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "164f21b5",
+    "origin/feat/w1@21667a886023": "164f21b5",
+    "origin/feat/w2@247ead3f02af": "164f21b5",
     "origin/feat/w3@4cf46bdbb6ca": true,
     "origin/feat/w4@c2dec1309090": true,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,
@@ -17610,7 +17605,7 @@
     "origin/feat/wave-e-e9-voice-payments@aaf8f1bece55": true,
     "origin/feat/wave-e-en2-spanish@08bd4faa06b9": true,
     "origin/feat/wave-e-en3-voice-persona@72f305a280c8": true,
-    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "003d06c2",
+    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "164f21b5",
     "origin/feat/wave-e-en5-waitlist@b3ed576c7cfa": true,
     "origin/feat/wave-e-en6-triage@b7956b5356e3": true,
     "origin/feat/wave-e-en7-reminder-cadence@19bdff3d699c": true,
