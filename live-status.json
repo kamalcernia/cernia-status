@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-08-01T14:45:55.094Z",
-    "lastUpdatedDisplay": "Aug 1, 2026 — 14:45 EDT",
+    "lastUpdatedIso": "2026-08-03T12:54:35.934Z",
+    "lastUpdatedDisplay": "Aug 3, 2026 — 12:54 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fix"
   },
   "summary": {
-    "currentMainCommit": "5b8504a2",
+    "currentMainCommit": "6c227335",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2946,
+    "agentsCompletedThisSession": 2947,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2946 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2947 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 1, 2026 — 14:46 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 3, 2026 — 12:54 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -58,15 +58,15 @@
     },
     "velocity": {
       "landedLastHour": 0,
-      "landedLast24h": 1,
-      "label": "0 PRs opened in last hour · 1 in last 24h"
+      "landedLast24h": 0,
+      "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
       "lastMergeIso": "2026-07-23T19:53:33-04:00",
-      "daysSinceLastMerge": 8,
+      "daysSinceLastMerge": 10,
       "mergedPrs": 15,
       "openPrs": 0,
-      "label": "Last main merge: 8d ago · 0 PRs awaiting batch-merge"
+      "label": "Last main merge: 10d ago · 0 PRs awaiting batch-merge"
     },
     "mainState": {
       "waveCounts": {
@@ -8687,7 +8687,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-08-01T14:45:54.153Z",
+      "lastAuditAt": "2026-08-03T12:54:34.677Z",
       "backendRouteSymbolCount": 249,
       "deferredItems": {
         "total": 1321,
@@ -8746,13 +8746,7 @@
         }
       }
     },
-    "justLandedWaves": [],
-    "nowWorkingOn": {
-      "wave": "STORE",
-      "detail": "the scribe gets its real price, and the ops price editor stops lying about it (#758)",
-      "commit": "5b8504a2",
-      "freshSeconds": 54
-    }
+    "justLandedWaves": []
   },
   "pool": {
     "size": 8,
@@ -8873,6 +8867,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "perf(status): stamp the merged-state cache with main's sha — 10m57s...",
+      "commit": "6c227335",
+      "kind": "other"
+    },
+    {
       "agent": "the scribe gets its real price, and the ops price editor stops lyin...",
       "commit": "5b8504a2",
       "kind": "feat"
@@ -8940,11 +8939,6 @@
     {
       "agent": "a withdrawal of consent DESTROYS the audio, and the person in the r...",
       "commit": "3b65844d",
-      "kind": "fix"
-    },
-    {
-      "agent": "a reference search parameter that could not match any row (#744)",
-      "commit": "d5f54fd3",
       "kind": "fix"
     }
   ],
@@ -17243,7 +17237,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
-    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": false,
+    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "6c227335",
     "origin/feat/google-first-signup-and-session-guard@3cb0ee52c135": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
@@ -17254,42 +17248,42 @@
     "origin/feat/mb-dunning-stores@f81d00eae3df": true,
     "origin/feat/mb-platform-stores@d03c00909a1c": true,
     "origin/feat/mb2-integration-tests@2b933361fb12": true,
-    "origin/feat/mb3-e2e-coverage@723df77a25eb": false,
+    "origin/feat/mb3-e2e-coverage@723df77a25eb": "6c227335",
     "origin/feat/onboarding-redesign@187fc6ddaa15": true,
-    "origin/feat/p1-isolation-guarantee@776f90b85603": false,
-    "origin/feat/p2-phone-numbers@61cc502884a1": false,
+    "origin/feat/p1-isolation-guarantee@776f90b85603": "6c227335",
+    "origin/feat/p2-phone-numbers@61cc502884a1": "6c227335",
     "origin/feat/p3-voice-selection@a6daf23a6694": true,
     "origin/feat/phase-1b-provisioning@27440117dc24": true,
     "origin/feat/r16-fleet-audit@3c1808b66c51": true,
     "origin/feat/r3-residuals@ee2c4cc78b22": true,
-    "origin/feat/release-3-developer-portal@060c10db29d4": false,
+    "origin/feat/release-3-developer-portal@060c10db29d4": "6c227335",
     "origin/feat/relevance-flag-toggle@18c5b5497767": true,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
-    "origin/feat/scribe-audio-citations@f818a947b472": false,
+    "origin/feat/scribe-audio-citations@f818a947b472": "6c227335",
     "origin/feat/scribe-capture-enablers@61fccfcfdac4": true,
     "origin/feat/scribe-coaching-telemetry-sink@d8bf1e52063b": true,
     "origin/feat/scribe-fake-audio-harness@2d30a191b6ab": true,
-    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": false,
-    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": false,
-    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": false,
+    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "6c227335",
+    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "6c227335",
+    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "6c227335",
     "origin/feat/scribe-template-lifecycle-coaching@790aa20a7c2d": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
     "origin/feat/signup-totp-installer-ux@2b131af30595": true,
     "origin/feat/specialty-taxonomy-package@0e2b3b99f12a": true,
-    "origin/feat/store-ambient-scribe@d820b553eadb": false,
-    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": false,
-    "origin/feat/t3-4-outbound-pacing@716782906aa3": false,
+    "origin/feat/store-ambient-scribe@d820b553eadb": "6c227335",
+    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "6c227335",
+    "origin/feat/t3-4-outbound-pacing@716782906aa3": "6c227335",
     "origin/feat/taxonomy-s1b@bf9cdb4d39a5": true,
-    "origin/feat/taxonomy-s3@e05572b75315": false,
-    "origin/feat/taxonomy-s4@9a1a1852514f": false,
+    "origin/feat/taxonomy-s3@e05572b75315": "6c227335",
+    "origin/feat/taxonomy-s4@9a1a1852514f": "6c227335",
     "origin/feat/taxonomy-s5@d8b50a675ab3": true,
-    "origin/feat/taxonomy-tax-a@17d6137bdb89": false,
+    "origin/feat/taxonomy-tax-a@17d6137bdb89": "6c227335",
     "origin/feat/taxonomy-tax-b@eb6d9883e95c": true,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
     "origin/feat/totp-gate-and-admin-google@372e3c7fb0a3": true,
-    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": false,
-    "origin/feat/w1@21667a886023": false,
-    "origin/feat/w2@247ead3f02af": false,
+    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "6c227335",
+    "origin/feat/w1@21667a886023": "6c227335",
+    "origin/feat/w2@247ead3f02af": "6c227335",
     "origin/feat/w3@4cf46bdbb6ca": true,
     "origin/feat/w4@c2dec1309090": true,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,
@@ -17520,7 +17514,7 @@
     "origin/feat/wave-e-e9-voice-payments@aaf8f1bece55": true,
     "origin/feat/wave-e-en2-spanish@08bd4faa06b9": true,
     "origin/feat/wave-e-en3-voice-persona@72f305a280c8": true,
-    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": false,
+    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "6c227335",
     "origin/feat/wave-e-en5-waitlist@b3ed576c7cfa": true,
     "origin/feat/wave-e-en6-triage@b7956b5356e3": true,
     "origin/feat/wave-e-en7-reminder-cadence@19bdff3d699c": true,
