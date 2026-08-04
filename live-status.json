@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-08-04T00:16:23.133Z",
-    "lastUpdatedDisplay": "Aug 4, 2026 — 00:16 EDT",
+    "lastUpdatedIso": "2026-08-04T00:35:52.620Z",
+    "lastUpdatedDisplay": "Aug 4, 2026 — 00:35 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fix"
   },
   "summary": {
-    "currentMainCommit": "6bbe2cfa",
+    "currentMainCommit": "535e28b7",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2960,
+    "agentsCompletedThisSession": 2961,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2960 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2961 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 4, 2026 — 00:16 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 4, 2026 — 00:36 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -3799,8 +3799,8 @@
                 "SURFACED 2026-08-03 by PR #772 while auditing the newly-visible route surface — the seven service-to-service secret brokers (POST /{billing,engagement,erx,interop,marketplace,mlai,telehealth}-platform/secrets/$resolve) have two authorization defects. (1) The 'never broker a signing key as plaintext' rule is keyed on a CLIENT-SUPPLIED body field, not on the stored secret: apps/api/src/erx-platform-routes.ts:443-446 tests `req.body.kind === 'epcs-signing-key'` and, when the field is simply omitted, falls through to :485-496 which returns `plaintext` for the same provider — i.e. the DEA 21 CFR 1311 sole-control EPCS signing key in cleartext. Same shape at interop-platform-routes.ts:337-349 (mtls-client-cert) and via isSigningKeyKind() at telehealth-platform-routes.ts:363-366, mlai:419, marketplace:433, billing:391, engagement:456. packages/core/src/tenant-secret.ts:364-395 keys only on (tenantId, provider) and has no notion of `kind` at all, so the classification must move to the stored row's metadata. (2) No `provider` allowlist on any of the seven: `provider` is an arbitrary caller-supplied string (erx-platform-routes.ts:438-442,485; interop:350-358; telehealth:359,405), so a route-family grant does NOT segment secrets — a token scoped only to /interop-platform can resolve the tenant's Stripe, Twilio or LLM keys. SERVICE_ROUTE_FAMILY_REGISTRY (apps/api/src/service-identity-grants.ts:54-105) constrains paths, not secret namespaces. Not fixed in #772 (out of its writable set); no cross-tenant leak found — tenant is pinned to the JWT claim at iam-route-guards.ts:1043.",
                 "SURFACED 2026-08-03 by PR #772 — asymmetric write guards on the extracted-service record seams. POST /erx-platform/records/$write (apps/api/src/erx-platform-routes.ts:503-524) and POST /interop-platform/records/$write (interop-platform-routes.ts:375-393) accept ANY resourceType into RecordGatewayRouter, while their siblings enforce an allowlist (TELEHEALTH_WRITABLE_TYPES at telehealth-platform-routes.ts:97-101, MLAI_WRITABLE_TYPES at mlai-platform-routes.ts:120-123). An erx or interop service token can therefore overwrite Patient, Consent or Composition. Related: GET /marketplace-platform/fhir/{resourceType}[/{id}] (marketplace-platform-routes.ts:364-416) is an unrestricted PHI read — any type, any id, searchset count 500, pass-through query params — for sandboxed third-party marketplace bots, and its 402 entitlement branch (:342-357) is dead because index.ts:6264-6273 passes entitlementReader but never entitlementChecker (same omission for telehealth :6205-6209, mlai :6225-6230, engagement :6245-6248). Add the two missing resourceType allowlists and a marketplace read scope.",
                 "SURFACED 2026-08-03 by PR #770 — THE PLAYWRIGHT E2E SUITE IS RED AT SCALE AND HAS NEVER RUN IN CI. The `e2e` job in .github/workflows/comprehensive-tests.yml declares `needs: [backend-integration]`, and backend-integration had been failing in its build step, so e2e was SKIPPED on every pull request and had never once executed a spec. With the build fixed it ran twice, and was cancelled mid-suite both times: 30m17s under its original 30-minute budget, then 60m16s under a 60-minute one. The budget is not the problem. Playwright reports \"Running 3046 tests using 1 worker\" (tests/e2e/playwright.config.ts sets workers: CI ? '50%' : 1 and the GitHub runner has 2 cores) and the progress line is dense with F and T markers from roughly 14 minutes in — the suite is RED, not merely slow. timeout-minutes was left at 30 deliberately: raising it only buys a longer wait for the same red, at an hour of runner time per PR. Next step is a workflow_dispatch run with sharding or a raised worker count to MEASURE the red set, exactly as the apps/api-suite bullet above describes; only then can it gate. Note the number is unrelated to the 147 files in tests/e2e/specs — 3046 is the expanded test count across projects.",
-                "SURFACED 2026-08-03: CI runs the test suite of exactly two packages (@cernia/testing-real-services and @cernia/external-fakes) out of 305. Demonstration that this matters, found while verifying PR #770: `pnpm --filter @cernia/storage test` is RED on main — src/migrate.test.ts \"migration files sort in the correct numeric order\" fails with \"File 289_provisioning_runs.sql is out of order after 289_erx_refill_fulfillment.sql (curr=289, prev=289)\", i.e. TWO migrations share number 289 (there is a second collision at 338: 338_llm_audit_reserved_resource.sql and 338_scribe_consent_decision.sql). 324 of 325 storage tests pass, so this is one duplicate-numbering gate nobody is watching — but it is the storage package, and the ordering it guards is the order migrations apply in. Same class of rot as the ADR-0140 finding: a forcing function exists and nothing executes it.",
-                "SURFACED 2026-08-03: .github/workflows/owasp-zap-dast.yml fails on EVERY pull request — verified across runs 30842719808 (PR #770), 30841506979, 30839357982, 30832395334 — in `Initialize containers` with \"Failed to initialize container minio/minio:latest / One or more containers failed to start\", ~30s in, before any repo code executes. It is a required status check, so the ZAP baseline scan has been providing zero security signal while still blocking. Infrastructure, not code; fix the service-container definition or drop the MinIO dependency from that job."
+                "SURFACED 2026-08-03: CI runs the test suite of exactly two packages (@cernia/testing-real-services and @cernia/external-fakes) out of 305, so a package suite can be red on main indefinitely. NARROWED 2026-08-03 — the demonstration case is CLOSED: `pnpm --filter @cernia/storage test` is green again (330/330, was 324/325). The blind spot itself REMAINS: nothing in CI runs packages/storage's suite, so the next regression there is equally invisible. Wire the package suites into .github/workflows/comprehensive-tests.yml.",
+                "SURFACED 2026-08-03, FIXED AND VERIFIED GREEN 2026-08-03: .github/workflows/owasp-zap-dast.yml now runs — `ZAP baseline (passive)` PASS in 9m29s on PR #774, the first time the job has completed since it landed 2026-05-26. First real result: 0 HIGH / 1 MEDIUM (10098 Cross-Domain Misconfiguration, 3 instances) / 5 INFO (10049 Non-Storable Content; 90005 Sec-Fetch-Dest/Mode/Site/User missing). Only HIGHs block, so the gate is correctly green. WHAT REMAINS: triage that MEDIUM — `10098 Cross-Domain Misconfiguration` on a HIPAA-bound API is a CORS posture finding and deserves an answer, not an allowlist row by default. Per docs/operations/runbooks/dast-finding-triage.md; any new .zap/rules.tsv entry needs security-reviewer sign-off. The 90005 Sec-Fetch-* rows are ZAP asking the CLIENT to send headers and are almost certainly noise for an API — confirm and record that rather than leaving five INFO rows unexplained in every future PR comment."
               ],
               "completed": [
                 {
@@ -3847,6 +3847,20 @@
                   "from": "remaining",
                   "to": "remaining",
                   "note": "THE DRIFT GATE WAS READING A QUARTER OF THE API, AND ITS ONE RED WAS A PHANTOM. With #770/#771 landed, openapi-diff reached its check and reported 25 unrecorded routes plus one UNWAIVED BREAKING removal, GET /scribe/templates. The removal was not real. That route has been served continuously since c6b8ff0a and is registered today at apps/api/src/scribe-draft-routes.ts:1850. ROOT CAUSE — the gate's producer, scripts/export-openapi-spec.mjs, walks apps/api/src with a regex requiring `(` to follow the method name directly, so it cannot read any route carrying an explicit TypeScript generic. Commit 59e77ffb (#637) retyped the route from `fastify.get('/scribe/templates', …)` to `fastify.get<{ Querystring: … }>( '/scribe/templates',`; the route did not move, the scanner simply went blind to it, it dropped out of the export, and the diff engine reads 'in baseline, not in candidate' as a deleted endpoint. MEASURED on this commit: the old regex saw 259 route registrations, the fixed one sees 996 — 737 registrations, 74% of the API surface, were invisible to the drift gate, and a breaking change to any of them would have passed silently. TWO REASONS IT STAYED HIDDEN: (a) scripts/export-openapi-spec.test.mjs already carried the U11 regression lock asserting the baseline covers the FULL surface, and NO workflow ran it — it was dead from the day it was written; (b) the gate was not reaching its check at all. FIXED — exporter regex tolerates inline, multi-line and nested generics (scan fn exported as scanRouteSource for direct testing); baseline re-seeded 223 to 871 paths per docs/api-contracts/README.md §3.3; six scanner regression locks + a `baseline.length > 600` floor added; the test is now wired into .github/workflows/openapi-diff.yml BEFORE the export step. PROOF THE GATE CAN FAIL (all three reverted): renaming /scribe/templates gave 'BREAKING — 2 unwaived endpoint change(s)' exit 1; adding a generic to the untyped POST /voice/$verify-ingress gave 'No changes detected' exit 0, i.e. the original bug is dead; adding a scratch GET /voice/$scratch-probe gave 'Added (additive — 1)' exit 0. HONEST COUNT — comparing the real surface at the last baseline refresh (79c5f9a5, 2026-07-12) against HEAD with a working scanner: 113 routes ADDED, 0 removed. The reported '25' was just the subset written without a generic. Recorded in docs/api-changelog/2026-08-03-surface-added-since-july-baseline.md (additive) + 2026-08-03-openapi-scanner-blind-to-typed-routes.md (patch). SIDE FINDING FIXED — /dev/login was published in docs/api/openapi.json, which apps/api/src/openapi-routes.ts serves verbatim and UNAUTHENTICATED at GET /api/openapi.json, so anonymous callers were told a token-minting seam exists; `/dev` added to NON_PUBLIC_PREFIXES and the entry removed from the artifact. Three authorization findings on the newly-visible service seams filed in remaining[]. PR #772."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "testcontainers-ci",
+                  "from": "remaining",
+                  "to": "remaining",
+                  "note": "TWO GATES THAT WERE RED FOR REASONS UNRELATED TO THE CODE UNDER TEST. (1) MIGRATION NUMBERING — not two duplicates but FOUR: 289 (289_erx_refill_fulfillment + 289_provisioning_runs), 290 (290_referrals + 290_scheduled_workflows), 335 (335_invitations_tenant_id_text + 335_scribe_coding_pass_outcome) and 338 (338_llm_audit_reserved_resource + 338_scribe_consent_decision). In each pair the file with NO later dependent moved to the tail — 289→347, 290→348, 335→349, 338→350 — and the survivor stayed put because a later migration ALTERs what it created (297_provisioning_run_context, 306_referral_listing_handle, 337_scribe_coding_pass_backfill) or, for 338, because 339_scribe_audio_destruction implements the path it introduces. In all four pairs the mover also sorted FIRST alphabetically, so the survivor's position in the total order is unchanged. Renaming a shipped migration is NOT free — schema_migrations is keyed by filename, so a rename makes an applied migration look pending (observed: catalog_price_terms recorded as 339_* in one database and 341_* in the repo). packages/storage/src/migrate.ts now carries MIGRATION_RENAMES, an append-only old→new ledger; runMigrations rewrites the schema_migrations row instead of re-running the file, and assertRenameLedgerIsSound fails closed on a malformed entry. PROVEN on real Postgres: a FRESH database migrates 306 files / 292 tables with zero duplicate numbers and all eight movers' and survivors' DDL present; and a database rewound to the OLD filenames re-runs NOTHING (306→306 rows, the one-time relocation in 350 leaves its probe row untouched). RECURRENCE: scripts/check-erasure-classification.mjs — the existing zero-dependency pre-push hook, which already reads the whole migration corpus — gained checkMigrationNumbering (C0), so a duplicate cannot be pushed; migrate.test.ts now reports ALL collisions at once instead of aborting on the first, which is why three of these four were invisible. packages/storage 324/325 → 330/330. (2) OWASP ZAP DAST — the baseline job had NEVER run once since it landed 2026-05-26; every PR died at ~30s in `Initialize containers`. TWO stacked defects. The minio service cannot start under Actions (minio/minio needs `server /data` as its CMD and a services: entry has nowhere to put one); its own comment claimed the container would be \"ignored if it fails\", which is not a thing Actions does — a failed service container fails the job before checkout. Behind it, unreachable until now: softwaresecurityproject/zap-baseline and -full-scan are NOT published Docker repositories (404 — that namespace is gone); zap-baseline.py is a SCRIPT inside ghcr.io/zaproxy/zaproxy. Both fixed. NOTHING THAT WAS BEING CHECKED STOPPED BEING CHECKED: the minio service never came up in any run, S3_ENDPOINT/MINIO_ENDPOINT were never exported, so apps/api has always booted here on its in-memory object store and a passive HTTP scan is unaffected by the blob backend either way. The gate also stops lying by omission — a run that produces no report now says \"SCAN DID NOT RUN — this is not a pass\" in the PR comment and names what went unchecked, instead of failing with an empty comment as it had for 70 days. (3) Found in passing: apps/api/src/erasure-cascade.completeness.test.ts is RED on a pristine Windows checkout of main and GREEN in CI — core.autocrlf=true gives scripts/check-erasure-classification.mjs CRLF endings, which vitest's module transform cannot parse, and it reports SyntaxError: Invalid or unexpected token at the import line rather than at the .mjs. Root-caused to a missing root .gitattributes; `*.mjs text eol=lf` added (same remedy as packages/design-tokens/.gitattributes). apps/api test:gates 66/80-with-a-dead-file → 80/80. Also repaired a coupling the renumber exposed: llm-audit-dangling-correlation.integration.test.ts selected the migration to withhold with startsWith('338_'), which silently stopped matching and made the test claim the one-time relocation was broken; it now selects by the shared LLM_AUDIT_RESERVED_RESOURCE_MIGRATION constant."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "testcontainers-ci",
+                  "from": "remaining",
+                  "to": "remaining",
+                  "note": "ZAP: A THIRD STACKED DEFECT, VISIBLE ONLY BECAUSE THE FIRST TWO WERE FIXED — then GREEN. With the minio service removed and the image corrected, the job reached the scan for the first time in 70 days and died there: `Failed to load config file /zap/wrk/rules.tsv — Level MEDIUM is not a supported level: ['PASS','IGNORE','INFO','WARN','FAIL']`, after which ZAP EXITS WITHOUT SCANNING — no JSON, no HTML — and the summariser correctly returned exit 2. .zap/rules.tsv is a four-column repo format whose second column is a SEVERITY; zap-baseline.py requires an ACTION. It has never been loadable by ZAP, and docs/security/zap-baseline-config.md §1 asserted the opposite (\"ZAP itself reads the first two columns\") — corrected in place, along with the file's own header. `-c` is no longer passed, and that is the right shape rather than a workaround: .zap/rules.tsv is the SUMMARISER's allowlist and the summariser is the gate, so it needs ZAP to REPORT an allowlisted finding in order to list it under \"Allowlisted (suppressed)\" with its reviewer-signed reason — a ZAP-side IGNORE would delete it from the JSON before the gate saw it. No row asks for OFF, so nothing that was suppressed stops being suppressed; all five reviewer-signed rows still parse (verified against parseRulesTsv). Also corrected: the \"SCAN DID NOT RUN\" fallback added earlier the same day did not fire, because zap-summarise.mjs writes \"ERROR: cannot read input: ENOENT ...\" to STDOUT — summary.md was non-empty, the emptiness test passed, and the PR comment was that one ENOENT line with no statement of consequence. Now keyed on the exit code. RESULT: `ZAP baseline (passive)` PASS in 9m29s (run 30864114881), 0 HIGH / 1 MEDIUM / 5 INFO — the first security signal this gate has ever produced. The same run also proves the renumbered migrations apply to a FRESH CI Postgres end to end: `Apply migrations` succeeded and apps/api reached /healthz."
                 }
               ]
             },
@@ -8803,7 +8817,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-08-04T00:16:22.040Z",
+      "lastAuditAt": "2026-08-04T00:35:51.681Z",
       "backendRouteSymbolCount": 250,
       "deferredItems": {
         "total": 1328,
@@ -8864,10 +8878,10 @@
     },
     "justLandedWaves": [],
     "nowWorkingOn": {
-      "wave": "AUDIT-SERVICE,CORS",
-      "detail": "the audit trail checked who you were and never what you could do (#775)",
-      "commit": "6bbe2cfa",
-      "freshSeconds": 49
+      "wave": "CI,STORAGE",
+      "detail": "four migrations shared a number, and the ZAP gate had never once run (#774)",
+      "commit": "535e28b7",
+      "freshSeconds": 55
     }
   },
   "pool": {
@@ -8989,6 +9003,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "four migrations shared a number, and the ZAP gate had never once ru...",
+      "commit": "535e28b7",
+      "kind": "fix"
+    },
+    {
       "agent": "the audit trail checked who you were and never what you could do (#...",
       "commit": "6bbe2cfa",
       "kind": "fix"
@@ -9057,11 +9076,6 @@
       "agent": "perf(status): stamp the merged-state cache with main's sha — 10m57s...",
       "commit": "6c227335",
       "kind": "other"
-    },
-    {
-      "agent": "the scribe gets its real price, and the ops price editor stops lyin...",
-      "commit": "5b8504a2",
-      "kind": "feat"
     }
   ],
   "failures": [
@@ -17359,7 +17373,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
-    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "6bbe2cfa",
+    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "535e28b7",
     "origin/feat/google-first-signup-and-session-guard@3cb0ee52c135": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
@@ -17370,42 +17384,42 @@
     "origin/feat/mb-dunning-stores@f81d00eae3df": true,
     "origin/feat/mb-platform-stores@d03c00909a1c": true,
     "origin/feat/mb2-integration-tests@2b933361fb12": true,
-    "origin/feat/mb3-e2e-coverage@723df77a25eb": "6bbe2cfa",
+    "origin/feat/mb3-e2e-coverage@723df77a25eb": "535e28b7",
     "origin/feat/onboarding-redesign@187fc6ddaa15": true,
-    "origin/feat/p1-isolation-guarantee@776f90b85603": "6bbe2cfa",
-    "origin/feat/p2-phone-numbers@61cc502884a1": "6bbe2cfa",
+    "origin/feat/p1-isolation-guarantee@776f90b85603": "535e28b7",
+    "origin/feat/p2-phone-numbers@61cc502884a1": "535e28b7",
     "origin/feat/p3-voice-selection@a6daf23a6694": true,
     "origin/feat/phase-1b-provisioning@27440117dc24": true,
     "origin/feat/r16-fleet-audit@3c1808b66c51": true,
     "origin/feat/r3-residuals@ee2c4cc78b22": true,
-    "origin/feat/release-3-developer-portal@060c10db29d4": "6bbe2cfa",
+    "origin/feat/release-3-developer-portal@060c10db29d4": "535e28b7",
     "origin/feat/relevance-flag-toggle@18c5b5497767": true,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
-    "origin/feat/scribe-audio-citations@f818a947b472": "6bbe2cfa",
+    "origin/feat/scribe-audio-citations@f818a947b472": "535e28b7",
     "origin/feat/scribe-capture-enablers@61fccfcfdac4": true,
     "origin/feat/scribe-coaching-telemetry-sink@d8bf1e52063b": true,
     "origin/feat/scribe-fake-audio-harness@2d30a191b6ab": true,
-    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "6bbe2cfa",
-    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "6bbe2cfa",
-    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "6bbe2cfa",
+    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "535e28b7",
+    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "535e28b7",
+    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "535e28b7",
     "origin/feat/scribe-template-lifecycle-coaching@790aa20a7c2d": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
     "origin/feat/signup-totp-installer-ux@2b131af30595": true,
     "origin/feat/specialty-taxonomy-package@0e2b3b99f12a": true,
-    "origin/feat/store-ambient-scribe@d820b553eadb": "6bbe2cfa",
-    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "6bbe2cfa",
-    "origin/feat/t3-4-outbound-pacing@716782906aa3": "6bbe2cfa",
+    "origin/feat/store-ambient-scribe@d820b553eadb": "535e28b7",
+    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "535e28b7",
+    "origin/feat/t3-4-outbound-pacing@716782906aa3": "535e28b7",
     "origin/feat/taxonomy-s1b@bf9cdb4d39a5": true,
-    "origin/feat/taxonomy-s3@e05572b75315": "6bbe2cfa",
-    "origin/feat/taxonomy-s4@9a1a1852514f": "6bbe2cfa",
+    "origin/feat/taxonomy-s3@e05572b75315": "535e28b7",
+    "origin/feat/taxonomy-s4@9a1a1852514f": "535e28b7",
     "origin/feat/taxonomy-s5@d8b50a675ab3": true,
-    "origin/feat/taxonomy-tax-a@17d6137bdb89": "6bbe2cfa",
+    "origin/feat/taxonomy-tax-a@17d6137bdb89": "535e28b7",
     "origin/feat/taxonomy-tax-b@eb6d9883e95c": true,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
     "origin/feat/totp-gate-and-admin-google@372e3c7fb0a3": true,
-    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "6bbe2cfa",
-    "origin/feat/w1@21667a886023": "6bbe2cfa",
-    "origin/feat/w2@247ead3f02af": "6bbe2cfa",
+    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "535e28b7",
+    "origin/feat/w1@21667a886023": "535e28b7",
+    "origin/feat/w2@247ead3f02af": "535e28b7",
     "origin/feat/w3@4cf46bdbb6ca": true,
     "origin/feat/w4@c2dec1309090": true,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,
@@ -17636,7 +17650,7 @@
     "origin/feat/wave-e-e9-voice-payments@aaf8f1bece55": true,
     "origin/feat/wave-e-en2-spanish@08bd4faa06b9": true,
     "origin/feat/wave-e-en3-voice-persona@72f305a280c8": true,
-    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "6bbe2cfa",
+    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "535e28b7",
     "origin/feat/wave-e-en5-waitlist@b3ed576c7cfa": true,
     "origin/feat/wave-e-en6-triage@b7956b5356e3": true,
     "origin/feat/wave-e-en7-reminder-cadence@19bdff3d699c": true,
