@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-08-04T04:12:37.155Z",
-    "lastUpdatedDisplay": "Aug 4, 2026 — 04:12 EDT",
+    "lastUpdatedIso": "2026-08-04T04:18:41.653Z",
+    "lastUpdatedDisplay": "Aug 4, 2026 — 04:18 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fix"
   },
   "summary": {
-    "currentMainCommit": "546f221d",
+    "currentMainCommit": "a3346966",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2966,
+    "agentsCompletedThisSession": 2967,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2966 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2967 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 4, 2026 — 04:12 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 4, 2026 — 04:18 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -2820,7 +2820,7 @@
                 "summary": "Real backends shipped + admin surfaces increasingly E2E-verified against the REAL stack (no fabricated data anywhere). Live + real-stack-E2E-gated: compliance (evidence + auditor-access registries), ai-governance model-cards, cqm execution-runs, ig-profiles validation-results, voice-improvements review surface, migration-jobs, edge-fleet, extensions, sensitive-data, posture. Deferred with rationale (ADR-0127): billing voice-budget (needs path-vs-JWT tenant guard before exposure) + billing/usage page (needs a Subscription fixture for its E2E); ai-governance bias-reports/approvals routes still ungated (remaining[0]). 31 sample admin pages remain."
               },
               "remaining": [
-                "Plugin UPLOAD flow (.cernia-plugin archive ingest via @cernia/extension-runtime package-loader + signature verification) — the ingest SERVICE now ships: see history 2026-06-01 (ra-ext-archive): apps/api/src/plugin-archive-ingest.ts (ingestPluginArchive → loadPluginPackage verifies manifest + signature + rejects forbidden imports, then records the install via PostgresPluginInstallationStore; fails CLOSED on bad signature / forbidden import — no row written), real-PG tested 4/4. The manifest-based per-tenant install record shipped 2026-05-30 (tenant_plugin_installations, migration 132). The HTTP upload route now ships — see history 2026-06-01 (ra-ext-upload): POST /admin/extensions/installations/$upload in apps/api/src/extensions-routes.ts accepts a RawPackageContents JSON body → ingestPluginArchive (configurable signatureVerifier option, TrustAll default in dev); 201 install / 422 signature-rejected / 400 invalid-manifest, fails CLOSED; real-PG route-tested 7/7 + the existing extensions tests still 5/5. SECURITY-FIXED 2026-07-12: production no longer defaults to TrustAll — apps/api/src/index.ts now injects TrustNoneSignatureVerifier (FAIL-CLOSED: every uploaded archive is rejected with 422) unless an operator explicitly sets CERNIA_EXTENSION_TRUST_ALL=1, and extensions-routes.ts logs a loud fastify.log.warn if any caller falls back to the TrustAll dev default (2 new tests, 7/7). Previously index.ts registered the route with no verifier → prod trusted EVERY plugin signature. REMAINING: (a) a multipart (binary .cernia-plugin file) upload form variant; (b) a REAL @cernia/marketplace package-signer verifier (only TrustAll/TrustNone exist today) to upgrade prod from fail-closed to real cryptographic verification."
+                "Plugin UPLOAD flow — the ingest service, the per-tenant install record, the HTTP POST /admin/extensions/installations/$upload route and the production fail-closed verifier all ship (see history 2026-06-01 and the 2026-07-12 security fix: apps/api/src/index.ts injects TrustNoneSignatureVerifier unless CERNIA_EXTENSION_TRUST_ALL=1, so every uploaded archive is 422'd in prod rather than trusted). TWO ITEMS REMAIN, both re-scoped 2026-08-03. (a) NOT \"multipart\" — that premise is stale. The repo has DELIBERATELY refused @fastify/multipart: apps/api/src/brand-asset-routes.ts:19-28 and docs/security/threats/wave-h-h1-c-brand-assets.md:149 both reject it BY NAME to avoid its file-system temp-write surface, the package is in no manifest, and the ratified house pattern for binary upload is base64-in-JSON ({filename, contentType, bytesBase64}). The REAL gap is that nothing anywhere turns .cernia-plugin ARCHIVE BYTES into the RawPackageContents the route already accepts: packages/extension-runtime/src/plugins/package-loader.ts:30-32 states it is pure-data and leaves unpacking \"to the route layer\", and no unpacker exists — it needs a tar reader over the ADR 0043 §3 layout plus its own SHA-256 of the canonical bytes, which is also what would finally make the loader's currently-unreachable `hash-mismatch` verdict producible. (b) EXTERNALLY GATED, not code. A real cryptographic verifier needs the KMS custody grant already tracked as an external gate on the marketplace track (\"per-service KMS grant for the Ed25519 package-signer\"). @cernia/marketplace DOES already ship PackageSigner/PackageVerifier with a pluggable SignBackend seam, but its only implementation is StubSignBackend, self-documented as \"clearly NOT secure for production\"; an adapter is also needed, since SignBackend.verify(checksum, signature, keyId) does not line up with SignatureVerifier.verify({archiveHash, signature, signerFingerprint}), and PackageVerifier currently ignores the signer fingerprint entirely."
               ],
               "history": [
                 {
@@ -2947,6 +2947,13 @@
                   "date": "2026-05-27",
                   "stage": "phase-3-6-specialized",
                   "note": "ra-sde-2 closed — /admin/ai-governance routes + dashboard. apps/api/src/ai-governance-routes.ts mounts 3 routes: GET /admin/ai-governance/samd-class/:level/approvals (approval-role requirements per IMDRF class), POST /admin/ai-governance/samd-class/$classify (input → SaMD class + approval requirements), POST /admin/ai-governance/model-cards/$generate (Model Card with limitation auto-inference + markdown rendering). All wrap @cernia/p4a-samd-classifier pure functions. 12 in-process unit tests pass covering approval shapes (class-i/iii/iv/invalid), the IMDRF risk matrix (5 corners + invalid + empty), and Model Card generation (happy / missing-fields / AUC-below-threshold-adds-limitation). apps/admin/ai-governance: typed client + dashboard swap (4 entry-point tiles + full IMDRF matrix table) + live SaMD wizard (radio-form posts to $classify, renders class + dual-control roles or all-clear). Persistence of SamdAssessment / BiasReport / ApprovalRequest FHIR resources is the next followup; bias + approvals sub-pages retained as honest empty-states. apps/api typecheck clean; apps/admin typecheck clean."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "phase-3-6-specialized",
+                  "from": "partial",
+                  "to": "partial",
+                  "note": "Re-scoped the plugin-upload remainder after checking it against the codebase rather than against the bullet. The \"multipart form variant\" it asked for is contrary to a decision this repo already made twice in writing: @fastify/multipart is named and rejected in apps/api/src/brand-asset-routes.ts and in the H1-C threat model, for its temp-write surface, and the ratified binary-upload pattern is base64-in-JSON. Building multipart would have been implementing a bullet against an ADR. The actual missing piece is smaller and different: an unpacker from .cernia-plugin bytes to RawPackageContents, which does not exist anywhere and which the package loader explicitly defers to the route layer. The second half is externally gated on KMS custody and is already tracked as such on the marketplace track, so it is named here rather than duplicated."
                 }
               ],
               "completed": [
@@ -2999,14 +3006,13 @@
               },
               "current": {
                 "status": "complete",
-                "asOf": "2026-06-13",
-                "summary": "apps/desk is a standalone Next.js app on :3004 (@cernia/desk), extracted from apps/admin and removed from it. All Desk tabs (dashboard, schedule, calls, patients + intake + per-patient insurance, no-shows, waitlist, settings) ported with their real backend wiring (FHIR fetcher + voice-calls-api against apps/api). Office-admin RBAC gate (office-admin-gate.ts, office-admin/tenant-admin only) and shared session hooks (use-current-roles.ts → /api/auth/me) carried over. Covered by @release-1-tagged Playwright E2E specs (desk live specs in the 9-spec Release-1 suite, passing headed against the live stack) plus per-client unit tests (intake, insurance, schedule actions, settings)."
+                "asOf": "2026-08-03",
+                "summary": "apps/desk is a standalone Next.js app (@cernia/desk) extracted from apps/admin, with all tabs on their real backend wiring, office-admin RBAC gating and per-client unit tests. As of 2026-08-03 it is also a first-class app in CI and in the deploy pipeline for the first time — its own typecheck/lint/test/build job, and its own Dockerfile in the canary image matrix — and a signed-out visitor is told they need to sign in rather than that they lack a role. Remaining: cross-app session handoff, four named per-tab state gaps, and an a11y pass that has never included desk."
               },
               "evidence": [],
               "remaining": [
-                "apps/desk has no standalone auth/login surface of its own — it shares the localStorage Bearer-token pattern (apps/desk/src/lib/fhir-fetcher.ts reads TOKEN_KEY from window.localStorage) and resolves session/roles via apps/api GET /api/auth/me. A direct hit to :3004 with no token has no in-app sign-in flow; cross-app SSO/session handoff with apps/admin is unspecified.",
-                "No dedicated CI/deploy target for apps/desk — .github/workflows/deploy-canary.yml only deploys apps/admin; apps/desk is not in any canary/deploy pipeline (only incidental coverage via the Playwright browser-matrix E2E).",
-                "Production-readiness of the standalone surface not yet audited as a first-class app: accessibility (a11y) pass, error/empty/loading states across all tabs, and a not-authorized/expired-token UX (vs. the office-admin-gate banner) have not been reviewed for apps/desk on its own."
+                "apps/desk still has no sign-in surface of its own — deliberately: the credential is the shared cernia.token minted by the web hub, and a second login form would be a second place for that to go wrong. FIXED 2026-08-03 was the part that was actually broken: a bare hit on :3004 with no session rendered \"403 — desk access denied. Desk surface requires the office-admin role. Ask your tenant admin via /admin/users.\" The visitor was not missing a role, and the message was a dead end. useSurfaceState now distinguishes loading / unauthenticated (no token, or 401/403 from /api/me/surface) / error / ready, and the layout renders a 401 sign-in panel linking to the hub (same NEXT_PUBLIC_WEB_URL resolution as apps/admin/src/lib/auth-session.ts) instead of a role denial. The gate is unchanged and still fails closed — children mount only on ready + canAccessDesk. WHAT REMAINS: cross-app SSO/session handoff with apps/admin is still unspecified — desk sends the user to the hub and relies on them returning to :3004 by hand; there is no return-to parameter and no post-login redirect. Also unfixed and adjacent: apps/desk/src/lib/use-current-roles.ts fetches RELATIVE /api/auth/me and /api/auth/me/roles, and desk has no app/api routes and no rewrites in next.config.mjs, so both 404 against the desk origin — currently harmless only because its sole consumer, the unmounted DeskGateBanner, is dead code.",
+                "Production-readiness of apps/desk as a first-class app: PARTLY closed 2026-08-03, and the bullet was overstated on one clause. The app now has root error and not-found boundaries (apps/desk/src/app/error.tsx, not-found.tsx) where before it had none of error.tsx / loading.tsx / not-found.tsx anywhere, so an uncaught render error took the whole front desk down with Next's default overlay; the error boundary deliberately does not print error.message, because desk's fetchers build messages from upstream response bodies. The not-authorized/expired-token UX is fixed (see the auth bullet above). The \"error/empty/loading states across all tabs\" clause was largely FALSE — 9 of 11 routes already have a loading state and 8 an error state. WHAT REMAINS is specific: /desk (dashboard) has no error state; /desk/settings has no loading state; /desk/patients/[id]/insurance never surfaces its error; calls/inbox/no-shows have no empty state; and every error renders as a raw exception string in a plain <p> with no role=\"alert\". The a11y clause is untouched and fully true — tests/e2e/specs/a11y-audit.spec.ts and the three other axe specs target trust/patient/admin/installer only, so `pnpm test:a11y` has never once visited desk."
               ],
               "history": [
                 {
@@ -3020,6 +3026,13 @@
                     "apps/desk/src/lib/office-admin-gate.ts",
                     "apps/desk/src/lib/use-current-roles.ts"
                   ]
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "desk-app",
+                  "from": "complete",
+                  "to": "complete",
+                  "note": "apps/desk joins CI and the deploy pipeline, and stops telling signed-out visitors they lack a role. (1) CI. Before this, apps/desk appeared in exactly ONE place across all 21 workflows — the exclusion list on the per-app design-lint step — and in no typecheck, lint, test or build matrix anywhere. Its only E2E spec is @release-1-tagged and runs from release1.config.ts, which has no webServer block and is referenced by no workflow, so even the \"incidental Playwright coverage\" it was credited with would have pointed at a dead :3004. New `desk` job in .github/workflows/comprehensive-tests.yml runs typecheck + lint + test + build; its own job rather than extra --filters because desk has no @cernia/* workspace deps and needs no closure build. Verified locally: typecheck clean, lint clean, 49/49 tests, build not run locally (Next build is the CI step’s job). (2) DEPLOY. apps/desk had no Dockerfile, which is what deploy-canary.yml builds with, so it could not be added to the image matrix. Added, modelled on admin’s minus the workspace-dependency stages. While adding it, the matrix’s build step turned out to be broken for ALL FOUR existing apps: it said --filter \"@cernia/apps-${{ matrix.app }}\" and no package is named @cernia/apps-* (the real names are @cernia/api, @cernia/admin, @cernia/patient and — the reason a mechanical rule cannot work — @cernia/cernia-ops-portal for the cernia-ops directory). The matrix is now two-field (app directory + package name) and the filter uses the real name. (3) AUTH UX. A bare hit on :3004 with no token rendered a 403 role-denial with a pointer to another app’s URL path. useSurfaceState now separates loading / unauthenticated / error / ready and the layout renders a 401 sign-in panel linking to the web hub. The gate itself is unchanged and still fails closed. (4) BOUNDARIES. Root error.tsx and not-found.tsx added; the app previously had no Next error or suspense boundary of any kind. (5) Also corrected: apps/desk/next.config.mjs described itself as \"Trust center is a public-facing static/ISR site — no auth dependencies\", copy-pasted from apps/web into the config of an authenticated PHI surface."
                 }
               ]
             }
@@ -4372,15 +4385,13 @@
                 "summary": "Not started at plan time."
               },
               "current": {
-                "status": "complete",
-                "asOf": "2026-05-27",
-                "summary": "2 of 5 bullets shipped; 3 remain. See completed[] + remaining[]."
+                "status": "partial",
+                "asOf": "2026-08-03",
+                "summary": "4 of 5 bullets shipped; 1 remains. The ADR/code authority split this stage flagged is resolved: ADR-0140 now carries the thirteen 2026-07-29 Scoped-IN entries plus billing_meter_report_watermarks with their per-table justifications, two non-existent table names in the retain table are corrected to the real ones, and the direct contradiction between the ADR (\"the code is the operative list\") and erasure-cascade.ts (\"the AUTHORITY is the ADR\") is settled in favour of code-operative / ADR-as-rationale-of-record, in both files. The 2026-07-29 batch is now proven to REMOVE SEEDED ROWS rather than to be valid SQL against a missing table. What remains is the arming decision itself."
               },
               "evidence": [],
               "remaining": [
-                "ADR-0140 (docs/architecture/adrs/0140-right-to-erasure-scope.md) has NOT been amended for the 2026-07-29 classification of 14 tables. apps/api/src/erasure-cascade.ts opens by declaring the ADR the AUTHORITY and itself a transcription generated from the ADR's Scoped-IN table in code review, so the code is now ahead of its own stated source of truth — the same drift ADR 0142/0143 were written to avoid. Amend the ADR's Scoped IN / Scoped OUT tables with the thirteen new Scoped-IN entries and billing_meter_report_watermarks, carrying over the per-table justifications now in the constant.",
-                "CERNIA_ERASURE_EXECUTE remains UNARMED and should stay so until the ADR amendment above lands. The 2026-07-14 pre-arming condition (\"finish the ADR-0140 cascade-completeness audit\") is now satisfied for table CLASSIFICATION — the forcing function is green and CI-enforced — but arming a destructive cascade whose written authority disagrees with its code is not a defensible position for an audit.",
-                "scribe_coaching_events and event_outbox have NO tenant-erasure integration-test coverage of their own: apps/api/src/tenant-erasure-worker.integration.test.ts exercises the cascade end to end but seeds only a sample of tables, so the 11 tables added on 2026-07-29 are proven as valid SQL against the real schema without being proven to actually remove seeded rows. Extend the armed test's seed set to cover at least the seven PHI-bearing scribe tables."
+                "CERNIA_ERASURE_EXECUTE remains UNARMED (single gate, apps/api/src/index.ts:6469, itself behind a positive CERNIA_ERASURE_INTERVAL_MS; no .env, deploy manifest, compose file or workflow sets it). The ADR-amendment precondition recorded here is DISCHARGED as of 2026-08-03 — the code no longer runs ahead of its own stated authority. Two things stand between here and arming, and neither is a code change: (a) prod-tenant-lifecycle remaining[] still carries the erase-vs-retain sign-off on the two genuine retain candidates (eRx under DEA/EPCS, fax_transmissions under HIPAA §164.528) — the argument for ERASE is now written at the entries in erasure-cascade.ts, but it is an engineering argument, not a compliance opinion; (b) arming a destructive irreversible cascade in production is an operator decision with a runbook and a rollback story, and belongs to a human."
               ],
               "history": [
                 {
@@ -4417,6 +4428,13 @@
                   "from": "remaining",
                   "to": "closed",
                   "note": "PHI SURVIVED TENANT ERASURE — FIXED. The ADR-0140 cascade (apps/api/src/erasure-cascade.ts) left FOURTEEN tenant-scoped tables classified neither for deletion nor for the retain-set, so a right-to-erasure run completed while leaving them intact. Seven of the fourteen carry clinical content: scribe_transcripts (migration 311 — \"The full visit transcript. PHI — server-side system of record only\"), scribe_transcript_words (per-word timings whose `text` reconstructs the transcript verbatim), scribe_live_transcripts (per-chunk in-visit snippets), scribe_after_visit_summaries, scribe_edit_diffs (before_text/after_text ARE the clinical note body), scribe_coding_suggestions (clinical rationale) and scribe_proposed_actions (payload + a verbatim transcript quote in source_span). CLASSIFICATION — 13 Scoped-IN (delete-all on tenant_id), 1 Scoped-OUT. Every one of the thirteen carries tenant_id DIRECTLY (it leads the PK on all of them), so none needs a join through scribe_sessions and all are plain delete-all; they are deliberately NOT flagged afterObjectPurge, because buildScribeAudioEraser (apps/api/src/scribe-retention-sweep.ts:121) enumerates ONLY scribe_sessions, so nothing new gates the object purge and the existing \"exactly four deferred tables\" assertion in erasure-cascade.test.ts still holds. The seven PHI tables above, plus: scribe_vocabulary, scribe_template_defaults and note_template_versions (tenant configuration, no retention obligation); scribe_coaching_events (non-PHI engagement telemetry); voice_cutover_state (migration 308 — routing flag, no PHI, same class as tenant_record_mode / tenant_isolation_mode which are already Scoped-IN); and event_outbox (migration 309 — a drain-and-discard DELIVERY QUEUE, not an audit anchor: it MIRRORS rbac_audit_events rows, and rbac_audit_events is itself retained, so the 6-year audit obligation is discharged by the original while the PHI-bearing copy goes). ON scribe_vocabulary specifically: migration 317 asserts \"NOT PHI\", but it is admin-typed free text and the migration's own description lists \"clinician names\" as expected content, so a tenant can put a person's name in it. Nothing turns on resolving that — it is tenant configuration with no retention obligation, so it is Scoped-IN whether or not any individual term is PHI, which is the only classification safe under both readings. THE ONE RETAIN-SET ADDITION, billing_meter_report_watermarks (migration 332, added the same day by PR #675), is deliberate and is NOT the retain-set being used as a dumping ground: it is PHI-free by construction (tenant id, period string, metric name, two integers) and it is retained as the INTEGRITY GUARD on records that are themselves retained. runMeteredFlushSweep still VISITS an erased tenant, because enumerateBillableTenants (apps/api/src/saas-subscription-store.ts:165) reads saas_subscriptions — in the retain-set — and the aggregate reads usage_rollups, also in the retain-set. Delete the watermark and the next nightly claim sees reported_total = 0 and re-reports the whole period's cumulative total to a formula=sum Stripe meter: precisely the ~15.5x double-report defect migration 332 was written to close, now aimed at a tenant who no longer exists to dispute the invoice. Its inputs outlive the tenant, so it must too. PROOF: the forcing function was watched RED FIRST at github/main 442931e9 (\"expected [ …(14) ] to deeply equal []\", listing all fourteen), then GREEN after classification. FALSIFIED: a scratch tenant-scoped table added to packages/storage/src/migrations turned it red naming zzz_scratch_falsify_probe, then green on removal — the gate genuinely detects a NEW omission. The cascade was then executed END TO END against real migrated Postgres (apps/api/src/tenant-erasure-worker.integration.test.ts 8/8, including the armed \"erases in-scope, preserves Scoped-OUT + sibling tenant\" case), proving all eleven new DELETEs are valid SQL against the real schema rather than only well-formed constants. ADR-0127: erasure-cascade + completeness 14/14; the wider non-DB + real-Postgres erasure surface 59/59; @cernia/api typecheck CLEAN (after rebuilding @cernia/billing + @cernia/o4-cost-tracking-budgets — apps/* resolve @cernia/* from dist, and the four errors seen pre-rebuild were stale-dist artifacts, not this change); eslint 0 errors on the touched files. ROOT CAUSE was not the classification, it was that nothing ran the gate — see the CIT / testcontainers-ci stage entry of the same date."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "scope",
+                  "from": "complete",
+                  "to": "partial",
+                  "note": "ADR-0140 amended, and the 2026-07-29 batch proven to actually delete. (1) THE ADR. docs/architecture/adrs/0140-right-to-erasure-scope.md gained the thirteen Scoped-IN rows from the 2026-07-29 classification (the seven PHI-bearing scribe tables, scribe_vocabulary / scribe_template_defaults / scribe_coaching_events, note_template_versions, event_outbox, voice_cutover_state) plus billing_meter_report_watermarks in Scoped-OUT, each carrying the per-table justification that had been living only in the constant. Two table names in the retain table were WRONG — `audit_events` and `jit_grants` name nothing; the real tables are `audit_log` and `jit_access_requests`, reconciled in code on 2026-07-14 and recorded in prose but left standing in the table a reader would actually look them up in. One malformed markdown row (scribe_audio_destructions, missing its closing pipe) fixed. (2) THE AUTHORITY CONTRADICTION, which is what let the drift happen. The ADR’s Alternative 4 said \"the AUTHORITY is this ADR; the constant is generated from this list in code review\" and erasure-cascade.ts’s header repeated it, while the ADR’s own Completeness-audit section said \"the code is the operative list\". Measured cost of the ambiguity: 167 erase-classified and 75 retain-classified tables in the constant with no counterpart in the markdown. Settled in both files: the constant is OPERATIVE (it is what the worker executes and what both gates reconcile against); the ADR is the RATIONALE OF RECORD for the curated set — every table whose classification was argued rather than derived. A rule requiring 250+ tables to be transcribed into markdown is a rule nobody followed. (3) THE TEST. apps/api/src/tenant-erasure-worker.integration.test.ts seeded 13 tables, exactly one of them scribe (scribe_sessions), and the other 2026-07-29 tables were not in MINIMAL_DDL at all — so the worker’s PG-42P01 skip swallowed each DELETE and the cases asserted nothing. All 13 now exist in the DDL, are seeded for BOTH the erasing tenant and the sibling, and are asserted zero-then-one. Every PHI column carries a canary string, and a post-erasure sweep over information_schema searches EVERY text/varchar/json/jsonb column in the schema for it — asking the schema rather than asking the list, which is the shape of the defect J09-F1 found. 13/13 green against real Postgres on :5433."
                 }
               ],
               "completed": [
@@ -4719,13 +4737,12 @@
               "current": {
                 "status": "partial",
                 "asOf": "2026-08-03",
-                "summary": "3 of 5 bullets shipped; 2 remain. See completed[] + remaining[]. | 2026-07-31: REOPENED - self-serve onboarding leaves the founding admin unable to log in on the password path. Two defects measured live; one fixed, one open (see remaining). | 2026-08-03: J09-F1 — the ADR-0140 erasure cascade was leaving three tables of a departed tenant on disk (measured live, red-then-green through real routes). Classification, gate scanner and journey check all fixed; the gate itself is still not enforced pre-merge (see remaining). | 2026-08-03 (later): the ADR-0140 release-blocker now actually blocks - three layers (machine-read migration directive, ~0.5s pre-push hook, and an unbypassable fail-closed HOLD in the erasure worker). No pre-merge check yet; CI is still dark."
+                "summary": "4 of 5 bullets shipped; 2 remain, both awaiting something other than code. 2026-08-03: the self-serve PASSWORD path no longer strands its founding admin — $complete now upgrades the deferred (status:'invited', credential-less) admin in place on the conflict-recovery path it already ran, so the password typed on the request body reaches the canonical User.passwordHash instead of being discarded. The ADR-0140 classification gate is in a CI job for the first time, and the five-family cascade audit is complete — leaving a compliance sign-off on eRx/fax and a required-status-check that needs GitHub Actions billing restored."
               },
               "evidence": [],
               "remaining": [
-                "Self-serve onboarding, PASSWORD path: POST /onboarding/:id/reserve-tenant provisions the tenant EARLY with the '__deferred__' password sentinel, creating the admin as status='invited' with no credential (correct for the SOCIAL/Google path). The later $complete then conflicts on the Tenant create and never revisits the User, so the founder is stranded - active tenant, uncredentialed admin, and no invitation row issued either. Measured live on 5 tenants 2026-07-31. Fix: either $complete must upgrade the deferred admin in place, or the password path must not call reserve-tenant. See apps/api/src/onboarding-routes.ts (reserve-tenant handler + pickCleartextPassword) and apps/api/src/fhir-storage-tenant-provisioner.ts (DEFERRED_SENTINEL branch).",
-                "ADR-0140's release-blocker rule is ENFORCED AT EXECUTION but still has no PRE-MERGE check. Narrowed 2026-08-03 (branch claude/adr-0140-classification-enforcement): the unbypassable layer now exists - auditCascadeClassification (apps/api/src/tenant-erasure-worker.ts) asks the live information_schema which tables carry a tenant key, subtracts the three classification lists, and HOLDS every job on 'cascade-classification-incomplete' (fail-closed; in-flight 'erasing' resumes included), so an unclassified table can no longer cause a leak. Authoring is covered by a ~0.5s dependency-free pre-push hook (scripts/check-erasure-classification.mjs installed by scripts/install-hooks.mjs from the root postinstall) plus a machine-read `-- ADR-0140: <table> = ERASE|RETAIN|NOT-APPLICABLE` directive required of migrations numbered above 345. WHAT REMAINS: both authoring layers are soft - `git push --no-verify` bypasses the hook and a clone that never ran `pnpm install` never installed it - so an unclassified table can still SIT on main between merge and the next erasure attempt. Restoring a real pre-merge check needs GitHub Actions back (spending limit exhausted since 2026-07-29; every check reports fail in ~5s without starting). When CI returns, wire `node scripts/check-erasure-classification.mjs` (and `pnpm --filter @cernia/api test:gates`) into a required status check and this bullet closes.",
-                "ADR-0140 cascade-completeness audit for the tables ADR 0143 flagged (patient_credentials / auth_sessions / fax / eRx / scheduled_workflows) remains the standing precondition before CERNIA_ERASURE_EXECUTE is armed in production. J09-F1 closed three tables and both gate holes but did NOT perform that audit. Those five are now at least VISIBLE to the run-time residue sweep (apps/api/scripts/erasure-residue-sweep.mts) if they carry a tenant key, so a J09 run would surface any that leak — the audit is still needed to decide erase-vs-retain deliberately rather than by whichever list they happen to land in."
+                "ADR-0140's release-blocker rule is enforced at EXECUTION (the unbypassable auditCascadeClassification HOLD in apps/api/src/tenant-erasure-worker.ts) and at AUTHORING by a ~0.5s pre-push hook plus the machine-read `-- ADR-0140:` migration directive. NARROWED 2026-08-03: `node scripts/check-erasure-classification.mjs` is now wired into a workflow — it runs as the FIRST step of the `gates` job in .github/workflows/comprehensive-tests.yml, ahead of `pnpm install`, since it is dependency-free and takes ~0.5s, so an unclassified table fails in seconds rather than after a 25-minute dependency build. It was previously in NO workflow at all. WHAT REMAINS is not a wiring problem: (a) GitHub Actions cannot run — the spending limit has been exhausted since 2026-07-29 and every check reports fail in ~5s without starting, so a gate in a workflow is a gate that never executes; (b) once CI returns, `gates` must be made a REQUIRED status check on branch protection, otherwise a red job is advisory; (c) the workflow's `paths-ignore: docs/**` means an ADR-only PR skips the whole file — harmless today because this gate reads migrations and erasure-cascade.ts rather than the ADR, but it is the reason an ADR amendment cannot be gated the same way.",
+                "The cascade-completeness audit for the five flagged families is DONE (2026-08-03) and the outcome is narrower than the bullet assumed. Findings: (i) the provenance was misattributed — ADR 0143 flags none of these tables; it governs WHEN the cascade may run, not what it covers. (ii) There is no `auth_sessions` table; the real ones are `patient_auth_sessions` (migration 293) and `patient_credentials` (292). (iii) All seven tables across the five families — patient_credentials, patient_auth_sessions, fax_transmissions, erx_prescriptions, erx_refill_requests, pharmacy_status_events, scheduled_workflows — were ALREADY classified ERASE and none was unclassified, so both gates were green on them all along. What was actually missing was the deliberate rationale: six of the seven landed in the 2026-07-14 alphabetical bulk block with no justification comment, which is exactly the \"by whichever list they happen to land in\" condition. Each now carries one in apps/api/src/erasure-cascade.ts. WHAT REMAINS is a compliance sign-off, not code: two are genuine RETAIN candidates and the ERASE argument written at them is an engineering argument. eRx is a controlled-substance prescribing record (DEA §1311.305 EPCS audit trail; state boards commonly 2-7 years) and fax_transmissions is a disclosure record (HIPAA §164.528 accounting-of-disclosures, 6 years). The case for ERASE in both is that the obligation attaches to the AUDIT record — audit_log, Scoped-OUT, 6 years — and not to the operational row, and that retaining the row without the `resources` Composition it belongs to leaves an unusable fragment. Someone with a compliance opinion needs to agree before CERNIA_ERASURE_EXECUTE is armed; if they disagree, the change is to move the two entries to ADR_0140_SCOPED_OUT."
               ],
               "history": [
                 {
@@ -4769,6 +4786,13 @@
                   "from": "partial",
                   "to": "partial",
                   "note": "ADR-0140 RELEASE-BLOCKER MADE ENFORCEABLE (follow-up to PR #762, which fixed the symptom and said it had not fixed the rule). The rule 'a table that lacks a classification is a release-blocker' was not one: test:gates runs in no pre-merge check and GitHub Actions cannot run at all (spending limit exhausted since 2026-07-29 - every check on every PR reports fail in ~5s without starting), so a gate that was RED on github/main naming two unclassified tables let those PRs merge and a real dual-controlled erasure left 156 rows behind. CI-based enforcement was therefore rejected as worthless today. THREE LAYERS SHIPPED. (1) AUTHORING - the migration declares its own classification, MACHINE-READ: migrations numbered above 345 must carry `-- ADR-0140: <table> = ERASE | RETAIN | NOT-APPLICABLE` and it must AGREE with apps/api/src/erasure-cascade.ts. This closes the actual defect: migration 340's header stated its classification CORRECTLY in prose and the array never learned it - a truth written in a comment and not in code. Forward-only ratchet (DIRECTIVE_RATCHET_FROM=345, pinned by an assertion so it cannot drift upward silently). (2) PUSH - NEW scripts/check-erasure-classification.mjs: zero dependencies (node:fs + regex; no build, no node_modules, no DB), one parallel pass over the 305-file migration corpus, MEASURED 444-574 ms wall including node startup (sequential reads measured 1.8-4.3 s on this OneDrive working copy - parallelising the reads, not weakening the check, is what made it cheap). Installed on pre-push by NEW scripts/install-hooks.mjs (cross-platform; install-hooks.sh is now a wrapper) which the root postinstall runs, so `pnpm install` installs it; hooks are written to `git rev-parse --git-common-dir`/hooks so ONE install covers all ~100 worktrees, and a checkout that predates the script skips cleanly. Chosen over folding into test:gates because the ADR-0127 checklist is per-PACKAGE and packages/storage/src/migrations is not apps/api - the migration author had no reason to run an apps/api suite, and did not. (3) EXECUTION, UNBYPASSABLE - auditCascadeClassification in apps/api/src/tenant-erasure-worker.ts asks the LIVE information_schema (scoped to current_schemas(false), because every cascade op is an unqualified DELETE and search_path is exactly the set of schemas such a DELETE can reach) and HOLDS every job on the new 'cascade-classification-incomplete' reason, naming the tables in report.unclassifiedTables. Applies to in-flight 'erasing' RESUMES too, unlike the two-clock gate: the clocks answer WHEN and a resume is past that decision, classification answers WHAT and every remaining DELETE is still ahead. Fail-closed - an audit that THROWS holds identically. PROVEN TO BLOCK, not merely asserted: a real unclassified table created in the live fixture schema holds an ARMED run with zero rows deleted and the job still 'confirmed'; five synthetic migration corpora (apps/api/src/__fixtures__/adr0140/) show the script rejecting an unclassified table, an ALTER-added tenant key, a missing directive and a directive that disagrees with the code. PROVEN NOT TO OVER-BLOCK: a platform table with no tenant key and an already-classified table both pass, and the pre-existing worker suite is unchanged. A test drafted with `audit_events` as the 'already classified' table was itself caught by the new gate - audit_events is the ADR's ASPIRATIONAL name and no such table exists - which is the same prose-vs-schema drift this change is about. VERIFICATION (ADR-0127): test:gates 10 files / 77 tests green (was 69; the completeness test is rewritten as the anti-drift test for the script and also runs the script's own checks); tenant-erasure-worker.integration 13/13 against real Postgres on 127.0.0.1:5433; apps/api typecheck clean; apps/api lint 63 problems = the stated baseline, 0 new. HONEST LIMIT, stated in the ADR amendment and in the narrowed remaining bullet: layers 1-2 make an unclassified table hard to LAND but are bypassable (--no-verify; a clone that never installed the hook); only layer 3 makes one impossible to ACT ON. A pre-merge check returns with CI. Files: scripts/check-erasure-classification.mjs, scripts/install-hooks.mjs, scripts/install-hooks.sh, package.json, apps/api/src/erasure-cascade.ts, apps/api/src/tenant-erasure-worker.ts, apps/api/src/erasure-cascade.completeness.test.ts, apps/api/src/tenant-erasure-worker.integration.test.ts, apps/api/src/__fixtures__/adr0140/, docs/architecture/adrs/0140-right-to-erasure-scope.md."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "scope",
+                  "from": "partial",
+                  "to": "partial",
+                  "note": "The self-serve PASSWORD path stops stranding its founding admin. POST /onboarding/:id/reserve-tenant provisions the tenant EARLY with the __deferred__ sentinel, creating the admin status:‘invited’ with no credential — correct for the SOCIAL path, where the Google callback’s promoteInvitedAdmin finishes the job. On the password path there was no second act: $complete conflicted on the Tenant create, OnboardingFullProvisioner recovered the tenant through resolveExisting, ran its idempotent post-steps and returned 200 while the password on the request body was dropped on the floor. Active tenant, admin that cannot authenticate, and no invitations row either, because onboarding writes none. Measured live on five tenants 2026-07-31; apps/api/scripts/acceptance-clinician-role.mjs documents the shape as a reason to avoid the route, and apps/api/src/orphan-tenant-cleanup.ts describes the wreckage. FIX: FhirStorageTenantProvisioner.upgradeDeferredAdmin (apps/api/src/fhir-storage-tenant-provisioner.ts), called from the conflict-recovery branch of apps/api/src/onboarding-full-provisioner.ts. Chose \"upgrade\" over the alternative \"stop calling reserve-tenant on the password path\" because the latter is a client-side fix for a server-side hole: the route is not gated on isSocial (it branches to a password-path 409 for a missing email, so it plainly expects password callers), and today’s installer calling it only from the Google handler is a property of one client, not of the API. FAIL-SAFE: it refuses the sentinel and the empty string, so it can never activate a social-path admin; and it only ever touches a user who is BOTH status:‘invited’ AND credential-less, so a genuine retry-after-partial-failure whose admin already has a password is untouched — that is the property that makes it safe to call on every conflict recovery rather than only the first. It writes the CANONICAL User.passwordHash, the only field the built-in provider reads, which is the field the last defect in this area got wrong. Seam widened optionally (IFhirProvisioner.upgradeDeferredAdmin?) so the in-memory doubles across the suites are unchanged. 6 new unit cases, 22/22 in fhir-storage-tenant-provisioner.test.ts. ALSO in this change: the ADR-0140 classification gate joined a CI job for the first time, and the five-family cascade audit landed with per-table rationale — see the two narrowed remaining[] bullets."
                 }
               ],
               "completed": [
@@ -5067,11 +5091,11 @@
               "current": {
                 "status": "complete",
                 "asOf": "2026-08-03",
-                "summary": "Cross-tenant aggregation now actually runs. The 4-route dashboard was marked complete in 2026-05, but its three PLATFORM routes reported zero against a ledger with rows in it until 2026-08-03; fixed and live-verified end-to-end (2,570 cents reconciling across all three)."
+                "summary": "Cross-tenant aggregation runs and reconciles (fixed 2026-08-03, 2,570 cents across all three platform routes). The one open item is not a defect: whether the fleet-read /by-tenant should hash its tenant ids like its eight peers do. The factual errors around it are fixed — the \"opaque UUIDs\" claim is corrected everywhere it survived, and the duplicated hash helper now imports the canonical one."
               },
               "evidence": [],
               "remaining": [
-                "FOUND-WHILE-FIXING (operator-contract decision, deliberately NOT changed as a side effect of a defect fix): apps/api/src/cernia-ops-finops-routes.ts is internally inconsistent about tenant ids crossing the platform boundary. /metric-trend and /scribe-note-cost HASH them citing CLAUDE.md invariant 5; /by-tenant emits them RAW, and the file header's justification — \"tenant IDs are opaque UUIDs\" — is false in practice: live ids are practice-naming slugs (t-lakeshore-j11new-r1, t-cedar). Nothing has leaked to date only because /by-tenant returned nothing at all until now. Hashing it breaks the /tenant/:tenantId drill-down, so pick one: hash and teach drill-down to accept the hash, or ratify raw tenant ids for this surface and correct the comment. No patient identifier is involved either way. The false claim in the header has been corrected in place; the behaviour has not."
+                "OPERATOR-CONTRACT DECISION (the only thing left; the factual half is fixed). apps/api/src/cernia-ops-finops-routes.ts is internally inconsistent about tenant ids crossing the platform boundary: /metric-trend and /scribe-note-cost hash them citing CLAUDE.md invariant 5, /by-tenant and /tenant/:tenantId emit them raw. FIXED 2026-08-03: the false \"tenant IDs are opaque UUIDs\" justification is now corrected in all FOUR places it survived (apps/cernia-ops/src/app/cernia-ops/finops/page.tsx x2 — one of them rendered to the operator's screen — and apps/cernia-ops/src/components/finops/cost-by-tenant-table.tsx x2), and the file's privately re-implemented hashTenantId now imports the canonical one from cernia-ops-auth.ts that seven other cross-tenant stores use. DECISIVE EVIDENCE for whoever picks: (a) the premise that \"hashing breaks the /tenant/:tenantId drill-down\" is FALSE of the shipped product — fetchTenant in apps/cernia-ops/src/lib/finops-api.ts has zero production callers (only its own definition and one test), and cost-by-tenant-table.tsx renders the id as plain monospace text with no Link, href, onClick or router push; it is a React key and a sort key. (b) The house convention splits on route PURPOSE, not on file: eight fleet/telemetry read surfaces hash (activation, CSM, expansion, health, renewal, TTFV, ai-observability, and this file's own two), nine operator ACTION surfaces emit raw (quota, retention, entitlements, pricing writes, escalations, publisher). /by-tenant is a pure read-only aggregate with no action affordance, which puts it with the eight; /tenant/:tenantId is a targeted lookup and matches the nine. (c) If hashing is chosen the hash must ALSO be upgraded: it is unsalted sha256 over a small, human-guessable namespace of practice slugs, so a rainbow table inverts it in seconds — obfuscation, not de-identification. (d) NOT TRACKED ANYWHERE and larger than this bullet: cernia-ops-entitlements-routes.ts and cernia-ops-routes.ts emit raw tenantId AND displayName on cross-tenant READ surfaces."
               ],
               "history": [
                 {
@@ -5087,6 +5111,13 @@
                   "from": "closed",
                   "to": "closed",
                   "note": "CORRECTION to the 2026-05-26 \"complete\". /cernia-ops/finops/{rollup,by-tenant,margin-per-tier} returned EMPTY WITH NO ERROR. PostgresCostTracker never implemented the cross-tenant capabilities the routes assumed — and, contrary to the reading in both the route comment and the bug report, it did NOT reject the wildcard: \"*\" is a non-empty string, so it satisfied the `tenantId is required` guard and was bound as a literal WHERE tenant_id = '*', matching no row and returning a well-formed ZERO rollup. Because nothing threw, the route's own cost-tracker-wildcard-not-supported fallback never fired — the failure was quieter than documented. /by-tenant and /margin-per-tier separately probed for listTenantIdsInWindow, did not find it, and substituted an empty tenant list. Measured live on a 2,570-cent / 2-tenant ledger: all three answered HTTP 200 with zeros and no warning field at all. FIX: packages/finops/src/cost-tracker.ts gains platformRollup() and listTenantIdsInWindow(), both sharing ONE private aggregate() with rollup() so the platform figure cannot drift from the per-tenant rows it is supposed to be the sum of; rollup() now REJECTS PLATFORM_WIDE_TENANT_SENTINEL by name, so a wildcard can never again be silently read as a tenant. apps/api/src/cernia-ops-finops-routes.ts returns 501 cost-aggregation-unsupported naming the missing capability instead of degrading to zeros / items:[] / all-tier-zero. An empty 200 from these routes now means the ledger really was empty. LIVE AFTER: rollup totalCents 2570; by-tenant t-cedar 1030 + t-lakeshore 1540 = 2570; margin-per-tier tenantCount 2 / totalCostCents 2570. WHY IT WAS GREEN THE WHOLE TIME: cernia-ops-finops-routes.test.ts injected a hand-written TestCostTracker that implemented BOTH capabilities production lacked — it honoured the \"*\" wildcard and had listTenantIdsInWindow — so every case passed against a double strictly more capable than the shipping class. Same failure as the bare-Fastify harness on /api/o6/audit, in the dependency direction instead of the middleware one. That double is deleted; the suite now injects the REAL PostgresCostTracker, with one deliberately-incapable double retained solely to prove the 501. Tests: @cernia/finops 136/136, cernia-ops-finops-routes 11/11 (R08-R11 new, pinning refused-vs-empty in both directions)."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "scope",
+                  "from": "complete",
+                  "to": "complete",
+                  "note": "The \"opaque UUIDs\" claim corrected everywhere it survived, and the duplicated hash helper removed. The earlier 2026-08-03 defect fix corrected the justification in cernia-ops-finops-routes.ts’s header but left it standing in four other places, one of them RENDERED TO THE OPERATOR (\"Tenant IDs are opaque UUIDs\", apps/cernia-ops/src/app/cernia-ops/finops/page.tsx). Live tenant ids are practice-naming slugs. All four corrected; no patient identifier is involved on this surface either way, so the accurate statement is that a CUSTOMER-identifying value crosses the platform boundary — a different claim from the one being made. Separately, cernia-ops-finops-routes.ts carried its own byte-identical copy of hashTenantId while cernia-ops-auth.ts exported the canonical one seven other cross-tenant stores import; it now imports it, with the unsalted-sha256 weakness recorded at the function rather than only in a status file. The BEHAVIOUR is deliberately unchanged — see the narrowed remaining[] bullet, which now carries the evidence that makes the decision cheap: the drill-down the bullet was protecting has no production caller."
                 }
               ],
               "completed": [
@@ -5192,14 +5223,12 @@
               "current": {
                 "status": "partial",
                 "asOf": "2026-08-03",
-                "summary": "Reference parameters correct on BOTH halves of the original finding, proven live. The translation half shipped 2026-07-31. The DATA half — a patient reference stored as a bare local id (`pt-123`) rather than `Patient/pt-123` — was dismissed that day after scanning the only two databases on the host that happen to have zero such rows, and is now closed: 13 of 296 databases carry them, 108 rows, every one a `subject.reference` on Composition / DocumentReference / ServiceRequest. Fixed on the WRITE side (the scribe session store canonicalises before INSERT, the single source all five downstream writers read) plus migration 344 to repair rows already written; deliberately NOT on the read side. Live red-then-green on one stack: `Patient/pt-t-lakeshore-local/$everything` went total=4 / 3-of-7 own records to total=8 / 7-of-7, with patient-B and cross-tenant controls each seeded NON-EMPTY first and then proven excluded in both directions. All FIVE array-indexed reference columns are unregistered (five, not the four recorded on 2026-07-31 — `appointment_practitioner` pins `-> 1` and the earlier census grepped for `-> 0`), and a build-time drift gate now fails on any registered column a migration does not create or that pins an array slot. The 72 guaranteed-empty non-reference parameters (68 token, 3 string, 1 uri — not 74; the 2 dates were miscounted, `applyDateParam` never uses containment) are NOT fixed and remain the open work."
+                "summary": "The guaranteed-empty class is CLOSED on both halves. References were fixed 2026-07-31/2026-08-03; the remaining 72 non-reference parameters (68 token, 3 string, 1 uri) are fixed 2026-08-03 — applyJsonbFallback now ORs its original containment probe with a SQL/JSONPath predicate for DOTTED expressions only, which is a strict superset and so provably cannot lose a row that matched before, and the token system|code branch no longer hard-codes a coding[] shape that a conformant Identifier never has. Single-segment expressions (~190 parameters, already correct) compile byte-identically. Proven red-then-green against real PostgreSQL: 16 of 19 cases in packages/storage/src/search-sql-containment.integration.test.ts fail against github/main and all 19 pass after — and the 3 that passed on the broken code are all EXCLUSION assertions, which is the point. The appointment-reminder job no longer depends on participant slot order. Open: compartment pagination (and a next link that loops), write-time reference validation, and the 225 unregistered columns now re-scoped as a perf question."
               },
               "remaining": [
-                "72 non-reference search parameters still build a JSONB-containment probe from a DOTTED expression and so can never match: 68 token, 3 string, 1 uri. Enumerate with `pnpm --filter @cernia/api exec tsx scripts/search-param-census.mts`, which derives the census from the live registry rather than from prose. Unlike a reference these fallbacks are sometimes correct (a top-level `status` probe matches fine), so a blanket flip is not safe — each needs a measured before-and-after. The largest single family is `identifier` (`identifier.value`) on 17 financial/scheduling types, which probes a scalar against an ARRAY of Identifier objects; that family alone is probably one fix.",
-                "The five array-indexed reference COLUMNS still exist in the schema and are still array-indexed — they are merely no longer used by the search translator (`appointment_patient`, `appointment_practitioner`, `provenance_target`, `encounter_practitioner`, `procedure_performer`). `packages/notifications/src/scheduled-jobs/postgres-appointment-reminder-store.ts` reads `appointment_patient` and `body->'participant'->1->'actor'->>'display'` in its OWN SQL, so the appointment-reminder job still assumes patient-first / practitioner-second ordering. Measured latent today (295 Appointments on the dev host, 0 at any other index) but the assumption is undocumented in that file.",
-                "`walkPatientCompendium` / `walkEncounterCompendium` now page at 1000 and report `truncated` when a page comes back exactly full, but 1000 is the storage adapter's hard ceiling — a patient with more than 1000 of a single resource type is still truncated, now honestly rather than silently. Real pagination through the compartment (a `next` link that continues per-type rather than restarting) is not implemented, and `everything-routes.ts` only forwards `truncated` to the audit row; nothing acts on it.",
-                "`GET /scribe/pre-visit-brief?patientId=` requires a BARE local id — `loadPatientConsents` builds `Patient/${patientId}` and `deps.storage.read(tenantId,'Patient',patientId)` — so a caller passing the canonical `Patient/<id>` spelling gets a 404 and an empty brief. That is the opposite convention to every other patient-id surface, and now the opposite of what `scribe_sessions.patient_id` stores. Not fixed here (a route-contract change, not a data one): apps/api/src/scribe-pre-visit-brief-routes.ts:214,285.",
-                "227 declared search parameters name a `column` that is not in KNOWN_GENERATED_COLUMNS. Two named a column no migration creates and are fixed; the other 225 name columns that DO exist, so they are a missed index rather than a wrong answer — each falls through to the same clause it would have used with no column declared. Worth reclaiming for the token/string ones once the containment question above is settled, since registering a column is exactly what turns those from guaranteed-empty into correct.",
+                "The five array-indexed reference COLUMNS (`appointment_patient`, `appointment_practitioner`, `provenance_target`, `encounter_practitioner`, `procedure_performer`) still exist and are still materialised on every write, now with NO reader: `packages/notifications/src/scheduled-jobs/postgres-appointment-reminder-store.ts` was the last one and was rewritten 2026-08-03 to LATERAL lookups that scan `participant[]` for the type being asked for (red-then-green on real Postgres: 2 new cases fail against `github/main`, 13/13 pass after). What remains is dead weight rather than a defect — five STORED generated columns plus their partial B-tree indexes, computed on every Appointment/Provenance/Encounter/Procedure write for nobody. Dropping them is a migration; the build-time drift gate already prevents anything registering them again, so leaving them costs write time and index space, not correctness.",
+                "`walkPatientCompendium` / `walkEncounterCompendium` page at 1000 and report `truncated` when a page comes back exactly full, but 1000 is the storage adapter's hard ceiling — a patient with more than 1000 of a single resource type is still truncated, now honestly rather than silently. Real pagination through the compartment (a `next` link that continues per-type rather than restarting) is not implemented. Worse than \"not implemented\": `assembleBundle` (apps/api/src/everything-routes.ts:535) DOES emit `Bundle.link[rel=next]` pointing at `_page=2`, and nothing anywhere reads `_page` — the query type declares it (everything-routes.ts:163) and no handler consumes it. A conforming client that follows the next link gets page 1 again, forever. Either implement a resumable per-type cursor or stop emitting a link that loops.",
+                "227 declared search parameters name a `column` that is not in KNOWN_GENERATED_COLUMNS. Two named a column no migration creates and are fixed; the other 225 name columns that DO exist, so they fall through to the same clause they would have used with no column declared. RE-SCOPED 2026-08-03: this was worth reclaiming because falling through meant a guaranteed-empty containment probe. It no longer does — `applyJsonbFallback` now answers dotted expressions correctly via jsonpath — so registering these columns is a PERFORMANCE change (indexed equality instead of a GIN probe), not a correctness one. Measure before doing it: the perf comparison already recorded in KNOWN_GENERATED_COLUMNS found the jsonpath plan FASTER than the column plan on a live table (4.0ms vs 26.5ms for the same 191 rows), so the assumption that a registered column is the fast path is not safe to carry into this batch unmeasured.",
                 "The generic FHIR write surface (`POST /Composition`, `POST /Appointment`, …) still accepts a bare `subject.reference` and any `participant[]` ordering. The scribe path is closed at its source and the corpus is repaired, but nothing REJECTS a non-conformant reference on the way in. Validating `Reference.reference` against the three FHIR R4 forms at write time would close the class rather than the instance; not done here because it changes generic write semantics for every caller and needs its own measurement of what currently posts non-conformant references."
               ],
               "history": [
@@ -5216,6 +5245,13 @@
                   "from": "partial",
                   "to": "partial",
                   "note": "The half of finding 32 that PR #744 dismissed, plus the three follow-ups it deliberately left. (1) BARE PATIENT REFERENCES. The 2026-07-31 note said a scan of run2_b found zero bare subject references and concluded the hazard was latent; it scanned the two databases on the host that happen to have none. A census of all 299 databases (296 with a `resources` table, 64,310 resources) finds 108 bare rows in 13 databases — run2_c 3, run3_c 4, api_errors 19, scribe_f1 14, scribe_fix 14, scribe_e2e 13, and seven more — every one a `subject.reference` on Composition / DocumentReference / ServiceRequest, with `patient.reference`, participant and target clean everywhere. FIXED ON THE WRITE SIDE: `ScribeSessionStore.start` (apps/api/src/scribe-session-store.ts) canonicalises via the new `canonicalPatientReference` (packages/core/src/patient-reference.ts) before the INSERT. The store rather than the route, because `session.patientId` is read by FIVE writers that each drop it straight into a `.reference` — Composition.subject (scribe-draft-routes.ts), DocumentReference.subject twice (scribe-sign-routes.ts), and ServiceRequest.subject / Appointment.participant[0].actor / Task.for (index.ts ~4258-4420). D19 is NOT narrowed: the API still accepts both spellings and still answers 201 for \"pt-123\"; D19's own comment defers \"normalising the STORED value\" as a separate, migration-shaped change, and this is that change. Migration 344 repairs rows already written — tenant-scoped and fail-closed, rewriting a bare id only when exactly one non-deleted Patient with that id exists in the SAME tenant. Read-side acceptance deliberately NOT added: the reference is wrong in the record and not only in the index ($push-to-ehr transmits it to an EHR that cannot resolve it), and a bare value names no type, so accepting it on read would make `?subject=Practitioner/x` match the same row. LIVE RED→GREEN on database `barefix`, a template clone of run3_c, with port↔database pairing proven in both directions by a write before either probe (present in barefix, absent from run3_c): `$everything` for the J07 patient went total=4 / 3-of-7 own records to total=8 / 7-of-7. Isolation: patient B (same tenant) and tenant t-meridian were each SEEDED NON-EMPTY first — 2 records each, one canonical and one deliberately bare — and B's own bare record was invisible to B in RED (1/2) and visible in GREEN (2/2) while never appearing in A's compendium in either. Zero leaked in either direction; cross-tenant read still 404 not 403; undeclared parameter still 422; the token parameter still answers. Evidence: docs/status/evidence/scribe-journeys/barefix-{red,green}.json. (2) ARRAY-INDEXED REFERENCE COLUMNS — five, not four. `appointment_practitioner` also pins a slot (`participant -> 1`) and the 2026-07-31 census missed it by grepping for `-> 0`. It and `appointment_patient` are generated from the SAME declared expression, `participant.actor.reference`, so the schema was encoding a writer convention. All five removed from KNOWN_GENERATED_COLUMNS so `referencePathMatch` serves them, matching any element. The perf objection recorded on 2026-07-31 (\"trades an indexed lookup for a GIN scan on a live path\") does not survive measurement: on cernia_main the jsonpath plan runs 4.0 ms against the column's 26.5 ms for an identical 191-row answer, and neither is a scan, because `AdapterSearch` pins tenant_id + resource_type + deleted before any parameter clause. The claim that this breaks the voice reschedule flow TODAY is also not true: 295 Appointments across the host, 0 with a Patient participant at an index other than 0, 0 with a Practitioner at any index other than 1, 0 NULL `appointment_patient`. It is LATENT, and fixed because it costs nothing and is invisible when it fires, not because it is currently biting. Real-Postgres red→green in packages/storage/src/search-sql-array-reference.integration.test.ts — 3 red on github/main, and the 4 isolation controls green on both sides, which is the property a control should have. (3) COMPENDIUM TRUNCATION. `walkPatientCompendium` passed no `count` on all THREE passes (the tracked bullet named only pass 1) and `walkEncounterCompendium` on one more, so each took the adapter default of 20 while `summary.truncated` reported only the maxResources cap. Now `COMPARTMENT_PAGE_SIZE = 1000` on every compartment search, and a page returning exactly full sets `truncated`. packages/fhir-graph/src/walker-paging.test.ts is red 4-of-5 against github/main's walker; its double reproduces the adapter's real `Math.min(count ?? 20, 1000)`, which the existing walker.test.ts double does not — that is why 19 green tests missed this. (4) TWO PHANTOM COLUMNS. `practitioner_identifier` and `consent_date` confirmed absent from all 296 databases AND from every GENERATED ALWAYS clause in the migrations; the `column:` claims are dropped from apps/api/src/resources.ts. No behaviour change — an unregistered column was already ignored — but the registry stops asserting an index it does not have. (5) THE DRIFT GATE the 2026-07-31 note asked for. packages/storage/src/known-generated-columns.test.ts parses migrations/*.sql and fails on any registered column a migration does not create, or that pins an array slot, with an explicit allowlist for the 31 token/string columns where indexing coding[0] is deliberate. It goes red 3-of-5 the moment `appointment_patient` or `practitioner_identifier` is re-added. Deliberately parses the migration TEXT rather than booting a fixture: applying 303 migrations blows the 10s hook timeout and would make a correctness gate skippable whenever Postgres is down. The parser was validated against `information_schema` on the dev host first — identical answer, two independent derivations. (6) apps/api/scripts/search-param-census.mts replaces the prose census: 526 declared, 243 column-backed, 21 jsonpath, 190 correct containment, 72 guaranteed-empty — not 74, because `applyDateParam` uses `#>` extraction rather than containment and the 2 date parameters counted on 2026-07-31 were never broken. HARNESS TRAP WORTH KEEPING: `$everything` caches its Bundle for 30s keyed on (tenant, anchor, window, types, count, includeAuditTrail). The first GREEN run — 24s after RED, with identical parameters by design — was served the RED answer and reported the fix as having done nothing. barefix-probe.mjs now waits out the TTL. A harness that does not know about that cache produces a false negative indistinguishable from a failed fix."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "search-parameter-correctness",
+                  "from": "partial",
+                  "to": "partial",
+                  "note": "The 72 non-reference guaranteed-empty parameters, and the reminder job’s participant-order assumption. (1) CONTAINMENT. applyJsonbFallback (packages/storage/src/search-sql.ts) built `body @> {\"<first-segment>\": value}` from a DOTTED expression, so `identifier.value` asked whether an ARRAY of Identifier objects equals a string — false by construction, exactly as for references, on 68 token + 3 string + 1 uri parameters. Fixed by OR-ing the original probe with `body @? '$.<segments> ? (...)'`: dotted only, so the ~190 correct single-segment parameters compile byte-identically, and a disjunction rather than a replacement so it is a strict SUPERSET — no per-parameter before/after measurement is needed to establish that nothing was lost, which is what made the earlier \"blanket flip is not safe\" objection blocking. String modifiers are carried through (like_regex with flag \"i\", metacharacters escaped) so a dotted string parameter still answers starts-with/contains rather than silently becoming equality. (2) system|code. The token branch built {key:[{coding:[{system,code}]}]} — right for a CodeableConcept, impossible for an Identifier, which spells its fields system/value and has no coding at all; that is the 17-type `identifier` family the bullet called \"probably one fix\". Now also OR-ed with a filter applied at the PARENT of the final segment, which derives the right shape from the expression instead of assuming the datatype. (3) EVIDENCE. packages/storage/src/search-sql-containment.integration.test.ts, 19 cases against real PostgreSQL on :5433, every exclusion paired with the inclusion proving the excluded row exists and is matchable. Red-then-green measured by checking out github/main’s search-sql.ts under the same tests: 16 failed, 3 passed — and all 3 that passed are exclusion-only assertions, the failure mode the file header warns about. 32/32 pre-existing compiled-SQL tests unchanged. (4) REMINDER JOB. postgres-appointment-reminder-store.ts read the patient from appointment_patient (participant[0]) and the provider display from participant->1; an HL7v2 SIU appointment (AIL before AIP, no patient participant) produced NO reminder — null patient ref, failed join, no phone, no email, silently. Both are now LATERAL scans of participant[] keyed on the referenced type. 3 new cases; 2 of them red against github/main, 13/13 green after. (5) PRE-VISIT BRIEF. GET /scribe/pre-visit-brief?patientId=Patient/<id> 404’d because the route required a bare local id while every other surface — and scribe_sessions.patient_id since the canonicalisation fix — uses the canonical spelling; now normalised in via the existing patientLocalId export, leaving a non-Patient reference untouched rather than reinterpreting it."
                 }
               ]
             }
@@ -7393,8 +7429,8 @@
               },
               "current": {
                 "status": "complete",
-                "asOf": "2026-07-22",
-                "summary": "Foundation complete (U1-U10). All 5 R23 lint rules present; R2 exploration-comps reconciled; all 3 CI gates wired (generated-token drift guard, always-on per-app lint, playground @visual/@a11y). CI-run demonstrations of the gates are a PR-side carry-forward per ADR-0127."
+                "asOf": "2026-08-03",
+                "summary": "Foundation complete (U1-U10). All 5 R23 lint rules present; R2 exploration-comps reconciled; all 3 CI gates wired (generated-token drift guard, always-on per-app lint, playground @visual/@a11y). The generated-CSS orphan follow-up is closed — it was already fixed in 44f3caf0 and only the guard's dead advisory remained. CI-run demonstrations of the gates are a PR-side carry-forward per ADR-0127 and are currently blocked on GitHub Actions billing."
               },
               "evidence": [
                 {
@@ -7411,7 +7447,6 @@
                 }
               ],
               "remaining": [
-                "Follow-up (non-blocking): the stale generated/cernia-theme-shadcn.css orphan (gen.mjs writes it under an old filename; the consumed layer is cernia-shadcn.css) — the drift guard flags it non-fatally; clean up by repointing gen.mjs + deleting the orphan.",
                 "CI-side (per ADR-0127, demonstrate in the PR run): seeded-slop diff fails the per-app lint step; hand-edit of a generated/ file fails the drift step; the e2e job runs the @visual/@a11y specs green."
               ],
               "history": [
@@ -7430,6 +7465,13 @@
                   "to": "complete",
                   "note": "(U10/T8) wired the 3 missing CI gates into .github/workflows/comprehensive-tests.yml: (a) generated-token drift guard step running scripts/check-generated-tokens.mjs (rebuilds @cernia/design-tokens + gen.mjs, fails if committed canonical artifacts diverge; proven green-on-HEAD + catches-drift); (b) always-on per-app design lint for the 5 living apps (F3 anti-drift ratchet; desk/developer/status-page excluded per R27); (c) CERNIA_DESIGN_PLAYGROUND=1 in the e2e job so /design/* serves and the @visual/@a11y specs run. Surfaced the pre-existing cernia-theme-shadcn.css orphan (now a non-fatal advisory). Foundation (U1-U10) COMPLETE.",
                   "commit": "b75d37ed"
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "foundation",
+                  "from": "complete",
+                  "to": "complete",
+                  "note": "The generated/cernia-theme-shadcn.css orphan bullet was ALREADY TRUE-BY-FIX and is closed on evidence, not on assertion. 44f3caf0 repointed gen.mjs at the consumed filename (packages/design-tokens/gen.mjs:29 writes cernia-shadcn.css — the file packages/design-tokens/package.json:19 exports as ./theme.css and that apps/web, apps/patient and apps/cernia-ops import) and DELETED the orphan; `git ls-files packages/design-tokens/generated/` returns exactly three paths and none is the orphan. What was left behind was ~13 lines of dead code in scripts/check-generated-tokens.mjs — an ORPHAN_ARTIFACT constant and a non-fatal advisory branch that could never fire, because `git diff` against a path that is neither tracked nor written is empty for every input — plus a docstring still asserting \"gen.mjs still writes under the old filename\". Both removed. Also recorded, unchanged: the remaining CI-demonstration bullet cannot go green today. The e2e job’s own header (dated 2026-08-03) measures the suite at 3046 tests on one worker, cancelled at both the 30- and 60-minute budgets: \"The suite is red at scale, not slow.\" A gate that cannot finish is not a gate that is failing to be demonstrated."
                 }
               ]
             },
@@ -7444,8 +7486,8 @@
               },
               "current": {
                 "status": "partial",
-                "asOf": "2026-07-22",
-                "summary": "Code complete: the brand_color_confirmed_at marker is wired end-to-end (migration 310 + TenantBrand.brandColorConfirmedAt + store + server-authoritative PUT stamping + sanitise drops client forgery + toResponse) and BrandStyle is mounted in admin/patient/web (NOT cernia-ops, R19), fail-closed so pre-existing/unconfirmed colors emit nothing. Admin AE2 'adjusted for contrast' + activation notices shipped. Two gates remain before a LIVE per-tenant recolor: the SSR resolver lookup is unwired in all apps (pre-existing — resolveBrand soft-falls-back to DEFAULT), and browser acceptance needs a seeded stack."
+                "asOf": "2026-08-03",
+                "summary": "Code complete: the brand_color_confirmed_at marker is wired end-to-end and BrandStyle is mounted in admin/patient/web (NOT cernia-ops, R19), fail-closed so pre-existing/unconfirmed colors emit nothing. The two gates before a LIVE per-tenant recolor are both external to the theming work: the SSR resolver cannot be wired to the tenant-brand API as it stands (that route is authenticated; anonymous SSR has no credential — see remaining[0] for the unblocker), and browser acceptance needs a seeded stack."
               },
               "evidence": [
                 {
@@ -7458,7 +7500,7 @@
                 }
               ],
               "remaining": [
-                "Pre-existing (blocks LIVE recolor, not this task): wire each app's SSR brand resolver lookup (configureDefaultResolver) to the tenant-brand API so resolveBrand returns real per-tenant brand incl. brandColorConfirmedAt (today it soft-falls-back to DEFAULT_CERNIA_BRAND everywhere).",
+                "BLOCKED, and the blocker is not in the apps. Wiring each app's configureDefaultResolver to the tenant-brand API is what this bullet asks for, and GET /tenants/:id/brand CANNOT SERVE IT: apps/api/src/tenant-brand-routes.ts:210-246 requires an authenticated principal bound to that tenant (401 unauthenticated, 403 cross-tenant, per ADR 0126's anti-enumeration posture). SSR brand resolution runs on the ANONYMOUS request — the login page is the surface a per-tenant recolor most needs to reach — so there is no credential to present. Confirmed unwired: configureDefaultResolver has zero non-test callers repo-wide, resolveBrand soft-falls-back to DEFAULT_CERNIA_BRAND on every request (packages/branding/src/ssr/resolve-brand.ts:355-360), and BrandStyle therefore renders nothing in admin/patient/web even though it is correctly mounted in all three. UNBLOCKER: a deliberate decision to expose an UNAUTHENTICATED brand-only read — resolvable by host/subdomain rather than by tenant id, returning colour + logo + brandColorConfirmedAt and nothing else. That discloses which tenant slugs exist and what they look like, which is exactly what the 403-not-404 posture on this route was chosen to prevent, so it is a security tradeoff to be made explicitly and not a wiring task.",
                 "Live-acceptance (ADR-0127 by original intent): browser-verified tenant recolor of a seeded confirmed-brand tenant on patient/admin/web + default-brand visual-regression-unchanged screenshot — needs a running seeded stack."
               ],
               "history": [
@@ -7469,6 +7511,13 @@
                   "to": "partial",
                   "note": "(U11/T1) tenant theming made real: wired a server-authoritative brand_color_confirmed_at marker end-to-end — migration 310 (nullable, no backfill = fail-closed) + TenantBrand.brandColorConfirmedAt + KyselyTenantBrandStore + tenant-brand-routes (PUT stamps now() on a color save; sanitiseTenantBrand drops any client-forged marker; toResponse surfaces it) + cernia-schema-snapshot.sql for real-PG tests — and mounted <BrandStyle primaryColor confirmed> inside <BrandProvider> in apps/{admin,patient,web} layouts (NOT cernia-ops, R19). Fail-closed: unconfirmed/pre-existing colors emit no style tag (no deploy-day surprise recolor, KTD5). Admin branding page shows the AE2 'adjusted for contrast (WCAG AA)' + 'save to confirm' activation notices. Fixed admin tailwind hsl(var()) -> var() so the mounted vars recolor admin; deleted the superseded cernia-theme.css placeholder. Tests: core 821, branding 106 (brand-style 10), storage tenant-brand-store 25, api tenant-brand-routes 30 (incl. forgery-dropped). Status stays 'partial' because a LIVE recolor also needs the pre-existing SSR resolver lookup wired + a seeded-stack browser proof.",
                   "commit": "0aebb433"
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "theming",
+                  "from": "partial",
+                  "to": "partial",
+                  "note": "Investigated the SSR-resolver bullet rather than half-wiring it, and found it is not implementable as written. GET /tenants/:id/brand is authenticated (apps/api/src/tenant-brand-routes.ts, authorize() — 401 unauthenticated, 403 cross-tenant under ADR 0126 anti-enumeration). SSR brand resolution happens on the anonymous request, which is the whole point of a per-tenant recolor: the login page. So \"wire configureDefaultResolver to the tenant-brand API\" cannot be done without first deciding to expose an unauthenticated brand-only read keyed on host, which discloses tenant existence — the exact thing the 403-not-404 choice on that route protects. Bullet narrowed to name the unblocker instead of leaving it looking like unstarted wiring. Confirmed while there: zero non-test callers of configureDefaultResolver, resolveBrand soft-falling back everywhere, BrandStyle correctly mounted in admin/patient/web and correctly absent from cernia-ops."
                 }
               ]
             },
@@ -7483,8 +7532,8 @@
               },
               "current": {
                 "status": "complete",
-                "asOf": "2026-07-22",
-                "summary": "All 5 living apps now consume @cernia/ui; no vendored/self-vendored components/ui/* or hand-rolled CSS kits remain in any of them; each flipped its palette lint warn->error. Enabled by a persona-parity upgrade to @cernia/ui + design-tokens (control-size/type tokens) so the patient portal dropped its forked primitives with no a11y regression. Live-stack browser/axe/e2e acceptance per app is a carry-forward (needs running stacks)."
+                "asOf": "2026-08-03",
+                "summary": "All 5 living apps consume @cernia/ui; no vendored/self-vendored components/ui/* or hand-rolled CSS kits remain, and each flipped its palette lint warn->error. Admin's card compat shim collapsed to a pure re-export 2026-08-03; badge and button cannot, for reasons now measured rather than assumed (a default-value recolor across 272 files, and a variant/size rename plus class drift). Live-stack browser/axe/e2e acceptance remains a carry-forward, with its two named selector carry-forwards confirmed stale."
               },
               "evidence": [
                 {
@@ -7497,8 +7546,8 @@
                 }
               ],
               "remaining": [
-                "Live-stack acceptance (ADR-0127 by original intent): per-app browser before/after screenshots + axe-contrast (light+dark) + existing app e2e suites — needs running stacks. Known e2e selector carry-forwards: installer stepper testids (fixed to wizard-step-*), patient badge div->span selectors.",
-                "Cleanup follow-up (non-blocking): admin's 3 components/compat/{badge,card,button}.tsx shims can now collapse to @cernia/ui re-exports (the API they shim is native as of the persona-parity commit); patient's forked primitives are already deleted."
+                "Live-stack acceptance (ADR-0127 by original intent): per-app browser before/after screenshots + axe-contrast (light+dark) + existing app e2e suites — needs running stacks. The two \"known e2e selector carry-forwards\" this bullet carried are STALE as of 2026-08-03 and removed: the installer stepper testids are fixed (packages/ui/src/wizard-shell.tsx:72,82 emit wizard-stepper and wizard-step-<id>, and tests/e2e/specs/onboarding-installer.spec.ts:125-127 expects exactly those), and the patient badge div->span change has no in-tree selector depending on the tag — a sweep of tests/e2e/specs and apps/patient/src for locator('div, div:has-text, div.rounded, tagName, toBe('DIV') and querySelector('div returns zero hits, every badge assertion being getByTestId or text-based. Neither is a known breakage; both are things to confirm on a live stack alongside everything else here.",
+                "Two of the three admin compat shims still cannot collapse, and the bullet's premise (\"the API they shim is native as of the persona-parity commit\") holds for only one of them. CARD: collapsed 2026-08-03 — apps/admin/src/components/compat/card.tsx is now a pure re-export; @cernia/ui ships CardDescription and CardFooter with byte-identical recipes (packages/ui/src/card.tsx:51-65) and all 314 admin import sites are untouched. BADGE: prop-for-prop native (packages/ui/src/badge.tsx accepts `variant` and maps it through the same VARIANT_TO_TONE table), but the DEFAULTS differ — the shim defaults variant='default' -> tone `info` (bg-primary/10 text-primary), @cernia/ui defaults tone='neutral' (bg-muted text-muted-foreground). A pure re-export silently recolors every admin Badge that omits `variant`, across 272 files. Needs either a one-line default-preserving wrapper (which is what the shim already is) or a measured sweep. BUTTON: NOT native. @cernia/ui spells the variants `primary`/`md` where the shim spells them `default`/`default`, five admin sites pass variant=\"default\" explicitly and would become TS errors, and the class output differs on outline (bg-surface vs bg-transparent), lg (px-8 vs px-6) and icon (+p-0), plus @cernia/ui opts buttons into the persona control-height/type token floor. That is a rename-plus-visual-diff across 272 files, not a shim collapse."
               ],
               "history": [
                 {
@@ -7508,6 +7557,13 @@
                   "to": "complete",
                   "note": "All 5 apps migrated onto @cernia/ui. (U12/T2) apps/web: trust-shell -> SiteChrome on TopnavShell + app-wide gradient/emoji sweep, lint at error (commit d3f319a1). (U15/T5) apps/installer: deleted 7 self-vendored primitives + shared WizardShell adapter, lint at error, 45 tests (b8c2683b). (U14/T4) apps/cernia-ops: deleted the .cernia-* CSS kit, sidebar->OpsShell/SidebarShell + StatCard + finops DataTable, kept ops dark persona + amber signal + R19 (no BrandStyle), 234 tests (c86c5e7f). (U16b/T6) apps/admin: deleted all 9 vendored primitives, ~326 importers repointed (6 direct + 3 thin compat delegates), lint at error, 1563 tests (0d34eb53). ENABLER: added persona control tokens (--control-min-height 0px/patient-44px, --control-font-size 14px/patient-16px) to design-tokens + additive @cernia/ui API (Button outline/link + lg/icon + asChild + buttonVariants, Input persona vars, Badge variant alias, Card CardDescription/CardFooter) — base personas byte-unchanged; design-tokens 62 + @cernia/ui 98 tests; admin/web/installer typecheck clean (backward-compat proof) (adab72b6). (U13/T3) apps/patient: deleted 5 forked primitives, 35 importers repointed, 44px/16px tap targets now delivered by the patient persona tokens (no fork), portal-nav + auth-layout behavior preserved, lint at error, 459 tests (92f84169).",
                   "commit": "92f84169"
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "migration",
+                  "from": "complete",
+                  "to": "complete",
+                  "note": "Collapsed admin’s card compat shim and measured why its two siblings do not follow. apps/admin/src/components/compat/card.tsx re-exported Card/CardHeader/CardTitle/CardContent from @cernia/ui and locally defined CardDescription + CardFooter because the shared set did not ship them; U13 promoted both with byte-identical recipes, so the file is now a pure re-export and there is one rendering source again. Badge and button were checked prop-by-prop rather than assumed collapsible, and are not: badge’s default variant maps to a different tone than @cernia/ui’s default, so a re-export recolors every admin Badge that omits the prop across 272 files; button’s variant and size ENUMS differ by name (default vs primary, default vs md), five admin call sites pass variant=\"default\" explicitly, and the outline/lg/icon classes differ. Also verified the two \"known e2e selector carry-forwards\" and removed them as stale — the installer stepper testids are fixed and match their spec, and no selector anywhere in the repo depends on the patient badge’s tag name."
                 }
               ]
             }
@@ -8944,39 +9000,39 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-08-04T04:12:36.002Z",
+      "lastAuditAt": "2026-08-04T04:18:40.594Z",
       "backendRouteSymbolCount": 250,
       "deferredItems": {
-        "total": 1320,
+        "total": 1322,
         "bySeverity": {
-          "tech-debt": 373,
+          "tech-debt": 375,
           "review": 942,
           "blocker": 5
         },
         "byKind": {
-          "docstring-caveat": 348,
+          "docstring-caveat": 352,
           "not-configured-fallback": 170,
           "type-cheat": 5,
           "type-cheat-cast": 767,
           "deferred-marker": 2,
           "todo-comment": 5,
           "skipped-test": 3,
-          "json-deferred": 20
+          "json-deferred": 18
         },
         "byWave": {
           "UI": 73,
           "X": 57,
           "H": 14,
-          "Platform": 854,
+          "Platform": 856,
           "E": 56,
           "S": 1,
           "J": 9,
           "G": 28,
-          "A": 9,
+          "A": 11,
           "ERX": 20,
           "P": 25,
           "Q": 28,
-          "(unassigned)": 63,
+          "(unassigned)": 61,
           "DD": 4,
           "F": 23,
           "I": 9,
@@ -9005,10 +9061,10 @@
     },
     "justLandedWaves": [],
     "nowWorkingOn": {
-      "wave": "API,STATUS",
-      "detail": "closure pass on external-integrations + voice-agent — 23 tracked bullets to 15 (#778)",
-      "commit": "546f221d",
-      "freshSeconds": 51
+      "wave": "LONG-TAIL",
+      "detail": "close seven tracked gaps, and stop the search that answers \"no records\" when there are records (#780)",
+      "commit": "a3346966",
+      "freshSeconds": 53
     }
   },
   "pool": {
@@ -9130,6 +9186,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "close seven tracked gaps, and stop the search that answers \"no reco...",
+      "commit": "a3346966",
+      "kind": "fix"
+    },
+    {
       "agent": "closure pass on external-integrations + voice-agent — 23 tracked bu...",
       "commit": "546f221d",
       "kind": "fix"
@@ -9198,11 +9259,6 @@
       "agent": "make ADR-0140's release-blocker actually block (#766)",
       "commit": "c8d3247d",
       "kind": "feat"
-    },
-    {
-      "agent": "the other half of finding 32 — a patient reference that is not a re...",
-      "commit": "db10ab65",
-      "kind": "fix"
     }
   ],
   "failures": [
@@ -9329,7 +9385,7 @@
         "issues": [],
         "note": "All packages in this wave typecheck + test clean."
       },
-      "deferredCount": 9
+      "deferredCount": 11
     },
     {
       "id": "B",
@@ -16118,9 +16174,9 @@
       "status": "in-progress",
       "agentsTotal": 15,
       "agents": [],
-      "knownAgentCount": 13,
-      "pendingAgentCount": 2,
-      "completionPct": 87,
+      "knownAgentCount": 12,
+      "pendingAgentCount": 3,
+      "completionPct": 80,
       "mainState": {
         "agentsInMain": 0,
         "agentsTotal": 14,
@@ -17500,7 +17556,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
-    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "546f221d",
+    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "a3346966",
     "origin/feat/google-first-signup-and-session-guard@3cb0ee52c135": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
@@ -17511,42 +17567,42 @@
     "origin/feat/mb-dunning-stores@f81d00eae3df": true,
     "origin/feat/mb-platform-stores@d03c00909a1c": true,
     "origin/feat/mb2-integration-tests@2b933361fb12": true,
-    "origin/feat/mb3-e2e-coverage@723df77a25eb": "546f221d",
+    "origin/feat/mb3-e2e-coverage@723df77a25eb": "a3346966",
     "origin/feat/onboarding-redesign@187fc6ddaa15": true,
-    "origin/feat/p1-isolation-guarantee@776f90b85603": "546f221d",
-    "origin/feat/p2-phone-numbers@61cc502884a1": "546f221d",
+    "origin/feat/p1-isolation-guarantee@776f90b85603": "a3346966",
+    "origin/feat/p2-phone-numbers@61cc502884a1": "a3346966",
     "origin/feat/p3-voice-selection@a6daf23a6694": true,
     "origin/feat/phase-1b-provisioning@27440117dc24": true,
     "origin/feat/r16-fleet-audit@3c1808b66c51": true,
     "origin/feat/r3-residuals@ee2c4cc78b22": true,
-    "origin/feat/release-3-developer-portal@060c10db29d4": "546f221d",
+    "origin/feat/release-3-developer-portal@060c10db29d4": "a3346966",
     "origin/feat/relevance-flag-toggle@18c5b5497767": true,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
-    "origin/feat/scribe-audio-citations@f818a947b472": "546f221d",
+    "origin/feat/scribe-audio-citations@f818a947b472": "a3346966",
     "origin/feat/scribe-capture-enablers@61fccfcfdac4": true,
     "origin/feat/scribe-coaching-telemetry-sink@d8bf1e52063b": true,
     "origin/feat/scribe-fake-audio-harness@2d30a191b6ab": true,
-    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "546f221d",
-    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "546f221d",
-    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "546f221d",
+    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "a3346966",
+    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "a3346966",
+    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "a3346966",
     "origin/feat/scribe-template-lifecycle-coaching@790aa20a7c2d": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
     "origin/feat/signup-totp-installer-ux@2b131af30595": true,
     "origin/feat/specialty-taxonomy-package@0e2b3b99f12a": true,
-    "origin/feat/store-ambient-scribe@d820b553eadb": "546f221d",
-    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "546f221d",
-    "origin/feat/t3-4-outbound-pacing@716782906aa3": "546f221d",
+    "origin/feat/store-ambient-scribe@d820b553eadb": "a3346966",
+    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "a3346966",
+    "origin/feat/t3-4-outbound-pacing@716782906aa3": "a3346966",
     "origin/feat/taxonomy-s1b@bf9cdb4d39a5": true,
-    "origin/feat/taxonomy-s3@e05572b75315": "546f221d",
-    "origin/feat/taxonomy-s4@9a1a1852514f": "546f221d",
+    "origin/feat/taxonomy-s3@e05572b75315": "a3346966",
+    "origin/feat/taxonomy-s4@9a1a1852514f": "a3346966",
     "origin/feat/taxonomy-s5@d8b50a675ab3": true,
-    "origin/feat/taxonomy-tax-a@17d6137bdb89": "546f221d",
+    "origin/feat/taxonomy-tax-a@17d6137bdb89": "a3346966",
     "origin/feat/taxonomy-tax-b@eb6d9883e95c": true,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
     "origin/feat/totp-gate-and-admin-google@372e3c7fb0a3": true,
-    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "546f221d",
-    "origin/feat/w1@21667a886023": "546f221d",
-    "origin/feat/w2@247ead3f02af": "546f221d",
+    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "a3346966",
+    "origin/feat/w1@21667a886023": "a3346966",
+    "origin/feat/w2@247ead3f02af": "a3346966",
     "origin/feat/w3@4cf46bdbb6ca": true,
     "origin/feat/w4@c2dec1309090": true,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,
@@ -17777,7 +17833,7 @@
     "origin/feat/wave-e-e9-voice-payments@aaf8f1bece55": true,
     "origin/feat/wave-e-en2-spanish@08bd4faa06b9": true,
     "origin/feat/wave-e-en3-voice-persona@72f305a280c8": true,
-    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "546f221d",
+    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "a3346966",
     "origin/feat/wave-e-en5-waitlist@b3ed576c7cfa": true,
     "origin/feat/wave-e-en6-triage@b7956b5356e3": true,
     "origin/feat/wave-e-en7-reminder-cadence@19bdff3d699c": true,
