@@ -6454,14 +6454,11 @@
             }
           ],
           "remaining": [
-            "CARRY-FORWARD (GU15): the durable send-queue + drain + provider fan-out route the terminal send through the in-process @cernia/notifications canonical path behind injected provider fakes; live provider send is inert until the provider-creds/BAA (+ A2P 10DLC for SMS) gate clears.",
-            "CARRY-FORWARD (GU16): the inbound webhook ingestion pipeline (signature-verify + tenant-from-binding + effect-once dedupe) runs against injected webhook fakes; live ingestion is inert until the public per-provider callback-endpoint gate clears.",
-            "CARRY-FORWARD (GU17): the deliverability engine (warmup-ramp / reputation / DKIM-SPF-DMARC) runs against simulated DNS/reputation; live deliverability is inert until the dedicated-IP + DNS + multi-week-warmup gate clears.",
-            "EXTERNAL GATE (GU15/GU25): email provider creds + a BAA per provider (SES/SendGrid/Postmark/Mailgun; Google SMTP no-PHI only) — broker-resolved (GU8), never persisted; a real send through a real provider with a BAA.",
+            "EXTERNAL GATE (GU15/GU25): email provider creds + a BAA per provider (SES/SendGrid/Postmark/Mailgun; Google SMTP no-PHI only) — broker-resolved (GU8), never persisted. UNBLOCKER: a signed provider BAA + creds loaded into the tenant-secret broker. Until then the GU15 durable send-queue/leader-elected drain/provider fan-out routes the terminal send through the in-process @cernia/notifications canonical path behind INJECTED PROVIDER FAKES (was tracked separately as the GU15 carry-forward; merged 2026-08-03).",
             "EXTERNAL GATE (GU15/GU25): Twilio SMS creds + BAA + A2P 10DLC / short-code / sender-ID carrier registration (tenant_messaging_registration status must be approved) — a phased regulatory gate (PDMP-analog), NOT a single flip.",
             "EXTERNAL GATE (GU15): native push (APNs .p8 / FCM server key) procurement — Web Push self-host VAPID = no gate.",
-            "EXTERNAL GATE (GU16): public per-provider bounce/complaint/receipt callback URLs (edge-ingress).",
-            "EXTERNAL GATE (GU17): dedicated sending IP + SPF/DKIM/DMARC DNS records + a multi-week IP-warmup reputation ramp — also the delivery<->orchestration split trigger."
+            "EXTERNAL GATE (GU16): public per-provider bounce/complaint/receipt callback URLs (edge-ingress procurement). Until then the GU16 inbound ingestion pipeline (signature-verify + tenant-from-binding + effect-once dedupe) runs against INJECTED WEBHOOK FAKES (was tracked separately as the GU16 carry-forward; merged 2026-08-03).",
+            "EXTERNAL GATE (GU17): dedicated sending IP + SPF/DKIM/DMARC DNS records + a multi-week IP-warmup reputation ramp — also the delivery<->orchestration split trigger. Until then the GU17 deliverability engine (warmup-ramp / reputation / DKIM-SPF-DMARC state) runs against SIMULATED DNS/reputation (was tracked separately as the GU17 carry-forward; merged 2026-08-03)."
           ],
           "history": [
             {
@@ -6470,6 +6467,13 @@
               "from": "absent",
               "to": "partial",
               "note": "GU14-GU18 merged (commit 25083704 P3 DELIVERY). Durable Postgres stores for the Map-backed adapters (suppression/global-suppression, retry-queue, delivery-receipts — survive restart). NET-NEW transport physics: GU15 durable multi-pod send-queue + leader-elected drain + provider fan-out + per-provider rate-limit (two-pods-one-drain, survives restart) + GU16 inbound webhook ingestion (signature + tenant-from-binding + effect-once dedupe; client header ignored, forged rejected) + GU17 deliverability engine (IP warmup / reputation / DKIM-SPF-DMARC) — all external-gated (provider creds+BAA / A2P 10DLC / callback endpoints / dedicated IP+DNS+warmup), faked/simulated in e2e. GU18 carved delivery-log (284 on the fixed PK) + push-subs (200) + a2p (267) under FORCE RLS. apps/engagement-service/src/delivery/*."
+            },
+            {
+              "date": "2026-08-03",
+              "stage": "delivery-plane",
+              "from": "partial",
+              "to": "partial",
+              "note": "TRIAGE (closure pass): merged the three GU15/GU16/GU17 CARRY-FORWARD bullets into the EXTERNAL GATE bullets they restated. Each carry-forward said only \"<code path> is inert until the <X> gate clears\", where <X> was verbatim one of the gates listed beside it — the same gap written from the non-actionable side, with no unblocker of its own. The \"runs behind injected fakes\" fact is preserved verbatim inside each gate. delivery-plane remaining 8 → 5; no work was dropped."
             }
           ]
         },
@@ -6533,11 +6537,9 @@
             }
           ],
           "remaining": [
-            "EXTERNAL GATE (GU23 real-transport): a real send through a real provider with a BAA + a real inbound bounce/complaint webhook signature-verified with the tenant derived from binding — after the provider/carrier/webhook-endpoint gates clear (the GU23 hybrid parity proves logic, not acceptance).",
-            "EXTERNAL GATE (GU8): per-service KMS grant for any held email/SMS/push provider or inbound-webhook signing key (founder sign-off).",
+            "EXTERNAL GATE (GU8): per-service KMS grant for any held email/SMS/push provider or inbound-webhook signing key. UNBLOCKER: founder sign-off on the per-service KMS grant policy — the SAME single decision gates marketplace KU8 and billing BU8; one sign-off clears all three.",
             "EXTERNAL GATE (GU25/GU28): engagement BAA + SKU legal templates (founder-owned, provider BAAs) + Stripe SKU gate any paid deploy.",
-            "ACCEPTANCE (post-gate): engagement purchasable in Stripe test mode + the entitlement guard enforcing; a full DELIVERY path (enqueue -> fan-out -> real provider send -> delivery-log) through a real provider with a BAA + a full ORCHESTRATION path (campaign/reminder schedule -> consent-gate -> render -> enqueue -> drain).",
-            "NOTE (Wave-5 carry-forward CLOSED): unlike Wave-5, the per-tenant monolith cutover-shim IS wired (GU24, apps/api notification-*/reminder routes, safe-defaulted OFF) — the deferred operational item is closed; the shim stays OFF (monolith serves) until an operator flips a tenant."
+            "ACCEPTANCE (post-gate): engagement purchasable in Stripe test mode + the entitlement guard enforcing. The RUNTIME acceptance (a full DELIVERY path through a real provider with a BAA + a full ORCHESTRATION path, incl. the GU23 real-transport send and a signature-verified inbound bounce/complaint webhook with the tenant derived from binding) is tracked ONCE, in ops-product-activation."
           ],
           "history": [
             {
@@ -6546,6 +6548,13 @@
               "from": "absent",
               "to": "partial",
               "note": "GU23-GU25 merged (commits dd7fa0a1 GU23, fafec3cf GU24, 1641eff5 GU25). THREE-mode HYBRID parity (row-parity 6 carved incl. delivery-log PK-fix check + replay 33-case byte-identical + real-transport sandbox send + webhook verify). Per-tenant cutover flag + 2 in-flight pins (send-in-flight + campaign-run) + rollback runbook, AND the monolith cutover-shim WIRED in apps/api (the Wave-5-deferred item CLOSED, safe-defaulted OFF). engagement product SKU (28th paid product) + license<->entitlement mapping. Real-transport acceptance + KMS custody + SKU BAA/legal + Stripe are external-gated. apps/engagement-service/{test/parity,src/cutover-store.ts,...}, apps/api/src/{product-registry,license-entitlement-mapping}.ts."
+            },
+            {
+              "date": "2026-08-03",
+              "stage": "parity-cutover-product",
+              "from": "partial",
+              "to": "partial",
+              "note": "TRIAGE (closure pass): deleted the \"Wave-5 carry-forward CLOSED\" bullet — it announced a closure rather than tracking work, and the closure verifies on main (apps/api/src/engagement-cutover-shim.ts + the GU24 shim seam wired at apps/api/src/appointment-notify.ts:137-243, safe-defaulted OFF). Merged the GU23 real-transport gate into ops-product-activation's runtime acceptance (it restated the delivery-plane provider-BAA + callback-URL gates plus that acceptance). Narrowed the remaining acceptance bullet to the Stripe-SKU half so the runtime path is stated once. parity-cutover-product remaining 5 → 3."
             }
           ]
         },
@@ -6574,8 +6583,8 @@
             }
           ],
           "remaining": [
-            "ACCEPTANCE (post-gate, R4-analog): >=1 tenant runs a full DELIVERY path through a REAL provider with a BAA + a full ORCHESTRATION path end-to-end (the in-wave e2e uses injected provider/webhook fakes).",
-            "DEFERRED UI (out of scope, repoint separately): the engagement UI packages (campaign builder, template authoring, deliverability dashboards) beyond the GU26 admin/fleet config — frontend repoint to the service API."
+            "ACCEPTANCE (post-gate, R4-analog) — the single runtime-acceptance bullet for this track: >=1 tenant runs a full DELIVERY path (enqueue -> fan-out -> REAL provider send under a BAA -> delivery-log) AND a full ORCHESTRATION path (campaign/reminder schedule -> consent-gate -> render -> enqueue -> drain) end-to-end, including a REAL inbound bounce/complaint webhook signature-verified with the tenant derived from binding (absorbed from the GU23 parity bullet, 2026-08-03). Blocked on the delivery-plane provider/carrier/callback-URL gates; the in-wave e2e uses injected provider/webhook fakes.",
+            "DEFERRED UI (repoint separately): the engagement UI packages (campaign builder, template authoring, deliverability dashboards) beyond the GU26 admin/fleet config still call the MONOLITH, which is CORRECT while the GU24 cutover shim is OFF. TRIGGER: the first per-tenant cutover flip — not schedulable before it."
           ],
           "history": [
             {
@@ -6584,6 +6593,13 @@
               "from": "absent",
               "to": "complete",
               "note": "GU26-GU27 merged (commits 57f773c0 GU26, 6cc9b6f7 GU27). Cross-tenant zero-PHI engagement fleet (aggregate counts hashed, zero-PHI asserted) + per-tenant admin config + per-service provisioning + migration-runner entry. ACTIVATION done in-wave: both planes boot-wired + all seam clients injected + drain/fan-out (delivery) + campaign/reminder schedulers (orchestration) started + @cernia/notifications in-process on delivery; ONE full delivery path AND ONE full orchestration path proven end-to-end on real-PG (orchestration->delivery hand-off; injected provider/webhook fakes). R4-analog verdict: playbook HELD a SIXTH time — PROCEED to Wave-7 (marketplace) under the amended playbook. See docs/architecture/microservices-wave6-retrospective.md. apps/cernia-ops/.../engagement-fleet/, apps/admin/.../settings/engagement/, apps/engagement-service/src/{composition,index}.ts."
+            },
+            {
+              "date": "2026-08-03",
+              "stage": "ops-product-activation",
+              "from": "complete",
+              "to": "complete",
+              "note": "TRIAGE (closure pass): this stage now carries the track's SINGLE runtime-acceptance bullet (absorbed the GU23 real-transport clause from parity-cutover-product). Narrowed the deferred-UI bullet to state why it is not merely undone — the UI pointing at the monolith is the correct state while the GU24 shim is OFF — and named its trigger (the first cutover flip)."
             }
           ]
         }
@@ -6680,9 +6696,9 @@
             }
           ],
           "remaining": [
-            "EXTERNAL — KMS custody (KU8): per-service KMS grant for the Ed25519 package-signer + webhook-signing secrets (founder sign-off) before KU12/KU15/KU16/KU18 go live.",
-            "EXTERNAL — Public webhook endpoints (KU12): Stripe checkout webhook + inbound marketplace webhooks (tenant-from-signature, never a client header) — edge-ingress procurement.",
-            "CROSS-SERVICE FOLLOW-UP (KU11): apps/ml-ai-service must HTTP-expose /ai/workflow-gen (a $generate endpoint adapting the Wave-5 WorkflowGenRuntime) for the marketplace consume-seam to go live. Marketplace side is wired and fails-closed; the producer-side surface does not yet exist."
+            "EXTERNAL — KMS custody (KU8): per-service KMS grant for the Ed25519 package-signer + webhook-signing secrets before KU12/KU15/KU16/KU18 go live. UNBLOCKER: founder sign-off on the per-service KMS grant policy — the SAME single decision gates engagement GU8 and billing BU8. The broker already fails CLOSED (409 kms-grant-not-provisioned) rather than falling back to a plaintext key: apps/api/src/marketplace-platform-routes.ts extractKmsGrant.",
+            "EXTERNAL — Public webhook endpoints (KU12): Stripe checkout webhook + inbound marketplace webhooks (tenant-from-signature, never a client header) — edge-ingress procurement. Same edge-ingress unblocker as engagement GU16 and billing BU11.",
+            "CROSS-SERVICE FOLLOW-UP (KU11) — the SINGLE tracking bullet for this gap (the billing ops-activation-closeout copy was merged here 2026-08-03). apps/ml-ai-service must mount `POST /ai/workflow-gen/$generate` — the exact path the marketplace consume-seam already targets (apps/marketplace-service/src/platform-client/ai-workflow-gen-client.ts:80 AI_WORKFLOW_GEN_PATH) — adapting the existing `WorkflowGenRuntime.generate` in apps/ml-ai-service/src/ai/workflow-gen/workflow-gen-runtime.ts:166. Verified still absent on main 2026-08-03: that runtime has no route mount. Marketplace side is wired and fails closed; the work is entirely in ml-ai-service's writable set."
           ],
           "history": [
             {
@@ -6691,6 +6707,20 @@
               "from": "absent",
               "to": "complete",
               "note": "KU6-KU13 merged (commit 72cbf230 P2). 3 apps/api touchpoints frozen (KU6 marketplace-platform-routes seam + KU7 trigger-DISPATCH-stays-monolith enqueue via marketplace_outbox — runtime off the write hot path; +KU26 cutover shim in P5). Service-side seam clients: SecretsResolverClient broker (Stripe/Ed25519/webhook, non-persistence), EntitlementChecker (marketplace SKU), AuditEmitClient (PHI-free + zero-cross-tenant-content), AiWorkflowGenClient consume-seam (j2d stays ml-ai, fails-closed). KU12 InboundStripeWebhookVerifier (tenant-from-signature, never a header). KU13 SandboxRpcBrokerContract (tenant-from-signed-context, never bot-supplied). apps/api/src/marketplace-{platform-routes,trigger-enqueue}.ts, apps/marketplace-service/src/platform-client/*."
+            },
+            {
+              "date": "2026-08-03",
+              "stage": "platform-seams",
+              "from": "complete",
+              "to": "complete",
+              "note": "SECURITY FIX (KU6 seam) — the marketplace platform seam had an UNGATED PHI read. apps/api/src/marketplace-platform-routes.ts carries a hosted entitlement gate whose 402 branch fires only when an `entitlementChecker` is injected, and the boot (apps/api/src/index.ts, the marketplacePlatformRoutes registration) injected only `entitlementReader` — which feeds endpoint (c) alone. The 402 branch was therefore DEAD in production, and GET /marketplace-platform/fhir/{resourceType} + /{resourceType}/{id} — an ANY-resourceType tenant-scoped read — served PHI to a tenant whose `marketplace` entitlement had lapsed. The theory that KU9 covered it does not hold: KU9 gates the marketplace-service's OWN publish/checkout/execute routes, not this seam. FIX: the boot now injects `entitlementChecker: productEntitlementChecker` (matching interop AW-3 / erx EU11), and the plugin exempts ONLY the entitlement read-back (c) — gating an entitlement QUERY on that entitlement is circular and would turn its documented SoR-404 → service-fallback into a 402 for exactly the tenants the fallback exists for; that route carries no PHI (tenant id + product slug). The exemption compares a $-normalized path so a percent-encoded %24read caller cannot land on the wrong branch. RED/GREEN in apps/api/src/marketplace-platform-routes.test.ts: a lapsed tenant now gets 402 on both the single-resource and the searchset back-read and on the secret broker, an entitled tenant still gets 200, and (c) still answers 404 (not 402) for a lapsed tenant in both the literal and percent-encoded forms. A source assertion pins the boot wiring so the dead-branch regression cannot return silently."
+            },
+            {
+              "date": "2026-08-03",
+              "stage": "platform-seams",
+              "from": "complete",
+              "to": "complete",
+              "note": "TRIAGE (closure pass): narrowed all three. KU8 now names the single shared unblocker (one founder KMS-grant sign-off clears engagement GU8 / marketplace KU8 / billing BU8) and records that the broker already fails closed. KU11 absorbed the duplicate copy carried in microservices-billing/ops-activation-closeout and now names the exact route to mount and the exact runtime to adapt, re-verified absent on main."
             }
           ]
         },
@@ -6719,9 +6749,8 @@
             }
           ],
           "remaining": [
-            "EXTERNAL — Stripe checkout (prod) (KU16/KU27): test-mode works in-wave; production creds / connected-account procurement-gated.",
-            "EXTERNAL — Sandbox-tenant provisioning infra (KU19): real ephemeral DB/tenant spin-up backend + TTL purge enforcement (in-wave = injected fake provisioner).",
-            "DEFERRED to Wave-8 (out of scope): publisher payout DISBURSEMENT/invoicing (KU18 landed the DERIVATION / revenue-share split only) — money-movement is the FINAL billing wave."
+            "EXTERNAL — Stripe checkout (prod) (KU16/KU27): test-mode works in-wave; production creds / connected-account procurement-gated. Same Stripe production-credential unblocker as the billing metering (BU16) and invoicing (BU19/BU26) bullets.",
+            "EXTERNAL — Sandbox-tenant provisioning infra (KU19): the real ephemeral DB/tenant spin-up BACKEND (in-wave = injected fake provisioner; the real adapter fails closed with SandboxProvisionerExternalGateError). NARROWED 2026-08-03: TTL purge ENFORCEMENT is not part of this gate — it is implemented and real-PG proven (SandboxLifecycle.purgeExpired, apps/marketplace-service/src/commerce/sandbox-provision/sandbox-lifecycle.ts + .integration.test.ts). Only the external spin-up backend remains."
           ],
           "history": [
             {
@@ -6730,6 +6759,13 @@
               "from": "absent",
               "to": "complete",
               "note": "KU14-KU19 merged (commit 190daf5a P3+P4). COMMERCE plane src/commerce/**: THE cross-tenant reconcile — listings on the bespoke policy fix over-isolation (KU14), templates on the bespoke policy fix over-sharing/ungated fork via publisher_tenant_id + entitlement-gated read (KU15); entitlement + Stripe test-mode checkout + deploy-gate (KU16, external-gated for prod); j2c fork-diff + draft store (KU17); reviews + publisher-verify + payout-DERIVATION only (KU18); sandbox-tenant provisioner behind an injected fake (KU19). Real-PG bespoke both-directions through a NOSUPERUSER role. apps/marketplace-service/src/commerce/*."
+            },
+            {
+              "date": "2026-08-03",
+              "stage": "commerce-plane",
+              "from": "complete",
+              "to": "complete",
+              "note": "TRIAGE (closure pass): deleted the \"DEFERRED to Wave-8: publisher payout DISBURSEMENT/invoicing\" bullet — the deferral is DISCHARGED. Wave 8 landed it: apps/billing-service/src/invoicing/payout/disbursement-engine.ts (BU25 orchestrator, no-double-payout via the payout_disbursement UNIQUE(tenant_id,source_kind,source_ref) ledger + a stable Stripe Idempotency-Key), payout-store.ts and connect-transfer.ts, with disbursement-engine.integration.test.ts. Wave-7 keeps DERIVATION only, exactly as this bullet required. What actually remains is the live Stripe Connect KYC/onboarding gate, already tracked once at microservices-billing/invoicing-plane. Also narrowed KU19: TTL purge enforcement is implemented and proven; only the external spin-up backend is gated. commerce-plane remaining 3 → 2."
             }
           ]
         },
@@ -6799,8 +6835,7 @@
             }
           ],
           "remaining": [
-            "EXTERNAL — marketplace SKU/BAA legal + Stripe SKU (KU27/KU30): founder-owned legal templates + the Stripe SKU; marketplace purchasable in Stripe test mode + the entitlement guard enforcing.",
-            "ACCEPTANCE (post-gate, real-transport): a real Stripe test-mode checkout -> entitlement, a real sandbox provision->purge, and a real sandboxed execution with the tenant derived from the signed run-context — the KU25 hybrid parity proves LOGIC, not acceptance."
+            "EXTERNAL — marketplace SKU/BAA legal + Stripe SKU (KU27/KU30): founder-owned legal templates + the Stripe SKU; marketplace purchasable in Stripe test mode + the entitlement guard enforcing."
           ],
           "history": [
             {
@@ -6809,6 +6844,13 @@
               "from": "absent",
               "to": "complete",
               "note": "KU25-KU27 merged (commits d30d1e14 KU25, ffa68e7e KU26, 32ba4dbd KU27). FOUR-mode HYBRID parity (row 15+1 carved incl. extension_registry PK-fix + CROSS-TENANT-POLICY both-directions through a NOSUPERUSER role proving both live defects closed + replay byte-identical + real-transport). Per-tenant cutover + 2 in-flight pins (execution-run + checkout-session) + the monolith cutover-shim WIRED in apps/api (safe-defaulted OFF). marketplace SKU (29th paid product) + license<->entitlement mapping. apps/marketplace-service/test/parity/*, src/cutover-store.ts, apps/api/src/product-registry.ts."
+            },
+            {
+              "date": "2026-08-03",
+              "stage": "parity-cutover-product",
+              "from": "complete",
+              "to": "complete",
+              "note": "TRIAGE (closure pass): merged the \"real-transport acceptance\" bullet into ops-product-activation. It was a strict subset — its \"real Stripe test-mode checkout -> entitlement, real sandbox provision->purge, real sandboxed execution with the tenant from the signed run-context\" is contained in that stage's full COMMERCE + EXECUTION path acceptance, whose sandbox-provision clause was absorbed there. parity-cutover-product remaining 2 → 1."
             }
           ]
         },
@@ -6841,8 +6883,8 @@
             }
           ],
           "remaining": [
-            "ACCEPTANCE (post-gate, R4-analog): >=1 tenant runs a full COMMERCE path (publish -> entitle -> REAL Stripe test-mode checkout -> fork -> deploy-gate) AND a full EXECUTION path (trigger -> enqueue -> REAL sandboxed run -> callback) through the extracted service — after the Stripe/sandbox/OS-VM-isolation gates clear (the in-wave e2e uses injected fakes).",
-            "DEFERRED UI (out of scope, repoint separately): the marketplace UI packages (@cernia/workflow-builder-ui canvas, template authoring UI, publisher dashboards) beyond the KU28 admin/fleet config — frontend repoint to the service API."
+            "ACCEPTANCE (post-gate, R4-analog) — the single runtime-acceptance bullet for this track: >=1 tenant runs a full COMMERCE path (publish -> entitle -> REAL Stripe test-mode checkout -> fork -> deploy-gate) AND a full EXECUTION path (trigger -> enqueue -> REAL sandboxed run -> callback) through the extracted service, including a REAL sandbox provision->purge cycle and the tenant derived from the signed run-context (absorbed from the parity real-transport bullet, 2026-08-03). Blocked on the Stripe/sandbox/OS-VM-isolation gates; the in-wave e2e uses injected fakes.",
+            "DEFERRED UI (repoint separately): the marketplace UI packages (@cernia/workflow-builder-ui canvas, template authoring UI, publisher dashboards) beyond the KU28 admin/fleet config — frontend repoint to the service API. TRIGGER: the first per-tenant cutover flip; until then pointing at the monolith is correct."
           ],
           "history": [
             {
@@ -6851,6 +6893,13 @@
               "from": "absent",
               "to": "complete",
               "note": "KU28-KU29 merged (commits 4ea50c86 KU28, 0771d3dc KU29) + KU30 closeout. Zero-PHI + zero-cross-tenant-content marketplace fleet + per-tenant admin config + DB provisioning + migration-runner. ACTIVATION in-wave: both planes boot-wired + one full COMMERCE path AND one full EXECUTION path proven on real-PG with injected Stripe/sandbox fakes + audit events (full suite 386/1-skip). KU30: microservices-wave7-retrospective.md + service-map Wave-7 deployables + this status track + CHANGELOG + external-gate tracker + the Wave-8 PROCEED gate. apps/cernia-ops/.../platform/marketplace-fleet/, apps/marketplace-service/src/{composition,index}.ts."
+            },
+            {
+              "date": "2026-08-03",
+              "stage": "ops-product-activation",
+              "from": "complete",
+              "to": "complete",
+              "note": "TRIAGE (closure pass): this stage now carries the track's SINGLE runtime-acceptance bullet (absorbed the parity-cutover real-transport clause). Narrowed the deferred-UI bullet with its trigger."
             }
           ]
         }
@@ -6947,9 +6996,8 @@
             }
           ],
           "remaining": [
-            "EXTERNAL — KMS custody (BU8): per-service KMS grant for the Stripe keys + webhook-signing secrets (founder sign-off) before the live webhook/charge/payout paths go live.",
-            "EXTERNAL — Public webhook endpoints (BU11): Stripe checkout + Connect webhooks (tenant-from-signature, never a client header, in permitAllForUnauthenticatedRoutes) — edge-ingress procurement.",
-            "CROSS-SERVICE FOLLOW-UP (BU7): ml-ai-service / marketplace-service / voice-service / the monolith voice-budget path must EMIT the usage envelope INTO the metering plane. The consumer is wired + proven exactly-once, but has NO live upstream feed until each producer emits. Producer-side, not closable in billing's writable set."
+            "EXTERNAL — KMS custody (BU8): per-service KMS grant for the Stripe keys + webhook-signing secrets before the live webhook/charge/payout paths go live. UNBLOCKER: founder sign-off on the per-service KMS grant policy — the SAME single decision gates engagement GU8 and marketplace KU8; one sign-off clears all three.",
+            "EXTERNAL — Public webhook endpoints (BU11): Stripe checkout + Connect webhooks (tenant-from-signature, never a client header, in permitAllForUnauthenticatedRoutes) — edge-ingress procurement. Same edge-ingress unblocker as engagement GU16 and marketplace KU12."
           ],
           "history": [
             {
@@ -6958,6 +7006,13 @@
               "from": "absent",
               "to": "complete",
               "note": "BU6-BU13 merged (commit bcb2290d P2). 3 apps/api touchpoints frozen (BU6 billing-platform-routes seam + BU7 usage-event consume-seam via the outbox — producers emit, billing consumes; +BU28 cutover shim in P5) + BU12 closed the index.ts:2891 nightly-counter-reconcile TODO in-process. Service-side seam clients: SecretsResolverClient broker (Stripe/tax/webhook, non-persistence), AuditEmitClient (hash-chained financial-record, PHI-free + zero-cross-tenant-financials), the canonical PriceResolver reconcile (BU10, tri-fork -> ONE, feeding checkout + invoicing), InboundStripeWebhookVerifier (BU11, tenant-from-signature, BOTH routes in permitAll), the admission-gate-stays-monolith mgmt-only extract (BU12), EntitlementChecker (BU13). apps/api/src/billing-platform-routes.ts, apps/billing-service/src/{platform-client,metering/ingest,invoicing}/*."
+            },
+            {
+              "date": "2026-08-03",
+              "stage": "platform-seams",
+              "from": "complete",
+              "to": "complete",
+              "note": "TRIAGE (closure pass): deleted the BU7 usage-producer copy carried here — the identical gap was tracked three times in this one track (platform-seams, metering-plane, ops-activation-closeout). It now lives ONCE, in metering-plane, where the pipe it feeds lives. Narrowed the two remaining bullets to name their shared unblockers."
             }
           ]
         },
@@ -6982,8 +7037,8 @@
             }
           ],
           "remaining": [
-            "EXTERNAL — Stripe prod meter keys (BU16): test-mode flush works in-wave; production meter creds procurement-gated.",
-            "CROSS-SERVICE FOLLOW-UP (BU7): the metering plane has no live upstream feed until the ml-ai/marketplace/voice/monolith-voice-budget producers emit the usage envelope (consumer proven, producers pending)."
+            "EXTERNAL — Stripe prod meter keys (BU16): test-mode flush works in-wave; production meter creds procurement-gated. Same Stripe production-credential unblocker as marketplace KU16 and billing BU19/BU26.",
+            "CROSS-SERVICE FOLLOW-UP (BU7) — the SINGLE tracking bullet for the usage-PRODUCER gap (the platform-seams and ops-activation-closeout copies were merged here 2026-08-03). The metering plane is a durable sink whose idempotency layers guard a pipe its producers must feed. PRODUCER 1 of 4 NOW EMITS: marketplace-service writes the frozen five-key envelope on the `usage` stream in the same txn as the sandbox_usage_events row (apps/marketplace-service/src/outbox.ts writeSandboxUsageEventWith + sandbox-usage-store.ts; real-PG proven in sandbox-usage-emit.integration.test.ts). STILL PENDING, each in its own service's writable set: (a) ml-ai-service — emit at the LLM-route/cost record that today produces only `ai.llm-cost.recorded` (apps/ml-ai-service/src/platform-client/audit-emit.ts:283, MLAI_EVENT_TYPES.llmCostRecorded) on the `usage` class as `ml.inference.usage`; (b) voice-service — emit voice-minute usage as `voice.minute.usage` through apps/voice-service/src/outbox.ts (today a generic write path with no usage subject); (c) the monolith voice-budget path — packages/billing/src/voice-budget/tracker.ts VoiceBudgetTracker.record persists budget consumption with no outbox wired at the apps/api voice-call-handler call site."
           ],
           "history": [
             {
@@ -6992,6 +7047,13 @@
               "from": "absent",
               "to": "complete",
               "note": "BU14-BU17 merged (commit 414b691f P3+P4). METERING plane src/metering/**: durable idempotent ingestion buffer + backpressure on billing_usage_events (BU14); aggregate-on-read engine + usage stores on the fixed PKs, @cernia/m2 streaming rollup (BU15); leader-elected flush->Stripe-meters scheduler on metering_flush_lease (BU16, Stripe test-mode); threshold detectors + suppressions @cernia/f1 (BU17). Real-PG: redelivered usage event never double-counts; leader-drain survives restart. apps/billing-service/src/metering/*."
+            },
+            {
+              "date": "2026-08-03",
+              "stage": "metering-plane",
+              "from": "complete",
+              "to": "complete",
+              "note": "TRIAGE (closure pass) + BU7 PRODUCER 1/4 SHIPPED: consolidated the three duplicate BU7 bullets in this track into this one, and narrowed it — marketplace-service now EMITS the frozen usage envelope. apps/marketplace-service/src/outbox.ts gains MARKETPLACE_USAGE_EVENT_CLASS (`usage`, not the `audit` class every other marketplace subject rides), MARKETPLACE_EVENT_TYPES.sandboxUsage and writeSandboxUsageEventWith; PostgresSandboxUsageStore.recordUsage writes it INSIDE the same withTenant transaction as the sandbox_usage_events INSERT, so usage can never be recorded without its billing event; SandboxLifecycle threads an optional usageOutbox and composition.ts wires deps.outboxStore. idempotencyKey == the usage-event id == the outbox row id, so transport dedupe and metering dedupe land on the same value. Real-PG proof in apps/marketplace-service/src/commerce/sandbox-provision/sandbox-usage-emit.integration.test.ts (frozen five-key payload asserted by exact key-set equality; markup cents and sandbox id asserted ABSENT). The three other producers are named with their exact emit sites above."
             }
           ]
         },
@@ -7020,8 +7082,8 @@
             }
           ],
           "remaining": [
-            "EXTERNAL — Stripe prod charge/invoice/checkout (BU19/BU26): test-mode works in-wave; production creds procurement-gated.",
-            "EXTERNAL — Stripe Connect KYC/payout for live DISBURSEMENT (BU25): connected-account onboarding/KYC; the disbursement seam + payout_disbursement ledger land in-wave, live gated.",
+            "EXTERNAL — Stripe prod charge/invoice/checkout (BU19/BU26): test-mode works in-wave; production creds procurement-gated. Same Stripe production-credential unblocker as BU16 and marketplace KU16.",
+            "EXTERNAL — Stripe Connect KYC/payout onboarding for live DISBURSEMENT (BU25). This is the ONLY thing left of the whole publisher-payout money-movement story: the disbursement engine, the payout_disbursement ledger and the Connect transfer seam all landed (apps/billing-service/src/invoicing/payout/{disbursement-engine,payout-store,connect-transfer}.ts) and the seam fails CLOSED with ConnectOnboardingRequiredError, leaving the ledger row pending so a re-run after onboarding completes the SAME disbursement under the same idempotency key. Absorbed the marketplace commerce-plane \"deferred to Wave-8\" bullet 2026-08-03. UNBLOCKER: connected-account onboarding/KYC.",
             "EXTERNAL — Tax-provider creds (BU21): x1a ships as StripeTax/Avalara STUBS with the router real; real rates external-gated.",
             "EXTERNAL — ASC-606 rev-rec attestation (BU20): recognition-policy attestation founder-owned."
           ],
@@ -7032,6 +7094,13 @@
               "from": "absent",
               "to": "complete",
               "note": "BU18-BU26 merged (commit 414b691f P3+P4). INVOICING/AR plane src/invoicing/**: THE money-correctness net-new — the durable exactly-once webhook inbox processed_stripe_events in the SAME txn as the money effect, closing both live money holes (BU18); invoicing/license/subscriptions @cernia/m3/x2a/m1 Stripe test-mode (BU19); ASC-606 rev-rec determinism-pinned (BU20); tax StripeTax/Avalara STUBS (BU21, external-gated); dunning/retry durable leader-elected on dunning_scheduler_lease (BU22); grace/suspend FSM + churn (BU23); trial/renewal/discount (BU24); payout DISBURSEMENT NET-NEW Stripe Connect Transfer + payout_disbursement ledger reading 204 over a seam (BU25, Connect-KYC gated); SaaS checkout on the canonical PriceResolver (BU26). Real-PG: redelivered event once, crash-mid-txn cannot double-apply/drop, marketplace double-mint closed. apps/billing-service/src/invoicing/*."
+            },
+            {
+              "date": "2026-08-03",
+              "stage": "invoicing-plane",
+              "from": "complete",
+              "to": "complete",
+              "note": "TRIAGE (closure pass): narrowed BU25 to record that only the Connect KYC/onboarding gate remains — the engine, ledger and transfer seam are on main and fail closed — and made it the single home for the publisher-payout money-movement gap that microservices-marketplace/commerce-plane was also carrying."
             }
           ]
         },
@@ -7064,8 +7133,7 @@
             }
           ],
           "remaining": [
-            "EXTERNAL — billing-operations SKU/BAA legal (BU29): any net-new billing-operations SKU + BAA legal templates founder-owned.",
-            "ACCEPTANCE (post-gate, real-transport): a real Stripe test-mode charge -> invoice -> exactly-once webhook -> ledger -> rev-rec, a real metered flush, and a real dunning cycle — the BU27 hybrid parity proves LOGIC, not acceptance."
+            "EXTERNAL — billing-operations SKU/BAA legal (BU29): any net-new billing-operations SKU + BAA legal templates founder-owned."
           ],
           "history": [
             {
@@ -7074,6 +7142,13 @@
               "from": "absent",
               "to": "complete",
               "note": "BU27-BU29 merged (commits f289ef03 BU27, f1c1aecf BU29, 1c0f7ec9 BU28). THREE-mode HYBRID parity (row ~25 carved incl. 8 PK-fixes + platform-public catalogs + the exactly-once-webhook assertion + determinism-pinned money-math replay 18/18 cent-identical zero drift + real-transport). Billing SKU reconcile non-circular (BU29) + per-service DB provisioning + migration-runner. Per-tenant cutover + THREE money in-flight pins (open invoice + in-flight metering flush + active dunning case) + the monolith cutover-shim WIRED in apps/api (safe-defaulted OFF). apps/billing-service/test/parity/*, src/cutover-store.ts, apps/api/src/product-registry.ts."
+            },
+            {
+              "date": "2026-08-03",
+              "stage": "parity-cutover-sku",
+              "from": "complete",
+              "to": "complete",
+              "note": "TRIAGE (closure pass): merged the \"real-transport acceptance\" bullet into ops-activation-closeout. Its charge -> invoice -> exactly-once webhook -> ledger -> rev-rec chain and its metered flush are contained in that stage's METERING + INVOICING path acceptance; its one non-overlapping clause (a real DUNNING cycle) was carried over verbatim rather than dropped. parity-cutover-sku remaining 2 → 1."
             }
           ]
         },
@@ -7106,9 +7181,8 @@
             }
           ],
           "remaining": [
-            "ACCEPTANCE (post-gate, R4-analog): >=1 tenant runs a full METERING path (usage event -> idempotent ingest -> aggregate -> REAL Stripe flush) AND a full INVOICING path (REAL Stripe test-mode charge -> exactly-once webhook -> invoice -> ledger -> rev-rec) through the extracted service — after the Stripe/Connect/tax gates clear (the in-wave e2e uses injected fakes).",
-            "CROSS-SERVICE FOLLOW-UP (fleet, carried forward on the FINAL wave): (1) the BU7 usage-event PRODUCER emits — ml-ai/marketplace/voice/monolith-voice-budget must emit the usage envelope (billing consumer wired + proven, no live upstream feed yet); (2) ml-ai-service must HTTP-expose /ai/workflow-gen for the Wave-7 KU11 consume-seam (NOT billing's job; noted so it isn't lost).",
-            "DEFERRED UI (out of scope, repoint separately): the billing UI packages beyond the BU30 admin/fleet config — frontend repoint to the service API."
+            "ACCEPTANCE (post-gate, R4-analog) — the single runtime-acceptance bullet for this track: >=1 tenant runs a full METERING path (usage event -> idempotent ingest -> aggregate -> REAL Stripe flush) AND a full INVOICING path (REAL Stripe test-mode charge -> exactly-once webhook -> invoice -> ledger -> rev-rec) AND a real DUNNING cycle (absorbed from the parity-cutover-sku bullet, 2026-08-03) through the extracted service. Blocked on the Stripe/Connect/tax gates; the in-wave e2e uses injected fakes.",
+            "DEFERRED UI (repoint separately): the billing UI packages beyond the BU30 admin/fleet config — frontend repoint to the service API. TRIGGER: the first per-tenant cutover flip; until then pointing at the monolith is correct."
           ],
           "history": [
             {
@@ -7117,6 +7191,13 @@
               "from": "absent",
               "to": "complete",
               "note": "BU30-BU31 merged (commits 1c0f7ec9 BU30, 1f822be7 BU31) + BU32 closeout. Zero-PHI + zero-cross-tenant-financials billing fleet + per-tenant admin config + DB provisioning. ACTIVATION in-wave: both planes boot-wired + one full METERING path AND one full INVOICING path proven on real-PG with injected Stripe/tax/Connect fakes + hash-chained audit. BU32: microservices-wave8-retrospective.md + the programme capstone microservices-decomposition-COMPLETE.md + service-map Wave-8 deployables + this status track + CHANGELOG + external-gate tracker + the FINAL CLOSEOUT declaration — the 8-wave microservices decomposition is COMPLETE (there is no Wave-9). apps/cernia-ops/.../platform/billing-fleet/, apps/billing-service/src/{composition,index}.ts."
+            },
+            {
+              "date": "2026-08-03",
+              "stage": "ops-activation-closeout",
+              "from": "complete",
+              "to": "complete",
+              "note": "TRIAGE (closure pass): deleted the two-clause fleet follow-up bullet — both clauses were duplicates carried for safekeeping, and both now have a single canonical home: (1) the BU7 usage-producer gap lives in microservices-billing/metering-plane (where one of the four producers has since shipped); (2) the ml-ai /ai/workflow-gen exposure — explicitly \"NOT billing's job\" in the bullet itself — lives in microservices-marketplace/platform-seams, which names the exact route and runtime. Nothing was lost. This stage now carries the track's SINGLE runtime-acceptance bullet (absorbed the parity dunning clause). ops-activation-closeout remaining 3 → 2."
             }
           ]
         }
