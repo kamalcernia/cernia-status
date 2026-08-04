@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-08-04T04:18:41.653Z",
-    "lastUpdatedDisplay": "Aug 4, 2026 — 04:18 EDT",
+    "lastUpdatedIso": "2026-08-04T04:22:01.355Z",
+    "lastUpdatedDisplay": "Aug 4, 2026 — 04:22 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fix"
   },
   "summary": {
-    "currentMainCommit": "a3346966",
+    "currentMainCommit": "7f374355",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2967,
+    "agentsCompletedThisSession": 2968,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2967 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2968 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 4, 2026 — 04:18 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 4, 2026 — 04:22 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -5567,10 +5567,7 @@
                   "url": "https://github.com/kamalcernia/cernia/tree/main/apps/interop-service/src/platform-client"
                 }
               ],
-              "remaining": [
-                "Add the entitlement-read family to INTEROP_OUTBOUND_ROUTE_FAMILIES in apps/interop-service/src/service-identity-client.ts — the production resolveChecker 403s without it (activation-step dependency).",
-                "Add createRequireProduct('interop') on the IU10 /interop-platform route layer so hosted API access is gated symmetrically with ingress (activation step)."
-              ],
+              "remaining": [],
               "history": [
                 {
                   "date": "2026-07-21",
@@ -5578,6 +5575,20 @@
                   "from": "absent",
                   "to": "complete",
                   "note": "IU10-IU14 + P3 reconcile merged. Five monolith /interop-platform seam endpoints (one additive index.ts registration) + four service-side seam clients; broker non-persistence asserted; RecordGateway stays monolith-side. apps/api/src/interop-platform-routes.ts, apps/interop-service/src/platform-client/*."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "platform-seams",
+                  "from": "complete",
+                  "to": "complete",
+                  "note": "SECURITY (task #157): the /interop-platform/secrets/$resolve broker keyed its never-plaintext rule on the caller-supplied req.body.kind, so OMITTING the field fell past the mtls-client-cert boundary into the plaintext arm. Fixed in apps/api/src/interop-platform-routes.ts via the new apps/api/src/platform-secret-broker-policy.ts: kind is REQUIRED and matched against INTEROP_SECRET_KINDS; the platform vendor providers (stripe/twilio/openai/anthropic) are hard-denied; only TENANT-provisioned secrets are brokered (no process.env fallback, which was a platform-environment read primitive for any interop-scoped token); and records/$write is constrained to INTEROP_WRITABLE_RESOURCE_TYPES. Red/green regression suite: apps/api/src/platform-secret-broker-policy.test.ts."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "platform-seams",
+                  "from": "complete",
+                  "to": "complete",
+                  "note": "CLOSURE AUDIT: both remaining bullets were already shipped by the Wave-2 activation commit bc1f43b2 and never closed out. (1) '/api/entitlements' IS in INTEROP_OUTBOUND_ROUTE_FAMILIES (apps/interop-service/src/service-identity-client.ts:67). (2) The symmetric hosted product gate IS wired — apps/api/src/index.ts registers interopPlatformRoutes with entitlementChecker: productEntitlementChecker, and the plugin preHandler 402s product-not-entitled on the JWT-claim tenant (apps/api/src/interop-platform-routes.ts). Stage remaining is now empty."
                 }
               ]
             },
@@ -5591,9 +5602,9 @@
                 "summary": "MLLP inbound was vaporware (protocol enum strings + framing-strip only, no net.createServer, no bind). POST /Connection/:id/$run enqueued a resource then 202'd; runConnection was never invoked (no queue consumer). No durable message store."
               },
               "current": {
-                "status": "partial",
-                "asOf": "2026-07-21",
-                "summary": "Code-complete + tested on real-PG, NOT yet activated (nothing binds a port at boot; consumer not started). IU15 durable MLLP TCP listener (real node:net accept-loop, AA/AE/AR ACK, atomic dedupe+persist+checkpoint in one tx), 6 real-PG+TCP tests incl. service-restart-resumes-from-checkpoint (no lost/double frame). IU16 SFTP poller (SSH host-key verify, fail-closed) + webhook receiver (mTLS->HMAC verify before persist) + /interop/inbound/* routes, 25 tests. IU17a control plane: durable interop_connection_runs queue store (migration 002, FOR UPDATE SKIP LOCKED) + ConnectionRunConsumer + ported $run/$replay (custom verbs), 7 real-PG tests (crash mid-run resumes without double-write). IU17b message pipeline parse->match(quarantine-on-unmatched, no write)->map->record-write + one audit event, 3 real-PG tests."
+                "status": "complete",
+                "asOf": "2026-08-03",
+                "summary": "ACTIVATED (bc1f43b2). server.ts mounts the IU16 inbound routes + the IU17a $run/$replay control-plane behind auth -> rate-limit -> serviceAuthz -> entitlement guard; index.ts env-gated starts the DurableMllpListener, SFTP poll loop, InboundPipelinePump and ConnectionRunConsumer with SIGTERM drain. runConnection was extracted to packages/connectors/src/connection-run-worker.ts and is IMPORTED (the injection seam survives only for test doubles). Acceptance proven end-to-end on real PG by apps/interop-service/src/boot-e2e.integration.test.ts: a real MLLP frame over loopback -> persist + AA -> pump -> parse/match/map -> RecordWrite over the seam -> exactly 1 audit event, idempotent on replay. Remaining: the human-operator authz widening (design decision) + the two external ingress gates."
               },
               "evidence": [
                 {
@@ -5610,13 +5621,9 @@
                 }
               ],
               "remaining": [
-                "ACTIVATION: mount the inbound-routes + $run/$replay control-plane routes and START the MLLP/SFTP listeners in apps/interop-service/src/{server,index}.ts (today library-only; no port binds at boot).",
-                "ACTIVATION: start the ConnectionRunConsumer (IU17a) driving runConnection — the missing data plane.",
-                "ACTIVATION: extract runConnection from apps/api/src/connection-run-worker.ts to a shared package — interop-service currently INJECTS it (the build graph can't cross the app boundary); extraction turns the injection seam into a direct import.",
-                "IU5 guard human-operator branch widening for the connection.run/connection.replay verbs (today service-only).",
+                "IU5 human-operator branch for connection.run/connection.replay is still service-only (apps/interop-service/src/service-authz.ts:174-198 evaluates with roleBindings: []). BLOCKED ON A DESIGN DECISION, not effort: the extracted service has no identity DB, and @cernia/rbac needs real RoleBinding/Role resources to grant a custom verb — so it needs either permissions embedded in the token or an outbound authz call to the monolith. Not urgent: human operators use the monolith POST /Connection/:id/$run (apps/api/src/connection-routes.ts:203), which is RBAC-gated on connection.run today.",
                 "EXTERNAL GATE (IU15): real hospital MLLP peer (Mirth/Rhapsody/Cloverleaf) + site-to-site IPsec/VPN + IP allowlist.",
-                "EXTERNAL GATE (IU16): SFTP partner SSH host-key exchange + per-partner key provisioning.",
-                "ACCEPTANCE (post-activation): >=1 connection runs inbound (MLLP/SFTP/webhook) -> parse -> map -> write-back through the extracted service on real-PG with an audit event."
+                "EXTERNAL GATE (IU16): SFTP partner SSH host-key exchange + per-partner key provisioning."
               ],
               "history": [
                 {
@@ -5625,6 +5632,13 @@
                   "from": "absent",
                   "to": "partial",
                   "note": "IU15-IU17 merged code-complete + real-PG tested but NOT activated. Durable MLLP TCP listener (restart-resumable), SFTP poller + webhook receiver + inbound routes, ConnectionRun queue store/consumer (migration 002) + $run/$replay, parse->match->map->write pipeline. Activation (boot listeners + consumer, extract runConnection) + external MLLP/SFTP gates remain. apps/interop-service/src/ingress/*."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "ingress-pipeline",
+                  "from": "partial",
+                  "to": "complete",
+                  "note": "CLOSURE AUDIT: four of seven bullets were already shipped by bc1f43b2 (Wave-2 activation) and never closed out — route mounting + listener start (apps/interop-service/src/server.ts:177,187 and src/index.ts:261-363), the ConnectionRunConsumer drain loop (src/index.ts:324-363), the runConnection extraction (packages/connectors/src/connection-run-worker.ts, exported at packages/connectors/src/index.ts:191 and imported by src/ingress/run-queue-consumer.ts:45), and the post-activation acceptance (src/boot-e2e.integration.test.ts:271 — MLLP -> pipeline -> write + 1 audit event on real PG). Stage moved partial -> complete; the human-operator branch bullet was narrowed to name its blocker."
                 }
               ]
             },
@@ -5658,8 +5672,7 @@
               ],
               "remaining": [
                 "EXTERNAL GATE (IU19): per-connection physical cutover = out-of-band peer reconfiguration (MLLP host:port, SFTP dir, clearinghouse callback URL).",
-                "EXTERNAL GATE (IU19): njs edge live-boot — the nginx+njs stream{}/http{} image is written-to-spec but not booted (no njs runtime in the sandbox).",
-                "Add test/** to the package-level apps/interop-service/vitest.config.ts include so the IU18 parity spec runs via the package test script (runs today via the root config)."
+                "EXTERNAL GATE (IU19): njs edge live-boot — the nginx+njs stream{}/http{} image is written-to-spec but not booted (no njs runtime in the sandbox)."
               ],
               "history": [
                 {
@@ -5668,6 +5681,13 @@
                   "from": "absent",
                   "to": "partial",
                   "note": "IU18-IU19 merged. Replay-parity gate proves byte-identical FHIR + ACK across monolith vs service (5 msgs/3 protocols, gate-teeth negatives); per-connection cutover store + edge (njs) ingress extension + physical-endpoint runbook. Physical peer reconfiguration + edge live-boot remain external. apps/interop-service/test/parity/, apps/interop-service/src/cutover-store.ts, infra/docker/ingress/, docs/deployment/interop-connection-cutover.md."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "parity-cutover",
+                  "from": "partial",
+                  "to": "partial",
+                  "note": "CLOSURE AUDIT: the vitest include bullet was already true — apps/interop-service/vitest.config.ts includes both src/**/*.test.ts and test/**/*.test.ts, so the IU18 replay-parity spec (test/parity/replay-parity.test.ts) runs via the package test script. Verified by running the package suite. The two external gates (peer reconfiguration, njs live boot) remain."
                 }
               ]
             },
@@ -5682,8 +5702,8 @@
               },
               "current": {
                 "status": "partial",
-                "asOf": "2026-07-21",
-                "summary": "IU20 parts 1-3 complete; part 4 (infra) + the ops aggregate route deferred to activation. Additive interop product entry in apps/api/src/product-registry.ts + license<->entitlement mapping (AE6 round-trip, product-agnostic); interop entitlement guard (reuses the voice createEntitlementGuard factory — fail-closed on config writes, fail-open+alert in-flight), 13 tests. Cross-tenant zero-PHI ops-fleet page at apps/cernia-ops/.../platform/interop-fleet (salted connectionHash only; zero tenant id/endpoint/patient id/body), 7 tests incl. the zero-PHI hard-gate. Product-registry + license tests 38 passing."
+                "asOf": "2026-08-03",
+                "summary": "IU20 parts 1-3 + the activation mounts complete (bc1f43b2). Additive interop product entry + license<->entitlement mapping; the entitlement guard is MOUNTED as a preHandler on both interop route scopes (fail-open in-flight ingest / fail-closed control writes) in apps/interop-service/src/server.ts:151-204; GET /cernia-ops/platform/interop-fleet is registered in apps/api/src/index.ts:8546 (super-admin gated, salted connectionHash, zero PHI) and the cernia-ops page renders it. Per-service DB provisioning + migration runner landed. Remaining: append-aware backups, the founder-owned legal templates, and the post-activation Stripe acceptance."
               },
               "evidence": [
                 {
@@ -5700,9 +5720,7 @@
                 }
               ],
               "remaining": [
-                "ACTIVATION: mount createEntitlementGuard as a preHandler on the interop route families (fail-closed config writes / fail-open in-flight, onAlert -> IU4 outbox) in apps/interop-service/src/{server,index}.ts.",
-                "ACTIVATION: mount GET /cernia-ops/platform/interop-fleet aggregate route in apps/api (cernia-ops-super-admin-gated, tenant-side hashing) — the IU20 ops page renders its OpsAsync error state until it lands.",
-                "IU20 part 4 (infra): per-service interop Postgres provisioning + append-aware backups + an interop migration-runner entry so apps/interop-service/migrations/00{1,2}_*.sql apply idempotently on fresh + existing DBs (Wave-1 U21 pattern) — infra/docker/.",
+                "IU20 part 4 (infra), BACKUPS ONLY: per-service DB provisioning + the migration-runner entry ARE landed (scripts/run-service-migrations.mjs KNOWN_SERVICES + infra/docker/docker-compose.yml migrate loop, real-PG idempotency covered by scripts/run-service-migrations.test.mjs). Still missing: append-aware backup coverage for the cernia_interop logical DB — the DR tooling (scripts/dr-restore-drill.sh, scripts/dr-pitr-drill.sh) only knows the monolith DB, so this belongs with the prod-dr-backup track rather than a new interop-only backup path.",
                 "EXTERNAL GATE (IU20/IU21): hosted-BAA + self-host software-license templates (founder-owned) gate any paid deploy.",
                 "ACCEPTANCE (post-activation): interop product purchasable in Stripe test mode + the entitlement guard enforcing it end-to-end."
               ],
@@ -5713,6 +5731,13 @@
                   "from": "absent",
                   "to": "partial",
                   "note": "IU20 parts 1-3 merged: interop product/SKU + license mapping, entitlement guard, cross-tenant zero-PHI ops-fleet page (salted hashes, zero-PHI hard-gate asserted). Part 4 infra (per-service DB provisioning + migration-runner) + the ops aggregate route + guard mount deferred to the activation step. apps/api/src/product-registry.ts, apps/interop-service/src/entitlement-guard.ts, apps/cernia-ops/.../platform/interop-fleet/."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "product-ops",
+                  "from": "partial",
+                  "to": "partial",
+                  "note": "CLOSURE AUDIT: the two ACTIVATION bullets were already shipped by bc1f43b2 and never closed out — createEntitlementGuard is mounted on both route scopes (apps/interop-service/src/server.ts:151-204) and interopFleetRoutes is registered with a dedicated cernia_interop Kysely handle (apps/api/src/index.ts:8546). The infra bullet was narrowed to the one part that is genuinely missing (backups)."
                 }
               ]
             }
@@ -5843,10 +5868,7 @@
                   "url": "https://github.com/kamalcernia/cernia/tree/main/apps/erx-service/src/platform-client"
                 }
               ],
-              "remaining": [
-                "ACTIVATION: inject the seam clients (EU12 read, EU13 secrets/EPCS-KMS, EU14 record-write + audit-emit) into EU6 domain runtime + EU7 refill portal resolver — today the loud not-wired defaults apply.",
-                "ACTIVATION: confirm the EU11 /erx-platform seam layer is passed the live createRequireProduct(erx) checker so hosted API access is gated symmetrically with prescribe."
-              ],
+              "remaining": [],
               "history": [
                 {
                   "date": "2026-07-21",
@@ -5854,6 +5876,20 @@
                   "from": "absent",
                   "to": "complete",
                   "note": "EU11-EU14 merged. Monolith /erx-platform seam endpoints (one additive index.ts registration; EPCS-KMS grant broker fail-closed) + four service-side seam clients (broker non-persistence structural; PHI-free telemetry distinct from the DEA trail). apps/api/src/erx-platform-routes.ts, apps/erx-service/src/platform-client/*."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "platform-seams",
+                  "from": "complete",
+                  "to": "complete",
+                  "note": "SECURITY (task #157): the /erx-platform/secrets/$resolve broker keyed its never-plaintext rule on the caller-supplied req.body.kind — OMITTING the field fell past the epcs-signing-key branch and returned the EPCS controlled-substance signing key (a DEA 21 CFR 1311 sole-control credential) as PLAINTEXT. Fixed in apps/api/src/erx-platform-routes.ts via the new apps/api/src/platform-secret-broker-policy.ts: (1) kind is REQUIRED and matched against ERX_SECRET_KINDS, which is the sole source of custody; (2) each kind is bound to the provider namespaces it may resolve and the platform vendor providers are hard-denied (previously {provider:\"stripe\"} resolved the PLATFORM Stripe key through TenantSecretResolver s process.env fallback); (3) the plaintext arm re-checks custody from the RESOLVED secret metadata, so a KMS/HSM secret can never be emitted regardless of caller input; (4) records/$write is constrained to ERX_WRITABLE_RESOURCE_TYPES. Client side: apps/erx-service/src/platform-client/secrets-resolver.ts now requires an explicit ErxPlaintextSecretKind. Red/green regression suite: apps/api/src/platform-secret-broker-policy.test.ts."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "platform-seams",
+                  "from": "complete",
+                  "to": "complete",
+                  "note": "CLOSURE AUDIT: both bullets were already shipped by the Wave-3 activation commit 607e5f0e and never closed out. (1) apps/erx-service/src/composition.ts + index.ts build the PlatformClientFactory and inject the EU12 read / EU13 secrets+KMS / EU14 record-write + audit-emit clients into the EU6 runtime and the refill resolver (the loud not-wired defaults no longer apply). (2) apps/api/src/index.ts:6184-6191 registers erxPlatformRoutes with entitlementChecker: productEntitlementChecker, so the seam 402s a lapsed erx tenant symmetrically with prescribe. Stage remaining is now empty."
                 }
               ]
             },
@@ -5882,8 +5918,8 @@
                 }
               ],
               "remaining": [
-                "ACTIVATION: select the real transports env-driven (SURESCRIPTS_TRANSPORT=production + EPCS HotpFactorVerifier/Ial3ProofingGate/KmsGrantSigner + PdmpPerStateTransport) into the EU6 pre-sign gate once the external gates clear; until then the stub boundaries throw loudly.",
-                "ACTIVATION: replace EU9 InMemoryChallengeStore with a shared/durable store so challenge->verify->sign hops survive across replicas.",
+                "ACTIVATION (partially landed): the Surescripts selection IS env-driven and wired — SURESCRIPTS_TRANSPORT=production selects the real transport through selectSurescriptsTransport in apps/erx-service/src/composition.ts, and the EU16 KmsGrantSigner is the wired EPCS signer. STILL UNWIRED: HotpFactorVerifier (apps/erx-service/src/epcs/hard-token-2fa.ts), Ial3ProofingGate (src/epcs/ial3-proofing.ts) and PdmpPerStateTransport (src/safety/pdmp-per-state-transport.ts) have no env selector in composition.ts/index.ts — they remain injectable seams with loud defaults, to be selected in when the EPCS/PDMP external gates below clear.",
+                "Replace EU9 InMemoryChallengeStore (apps/erx-service/src/epcs/epcs-runtime.ts:127) with a durable per-tenant store so challenge -> verify -> sign survives across replicas — today a challenge issued on pod A cannot be verified on pod B. NOT a drop-in: the ChallengeStore interface is SYNCHRONOUS (get/put/all/markSigned/hasSigned at epcs-runtime.ts:116-124, 10 call sites), so a Postgres store requires async-ifying the interface + EpcsRuntime.issueChallenge and adding an apps/erx-service migration (002) for the challenge table. DEA-critical path — do it as its own change, not folded into another unit.",
                 "EXTERNAL GATE (EU8/EU15): Surescripts NCPDP-SCRIPT certification (test->prod) + directory registration + assigned SPI + prod mTLS certs.",
                 "EXTERNAL GATE (EU9/EU16): EPCS IAL-3 identity-proofing of each prescriber (NIST, DEA-compliant third party).",
                 "EXTERNAL GATE (EU9/EU16): EPCS DEA §1311.115 hard-token second factor — provisioned FIPS-140-2 tokens/biometric, per-prescriber enrollment.",
@@ -5898,6 +5934,13 @@
                   "from": "absent",
                   "to": "partial",
                   "note": "EU15-EU16 merged code-complete + real-PG tested against injected vendor fakes; live vendor connections external-gated. Real Surescripts NCPDP-SCRIPT SOAP/REST + mTLS transport (no-silent-ack), real hard-token 2FA + IAL-3 gate + KMS-grant signer (no key materializes) + PDMP per-state gateways. Surescripts cert/SPI, EPCS IAL-3/hard-token/§1311.300 cert audit + signing-key custody founder sign-off, and PDMP per-state creds remain external. apps/erx-service/src/{transport,epcs,safety}/*."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "transport-epcs-pdmp",
+                  "from": "partial",
+                  "to": "partial",
+                  "note": "CLOSURE AUDIT: no bullet closed. The transport-selection bullet was narrowed — the Surescripts half IS env-driven and wired in apps/erx-service/src/composition.ts; only the EPCS factor-verifier / IAL-3 proofing gate / PDMP per-state transport lack an env selector. The challenge-store bullet was narrowed to record why it is not a drop-in (the ChallengeStore interface is synchronous). The six EXTERNAL GATE bullets are unchanged and remain genuinely external."
                 }
               ]
             },
@@ -5930,7 +5973,7 @@
                 }
               ],
               "remaining": [
-                "ACTIVATION: wire the EU18 ErxCutoverReader to a live per-tenant cutover state store + drain the PrescriptionLifecyclePinRegistry before flipping a tenant; monolith erx-routes.ts/patient-portal-refill-routes.ts stay green as the rollback target until every tenant cuts over.",
+                "ACTIVATION: wire the EU18 ErxCutoverReader to a DURABLE per-tenant cutover store. The monolith read seam exists and is additive (ErxCutoverReader at apps/api/src/erx-routes.ts:72; resolveErxBackend defaults to monolith when unwired) but nothing passes `cutover` in apps/api/src/index.ts — and the only ErxCutoverStore backends today are InMemoryTenantCutoverStateStore + a flag-file sync (apps/erx-service/src/cutover-store.ts:128), i.e. there is NO durable state store to point it at. Needs: an erx-service migration for the per-tenant cutover table + a Pg-backed TenantCutoverStateStore + the apps/api wiring; then drain the PrescriptionLifecyclePinRegistry before flipping a tenant. Monolith erx-routes.ts / patient-portal-refill-routes.ts stay the green rollback target until every tenant cuts over.",
                 "ACCEPTANCE (post-activation): row-parity re-verified against live monolith source rows at cutover time per tenant."
               ],
               "history": [
@@ -5940,6 +5983,13 @@
                   "from": "absent",
                   "to": "partial",
                   "note": "EU17-EU18 merged. HYBRID parity gate proves row-checksum-identical (4 carved tables) + replay-byte-identical (NCPDP/EPCS/PDMP/FSM) across monolith vs service (gate-teeth negatives); per-TENANT cutover store + prescription-lifecycle pin + monolith cutover reader + runbook. Live per-tenant flip/drain remains an activation step. apps/erx-service/test/parity/, apps/erx-service/src/cutover-store.ts, docs/deployment/erx-tenant-cutover.md."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "parity-cutover",
+                  "from": "partial",
+                  "to": "partial",
+                  "note": "CLOSURE AUDIT: no bullet closed. The activation bullet was narrowed to name the actual missing piece — the durable cutover state store does not exist (only in-memory + flag-file backends), so \"wire the reader\" is blocked on building it, not on an ops flip. The row-parity acceptance bullet is unchanged (it can only run at cutover time against live monolith rows)."
                 }
               ]
             },
@@ -5954,8 +6004,8 @@
               },
               "current": {
                 "status": "partial",
-                "asOf": "2026-07-21",
-                "summary": "EU19 complete; the entitlement-guard MOUNT deferred to activation (the apps/api fleet route + provisioning ARE landed). Additive erx product + separate premium erx-epcs product entry in apps/api/src/product-registry.ts + license<->entitlement mapping (product-agnostic). Entitlement guard (reuses the interop/voice createEntitlementGuard factory — fail-closed writes, fail-open+alert in-flight) + createControlledSubstanceEpcsGuard (no-op non-controlled; fail-closed erx-epcs for CII-CV), 20 tests. Cross-tenant zero-PHI erx-fleet: GET /cernia-ops/platform/erx-fleet (super-admin gated, aggregate rx throughput/EPCS attempt+sign rates/PDMP query counts/Surescripts ACK-NACK, HMAC-SHA256 prescriber, no patient id) + apps/cernia-ops erx-fleet page; 30 api tests (incl. real-PG cross-tenant zero-PHI) + 7 ops-page tests. Per-service DB provisioning: erx-service added to run-service-migrations.mjs KNOWN_SERVICES (ERX_DB_NAME->erx_service) + docker-compose migrate loop, 29 migration-runner tests incl. real-PG idempotency on fresh + existing DBs."
+                "asOf": "2026-08-03",
+                "summary": "EU19 complete INCLUDING the guard mounts (607e5f0e). Additive erx + premium erx-epcs product entries + license<->entitlement mapping; buildErxServer mounts the entitlement guards as preHandlers (fail-closed prescribe/EPCS on base erx, createControlledSubstanceEpcsGuard fail-closed on CII-CV, fail-open+alert refills) in apps/erx-service/src/server.ts, with the boot-e2e proving 402 unentitled and 422 + one sign-FAILURE audit row for an unproofed prescriber. Cross-tenant zero-PHI GET /cernia-ops/platform/erx-fleet registered in apps/api/src/index.ts:8575; per-service DB provisioning in run-service-migrations. Remaining: the operator hash salts (ops), the founder-owned legal templates, the Stripe acceptance, and the cosmetic DB-name alignment."
               },
               "evidence": [
                 {
@@ -5972,11 +6022,10 @@
                 }
               ],
               "remaining": [
-                "ACTIVATION: mount createEntitlementGuard (fail-closed prescribe/sign/config writes) + createControlledSubstanceEpcsGuard (fail-closed erx-epcs on CII-CV) + a fail-open in-flight ingest guard as preHandlers on the erx route families in apps/erx-service/src/{server,index}.ts; resolveChecker mints a per-tenant token -> GET /api/entitlements/:productId; onAlert -> EU4 outbox.",
-                "ACTIVATION: set operator secrets PDMP_PATIENT_HASH_SALT (EU10 patient-hash pepper) + ERX_FLEET_PRESCRIBER_HASH_SALT (EU19 fleet hashing) in the erx-service env.",
+                "OPS (deploy-time, no code left): set PDMP_PATIENT_HASH_SALT and ERX_FLEET_PRESCRIBER_HASH_SALT in the deployed erx-service / apps-api environment. Both consumers are landed and read the env directly — hashPatientIdentifier (apps/erx-service/src/safety/pdmp-query-logger.ts:30) defaults to an EMPTY pepper, and apps/api/src/index.ts:8575 falls back to SESSION_SECRET then a dev literal. Until the real values are set the PDMP patient hash is tenant-scoped but unpeppered.",
                 "EXTERNAL GATE (EU19): eRx + premium erx-epcs BAA + self-host software-license templates (founder-owned) gate any paid deploy.",
                 "ACCEPTANCE (post-activation): eRx + erx-epcs products purchasable in Stripe test mode + both entitlement guards enforcing end-to-end (controlled-substance prescribe fail-closed without erx-epcs).",
-                "Optional future: align DB name erx_service -> cernia_erx to match the other four services (cosmetic, not a blocker)."
+                "DEFERRED BY DECISION (needs a founder call to reopen, not effort): the erx DB name stays erx_service. The Wave-3 retrospective records this as an accepted, internally-consistent deviation from the cernia_<svc> convention (docs/architecture/microservices-wave3-retrospective.md \"Naming note\", echoed in docs/architecture/service-map.md and ADR-0147). A rename would touch db.ts / docker-compose / run-service-migrations / the apps-api fleet pool default plus ~15 docs and both retrospectives, for zero behavioural gain."
               ],
               "history": [
                 {
@@ -5985,6 +6034,13 @@
                   "from": "absent",
                   "to": "partial",
                   "note": "EU19 merged: erx product + SEPARATE premium erx-epcs SKU + license mapping; entitlement guard + controlled-substance erx-epcs guard (fail-closed CII-CV); cross-tenant zero-PHI erx-fleet route + ops page (HMAC-hashed prescriber, zero-PHI asserted); per-service DB provisioning + erx migration-runner entry (real-PG idempotent). Guard MOUNT + operator salts deferred to activation; BAA/SKU legal templates external. apps/api/src/{product-registry,erx-fleet-routes}.ts, apps/erx-service/src/entitlement-guard.ts, apps/cernia-ops/.../platform/erx-fleet/."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "product-ops",
+                  "from": "partial",
+                  "to": "partial",
+                  "note": "CLOSURE AUDIT: the guard-mount ACTIVATION bullet was already shipped by 607e5f0e and never closed out — apps/erx-service/src/server.ts mounts createEntitlementGuard + createControlledSubstanceEpcsGuard + the fail-open refill guard behind the auth -> rate-limit -> service-authz chain, with resolveChecker minting a per-tenant token against GET /api/entitlements/:productId, and apps/erx-service/src/boot-e2e.integration.test.ts proves the 402/422 paths on real PG. The operator-secrets bullet was narrowed to a pure deploy-time action and now names both consumers."
                 }
               ]
             }
@@ -9000,12 +9056,12 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-08-04T04:18:40.594Z",
+      "lastAuditAt": "2026-08-04T04:22:00.357Z",
       "backendRouteSymbolCount": 250,
       "deferredItems": {
-        "total": 1322,
+        "total": 1323,
         "bySeverity": {
-          "tech-debt": 375,
+          "tech-debt": 376,
           "review": 942,
           "blocker": 5
         },
@@ -9017,7 +9073,7 @@
           "deferred-marker": 2,
           "todo-comment": 5,
           "skipped-test": 3,
-          "json-deferred": 18
+          "json-deferred": 19
         },
         "byWave": {
           "UI": 73,
@@ -9032,7 +9088,7 @@
           "ERX": 20,
           "P": 25,
           "Q": 28,
-          "(unassigned)": 61,
+          "(unassigned)": 62,
           "DD": 4,
           "F": 23,
           "I": 9,
@@ -9061,10 +9117,10 @@
     },
     "justLandedWaves": [],
     "nowWorkingOn": {
-      "wave": "LONG-TAIL",
-      "detail": "close seven tracked gaps, and stop the search that answers \"no records\" when there are records (#780)",
-      "commit": "a3346966",
-      "freshSeconds": 53
+      "wave": "SECURITY",
+      "detail": "the eRx/interop secret brokers stop trusting a caller-omittable field (#157) + close 12 already-shipped pun...",
+      "commit": "7f374355",
+      "freshSeconds": 56
     }
   },
   "pool": {
@@ -9186,6 +9242,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "the eRx/interop secret brokers stop trusting a caller-omittable fie...",
+      "commit": "7f374355",
+      "kind": "fix"
+    },
+    {
       "agent": "close seven tracked gaps, and stop the search that answers \"no reco...",
       "commit": "a3346966",
       "kind": "fix"
@@ -9254,11 +9315,6 @@
       "agent": "a refused visit explained itself only half the time (J04/J06 screen...",
       "commit": "df0047bc",
       "kind": "fix"
-    },
-    {
-      "agent": "make ADR-0140's release-blocker actually block (#766)",
-      "commit": "c8d3247d",
-      "kind": "feat"
     }
   ],
   "failures": [
@@ -17556,7 +17612,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
-    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "a3346966",
+    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "7f374355",
     "origin/feat/google-first-signup-and-session-guard@3cb0ee52c135": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
@@ -17567,42 +17623,42 @@
     "origin/feat/mb-dunning-stores@f81d00eae3df": true,
     "origin/feat/mb-platform-stores@d03c00909a1c": true,
     "origin/feat/mb2-integration-tests@2b933361fb12": true,
-    "origin/feat/mb3-e2e-coverage@723df77a25eb": "a3346966",
+    "origin/feat/mb3-e2e-coverage@723df77a25eb": "7f374355",
     "origin/feat/onboarding-redesign@187fc6ddaa15": true,
-    "origin/feat/p1-isolation-guarantee@776f90b85603": "a3346966",
-    "origin/feat/p2-phone-numbers@61cc502884a1": "a3346966",
+    "origin/feat/p1-isolation-guarantee@776f90b85603": "7f374355",
+    "origin/feat/p2-phone-numbers@61cc502884a1": "7f374355",
     "origin/feat/p3-voice-selection@a6daf23a6694": true,
     "origin/feat/phase-1b-provisioning@27440117dc24": true,
     "origin/feat/r16-fleet-audit@3c1808b66c51": true,
     "origin/feat/r3-residuals@ee2c4cc78b22": true,
-    "origin/feat/release-3-developer-portal@060c10db29d4": "a3346966",
+    "origin/feat/release-3-developer-portal@060c10db29d4": "7f374355",
     "origin/feat/relevance-flag-toggle@18c5b5497767": true,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
-    "origin/feat/scribe-audio-citations@f818a947b472": "a3346966",
+    "origin/feat/scribe-audio-citations@f818a947b472": "7f374355",
     "origin/feat/scribe-capture-enablers@61fccfcfdac4": true,
     "origin/feat/scribe-coaching-telemetry-sink@d8bf1e52063b": true,
     "origin/feat/scribe-fake-audio-harness@2d30a191b6ab": true,
-    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "a3346966",
-    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "a3346966",
-    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "a3346966",
+    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "7f374355",
+    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "7f374355",
+    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "7f374355",
     "origin/feat/scribe-template-lifecycle-coaching@790aa20a7c2d": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
     "origin/feat/signup-totp-installer-ux@2b131af30595": true,
     "origin/feat/specialty-taxonomy-package@0e2b3b99f12a": true,
-    "origin/feat/store-ambient-scribe@d820b553eadb": "a3346966",
-    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "a3346966",
-    "origin/feat/t3-4-outbound-pacing@716782906aa3": "a3346966",
+    "origin/feat/store-ambient-scribe@d820b553eadb": "7f374355",
+    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "7f374355",
+    "origin/feat/t3-4-outbound-pacing@716782906aa3": "7f374355",
     "origin/feat/taxonomy-s1b@bf9cdb4d39a5": true,
-    "origin/feat/taxonomy-s3@e05572b75315": "a3346966",
-    "origin/feat/taxonomy-s4@9a1a1852514f": "a3346966",
+    "origin/feat/taxonomy-s3@e05572b75315": "7f374355",
+    "origin/feat/taxonomy-s4@9a1a1852514f": "7f374355",
     "origin/feat/taxonomy-s5@d8b50a675ab3": true,
-    "origin/feat/taxonomy-tax-a@17d6137bdb89": "a3346966",
+    "origin/feat/taxonomy-tax-a@17d6137bdb89": "7f374355",
     "origin/feat/taxonomy-tax-b@eb6d9883e95c": true,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
     "origin/feat/totp-gate-and-admin-google@372e3c7fb0a3": true,
-    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "a3346966",
-    "origin/feat/w1@21667a886023": "a3346966",
-    "origin/feat/w2@247ead3f02af": "a3346966",
+    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "7f374355",
+    "origin/feat/w1@21667a886023": "7f374355",
+    "origin/feat/w2@247ead3f02af": "7f374355",
     "origin/feat/w3@4cf46bdbb6ca": true,
     "origin/feat/w4@c2dec1309090": true,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,
@@ -17833,7 +17889,7 @@
     "origin/feat/wave-e-e9-voice-payments@aaf8f1bece55": true,
     "origin/feat/wave-e-en2-spanish@08bd4faa06b9": true,
     "origin/feat/wave-e-en3-voice-persona@72f305a280c8": true,
-    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "a3346966",
+    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "7f374355",
     "origin/feat/wave-e-en5-waitlist@b3ed576c7cfa": true,
     "origin/feat/wave-e-en6-triage@b7956b5356e3": true,
     "origin/feat/wave-e-en7-reminder-cadence@19bdff3d699c": true,
