@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-08-03T23:05:34.573Z",
-    "lastUpdatedDisplay": "Aug 3, 2026 — 23:05 EDT",
+    "lastUpdatedIso": "2026-08-04T00:16:23.133Z",
+    "lastUpdatedDisplay": "Aug 4, 2026 — 00:16 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fix"
   },
   "summary": {
-    "currentMainCommit": "b229d00a",
+    "currentMainCommit": "6bbe2cfa",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2959,
+    "agentsCompletedThisSession": 2960,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2959 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2960 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 3, 2026 — 23:05 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 4, 2026 — 00:16 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -63,10 +63,10 @@
     },
     "integration": {
       "lastMergeIso": "2026-07-23T19:53:33-04:00",
-      "daysSinceLastMerge": 10,
+      "daysSinceLastMerge": 11,
       "mergedPrs": 15,
       "openPrs": 0,
-      "label": "Last main merge: 10d ago · 0 PRs awaiting batch-merge"
+      "label": "Last main merge: 11d ago · 0 PRs awaiting batch-merge"
     },
     "mainState": {
       "waveCounts": {
@@ -6304,7 +6304,7 @@
               },
               "current": {
                 "status": "partial",
-                "asOf": "2026-07-22",
+                "asOf": "2026-08-03",
                 "summary": "Code-complete; live LLM streaming is EXTERNAL-GATED (6 provider keys + BAAs). MU19 wired @cernia/o1-llm-gateway IN-PROCESS on the AI plane (the complete() path asserted a lib import, NOT an HTTP client — no network hop) and extracted ONLY its management surface (cost-ledger o4 + audit + budget admin + o4/o6 sink wiring over a shared store); monolith /llm-gateway kept green as rollback; PrimaryAndFallbackRouter failover preserved. MU20 lifted the pure AI libs (o3-model-routing, o5-llm-safety-guardrails, j2d-ai-workflow-gen). MU21 BUILT durable Postgres stores for the two Map-backed registries — PromptRegistry (prompt_registry/_versions/_experiments; the 13 seed prompts load from the store, a published prompt survives a simulated restart) + KbStore (kb_docs/kb_replies), both under FORCE RLS. MU22 carved o6 observability-trace (091) + o4 cost-ledger (075/090) + llm_audit_events (295) under FORCE RLS consuming the 3 PK-fixed tables (real-PG: a tenant-agnostic trace_id/id collision now rejected). MU23 NET-NEW durable multi-pod LLM-streaming host — provider fan-out through the cost/audit/guardrail pipeline + inline o5 guardrails on the stream + PrimaryAndFallbackRouter failover + durable llm_streaming_sessions (an open response survives a pod restart); external-gated (provider keys+BAAs), provider faked in e2e."
               },
               "evidence": [
@@ -6321,7 +6321,8 @@
                 "CARRY-FORWARD (MU23): the durable multi-pod LLM-streaming host runs against injected provider fakes; the live streamed completion is inert until the provider-key/BAA gate clears.",
                 "EXTERNAL GATE (MU19/MU23/MU9): the 6 LLM-provider keys (Anthropic/OpenAI/Azure/Google/Bedrock/Ollama) + a BAA per provider for live streaming; broker-resolved (MU9); KMS custody sign-off for any held key.",
                 "FOLLOW-UP (surfaced while fixing GET /api/o6/audit): the REST of the /api/o4/* + /api/o6/traces* family in apps/api/src/llm-observability-routes.ts is still reachable by nobody, ON PURPOSE. Each resolves its tenant from a caller-supplied ?tenantId= via tenantOf(), so \"unmapped\" is the only thing preventing any authenticated caller from reading another tenant's LLM spend. Each needs the same two-part fix /api/o6/audit just got — server-authoritative tenant FIRST, then a deriveOperation mapping (or an operator-scoped route) — never the mapping alone. Pinned in iam-route-guards.repo-coverage.test.ts.",
-                "FOLLOW-UP (residual AuditEvent reach, AFTER the wildcard carve-out closed the tenant-member/GET-/admin/audit exposure): two paths still return AuditEvent rows without a search:AuditEvent grant. (a) GET /Patient/:id/$everything?_includeAuditTrail=true (apps/api/src/everything-routes.ts; walker AUDIT_TRAIL_RESOURCE_TYPES in packages/fhir-graph/src/edge-catalog.ts) derives read:Patient, which clinician/office-admin/tenant-member all hold — patient-SCOPED, but still the access trail. (b) apps/audit-service /audit/events + /audit/disclosure-accounting/:patientId (apps/audit-service/src/server.ts:137,152,183) are AUTHENTICATED-ONLY with no RBAC verb check at all, and that service is the only place disclosure-accounting is mounted. Decide each explicitly; (b) is the larger hole."
+                "FOLLOW-UP (residual AuditEvent reach, NARROWED 2026-08-03 — the apps/audit-service half is CLOSED): one path still returns AuditEvent rows without a search:AuditEvent grant. GET /Patient/:id/$everything?_includeAuditTrail=true (apps/api/src/everything-routes.ts; walker AUDIT_TRAIL_RESOURCE_TYPES in packages/fhir-graph/src/edge-catalog.ts) derives read:Patient, which clinician/office-admin/tenant-member all hold — patient-SCOPED, but still the access trail. Needs its own decision. (The apps/audit-service half — /audit/events + /audit/disclosure-accounting authenticated-only with no verb check — was closed by apps/audit-service/src/audit-authz.ts.)",
+                "FOLLOW-UP (surfaced while closing the audit-service verb check): apps/audit-service authorises from the VERIFIED JWT roles claim resolved against the CODE catalog (@cernia/saas-platform platformRoleCatalog), not from stored RoleBinding/Role rows — its own database (ADR-0145) has no resources table and createAuditStorage throws on every generic FHIR verb. Two consequences, documented in apps/audit-service/src/audit-authz.ts and NOT yet closed: (1) revocation lag bounded by the 900s access-token TTL; (2) a tenant that has CUSTOMISED a stored Role row is evaluated against the code catalog instead. Closing either needs a role-read seam across the service boundary (a signed role snapshot in the token, or a cached read against the identity service) — not a widening of this guard."
               ],
               "history": [
                 {
@@ -6344,6 +6345,13 @@
                   "from": "remaining",
                   "to": "closed",
                   "note": "AuditEvent carved out of the RBAC wildcard — the PHI-access trail is no longer a clinician surface. tenant-member (the CLINICAL role every tenant is provisioned with) held {\"*\",read}+{\"*\",search}, which reached search:AuditEvent, i.e. GET /admin/audit (the tamper-evident chain recording which patient record each user opened), GET /api/o6/audit, and the generic-REST GET /AuditEvent (a REAL registered resource type — apps/api/src/resources.ts auditEventDefinition). Any clinician in any practice could read who-looked-at-whom. MECHANISM (the founder decision was \"carve AuditEvent out of the wildcard\", NOT \"replace the wildcard with an allow-list\"): Permission is a pure allow-list with no effect:deny and no evaluator deny pass, so a carve-out could NOT be expressed in default-roles.ts at all — the exclusion had to land where the wildcard is interpreted. packages/rbac/src/permission-matcher.ts gained WILDCARD_EXEMPT_RESOURCE_TYPES={AuditEvent} and typeCovers returns false for a granted \"*\" against an exempt type; an explicitly-named grant still matches. STATUS-QUO PRESERVED for every other holder: packages/saas-platform/src/lifecycle/default-roles.ts tenant-admin +{AuditEvent,admin}, developer-api +{AuditEvent,read/search/write/delete} (customer API keys would otherwise have started 403ing in production), configurable-roles.ts auditor +{AuditEvent,read}+{AuditEvent,search} (it reached the trail ONLY via its wildcard, so without this the compliance role would have kept the signed export and lost the browse surface). Closed-set drift alarms updated in the same commit incl. a NEW one for TENANT_MEMBER_PERMISSIONS, which had none. LIVE ACCEPTANCE (apps/api/scripts/acceptance-auditevent-carveout.mjs, product-path credentials only — onboarding/login/invite/accept, never /dev/login): RED on unfixed code = tenant-member 200 with rows on both /admin/audit and GET /AuditEvent; GREEN = 403 on both, while tenant-admin 200-with-rows, auditor 200-with-rows, office-admin 403 unchanged, a second tenant still isolated, and tenant-member still searches Patient/Observation/Encounter/Condition/MedicationRequest/DocumentReference. EXISTING TENANTS: required a backfill and got one — Role rows are FHIR resources that a code change does not rewrite, so apps/api dev:backfill-role-catalog (ensure-tenant-roles.ts reconcile-if-drifted) must be run on every deployment; verified against pre-existing tenants."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "ai-plane",
+                  "from": "remaining",
+                  "to": "closed",
+                  "note": "apps/audit-service /audit/* got its RBAC verb check — it had NONE, and it is the only place HIPAA §164.528 disclosure accounting is mounted. MEASURED LIVE on two real processes (apps/api :8231 signing, audit-service :8232 verifying its JWKS key) against real Postgres `auditrbac`, credentials minted through onboarding→login→invite→accept→login: RED tenant-member GET /audit/events 200 with 3 PHI-access rows · GET /audit/disclosure-accounting 200 · office-admin 200 · auditor POST /audit/events 201 and POST /audit/legal-hold 201 (a read-only role writing the record it audits) · cernia-super-admin 200 with raw tenantId/actorUserId · tenant B's admin POST /audit/events {\"event\":{\"tenantId\":\"<A>\"}} → 201, and the forged row landed in TENANT A's chain at sequence_num 5 (CROSS-TENANT WRITE). GREEN all of those 403, controls unchanged (tenant-admin + auditor 200-with-rows, auditor export 200, tenant B admin sees only its own row). 28/28 both directions, apps/audit-service/scripts/acceptance-audit-service-rbac.mjs; artifacts docs/status/evidence/2026-08-03-audit-service-rbac-{RED,GREEN}.json. MECHANISM: apps/audit-service/src/audit-authz.ts evaluates through @cernia/rbac against the SAME catalog the monolith seeds tenants from — platformRoleCatalog MOVED from apps/api/src/ensure-tenant-roles.ts to @cernia/saas-platform/lifecycle/platform-role-catalog.ts so both surfaces share one definition (a second copy is how this hole opened). It therefore inherits WILDCARD_EXEMPT_RESOURCE_TYPES for free: the clinical role is denied here by the same line of code that denies it in the monolith. Route→verb map matches the monolith verbatim where the monolith has an opinion (POST /audit/export → export:AuditEvent, reads → search:AuditEvent); an UNMAPPED route is denied, so a route added tomorrow cannot inherit the old open default. NO BACKFILL REQUIRED — the catalog output is byte-identical across the move (platform-role-catalog.test.ts asserts it against the literal pre-move expression), and the decision reads the code catalog rather than stored rows; #768's dev:backfill-role-catalog remains the prerequisite for the auditor CLAIM to appear at login. TWO DEFECTS FOUND EN ROUTE, both fixed here: (1) packages/k4-rbac-audit-log/src/api-routes.ts makeAppendEventHandler spread the caller's event AFTER the server-derived actor fields, so tenantId/actorUserId/sourceIp/sessionId were all forgeable — the cross-tenant chain write above; (2) apps/audit-service/src/index.ts read AUDIT_JWT_PUBLIC_KEY_JWK only to decide whether to throw and then verified against a keypair minted in-process, so every token apps/api issued 401'd — in production too, with the key correctly provisioned."
                 }
               ]
             },
@@ -8795,12 +8803,12 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-08-03T23:05:33.600Z",
+      "lastAuditAt": "2026-08-04T00:16:22.040Z",
       "backendRouteSymbolCount": 250,
       "deferredItems": {
-        "total": 1327,
+        "total": 1328,
         "bySeverity": {
-          "tech-debt": 380,
+          "tech-debt": 381,
           "review": 942,
           "blocker": 5
         },
@@ -8812,7 +8820,7 @@
           "deferred-marker": 2,
           "todo-comment": 5,
           "skipped-test": 3,
-          "json-deferred": 28
+          "json-deferred": 29
         },
         "byWave": {
           "UI": 73,
@@ -8827,7 +8835,7 @@
           "ERX": 20,
           "P": 25,
           "Q": 28,
-          "(unassigned)": 71,
+          "(unassigned)": 72,
           "DD": 4,
           "F": 23,
           "I": 9,
@@ -8856,10 +8864,10 @@
     },
     "justLandedWaves": [],
     "nowWorkingOn": {
-      "wave": "OPENAPI",
-      "detail": "the drift gate was reading a quarter of the API, and its one red was a phantom (#772)",
-      "commit": "b229d00a",
-      "freshSeconds": 47
+      "wave": "AUDIT-SERVICE,CORS",
+      "detail": "the audit trail checked who you were and never what you could do (#775)",
+      "commit": "6bbe2cfa",
+      "freshSeconds": 49
     }
   },
   "pool": {
@@ -8981,6 +8989,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "the audit trail checked who you were and never what you could do (#...",
+      "commit": "6bbe2cfa",
+      "kind": "fix"
+    },
+    {
       "agent": "the drift gate was reading a quarter of the API, and its one red wa...",
       "commit": "b229d00a",
       "kind": "fix"
@@ -9049,11 +9062,6 @@
       "agent": "the scribe gets its real price, and the ops price editor stops lyin...",
       "commit": "5b8504a2",
       "kind": "feat"
-    },
-    {
-      "agent": "the cost chain priced a note at 4x under, and could not say \"I don'...",
-      "commit": "b8f4abbc",
-      "kind": "fix"
     }
   ],
   "failures": [
@@ -17351,7 +17359,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
-    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "b229d00a",
+    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "6bbe2cfa",
     "origin/feat/google-first-signup-and-session-guard@3cb0ee52c135": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
@@ -17362,42 +17370,42 @@
     "origin/feat/mb-dunning-stores@f81d00eae3df": true,
     "origin/feat/mb-platform-stores@d03c00909a1c": true,
     "origin/feat/mb2-integration-tests@2b933361fb12": true,
-    "origin/feat/mb3-e2e-coverage@723df77a25eb": "b229d00a",
+    "origin/feat/mb3-e2e-coverage@723df77a25eb": "6bbe2cfa",
     "origin/feat/onboarding-redesign@187fc6ddaa15": true,
-    "origin/feat/p1-isolation-guarantee@776f90b85603": "b229d00a",
-    "origin/feat/p2-phone-numbers@61cc502884a1": "b229d00a",
+    "origin/feat/p1-isolation-guarantee@776f90b85603": "6bbe2cfa",
+    "origin/feat/p2-phone-numbers@61cc502884a1": "6bbe2cfa",
     "origin/feat/p3-voice-selection@a6daf23a6694": true,
     "origin/feat/phase-1b-provisioning@27440117dc24": true,
     "origin/feat/r16-fleet-audit@3c1808b66c51": true,
     "origin/feat/r3-residuals@ee2c4cc78b22": true,
-    "origin/feat/release-3-developer-portal@060c10db29d4": "b229d00a",
+    "origin/feat/release-3-developer-portal@060c10db29d4": "6bbe2cfa",
     "origin/feat/relevance-flag-toggle@18c5b5497767": true,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
-    "origin/feat/scribe-audio-citations@f818a947b472": "b229d00a",
+    "origin/feat/scribe-audio-citations@f818a947b472": "6bbe2cfa",
     "origin/feat/scribe-capture-enablers@61fccfcfdac4": true,
     "origin/feat/scribe-coaching-telemetry-sink@d8bf1e52063b": true,
     "origin/feat/scribe-fake-audio-harness@2d30a191b6ab": true,
-    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "b229d00a",
-    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "b229d00a",
-    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "b229d00a",
+    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "6bbe2cfa",
+    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "6bbe2cfa",
+    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "6bbe2cfa",
     "origin/feat/scribe-template-lifecycle-coaching@790aa20a7c2d": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
     "origin/feat/signup-totp-installer-ux@2b131af30595": true,
     "origin/feat/specialty-taxonomy-package@0e2b3b99f12a": true,
-    "origin/feat/store-ambient-scribe@d820b553eadb": "b229d00a",
-    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "b229d00a",
-    "origin/feat/t3-4-outbound-pacing@716782906aa3": "b229d00a",
+    "origin/feat/store-ambient-scribe@d820b553eadb": "6bbe2cfa",
+    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "6bbe2cfa",
+    "origin/feat/t3-4-outbound-pacing@716782906aa3": "6bbe2cfa",
     "origin/feat/taxonomy-s1b@bf9cdb4d39a5": true,
-    "origin/feat/taxonomy-s3@e05572b75315": "b229d00a",
-    "origin/feat/taxonomy-s4@9a1a1852514f": "b229d00a",
+    "origin/feat/taxonomy-s3@e05572b75315": "6bbe2cfa",
+    "origin/feat/taxonomy-s4@9a1a1852514f": "6bbe2cfa",
     "origin/feat/taxonomy-s5@d8b50a675ab3": true,
-    "origin/feat/taxonomy-tax-a@17d6137bdb89": "b229d00a",
+    "origin/feat/taxonomy-tax-a@17d6137bdb89": "6bbe2cfa",
     "origin/feat/taxonomy-tax-b@eb6d9883e95c": true,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
     "origin/feat/totp-gate-and-admin-google@372e3c7fb0a3": true,
-    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "b229d00a",
-    "origin/feat/w1@21667a886023": "b229d00a",
-    "origin/feat/w2@247ead3f02af": "b229d00a",
+    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "6bbe2cfa",
+    "origin/feat/w1@21667a886023": "6bbe2cfa",
+    "origin/feat/w2@247ead3f02af": "6bbe2cfa",
     "origin/feat/w3@4cf46bdbb6ca": true,
     "origin/feat/w4@c2dec1309090": true,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,
@@ -17628,7 +17636,7 @@
     "origin/feat/wave-e-e9-voice-payments@aaf8f1bece55": true,
     "origin/feat/wave-e-en2-spanish@08bd4faa06b9": true,
     "origin/feat/wave-e-en3-voice-persona@72f305a280c8": true,
-    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "b229d00a",
+    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "6bbe2cfa",
     "origin/feat/wave-e-en5-waitlist@b3ed576c7cfa": true,
     "origin/feat/wave-e-en6-triage@b7956b5356e3": true,
     "origin/feat/wave-e-en7-reminder-cadence@19bdff3d699c": true,
