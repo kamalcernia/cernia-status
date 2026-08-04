@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-08-04T00:35:52.620Z",
-    "lastUpdatedDisplay": "Aug 4, 2026 — 00:35 EDT",
+    "lastUpdatedIso": "2026-08-04T01:01:20.675Z",
+    "lastUpdatedDisplay": "Aug 4, 2026 — 01:01 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fix"
   },
   "summary": {
-    "currentMainCommit": "535e28b7",
+    "currentMainCommit": "9cdf17d2",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 2961,
+    "agentsCompletedThisSession": 2962,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "2961 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "2962 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 4, 2026 — 00:36 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #740 test(scribe): run 2 of J01/J02/J03 — step 2 is fixed, and a . (refreshed Aug 4, 2026 — 01:01 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -3800,7 +3800,7 @@
                 "SURFACED 2026-08-03 by PR #772 — asymmetric write guards on the extracted-service record seams. POST /erx-platform/records/$write (apps/api/src/erx-platform-routes.ts:503-524) and POST /interop-platform/records/$write (interop-platform-routes.ts:375-393) accept ANY resourceType into RecordGatewayRouter, while their siblings enforce an allowlist (TELEHEALTH_WRITABLE_TYPES at telehealth-platform-routes.ts:97-101, MLAI_WRITABLE_TYPES at mlai-platform-routes.ts:120-123). An erx or interop service token can therefore overwrite Patient, Consent or Composition. Related: GET /marketplace-platform/fhir/{resourceType}[/{id}] (marketplace-platform-routes.ts:364-416) is an unrestricted PHI read — any type, any id, searchset count 500, pass-through query params — for sandboxed third-party marketplace bots, and its 402 entitlement branch (:342-357) is dead because index.ts:6264-6273 passes entitlementReader but never entitlementChecker (same omission for telehealth :6205-6209, mlai :6225-6230, engagement :6245-6248). Add the two missing resourceType allowlists and a marketplace read scope.",
                 "SURFACED 2026-08-03 by PR #770 — THE PLAYWRIGHT E2E SUITE IS RED AT SCALE AND HAS NEVER RUN IN CI. The `e2e` job in .github/workflows/comprehensive-tests.yml declares `needs: [backend-integration]`, and backend-integration had been failing in its build step, so e2e was SKIPPED on every pull request and had never once executed a spec. With the build fixed it ran twice, and was cancelled mid-suite both times: 30m17s under its original 30-minute budget, then 60m16s under a 60-minute one. The budget is not the problem. Playwright reports \"Running 3046 tests using 1 worker\" (tests/e2e/playwright.config.ts sets workers: CI ? '50%' : 1 and the GitHub runner has 2 cores) and the progress line is dense with F and T markers from roughly 14 minutes in — the suite is RED, not merely slow. timeout-minutes was left at 30 deliberately: raising it only buys a longer wait for the same red, at an hour of runner time per PR. Next step is a workflow_dispatch run with sharding or a raised worker count to MEASURE the red set, exactly as the apps/api-suite bullet above describes; only then can it gate. Note the number is unrelated to the 147 files in tests/e2e/specs — 3046 is the expanded test count across projects.",
                 "SURFACED 2026-08-03: CI runs the test suite of exactly two packages (@cernia/testing-real-services and @cernia/external-fakes) out of 305, so a package suite can be red on main indefinitely. NARROWED 2026-08-03 — the demonstration case is CLOSED: `pnpm --filter @cernia/storage test` is green again (330/330, was 324/325). The blind spot itself REMAINS: nothing in CI runs packages/storage's suite, so the next regression there is equally invisible. Wire the package suites into .github/workflows/comprehensive-tests.yml.",
-                "SURFACED 2026-08-03, FIXED AND VERIFIED GREEN 2026-08-03: .github/workflows/owasp-zap-dast.yml now runs — `ZAP baseline (passive)` PASS in 9m29s on PR #774, the first time the job has completed since it landed 2026-05-26. First real result: 0 HIGH / 1 MEDIUM (10098 Cross-Domain Misconfiguration, 3 instances) / 5 INFO (10049 Non-Storable Content; 90005 Sec-Fetch-Dest/Mode/Site/User missing). Only HIGHs block, so the gate is correctly green. WHAT REMAINS: triage that MEDIUM — `10098 Cross-Domain Misconfiguration` on a HIPAA-bound API is a CORS posture finding and deserves an answer, not an allowlist row by default. Per docs/operations/runbooks/dast-finding-triage.md; any new .zap/rules.tsv entry needs security-reviewer sign-off. The 90005 Sec-Fetch-* rows are ZAP asking the CLIENT to send headers and are almost certainly noise for an API — confirm and record that rather than leaving five INFO rows unexplained in every future PR comment."
+                "SURFACED 2026-08-03, FIXED AND VERIFIED GREEN 2026-08-03: .github/workflows/owasp-zap-dast.yml now runs — `ZAP baseline (passive)` PASS three runs consecutively on PR #774 (9m29s / 10m02s / 9m34s), the first completions since the job landed 2026-05-26. It is measurably REAL, not vacuously green: on head e7399039 it reported 1 MEDIUM (10098 Cross-Domain Misconfiguration, 3 instances) and on 19db4880 — the same branch after main's CORS change (#775) merged in — that finding is GONE, 0 MEDIUM. The scan responds to code. WHAT REMAINS: five INFO rows persist in every PR comment (10049 Non-Storable Content; 90005 Sec-Fetch-Dest/Mode/Site/User missing). The 90005 family is ZAP asking the CLIENT to send headers and is almost certainly noise for an API surface — confirm that and record the verdict, rather than leaving five unexplained rows to train reviewers to skim the comment. Any .zap/rules.tsv entry needs security-reviewer sign-off per docs/operations/runbooks/dast-finding-triage.md."
               ],
               "completed": [
                 {
@@ -3861,6 +3861,13 @@
                   "from": "remaining",
                   "to": "remaining",
                   "note": "ZAP: A THIRD STACKED DEFECT, VISIBLE ONLY BECAUSE THE FIRST TWO WERE FIXED — then GREEN. With the minio service removed and the image corrected, the job reached the scan for the first time in 70 days and died there: `Failed to load config file /zap/wrk/rules.tsv — Level MEDIUM is not a supported level: ['PASS','IGNORE','INFO','WARN','FAIL']`, after which ZAP EXITS WITHOUT SCANNING — no JSON, no HTML — and the summariser correctly returned exit 2. .zap/rules.tsv is a four-column repo format whose second column is a SEVERITY; zap-baseline.py requires an ACTION. It has never been loadable by ZAP, and docs/security/zap-baseline-config.md §1 asserted the opposite (\"ZAP itself reads the first two columns\") — corrected in place, along with the file's own header. `-c` is no longer passed, and that is the right shape rather than a workaround: .zap/rules.tsv is the SUMMARISER's allowlist and the summariser is the gate, so it needs ZAP to REPORT an allowlisted finding in order to list it under \"Allowlisted (suppressed)\" with its reviewer-signed reason — a ZAP-side IGNORE would delete it from the JSON before the gate saw it. No row asks for OFF, so nothing that was suppressed stops being suppressed; all five reviewer-signed rows still parse (verified against parseRulesTsv). Also corrected: the \"SCAN DID NOT RUN\" fallback added earlier the same day did not fire, because zap-summarise.mjs writes \"ERROR: cannot read input: ENOENT ...\" to STDOUT — summary.md was non-empty, the emptiness test passed, and the PR comment was that one ENOENT line with no statement of consequence. Now keyed on the exit code. RESULT: `ZAP baseline (passive)` PASS in 9m29s (run 30864114881), 0 HIGH / 1 MEDIUM / 5 INFO — the first security signal this gate has ever produced. The same run also proves the renumbered migrations apply to a FRESH CI Postgres end to end: `Apply migrations` succeeded and apps/api reached /healthz."
+                },
+                {
+                  "date": "2026-08-03",
+                  "stage": "testcontainers-ci",
+                  "from": "remaining",
+                  "to": "remaining",
+                  "note": "ZAP CORRECTION — the MEDIUM is already gone, and how it went is the evidence the gate works. The entry logged earlier today recorded `10098 Cross-Domain Misconfiguration` (3 instances) as the scan's first real finding and left it for triage. On the next run of the same branch — head 19db4880, which merges main including #775 `fix(audit-service,cors)` — the count is 0 MEDIUM. A finding that appears on one tree and not on a tree with a CORS fix merged in is a scan measuring the application, which is the property this gate had never once demonstrated. The remaining bullet is corrected so the portal does not carry a triage item that no longer exists; what is left is deciding on the record whether the five 90005 Sec-Fetch-* informationals are noise for an API."
                 }
               ]
             },
@@ -8817,7 +8824,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-08-04T00:35:51.681Z",
+      "lastAuditAt": "2026-08-04T01:01:19.701Z",
       "backendRouteSymbolCount": 250,
       "deferredItems": {
         "total": 1328,
@@ -8878,10 +8885,10 @@
     },
     "justLandedWaves": [],
     "nowWorkingOn": {
-      "wave": "CI,STORAGE",
-      "detail": "four migrations shared a number, and the ZAP gate had never once run (#774)",
-      "commit": "535e28b7",
-      "freshSeconds": 55
+      "wave": "STATUS",
+      "detail": "the ZAP MEDIUM is already gone, and how it went is the proof (#776)",
+      "commit": "9cdf17d2",
+      "freshSeconds": 56
     }
   },
   "pool": {
@@ -9003,6 +9010,11 @@
   ],
   "recentCompletions": [
     {
+      "agent": "the ZAP MEDIUM is already gone, and how it went is the proof (#776)",
+      "commit": "9cdf17d2",
+      "kind": "docs"
+    },
+    {
       "agent": "four migrations shared a number, and the ZAP gate had never once ru...",
       "commit": "535e28b7",
       "kind": "fix"
@@ -9070,11 +9082,6 @@
     {
       "agent": "perf(status): cache the cherry-pick verdict by branch tip — 11min t...",
       "commit": "c642acc2",
-      "kind": "other"
-    },
-    {
-      "agent": "perf(status): stamp the merged-state cache with main's sha — 10m57s...",
-      "commit": "6c227335",
       "kind": "other"
     }
   ],
@@ -17373,7 +17380,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
-    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "535e28b7",
+    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "9cdf17d2",
     "origin/feat/google-first-signup-and-session-guard@3cb0ee52c135": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
@@ -17384,42 +17391,42 @@
     "origin/feat/mb-dunning-stores@f81d00eae3df": true,
     "origin/feat/mb-platform-stores@d03c00909a1c": true,
     "origin/feat/mb2-integration-tests@2b933361fb12": true,
-    "origin/feat/mb3-e2e-coverage@723df77a25eb": "535e28b7",
+    "origin/feat/mb3-e2e-coverage@723df77a25eb": "9cdf17d2",
     "origin/feat/onboarding-redesign@187fc6ddaa15": true,
-    "origin/feat/p1-isolation-guarantee@776f90b85603": "535e28b7",
-    "origin/feat/p2-phone-numbers@61cc502884a1": "535e28b7",
+    "origin/feat/p1-isolation-guarantee@776f90b85603": "9cdf17d2",
+    "origin/feat/p2-phone-numbers@61cc502884a1": "9cdf17d2",
     "origin/feat/p3-voice-selection@a6daf23a6694": true,
     "origin/feat/phase-1b-provisioning@27440117dc24": true,
     "origin/feat/r16-fleet-audit@3c1808b66c51": true,
     "origin/feat/r3-residuals@ee2c4cc78b22": true,
-    "origin/feat/release-3-developer-portal@060c10db29d4": "535e28b7",
+    "origin/feat/release-3-developer-portal@060c10db29d4": "9cdf17d2",
     "origin/feat/relevance-flag-toggle@18c5b5497767": true,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
-    "origin/feat/scribe-audio-citations@f818a947b472": "535e28b7",
+    "origin/feat/scribe-audio-citations@f818a947b472": "9cdf17d2",
     "origin/feat/scribe-capture-enablers@61fccfcfdac4": true,
     "origin/feat/scribe-coaching-telemetry-sink@d8bf1e52063b": true,
     "origin/feat/scribe-fake-audio-harness@2d30a191b6ab": true,
-    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "535e28b7",
-    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "535e28b7",
-    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "535e28b7",
+    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "9cdf17d2",
+    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "9cdf17d2",
+    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "9cdf17d2",
     "origin/feat/scribe-template-lifecycle-coaching@790aa20a7c2d": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
     "origin/feat/signup-totp-installer-ux@2b131af30595": true,
     "origin/feat/specialty-taxonomy-package@0e2b3b99f12a": true,
-    "origin/feat/store-ambient-scribe@d820b553eadb": "535e28b7",
-    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "535e28b7",
-    "origin/feat/t3-4-outbound-pacing@716782906aa3": "535e28b7",
+    "origin/feat/store-ambient-scribe@d820b553eadb": "9cdf17d2",
+    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "9cdf17d2",
+    "origin/feat/t3-4-outbound-pacing@716782906aa3": "9cdf17d2",
     "origin/feat/taxonomy-s1b@bf9cdb4d39a5": true,
-    "origin/feat/taxonomy-s3@e05572b75315": "535e28b7",
-    "origin/feat/taxonomy-s4@9a1a1852514f": "535e28b7",
+    "origin/feat/taxonomy-s3@e05572b75315": "9cdf17d2",
+    "origin/feat/taxonomy-s4@9a1a1852514f": "9cdf17d2",
     "origin/feat/taxonomy-s5@d8b50a675ab3": true,
-    "origin/feat/taxonomy-tax-a@17d6137bdb89": "535e28b7",
+    "origin/feat/taxonomy-tax-a@17d6137bdb89": "9cdf17d2",
     "origin/feat/taxonomy-tax-b@eb6d9883e95c": true,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
     "origin/feat/totp-gate-and-admin-google@372e3c7fb0a3": true,
-    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "535e28b7",
-    "origin/feat/w1@21667a886023": "535e28b7",
-    "origin/feat/w2@247ead3f02af": "535e28b7",
+    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "9cdf17d2",
+    "origin/feat/w1@21667a886023": "9cdf17d2",
+    "origin/feat/w2@247ead3f02af": "9cdf17d2",
     "origin/feat/w3@4cf46bdbb6ca": true,
     "origin/feat/w4@c2dec1309090": true,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,
@@ -17650,7 +17657,7 @@
     "origin/feat/wave-e-e9-voice-payments@aaf8f1bece55": true,
     "origin/feat/wave-e-en2-spanish@08bd4faa06b9": true,
     "origin/feat/wave-e-en3-voice-persona@72f305a280c8": true,
-    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "535e28b7",
+    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "9cdf17d2",
     "origin/feat/wave-e-en5-waitlist@b3ed576c7cfa": true,
     "origin/feat/wave-e-en6-triage@b7956b5356e3": true,
     "origin/feat/wave-e-en7-reminder-cadence@19bdff3d699c": true,
