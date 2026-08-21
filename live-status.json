@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-08-21T05:47:47.179Z",
-    "lastUpdatedDisplay": "Aug 21, 2026 — 05:47 EDT",
+    "lastUpdatedIso": "2026-08-21T14:26:08.482Z",
+    "lastUpdatedDisplay": "Aug 21, 2026 — 14:26 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #873 fix(admin): register scribe error coverage gate"
   },
   "summary": {
-    "currentMainCommit": "395a2baa",
+    "currentMainCommit": "4fb8bdf9",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 3144,
+    "agentsCompletedThisSession": 3147,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "3144 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "3147 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #873 fix(admin): register scribe error coverage gate. (refreshed Aug 21, 2026 — 05:47 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #873 fix(admin): register scribe error coverage gate. (refreshed Aug 21, 2026 — 14:26 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-08-21T01:47:09-04:00",
+      "lastMergeIso": "2026-08-21T10:25:28-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 15,
       "openPrs": 0,
@@ -1971,15 +1971,15 @@
               "current": {
                 "status": "partial",
                 "asOf": "2026-08-21",
-                "summary": "U10 infrastructure and U11's digest-pinned AWS ECS blue/green release driver remain complete. U12 is complete under the founder's 2026-08-21 launch-risk amendment: staging and production migrations passed; both environments have encrypted, private infrastructure and independently generated tenant-secret keys; production strict readiness has zero configuration blockers while all ten services remain scaled to zero; ACM/TLS, SPF/DKIM/DMARC, encrypted alerts, and the restricted ops path were verified; the staging application completed a 23-check signup-to-checkout rehearsal plus configuration and remediation 5/25/100 canaries; and apps/web /status, /api/status, and the five-component feed passed in staging. GitHub Actions billing is restored and normal head checks are active. Two unresolved items are explicitly postponed rather than falsely green: the real staging PITR restore/cleanup drill, and Outlook cold-seed Inbox placement. Independent Gmail and Yahoo seeds reached Inbox with SPF, DKIM, and DMARC passing; Outlook/Hotmail twice placed the untouched branded `Cernia Health <noreply@cerniahealth.com>` seed in Junk without an Unverified marker. The same proof exposed and closed a staging recipient-safety defect: comms now prefer `CERNIA_ENV`, so optimized staging remains `COMMS_DEV_ALLOWLIST`-gated even with `NODE_ENV=production`; v0.12.10 passed 5/25/100 and its final gate observed 103 requests, zero target 5xx, and 36 ms p99. The deferred PITR and Outlook obligations remain post-launch follow-ups and must be repeated in the final launch handoff. U1, U2, U3, U4, U5, U6, U7, U8, U9, U12, U15, and U16 are complete: self-serve Developer/API-only signup provisions a $0 non-expiring backend-only sandbox with durable sandbox tier resolution, hard resource/storage/API caps, the complete developer entitlement set including the bot runtime, developer-only navigation, visible upgrade guidance, fail-closed production email verification, and a shared durable signup velocity limit; authenticated batch/transaction Bundles, read-only FHIR GraphQL, a tenant-scoped webhook lifecycle, a self-serve admin webhook-management UI, and a self-hosted interactive API reference are available alongside REST. The test-mode Production purchase path sends a buyer to Stripe Checkout, records payment without granting a half-entitlement, requires an auditable click-through acceptance of the versioned v0-interim BAA, then activates a durable paid developer subscription without operator intervention; Cernia Ops shows PHI-free subscription and BAA state. The TypeScript and Python SDKs are publicly installable as pinned version 0.2.1 from npm and PyPI. Backend-only tenants cross a runtime default-deny packaging gate, and the sandbox PHI incident path hard-suspends then performs an audit-logged, legal-hold-aware purge. Clinical tenants retain their existing surface."
+                "summary": "U10 infrastructure and U11's digest-pinned AWS ECS blue/green release driver remain complete. U12 is complete under the founder's 2026-08-21 launch-risk amendment: staging and production migrations passed; both environments have encrypted, private infrastructure and independently generated tenant-secret keys; production strict readiness has zero configuration blockers while all ten services remain scaled to zero; ACM/TLS, SPF/DKIM/DMARC, encrypted alerts, and the restricted ops path were verified; the staging application completed a 23-check signup-to-checkout rehearsal plus configuration and remediation 5/25/100 canaries; and apps/web /status, /api/status, and the five-component feed passed in staging. GitHub Actions billing is restored and normal head checks are active. Two unresolved items are explicitly postponed rather than falsely green: the real staging PITR restore/cleanup drill, and Outlook cold-seed Inbox placement. Independent Gmail and Yahoo seeds reached Inbox with SPF, DKIM, and DMARC passing; Outlook/Hotmail twice placed the untouched branded `Cernia Health <noreply@cerniahealth.com>` seed in Junk without an Unverified marker. The same proof exposed and closed a staging recipient-safety defect: comms now prefer `CERNIA_ENV`, so optimized staging remains `COMMS_DEV_ALLOWLIST`-gated even with `NODE_ENV=production`; v0.12.10 passed 5/25/100 and its final gate observed 103 requests, zero target 5xx, and 36 ms p99. The deferred PITR and Outlook obligations remain post-launch follow-ups and must be repeated in the final launch handoff. U1, U2, U3, U4, U5, U6, U7, U8, U9, U12, U13, U15, and U16 are complete: self-serve Developer/API-only signup provisions a $0 non-expiring backend-only sandbox with durable sandbox tier resolution, hard resource/storage/API caps, the complete developer entitlement set including the bot runtime, developer-only navigation, visible upgrade guidance, fail-closed production email verification, and a shared durable signup velocity limit; authenticated batch/transaction Bundles, read-only FHIR GraphQL, a tenant-scoped webhook lifecycle, a self-serve admin webhook-management UI, and a self-hosted interactive API reference are available alongside REST. The test-mode Production purchase path sends a buyer to Stripe Checkout, records payment without granting a half-entitlement, requires an auditable click-through acceptance of the versioned v0-interim BAA, then activates a durable paid developer subscription without operator intervention; Cernia Ops shows PHI-free subscription and BAA state. The TypeScript and Python SDKs are publicly installable as pinned version 0.2.1 from npm and PyPI. Backend-only tenants cross a runtime default-deny packaging gate, and the sandbox PHI incident path hard-suspends then performs an audit-logged, legal-hold-aware purge. The AWS Business Associate Addendum is ACTIVE for HIPAA Account 923788823251, the durable account audit controls are verified, and the former Bedrock routing exception is retired. Clinical tenants retain their existing surface."
               },
               "evidence": [
                 "docs/plans/2026-08-18-001-feat-developer-platform-v0-launch-plan-r2.md",
-                "docs/status/evidence/environment-readiness/"
+                "docs/status/evidence/environment-readiness/",
+                "docs/status/evidence/procurement-compliance/u13-preflight-2026-08-21.md"
               ],
               "remaining": [
                 "[developer-platform-post-launch] Founder-accepted v0 follow-ups (2026-08-21; not launch-blocking and not passed): (1) run the real staging PITR restore drill and exact tagged cleanup; (2) continue Google/Microsoft sender-reputation remediation until a cold untouched Outlook/Hotmail seed lands in Inbox rather than Junk. Repeat both obligations in the final launch handoff. Evidence: docs/status/evidence/environment-readiness/u12-pr-ci-gates-2026-08-20.md.",
-                "[dp-u13] Human-owned residue: record executed AWS/Stripe/SMTP BAAs in docs/compliance/baa-registry.json (currently all pending); npm/PyPI org access; optional GitHub Actions billing restore. COUNSEL CLICK-THROUGH BAA TEXT: deferred by founder 2026-08-18 (zero real customers) — NOT launch-blocking, but a hard gate before the first real paying customer; do not close this bullet until the counsel-approved text replaces the v0-interim instrument.",
                 "[dp-u14] Live acceptance run (external tester, all five pillars, teardown) + tag v4.0-developer-platform + status flip. Commerce go-live is a sub-step here: founder provides PRODUCTION Stripe keys at this point (sandbox keys until then), then the real-card purchase."
               ],
               "history": [
@@ -2066,6 +2066,30 @@
                 {
                   "date": "2026-08-21",
                   "note": "Founder amendment closes U12 with two explicit launch-risk deferrals. The real staging PITR restore/cleanup drill and a cold Outlook/Hotmail Inbox-placement pass move to named post-launch follow-ups; neither is represented as passed, and both must be repeated in the final launch handoff. The prepared Google Workspace case was not transmitted after the founder directed that reputation remediation be completed later. All other U12 requirements remain satisfied: strict production readiness, migrations, alarms, restricted ops, staging status feed, full 23-check rehearsal, and 5/25/100 canaries. Production remains scaled to zero pending U14. Plan amendment and evidence: docs/plans/2026-08-18-001-feat-developer-platform-v0-launch-plan-r2.md; docs/status/evidence/environment-readiness/u12-pr-ci-gates-2026-08-20.md."
+                },
+                {
+                  "date": "2026-08-21",
+                  "note": "U13 preflight narrowed procurement to the actual Developer Platform v0 topology. The launch activates no LLM, STT, TTS, or telephony provider; Stripe subscription commerce and Google Workspace verification/operations mail carry no PHI, so those pending BAA rows remain fail-closed rather than being falsely marked executed. npm and PyPI publication access is proven by public 0.2.1 artifacts, GitHub Actions billing is restored with three successful final-U12 runs, and U12 proved the SMTP sender posture. AWS remains the sole launch BAA because it hosts the FHIR data plane. Current AWS state contradicts the earlier planning assumption and the founder's execution statement: account 923788823251 shows the AWS BAA as Inactive with no effective start, while list-customer-agreements is empty. No legal agreement was accepted by Codex. Production remains 0/10 and no-PHI until an authorized representative accepts the Artifact NDA and BAA and the execution metadata is verified. Evidence: docs/status/evidence/procurement-compliance/u13-preflight-2026-08-21.md."
+                },
+                {
+                  "date": "2026-08-21",
+                  "note": "U13 correction after reading the U14 commerce runbook: the initial preflight was right that Stripe receives no PHI, but wrong to infer that this removes Stripe from launch procurement. docs/runbooks/go-live-stripe.md deliberately imposes a stricter internal policy: a signed Stripe BAA covering commercial/billing-contact data must be on file before any live Stripe key is active. Stripe stays test-only until that agreement is executed and recorded at the U14 pre-key gate. AWS remains the immediate U13 legal blocker; voice/LLM/STT/TTS/telephony remain inactive and fail-closed, and the Google Workspace Developer Platform mail path remains non-PHI. No agreement status was changed."
+                },
+                {
+                  "date": "2026-08-21",
+                  "note": "The founder explicitly authorized acceptance of the AWS Artifact NDA for Cernia Health account 923788823251 and download of the AWS BAA for review. Codex accepted only that NDA, verified AWS's successful download notification, and reviewed the four-page confidential document outside Git; the non-secret SHA-256 is recorded in the U13 evidence. The BAA itself remains unaccepted and Inactive. A read-only operational preflight then found no CloudTrail trail, no VPC Flow Logs or Config recorder, production/staging application log retention of 365/30 days, and one-day ECS Container Insights retention. Production stays scaled to zero and no-PHI. U13 now requires audit-control remediation and explicit founder approval before any new recurring logging/storage/KMS cost, followed by separate BAA-acceptance authorization and Active-state verification."
+                },
+                {
+                  "date": "2026-08-21",
+                  "note": "Prepared the U13 AWS account-audit remediation without creating resources or charges. The shared bootstrap state now declares one KMS-encrypted multi-Region CloudTrail with read/write management events, global-service events, integrity validation, CloudWatch delivery with no expiration, and S3 object data events for both scribe-audio buckets. Its KMS-encrypted/versioned/non-public archive has separate encrypted/versioned S3 access logging. Terraform validates, and the authenticated plan is exactly 19 additions, zero changes, zero destroys. Applying remains an explicit founder recurring-cost touchpoint; production remains 0/10 and no-PHI."
+                },
+                {
+                  "date": "2026-08-21",
+                  "note": "Founder authorized one additional KMS key plus recurring CloudTrail data-event, CloudWatch, and S3 charges for AWS account 923788823251. Codex applied the mechanically checked saved plan: 19 added, 0 changed, 0 destroyed. Live verification proved the trail logging across Regions with global read/write management events and integrity validation; successful S3 and CloudWatch delivery with no errors; non-expiring KMS-encrypted CloudWatch retention; 365-day KMS rotation; versioned/encrypted/fully public-blocked archive and access-log buckets; and two independent encrypted, deleted zero-byte staging-audio probes whose successful PutObject, HeadObject, and DeleteObject operations all arrived as non-management S3 Data events (with the expected NoSuchKey on the first post-delete check). The saved plan and probes were removed. A follow-up authenticated Terraform plan is empty. Production remains 0/10 and no-PHI pending separate BAA acceptance authorization."
+                },
+                {
+                  "date": "2026-08-21",
+                  "note": "U13 complete. The founder authorized and completed the AWS Business Associate Addendum click-through for Cernia Health account 923788823251 and designation of the account as a HIPAA Account. Independent authenticated AWS CLI verification reports customer agreement customer-agreement-Hgn2fRdUkymkYvdi ACTIVE from 2026-08-21T13:49:37.663Z. docs/compliance/baa-registry.json and executed-baa-log.md record Kamal Malhotra (Founder), the effective date, opaque AWS Artifact ARN, and Cernia's 2027-08-21 annual review trigger; the confidential PDF remains outside Git. The AWS row is now executed and unterminated, the dated Bedrock exception is removed from both the registry and gateway snapshot, and the drift gate derives Bedrock eligibility from the agreement itself. The 19-resource audit-control remediation remains live and its follow-up Terraform plan is empty. Stripe stays test-only until its separate U14 BAA pre-key gate. Production remains 0/10 pending live acceptance. Evidence: docs/status/evidence/procurement-compliance/u13-preflight-2026-08-21.md."
                 }
               ]
             }
@@ -9972,12 +9996,12 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-08-21T05:47:45.536Z",
+      "lastAuditAt": "2026-08-21T14:26:07.158Z",
       "backendRouteSymbolCount": 265,
       "deferredItems": {
-        "total": 1401,
+        "total": 1400,
         "bySeverity": {
-          "tech-debt": 389,
+          "tech-debt": 388,
           "review": 1007,
           "blocker": 5
         },
@@ -9989,7 +10013,7 @@
           "deferred-marker": 2,
           "todo-comment": 5,
           "skipped-test": 3,
-          "json-deferred": 20
+          "json-deferred": 19
         },
         "byWave": {
           "UI": 78,
@@ -10004,7 +10028,7 @@
           "ERX": 20,
           "P": 25,
           "Q": 28,
-          "(unassigned)": 63,
+          "(unassigned)": 62,
           "DD": 4,
           "F": 23,
           "I": 9,
@@ -10212,6 +10236,21 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #878 from kamalcernia/codex/dp-u13-procurement-c...",
+      "commit": "4fb8bdf9",
+      "kind": "other"
+    },
+    {
+      "agent": "record active AWS BAA",
+      "commit": "ec3dc270",
+      "kind": "chore"
+    },
+    {
+      "agent": "record U13 procurement preflight",
+      "commit": "d24d933e",
+      "kind": "docs"
+    },
+    {
       "agent": "Merge pull request #877 from kamalcernia/codex/dp-u12-env-readiness...",
       "commit": "395a2baa",
       "kind": "other"
@@ -10269,21 +10308,6 @@
     {
       "agent": "canonicalize rehearsal evidence",
       "commit": "a91e9f05",
-      "kind": "fix"
-    },
-    {
-      "agent": "enforce tenant secret encryption readiness",
-      "commit": "1a5dc33f",
-      "kind": "fix"
-    },
-    {
-      "agent": "authorize webhook lifecycle for API keys",
-      "commit": "bcdc78df",
-      "kind": "fix"
-    },
-    {
-      "agent": "authorize sandbox bot runs for API keys",
-      "commit": "349b7170",
       "kind": "fix"
     }
   ],
@@ -18628,7 +18652,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
-    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "395a2baa",
+    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "4fb8bdf9",
     "origin/feat/google-first-signup-and-session-guard@3cb0ee52c135": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
@@ -18639,42 +18663,42 @@
     "origin/feat/mb-dunning-stores@f81d00eae3df": true,
     "origin/feat/mb-platform-stores@d03c00909a1c": true,
     "origin/feat/mb2-integration-tests@2b933361fb12": true,
-    "origin/feat/mb3-e2e-coverage@723df77a25eb": "395a2baa",
+    "origin/feat/mb3-e2e-coverage@723df77a25eb": "4fb8bdf9",
     "origin/feat/onboarding-redesign@187fc6ddaa15": true,
-    "origin/feat/p1-isolation-guarantee@776f90b85603": "395a2baa",
-    "origin/feat/p2-phone-numbers@61cc502884a1": "395a2baa",
+    "origin/feat/p1-isolation-guarantee@776f90b85603": "4fb8bdf9",
+    "origin/feat/p2-phone-numbers@61cc502884a1": "4fb8bdf9",
     "origin/feat/p3-voice-selection@a6daf23a6694": true,
     "origin/feat/phase-1b-provisioning@27440117dc24": true,
     "origin/feat/r16-fleet-audit@3c1808b66c51": true,
     "origin/feat/r3-residuals@ee2c4cc78b22": true,
-    "origin/feat/release-3-developer-portal@060c10db29d4": "395a2baa",
+    "origin/feat/release-3-developer-portal@060c10db29d4": "4fb8bdf9",
     "origin/feat/relevance-flag-toggle@18c5b5497767": true,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
-    "origin/feat/scribe-audio-citations@f818a947b472": "395a2baa",
+    "origin/feat/scribe-audio-citations@f818a947b472": "4fb8bdf9",
     "origin/feat/scribe-capture-enablers@61fccfcfdac4": true,
     "origin/feat/scribe-coaching-telemetry-sink@d8bf1e52063b": true,
     "origin/feat/scribe-fake-audio-harness@2d30a191b6ab": true,
-    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "395a2baa",
-    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "395a2baa",
-    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "395a2baa",
+    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "4fb8bdf9",
+    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "4fb8bdf9",
+    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "4fb8bdf9",
     "origin/feat/scribe-template-lifecycle-coaching@790aa20a7c2d": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
     "origin/feat/signup-totp-installer-ux@2b131af30595": true,
     "origin/feat/specialty-taxonomy-package@0e2b3b99f12a": true,
-    "origin/feat/store-ambient-scribe@d820b553eadb": "395a2baa",
-    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "395a2baa",
-    "origin/feat/t3-4-outbound-pacing@716782906aa3": "395a2baa",
+    "origin/feat/store-ambient-scribe@d820b553eadb": "4fb8bdf9",
+    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "4fb8bdf9",
+    "origin/feat/t3-4-outbound-pacing@716782906aa3": "4fb8bdf9",
     "origin/feat/taxonomy-s1b@bf9cdb4d39a5": true,
-    "origin/feat/taxonomy-s3@e05572b75315": "395a2baa",
-    "origin/feat/taxonomy-s4@9a1a1852514f": "395a2baa",
+    "origin/feat/taxonomy-s3@e05572b75315": "4fb8bdf9",
+    "origin/feat/taxonomy-s4@9a1a1852514f": "4fb8bdf9",
     "origin/feat/taxonomy-s5@d8b50a675ab3": true,
-    "origin/feat/taxonomy-tax-a@17d6137bdb89": "395a2baa",
+    "origin/feat/taxonomy-tax-a@17d6137bdb89": "4fb8bdf9",
     "origin/feat/taxonomy-tax-b@eb6d9883e95c": true,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
     "origin/feat/totp-gate-and-admin-google@372e3c7fb0a3": true,
-    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "395a2baa",
-    "origin/feat/w1@21667a886023": "395a2baa",
-    "origin/feat/w2@247ead3f02af": "395a2baa",
+    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "4fb8bdf9",
+    "origin/feat/w1@21667a886023": "4fb8bdf9",
+    "origin/feat/w2@247ead3f02af": "4fb8bdf9",
     "origin/feat/w3@4cf46bdbb6ca": true,
     "origin/feat/w4@c2dec1309090": true,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,
@@ -18905,7 +18929,7 @@
     "origin/feat/wave-e-e9-voice-payments@aaf8f1bece55": true,
     "origin/feat/wave-e-en2-spanish@08bd4faa06b9": true,
     "origin/feat/wave-e-en3-voice-persona@72f305a280c8": true,
-    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "395a2baa",
+    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "4fb8bdf9",
     "origin/feat/wave-e-en5-waitlist@b3ed576c7cfa": true,
     "origin/feat/wave-e-en6-triage@b7956b5356e3": true,
     "origin/feat/wave-e-en7-reminder-cadence@19bdff3d699c": true,
