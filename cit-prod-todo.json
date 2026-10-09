@@ -10,7 +10,11 @@
     "shipped-with-stub-followup": "Code shipped + functional in catalog/no-op mode. Tagged this way HONESTLY: the heartbeat-only RPM and bot-runtime schedulers run but don't yet do real per-tenant work. Status remains `done` because the boot wiring + lifecycle hooks are real, but the followup ID is listed in the `stub-followups` array on each track.",
     "wontfix-by-design": "Closed because the gap is intentional, not deferred. Only used for Wave R (mobile-only, no backend surface)."
   },
-  "currentTask": { "id": "dp-u12", "description": "U12 — provision and rehearse the production-ready AWS environments" },
+  "currentTask": {
+    "id": "dp-u25",
+      "description": "U25: complete exact-candidate staging persona acceptance, external provider and SDK proof, production canary/rollback, teardown, readiness reconciliation, and the final Developer Platform release boundary",
+      "evidence": "docs/plans/2026-08-23-002-feat-developer-sandbox-production-workspaces-plan.md"
+  },
   "categories": [
     {
       "id": "voice-g10",
