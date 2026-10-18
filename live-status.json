@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-10-17T23:15:03.050Z",
-    "lastUpdatedDisplay": "Oct 17, 2026 — 19:15 EDT",
+    "lastUpdatedIso": "2026-10-18T06:04:56.937Z",
+    "lastUpdatedDisplay": "Oct 18, 2026 — 02:04 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #888 feat(developer): harden U25 workspace release chec"
   },
   "summary": {
-    "currentMainCommit": "847f0a509",
+    "currentMainCommit": "9f6f7a7d4",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 5585,
+    "agentsCompletedThisSession": 5591,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "5585 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "5591 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #888 feat(developer): harden U25 workspace release checkpoint. (refreshed Oct 17, 2026 — 19:15 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #888 feat(developer): harden U25 workspace release checkpoint. (refreshed Oct 18, 2026 — 02:05 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-10-17T19:13:53-04:00",
+      "lastMergeIso": "2026-10-18T01:38:57-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 14,
       "openPrs": 1,
@@ -10703,7 +10703,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-10-17T23:15:01.252Z",
+      "lastAuditAt": "2026-10-18T06:04:53.436Z",
       "backendRouteSymbolCount": 279,
       "deferredItems": {
         "total": 1431,
@@ -10944,6 +10944,36 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #993 from kamalcernia/claude/release-console-core",
+      "commit": "9f6f7a7d4",
+      "kind": "other"
+    },
+    {
+      "agent": "Release Console core: pick() keeps typed ID fields (LA5) (SCRUM-322)",
+      "commit": "7edeb7ca2",
+      "kind": "other"
+    },
+    {
+      "agent": "Release Console core: close partial findings LA1, LA2, LA4, LA5 (SC...",
+      "commit": "4eda02ee9",
+      "kind": "other"
+    },
+    {
+      "agent": "Release Console core: fix review findings LA1-LA7, LA9 (SCRUM-322, ...",
+      "commit": "4dfc9f4c7",
+      "kind": "other"
+    },
+    {
+      "agent": "Pipeline map freshness checks tolerate CRLF checkouts (SCRUM-323)",
+      "commit": "b83d10cb0",
+      "kind": "other"
+    },
+    {
+      "agent": "Release Console core logic and pipeline map generator (SCRUM-322, S...",
+      "commit": "685b64f7d",
+      "kind": "other"
+    },
+    {
       "agent": "Merge pull request #992 from kamalcernia/claude/scrum318-quiet-stag...",
       "commit": "847f0a509",
       "kind": "other"
@@ -10988,36 +11018,6 @@
       "agent": "read every name of every ARG instruction (SCRUM-313)",
       "commit": "085850a50",
       "kind": "fix"
-    },
-    {
-      "agent": "count indented and lower-case Dockerfile ARGs (SCRUM-313)",
-      "commit": "d7f5fdfd2",
-      "kind": "fix"
-    },
-    {
-      "agent": "check the built image's effective start command (SCRUM-313)",
-      "commit": "f009e1900",
-      "kind": "fix"
-    },
-    {
-      "agent": "check the effective startup command, one CMD per image (SCRUM-313)",
-      "commit": "f879b3afb",
-      "kind": "fix"
-    },
-    {
-      "agent": "refuse an unrecognised web startup command in the image check (SCRU...",
-      "commit": "5abdac8b8",
-      "kind": "fix"
-    },
-    {
-      "agent": "build release images with their public-environment build args (SCRU...",
-      "commit": "8d1c9a183",
-      "kind": "fix"
-    },
-    {
-      "agent": "Merge pull request #989 from kamalcernia/claude/scrum312-passrole-p...",
-      "commit": "31fb6980b",
-      "kind": "other"
     }
   ],
   "failures": [
@@ -19361,7 +19361,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
-    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "847f0a509",
+    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "9f6f7a7d4",
     "origin/feat/google-first-signup-and-session-guard@3cb0ee52c135": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
@@ -19372,42 +19372,42 @@
     "origin/feat/mb-dunning-stores@f81d00eae3df": true,
     "origin/feat/mb-platform-stores@d03c00909a1c": true,
     "origin/feat/mb2-integration-tests@2b933361fb12": true,
-    "origin/feat/mb3-e2e-coverage@723df77a25eb": "847f0a509",
+    "origin/feat/mb3-e2e-coverage@723df77a25eb": "9f6f7a7d4",
     "origin/feat/onboarding-redesign@187fc6ddaa15": true,
-    "origin/feat/p1-isolation-guarantee@776f90b85603": "847f0a509",
-    "origin/feat/p2-phone-numbers@61cc502884a1": "847f0a509",
+    "origin/feat/p1-isolation-guarantee@776f90b85603": "9f6f7a7d4",
+    "origin/feat/p2-phone-numbers@61cc502884a1": "9f6f7a7d4",
     "origin/feat/p3-voice-selection@a6daf23a6694": true,
     "origin/feat/phase-1b-provisioning@27440117dc24": true,
     "origin/feat/r16-fleet-audit@3c1808b66c51": true,
     "origin/feat/r3-residuals@ee2c4cc78b22": true,
-    "origin/feat/release-3-developer-portal@060c10db29d4": "847f0a509",
+    "origin/feat/release-3-developer-portal@060c10db29d4": "9f6f7a7d4",
     "origin/feat/relevance-flag-toggle@18c5b5497767": true,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
-    "origin/feat/scribe-audio-citations@f818a947b472": "847f0a509",
+    "origin/feat/scribe-audio-citations@f818a947b472": "9f6f7a7d4",
     "origin/feat/scribe-capture-enablers@61fccfcfdac4": true,
     "origin/feat/scribe-coaching-telemetry-sink@d8bf1e52063b": true,
     "origin/feat/scribe-fake-audio-harness@2d30a191b6ab": true,
-    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "847f0a509",
-    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "847f0a509",
-    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "847f0a509",
+    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "9f6f7a7d4",
+    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "9f6f7a7d4",
+    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "9f6f7a7d4",
     "origin/feat/scribe-template-lifecycle-coaching@790aa20a7c2d": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
     "origin/feat/signup-totp-installer-ux@2b131af30595": true,
     "origin/feat/specialty-taxonomy-package@0e2b3b99f12a": true,
-    "origin/feat/store-ambient-scribe@d820b553eadb": "847f0a509",
-    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "847f0a509",
-    "origin/feat/t3-4-outbound-pacing@716782906aa3": "847f0a509",
+    "origin/feat/store-ambient-scribe@d820b553eadb": "9f6f7a7d4",
+    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "9f6f7a7d4",
+    "origin/feat/t3-4-outbound-pacing@716782906aa3": "9f6f7a7d4",
     "origin/feat/taxonomy-s1b@bf9cdb4d39a5": true,
-    "origin/feat/taxonomy-s3@e05572b75315": "847f0a509",
-    "origin/feat/taxonomy-s4@9a1a1852514f": "847f0a509",
+    "origin/feat/taxonomy-s3@e05572b75315": "9f6f7a7d4",
+    "origin/feat/taxonomy-s4@9a1a1852514f": "9f6f7a7d4",
     "origin/feat/taxonomy-s5@d8b50a675ab3": true,
-    "origin/feat/taxonomy-tax-a@17d6137bdb89": "847f0a509",
+    "origin/feat/taxonomy-tax-a@17d6137bdb89": "9f6f7a7d4",
     "origin/feat/taxonomy-tax-b@eb6d9883e95c": true,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
     "origin/feat/totp-gate-and-admin-google@372e3c7fb0a3": true,
-    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "847f0a509",
-    "origin/feat/w1@21667a886023": "847f0a509",
-    "origin/feat/w2@247ead3f02af": "847f0a509",
+    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "9f6f7a7d4",
+    "origin/feat/w1@21667a886023": "9f6f7a7d4",
+    "origin/feat/w2@247ead3f02af": "9f6f7a7d4",
     "origin/feat/w3@4cf46bdbb6ca": true,
     "origin/feat/w4@c2dec1309090": true,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,
@@ -19638,7 +19638,7 @@
     "origin/feat/wave-e-e9-voice-payments@aaf8f1bece55": true,
     "origin/feat/wave-e-en2-spanish@08bd4faa06b9": true,
     "origin/feat/wave-e-en3-voice-persona@72f305a280c8": true,
-    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "847f0a509",
+    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "9f6f7a7d4",
     "origin/feat/wave-e-en5-waitlist@b3ed576c7cfa": true,
     "origin/feat/wave-e-en6-triage@b7956b5356e3": true,
     "origin/feat/wave-e-en7-reminder-cadence@19bdff3d699c": true,
