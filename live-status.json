@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastUpdatedIso": "2026-10-19T01:26:37.630Z",
-    "lastUpdatedDisplay": "Oct 18, 2026 — 21:26 EDT",
+    "lastUpdatedIso": "2026-10-19T02:32:20.383Z",
+    "lastUpdatedDisplay": "Oct 18, 2026 — 22:32 EDT",
     "modelSummary": "TIER 0 (normal) · Pool 0/8 in flight · last PR: #888 feat(developer): harden U25 workspace release chec"
   },
   "summary": {
-    "currentMainCommit": "234ca5e29",
+    "currentMainCommit": "e0983abb0",
     "currentTagOnMain": "audit-baseline-2026-05-29 (31 tags total) 🏁",
-    "agentsCompletedThisSession": 5629,
+    "agentsCompletedThisSession": 5632,
     "agentsRemainingToV30": 0,
-    "hardeningTrackRecord": "5629 successful commits since v0.95-white-label · 7 recovered",
+    "hardeningTrackRecord": "5632 successful commits since v0.95-white-label · 7 recovered",
     "cronStatus": "Windows Task Scheduler \"Cernia-Status-Refresh\" — fires every 10 min",
     "recoveryTier": "TIER 0 (normal) — 10 recent landings · 0 recent failures (0 historical unrecovered)",
-    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #888 feat(developer): harden U25 workspace release checkpoint. (refreshed Oct 18, 2026 — 21:26 EDT)",
+    "strategy": "v3.0 REACHED — 571 branches shipped. Last PR: #888 feat(developer): harden U25 workspace release checkpoint. (refreshed Oct 18, 2026 — 22:32 EDT)",
     "totalAgentsShipped": 571,
     "modelMix": {
       "haiku": 45,
@@ -62,7 +62,7 @@
       "label": "0 PRs opened in last hour · 0 in last 24h"
     },
     "integration": {
-      "lastMergeIso": "2026-10-18T21:23:30-04:00",
+      "lastMergeIso": "2026-10-18T22:31:02-04:00",
       "daysSinceLastMerge": 0,
       "mergedPrs": 14,
       "openPrs": 1,
@@ -10703,7 +10703,7 @@
       }
     },
     "cit": {
-      "lastAuditAt": "2026-10-19T01:26:30.769Z",
+      "lastAuditAt": "2026-10-19T02:32:17.588Z",
       "backendRouteSymbolCount": 279,
       "deferredItems": {
         "total": 1431,
@@ -10944,8 +10944,23 @@
   ],
   "recentCompletions": [
     {
+      "agent": "Merge pull request #1005 from kamalcernia/claude/v4099-l5b-db-template",
+      "commit": "e0983abb0",
+      "kind": "other"
+    },
+    {
       "agent": "Merge pull request #1001 from kamalcernia/claude/v4099-ci-pg-health",
       "commit": "234ca5e29",
+      "kind": "other"
+    },
+    {
+      "agent": "SCRUM-233: verify restored database template exactly",
+      "commit": "96f819a44",
+      "kind": "other"
+    },
+    {
+      "agent": "ci: apply migrations once per run and restore a verified template (...",
+      "commit": "aa0210818",
       "kind": "other"
     },
     {
@@ -11001,21 +11016,6 @@
     {
       "agent": "SCRUM-296: add bounded readiness evaluation to replace sleep 300",
       "commit": "93a583802",
-      "kind": "other"
-    },
-    {
-      "agent": "SCRUM-289: add failure kinds, classifier and TRANSIENT-only bounded...",
-      "commit": "62cdf2298",
-      "kind": "other"
-    },
-    {
-      "agent": "Merge pull request #995 from kamalcernia/codex/v4099-l2a",
-      "commit": "816004fcb",
-      "kind": "other"
-    },
-    {
-      "agent": "Merge pull request #994 from kamalcernia/claude/release-console-web",
-      "commit": "a57bddbd0",
       "kind": "other"
     }
   ],
@@ -19360,7 +19360,7 @@
     "origin/feat/cleanup-a2-batch@653be40a6671": true,
     "origin/feat/cleanup-c1-safe-followups@be8f7442917a": true,
     "origin/feat/deepgram-stt-wiring@d47a3f130ebb": true,
-    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "234ca5e29",
+    "origin/feat/elevenlabs-tts-wiring@e2513c74cbab": "e0983abb0",
     "origin/feat/google-first-signup-and-session-guard@3cb0ee52c135": true,
     "origin/feat/local-demo-admin-image@742015f42fa3": true,
     "origin/feat/local-demo-api-image@fd988a2d20f5": true,
@@ -19371,42 +19371,42 @@
     "origin/feat/mb-dunning-stores@f81d00eae3df": true,
     "origin/feat/mb-platform-stores@d03c00909a1c": true,
     "origin/feat/mb2-integration-tests@2b933361fb12": true,
-    "origin/feat/mb3-e2e-coverage@723df77a25eb": "234ca5e29",
+    "origin/feat/mb3-e2e-coverage@723df77a25eb": "e0983abb0",
     "origin/feat/onboarding-redesign@187fc6ddaa15": true,
-    "origin/feat/p1-isolation-guarantee@776f90b85603": "234ca5e29",
-    "origin/feat/p2-phone-numbers@61cc502884a1": "234ca5e29",
+    "origin/feat/p1-isolation-guarantee@776f90b85603": "e0983abb0",
+    "origin/feat/p2-phone-numbers@61cc502884a1": "e0983abb0",
     "origin/feat/p3-voice-selection@a6daf23a6694": true,
     "origin/feat/phase-1b-provisioning@27440117dc24": true,
     "origin/feat/r16-fleet-audit@3c1808b66c51": true,
     "origin/feat/r3-residuals@ee2c4cc78b22": true,
-    "origin/feat/release-3-developer-portal@060c10db29d4": "234ca5e29",
+    "origin/feat/release-3-developer-portal@060c10db29d4": "e0983abb0",
     "origin/feat/relevance-flag-toggle@18c5b5497767": true,
     "origin/feat/saas-conformance-cleanup@758cab946519": true,
-    "origin/feat/scribe-audio-citations@f818a947b472": "234ca5e29",
+    "origin/feat/scribe-audio-citations@f818a947b472": "e0983abb0",
     "origin/feat/scribe-capture-enablers@61fccfcfdac4": true,
     "origin/feat/scribe-coaching-telemetry-sink@d8bf1e52063b": true,
     "origin/feat/scribe-fake-audio-harness@2d30a191b6ab": true,
-    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "234ca5e29",
-    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "234ca5e29",
-    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "234ca5e29",
+    "origin/feat/scribe-orders-em-visittype-v2@fe4b3765e7b0": "e0983abb0",
+    "origin/feat/scribe-phase1-poc-assist@b438f53735a6": "e0983abb0",
+    "origin/feat/scribe-template-followup-cleanups@e0e87feeb020": "e0983abb0",
     "origin/feat/scribe-template-lifecycle-coaching@790aa20a7c2d": true,
     "origin/feat/sensitive-data-routes@92780a57ad67": true,
     "origin/feat/signup-totp-installer-ux@2b131af30595": true,
     "origin/feat/specialty-taxonomy-package@0e2b3b99f12a": true,
-    "origin/feat/store-ambient-scribe@d820b553eadb": "234ca5e29",
-    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "234ca5e29",
-    "origin/feat/t3-4-outbound-pacing@716782906aa3": "234ca5e29",
+    "origin/feat/store-ambient-scribe@d820b553eadb": "e0983abb0",
+    "origin/feat/t1-3-eval-db-assert@6620e87c20ae": "e0983abb0",
+    "origin/feat/t3-4-outbound-pacing@716782906aa3": "e0983abb0",
     "origin/feat/taxonomy-s1b@bf9cdb4d39a5": true,
-    "origin/feat/taxonomy-s3@e05572b75315": "234ca5e29",
-    "origin/feat/taxonomy-s4@9a1a1852514f": "234ca5e29",
+    "origin/feat/taxonomy-s3@e05572b75315": "e0983abb0",
+    "origin/feat/taxonomy-s4@9a1a1852514f": "e0983abb0",
     "origin/feat/taxonomy-s5@d8b50a675ab3": true,
-    "origin/feat/taxonomy-tax-a@17d6137bdb89": "234ca5e29",
+    "origin/feat/taxonomy-tax-a@17d6137bdb89": "e0983abb0",
     "origin/feat/taxonomy-tax-b@eb6d9883e95c": true,
     "origin/feat/telephony-twilio-boot-wiring@2b3bf6305561": true,
     "origin/feat/totp-gate-and-admin-google@372e3c7fb0a3": true,
-    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "234ca5e29",
-    "origin/feat/w1@21667a886023": "234ca5e29",
-    "origin/feat/w2@247ead3f02af": "234ca5e29",
+    "origin/feat/u1-ui-audit-and-status-refresh@aa6f82f74eb5": "e0983abb0",
+    "origin/feat/w1@21667a886023": "e0983abb0",
+    "origin/feat/w2@247ead3f02af": "e0983abb0",
     "origin/feat/w3@4cf46bdbb6ca": true,
     "origin/feat/w4@c2dec1309090": true,
     "origin/feat/wave-a-integration@9f5d3e77833d": true,
@@ -19637,7 +19637,7 @@
     "origin/feat/wave-e-e9-voice-payments@aaf8f1bece55": true,
     "origin/feat/wave-e-en2-spanish@08bd4faa06b9": true,
     "origin/feat/wave-e-en3-voice-persona@72f305a280c8": true,
-    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "234ca5e29",
+    "origin/feat/wave-e-en4-insurance-eligibility@da5efddf1f6f": "e0983abb0",
     "origin/feat/wave-e-en5-waitlist@b3ed576c7cfa": true,
     "origin/feat/wave-e-en6-triage@b7956b5356e3": true,
     "origin/feat/wave-e-en7-reminder-cadence@19bdff3d699c": true,
